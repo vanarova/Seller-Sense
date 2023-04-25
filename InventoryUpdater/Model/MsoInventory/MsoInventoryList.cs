@@ -1,0 +1,54 @@
+﻿using Decoders.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InventoryUpdater.Model
+{
+    internal class MsoInventoryList
+    {
+        internal IList<IMsoInventory> _msoInventoryList { get; set; }
+        internal IList<IMsoInventory> _msoUIModifiedInvList { get; set; }
+
+        public MsoInventoryList()
+        {
+            _msoUIModifiedInvList = new List<IMsoInventory>();
+            _msoInventoryList = new List<IMsoInventory>();
+        }
+
+        internal void SearchInvCollectionAsync(string keyword,
+       Constants.SearchType searchBy,
+       Constants.Company companyName,
+       Action<List<int>> SendToUI)
+        {
+            if(_msoInventoryList==null || _msoInventoryList.Count==0)
+                return;
+            BackgroundWorker bg = new BackgroundWorker();
+            List<int> slist = new List<int>();
+            bg.WorkerReportsProgress = true;
+            bg.DoWork += (sender, doWorkEventArgs) => {
+                int i = 0;
+                if (companyName == Constants.Company.Meesho)
+                {
+                    foreach (var item in _msoInventoryList)
+                    {
+                        if (searchBy == Constants.SearchType.ByCompanyId && item.fsn.Contains(keyword))
+                            slist.Add(i);
+                        //if (searchBy == Constants.SearchType.ByUserId && item.sku.Contains(keyword))
+                        //    slist.Add(i);
+                        i++;
+                    }
+                }
+                bg.ReportProgress(0, slist);
+            };
+            bg.ProgressChanged += (sender, progressChangedEventArgs) => {
+                SendToUI(slist);
+            };
+            bg.RunWorkerAsync();
+        }
+
+    }
+}

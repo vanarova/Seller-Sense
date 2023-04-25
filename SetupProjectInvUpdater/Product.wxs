@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define InventoryUpdater_TargetDir=$(var.InventoryUpdater.TargetDir)?>
+	<Product Id="*" Name="SetupProjectInvUpdater" Language="1033" Version="1.0.0.0" Manufacturer="CC-India" UpgradeCode="f8dc5f03-fc86-410a-bc1e-3667a9109853">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="SetupProjectInvUpdater" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="SetupProjectInvUpdater" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+			<Component Id="InventoryUpdater.exe" Guid="d77540e7-6451-4b06-89f2-c904762169f3">
+			  <File Id="InventoryUpdater.exe" Name="InventoryUpdater.exe" Source="$(var.InventoryUpdater_TargetDir)InventoryUpdater.exe" />
+			</Component>
+			<Component Id="NPOI.OOXML.dll" Guid="cbe9d16f-6b47-4226-8364-f50ae9fefc3f">
+			  <File Id="NPOI.OOXML.dll" Name="NPOI.OOXML.dll" Source="$(var.InventoryUpdater_TargetDir)NPOI.OOXML.dll" />
+			</Component>
+			<Component Id="Microsoft.Bcl.AsyncInterfaces.dll" Guid="e8f7bea1-1cfd-4514-8261-cbfed8a5240b">
+			  <File Id="Microsoft.Bcl.AsyncInterfaces.dll" Name="Microsoft.Bcl.AsyncInterfaces.dll" Source="$(var.InventoryUpdater_TargetDir)Microsoft.Bcl.AsyncInterfaces.dll" />
+			</Component>
+			<Component Id="System.ValueTuple.dll" Guid="c9d72fbd-a10d-402c-b21b-1f2e03b181a0">
+			  <File Id="System.ValueTuple.dll" Name="System.ValueTuple.dll" Source="$(var.InventoryUpdater_TargetDir)System.ValueTuple.dll" />
+			</Component>
+			<Component Id="Enums.NET.dll" Guid="4367f69a-b683-4636-acca-94ac14ac07f9">
+			  <File Id="Enums.NET.dll" Name="Enums.NET.dll" Source="$(var.InventoryUpdater_TargetDir)Enums.NET.dll" />
+			</Component>
+			<Component Id="System.Text.Json.dll" Guid="77db60cd-e1a1-48eb-8145-7bb556664154">
+			  <File Id="System.Text.Json.dll" Name="System.Text.Json.dll" Source="$(var.InventoryUpdater_TargetDir)System.Text.Json.dll" />
+			</Component>
+			<Component Id="System.Threading.Tasks.Extensions.dll" Guid="5bb324da-cff9-44bc-a7cb-748f3eb84dc4">
+			  <File Id="System.Threading.Tasks.Extensions.dll" Name="System.Threading.Tasks.Extensions.dll" Source="$(var.InventoryUpdater_TargetDir)System.Threading.Tasks.Extensions.dll" />
+			</Component>
+			<Component Id="ICSharpCode.SharpZipLib.dll" Guid="85b8590a-c98b-4360-beef-268c17fb4f82">
+			  <File Id="ICSharpCode.SharpZipLib.dll" Name="ICSharpCode.SharpZipLib.dll" Source="$(var.InventoryUpdater_TargetDir)ICSharpCode.SharpZipLib.dll" />
+			</Component>
+			<Component Id="Microsoft.IO.RecyclableMemoryStream.dll" Guid="c0da7e4e-fb1a-417e-a0ee-8878d1882223">
+			  <File Id="Microsoft.IO.RecyclableMemoryStream.dll" Name="Microsoft.IO.RecyclableMemoryStream.dll" Source="$(var.InventoryUpdater_TargetDir)Microsoft.IO.RecyclableMemoryStream.dll" />
+			</Component>
+			<Component Id="System.Text.Encodings.Web.dll" Guid="46527b6e-3053-4b2c-939b-fb0cbbaf2edc">
+			  <File Id="System.Text.Encodings.Web.dll" Name="System.Text.Encodings.Web.dll" Source="$(var.InventoryUpdater_TargetDir)System.Text.Encodings.Web.dll" />
+			</Component>
+			<Component Id="BouncyCastle.Crypto.dll" Guid="8e725f6e-5bca-4ec6-9b5f-ec20cb877337">
+			  <File Id="BouncyCastle.Crypto.dll" Name="BouncyCastle.Crypto.dll" Source="$(var.InventoryUpdater_TargetDir)BouncyCastle.Crypto.dll" />
+			</Component>
+			<Component Id="MathNet.Numerics.dll" Guid="3ba25aca-9ece-44a1-b863-ddf83100b292">
+			  <File Id="MathNet.Numerics.dll" Name="MathNet.Numerics.dll" Source="$(var.InventoryUpdater_TargetDir)MathNet.Numerics.dll" />
+			</Component>
+			<Component Id="NPOI.OpenXml4Net.dll" Guid="efc4b689-0683-40d1-b988-9a2c8194c371">
+			  <File Id="NPOI.OpenXml4Net.dll" Name="NPOI.OpenXml4Net.dll" Source="$(var.InventoryUpdater_TargetDir)NPOI.OpenXml4Net.dll" />
+			</Component>
+			<Component Id="System.Buffers.dll" Guid="a94b8a5f-cc62-4eda-861d-e5d2e06a1e1f">
+			  <File Id="System.Buffers.dll" Name="System.Buffers.dll" Source="$(var.InventoryUpdater_TargetDir)System.Buffers.dll" />
+			</Component>
+			<Component Id="SixLabors.Fonts.dll" Guid="7c59c653-d714-4d9c-888e-186757ef91ed">
+			  <File Id="SixLabors.Fonts.dll" Name="SixLabors.Fonts.dll" Source="$(var.InventoryUpdater_TargetDir)SixLabors.Fonts.dll" />
+			</Component>
+			<Component Id="System.Runtime.CompilerServices.Unsafe.dll" Guid="f5c8fa8d-c78e-40ec-9431-464f76562eb0">
+			  <File Id="System.Runtime.CompilerServices.Unsafe.dll" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="$(var.InventoryUpdater_TargetDir)System.Runtime.CompilerServices.Unsafe.dll" />
+			</Component>
+			<Component Id="SixLabors.ImageSharp.dll" Guid="7b17a858-f009-4d01-a25a-8403c14eec2c">
+			  <File Id="SixLabors.ImageSharp.dll" Name="SixLabors.ImageSharp.dll" Source="$(var.InventoryUpdater_TargetDir)SixLabors.ImageSharp.dll" />
+			</Component>
+			<Component Id="System.Numerics.Vectors.dll" Guid="983180ba-d18c-4f5e-a8b8-4c4a920505f4">
+			  <File Id="System.Numerics.Vectors.dll" Name="System.Numerics.Vectors.dll" Source="$(var.InventoryUpdater_TargetDir)System.Numerics.Vectors.dll" />
+			</Component>
+			<Component Id="System.Memory.dll" Guid="8119f881-e8d7-4f64-a9c4-b26eabd63790">
+			  <File Id="System.Memory.dll" Name="System.Memory.dll" Source="$(var.InventoryUpdater_TargetDir)System.Memory.dll" />
+			</Component>
+			<Component Id="NPOI.dll" Guid="d4e88c82-3f49-44f5-82ac-6b3c9af3457e">
+			  <File Id="NPOI.dll" Name="NPOI.dll" Source="$(var.InventoryUpdater_TargetDir)NPOI.dll" />
+			</Component>
+			<Component Id="ExcelMapper.dll" Guid="68fc1cb3-01bc-4578-9721-38771480fe99">
+			  <File Id="ExcelMapper.dll" Name="ExcelMapper.dll" Source="$(var.InventoryUpdater_TargetDir)ExcelMapper.dll" />
+			</Component>
+			<Component Id="AngleSharp.dll" Guid="f19f19f5-aa18-4935-a72b-5972a104a152">
+			  <File Id="AngleSharp.dll" Name="AngleSharp.dll" Source="$(var.InventoryUpdater_TargetDir)AngleSharp.dll" />
+			</Component>
+			<Component Id="Newtonsoft.Json.dll" Guid="71176130-e2b6-477c-9142-30f1ecb6e491">
+			  <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.InventoryUpdater_TargetDir)Newtonsoft.Json.dll" />
+			</Component>
+			<Component Id="Decoders.dll" Guid="668cf612-e46a-4356-8ef6-acaaeefd77d0">
+			  <File Id="Decoders.dll" Name="Decoders.dll" Source="$(var.InventoryUpdater_TargetDir)Decoders.dll" />
+			</Component>
+			<Component Id="NPOI.OpenXmlFormats.dll" Guid="bde3f305-08cf-415a-b280-1d2aaa4a71ff">
+			  <File Id="NPOI.OpenXmlFormats.dll" Name="NPOI.OpenXmlFormats.dll" Source="$(var.InventoryUpdater_TargetDir)NPOI.OpenXmlFormats.dll" />
+			</Component>
+			<Component Id="InventoryUpdater.exe.config" Guid="fc240d9c-5317-40ed-a98a-577db610fa19">
+			  <File Id="InventoryUpdater.exe.config" Name="InventoryUpdater.exe.config" Source="$(var.InventoryUpdater_TargetDir)InventoryUpdater.exe.config" />
+			</Component>
+			<Component Id="System.Text.Encoding.CodePages.dll" Guid="fdb5bfdf-a613-43b0-9f94-8dac79b78368">
+			  <File Id="System.Text.Encoding.CodePages.dll" Name="System.Text.Encoding.CodePages.dll" Source="$(var.InventoryUpdater_TargetDir)System.Text.Encoding.CodePages.dll" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
