@@ -11,7 +11,13 @@ namespace InventoryUpdater.Model
     internal class AmzInventoryList
     {
         internal IList<IAmzInventory> _amzInventoryList { get; set; }
+        internal IList<IAmzInventory> _amzModifiedInventoryList { get; set; }
 
+        public AmzInventoryList()
+        {
+            _amzInventoryList = new List<IAmzInventory>();
+            _amzModifiedInventoryList = new List<IAmzInventory>();
+        }
 
         internal void SearchInvCollectionAsync(string keyword,
        Constants.SearchType searchBy,

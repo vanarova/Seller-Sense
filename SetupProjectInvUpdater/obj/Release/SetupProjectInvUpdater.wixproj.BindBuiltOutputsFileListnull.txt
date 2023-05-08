@@ -1,0 +1,3 @@
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\cab1.cab
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\SetupProjectInvUpdater.msi
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\SetupProjectInvUpdater.wixpdb

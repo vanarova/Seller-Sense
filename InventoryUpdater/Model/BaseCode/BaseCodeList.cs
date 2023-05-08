@@ -23,8 +23,8 @@ namespace InventoryUpdater.Model
             if (File.Exists(fileName))
             {
                 string txt = File.ReadAllText(fileName); //create separate function for file IO
-                JObject jobj = JObject.Parse(txt);
-                foreach (var item in jobj.Property("Inventory").Values())
+                JArray jobj = JArray.Parse(txt);
+                foreach (var item in jobj)
                 {
                     if (AppVersion.Ver == AppVersion.Number.V1)
                         codes.Add(item.ToObject<BaseCodeV1>());
@@ -32,6 +32,14 @@ namespace InventoryUpdater.Model
                         codes.Add(item.ToObject<BaseCodeV2>());
 
                 }
+                //foreach (var item in jobj.Property("Inventory").Values())
+                //{
+                //    if (AppVersion.Ver == AppVersion.Number.V1)
+                //        codes.Add(item.ToObject<BaseCodeV1>());
+                //    else if (AppVersion.Ver == AppVersion.Number.V2)
+                //        codes.Add(item.ToObject<BaseCodeV2>());
+
+                //}
                 //_map.CreateAnEmptyMap(_baseCodes);
             }
 

@@ -12,28 +12,29 @@ using System.IO;
 
 namespace InventoryUpdater
 {
+
+
+
     /// <summary>
     /// Drives Model logic
     /// </summary>
-    public class Driver
+    public class Company
     {
-
+        private string Name;
+        private string Code;
         internal BaseCodeList _baseCodes { get; set; }
         internal AmzInventoryList _amzImportedInvList { get; set; }
         internal FkInventoryList _fkImportedInventoryList { get; set; }
         internal SpdInventoryList _spdImportedInventoryList { get; set; }
         internal MsoInventoryList _msoImportedInventoryList { get; set; }
 
-        //internal IList<IFkInventory> _fkModifiedList { get; set; }
-
-        //internal IList<ISpdInventory> _spdInventory { get; set; }
         internal Map _map { get; set; }
         internal Model.Inv _inv { get; set; }
         internal DataSet _mapGridData { get; set; }
         internal DataSet _invUpdateGridData { get; set; }
         
 
-        public Driver()
+        public Company()
         {
             _baseCodes = new BaseCodeList();
             _amzImportedInvList = new AmzInventoryList();
@@ -117,6 +118,11 @@ namespace InventoryUpdater
             _fkImportedInventoryList._fkInventoryList = FlipkartInvDecoder.GetData(fileName);
         }
 
+        internal void ExportAmazonInventoryFile(string dirPath)
+        {
+            AmazonInvDecoder.SaveAllData(_amzImportedInvList._amzModifiedInventoryList, dirPath);
+        }
+
         internal void ExportFlipkartInventoryFile(string dirPath)
         {
            FlipkartInvDecoder.SaveAllData(_fkImportedInventoryList._fkUIModifiedInvList, dirPath);
@@ -192,7 +198,7 @@ namespace InventoryUpdater
             return true;
         }
 
-        internal void AssignAmzInvAndPricesToInvUpdateCollection()
+        internal void AssignAmzInvAndPricesToInvUpdateCollection(Action AmazonInvAssigned)
         {
             List<IAmzInventory> amzInvList = new List<IAmzInventory>();
             amzInvList.AddRange(_amzImportedInvList._amzInventoryList);
@@ -200,9 +206,13 @@ namespace InventoryUpdater
             foreach (var invItem in _inv._invEntries)
             {
                 var amzInvItem = amzInvList.Find(amz => amz.asin == invItem.MapEntry.AmzCodeValue);
-                if(amzInvItem != null)
-                    invItem.AmzInv = Convert.ToInt16(amzInvItem.quantity);
+                if (amzInvItem != null)
+                {
+                    invItem.AmzSystemInv = Convert.ToInt16(amzInvItem.systemQuantity);
+                    invItem.AmzInv = Convert.ToInt16(amzInvItem.sellerQuantity);
+                }
             }
+            GetInvUpdateGridDataset(() => { AmazonInvAssigned(); });
         }
 
         internal void AssignFkInvAndPricesToInvUpdateCollection(Action FlipkartInvAssigned)
@@ -291,6 +301,7 @@ namespace InventoryUpdater
             ds.Tables[0].Columns.Add(Constants.ICols.stock);
             ds.Tables[0].Columns.Add(Constants.ICols.acode);
             ds.Tables[0].Columns.Add(Constants.ICols.acount);
+            ds.Tables[0].Columns.Add(Constants.ICols.asyscount);
             ds.Tables[0].Columns.Add(Constants.ICols.fcode);
             ds.Tables[0].Columns.Add(Constants.ICols.fcount);
             ds.Tables[0].Columns.Add(Constants.ICols.fsyscount);
@@ -313,14 +324,17 @@ namespace InventoryUpdater
             {
                 _inv._invEntries.ForEach((x) =>
                 {
-                    Image img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.MapEntry.Image));
-                    Image timg = (Image)(new Bitmap(img, new Size(75, 75)));
+                    Image img = null; Image timg = null;
+                    if(File.Exists(Path.Combine(_map._lastSavedMapImageDirectory, x.MapEntry.Image)))
+                     img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.MapEntry.Image));
+                    if(img!=null)
+                     timg = (Image)(new Bitmap(img, new Size(75, 75)));
                     ds.Tables[0].Rows.Add(timg,
                         x.MapEntry.BaseCodeValue,
                         x.MapEntry.Title,
                         x.WarehouseInv,
                         x.MapEntry.AmzCodeValue,
-                        x.AmzInv,
+                        x.AmzInv, x.AmzSystemInv,
                         x.MapEntry.FkCodeValue,
                         x.FkInv,x.FkSystemInv,
                         x.MapEntry.SpdCodeValue,
@@ -339,27 +353,31 @@ namespace InventoryUpdater
             //return ds;
         }
 
-        internal void GetMappingGridDataset(Action DataSetLoaded)
+        internal void FillLoadedMapToGridDataset(Action DataSetLoaded)
         {
             //this.WindowState = FormWindowState.Minimized;
             BackgroundWorker bg = new BackgroundWorker();
             DataSet ds = new DataSet(); ds.Tables.Add("t");
-            ds.Tables[0].Columns.Add("Image", typeof(Image));
-            ds.Tables[0].Columns.Add("Code");
-            ds.Tables[0].Columns.Add("Title");
-            ds.Tables[0].Columns.Add("Amazon_Code");
-            ds.Tables[0].Columns.Add("FK_Code");
-            ds.Tables[0].Columns.Add("Spd_Code");
-            ds.Tables[0].Columns.Add("Mso_Code");
-            ds.Tables[0].Columns.Add("Notes");
+            ds.Tables[0].Columns.Add(Constants.MCols.Image, typeof(Image));
+            ds.Tables[0].Columns.Add(Constants.MCols.Code);
+            ds.Tables[0].Columns.Add(Constants.MCols.Title);
+            ds.Tables[0].Columns.Add(Constants.MCols.amz_Code);
+            ds.Tables[0].Columns.Add(Constants.MCols.fK_Code);
+            ds.Tables[0].Columns.Add(Constants.MCols.spd_Code);
+            ds.Tables[0].Columns.Add(Constants.MCols.mso_Code);
+            ds.Tables[0].Columns.Add(Constants.MCols.notes);
 
             bg.WorkerReportsProgress = true;
             bg.DoWork += (sender, doWorkEventArgs) =>
             {
                 _map.MapEntries.ForEach((x) =>
                 {
-                    Image img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.Image));
-                    Image timg = (Image)(new Bitmap(img, new Size(75, 75)));
+                    Image img = null; Image timg = null;
+                    if (File.Exists(Path.Combine(_map._lastSavedMapImageDirectory, x.Image)))
+                    {
+                        img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.Image));
+                        timg = (Image)(new Bitmap(img, new Size(75, 75)));
+                    }
                     DataRow dr = ds.Tables[0].Rows.Add(timg, x.BaseCodeValue, x.Title, x.AmzCodeValue, x.FkCodeValue, x.SpdCodeValue, x.MsoCodeValue, x.Notes);
                 });
             };

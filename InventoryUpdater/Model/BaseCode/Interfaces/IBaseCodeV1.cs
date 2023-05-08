@@ -8,8 +8,8 @@ namespace InventoryUpdater.Model.Interfaces
 {
     internal interface IBaseCodeV1
     {
-        string Code { get; set; }
-        string ImageURL { get; set; }
+        string BaseCodeValue { get; set; }
+        string Image { get; set; }
         string Price { get; set; }
         string Title { get; set; }
 

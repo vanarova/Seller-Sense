@@ -36,7 +36,7 @@ namespace InventoryUpdater.Model
         public void CreateAnEmptyMap(BaseCodeList baseCodeList) {
             foreach (var item in baseCodeList.codes)
             {
-                MapEntries.Add(new MapEntry(item.Code, item.ImageURL, item.Title, String.Empty, String.Empty,string.Empty, string.Empty, string.Empty));
+                MapEntries.Add(new MapEntry(item.BaseCodeValue, item.Image, item.Title, String.Empty, String.Empty,string.Empty, string.Empty, string.Empty));
             }
         }
 
@@ -82,7 +82,7 @@ namespace InventoryUpdater.Model
         internal void SaveAsMapFile(string fileName)
         {
             _lastSavedMapFilePath = fileName;
-            FileIO.SaveUserSetting("LastSavedMapFilePath", _lastSavedMapFilePath);
+            ProjIO.SaveUserSetting("LastSavedMapFilePath", _lastSavedMapFilePath);
             SerializeMap(fileName);
         }
 
@@ -91,20 +91,20 @@ namespace InventoryUpdater.Model
         internal void SetLastSavedMapFileAndLoadMap(string fileName)
         {
             _lastSavedMapFilePath = fileName;
-            FileIO.SaveUserSetting("LastSavedMapFilePath", _lastSavedMapFilePath);
+            ProjIO.SaveUserSetting("LastSavedMapFilePath", _lastSavedMapFilePath);
             LoadLastSavedMap();
         }
 
 
         internal string GetLastSavedMapFile()
         {
-            _lastSavedMapFilePath = FileIO.GetUserSetting("LastSavedMapFilePath");
+            _lastSavedMapFilePath = ProjIO.GetUserSetting("LastSavedMapFilePath");
             return _lastSavedMapFilePath;
         }
 
         internal static void ConvertJSONHttpImagesToLocalImages()
         {
-            string lastSavedFilePath = FileIO.GetUserSetting("LastSavedMapFilePath");
+            string lastSavedFilePath = ProjIO.GetUserSetting("LastSavedMapFilePath");
             string jsonText = File.ReadAllText(lastSavedFilePath);
             List<MapEntry> jobj = JsonConvert.DeserializeObject<List<MapEntry>>(jsonText);
             foreach (var item in jobj)

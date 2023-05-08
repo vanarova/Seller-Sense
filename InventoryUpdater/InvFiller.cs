@@ -13,8 +13,8 @@ namespace InventoryUpdater
 {
     public partial class InvFiller : Form
     {
-        public Driver _driver { get; set; }
-        public Constants.Company _company { get; set; }
+        public Company _company { get; set; }
+        public Constants.Company _companyConst { get; set; }
         public IList<IAmzInventory> _amzInventory { get; set; }
         public IList<IFkInventory> _fkInventory { get; set; }
         public IList<ISpdInventory> _spdInventory { get; set; }
@@ -28,49 +28,49 @@ namespace InventoryUpdater
             InitializeComponent();
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle,IList<IAmzInventory> amzInv, Driver driver)
+        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle,IList<IAmzInventory> amzInv, Company company)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
             _amzInventory = amzInv;
-            _driver = driver;
-            _company = Constants.Company.Amazon;
+            _company = company;
+            _companyConst = Constants.Company.Amazon;
         }
 
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IFkInventory> fkinv, Driver driver)
+        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IFkInventory> fkinv, Company company)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
             _fkInventory = fkinv;
-            _driver = driver;
-            _company = Constants.Company.Flipkart;
+            _company = company;
+            _companyConst = Constants.Company.Flipkart;
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<ISpdInventory> spdinv, Driver driver)
+        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<ISpdInventory> spdinv, Company company)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
             _spdInventory = spdinv;
-            _driver = driver;
-            _company= Constants.Company.Snapdeal;
+            _company = company;
+            _companyConst= Constants.Company.Snapdeal;
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IMsoInventory> msoinv, Driver driver)
+        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IMsoInventory> msoinv, Company company)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
             _msoInventory = msoinv;
-            _driver = driver;
-            _company = Constants.Company.Meesho;
+            _company = company;
+            _companyConst = Constants.Company.Meesho;
         }
 
         private void InvFiller_Load(object sender, EventArgs e)
@@ -104,9 +104,9 @@ namespace InventoryUpdater
 
         private void SearchMsoInvList()
         {
-            _driver.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
+            _company.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _company,
+                            _companyConst,
                             (iList) =>
                             { //call back
                                 if (grd_InvData.DataSource != null)
@@ -132,9 +132,9 @@ namespace InventoryUpdater
 
         private void SearchSpdInvList()
         {
-            _driver.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
+            _company.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _company,
+                            _companyConst,
                             (iList) =>
                             { //call back
                                 if (grd_InvData.DataSource != null)
@@ -161,9 +161,9 @@ namespace InventoryUpdater
 
         private void SearchFkInvList()
         {
-            _driver.SearchFkInvCollectionAsync(txt_CompanyId.Text,
+            _company.SearchFkInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _company,
+                            _companyConst,
                             (iList) =>
                             { //call back
                                 if (grd_InvData.DataSource != null)
@@ -189,10 +189,10 @@ namespace InventoryUpdater
 
         private void SearchAmzInvList()
         {
-            _driver.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
+            _company.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _company,
-                            (iList) =>
+                            _companyConst,
+                            (Action<List<int>>)((iList) =>
                             { //call back
                                 if (grd_InvData.DataSource != null)
                                 {
@@ -207,12 +207,12 @@ namespace InventoryUpdater
                                 grd_InvData.Columns.Add("quantity", "quantity");
 
 
-                                iList.ForEach((i) =>
+                                iList.ForEach((Action<int>)((i) =>
                                 {
                                     grd_InvData.Rows.Add(_amzInventory[i].sku, _amzInventory[i].asin,
-                                        _amzInventory[i].price, _amzInventory[i].quantity);
-                                });
-                            });
+                                        _amzInventory[i].price, (object)_amzInventory[(int)i].sellerQuantity);
+                                }));
+                            }));
         }
 
         private void txt_SKUTitle_TextChanged(object sender, EventArgs e)
@@ -232,13 +232,13 @@ namespace InventoryUpdater
             if (e.KeyCode == Keys.Enter)
             {
                 //
-                if(_company == Constants.Company.Amazon)
+                if(_companyConst == Constants.Company.Amazon)
                     SelectedID = grd_InvData[1, 0].Value.ToString(); //second column is asin for amazon.
-                if (_company == Constants.Company.Flipkart)
+                if (_companyConst == Constants.Company.Flipkart)
                     SelectedID = grd_InvData[1, 0].Value.ToString(); //fsn
-                if (_company == Constants.Company.Snapdeal)
+                if (_companyConst == Constants.Company.Snapdeal)
                     SelectedID = grd_InvData[1, 0].Value.ToString();
-                if (_company == Constants.Company.Meesho)
+                if (_companyConst == Constants.Company.Meesho)
                     SelectedID = grd_InvData[1, 0].Value.ToString();  
 
                 e.SuppressKeyPress = true;

@@ -11,14 +11,16 @@ using System.Windows.Forms;
 
 namespace InventoryUpdater
 {
-    public partial class Welcome : Form
+    internal partial class Welcome : Form
     {
-        Driver _driver;
+        Company _company;
+        InventoryUpdater.Manager.Companies _companies;
         public Welcome()
         {
-            _driver = new Driver();
+            _company = new Company();
+            _companies = new InventoryUpdater.Manager.Companies();
             InitializeComponent();
-            FileIO.LoadUserSettings();
+            ProjIO.LoadUserSettings();
             
         }
 
@@ -28,10 +30,12 @@ namespace InventoryUpdater
             {
                 //DataSet mapGridData = new DataSet();
                 pbarLoadForms.Visible = true;
-                _driver._map.LoadLastSavedMap();
-                _driver.GetMappingGridDataset(() =>
+                _company._map.LoadLastSavedMap();
+               
+
+                _company.FillLoadedMapToGridDataset(() =>
                 {
-                    Mapping mp = new Mapping(_driver);
+                    Mapping mp = new Mapping(_company);
                     mp.MdiParent = this;
                     pbarLoadForms.Visible = false;
                     mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
@@ -75,10 +79,10 @@ namespace InventoryUpdater
             try
             {
                 pbarLoadForms.Visible = true;
-                _driver.LoadInvDataFromLastSavedMap();
-                _driver.GetInvUpdateGridDataset(() =>
+                _company.LoadInvDataFromLastSavedMap();
+                _company.GetInvUpdateGridDataset(() =>
                 {
-                    InvUpdate mp = new InvUpdate(_driver);
+                    InvUpdate mp = new InvUpdate(_company);
                     mp.MdiParent = this;
                     pbarLoadForms.Visible = !pbarLoadForms.Visible;
                     mp.Show();
@@ -121,6 +125,12 @@ namespace InventoryUpdater
         private void Welcome_SizeChanged(object sender, EventArgs e)
         {
             AdjustUI("AdjustWelcomeButtons");
+        }
+
+        private void btn_Setup_Click(object sender, EventArgs e)
+        {
+            Companies c = new Companies(_companies);
+            c.Show();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Decoders.Interfaces
         string sku { get; set; }
         string asin { get; set; }
         string price { get; set; }
-        string quantity { get; set; }
+        string sellerQuantity { get; set; }
+        string systemQuantity { get; set; }
+
     }
 }

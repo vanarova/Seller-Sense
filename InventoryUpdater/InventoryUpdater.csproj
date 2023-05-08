@@ -77,8 +77,15 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Companies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Companies.Designer.cs">
+      <DependentUpon>Companies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Constants.cs" />
-    <Compile Include="Driver\Driver.cs" />
+    <Compile Include="Manager\Companies.cs" />
+    <Compile Include="Manager\Company.cs" />
     <Compile Include="Helper\FileIO.cs" />
     <Compile Include="Helper\HTMLToJSON.cs" />
     <Compile Include="InvFiller.cs">
@@ -99,6 +106,12 @@
     <Compile Include="Mapping.Designer.cs">
       <DependentUpon>Mapping.cs</DependentUpon>
     </Compile>
+    <Compile Include="MappingCntrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MappingCntrl.Designer.cs">
+      <DependentUpon>MappingCntrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\AmzInventory\AmzInventoryList.cs" />
     <Compile Include="Model\AmzInventory\AmzInventory.cs" />
     <Compile Include="Model\BaseCode\BaseCodeList.cs" />
@@ -113,6 +126,7 @@
     <Compile Include="Model\Map\Map.cs" />
     <Compile Include="Model\MsoInventory\MsoInventory.cs" />
     <Compile Include="Model\MsoInventory\MsoInventoryList.cs" />
+    <Compile Include="Model\ProjectMgr\ProjectMgr.cs" />
     <Compile Include="Model\SpdInventory\SpdInventoryList.cs" />
     <Compile Include="Model\SpdInventory\SpdInventory.cs" />
     <Compile Include="SuperAdmin.cs">
@@ -138,6 +152,9 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Companies.resx">
+      <DependentUpon>Companies.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InvFiller.resx">
       <DependentUpon>InvFiller.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mapping.resx">
       <DependentUpon>Mapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MappingCntrl.resx">
+      <DependentUpon>MappingCntrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SuperAdmin.resx">
       <DependentUpon>SuperAdmin.cs</DependentUpon>
@@ -182,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Docs\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Decoders\Decoders.csproj">

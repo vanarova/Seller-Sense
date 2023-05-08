@@ -50,9 +50,14 @@
             this.toolStripMenuItemShowSpdInv = new System.Windows.Forms.ToolStripMenuItem();
             this.importMeeshoInvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowMsoInv = new System.Windows.Forms.ToolStripMenuItem();
+            this.importMapFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabcntrl_Mapping = new System.Windows.Forms.TabControl();
+            this.tabPage_defaultCompany = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdmapGrid)).BeginInit();
             this.fileStrip.SuspendLayout();
+            this.tabcntrl_Mapping.SuspendLayout();
+            this.tabPage_defaultCompany.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -62,25 +67,25 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.grdmapGrid, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.489796F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.5102F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1294, 735);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1280, 700);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // grdmapGrid
             // 
             this.grdmapGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdmapGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdmapGrid.Location = new System.Drawing.Point(3, 36);
+            this.grdmapGrid.Location = new System.Drawing.Point(3, 34);
             this.grdmapGrid.MultiSelect = false;
             this.grdmapGrid.Name = "grdmapGrid";
             this.grdmapGrid.RowHeadersWidth = 51;
             this.grdmapGrid.RowTemplate.Height = 24;
             this.grdmapGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.grdmapGrid.Size = new System.Drawing.Size(1288, 696);
+            this.grdmapGrid.Size = new System.Drawing.Size(1274, 663);
             this.grdmapGrid.TabIndex = 4;
             this.grdmapGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdmapGrid_CellEndEdit);
             this.grdmapGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdmapGrid_CellEnter);
@@ -112,6 +117,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMapFileToolStripMenuItem,
+            this.importMapFileToolStripMenuItem,
             this.saveMapFileToolStripMenuItem,
             this.saveAsMapFileToolStripMenuItem,
             this.importInvCodesToolStripMenuItem,
@@ -128,7 +134,7 @@
             // 
             this.openMapFileToolStripMenuItem.Name = "openMapFileToolStripMenuItem";
             this.openMapFileToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
-            this.openMapFileToolStripMenuItem.Text = "Open Map File";
+            this.openMapFileToolStripMenuItem.Text = "Create workspace";
             this.openMapFileToolStripMenuItem.Click += new System.EventHandler(this.openMapFileToolStripMenuItem_Click);
             // 
             // saveMapFileToolStripMenuItem
@@ -157,6 +163,7 @@
             this.importFlipkartInvFileToolStripMenuItem.Name = "importFlipkartInvFileToolStripMenuItem";
             this.importFlipkartInvFileToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
             this.importFlipkartInvFileToolStripMenuItem.Text = "Import Flipkart Inv File";
+            this.importFlipkartInvFileToolStripMenuItem.Visible = false;
             this.importFlipkartInvFileToolStripMenuItem.Click += new System.EventHandler(this.importFlipkartInvFileToolStripMenuItem_Click);
             // 
             // importAmazonInvFileToolStripMenuItem
@@ -164,6 +171,7 @@
             this.importAmazonInvFileToolStripMenuItem.Name = "importAmazonInvFileToolStripMenuItem";
             this.importAmazonInvFileToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
             this.importAmazonInvFileToolStripMenuItem.Text = "Import Amazon Inv File";
+            this.importAmazonInvFileToolStripMenuItem.Visible = false;
             this.importAmazonInvFileToolStripMenuItem.Click += new System.EventHandler(this.importAmazonInvFileToolStripMenuItem_Click);
             // 
             // importSnapdealInvFileToolStripMenuItem
@@ -171,12 +179,14 @@
             this.importSnapdealInvFileToolStripMenuItem.Name = "importSnapdealInvFileToolStripMenuItem";
             this.importSnapdealInvFileToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
             this.importSnapdealInvFileToolStripMenuItem.Text = "Import Snapdeal Inv File";
+            this.importSnapdealInvFileToolStripMenuItem.Visible = false;
             // 
             // importMeeshoInvFileToolStripMenuItem
             // 
             this.importMeeshoInvFileToolStripMenuItem.Name = "importMeeshoInvFileToolStripMenuItem";
             this.importMeeshoInvFileToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
             this.importMeeshoInvFileToolStripMenuItem.Text = "Import Meesho Inv File";
+            this.importMeeshoInvFileToolStripMenuItem.Visible = false;
             // 
             // utilitiesToolStripMenuItem
             // 
@@ -255,13 +265,41 @@
             this.toolStripMenuItemShowMsoInv.Text = "^";
             this.toolStripMenuItemShowMsoInv.Click += new System.EventHandler(this.toolStripMenuItemShowMsoInv_Click);
             // 
+            // importMapFileToolStripMenuItem
+            // 
+            this.importMapFileToolStripMenuItem.Name = "importMapFileToolStripMenuItem";
+            this.importMapFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
+            this.importMapFileToolStripMenuItem.Text = "Import Map File (Change to Project (imgs))";
+            this.importMapFileToolStripMenuItem.Click += new System.EventHandler(this.importMapFileToolStripMenuItem_Click);
+            // 
+            // tabcntrl_Mapping
+            // 
+            this.tabcntrl_Mapping.Controls.Add(this.tabPage_defaultCompany);
+            this.tabcntrl_Mapping.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabcntrl_Mapping.Location = new System.Drawing.Point(0, 0);
+            this.tabcntrl_Mapping.Name = "tabcntrl_Mapping";
+            this.tabcntrl_Mapping.SelectedIndex = 0;
+            this.tabcntrl_Mapping.Size = new System.Drawing.Size(1294, 735);
+            this.tabcntrl_Mapping.TabIndex = 5;
+            // 
+            // tabPage_defaultCompany
+            // 
+            this.tabPage_defaultCompany.Controls.Add(this.tableLayoutPanel1);
+            this.tabPage_defaultCompany.Location = new System.Drawing.Point(4, 25);
+            this.tabPage_defaultCompany.Name = "tabPage_defaultCompany";
+            this.tabPage_defaultCompany.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_defaultCompany.Size = new System.Drawing.Size(1286, 706);
+            this.tabPage_defaultCompany.TabIndex = 0;
+            this.tabPage_defaultCompany.Text = "tabPage1";
+            this.tabPage_defaultCompany.UseVisualStyleBackColor = true;
+            // 
             // Mapping
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 735);
+            this.Controls.Add(this.tabcntrl_Mapping);
             this.Controls.Add(this.fileStrip);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.MinimumSize = new System.Drawing.Size(1200, 700);
             this.Name = "Mapping";
             this.Text = "Mapping";
@@ -270,6 +308,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdmapGrid)).EndInit();
             this.fileStrip.ResumeLayout(false);
             this.fileStrip.PerformLayout();
+            this.tabcntrl_Mapping.ResumeLayout(false);
+            this.tabPage_defaultCompany.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,5 +339,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowSpdInv;
         private System.Windows.Forms.ToolStripMenuItem importMeeshoInvToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowMsoInv;
+        private System.Windows.Forms.ToolStripMenuItem importMapFileToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabcntrl_Mapping;
+        private System.Windows.Forms.TabPage tabPage_defaultCompany;
     }
 }

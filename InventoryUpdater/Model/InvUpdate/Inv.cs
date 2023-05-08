@@ -50,6 +50,7 @@ namespace InventoryUpdater.Model
     {
        public Map.MapEntry MapEntry { get; set; }
        public int? AmzInv { get; set; }
+       public int? AmzSystemInv { get; set; }
        public int? FkInv { get; set; }    
        public int? FkSystemInv { get; set; }    
        public int? SpdInv { get; set; }

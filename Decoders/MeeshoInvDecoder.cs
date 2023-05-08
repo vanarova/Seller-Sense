@@ -21,11 +21,12 @@ namespace Decoders
         {
             if (_invMeesho == null)
             {
+                _invMeeshoFileName = excelFile;
                 ExcelMapper exm = new ExcelMapper(excelFile) { HeaderRow = true };
-                var otems = exm.Fetch<MsoInv>();
+                _invMeeshoUnModified = exm.Fetch<MsoInv>();
 
                 //var otems = new ExcelMapper(excelFile) { HeaderRow = false }.Fetch<FkInv>();
-                _invMeesho = otems.ToList<IMsoInventory>();
+                _invMeesho = _invMeeshoUnModified.ToList<IMsoInventory>();
                 _invMeesho.RemoveAt(0);
 
                 //List<FkInv> fkInvs = otems.ToList();

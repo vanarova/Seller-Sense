@@ -14,12 +14,12 @@ namespace InventoryUpdater
 {
     public partial class InvUpdate : Form
     {
-        private Driver _driver { get; set; }
+        private Company _company { get; set; }
 
-        public InvUpdate(Driver driver)
+        public InvUpdate(Company company)
         {
             InitializeComponent();
-            _driver = driver;
+            _company = company;
 
         }
 
@@ -54,11 +54,11 @@ namespace InventoryUpdater
 
         private void FillInvGrid()
         {
-            if (_driver._map.MapEntries == null || _driver._map.MapEntries.Count == 0)
+            if (_company._map.MapEntries == null || _company._map.MapEntries.Count == 0)
                 return;
 
 
-            grdInvUpdate.DataSource = _driver._invUpdateGridData.Tables[0];
+            grdInvUpdate.DataSource = _company._invUpdateGridData.Tables[0];
             //for (int i = 0; i < grdmapGrid.Rows.Count; i++)
             //    grdmapGrid.Size(i++);
             grdInvUpdate.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -70,7 +70,7 @@ namespace InventoryUpdater
         private void InvUpdate_Load(object sender, EventArgs e)
         {
             AdjustUI("MapGridUISettings");
-            if (_driver.LoadInvDataFromLastSavedMap())
+            if (_company.LoadInvDataFromLastSavedMap())
             {  FillInvGrid(); }
             else
             {
@@ -78,7 +78,7 @@ namespace InventoryUpdater
                 openFileDialog.Filter = "Inv Map Files|*.json";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    _driver.LoadInvUpdateDataFromUserSuppliedMapFile(openFileDialog.FileName);
+                    _company.LoadInvUpdateDataFromUserSuppliedMapFile(openFileDialog.FileName);
                     FillInvGrid();
                 }
             }
@@ -86,18 +86,23 @@ namespace InventoryUpdater
 
         private void RefreshGrid()
         {
-            _driver.AssignFkInvAndPricesToInvUpdateCollection(() => {
-                _driver.SaveInvSnapshot();
+            _company.AssignAmzInvAndPricesToInvUpdateCollection(() => {
+                _company.SaveInvSnapshot();
                 FillInvGrid();
                 pbar_Loading.Visible = false;
             });
-            _driver.AssignSpdInvAndPricesToInvUpdateCollection(() => {
-                _driver.SaveInvSnapshot();
+            _company.AssignFkInvAndPricesToInvUpdateCollection(() => {
+                _company.SaveInvSnapshot();
                 FillInvGrid();
                 pbar_Loading.Visible = false;
             });
-            _driver.AssignMsoInvAndPricesToInvUpdateCollection(() => {
-                _driver.SaveInvSnapshot();
+            _company.AssignSpdInvAndPricesToInvUpdateCollection(() => {
+                _company.SaveInvSnapshot();
+                FillInvGrid();
+                pbar_Loading.Visible = false;
+            });
+            _company.AssignMsoInvAndPricesToInvUpdateCollection(() => {
+                _company.SaveInvSnapshot();
                 FillInvGrid();
                 pbar_Loading.Visible = false;
             });
@@ -118,7 +123,10 @@ namespace InventoryUpdater
             if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 string folderPath = Path.GetDirectoryName(folderBrowser.FileName);
-                _driver.ExportFlipkartInventoryFile(folderPath);
+                _company.ExportAmazonInventoryFile(folderPath);
+                _company.ExportFlipkartInventoryFile(folderPath);
+                _company.ExportSnapdealInventoryFile(folderPath);
+                _company.ExportMeeshoInventoryFile(folderPath);
                 
                 // ...
             }
@@ -140,7 +148,7 @@ namespace InventoryUpdater
             openFileDialog.Filter = "Amazon inv text file|*.txt";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _driver.ImportAmazonInventoryFile(openFileDialog.FileName);
+                _company.ImportAmazonInventoryFile(openFileDialog.FileName);
                 pbar_Loading.Visible = true;
             }
             else return;
@@ -154,7 +162,7 @@ namespace InventoryUpdater
             openFileDialog.Filter = "Flipkart inv text file|*.xls";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _driver.ImportFlipkartInventoryFile(openFileDialog.FileName);
+                _company.ImportFlipkartInventoryFile(openFileDialog.FileName);
                 pbar_Loading.Visible = true;
             }
             else return;
@@ -168,7 +176,7 @@ namespace InventoryUpdater
             openFileDialog.Filter = "Snapdeal inv text file|*.xlsx";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _driver.ImportSnapdealInventoryFile(openFileDialog.FileName);
+                _company.ImportSnapdealInventoryFile(openFileDialog.FileName);
                 pbar_Loading.Visible = true;
             }
             else return;
@@ -182,7 +190,7 @@ namespace InventoryUpdater
             openFileDialog.Filter = "Meesho inv text file|*.xlsx";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _driver.ImportMeeshoInventoryFile(openFileDialog.FileName); 
+                _company.ImportMeeshoInventoryFile(openFileDialog.FileName); 
                 pbar_Loading.Visible = true;
             }
             else return;
@@ -192,41 +200,69 @@ namespace InventoryUpdater
 
         private void grdInvUpdate_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (_driver._fkImportedInventoryList._fkInventoryList != null)
+
+            if (grdInvUpdate.SelectedCells[0].OwningColumn.Name == Constants.ICols.notes)
             {
-                foreach (var item in _driver._fkImportedInventoryList._fkInventoryList)
+                foreach (var item in _company._inv._invEntries)
+                {
+                    if (item.MapEntry.BaseCodeValue == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString())
+                    {
+                        item.Notes = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.notes].Value.ToString();
+                        //_driver._amzImportedInvList._amzModifiedInventoryList.Add(item);
+                        
+                        _company.SaveInvSnapshot();
+                    }
+                }
+            }
+
+            if (_company._amzImportedInvList._amzInventoryList != null && grdInvUpdate.SelectedCells[0].OwningColumn.Name == Constants.ICols.acount)
+            {
+                foreach (var item in _company._amzImportedInvList._amzInventoryList)
+                {
+                    if (item.asin == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.acode].Value.ToString())
+                    {
+                        item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.acount].Value.ToString();
+                        _company._amzImportedInvList._amzModifiedInventoryList.Add(item);
+                        _company.SaveInvSnapshot();
+                    }
+                }
+            }
+
+            if (_company._fkImportedInventoryList._fkInventoryList != null && grdInvUpdate.SelectedCells[0].OwningColumn.Name == Constants.ICols.fcount )
+            {
+                foreach (var item in _company._fkImportedInventoryList._fkInventoryList)
                 {
                     if (item.fsn == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.fcode].Value.ToString())
                     {
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.fcount].Value.ToString();
-                        _driver._fkImportedInventoryList._fkUIModifiedInvList.Add(item);
-                        _driver.SaveInvSnapshot();
+                        _company._fkImportedInventoryList._fkUIModifiedInvList.Add(item);
+                        _company.SaveInvSnapshot();
                     }
                 }
             }
 
-            if (_driver._spdImportedInventoryList._spdInventoryList != null)
+            if (_company._spdImportedInventoryList._spdInventoryList != null && grdInvUpdate.SelectedCells[0].OwningColumn.Name == Constants.ICols.scount)
             {
-                foreach (var item in _driver._spdImportedInventoryList._spdInventoryList)
+                foreach (var item in _company._spdImportedInventoryList._spdInventoryList)
                 {
                     if (item.fsn == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.scode].Value.ToString())
                     {
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.scount].Value.ToString();
-                        _driver._spdImportedInventoryList._spdUIModifiedInvList.Add(item);
-                        _driver.SaveInvSnapshot();
+                        _company._spdImportedInventoryList._spdUIModifiedInvList.Add(item);
+                        _company.SaveInvSnapshot();
                     }
                 }
             }
 
-            if (_driver._msoImportedInventoryList._msoInventoryList != null)
+            if (_company._msoImportedInventoryList._msoInventoryList != null && grdInvUpdate.SelectedCells[0].OwningColumn.Name == Constants.ICols.mcount)
             {
-                foreach (var item in _driver._msoImportedInventoryList._msoInventoryList)
+                foreach (var item in _company._msoImportedInventoryList._msoInventoryList)
                 {
                     if (item.fsn == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.mcode].Value.ToString())
                     {
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.mcount].Value.ToString();
-                        _driver._msoImportedInventoryList._msoUIModifiedInvList.Add(item);
-                        _driver.SaveInvSnapshot();
+                        _company._msoImportedInventoryList._msoUIModifiedInvList.Add(item);
+                        _company.SaveInvSnapshot();
                     }
                 }
             }

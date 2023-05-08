@@ -18,14 +18,14 @@ namespace Decoders
         private static IEnumerable<SkInv> _invSnapdealUnModified;
         public static List<ISpdInventory> GetData(string excelFile)
         {
-
             if (_invSnapdeal == null)
             {
+                _invSnapdealFileName = excelFile;
                 _exm = new ExcelMapper(excelFile) { HeaderRow = true };
-                var otems = _exm.Fetch<SkInv>();
+                _invSnapdealUnModified = _exm.Fetch<SkInv>();
 
                 //var otems = new ExcelMapper(excelFile) { HeaderRow = false }.Fetch<FkInv>();
-                _invSnapdeal = otems.ToList<ISpdInventory>();
+                _invSnapdeal = _invSnapdealUnModified.ToList<ISpdInventory>();
                 return _invSnapdeal;
             }
             else return _invSnapdeal;

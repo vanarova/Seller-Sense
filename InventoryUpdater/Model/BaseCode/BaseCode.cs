@@ -16,15 +16,15 @@ namespace InventoryUpdater.Model
     public abstract class BaseCode
     {
 
-        public string Code { get; set; }
-        public string ImageURL { get; set; }
+        public string BaseCodeValue { get; set; }
+        public string Image { get; set; }
         public string Price { get; set; }
         public string Title { get; set; }
 
         public BaseCode(string img, string code, string price, string title)
         {
-            ImageURL = img;
-            Code = code;
+            Image = img;
+            BaseCodeValue = code;
             Price = price;
             Title = title;
         }

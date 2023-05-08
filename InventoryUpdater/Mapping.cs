@@ -15,29 +15,60 @@ namespace InventoryUpdater
 {
     public partial class Mapping : Form
     {
-        public Driver _driver { get; set; }
+        public Company _company { get; set; }
         private enum _colNames
         {
             Image=0,Code=1,Title=2, AmzCode=3,FkCode=4, SpdCode=5, MsoCode=6
         }
 
-        public Mapping(Driver driver)
+        public Mapping(Company company)
         {
             InitializeComponent();
-            _driver = driver;
+            _company = company;
         }
 
 
         private void Mapping_Load(object sender, EventArgs e)
         {
             AdjustUI("OnLoad", sender, e);
-            
+            //if (string.IsNullOrEmpty(_driver._map._lastSavedMapFilePath))
+            //{
+            //    MessageBox.Show("No last saved Map file found, please import Map data");
+            //    ImportMapFile();
+            //}
+               
             FillMapGrid();
         }
 
+
+
+
         private void openMapFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            //ImportMapFile();
+        }
+
+        private void ImportMapFile()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Inv Map Files|*.json";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //FileInfo fi = new FileInfo(openFileDialog.FileName);
+                DirectoryInfo di = new DirectoryInfo(openFileDialog.FileName);
+                if (di.Parent.GetFiles().Count() > 1)
+                {
+                    MessageBox.Show("Map file directory is containing more then 1 file, Please create a new directory and place map file in it");
+                    return;
+
+                }
+                _company._map.SetLastSavedMapFileAndLoadMap(openFileDialog.FileName);
+                _company.FillLoadedMapToGridDataset(() =>{ FillMapGrid(); });
+                    
+            }
+            
+
+
         }
 
         private void importInvCodesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,9 +88,10 @@ namespace InventoryUpdater
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Inv Map Files|*.json";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-                _driver.ImportBaseInvCodesFile(openFileDialog.FileName);
+                _company.ImportBaseInvCodesFile(openFileDialog.FileName);
             //FillMapGrid();
-            _driver.GetMappingGridDataset(() =>
+            //_driver._map.SetLastSavedMapFileAndLoadMap(openFileDialog.FileName);
+            _company.FillLoadedMapToGridDataset(() =>
             {
                 FillMapGrid();
             });
@@ -68,52 +100,19 @@ namespace InventoryUpdater
         private void FillMapGrid()
         {
             AdjustUI("MapGridUISettings");
-            grdmapGrid.DataSource = _driver._mapGridData.Tables[0];
+            if (_company._mapGridData == null || _company._mapGridData.Tables.Count == 0 ||
+               _company._mapGridData.Tables[0].Rows.Count == 0)
+            {
+                MessageBox.Show("No last saved Map file found, please Open/Import Map file");
+                return;
+            }
+            grdmapGrid.DataSource = _company._mapGridData.Tables[0];
             //for (int i = 0; i < grdmapGrid.Rows.Count; i++)
             //    grdmapGrid.Size(i++);
             grdmapGrid.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             grdmapGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             grdmapGrid.Invalidate();
         }
-
-        //private void FillMapGrid()
-        //{
-        //    this.WindowState = FormWindowState.Minimized;
-        //    BackgroundWorker bg = new BackgroundWorker();
-        //    DataSet ds = new DataSet(); ds.Tables.Add("t");
-        //    ds.Tables[0].Columns.Add("Image", typeof(Image));
-        //    ds.Tables[0].Columns.Add("Code");
-        //    ds.Tables[0].Columns.Add("Title");
-        //    ds.Tables[0].Columns.Add("Amazon_Code");
-        //    ds.Tables[0].Columns.Add("FK_Code");
-        //    ds.Tables[0].Columns.Add("Spd_Code");
-        //    ds.Tables[0].Columns.Add("Mso_Code");
-        //    ds.Tables[0].Columns.Add("Notes");
-
-        //    bg.WorkerReportsProgress = true;
-        //    bg.DoWork += (sender, doWorkEventArgs) =>
-        //    {
-        //        _driver._map.MapEntries.ForEach((x) =>
-        //        {
-        //            Image img = Image.FromFile(Path.Combine(_driver._map._lastSavedMapImageDirectory, x.Image));
-        //            Image timg = (Image)(new Bitmap(img, new Size(75, 75)));
-        //            DataRow dr = ds.Tables[0].Rows.Add(timg, x.BaseCodeValue, x.Title, x.AmzCodeValue, x.FkCodeValue, x.SpdCodeValue, x.MsoCodeValue, x.Notes);
-        //        });
-        //    };
-        //    bg.RunWorkerCompleted += (s, ev) => {
-        //        AdjustUI("MapGridUISettings");
-        //        grdmapGrid.DataSource = ds.Tables[0];
-        //        //for (int i = 0; i < grdmapGrid.Rows.Count; i++)
-        //        //    grdmapGrid.Size(i++);
-        //        grdmapGrid.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        //        grdmapGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-        //        grdmapGrid.Invalidate();
-        //        this.WindowState = FormWindowState.Minimized;
-        //        //this.Visible = true;
-        //    };
-        //    bg.RunWorkerAsync();
-        //    //return ds;
-        //}
 
         private void importAmazonInvFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -126,7 +125,7 @@ namespace InventoryUpdater
             openFileDialog.Filter = "Amazon inv text file|*.txt";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _driver.ImportAmazonInventoryFile(openFileDialog.FileName);
+                _company.ImportAmazonInventoryFile(openFileDialog.FileName);
             }
         }
 
@@ -154,13 +153,13 @@ namespace InventoryUpdater
             Image selectedImg = grdmapGrid[(int)_colNames.Image, selectedRow].Value as Image;
             string selectedCode = grdmapGrid[(int)_colNames.Code, selectedRow].Value.ToString();
             string selectedTitle = grdmapGrid[(int)_colNames.Title, selectedRow].Value.ToString();
-            _driver.ShowAmzInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
+            _company.ShowAmzInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
             {
                 //assign map ID
                 if (id != null && !string.IsNullOrEmpty(id))
                 {
                     grdmapGrid.SelectedCells[0].Value = id;
-                    _driver._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].AmzCodeValue = id;
+                    _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].AmzCodeValue = id;
                     grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
                 }
             });
@@ -172,13 +171,13 @@ namespace InventoryUpdater
             Image selectedImg = grdmapGrid[(int)_colNames.Image, selectedRow].Value as Image;
             string selectedCode = grdmapGrid[(int)_colNames.Code, selectedRow].Value.ToString();
             string selectedTitle = grdmapGrid[(int)_colNames.Title, selectedRow].Value.ToString();
-            _driver.ShowFkInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
+            _company.ShowFkInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
             {
                 //assign map ID
                 if (id != null && !string.IsNullOrEmpty(id))
                 {
                     grdmapGrid.SelectedCells[0].Value = id;
-                    _driver._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].FkCodeValue = id;
+                    _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].FkCodeValue = id;
                     grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
                 }
             });
@@ -191,13 +190,13 @@ namespace InventoryUpdater
             Image selectedImg = grdmapGrid[(int)_colNames.Image, selectedRow].Value as Image;
             string selectedCode = grdmapGrid[(int)_colNames.Code, selectedRow].Value.ToString();
             string selectedTitle = grdmapGrid[(int)_colNames.Title, selectedRow].Value.ToString();
-            _driver.ShowSpdInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
+            _company.ShowSpdInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
             {
                 //assign map ID
                 if (id != null && !string.IsNullOrEmpty(id))
                 {
                     grdmapGrid.SelectedCells[0].Value = id;
-                    _driver._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].SpdCodeValue = id;
+                    _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].SpdCodeValue = id;
                     grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
                 }
             });
@@ -210,13 +209,13 @@ namespace InventoryUpdater
             Image selectedImg = grdmapGrid[(int)_colNames.Image, selectedRow].Value as Image;
             string selectedCode = grdmapGrid[(int)_colNames.Code, selectedRow].Value.ToString();
             string selectedTitle = grdmapGrid[(int)_colNames.Title, selectedRow].Value.ToString();
-            _driver.ShowMsoInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
+            _company.ShowMsoInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
             {
                 //assign map ID
                 if (id != null && !string.IsNullOrEmpty(id))
                 {
                     grdmapGrid.SelectedCells[0].Value = id;
-                    _driver._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].MsoCodeValue = id;
+                    _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].MsoCodeValue = id;
                     grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
                 }
             });
@@ -238,10 +237,10 @@ namespace InventoryUpdater
 
         private void SaveMap()
         {
-            var lastSavedMapFilePath = _driver._map.GetLastSavedMapFile();
+            var lastSavedMapFilePath = _company._map.GetLastSavedMapFile();
             if (lastSavedMapFilePath != null && !string.IsNullOrEmpty(lastSavedMapFilePath))
             {
-                _driver._map.SaveMapFile();
+                _company._map.SaveMapFile();
             }
             else
             {
@@ -268,7 +267,7 @@ namespace InventoryUpdater
                 if (!Directory.Exists(mapFilePath))
                     Directory.CreateDirectory(mapFilePath);
                 string path = Path.Combine(mapFilePath, Path.GetFileName(sfd.FileName));
-                _driver._map.SaveAsMapFile(path);
+                _company._map.SaveAsMapFile(path);
             }
         }
 
@@ -316,24 +315,7 @@ namespace InventoryUpdater
                     }
                 case "MapGridUISettings":
                     {
-                        //DataGridViewImageColumn imgCol = new DataGridViewImageColumn();
-                        //imgCol.ImageLayout = DataGridViewImageCellLayout.Stretch; ;
-                        //imgCol.Width = 100; imgCol.Name = "Image";
-                        ////grdmapGrid.Columns.se
-                        //grdmapGrid.RowTemplate.Height = 100;
-                        //grdmapGrid.Columns.Add(imgCol);
-                        //grdmapGrid.Columns.Add("Code", "Code");
-                        //grdmapGrid.Columns.Add("Title", "Title");
-                        //grdmapGrid.Columns.Add("Amazon_Code", "Amazon_Code");
-                        //grdmapGrid.Columns.Add("FK_Code", "FK_Code");
-                        //grdmapGrid.Columns.Add("Spd_Code", "Snapdeal Code");
-                        //grdmapGrid.Columns.Add("Mso_Code", "Meesho Code");
-                        //grdmapGrid.Columns.Add("Notes", "Notes");
-                        //grdmapGrid.Columns["Code"].ReadOnly = true;
-                        //grdmapGrid.Columns["Title"].ReadOnly = true;
-                        //grdmapGrid.Columns["Amazon_Code"].ReadOnly = true;
-                        //grdmapGrid.Columns["FK_Code"].ReadOnly = true;
-                        
+                                               
                         foreach (DataGridViewColumn column in grdmapGrid.Columns)
                             column.SortMode = DataGridViewColumnSortMode.NotSortable;
                         grdmapGrid.SelectionMode = DataGridViewSelectionMode.CellSelect;
@@ -377,7 +359,7 @@ namespace InventoryUpdater
             openFileDialog.Filter = "Snapdeal inv file|*.xlsx";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _driver.ImportSnapdealInventoryFile(openFileDialog.FileName);
+                _company.ImportSnapdealInventoryFile(openFileDialog.FileName);
             }
         }
 
@@ -387,7 +369,7 @@ namespace InventoryUpdater
             openFileDialog.Filter = "Flipkart inv file|*.xls";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _driver.ImportFlipkartInventoryFile(openFileDialog.FileName);
+                _company.ImportFlipkartInventoryFile(openFileDialog.FileName);
             }
         }
 
@@ -397,7 +379,7 @@ namespace InventoryUpdater
             openFileDialog.Filter = "Meesho inv file|*.xlsx";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _driver.ImportMeeshoInventoryFile(openFileDialog.FileName);
+                _company.ImportMeeshoInventoryFile(openFileDialog.FileName);
             }
         }
 
@@ -419,14 +401,14 @@ namespace InventoryUpdater
         private void grdmapGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             //find selected row's code
-            var entry = _driver._map.MapEntries.Find(x => x.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells["Code"].Value.ToString());
-            entry.Notes = grdmapGrid.SelectedCells[0].OwningRow.Cells["Notes"].Value.ToString();
-            //_driver._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].Notes = grdmapGrid.SelectedCells[0].Value.ToString();
+            var entry = _company._map.MapEntries.Find(x => x.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.MCols.Code].Value.ToString());
+            entry.Notes = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.MCols.notes].Value.ToString();
+            entry.Title = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.MCols.Title].Value.ToString();
         }
 
-        //private void Mapping_FormClosed(object sender, FormClosedEventArgs e)
-        //{
-        //   // this.Parent.
-        //}
+        private void importMapFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportMapFile();
+        }
     }
 }
