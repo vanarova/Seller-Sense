@@ -74,7 +74,7 @@ namespace InventoryUpdater
 
         }
 
-        private void InvUpdate_Load(object sender, EventArgs e)
+        private void InvUpdateCntrl_Load(object sender, EventArgs e)
         {
             AdjustUI("MapGridUISettings");
             if (_company.LoadInvDataFromLastSavedMap())
@@ -117,7 +117,7 @@ namespace InventoryUpdater
         }
 
 
-        private void btn_exportAllInv_Click(object sender, EventArgs e)
+        private void btn_exportSllInv_Click(object sender, EventArgs e)
         {
             OpenFileDialog folderBrowser = new OpenFileDialog();
             // Set validate names and check file exists to false otherwise windows will
@@ -275,5 +275,15 @@ namespace InventoryUpdater
             }
 
         }
+
+        //private void btn_exportSllInv_Click(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void InvUpdateCntrl_Load(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

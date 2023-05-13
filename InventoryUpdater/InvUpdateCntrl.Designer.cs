@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.pbar_Loading = new System.Windows.Forms.ProgressBar();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_exportSllInv = new System.Windows.Forms.Button();
+            this.grdInvUpdate = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.importAmazonInvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.amazonInventoryFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flipkartInventoryFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.snapdealInventoryFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.meeshoInventoryFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.grdInvUpdate = new System.Windows.Forms.DataGridView();
-            this.btn_exportSllInv = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.pbar_Loading = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdInvUpdate)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -70,8 +70,63 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1157, 739);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // pbar_Loading
+            // 
+            this.pbar_Loading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbar_Loading.Location = new System.Drawing.Point(1029, 9);
+            this.pbar_Loading.Name = "pbar_Loading";
+            this.pbar_Loading.Size = new System.Drawing.Size(125, 17);
+            this.pbar_Loading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.pbar_Loading.TabIndex = 8;
+            this.pbar_Loading.Visible = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(787, 6);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(198, 22);
+            this.textBox1.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(722, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 16);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Search : ";
+            // 
+            // btn_exportSllInv
+            // 
+            this.btn_exportSllInv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_exportSllInv.Location = new System.Drawing.Point(520, 3);
+            this.btn_exportSllInv.Name = "btn_exportSllInv";
+            this.btn_exportSllInv.Size = new System.Drawing.Size(157, 29);
+            this.btn_exportSllInv.TabIndex = 5;
+            this.btn_exportSllInv.Text = "Export All";
+            this.btn_exportSllInv.UseVisualStyleBackColor = true;
+            this.btn_exportSllInv.Click += new System.EventHandler(this.btn_exportSllInv_Click);
+            // 
+            // grdInvUpdate
+            // 
+            this.grdInvUpdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.grdInvUpdate, 6);
+            this.grdInvUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdInvUpdate.Location = new System.Drawing.Point(3, 38);
+            this.grdInvUpdate.Name = "grdInvUpdate";
+            this.grdInvUpdate.RowHeadersWidth = 51;
+            this.grdInvUpdate.RowTemplate.Height = 24;
+            this.grdInvUpdate.Size = new System.Drawing.Size(1151, 698);
+            this.grdInvUpdate.TabIndex = 2;
+            this.grdInvUpdate.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdInvUpdate_CellValueChanged);
+            // 
             // menuStrip1
             // 
+            this.menuStrip1.AllowMerge = false;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -98,76 +153,28 @@
             this.amazonInventoryFileToolStripMenuItem.Name = "amazonInventoryFileToolStripMenuItem";
             this.amazonInventoryFileToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.amazonInventoryFileToolStripMenuItem.Text = "Amazon Inventory File";
+            this.amazonInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.amazonInventoryFileToolStripMenuItem_Click);
             // 
             // flipkartInventoryFileToolStripMenuItem
             // 
             this.flipkartInventoryFileToolStripMenuItem.Name = "flipkartInventoryFileToolStripMenuItem";
             this.flipkartInventoryFileToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.flipkartInventoryFileToolStripMenuItem.Text = "Flipkart Inventory File";
+            this.flipkartInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.flipkartInventoryFileToolStripMenuItem_Click);
             // 
             // snapdealInventoryFileToolStripMenuItem
             // 
             this.snapdealInventoryFileToolStripMenuItem.Name = "snapdealInventoryFileToolStripMenuItem";
             this.snapdealInventoryFileToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.snapdealInventoryFileToolStripMenuItem.Text = "Snapdeal Inventory File";
+            this.snapdealInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.snapdealInventoryFileToolStripMenuItem_Click);
             // 
             // meeshoInventoryFileToolStripMenuItem
             // 
             this.meeshoInventoryFileToolStripMenuItem.Name = "meeshoInventoryFileToolStripMenuItem";
             this.meeshoInventoryFileToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.meeshoInventoryFileToolStripMenuItem.Text = "Meesho Inventory File";
-            // 
-            // grdInvUpdate
-            // 
-            this.grdInvUpdate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel1.SetColumnSpan(this.grdInvUpdate, 6);
-            this.grdInvUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdInvUpdate.Location = new System.Drawing.Point(3, 39);
-            this.grdInvUpdate.Name = "grdInvUpdate";
-            this.grdInvUpdate.RowHeadersWidth = 51;
-            this.grdInvUpdate.RowTemplate.Height = 24;
-            this.grdInvUpdate.Size = new System.Drawing.Size(1151, 697);
-            this.grdInvUpdate.TabIndex = 2;
-            // 
-            // btn_exportSllInv
-            // 
-            this.btn_exportSllInv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_exportSllInv.Location = new System.Drawing.Point(520, 3);
-            this.btn_exportSllInv.Name = "btn_exportSllInv";
-            this.btn_exportSllInv.Size = new System.Drawing.Size(157, 30);
-            this.btn_exportSllInv.TabIndex = 5;
-            this.btn_exportSllInv.Text = "Export All";
-            this.btn_exportSllInv.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(722, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 16);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Search : ";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(787, 7);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(198, 22);
-            this.textBox1.TabIndex = 7;
-            // 
-            // pbar_Loading
-            // 
-            this.pbar_Loading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbar_Loading.Location = new System.Drawing.Point(1029, 9);
-            this.pbar_Loading.Name = "pbar_Loading";
-            this.pbar_Loading.Size = new System.Drawing.Size(125, 17);
-            this.pbar_Loading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.pbar_Loading.TabIndex = 8;
-            this.pbar_Loading.Visible = false;
+            this.meeshoInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.meeshoInventoryFileToolStripMenuItem_Click);
             // 
             // InvUpdateCntrl
             // 
@@ -176,11 +183,12 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "InvUpdateCntrl";
             this.Size = new System.Drawing.Size(1157, 739);
+            this.Load += new System.EventHandler(this.InvUpdateCntrl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdInvUpdate)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdInvUpdate)).EndInit();
             this.ResumeLayout(false);
 
         }

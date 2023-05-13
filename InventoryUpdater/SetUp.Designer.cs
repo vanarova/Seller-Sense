@@ -1,6 +1,6 @@
 ﻿namespace InventoryUpdater
 {
-    partial class SuperAdmin
+    partial class SetUp
     {
         /// <summary>
         /// Required designer variable.

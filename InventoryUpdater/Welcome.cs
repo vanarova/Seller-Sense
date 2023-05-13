@@ -17,9 +17,9 @@ namespace InventoryUpdater
         InventoryUpdater.Manager.Companies _companiesMgr;
         public Welcome()
         {
-            //_companiesSetup = new Companies()
-            
             _companiesMgr = new InventoryUpdater.Manager.Companies();
+
+
             //_company = new Company( //test
             //    ProjIO.GetUserSetting(Constants.Company1Name),
             //    ProjIO.GetUserSetting(Constants.Company1Code));
@@ -153,7 +153,7 @@ namespace InventoryUpdater
 
             if (e.Control && e.Shift && e.KeyCode == Keys.P)
             {
-                SuperAdmin sa = new SuperAdmin();
+                SetUp sa = new SetUp();
                 sa.ShowDialog();
             }
         }
@@ -275,6 +275,18 @@ namespace InventoryUpdater
         {
             switch (trigger)
             {
+                case "EnableOnlySetupButton":
+                    btn_invUpdate.Enabled = false;
+                    btn_Reports.Enabled = false;
+                    btn_Setup.Enabled = true;
+                    btn_mapping.Enabled = false;
+                    break;
+                case "EnableAllButtons":
+                    btn_invUpdate.Enabled = true;
+                    btn_Reports.Enabled = true;
+                    btn_Setup.Enabled = true;
+                    btn_mapping.Enabled = true;
+                    break;
                 case "AdjustWelcomeButtons":
                     tblWelcomeButtons.Location = 
                         new Point(Convert.ToInt16(this.Size.Width / 2) - 285, Convert.ToInt16(this.Size.Height / 2) - 137);

@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace InventoryUpdater
 {
-    public partial class SuperAdmin : Form
+    public partial class SetUp : Form
     {
-        public SuperAdmin()
+        public SetUp()
         {
             InitializeComponent();
         }

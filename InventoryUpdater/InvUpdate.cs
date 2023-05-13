@@ -14,13 +14,40 @@ namespace InventoryUpdater
 {
     internal partial class InvUpdate : Form
     {
-        //private Manager.Companies _companiesMgr; //TODO Change to CompaniesMgr
-        public InvUpdate()
+        private Manager.Companies _companiesMgr; //TODO Change to CompaniesMgr
+
+        private List<InvUpdateCntrl> _invUpdateCntrlList;
+
+
+        public InvUpdate(Manager.Companies companies)
         {
             InitializeComponent();
+            _companiesMgr = companies;
+            CreateTabControls();
         }
 
-       
+
+        private void CreateTabControls()
+        {
+            tabControl1.TabPages.Clear(); int i = 0;
+            _invUpdateCntrlList = new List<InvUpdateCntrl>();
+            //{
+            //List<MappingCntrl> mpc = new List<MappingCntrl>();
+
+            foreach (var company in _companiesMgr._companies)
+            {
+                if (company != null)
+                {
+                    tabControl1.TabPages.Add(company._name);
+                    _invUpdateCntrlList.Add(new InvUpdateCntrl(company));
+                    _invUpdateCntrlList[i].Dock = DockStyle.Fill;
+                    tabControl1.TabPages[i].Controls.Add(_invUpdateCntrlList[i]);
+                    i++;
+                }
+            }
+        }
+
+
         //private Company _company { get; set; }
 
         //public InvUpdate(Company company)
