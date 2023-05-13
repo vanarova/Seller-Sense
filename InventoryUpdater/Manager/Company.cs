@@ -20,8 +20,8 @@ namespace InventoryUpdater
     /// </summary>
     public class Company
     {
-        private string Name;
-        private string Code;
+        internal string _name;
+        internal string _code;
         internal BaseCodeList _baseCodes { get; set; }
         internal AmzInventoryList _amzImportedInvList { get; set; }
         internal FkInventoryList _fkImportedInventoryList { get; set; }
@@ -34,14 +34,17 @@ namespace InventoryUpdater
         internal DataSet _invUpdateGridData { get; set; }
         
 
-        public Company()
+        public Company(string name, string code)
         {
+            _name = name;
+            _code = code;
             _baseCodes = new BaseCodeList();
             _amzImportedInvList = new AmzInventoryList();
             _fkImportedInventoryList = new FkInventoryList();
             _spdImportedInventoryList = new SpdInventoryList();
             _msoImportedInventoryList = new MsoInventoryList();
-            _map = new Map();
+            _map = new Map(_code);
+            _map.LoadLastSavedMap();
         }
 
         internal void SearchAmzInvCollectionAsync(string keyword,

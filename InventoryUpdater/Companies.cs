@@ -87,7 +87,11 @@ namespace InventoryUpdater
         private void Companies_Load(object sender, EventArgs e)
         {
             txtWorkSpaceLocation.Text = ProjIO.GetUserSetting(Constants.WorkspaceDir);
-            if(string.IsNullOrEmpty(txtWorkSpaceLocation.Text))
+            txtComp1Name.Text = ProjIO.GetUserSetting(Constants.Company1Name);
+            txtComp1Code.Text = ProjIO.GetUserSetting(Constants.Company1Code);
+            txtComp2Name.Text = ProjIO.GetUserSetting(Constants.Company2Name);
+            txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
+            if (string.IsNullOrEmpty(txtWorkSpaceLocation.Text))
                 txtWorkSpaceLocation.Text = ProjIO.DefaultWorkspaceLocation();
         }
 

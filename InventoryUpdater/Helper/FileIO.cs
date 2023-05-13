@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InventoryUpdater.Helper
 {
-    internal class ProjIO
+    internal static class ProjIO
     {
         private static Dictionary<string, string> UserSettings = new Dictionary<string, string>();
 
@@ -43,8 +43,12 @@ namespace InventoryUpdater.Helper
         internal static string GetUserSetting(string key)
         {
             string value ="";
+            if (UserSettings.Count==0 )
+                LoadUserSettings();
             if (UserSettings != null && UserSettings.Count > 0)
-                UserSettings.TryGetValue(key,out value);
+            {
+                UserSettings.TryGetValue(key, out value);
+            }
             return value; 
         }
 
@@ -62,7 +66,14 @@ namespace InventoryUpdater.Helper
                 Directory.CreateDirectory(Path.Combine(wdir, code));
         }
 
-        internal static string CreateWorkspace(string customeWorkspaceDir="")
+        internal static bool DoesWorkspaceAndProjectsExists()
+        {
+            bool result =  Directory.Exists(GetUserSetting(Constants.WorkspaceDir));
+            //TODO: check for any project exists
+            return result;
+        }
+
+            internal static string CreateWorkspace(string customeWorkspaceDir="")
         {
             string toSavePath;
             if (string.IsNullOrEmpty(customeWorkspaceDir))

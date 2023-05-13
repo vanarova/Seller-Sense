@@ -13,12 +13,16 @@ namespace InventoryUpdater
 {
     internal partial class Welcome : Form
     {
-        Company _company;
-        InventoryUpdater.Manager.Companies _companies;
+        //Company _company;
+        InventoryUpdater.Manager.Companies _companiesMgr;
         public Welcome()
         {
-            _company = new Company();
-            _companies = new InventoryUpdater.Manager.Companies();
+            //_companiesSetup = new Companies()
+            
+            _companiesMgr = new InventoryUpdater.Manager.Companies();
+            //_company = new Company( //test
+            //    ProjIO.GetUserSetting(Constants.Company1Name),
+            //    ProjIO.GetUserSetting(Constants.Company1Code));
             InitializeComponent();
             ProjIO.LoadUserSettings();
             
@@ -30,19 +34,94 @@ namespace InventoryUpdater
             {
                 //DataSet mapGridData = new DataSet();
                 pbarLoadForms.Visible = true;
-                _company._map.LoadLastSavedMap();
-               
+                //_company._map.LoadLastSavedMap();
 
-                _company.FillLoadedMapToGridDataset(() =>
-                {
-                    Mapping mp = new Mapping(_company);
-                    mp.MdiParent = this;
-                    pbarLoadForms.Visible = false;
-                    mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
-                    mp.Show();
+                //Load data one after another async fashion..at the end display form.
+                _companiesMgr._companies[0].FillLoadedMapToGridDataset(() => {
+                    if (_companiesMgr._companies.Count > 1)
+                    {
+                        _companiesMgr._companies[1].FillLoadedMapToGridDataset(() => {
+                            if (_companiesMgr._companies.Count > 2)
+                            {
+                                _companiesMgr._companies[2].FillLoadedMapToGridDataset(() => {
+                                    if (_companiesMgr._companies.Count > 3)
+                                    {
 
-                    AdjustUI("SendWelcomeButtonToBack");
+                                        _companiesMgr._companies[3].FillLoadedMapToGridDataset(() => {
+                                            if (_companiesMgr._companies.Count > 4)
+                                            {
+                                                _companiesMgr._companies[4].FillLoadedMapToGridDataset(() => {
+                                                    //max count reached, 5th company
+                                                    DisplayMapForm();
+                                                });
+
+                                            }
+                                            else
+                                                DisplayMapForm();
+                                        });
+                                    }
+                                    else
+                                        DisplayMapForm();
+                                });
+
+                            } else
+                                DisplayMapForm();
+                        });
+                    }
+                    else
+                        DisplayMapForm();
                 });
+
+
+                //for (int i = 0; i < _companiesMgr._companies.Count; i++)
+                //{
+                //    _companiesMgr._companies[i].FillLoadedMapToGridDataset(() => {
+                //        if(_companiesMgr._companies[i+1] == null)
+                //        {
+                //            Mapping mp = new Mapping(_companiesMgr);
+                //            mp.MdiParent = this;
+                //            pbarLoadForms.Visible = false;
+                //            mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+                //            mp.Show();
+
+                //            AdjustUI("SendWelcomeButtonToBack");
+                //        }
+
+                //    });
+                //}
+
+
+                //foreach (var company in _companiesMgr._companies)
+                //{
+                //    company.FillLoadedMapToGridDataset(() => { 
+                    
+                    
+                //    });
+                //}
+
+                //Mapping mp = new Mapping(_companiesMgr);
+                //mp.MdiParent = this;
+                //pbarLoadForms.Visible = false;
+                //mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+                //mp.Show();
+
+                //AdjustUI("SendWelcomeButtonToBack");
+
+
+
+                //Load first company
+                //_companies._companies[0].FillLoadedMapToGridDataset(() =>
+                //{
+                //    List<MappingCntrl> mpc = new List<MappingCntrl>();
+                //    mpc.Add(new MappingCntrl(_companies._companies[0])); //test
+                //    Mapping mp = new Mapping(mpc, _companies);
+                //    mp.MdiParent = this;
+                //    pbarLoadForms.Visible = false;
+                //    mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+                //    mp.Show();
+
+                //    AdjustUI("SendWelcomeButtonToBack");
+                //});
                 
             }
             catch (Exception ex)
@@ -50,6 +129,18 @@ namespace InventoryUpdater
                 MessageBox.Show(ex.Message, "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+
+        private void DisplayMapForm()
+        {
+            Mapping mp = new Mapping(_companiesMgr);
+            mp.MdiParent = this;
+            pbarLoadForms.Visible = false;
+            mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+            mp.Show();
+
+            AdjustUI("SendWelcomeButtonToBack");
         }
 
         //private void Mp_FormClosed(object sender, FormClosedEventArgs e)
@@ -72,28 +163,106 @@ namespace InventoryUpdater
 
         }
 
-       
+
+        private void DisplayInvForm()
+        {
+            //Mapping mp = new Mapping(_companiesMgr);
+            //mp.MdiParent = this;
+            //pbarLoadForms.Visible = false;
+            //mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+            //mp.Show();
+            //AdjustUI("SendWelcomeButtonToBack");
+
+            InvUpdate iu = new InvUpdate(_companiesMgr);
+            iu.MdiParent = this;
+            pbarLoadForms.Visible = !pbarLoadForms.Visible;
+            iu.Show();
+            iu.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+            AdjustUI("SendWelcomeButtonToBack");
+        }
+
 
         private void btn_invUpdate_Click(object sender, EventArgs e)
         {
             try
             {
                 pbarLoadForms.Visible = true;
-                _company.LoadInvDataFromLastSavedMap();
-                _company.GetInvUpdateGridDataset(() =>
+
+                _companiesMgr._companies[0].LoadInvDataFromLastSavedMap(); //TODO load async
+                if (_companiesMgr._companies.Count > 1)
+                    _companiesMgr._companies[1].LoadInvDataFromLastSavedMap(); //TODO load async
+                if (_companiesMgr._companies.Count > 2)
+                    _companiesMgr._companies[2].LoadInvDataFromLastSavedMap(); //TODO load async
+                if (_companiesMgr._companies.Count > 3)
+                    _companiesMgr._companies[3].LoadInvDataFromLastSavedMap(); //TODO load async
+                if (_companiesMgr._companies.Count > 4)
+                    _companiesMgr._companies[4].LoadInvDataFromLastSavedMap(); //TODO load async
+
+
+                _companiesMgr._companies[0].GetInvUpdateGridDataset(() =>
                 {
-                    InvUpdate mp = new InvUpdate(_company);
-                    mp.MdiParent = this;
-                    pbarLoadForms.Visible = !pbarLoadForms.Visible;
-                    mp.Show();
-                    mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
-                    AdjustUI("SendWelcomeButtonToBack");
+                    if (_companiesMgr._companies.Count > 1)
+                    {
+                        _companiesMgr._companies[1].GetInvUpdateGridDataset(() =>
+                        {
+                            if (_companiesMgr._companies.Count > 2)
+                            {
+                                _companiesMgr._companies[2].GetInvUpdateGridDataset(() =>
+                                {
+                                    if (_companiesMgr._companies.Count > 2)
+                                    {
+                                        _companiesMgr._companies[3].GetInvUpdateGridDataset(() =>
+                                        {
+                                            if (_companiesMgr._companies.Count > 3)
+                                            {
+                                                _companiesMgr._companies[4].GetInvUpdateGridDataset(() =>
+                                                {
+                                                    DisplayInvForm();
+                                                });
+                                            }
+                                            else DisplayInvForm();
+
+                                        });
+                                    }
+                                    else DisplayInvForm();
+
+                                });
+                            }
+                            else DisplayInvForm();
+
+                        });
+                    }
+                    else DisplayInvForm();
+
                 });
-            }
+
+                }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Error occurred",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+                MessageBox.Show(ex.Message, "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
+
+            //try
+            //{
+            //    pbarLoadForms.Visible = true;
+            //    _company.LoadInvDataFromLastSavedMap();
+            //    _company.GetInvUpdateGridDataset(() =>
+            //    {
+            //        InvUpdate mp = new InvUpdate(_company);
+            //        mp.MdiParent = this;
+            //        pbarLoadForms.Visible = !pbarLoadForms.Visible;
+            //        mp.Show();
+            //        mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+            //        AdjustUI("SendWelcomeButtonToBack");
+            //    });
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message,"Error occurred",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            //}
            
         }
 
@@ -129,7 +298,7 @@ namespace InventoryUpdater
 
         private void btn_Setup_Click(object sender, EventArgs e)
         {
-            Companies c = new Companies(_companies);
+            Companies c = new Companies(_companiesMgr);
             c.Show();
         }
     }

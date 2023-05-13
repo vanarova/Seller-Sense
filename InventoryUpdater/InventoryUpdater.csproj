@@ -84,6 +84,12 @@
       <DependentUpon>Companies.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="InvUpdateCntrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InvUpdateCntrl.Designer.cs">
+      <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manager\Companies.cs" />
     <Compile Include="Manager\Company.cs" />
     <Compile Include="Helper\FileIO.cs" />
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InvUpdate.resx">
       <DependentUpon>InvUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvUpdateCntrl.resx">
+      <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mapping.resx">
       <DependentUpon>Mapping.cs</DependentUpon>

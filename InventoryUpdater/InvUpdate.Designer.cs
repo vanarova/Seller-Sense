@@ -53,7 +53,7 @@
             this.importAmazonInvToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(76, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(226, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -73,28 +73,28 @@
             this.amazonInventoryFileToolStripMenuItem.Name = "amazonInventoryFileToolStripMenuItem";
             this.amazonInventoryFileToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.amazonInventoryFileToolStripMenuItem.Text = "Amazon Inventory File";
-            this.amazonInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.amazonInventoryFileToolStripMenuItem_Click);
+            //this.amazonInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.amazonInventoryFileToolStripMenuItem_Click);
             // 
             // flipkartInventoryFileToolStripMenuItem
             // 
             this.flipkartInventoryFileToolStripMenuItem.Name = "flipkartInventoryFileToolStripMenuItem";
             this.flipkartInventoryFileToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.flipkartInventoryFileToolStripMenuItem.Text = "Flipkart Inventory File";
-            this.flipkartInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.flipkartInventoryFileToolStripMenuItem_Click);
+            //this.flipkartInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.flipkartInventoryFileToolStripMenuItem_Click);
             // 
             // snapdealInventoryFileToolStripMenuItem
             // 
             this.snapdealInventoryFileToolStripMenuItem.Name = "snapdealInventoryFileToolStripMenuItem";
             this.snapdealInventoryFileToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.snapdealInventoryFileToolStripMenuItem.Text = "Snapdeal Inventory File";
-            this.snapdealInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.snapdealInventoryFileToolStripMenuItem_Click);
+            //this.snapdealInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.snapdealInventoryFileToolStripMenuItem_Click);
             // 
             // meeshoInventoryFileToolStripMenuItem
             // 
             this.meeshoInventoryFileToolStripMenuItem.Name = "meeshoInventoryFileToolStripMenuItem";
             this.meeshoInventoryFileToolStripMenuItem.Size = new System.Drawing.Size(246, 26);
             this.meeshoInventoryFileToolStripMenuItem.Text = "Meesho Inventory File";
-            this.meeshoInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.meeshoInventoryFileToolStripMenuItem_Click);
+            //this.meeshoInventoryFileToolStripMenuItem.Click += new System.EventHandler(this.meeshoInventoryFileToolStripMenuItem_Click);
             // 
             // grdInvUpdate
             // 
@@ -107,8 +107,6 @@
             this.grdInvUpdate.RowTemplate.Height = 24;
             this.grdInvUpdate.Size = new System.Drawing.Size(1230, 689);
             this.grdInvUpdate.TabIndex = 1;
-            this.grdInvUpdate.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdInvUpdate_CellEndEdit);
-            this.grdInvUpdate.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdInvUpdate_CellValueChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -118,7 +116,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.71521F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.51133F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tableLayoutPanel1.Controls.Add(this.grdInvUpdate, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 3, 0);
@@ -137,7 +135,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(814, 13);
+            this.label1.Location = new System.Drawing.Point(813, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 16);
             this.label1.TabIndex = 2;
@@ -146,9 +144,9 @@
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(882, 10);
+            this.textBox1.Location = new System.Drawing.Point(881, 10);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(131, 22);
+            this.textBox1.Size = new System.Drawing.Size(130, 22);
             this.textBox1.TabIndex = 3;
             // 
             // btn_exportSllInv
@@ -156,20 +154,19 @@
             this.btn_exportSllInv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_exportSllInv.Location = new System.Drawing.Point(713, 3);
+            this.btn_exportSllInv.Location = new System.Drawing.Point(712, 3);
             this.btn_exportSllInv.Name = "btn_exportSllInv";
             this.btn_exportSllInv.Size = new System.Drawing.Size(95, 37);
             this.btn_exportSllInv.TabIndex = 4;
             this.btn_exportSllInv.Text = "Export All";
             this.btn_exportSllInv.UseVisualStyleBackColor = true;
-            this.btn_exportSllInv.Click += new System.EventHandler(this.btn_exportAllInv_Click);
             // 
             // pbar_Loading
             // 
             this.pbar_Loading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbar_Loading.Location = new System.Drawing.Point(1132, 13);
+            this.pbar_Loading.Location = new System.Drawing.Point(1130, 13);
             this.pbar_Loading.Name = "pbar_Loading";
-            this.pbar_Loading.Size = new System.Drawing.Size(101, 17);
+            this.pbar_Loading.Size = new System.Drawing.Size(103, 17);
             this.pbar_Loading.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.pbar_Loading.TabIndex = 5;
             this.pbar_Loading.Visible = false;
@@ -184,7 +181,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "InvUpdate";
             this.Text = "InvUpdate";
-            this.Load += new System.EventHandler(this.InvUpdate_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdInvUpdate)).EndInit();

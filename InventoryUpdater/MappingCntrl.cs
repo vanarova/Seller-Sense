@@ -1,8 +1,10 @@
-﻿using System;
+﻿using InventoryUpdater.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +14,24 @@ namespace InventoryUpdater
 {
     public partial class MappingCntrl : UserControl
     {
+        public MappingCntrl()
+        {
+            InitializeComponent();
+            //_company = company;
+        }
+
         public MappingCntrl(Company company)
         {
             InitializeComponent();
             _company = company;
+
+            //foreach (ToolStripItem item in fileStrip.Items)
+            //{
+            //    item.MergeAction = MergeAction.Append;
+            //    //item.MergeIndex
+            //}
+            //fileStrip.ContextMenuStrip.merg
+
         }
 
         public Company _company { get; set; }
@@ -37,7 +53,14 @@ namespace InventoryUpdater
             //    MessageBox.Show("No last saved Map file found, please import Map data");
             //    ImportMapFile();
             //}
+            //fileStrip.ContextMenu.MergeMenu(this.ParentForm.Menu);
 
+            
+            //if (_company._code == "cratialc_PKVV")
+            //    fileStrip.Items[0].Text = fileStrip.Items[0].Text + "_CC";
+            //else
+            //    fileStrip.Items[0].Text = fileStrip.Items[0].Text.Replace("_HE", "");
+            
             FillMapGrid();
         }
 
@@ -238,39 +261,40 @@ namespace InventoryUpdater
 
         private void SaveMap()
         {
-            var lastSavedMapFilePath = _company._map.GetLastSavedMapFile();
-            if (lastSavedMapFilePath != null && !string.IsNullOrEmpty(lastSavedMapFilePath))
-            {
-                _company._map.SaveMapFile();
-            }
-            else
-            {
-                SaveAs();
-            }
+            _company._map.SaveMapFile();
+            //var lastSavedMapFilePath = _company._map.GetLastSavedMapFile();
+            //if (lastSavedMapFilePath != null && !string.IsNullOrEmpty(lastSavedMapFilePath))
+            //{
+            //    _company._map.SaveMapFile();
+            //}
+            //else
+            //{
+            //    SaveAs();
+            //}
         }
 
         private void saveAsMapFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveAs();
+            //SaveAs();
         }
 
-        private void SaveAs()
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.OverwritePrompt = true; sfd.ValidateNames = true;
-            sfd.Filter = "Map project/map file|*.json";
-            sfd.FileName = "Map_project_" + DateTime.Now.Day + "_" + DateTime.Now.Hour
-                    + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second;
-            DialogResult result = sfd.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                string mapFilePath = sfd.FileName.Replace(Path.GetExtension(sfd.FileName), "");
-                if (!Directory.Exists(mapFilePath))
-                    Directory.CreateDirectory(mapFilePath);
-                string path = Path.Combine(mapFilePath, Path.GetFileName(sfd.FileName));
-                _company._map.SaveAsMapFile(path);
-            }
-        }
+        //private void SaveAs()
+        //{
+        //    SaveFileDialog sfd = new SaveFileDialog();
+        //    sfd.OverwritePrompt = true; sfd.ValidateNames = true;
+        //    sfd.Filter = "Map project/map file|*.json";
+        //    sfd.FileName = "Map_project_" + DateTime.Now.Day + "_" + DateTime.Now.Hour
+        //            + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second;
+        //    DialogResult result = sfd.ShowDialog();
+        //    if (result == DialogResult.OK)
+        //    {
+        //        string mapFilePath = sfd.FileName.Replace(Path.GetExtension(sfd.FileName), "");
+        //        if (!Directory.Exists(mapFilePath))
+        //            Directory.CreateDirectory(mapFilePath);
+        //        string path = Path.Combine(mapFilePath, Path.GetFileName(sfd.FileName));
+        //        _company._map.SaveAsMapFile(path);
+        //    }
+        //}
 
         private void convertMapFileURLsToLocalImagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -412,6 +436,44 @@ namespace InventoryUpdater
             ImportMapFile();
         }
 
-      
+        //private void toolStripMenuItemShowMsoInv_Click_1(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void toolStripMenuItemShowSpdInv_Click_1(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void toolStripMenuItemShowFkInv_Click_1(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void toolStripMenuItemShowAmzInv_Click_1(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void importSnapdealInvToolStripMenuItem_Click_1(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void importMeeshoInvToolStripMenuItem_Click_1(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void importFlipkartInvToolStripMenuItem_Click_1(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void importAmazonInvFileToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }

@@ -8,6 +8,10 @@ namespace InventoryUpdater
 {
     public static class Constants
     {
+        public const string Imgs = "imgs";
+        public const string MapFileName = "map.json";
+
+
         public const string WorkspaceDir = "workspace";
         public const string WorkspaceDefaultDirName = "Seller-Sense";
 

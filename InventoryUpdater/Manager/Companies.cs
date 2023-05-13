@@ -43,9 +43,34 @@ namespace InventoryUpdater.Manager
 
         private void LoadLastSavedCompanies()
         {
-            if (string.IsNullOrEmpty(_lastSavedWorkspaceLocation))
+            if (!ProjIO.DoesWorkspaceAndProjectsExists())
                 return;
-            _lastSavedWorkspaceLocation=  ProjIO.GetUserSetting(Constants.WorkspaceDir);
+            _lastSavedWorkspaceLocation =  ProjIO.GetUserSetting(Constants.WorkspaceDir);
+            _companies= new List<Company>();
+            if (DoesCompanyExist(Constants.Company1Name, Constants.Company1Code))
+                _companies.Add(new Company(ProjIO.GetUserSetting(Constants.Company1Name), ProjIO.GetUserSetting(Constants.Company1Code)));
+
+            if (DoesCompanyExist(Constants.Company2Name, Constants.Company2Code))
+                _companies.Add(new Company(ProjIO.GetUserSetting(Constants.Company2Name), ProjIO.GetUserSetting(Constants.Company2Code)));
+
+            if (DoesCompanyExist(Constants.Company3Name, Constants.Company3Code))
+                _companies.Add(new Company(ProjIO.GetUserSetting(Constants.Company3Name), ProjIO.GetUserSetting(Constants.Company3Code)));
+
+            if (DoesCompanyExist(Constants.Company4Name, Constants.Company4Code))
+                _companies.Add(new Company(ProjIO.GetUserSetting(Constants.Company4Name), ProjIO.GetUserSetting(Constants.Company4Code)));
+
+            if (DoesCompanyExist(Constants.Company5Name, Constants.Company5Code))
+                _companies.Add(new Company(ProjIO.GetUserSetting(Constants.Company5Name), ProjIO.GetUserSetting(Constants.Company5Code)));
+        }
+
+
+        private bool DoesCompanyExist(string name, string code)
+        {
+            if (!string.IsNullOrEmpty(ProjIO.GetUserSetting(name)) &&
+                !string.IsNullOrEmpty(ProjIO.GetUserSetting(code)))
+                return true;
+            else
+                return false;
         }
 
         internal bool DoesCompanyCodeExist(string code)
