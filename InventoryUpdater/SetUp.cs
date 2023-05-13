@@ -1,12 +1,10 @@
-﻿using Decoders;
+﻿using AngleSharp.Dom.Events;
 using InventoryUpdater.Helper;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,48 +12,112 @@ using System.Windows.Forms;
 
 namespace InventoryUpdater
 {
-    public partial class SetUp : Form
+    internal partial class SetUp : Form
     {
-        public SetUp()
+        
+        private InventoryUpdater.Manager.Companies _companies;
+        public SetUp(InventoryUpdater.Manager.Companies companies)
         {
+            _companies = companies;
             InitializeComponent();
         }
 
-        private void btn_baseMapGen_Click(object sender, EventArgs e)
+        private void btn_ok_Click(object sender, EventArgs e)
         {
-            HTMLToJSON.AngleSharpParse(File.ReadAllText("out_prices.html"));
+            string error;
+            bool iscreated = CreateCompanies(out error);
+            lbl_Error.Text = error;
+            if (iscreated)
+            { AdjustUI("CompaniesCreated");
+            this.Close(); }
+
         }
 
-        private void btn_Go_Click(object sender, EventArgs e)
+       
+
+        private void AdjustUI(string key)
         {
-           
-            //make controls visible
-            foreach (var item in pnl_Admin.Controls)
+            switch (key)
             {
-                (item as Control).Visible = (txt_pwd.Text == "ADMIN))!@".ToLower());
+                case "CompaniesCreated":
+                    txtComp1Name.Enabled = false; txtComp2Name.Enabled = false;
+                    txtComp3Name.Enabled = false; txtComp4Name.Enabled = false; txtComp5Name.Enabled = false;
+                    btn_changeLoc.Enabled = false;
+                    break;
+
+                case "Reset":
+                    txtComp1Name.Enabled = true; txtComp2Name.Enabled = true;
+                    //disable for now
+                    //txtComp3Name.Enabled = true; txtComp4Name.Enabled = true;
+                    //txtComp5Name.Enabled = true;
+                    txtComp1Name.Text = ""; txtComp3Name.Text = ""; txtComp5Name.Text = "";
+                    txtComp2Name.Text = ""; txtComp4Name.Text = "";
+                    txtComp1Code.Text = ""; txtComp3Code.Text = ""; txtComp5Code.Text = "";
+                    txtComp2Code.Text = ""; txtComp4Code.Text = "";
+                    
+                    btn_changeLoc.Enabled = true;
+                    break;
+                default:
+                    break;
             }
-           
         }
 
-        private void btnJsonExport_Click(object sender, EventArgs e)
+        private bool CreateCompanies(out string error)
         {
-            string json = HTMLToJSON.GetJSON(
-                HTMLToJSON.AngleSharpParse(File.ReadAllText(txt_htmlFile.Text))
-                );
-            File.WriteAllText("out.json", json);
+            error = "" ;
+            if (_companies.DoesCompanyCodeExist(txtComp1Code.Text) || _companies.DoesCompanyCodeExist(txtComp2Code.Text))
+            { error = "Company with same code exist."; return false; }
+            if(!string.IsNullOrEmpty(txtComp1Name.Text) && !string.IsNullOrEmpty(txtComp1Code.Text))
+                _companies.AddCompany1(txtComp1Name.Text, txtComp1Code.Text);
+            if (!string.IsNullOrEmpty(txtComp2Name.Text) && !string.IsNullOrEmpty(txtComp2Code.Text))
+                _companies.AddCompany2(txtComp2Name.Text, txtComp2Code.Text);
+            return true;
         }
 
-        private void btn_JSONExport_NoFormat_Click(object sender, EventArgs e)
+        private void txtComp1Name_TextChanged(object sender, EventArgs e)
         {
-            string json = HTMLToJSON.GetJSON(
-               HTMLToJSON.AngleSharpParse(File.ReadAllText(txt_htmlFile.Text))
-               ,true);
-            File.WriteAllText("out.json", json);
+           txtComp1Code.Text = InventoryUpdater.Manager.Companies.GetRandomCode(txtComp1Name.Text, 4);
         }
 
-        private void btnJsonConvertImgNamesasCodes_Click(object sender, EventArgs e)
+        private void txtComp2Name_TextChanged(object sender, EventArgs e)
         {
-            //JsonConvert.des
+            txtComp2Code.Text = InventoryUpdater.Manager.Companies.GetRandomCode(txtComp2Name.Text, 4);
+
+
+        }
+
+        private void SetUp_Load(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ProjIO.GetUserSetting(Constants.WorkspaceDir)))
+                txtWorkSpaceLocation.Text = ProjIO.GetUserSetting(Constants.WorkspaceDir);
+            else
+                txtWorkSpaceLocation.Text = ProjIO.DefaultWorkspaceLocation();
+            txtComp1Name.Text = ProjIO.GetUserSetting(Constants.Company1Name);
+            txtComp1Code.Text = ProjIO.GetUserSetting(Constants.Company1Code);
+            txtComp2Name.Text = ProjIO.GetUserSetting(Constants.Company2Name);
+            txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
+            //if (string.IsNullOrEmpty(txtWorkSpaceLocation.Text))
+            //    txtWorkSpaceLocation.Text = ProjIO.DefaultWorkspaceLocation();
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_Reset_Click(object sender, EventArgs e)
+        {
+            AdjustUI("Reset");
+        }
+
+        private void txtComp3Name_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtComp4Name_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

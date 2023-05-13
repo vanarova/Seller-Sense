@@ -77,11 +77,11 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Companies.cs">
+    <Compile Include="SetUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Companies.Designer.cs">
-      <DependentUpon>Companies.cs</DependentUpon>
+    <Compile Include="SetUp.Designer.cs">
+      <DependentUpon>SetUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="InvUpdateCntrl.cs">
@@ -135,11 +135,11 @@
     <Compile Include="Model\ProjectMgr\ProjectMgr.cs" />
     <Compile Include="Model\SpdInventory\SpdInventoryList.cs" />
     <Compile Include="Model\SpdInventory\SpdInventory.cs" />
-    <Compile Include="SetUp.cs">
+    <Compile Include="Admin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetUp.Designer.cs">
-      <DependentUpon>SetUp.cs</DependentUpon>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
@@ -158,8 +158,8 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Companies.resx">
-      <DependentUpon>Companies.cs</DependentUpon>
+    <EmbeddedResource Include="SetUp.resx">
+      <DependentUpon>SetUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InvFiller.resx">
       <DependentUpon>InvFiller.cs</DependentUpon>
@@ -176,8 +176,8 @@
     <EmbeddedResource Include="MappingCntrl.resx">
       <DependentUpon>MappingCntrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetUp.resx">
-      <DependentUpon>SetUp.cs</DependentUpon>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>

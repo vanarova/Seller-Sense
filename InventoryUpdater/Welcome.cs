@@ -18,14 +18,19 @@ namespace InventoryUpdater
         public Welcome()
         {
             _companiesMgr = new InventoryUpdater.Manager.Companies();
-
-
-            //_company = new Company( //test
-            //    ProjIO.GetUserSetting(Constants.Company1Name),
-            //    ProjIO.GetUserSetting(Constants.Company1Code));
-            InitializeComponent();
-            ProjIO.LoadUserSettings();
             
+            InitializeComponent();
+            //ProjIO.LoadUserSettings();
+            
+        }
+
+
+        private void CheckIfSetupNeedsToRun()
+        {
+            if (_companiesMgr._companies == null || _companiesMgr._companies.Count == 0)
+                AdjustUI("EnableOnlySetupButton"); //Force use to run set again.
+            else
+                AdjustUI("EnableAllButton");
         }
 
         private void btn_mapping_Click(object sender, EventArgs e)
@@ -150,12 +155,12 @@ namespace InventoryUpdater
 
         private void Welcome_KeyDown(object sender, KeyEventArgs e)
         {
-
             if (e.Control && e.Shift && e.KeyCode == Keys.P)
             {
-                SetUp sa = new SetUp();
+                Admin sa = new Admin();
                 sa.ShowDialog();
             }
+
         }
 
         private void Welcome_KeyPress(object sender, KeyPressEventArgs e)
@@ -268,6 +273,7 @@ namespace InventoryUpdater
 
         private void Welcome_Load(object sender, EventArgs e)
         {
+            CheckIfSetupNeedsToRun();
             AdjustUI("AdjustWelcomeButtons");
         }
 
@@ -310,8 +316,12 @@ namespace InventoryUpdater
 
         private void btn_Setup_Click(object sender, EventArgs e)
         {
-            Companies c = new Companies(_companiesMgr);
+            SetUp c = new SetUp(_companiesMgr);
+            c.FormClosed += (senderObj, formClosedEventArgs) => {
+                CheckIfSetupNeedsToRun();
+            };
             c.Show();
         }
+
     }
 }

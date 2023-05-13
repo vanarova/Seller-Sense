@@ -53,7 +53,7 @@ namespace InventoryUpdater
             _mappingCntrlList = new List<MappingCntrl>();
             //{
             //List<MappingCntrl> mpc = new List<MappingCntrl>();
-
+            
             foreach (var company in _companiesMgr._companies)
             {
                 if (company != null)

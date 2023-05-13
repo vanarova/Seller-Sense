@@ -42,7 +42,9 @@ namespace InventoryUpdater.Helper
 
         internal static string GetUserSetting(string key)
         {
-            string value ="";
+            string value = "";
+            if (UserSettings == null)
+                UserSettings = new Dictionary<string, string>();
             if (UserSettings.Count==0 )
                 LoadUserSettings();
             if (UserSettings != null && UserSettings.Count > 0)
