@@ -30,9 +30,9 @@ namespace SellerSense.Helper
 
 
         //HtmlDocument
-        public static BaseCodeList AngleSharpParse(string html)
+        public static M_BaseCodeList AngleSharpParse(string html)
         {
-            BaseCodeList bc = new BaseCodeList();
+            M_BaseCodeList bc = new M_BaseCodeList();
             var parser = new HtmlParser();
             var document = parser.ParseDocument(html);
             foreach (IElement element in document.QuerySelectorAll("tr"))
@@ -63,7 +63,7 @@ namespace SellerSense.Helper
             return bc;
         }
 
-        public static string GetJSON(BaseCodeList baseMapList, bool removeFormatting = false)
+        public static string GetJSON(M_BaseCodeList baseMapList, bool removeFormatting = false)
         {
             JObject jobj = new JObject();
             JArray array = new JArray();

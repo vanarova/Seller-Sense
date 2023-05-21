@@ -10,22 +10,22 @@ namespace SellerSense.ViewModelManager
 {
     internal class VM_Inventories
     {
-        internal BaseCodeList _baseCodes { get; set; }
-        internal AmzInventoryList _amzImportedInvList { get; set; }
-        internal FkInventoryList _fkImportedInventoryList { get; set; }
-        internal SpdInventoryList _spdImportedInventoryList { get; set; }
-        internal MsoInventoryList _msoImportedInventoryList { get; set; }
+        internal M_BaseCodeList _baseCodes { get; set; }
+        internal M_AmzInventoryList _amzImportedInvList { get; set; }
+        internal M_FkInventoryList _fkImportedInventoryList { get; set; }
+        internal M_SpdInventoryList _spdImportedInventoryList { get; set; }
+        internal M_MsoInventoryList _msoImportedInventoryList { get; set; }
 
 
 
 
         public VM_Inventories()
         {
-            _baseCodes = new BaseCodeList();
-            _amzImportedInvList = new AmzInventoryList();
-            _fkImportedInventoryList = new FkInventoryList();
-            _spdImportedInventoryList = new SpdInventoryList();
-            _msoImportedInventoryList = new MsoInventoryList();
+            _baseCodes = new M_BaseCodeList();
+            _amzImportedInvList = new M_AmzInventoryList();
+            _fkImportedInventoryList = new M_FkInventoryList();
+            _spdImportedInventoryList = new M_SpdInventoryList();
+            _msoImportedInventoryList = new M_MsoInventoryList();
         }
 
         internal System.Threading.Tasks.Task<List<int>> SearchAmzInvCollectionAsync(string keyword,
@@ -60,11 +60,10 @@ namespace SellerSense.ViewModelManager
         }
 
 
-        //internal void ImportBaseInvCodesFile(string fileName)
-        //{
-        //    _baseCodes.ImportBaseInvCodesFile(fileName);
-        //    _map.CreateAnEmptyMap(_baseCodes);
-        //}
+        internal void ImportBaseInvCodesFile(string fileName)
+        {
+            _baseCodes.ImportBaseInvCodesFile(fileName);
+        }
 
         internal void ImportAmazonInventoryFile(string fileName)
         {

@@ -90,14 +90,16 @@
       <DependentUpon>SetUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="ViewModelManager\VM_Map.cs" />
+    <Compile Include="ViewModelManager\VM_InvUpdate.cs" />
     <Compile Include="Views\InvUpdateCntrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\InvUpdateCntrl.Designer.cs">
       <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewModelManager\Companies.cs" />
-    <Compile Include="ViewModelManager\Company.cs" />
+    <Compile Include="ViewModelManager\VM_Companies.cs" />
+    <Compile Include="ViewModelManager\VM_Company.cs" />
     <Compile Include="Helper\ProjIO.cs" />
     <Compile Include="Helper\HTMLToJSON.cs" />
     <Compile Include="Views\InvFiller.cs">
@@ -124,23 +126,23 @@
     <Compile Include="Views\MappingCntrl.Designer.cs">
       <DependentUpon>MappingCntrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Inventories\AmzInventory\AmzInventoryList.cs" />
-    <Compile Include="Model\Inventories\AmzInventory\AmzInventory.cs" />
-    <Compile Include="Model\Inventories\BaseCode\BaseCodeList.cs" />
-    <Compile Include="Model\Inventories\BaseCode\BaseCode.cs" />
+    <Compile Include="Model\Inventories\AmzInventory\M_AmzInventoryList.cs" />
+    <Compile Include="Model\Inventories\AmzInventory\M_AmzInventory.cs" />
+    <Compile Include="Model\Inventories\BaseCode\M_BaseCodeList.cs" />
+    <Compile Include="Model\Inventories\BaseCode\M_BaseCode.cs" />
     <Compile Include="Model\Inventories\BaseCode\Interfaces\IBaseCodeV2.cs" />
     <Compile Include="Model\Inventories\BaseCode\Interfaces\IBaseCodeV1.cs" />
-    <Compile Include="Model\Inventories\FkInventory\FkInventoryList.cs" />
-    <Compile Include="Model\Inventories\FkInventory\FkInventory.cs" />
+    <Compile Include="Model\Inventories\FkInventory\M_FkInventoryList.cs" />
+    <Compile Include="Model\Inventories\FkInventory\M_FkInventory.cs" />
     <Compile Include="Model\InvMap.cs" />
     <Compile Include="Model\AppVersion.cs" />
-    <Compile Include="Model\InvUpdate\Inv.cs" />
-    <Compile Include="Model\Map\Map.cs" />
-    <Compile Include="Model\Inventories\MsoInventory\MsoInventory.cs" />
-    <Compile Include="Model\Inventories\MsoInventory\MsoInventoryList.cs" />
+    <Compile Include="Model\InvUpdate\M_InvUpdate.cs" />
+    <Compile Include="Model\Map\M_Map.cs" />
+    <Compile Include="Model\Inventories\MsoInventory\M_MsoInventory.cs" />
+    <Compile Include="Model\Inventories\MsoInventory\M_MsoInventoryList.cs" />
     <Compile Include="Model\ProjectMgr\ProjectMgr.cs" />
-    <Compile Include="Model\Inventories\SpdInventory\SpdInventoryList.cs" />
-    <Compile Include="Model\Inventories\SpdInventory\SpdInventory.cs" />
+    <Compile Include="Model\Inventories\SpdInventory\M_SpdInventoryList.cs" />
+    <Compile Include="Model\Inventories\SpdInventory\M_SpdInventory.cs" />
     <Compile Include="Admin.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -19,8 +19,8 @@ namespace SellerSense
         private string _map3File;
         private string _map4File;
         private string _map5File;
-        private SellerSense.Manager.Companies _companies;
-        public SetUp(SellerSense.Manager.Companies companies)
+        private SellerSense.ViewModelManager.VM_Companies _companies;
+        public SetUp(SellerSense.ViewModelManager.VM_Companies companies)
         {
             _companies = companies;
             InitializeComponent();
@@ -95,12 +95,12 @@ namespace SellerSense
 
         private void txtComp1Name_TextChanged(object sender, EventArgs e)
         {
-           txtComp1Code.Text = SellerSense.Manager.Companies.GetRandomCode(txtComp1Name.Text, 4);
+           txtComp1Code.Text = SellerSense.ViewModelManager.VM_Companies.GetRandomCode(txtComp1Name.Text, 4);
         }
 
         private void txtComp2Name_TextChanged(object sender, EventArgs e)
         {
-            txtComp2Code.Text = SellerSense.Manager.Companies.GetRandomCode(txtComp2Name.Text, 4);
+            txtComp2Code.Text = SellerSense.ViewModelManager.VM_Companies.GetRandomCode(txtComp2Name.Text, 4);
 
 
         }

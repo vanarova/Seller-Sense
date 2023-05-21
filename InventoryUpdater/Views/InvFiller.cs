@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Decoders.Interfaces;
+using InventoryUpdater.ViewModelManager;
 
 namespace SellerSense
 {
     public partial class InvFiller : Form
     {
-        public Company _company { get; set; }
+        public VM_Company _company { get; set; }
         public Constants.Company _companyConst { get; set; }
         public IList<IAmzInventory> _amzInventory { get; set; }
         public IList<IFkInventory> _fkInventory { get; set; }
@@ -28,7 +29,7 @@ namespace SellerSense
             InitializeComponent();
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle,IList<IAmzInventory> amzInv, Company company)
+        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle,IList<IAmzInventory> amzInv, VM_Company company)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
@@ -40,7 +41,7 @@ namespace SellerSense
         }
 
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IFkInventory> fkinv, Company company)
+        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IFkInventory> fkinv, VM_Company company)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
@@ -51,7 +52,7 @@ namespace SellerSense
             _companyConst = Constants.Company.Flipkart;
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<ISpdInventory> spdinv, Company company)
+        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<ISpdInventory> spdinv, VM_Company company)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
@@ -62,7 +63,7 @@ namespace SellerSense
             _companyConst= Constants.Company.Snapdeal;
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IMsoInventory> msoinv, Company company)
+        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IMsoInventory> msoinv, VM_Company company)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
@@ -104,7 +105,7 @@ namespace SellerSense
 
         private async void SearchMsoInvList()
         {
-            Task<List<int>> t = _company.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _company._inventories.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
                             _companyConst);
             //(iList) =>
@@ -134,7 +135,7 @@ namespace SellerSense
 
         private async void SearchSpdInvList()
         {
-            Task<List<int>> t = _company.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _company._inventories.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
                             _companyConst);
             await t;
@@ -166,7 +167,7 @@ namespace SellerSense
 
         private async void SearchFkInvList()
         {
-           Task<List<int>> t = _company.SearchFkInvCollectionTask(txt_CompanyId.Text,
+           Task<List<int>> t = _company._inventories.SearchFkInvCollectionTask(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
                             _companyConst);
             await t;
@@ -282,7 +283,7 @@ namespace SellerSense
 
         private async void SearchAmzInvList()
         {
-            Task<List<int>> t = _company.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _company._inventories.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
                             _companyConst);
             await t;

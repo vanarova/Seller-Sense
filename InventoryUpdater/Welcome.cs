@@ -14,10 +14,10 @@ namespace SellerSense
     internal partial class Welcome : Form
     {
         //Company _company;
-        SellerSense.Manager.Companies _companiesMgr;
+        SellerSense.ViewModelManager.VM_Companies _companiesMgr;
         public Welcome()
         {
-            _companiesMgr = new SellerSense.Manager.Companies();
+            _companiesMgr = new SellerSense.ViewModelManager.VM_Companies();
             
             InitializeComponent();
             //ProjIO.LoadUserSettings();
@@ -42,20 +42,20 @@ namespace SellerSense
                 //_company._map.LoadLastSavedMap();
 
                 //Load data one after another async fashion..at the end display form.
-                _companiesMgr._companies[0].FillLoadedMapToGridDataset(() => {
+                _companiesMgr._companies[0]._mapping.FillLoadedMapToGridDataset(() => {
                     if (_companiesMgr._companies.Count > 1)
                     {
-                        _companiesMgr._companies[1].FillLoadedMapToGridDataset(() => {
+                        _companiesMgr._companies[1]._mapping.FillLoadedMapToGridDataset(() => {
                             if (_companiesMgr._companies.Count > 2)
                             {
-                                _companiesMgr._companies[2].FillLoadedMapToGridDataset(() => {
+                                _companiesMgr._companies[2]._mapping.FillLoadedMapToGridDataset(() => {
                                     if (_companiesMgr._companies.Count > 3)
                                     {
 
-                                        _companiesMgr._companies[3].FillLoadedMapToGridDataset(() => {
+                                        _companiesMgr._companies[3]._mapping.FillLoadedMapToGridDataset(() => {
                                             if (_companiesMgr._companies.Count > 4)
                                             {
-                                                _companiesMgr._companies[4].FillLoadedMapToGridDataset(() => {
+                                                _companiesMgr._companies[4]._mapping.FillLoadedMapToGridDataset(() => {
                                                     //max count reached, 5th company
                                                     DisplayMapForm();
                                                 });
@@ -193,34 +193,34 @@ namespace SellerSense
             {
                 pbarLoadForms.Visible = true;
 
-                _companiesMgr._companies[0].LoadInvDataFromLastSavedMap(); //TODO load async
+                _companiesMgr._companies[0]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
                 if (_companiesMgr._companies.Count > 1)
-                    _companiesMgr._companies[1].LoadInvDataFromLastSavedMap(); //TODO load async
+                    _companiesMgr._companies[1]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
                 if (_companiesMgr._companies.Count > 2)
-                    _companiesMgr._companies[2].LoadInvDataFromLastSavedMap(); //TODO load async
+                    _companiesMgr._companies[2]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
                 if (_companiesMgr._companies.Count > 3)
-                    _companiesMgr._companies[3].LoadInvDataFromLastSavedMap(); //TODO load async
+                    _companiesMgr._companies[3]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
                 if (_companiesMgr._companies.Count > 4)
-                    _companiesMgr._companies[4].LoadInvDataFromLastSavedMap(); //TODO load async
+                    _companiesMgr._companies[4]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
 
 
-                _companiesMgr._companies[0].GetInvUpdateGridDataset(() =>
+                _companiesMgr._companies[0]._invUpdate.GetInvUpdateGridDataset(() =>
                 {
                     if (_companiesMgr._companies.Count > 1)
                     {
-                        _companiesMgr._companies[1].GetInvUpdateGridDataset(() =>
+                        _companiesMgr._companies[1]._invUpdate.GetInvUpdateGridDataset(() =>
                         {
                             if (_companiesMgr._companies.Count > 2)
                             {
-                                _companiesMgr._companies[2].GetInvUpdateGridDataset(() =>
+                                _companiesMgr._companies[2]._invUpdate.GetInvUpdateGridDataset(() =>
                                 {
                                     if (_companiesMgr._companies.Count > 2)
                                     {
-                                        _companiesMgr._companies[3].GetInvUpdateGridDataset(() =>
+                                        _companiesMgr._companies[3]._invUpdate.GetInvUpdateGridDataset(() =>
                                         {
                                             if (_companiesMgr._companies.Count > 3)
                                             {
-                                                _companiesMgr._companies[4].GetInvUpdateGridDataset(() =>
+                                                _companiesMgr._companies[4]._invUpdate.GetInvUpdateGridDataset(() =>
                                                 {
                                                     DisplayInvForm();
                                                 });
