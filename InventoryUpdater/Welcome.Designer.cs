@@ -1,4 +1,4 @@
-﻿namespace SellerSense
+namespace SellerSense
 {
     partial class Welcome
     {
@@ -135,9 +135,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 314);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 16);
+            this.label1.Size = new System.Drawing.Size(93, 16);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Version 1.0.1";
+            this.label1.Text = "Version 1.0.1.0";
             // 
             // menuStrip1
             // 

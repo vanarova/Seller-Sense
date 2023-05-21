@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define InventoryUpdater_TargetDir=$(var.SellerSense.TargetDir)?>
-	<Product Id="*" Name="SellerSense" Language="1033" Version="1.0.0.0" Manufacturer="CC-India" UpgradeCode="f8dc5f03-fc86-410a-bc1e-3667a9109853">
+	<Product Id="*" Name="SellerSense" Language="1033" Version="1.0.1.0" Manufacturer="CC-India" UpgradeCode="f8dc5f03-fc86-410a-bc1e-3667a9109853">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
