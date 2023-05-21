@@ -1,4 +1,4 @@
-﻿using InventoryUpdater.Helper;
+﻿using SellerSense.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventoryUpdater
+namespace SellerSense
 {
     public partial class Main : Form
     {

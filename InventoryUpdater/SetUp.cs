@@ -1,5 +1,5 @@
 ﻿using AngleSharp.Dom.Events;
-using InventoryUpdater.Helper;
+using SellerSense.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventoryUpdater
+namespace SellerSense
 {
     internal partial class SetUp : Form
     {
@@ -19,8 +19,8 @@ namespace InventoryUpdater
         private string _map3File;
         private string _map4File;
         private string _map5File;
-        private InventoryUpdater.Manager.Companies _companies;
-        public SetUp(InventoryUpdater.Manager.Companies companies)
+        private SellerSense.Manager.Companies _companies;
+        public SetUp(SellerSense.Manager.Companies companies)
         {
             _companies = companies;
             InitializeComponent();
@@ -95,12 +95,12 @@ namespace InventoryUpdater
 
         private void txtComp1Name_TextChanged(object sender, EventArgs e)
         {
-           txtComp1Code.Text = InventoryUpdater.Manager.Companies.GetRandomCode(txtComp1Name.Text, 4);
+           txtComp1Code.Text = SellerSense.Manager.Companies.GetRandomCode(txtComp1Name.Text, 4);
         }
 
         private void txtComp2Name_TextChanged(object sender, EventArgs e)
         {
-            txtComp2Code.Text = InventoryUpdater.Manager.Companies.GetRandomCode(txtComp2Name.Text, 4);
+            txtComp2Code.Text = SellerSense.Manager.Companies.GetRandomCode(txtComp2Name.Text, 4);
 
 
         }

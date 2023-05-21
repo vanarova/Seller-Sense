@@ -1,7 +1,7 @@
 ﻿using Decoders;
 using Decoders.Interfaces;
-using InventoryUpdater.Helper;
-using InventoryUpdater.Model;
+using SellerSense.Helper;
+using SellerSense.Model;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -11,10 +11,8 @@ using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace InventoryUpdater
+namespace SellerSense
 {
-
-
 
     /// <summary>
     /// Drives Model logic

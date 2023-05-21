@@ -1,4 +1,4 @@
-﻿using InventoryUpdater.Helper;
+﻿using SellerSense.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,15 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventoryUpdater
+namespace SellerSense
 {
     internal partial class Welcome : Form
     {
         //Company _company;
-        InventoryUpdater.Manager.Companies _companiesMgr;
+        SellerSense.Manager.Companies _companiesMgr;
         public Welcome()
         {
-            _companiesMgr = new InventoryUpdater.Manager.Companies();
+            _companiesMgr = new SellerSense.Manager.Companies();
             
             InitializeComponent();
             //ProjIO.LoadUserSettings();

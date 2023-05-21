@@ -7,10 +7,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
-using InventoryUpdater.Model;
-using InventoryUpdater.Model.Interfaces;
+using SellerSense.Model;
+using SellerSense.Model.Interfaces;
 
-namespace InventoryUpdater.Helper
+namespace SellerSense.Helper
 {
     public static class HTMLToJSON
     {

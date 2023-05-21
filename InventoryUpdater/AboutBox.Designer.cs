@@ -1,4 +1,4 @@
-﻿namespace InventoryUpdater
+﻿namespace SellerSense
 {
     partial class AboutBox
     {

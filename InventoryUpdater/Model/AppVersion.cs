@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryUpdater.Model
+namespace SellerSense.Model
 {
     public class AppVersion
     {

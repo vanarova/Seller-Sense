@@ -1,5 +1,5 @@
 ﻿using Decoders;
-using InventoryUpdater.Helper;
+using SellerSense.Helper;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventoryUpdater
+namespace SellerSense
 {
     public partial class Admin : Form
     {

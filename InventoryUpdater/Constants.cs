@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryUpdater
+namespace SellerSense
 {
     public static class Constants
     {

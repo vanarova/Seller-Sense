@@ -1,11 +1,11 @@
-﻿using InventoryUpdater.Helper;
+﻿using SellerSense.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryUpdater.Manager
+namespace SellerSense.Manager
 {
     internal class Companies
     {

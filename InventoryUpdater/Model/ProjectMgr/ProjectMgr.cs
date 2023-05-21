@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryUpdater.Model.ProjectMgr
+namespace SellerSense.Model.ProjectMgr
 {
     internal class ProjectMgr
     {
