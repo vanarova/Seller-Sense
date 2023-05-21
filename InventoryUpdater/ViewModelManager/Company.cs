@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
+using SellerSense.ViewModelManager;
 
 namespace SellerSense
 {
@@ -21,6 +22,8 @@ namespace SellerSense
     {
         internal string _name;
         internal string _code;
+        internal VM_Inventories _inventories { get; set; }
+
         internal BaseCodeList _baseCodes { get; set; }
         internal AmzInventoryList _amzImportedInvList { get; set; }
         internal FkInventoryList _fkImportedInventoryList { get; set; }
@@ -172,40 +175,7 @@ namespace SellerSense
             MeeshoInvDecoder.SaveAllData(_msoImportedInventoryList._msoUIModifiedInvList, dirPath);
         }
 
-        internal void ShowAmzInvFiller(Image selectedImg,string selectedCode, string selectedTitle, Action<string> AssignSelectedIDToMAP)
-        {
-            InvFiller inf = new InvFiller(selectedImg, selectedCode, selectedTitle,_amzImportedInvList._amzInventoryList, this);
-            inf.ShowDialog();
-            AssignSelectedIDToMAP(inf.SelectedID);
-        }
-
-
-        internal void ShowFkInvFiller(Image selectedImg, string selectedCode, string selectedTitle, Action<string> AssignSelectedIDToMAP)
-        {
-            InvFiller inf = new InvFiller(selectedImg, selectedCode, selectedTitle, _fkImportedInventoryList._fkInventoryList, this);
-            inf.ShowDialog();
-            AssignSelectedIDToMAP(inf.SelectedID);
-        }
-
-        internal void ShowSpdInvFiller(Image selectedImg, string selectedCode, string selectedTitle, Action<string> AssignSelectedIDToMAP)
-        {
-            InvFiller inf = new InvFiller(selectedImg, selectedCode, selectedTitle, _spdImportedInventoryList._spdInventoryList, this);
-            inf.ShowDialog();
-            AssignSelectedIDToMAP(inf.SelectedID);
-        }
-
-
-        internal void ShowMsoInvFiller(Image selectedImg, string selectedCode, string selectedTitle, Action<string> AssignSelectedIDToMAP)
-        {
-            InvFiller inf = new InvFiller(selectedImg, selectedCode, selectedTitle, _msoImportedInventoryList._msoInventoryList, this);
-            inf.ShowDialog();
-            AssignSelectedIDToMAP(inf.SelectedID);
-        }
-
-        //internal void ImportFlipkartInventoryFile(string fileName)
-        //{
-        //    _fkInventory = FlipkartInvDecoder.GetData(fileName);
-        //}
+       
 
         internal void LoadInvUpdateDataFromUserSuppliedMapFile(string fileName)
         {

@@ -180,16 +180,16 @@ namespace SellerSense
             Image selectedImg = grdmapGrid[(int)_colNames.Image, selectedRow].Value as Image;
             string selectedCode = grdmapGrid[(int)_colNames.Code, selectedRow].Value.ToString();
             string selectedTitle = grdmapGrid[(int)_colNames.Title, selectedRow].Value.ToString();
-            _company.ShowAmzInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
+
+            InvFiller inf = new InvFiller(selectedImg, selectedCode, selectedTitle, _company._amzImportedInvList._amzInventoryList, _company);
+            inf.ShowDialog();
+            //assign map ID
+            if (inf.SelectedID != null && !string.IsNullOrEmpty(inf.SelectedID))
             {
-                //assign map ID
-                if (id != null && !string.IsNullOrEmpty(id))
-                {
-                    grdmapGrid.SelectedCells[0].Value = id;
-                    _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].AmzCodeValue = id;
-                    grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
-                }
-            });
+                grdmapGrid.SelectedCells[0].Value = inf.SelectedID;
+                _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].AmzCodeValue = inf.SelectedID;
+                grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
+            }
         }
 
         private void OpenFkInvFiller()
@@ -198,16 +198,16 @@ namespace SellerSense
             Image selectedImg = grdmapGrid[(int)_colNames.Image, selectedRow].Value as Image;
             string selectedCode = grdmapGrid[(int)_colNames.Code, selectedRow].Value.ToString();
             string selectedTitle = grdmapGrid[(int)_colNames.Title, selectedRow].Value.ToString();
-            _company.ShowFkInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
+
+            InvFiller inf = new InvFiller(selectedImg, selectedCode, selectedTitle, _company._fkImportedInventoryList._fkInventoryList, _company);
+            inf.ShowDialog();
+            //assign map ID
+            if (inf.SelectedID != null && !string.IsNullOrEmpty(inf.SelectedID))
             {
-                //assign map ID
-                if (id != null && !string.IsNullOrEmpty(id))
-                {
-                    grdmapGrid.SelectedCells[0].Value = id;
-                    _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].FkCodeValue = id;
-                    grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
-                }
-            });
+                grdmapGrid.SelectedCells[0].Value = inf.SelectedID;
+                _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].FkCodeValue = inf.SelectedID;
+                grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
+            }
         }
 
 
@@ -217,16 +217,16 @@ namespace SellerSense
             Image selectedImg = grdmapGrid[(int)_colNames.Image, selectedRow].Value as Image;
             string selectedCode = grdmapGrid[(int)_colNames.Code, selectedRow].Value.ToString();
             string selectedTitle = grdmapGrid[(int)_colNames.Title, selectedRow].Value.ToString();
-            _company.ShowSpdInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
+
+            InvFiller inf = new InvFiller(selectedImg, selectedCode, selectedTitle, _company._spdImportedInventoryList._spdInventoryList, _company);
+            inf.ShowDialog();
+            //assign map ID
+            if (inf.SelectedID != null && !string.IsNullOrEmpty(inf.SelectedID))
             {
-                //assign map ID
-                if (id != null && !string.IsNullOrEmpty(id))
-                {
-                    grdmapGrid.SelectedCells[0].Value = id;
-                    _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].SpdCodeValue = id;
-                    grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
-                }
-            });
+                grdmapGrid.SelectedCells[0].Value = inf.SelectedID;
+                _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].SpdCodeValue = inf.SelectedID;
+                grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
+            }
         }
 
 
@@ -236,16 +236,16 @@ namespace SellerSense
             Image selectedImg = grdmapGrid[(int)_colNames.Image, selectedRow].Value as Image;
             string selectedCode = grdmapGrid[(int)_colNames.Code, selectedRow].Value.ToString();
             string selectedTitle = grdmapGrid[(int)_colNames.Title, selectedRow].Value.ToString();
-            _company.ShowMsoInvFiller(selectedImg, selectedCode, selectedTitle, (id) =>
+
+            InvFiller inf = new InvFiller(selectedImg, selectedCode, selectedTitle, _company._msoImportedInventoryList._msoInventoryList, _company);
+            inf.ShowDialog();
+            //assign map ID
+            if (inf.SelectedID != null && !string.IsNullOrEmpty(inf.SelectedID))
             {
-                //assign map ID
-                if (id != null && !string.IsNullOrEmpty(id))
-                {
-                    grdmapGrid.SelectedCells[0].Value = id;
-                    _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].MsoCodeValue = id;
-                    grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
-                }
-            });
+                grdmapGrid.SelectedCells[0].Value = inf.SelectedID;
+                _company._map.MapEntries[grdmapGrid.SelectedCells[0].RowIndex].MsoCodeValue = inf.SelectedID;
+                grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
+            }
         }
 
         private void toolStripMenuItemShowFkInv_Click(object sender, EventArgs e)
