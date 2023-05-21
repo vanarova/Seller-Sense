@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define InventoryUpdater_TargetDir=$(var.InventoryUpdater.TargetDir)?>
-	<Product Id="*" Name="SetupProjectInvUpdater" Language="1033" Version="1.0.0.0" Manufacturer="CC-India" UpgradeCode="f8dc5f03-fc86-410a-bc1e-3667a9109853">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define InventoryUpdater_TargetDir=$(var.SellerSense.TargetDir)?>
+	<Product Id="*" Name="SellerSense" Language="1033" Version="1.0.0.0" Manufacturer="CC-India" UpgradeCode="f8dc5f03-fc86-410a-bc1e-3667a9109853">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate />
 
-		<Feature Id="ProductFeature" Title="SetupProjectInvUpdater" Level="1">
+		<Feature Id="ProductFeature" Title="Seller-Sense" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
 	</Product>
@@ -14,7 +14,7 @@
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="SetupProjectInvUpdater" />
+				<Directory Id="INSTALLFOLDER" Name="Seller-Sense" />
 			</Directory>
 		</Directory>
 	</Fragment>
@@ -26,7 +26,7 @@
 				<!-- TODO: Insert files, registry keys, and other resources here. -->
 			<!-- </Component> -->
 			<Component Id="InventoryUpdater.exe" Guid="d77540e7-6451-4b06-89f2-c904762169f3">
-			  <File Id="InventoryUpdater.exe" Name="InventoryUpdater.exe" Source="$(var.InventoryUpdater_TargetDir)InventoryUpdater.exe" />
+			  <File Id="SellerSense.exe" Name="SellerSense.exe" Source="$(var.InventoryUpdater_TargetDir)SellerSense.exe" />
 			</Component>
 			<Component Id="NPOI.OOXML.dll" Guid="cbe9d16f-6b47-4226-8364-f50ae9fefc3f">
 			  <File Id="NPOI.OOXML.dll" Name="NPOI.OOXML.dll" Source="$(var.InventoryUpdater_TargetDir)NPOI.OOXML.dll" />

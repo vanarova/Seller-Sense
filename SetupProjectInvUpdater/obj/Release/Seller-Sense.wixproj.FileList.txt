@@ -1,0 +1,7 @@
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\cab1.cab
+obj\Release\Product.wixobj
+obj\Release\Seller-Sense.wixproj.BindContentsFileListnull.txt
+obj\Release\Seller-Sense.wixproj.BindOutputsFileListnull.txt
+obj\Release\Seller-Sense.wixproj.BindBuiltOutputsFileListnull.txt
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\SellerSense.msi
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\SellerSense.wixpdb

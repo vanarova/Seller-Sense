@@ -47,6 +47,11 @@ namespace InventoryUpdater
             }
         }
 
+        private void tabControl1_TabIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
 
         //private Company _company { get; set; }
 

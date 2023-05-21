@@ -24,7 +24,7 @@ namespace InventoryUpdater
         {
             InitializeComponent();
             _company = company;
-
+           
             //foreach (ToolStripItem item in fileStrip.Items)
             //{
             //    item.MergeAction = MergeAction.Append;
@@ -48,6 +48,7 @@ namespace InventoryUpdater
         private void MappingCntrl_Load(object sender, EventArgs e)
         {
             AdjustUI("OnLoad", sender, e);
+            
             //if (string.IsNullOrEmpty(_driver._map._lastSavedMapFilePath))
             //{
             //    MessageBox.Show("No last saved Map file found, please import Map data");
@@ -55,12 +56,12 @@ namespace InventoryUpdater
             //}
             //fileStrip.ContextMenu.MergeMenu(this.ParentForm.Menu);
 
-            
+
             //if (_company._code == "cratialc_PKVV")
             //    fileStrip.Items[0].Text = fileStrip.Items[0].Text + "_CC";
             //else
             //    fileStrip.Items[0].Text = fileStrip.Items[0].Text.Replace("_HE", "");
-            
+
             FillMapGrid();
         }
 
@@ -133,8 +134,10 @@ namespace InventoryUpdater
             grdmapGrid.DataSource = _company._mapGridData.Tables[0];
             //for (int i = 0; i < grdmapGrid.Rows.Count; i++)
             //    grdmapGrid.Size(i++);
-            grdmapGrid.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            //grdmapGrid.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             grdmapGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            //grdmapGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            //grdmapGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             grdmapGrid.Invalidate();
         }
 
@@ -435,6 +438,8 @@ namespace InventoryUpdater
         {
             ImportMapFile();
         }
+
+  
 
         //private void toolStripMenuItemShowMsoInv_Click_1(object sender, EventArgs e)
         //{

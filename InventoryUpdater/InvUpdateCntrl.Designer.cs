@@ -47,6 +47,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Lavender;
             this.tableLayoutPanel1.ColumnCount = 6;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
@@ -103,12 +104,13 @@
             this.btn_exportSllInv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_exportSllInv.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_exportSllInv.Location = new System.Drawing.Point(520, 3);
             this.btn_exportSllInv.Name = "btn_exportSllInv";
             this.btn_exportSllInv.Size = new System.Drawing.Size(157, 29);
             this.btn_exportSllInv.TabIndex = 5;
             this.btn_exportSllInv.Text = "Export All";
-            this.btn_exportSllInv.UseVisualStyleBackColor = true;
+            this.btn_exportSllInv.UseVisualStyleBackColor = false;
             this.btn_exportSllInv.Click += new System.EventHandler(this.btn_exportSllInv_Click);
             // 
             // grdInvUpdate
@@ -133,7 +135,7 @@
             this.importAmazonInvToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(76, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(78, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -145,7 +147,7 @@
             this.snapdealInventoryFileToolStripMenuItem,
             this.meeshoInventoryFileToolStripMenuItem});
             this.importAmazonInvToolStripMenuItem.Name = "importAmazonInvToolStripMenuItem";
-            this.importAmazonInvToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.importAmazonInvToolStripMenuItem.Size = new System.Drawing.Size(68, 26);
             this.importAmazonInvToolStripMenuItem.Text = "Import";
             // 
             // amazonInventoryFileToolStripMenuItem

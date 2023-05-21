@@ -20,17 +20,13 @@ namespace InventoryUpdater.Model
             _spdUIModifiedInvList = new List<ISpdInventory>();
         }
 
-        internal void SearchInvCollectionAsync(string keyword,
-       Constants.SearchType searchBy,
-       Constants.Company companyName,
-       Action<List<int>> SendToUI)
+
+        internal Task<List<int>> SearchInvCollectionAsync(string keyword,
+     Constants.SearchType searchBy,
+     Constants.Company companyName)
         {
-            if(_spdInventoryList==null || _spdInventoryList.Count==0)
-                return;
-            BackgroundWorker bg = new BackgroundWorker();
             List<int> slist = new List<int>();
-            bg.WorkerReportsProgress = true;
-            bg.DoWork += (sender, doWorkEventArgs) => {
+            Task<List<int>> t = Task<List<int>>.Run(()=>{
                 int i = 0;
                 if (companyName == Constants.Company.Snapdeal)
                 {
@@ -41,15 +37,47 @@ namespace InventoryUpdater.Model
                         //if (searchBy == Constants.SearchType.ByUserId && item.sku.Contains(keyword))
                         //    slist.Add(i);
                         i++;
+                        
                     }
+                   
                 }
-                bg.ReportProgress(0, slist);
-            };
-            bg.ProgressChanged += (sender, progressChangedEventArgs) => {
-                SendToUI(slist);
-            };
-            bg.RunWorkerAsync();
+                return slist;
+            });
+            return t;
         }
+
+
+
+        // internal void SearchInvCollectionAsync(string keyword,
+        //Constants.SearchType searchBy,
+        //Constants.Company companyName,
+        //Action<List<int>> SendToUI)
+        // {
+        //     if(_spdInventoryList==null || _spdInventoryList.Count==0)
+        //         return;
+        //     BackgroundWorker bg = new BackgroundWorker();
+        //     List<int> slist = new List<int>();
+        //     bg.WorkerReportsProgress = true;
+        //     bg.DoWork += (sender, doWorkEventArgs) => {
+        //         int i = 0;
+        //         if (companyName == Constants.Company.Snapdeal)
+        //         {
+        //             foreach (var item in _spdInventoryList)
+        //             {
+        //                 if (searchBy == Constants.SearchType.ByCompanyId && item.fsn.Contains(keyword))
+        //                     slist.Add(i);
+        //                 //if (searchBy == Constants.SearchType.ByUserId && item.sku.Contains(keyword))
+        //                 //    slist.Add(i);
+        //                 i++;
+        //             }
+        //         }
+        //         bg.ReportProgress(0, slist);
+        //     };
+        //     bg.ProgressChanged += (sender, progressChangedEventArgs) => {
+        //         SendToUI(slist);
+        //     };
+        //     bg.RunWorkerAsync();
+        // }
 
     }
 }

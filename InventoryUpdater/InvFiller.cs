@@ -102,118 +102,214 @@ namespace InventoryUpdater
 
 
 
-        private void SearchMsoInvList()
+        private async void SearchMsoInvList()
         {
-            _company.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _company.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _companyConst,
-                            (iList) =>
-                            { //call back
-                                if (grd_InvData.DataSource != null)
-                                {
-                                    grd_InvData.DataSource = null;
-                                    grd_InvData.DataBindings.Clear();
-                                }
+                            _companyConst);
+            //(iList) =>
+            //{ //call back
+            await t;
+            List<int> iList = t.Result;
+            if (grd_InvData.DataSource != null)
+            {
+                grd_InvData.DataSource = null;
+                grd_InvData.DataBindings.Clear();
+            }
 
-                                grd_InvData.Rows.Clear();
-                                grd_InvData.Columns.Add("name", "name");
-                                grd_InvData.Columns.Add("fsn", "fsn");
-                                grd_InvData.Columns.Add("price", "price");
-                                grd_InvData.Columns.Add("systemQuantity", "quantity");
+            grd_InvData.Rows.Clear();
+            grd_InvData.Columns.Add("name", "name");
+            grd_InvData.Columns.Add("fsn", "fsn");
+            grd_InvData.Columns.Add("price", "price");
+            grd_InvData.Columns.Add("systemQuantity", "quantity");
 
 
-                                iList.ForEach((i) =>
-                                {
-                                    grd_InvData.Rows.Add(_msoInventory[i].name, _msoInventory[i].fsn,
-                                        _msoInventory[i].price, _msoInventory[i].systemQuantity);
-                                });
-                            });
+            iList.ForEach((i) =>
+            {
+                grd_InvData.Rows.Add(_msoInventory[i].name, _msoInventory[i].fsn,
+                    _msoInventory[i].price, _msoInventory[i].systemQuantity);
+            });
+        //});
         }
 
-        private void SearchSpdInvList()
+        private async void SearchSpdInvList()
         {
-            _company.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _company.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _companyConst,
-                            (iList) =>
-                            { //call back
-                                if (grd_InvData.DataSource != null)
-                                {
-                                    grd_InvData.DataSource = null;
-                                    grd_InvData.DataBindings.Clear();
-                                }
+                            _companyConst);
+            await t;
+            List<int> iList = t.Result;
+            //(iList) =>
+            //{ //call back
+            if (grd_InvData.DataSource != null)
+            {
+                grd_InvData.DataSource = null;
+                grd_InvData.DataBindings.Clear();
+            }
 
-                                grd_InvData.Rows.Clear();
-                                grd_InvData.Columns.Add("name", "name");
-                                grd_InvData.Columns.Add("fsn", "fsn");
-                                grd_InvData.Columns.Add("price", "price");
-                                grd_InvData.Columns.Add("systemQuantity", "quantity");
+            grd_InvData.Rows.Clear();
+            grd_InvData.Columns.Add("name", "name");
+            grd_InvData.Columns.Add("fsn", "fsn");
+            grd_InvData.Columns.Add("price", "price");
+            grd_InvData.Columns.Add("systemQuantity", "quantity");
 
 
-                                iList.ForEach((i) =>
-                                {
-                                    grd_InvData.Rows.Add(_spdInventory[i].name, _spdInventory[i].fsn,
-                                        _spdInventory[i].price, _spdInventory[i].systemQuantity);
-                                });
-                            });
+            iList.ForEach((i) =>
+            {
+                grd_InvData.Rows.Add(_spdInventory[i].name, _spdInventory[i].fsn,
+                    _spdInventory[i].price, _spdInventory[i].systemQuantity);
+            });
+                           // });
         }
 
 
-        private void SearchFkInvList()
+
+        private async void SearchFkInvList()
         {
-            _company.SearchFkInvCollectionAsync(txt_CompanyId.Text,
+           Task<List<int>> t = _company.SearchFkInvCollectionTask(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _companyConst,
-                            (iList) =>
-                            { //call back
-                                if (grd_InvData.DataSource != null)
-                                {
-                                    grd_InvData.DataSource = null;
-                                    grd_InvData.DataBindings.Clear();
-                                }
+                            _companyConst);
+            await t;
+            List<int> iList = t.Result;
+            if (grd_InvData.DataSource != null)
+            {
+                grd_InvData.DataSource = null;
+                grd_InvData.DataBindings.Clear();
+            }
 
-                                grd_InvData.Rows.Clear();
-                                grd_InvData.Columns.Add("name", "name");
-                                grd_InvData.Columns.Add("fsn", "fsn");
-                                grd_InvData.Columns.Add("price", "price");
-                                grd_InvData.Columns.Add("systemQuantity", "quantity");
+            grd_InvData.Rows.Clear();
+            grd_InvData.Columns.Add("name", "name");
+            grd_InvData.Columns.Add("fsn", "fsn");
+            grd_InvData.Columns.Add("price", "price");
+            grd_InvData.Columns.Add("systemQuantity", "quantity");
 
 
-                                iList.ForEach((i) =>
-                                {
-                                    grd_InvData.Rows.Add(_fkInventory[i].name, _fkInventory[i].fsn,
-                                        _fkInventory[i].price, _fkInventory[i].systemQuantity);
-                                });
-                            });
+            iList.ForEach((i) =>
+            {
+                grd_InvData.Rows.Add(_fkInventory[i].name, _fkInventory[i].fsn,
+                    _fkInventory[i].price, _fkInventory[i].systemQuantity);
+            });
+                           
         }
 
-        private void SearchAmzInvList()
+
+        //private void SearchFkInvList()
+        //{
+        //    _company.SearchFkInvCollectionAsync(txt_CompanyId.Text,
+        //                    Constants.SearchType.ByCompanyId,
+        //                    _companyConst,
+        //                    (iList) =>
+        //                    { //call back
+        //                        if (grd_InvData.DataSource != null)
+        //                        {
+        //                            grd_InvData.DataSource = null;
+        //                            grd_InvData.DataBindings.Clear();
+        //                        }
+
+        //                        grd_InvData.Rows.Clear();
+        //                        grd_InvData.Columns.Add("name", "name");
+        //                        grd_InvData.Columns.Add("fsn", "fsn");
+        //                        grd_InvData.Columns.Add("price", "price");
+        //                        grd_InvData.Columns.Add("systemQuantity", "quantity");
+
+
+        //                        iList.ForEach((i) =>
+        //                        {
+        //                            grd_InvData.Rows.Add(_fkInventory[i].name, _fkInventory[i].fsn,
+        //                                _fkInventory[i].price, _fkInventory[i].systemQuantity);
+        //                        });
+        //                    });
+        //}
+
+        //private void SearchAmzInvList()
+        //{
+        //    _company.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
+        //                    Constants.SearchType.ByCompanyId,
+        //                    _companyConst,
+        //                    (Action<List<int>>)((iList) =>
+        //                    { //call back
+        //                        if (grd_InvData.DataSource != null)
+        //                        {
+        //                            grd_InvData.DataSource = null;
+        //                            grd_InvData.DataBindings.Clear();
+        //                        }
+
+        //                        grd_InvData.Rows.Clear();
+        //                        grd_InvData.Columns.Add("sku", "sku");
+        //                        grd_InvData.Columns.Add("asin", "asin");
+        //                        grd_InvData.Columns.Add("price", "price");
+        //                        grd_InvData.Columns.Add("quantity", "quantity");
+
+
+        //                        iList.ForEach((Action<int>)((i) =>
+        //                        {
+        //                            grd_InvData.Rows.Add(_amzInventory[i].sku, _amzInventory[i].asin,
+        //                                _amzInventory[i].price, (object)_amzInventory[(int)i].sellerQuantity);
+        //                        }));
+        //                    }));
+        //}
+
+
+        //private async void SearchAmzInvList()
+        //{
+        //    Task<List<int>> t = _company.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
+        //                    Constants.SearchType.ByCompanyId,
+        //                    _companyConst);
+        //    await t;
+        //    List<int> iList = t.Result;
+
+        //    if (grd_InvData.DataSource != null)
+        //    {
+        //        grd_InvData.DataSource = null;
+        //        grd_InvData.DataBindings.Clear();
+        //    }
+
+        //    grd_InvData.Rows.Clear();
+        //    grd_InvData.Columns.Add("sku", "sku");
+        //    grd_InvData.Columns.Add("asin", "asin");
+        //    grd_InvData.Columns.Add("price", "price");
+        //    grd_InvData.Columns.Add("quantity", "quantity");
+
+
+        //    iList.ForEach((Action<int>)((i) =>
+        //    {
+        //        grd_InvData.Rows.Add(_amzInventory[i].sku, _amzInventory[i].asin,
+        //            _amzInventory[i].price, (object)_amzInventory[(int)i].sellerQuantity);
+        //    }));
+        //}
+
+
+
+        private async void SearchAmzInvList()
         {
-            _company.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _company.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _companyConst,
-                            (Action<List<int>>)((iList) =>
-                            { //call back
-                                if (grd_InvData.DataSource != null)
-                                {
-                                    grd_InvData.DataSource = null;
-                                    grd_InvData.DataBindings.Clear();
-                                }
+                            _companyConst);
+            await t;
+            List<int> iList = t.Result;
 
-                                grd_InvData.Rows.Clear();
-                                grd_InvData.Columns.Add("sku", "sku");
-                                grd_InvData.Columns.Add("asin", "asin");
-                                grd_InvData.Columns.Add("price", "price");
-                                grd_InvData.Columns.Add("quantity", "quantity");
+            if (grd_InvData.DataSource != null)
+            {
+                grd_InvData.DataSource = null;
+                grd_InvData.DataBindings.Clear();
+            }
 
+            grd_InvData.Rows.Clear();
+            grd_InvData.Columns.Clear();
+            grd_InvData.Columns.Add("sku", "sku");
+            grd_InvData.Columns.Add("asin", "asin");
+            grd_InvData.Columns.Add("price", "price");
+            grd_InvData.Columns.Add("quantity", "quantity");
+            grd_InvData.Invalidate();
 
-                                iList.ForEach((Action<int>)((i) =>
-                                {
-                                    grd_InvData.Rows.Add(_amzInventory[i].sku, _amzInventory[i].asin,
-                                        _amzInventory[i].price, (object)_amzInventory[(int)i].sellerQuantity);
-                                }));
-                            }));
+            iList.ForEach((Action<int>)((i) =>
+            {
+                grd_InvData.Rows.Add(_amzInventory[i].sku, _amzInventory[i].asin,
+                    _amzInventory[i].price, (object)_amzInventory[(int)i].sellerQuantity);
+            }));
         }
+
+
 
         private void txt_SKUTitle_TextChanged(object sender, EventArgs e)
         {

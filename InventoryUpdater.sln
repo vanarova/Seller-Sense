@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryUpdater", "InventoryUpdater\InventoryUpdater.csproj", "{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellerSense", "InventoryUpdater\SellerSense.csproj", "{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Decoders", "Decoders\Decoders.csproj", "{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupProjectInvUpdater", "SetupProjectInvUpdater\SetupProjectInvUpdater.wixproj", "{1DEED413-7C1F-433A-BDDD-C00A8DF26D23}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Seller-Sense", "SetupProjectInvUpdater\Seller-Sense.wixproj", "{1DEED413-7C1F-433A-BDDD-C00A8DF26D23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

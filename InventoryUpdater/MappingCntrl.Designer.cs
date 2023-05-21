@@ -75,6 +75,7 @@
             // fileStrip
             // 
             this.fileStrip.AllowMerge = false;
+            this.fileStrip.BackColor = System.Drawing.Color.Lavender;
             this.fileStrip.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.fileStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -113,12 +114,14 @@
             // 
             // openMapFileToolStripMenuItem
             // 
+            this.openMapFileToolStripMenuItem.Enabled = false;
             this.openMapFileToolStripMenuItem.Name = "openMapFileToolStripMenuItem";
             this.openMapFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.openMapFileToolStripMenuItem.Text = "Create workspace";
             // 
             // importMapFileToolStripMenuItem
             // 
+            this.importMapFileToolStripMenuItem.Enabled = false;
             this.importMapFileToolStripMenuItem.Name = "importMapFileToolStripMenuItem";
             this.importMapFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.importMapFileToolStripMenuItem.Text = "Import Map File (Change to Project (imgs))";
@@ -128,21 +131,25 @@
             this.saveMapFileToolStripMenuItem.Name = "saveMapFileToolStripMenuItem";
             this.saveMapFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.saveMapFileToolStripMenuItem.Text = "Save Map File";
+            this.saveMapFileToolStripMenuItem.Click += new System.EventHandler(this.saveMapFileToolStripMenuItem_Click);
             // 
             // saveAsMapFileToolStripMenuItem
             // 
+            this.saveAsMapFileToolStripMenuItem.Enabled = false;
             this.saveAsMapFileToolStripMenuItem.Name = "saveAsMapFileToolStripMenuItem";
             this.saveAsMapFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.saveAsMapFileToolStripMenuItem.Text = "Save As Map File";
             // 
             // importInvCodesToolStripMenuItem
             // 
+            this.importInvCodesToolStripMenuItem.Enabled = false;
             this.importInvCodesToolStripMenuItem.Name = "importInvCodesToolStripMenuItem";
             this.importInvCodesToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.importInvCodesToolStripMenuItem.Text = "Import Inv Codes";
             // 
             // importFlipkartInvFileToolStripMenuItem
             // 
+            this.importFlipkartInvFileToolStripMenuItem.Enabled = false;
             this.importFlipkartInvFileToolStripMenuItem.Name = "importFlipkartInvFileToolStripMenuItem";
             this.importFlipkartInvFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.importFlipkartInvFileToolStripMenuItem.Text = "Import Flipkart Inv File";
@@ -150,6 +157,7 @@
             // 
             // importAmazonInvFileToolStripMenuItem
             // 
+            this.importAmazonInvFileToolStripMenuItem.Enabled = false;
             this.importAmazonInvFileToolStripMenuItem.Name = "importAmazonInvFileToolStripMenuItem";
             this.importAmazonInvFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.importAmazonInvFileToolStripMenuItem.Text = "Import Amazon Inv File";
@@ -157,6 +165,7 @@
             // 
             // importSnapdealInvFileToolStripMenuItem
             // 
+            this.importSnapdealInvFileToolStripMenuItem.Enabled = false;
             this.importSnapdealInvFileToolStripMenuItem.Name = "importSnapdealInvFileToolStripMenuItem";
             this.importSnapdealInvFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.importSnapdealInvFileToolStripMenuItem.Text = "Import Snapdeal Inv File";
@@ -164,6 +173,7 @@
             // 
             // importMeeshoInvFileToolStripMenuItem
             // 
+            this.importMeeshoInvFileToolStripMenuItem.Enabled = false;
             this.importMeeshoInvFileToolStripMenuItem.Name = "importMeeshoInvFileToolStripMenuItem";
             this.importMeeshoInvFileToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.importMeeshoInvFileToolStripMenuItem.Text = "Import Meesho Inv File";
@@ -173,6 +183,7 @@
             // 
             this.utilitiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.convertMapFileURLsToLocalImagesToolStripMenuItem});
+            this.utilitiesToolStripMenuItem.Enabled = false;
             this.utilitiesToolStripMenuItem.Name = "utilitiesToolStripMenuItem";
             this.utilitiesToolStripMenuItem.Size = new System.Drawing.Size(376, 26);
             this.utilitiesToolStripMenuItem.Text = "Utilities";
@@ -193,11 +204,11 @@
             // 
             // toolStripMenuItemShowAmzInv
             // 
-            this.toolStripMenuItemShowAmzInv.BackColor = System.Drawing.Color.Silver;
+            this.toolStripMenuItemShowAmzInv.BackColor = System.Drawing.Color.Cornsilk;
             this.toolStripMenuItemShowAmzInv.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.toolStripMenuItemShowAmzInv.Name = "toolStripMenuItemShowAmzInv";
-            this.toolStripMenuItemShowAmzInv.Size = new System.Drawing.Size(36, 27);
-            this.toolStripMenuItemShowAmzInv.Text = "^";
+            this.toolStripMenuItemShowAmzInv.Size = new System.Drawing.Size(37, 27);
+            this.toolStripMenuItemShowAmzInv.Text = "⤷";
             this.toolStripMenuItemShowAmzInv.Click += new System.EventHandler(this.toolStripMenuItemShowAmzInv_Click);
             // 
             // importFlipkartInvToolStripMenuItem
@@ -210,11 +221,11 @@
             // 
             // toolStripMenuItemShowFkInv
             // 
-            this.toolStripMenuItemShowFkInv.BackColor = System.Drawing.Color.Silver;
+            this.toolStripMenuItemShowFkInv.BackColor = System.Drawing.Color.Cornsilk;
             this.toolStripMenuItemShowFkInv.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.toolStripMenuItemShowFkInv.Name = "toolStripMenuItemShowFkInv";
-            this.toolStripMenuItemShowFkInv.Size = new System.Drawing.Size(36, 27);
-            this.toolStripMenuItemShowFkInv.Text = "^";
+            this.toolStripMenuItemShowFkInv.Size = new System.Drawing.Size(37, 27);
+            this.toolStripMenuItemShowFkInv.Text = "⤷";
             this.toolStripMenuItemShowFkInv.Click += new System.EventHandler(this.toolStripMenuItemShowFkInv_Click);
             // 
             // importSnapdealInvToolStripMenuItem
@@ -226,9 +237,11 @@
             // 
             // toolStripMenuItemShowSpdInv
             // 
+            this.toolStripMenuItemShowSpdInv.BackColor = System.Drawing.Color.Cornsilk;
+            this.toolStripMenuItemShowSpdInv.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripMenuItemShowSpdInv.Name = "toolStripMenuItemShowSpdInv";
-            this.toolStripMenuItemShowSpdInv.Size = new System.Drawing.Size(33, 27);
-            this.toolStripMenuItemShowSpdInv.Text = "^";
+            this.toolStripMenuItemShowSpdInv.Size = new System.Drawing.Size(35, 27);
+            this.toolStripMenuItemShowSpdInv.Text = "⤷";
             this.toolStripMenuItemShowSpdInv.Click += new System.EventHandler(this.toolStripMenuItemShowSpdInv_Click);
             // 
             // importMeeshoInvToolStripMenuItem
@@ -240,9 +253,11 @@
             // 
             // toolStripMenuItemShowMsoInv
             // 
+            this.toolStripMenuItemShowMsoInv.BackColor = System.Drawing.Color.Cornsilk;
+            this.toolStripMenuItemShowMsoInv.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripMenuItemShowMsoInv.Name = "toolStripMenuItemShowMsoInv";
-            this.toolStripMenuItemShowMsoInv.Size = new System.Drawing.Size(33, 27);
-            this.toolStripMenuItemShowMsoInv.Text = "^";
+            this.toolStripMenuItemShowMsoInv.Size = new System.Drawing.Size(35, 27);
+            this.toolStripMenuItemShowMsoInv.Text = "⤷";
             this.toolStripMenuItemShowMsoInv.Click += new System.EventHandler(this.toolStripMenuItemShowMsoInv_Click);
             // 
             // grdmapGrid

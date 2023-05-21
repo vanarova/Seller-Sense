@@ -66,7 +66,6 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdate
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.InvFiller.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.InvUpdate.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.Mapping.resources
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.SuperAdmin.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.Welcome.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.Main.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.Properties.Resources.resources
@@ -75,3 +74,8 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdate
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.csproj.CopyComplete
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.exe
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.EmailSetup.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.SetUp.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.InvUpdateCntrl.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.MappingCntrl.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\InventoryUpdater.Admin.resources

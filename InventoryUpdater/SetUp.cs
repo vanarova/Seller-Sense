@@ -14,7 +14,11 @@ namespace InventoryUpdater
 {
     internal partial class SetUp : Form
     {
-        
+        private string _map1File;
+        private string _map2File;
+        private string _map3File;
+        private string _map4File;
+        private string _map5File;
         private InventoryUpdater.Manager.Companies _companies;
         public SetUp(InventoryUpdater.Manager.Companies companies)
         {
@@ -26,6 +30,20 @@ namespace InventoryUpdater
         {
             string error;
             bool iscreated = CreateCompanies(out error);
+            if (!string.IsNullOrEmpty(error))
+                MessageBox.Show(error);
+
+            if(!string.IsNullOrEmpty(_map1File))
+                ProjIO.ImportMap(_map1File, txtComp1Code.Text);
+            if (!string.IsNullOrEmpty(_map2File))
+                ProjIO.ImportMap(_map2File, txtComp2Code.Text);
+            if (!string.IsNullOrEmpty(_map3File))
+                ProjIO.ImportMap(_map3File, txtComp3Code.Text);
+            if (!string.IsNullOrEmpty(_map4File))
+                ProjIO.ImportMap(_map4File, txtComp4Code.Text);
+            if (!string.IsNullOrEmpty(_map5File))
+                ProjIO.ImportMap(_map5File, txtComp5Code.Text);
+
             lbl_Error.Text = error;
             if (iscreated)
             { AdjustUI("CompaniesCreated");
@@ -65,11 +83,12 @@ namespace InventoryUpdater
         private bool CreateCompanies(out string error)
         {
             error = "" ;
-            if (_companies.DoesCompanyCodeExist(txtComp1Code.Text) || _companies.DoesCompanyCodeExist(txtComp2Code.Text))
+            if (_companies.DoesCompanyCodeExist(txtComp1Code.Text) && _companies.DoesCompanyCodeExist(txtComp2Code.Text))
             { error = "Company with same code exist."; return false; }
-            if(!string.IsNullOrEmpty(txtComp1Name.Text) && !string.IsNullOrEmpty(txtComp1Code.Text))
+            if(!_companies.DoesCompanyCodeExist(txtComp1Code.Text) && 
+                !string.IsNullOrEmpty(txtComp1Name.Text) && !string.IsNullOrEmpty(txtComp1Code.Text))
                 _companies.AddCompany1(txtComp1Name.Text, txtComp1Code.Text);
-            if (!string.IsNullOrEmpty(txtComp2Name.Text) && !string.IsNullOrEmpty(txtComp2Code.Text))
+            if (!_companies.DoesCompanyCodeExist(txtComp2Code.Text) && !string.IsNullOrEmpty(txtComp2Name.Text) && !string.IsNullOrEmpty(txtComp2Code.Text))
                 _companies.AddCompany2(txtComp2Name.Text, txtComp2Code.Text);
             return true;
         }
@@ -118,6 +137,43 @@ namespace InventoryUpdater
         private void txtComp4Name_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_ImportMap1_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtComp1Code.Text))
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Inventory file|map.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _map1File = openFileDialog.FileName;
+                    //ProjIO.ImportMap(openFileDialog.FileName, txtComp1Code.Text);
+                }
+                else return;
+            }
+
+        }
+
+        private void btn_ImportMap2_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtComp1Code.Text))
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Inventory file|map.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _map2File = openFileDialog.FileName;
+                    //ProjIO.ImportMap(openFileDialog.FileName, txtComp2Code.Text);
+                }
+                else return;
+            }
+        }
+
+        private void btn_emailSetup_Click(object sender, EventArgs e)
+        {
+            EmailSetup email = new EmailSetup();
+            email.ShowDialog();
         }
     }
 }

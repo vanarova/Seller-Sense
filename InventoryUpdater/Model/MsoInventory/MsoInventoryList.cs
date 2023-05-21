@@ -19,17 +19,12 @@ namespace InventoryUpdater.Model
             _msoInventoryList = new List<IMsoInventory>();
         }
 
-        internal void SearchInvCollectionAsync(string keyword,
+        internal Task<List<int>> SearchInvCollectionAsync(string keyword,
        Constants.SearchType searchBy,
-       Constants.Company companyName,
-       Action<List<int>> SendToUI)
+       Constants.Company companyName)
         {
-            if(_msoInventoryList==null || _msoInventoryList.Count==0)
-                return;
-            BackgroundWorker bg = new BackgroundWorker();
             List<int> slist = new List<int>();
-            bg.WorkerReportsProgress = true;
-            bg.DoWork += (sender, doWorkEventArgs) => {
+            Task<List<int>> t = Task<List<int>>.Run(() => {
                 int i = 0;
                 if (companyName == Constants.Company.Meesho)
                 {
@@ -42,12 +37,9 @@ namespace InventoryUpdater.Model
                         i++;
                     }
                 }
-                bg.ReportProgress(0, slist);
-            };
-            bg.ProgressChanged += (sender, progressChangedEventArgs) => {
-                SendToUI(slist);
-            };
-            bg.RunWorkerAsync();
+                return slist;
+            });
+            return t;
         }
 
     }
