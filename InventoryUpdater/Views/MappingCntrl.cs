@@ -443,7 +443,35 @@ namespace SellerSense
             ImportMapFile();
         }
 
-  
+       
+
+        private void toolStripTxtSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            if (toolStripTxtSearchBox.Text.Length >= 2 && !toolStripTxtSearchBox.Text.Equals("Search Code"))
+            {
+                for (int r = 0; r < grdmapGrid.Rows.Count; r++)
+                {
+                    if (grdmapGrid[1, r].Value !=null && grdmapGrid[1, r].Value.ToString().ToLower().
+                        Contains(toolStripTxtSearchBox.Text.ToLower()))
+                    {
+                        grdmapGrid.FirstDisplayedScrollingRowIndex = r;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void toolStripTxtSearchBox_Enter(object sender, EventArgs e)
+        {
+            toolStripTxtSearchBox.Text = String.Empty;
+        }
+
+        private void toolStripTxtSearchBox_Leave(object sender, EventArgs e)
+        {
+            toolStripTxtSearchBox.Text = "Search Code";
+        }
+
+
 
         //private void toolStripMenuItemShowMsoInv_Click_1(object sender, EventArgs e)
         //{

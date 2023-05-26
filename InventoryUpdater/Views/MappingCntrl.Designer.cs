@@ -50,6 +50,7 @@
             this.toolStripMenuItemShowSpdInv = new System.Windows.Forms.ToolStripMenuItem();
             this.importMeeshoInvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowMsoInv = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTxtSearchBox = new System.Windows.Forms.ToolStripTextBox();
             this.grdmapGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
@@ -87,7 +88,8 @@
             this.importSnapdealInvToolStripMenuItem,
             this.toolStripMenuItemShowSpdInv,
             this.importMeeshoInvToolStripMenuItem,
-            this.toolStripMenuItemShowMsoInv});
+            this.toolStripMenuItemShowMsoInv,
+            this.toolStripTxtSearchBox});
             this.fileStrip.Location = new System.Drawing.Point(0, 0);
             this.fileStrip.MinimumSize = new System.Drawing.Size(0, 15);
             this.fileStrip.Name = "fileStrip";
@@ -260,6 +262,17 @@
             this.toolStripMenuItemShowMsoInv.Text = "⤷";
             this.toolStripMenuItemShowMsoInv.Click += new System.EventHandler(this.toolStripMenuItemShowMsoInv_Click);
             // 
+            // toolStripTxtSearchBox
+            // 
+            this.toolStripTxtSearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStripTxtSearchBox.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripTxtSearchBox.Name = "toolStripTxtSearchBox";
+            this.toolStripTxtSearchBox.Size = new System.Drawing.Size(100, 27);
+            this.toolStripTxtSearchBox.Text = "Search Code";
+            this.toolStripTxtSearchBox.Enter += new System.EventHandler(this.toolStripTxtSearchBox_Enter);
+            this.toolStripTxtSearchBox.Leave += new System.EventHandler(this.toolStripTxtSearchBox_Leave);
+            this.toolStripTxtSearchBox.TextChanged += new System.EventHandler(this.toolStripTxtSearchBox_TextChanged);
+            // 
             // grdmapGrid
             // 
             this.grdmapGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -316,5 +329,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowSpdInv;
         private System.Windows.Forms.ToolStripMenuItem importMeeshoInvToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowMsoInv;
+        private System.Windows.Forms.ToolStripTextBox toolStripTxtSearchBox;
     }
 }
