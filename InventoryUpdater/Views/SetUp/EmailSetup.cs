@@ -47,7 +47,7 @@ namespace SellerSense
                 mailMessage.Body = txt_Body.Text.Trim();
 
                 string fattach1; string fattach2;
-                ProjIO.CleanLocalAppData();
+                ProjIO.CleanAndPrepareLocalAppData();
                 (fattach1, fattach2, _, _, _) = ProjIO.RenameAppendCompanyCodeAndCopyFilesToTempDir(
                     ProjIO.GetCompany1MapFilePathAndCheckFileExists(),
                     ProjIO.GetCompany2MapFilePathAndCheckFileExists());

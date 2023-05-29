@@ -62,6 +62,7 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -92,21 +93,29 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmailSetup.cs">
+    <Compile Include="Docs\Notes.cs" />
+    <Compile Include="Views\SetUp\EmailSetup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmailSetup.Designer.cs">
+    <Compile Include="Views\SetUp\EmailSetup.Designer.cs">
       <DependentUpon>EmailSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="SetUp.cs">
+    <Compile Include="Helper\Check.cs" />
+    <Compile Include="Views\SetUp\SetUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetUp.Designer.cs">
+    <Compile Include="Views\SetUp\SetUp.Designer.cs">
       <DependentUpon>SetUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="ViewModelManager\VM_Map.cs" />
     <Compile Include="ViewModelManager\VM_InvUpdate.cs" />
+    <Compile Include="Views\SetUp\ExportProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SetUp\ExportProject.Designer.cs">
+      <DependentUpon>ExportProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\InvUpdateCntrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,21 +180,15 @@
     <Compile Include="Welcome.Designer.cs">
       <DependentUpon>Welcome.cs</DependentUpon>
     </Compile>
-    <Compile Include="Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmailSetup.resx">
+    <EmbeddedResource Include="Views\SetUp\EmailSetup.resx">
       <DependentUpon>EmailSetup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetUp.resx">
+    <EmbeddedResource Include="Views\SetUp\SetUp.resx">
       <DependentUpon>SetUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\InvFiller.resx">
@@ -208,9 +211,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

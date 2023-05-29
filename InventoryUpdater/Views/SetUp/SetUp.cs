@@ -33,16 +33,16 @@ namespace SellerSense
             if (!string.IsNullOrEmpty(error))
                 MessageBox.Show(error);
 
-            if(!string.IsNullOrEmpty(_map1File))
-                ProjIO.ImportMap(_map1File, txtComp1Code.Text);
-            if (!string.IsNullOrEmpty(_map2File))
-                ProjIO.ImportMap(_map2File, txtComp2Code.Text);
-            if (!string.IsNullOrEmpty(_map3File))
-                ProjIO.ImportMap(_map3File, txtComp3Code.Text);
-            if (!string.IsNullOrEmpty(_map4File))
-                ProjIO.ImportMap(_map4File, txtComp4Code.Text);
-            if (!string.IsNullOrEmpty(_map5File))
-                ProjIO.ImportMap(_map5File, txtComp5Code.Text);
+            //if(!string.IsNullOrEmpty(_map1File))
+            //    ProjIO.ImportMap(_map1File, txtComp1Code.Text);
+            //if (!string.IsNullOrEmpty(_map2File))
+            //    ProjIO.ImportMap(_map2File, txtComp2Code.Text);
+            //if (!string.IsNullOrEmpty(_map3File))
+            //    ProjIO.ImportMap(_map3File, txtComp3Code.Text);
+            //if (!string.IsNullOrEmpty(_map4File))
+            //    ProjIO.ImportMap(_map4File, txtComp4Code.Text);
+            //if (!string.IsNullOrEmpty(_map5File))
+            //    ProjIO.ImportMap(_map5File, txtComp5Code.Text);
 
             lbl_Error.Text = error;
             if (iscreated)
@@ -141,33 +141,13 @@ namespace SellerSense
 
         private void btn_ImportMap1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtComp1Code.Text))
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Inventory file|map.json";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    _map1File = openFileDialog.FileName;
-                    //ProjIO.ImportMap(openFileDialog.FileName, txtComp1Code.Text);
-                }
-                else return;
-            }
+            ImportMap(txtComp1Code.Text);
 
         }
 
         private void btn_ImportMap2_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtComp1Code.Text))
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Inventory file|map.json";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    _map2File = openFileDialog.FileName;
-                    //ProjIO.ImportMap(openFileDialog.FileName, txtComp2Code.Text);
-                }
-                else return;
-            }
+            ImportMap(txtComp2Code.Text);
         }
 
         private void btn_emailSetup_Click(object sender, EventArgs e)
@@ -175,5 +155,34 @@ namespace SellerSense
             EmailSetup email = new EmailSetup();
             email.ShowDialog();
         }
+
+        private void btn_exportMap1_Click(object sender, EventArgs e)
+        {
+            ExportMap(txtComp1Code.Text);
+        }
+        
+        private void ExportMap(string mapCode)
+        {
+            ProjIO.ExportMap(mapCode);
+        }
+
+        private void ImportMap(string mapCode)
+        {
+            if (!string.IsNullOrEmpty(mapCode))
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Inventory file|map.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _map1File = openFileDialog.FileName;
+                    ProjIO.ImportMap(openFileDialog.FileName, txtComp1Code.Text,
+                        () => { }, // file exists
+                        () => { });//file IO error
+                }
+                else return;
+            }
+        }
+
+
     }
 }

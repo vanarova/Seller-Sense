@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO.Compression;
 
 namespace SellerSense.Helper
 {
@@ -26,11 +27,12 @@ namespace SellerSense.Helper
         //}
 
 
-        internal static void CleanLocalAppData()
+        internal static string CleanAndPrepareLocalAppData()
         {
             if(Directory.Exists(localappdata_sellersense))
                 Directory.Delete(localappdata_sellersense, true);
             Directory.CreateDirectory(localappdata_sellersense);
+            return localappdata_sellersense;
         }
 
         //call after CleanLocalAppData()
@@ -190,11 +192,24 @@ namespace SellerSense.Helper
         //    File.Copy(fileName, mapFileLocation);
         //}
 
-        internal static void ImportMap(string fileName, string companyCode)
+        internal static void ImportMap(string fileName, string companyCode, Action MapExists
+            ,Action FileIOError)
         {
             string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
                 companyCode, Constants.MapFileName);
             File.Copy(fileName, mapFileLocation);
+        }
+
+        internal static void ExportMap(string companyCode)
+        {
+            string tempDirPath =  ProjIO.CleanAndPrepareLocalAppData();
+            string targetDir = Path.Combine(tempDirPath, companyCode);
+            Directory.CreateDirectory(targetDir);
+            string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+               companyCode, Constants.MapFileName);
+            File.Copy(mapFileLocation, Path.Combine(targetDir,Constants.MapFileName)); // [temp]/company_code
+
+            ZipFile.CreateFromDirectory(targetDir,Path.Combine(tempDirPath, companyCode+".zip") );
         }
     }
 }
