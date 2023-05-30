@@ -38,7 +38,7 @@ namespace SellerSense
             
             this._companiesMgr = companies;
             CreateTabControls();
-            
+            throw new InvalidOperationException("Testing");
             //tabControl1.TabPages.Add(_companiesMgr._companies[0]._name); //show default page
             //tabControl1.TabPages[0].Controls.Add(_mappingCntrlList[0]);
             //tabControl1.TabPages.Add();

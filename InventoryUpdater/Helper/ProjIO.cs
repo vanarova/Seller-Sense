@@ -13,7 +13,7 @@ namespace SellerSense.Helper
     {
         private static Dictionary<string, string> UserSettings = new Dictionary<string, string>();
         private static string localappdata_sellersense;
-         static ProjIO()
+        static ProjIO()
         {
             UserSettings = new Dictionary<string, string>();
             //localappdata_sellersense = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.), "Seller-Sense");
@@ -29,24 +29,24 @@ namespace SellerSense.Helper
 
         internal static string CleanAndPrepareLocalAppData()
         {
-            if(Directory.Exists(localappdata_sellersense))
+            if (Directory.Exists(localappdata_sellersense))
                 Directory.Delete(localappdata_sellersense, true);
             Directory.CreateDirectory(localappdata_sellersense);
             return localappdata_sellersense;
         }
 
         //call after CleanLocalAppData()
-        internal static (string,string, string, string,string) RenameAppendCompanyCodeAndCopyFilesToTempDir(
-            string filePath, string filePath2="", string filePath3 = "",
+        internal static (string, string, string, string, string) RenameAppendCompanyCodeAndCopyFilesToTempDir(
+            string filePath, string filePath2 = "", string filePath3 = "",
             string filePath4 = "", string filePath5 = "")
         {
-            string targetFilePath1 = Path.Combine(localappdata_sellersense,GetUserSetting(Constants.Company1Code)+".json");
-            string targetFilePath2 = Path.Combine(localappdata_sellersense,GetUserSetting(Constants.Company2Code)+".json");
-            string targetFilePath3 = Path.Combine(localappdata_sellersense,GetUserSetting(Constants.Company3Code)+".json");
-            string targetFilePath4 = Path.Combine(localappdata_sellersense,GetUserSetting(Constants.Company4Code)+".json");
-            string targetFilePath5 = Path.Combine(localappdata_sellersense,GetUserSetting(Constants.Company5Code)+ ".json");
+            string targetFilePath1 = Path.Combine(localappdata_sellersense, GetUserSetting(Constants.Company1Code) + ".json");
+            string targetFilePath2 = Path.Combine(localappdata_sellersense, GetUserSetting(Constants.Company2Code) + ".json");
+            string targetFilePath3 = Path.Combine(localappdata_sellersense, GetUserSetting(Constants.Company3Code) + ".json");
+            string targetFilePath4 = Path.Combine(localappdata_sellersense, GetUserSetting(Constants.Company4Code) + ".json");
+            string targetFilePath5 = Path.Combine(localappdata_sellersense, GetUserSetting(Constants.Company5Code) + ".json");
             File.Copy(filePath, targetFilePath1);
-            if(!string.IsNullOrEmpty(filePath2))
+            if (!string.IsNullOrEmpty(filePath2))
                 File.Copy(filePath2, targetFilePath2);
             if (!string.IsNullOrEmpty(filePath3))
                 File.Copy(filePath3, targetFilePath3);
@@ -60,7 +60,7 @@ namespace SellerSense.Helper
 
         internal static string GetCompany1MapFilePathAndCheckFileExists()
         {
-            if(string.IsNullOrEmpty(GetUserSetting(Constants.Company1Code)))
+            if (string.IsNullOrEmpty(GetUserSetting(Constants.Company1Code)))
                 return string.Empty;
             if (!File.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code),
                Constants.MapFileName)))
@@ -72,9 +72,9 @@ namespace SellerSense.Helper
 
         internal static string GetCompany2MapFilePathAndCheckFileExists()
         {
-            if (string.IsNullOrEmpty(GetUserSetting(Constants.Company2Code)) )
+            if (string.IsNullOrEmpty(GetUserSetting(Constants.Company2Code)))
                 return string.Empty;
-            if(!File.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code),
+            if (!File.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code),
                 Constants.MapFileName)))
                 return string.Empty;
             return Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code),
@@ -91,7 +91,7 @@ namespace SellerSense.Helper
                 UserSettings = new Dictionary<string, string>();
             UserSettings[key] = value;
             string json = JsonConvert.SerializeObject(UserSettings, Formatting.Indented);
-            File.WriteAllText(inSettingPath+ @"\inv.json", json); 
+            File.WriteAllText(inSettingPath + @"\inv.json", json);
         }
 
         internal static void LoadUserSettings()
@@ -101,37 +101,37 @@ namespace SellerSense.Helper
             string inSettingPath = Path.Combine(appdata, "Seller-Sense");
             if (!Directory.Exists(inSettingPath))
                 Directory.CreateDirectory(inSettingPath);
-            if(File.Exists(inSettingPath + @"\inv.json"))
-             json = File.ReadAllText(inSettingPath + @"\inv.json");
-            UserSettings = JsonConvert.DeserializeObject<Dictionary<string,string>>(json);
+            if (File.Exists(inSettingPath + @"\inv.json"))
+                json = File.ReadAllText(inSettingPath + @"\inv.json");
+            UserSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         }
 
 
-        
+
 
         internal static string GetUserSetting(string key)
         {
             string value = "";
             if (UserSettings == null)
                 UserSettings = new Dictionary<string, string>();
-            if (UserSettings.Count==0 )
+            if (UserSettings.Count == 0)
                 LoadUserSettings();
             if (UserSettings != null && UserSettings.Count > 0)
             {
                 UserSettings.TryGetValue(key, out value);
             }
-            return value; 
+            return value;
         }
 
 
         internal static string DefaultWorkspaceLocation()
         {
-           return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments, Environment.SpecialFolderOption.Create),
-                Constants.WorkspaceDefaultDirName);
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments, Environment.SpecialFolderOption.Create),
+                 Constants.WorkspaceDefaultDirName);
         }
 
         internal static void CreateCompanyDir(string code)
-        { 
+        {
             string wdir = GetUserSetting(Constants.WorkspaceDir);
             if (!Directory.Exists(Path.Combine(wdir, code)))
                 Directory.CreateDirectory(Path.Combine(wdir, code));
@@ -139,12 +139,12 @@ namespace SellerSense.Helper
 
         internal static bool DoesWorkspaceAndProjectsExists()
         {
-            bool result =  Directory.Exists(GetUserSetting(Constants.WorkspaceDir));
+            bool result = Directory.Exists(GetUserSetting(Constants.WorkspaceDir));
             //TODO: check for any project exists
             return result;
         }
 
-            internal static string CreateWorkspace(string customeWorkspaceDir="")
+        internal static string CreateWorkspace(string customeWorkspaceDir = "")
         {
             string toSavePath;
             if (string.IsNullOrEmpty(customeWorkspaceDir))
@@ -164,26 +164,80 @@ namespace SellerSense.Helper
             return toSavePath;
         }
 
-        internal static bool IsCompany1DirExist()
+        internal static (bool,string) GetCompany1DirIfExist()
         {
-           return Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code)));
+           return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code))),
+                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code))
+                );
         }
-        internal static bool IsCompany2DirExist()
+        internal static (bool, string) GetCompany2DirIfExist()
         {
-            return Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code)));
+            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code))),
+                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code))
+                );
         }
-        internal static bool IsCompany3DirExist()
+        internal static (bool, string) GetCompany3DirIfExist()
         {
-            return Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company3Code)));
+            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company3Code))), 
+                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company3Code)));
         }
-        internal static bool IsCompany4DirExist()
+        internal static (bool, string) GetCompany4DirIfExist()
         {
-            return Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company4Code)));
+            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company4Code))), 
+                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company4Code)));
         }
-        internal static bool IsCompany5DirExist()
+        internal static (bool, string) GetCompany5DirIfExist()
         {
-            return Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company5Code)));
+            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company5Code))), 
+                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company5Code)));
         }
+
+        internal static bool DoesCompanyCodeExist(string code)
+        {
+            (bool c1Dir, _) = ProjIO.GetCompany1DirIfExist();
+            (bool c2Dir, _) = ProjIO.GetCompany2DirIfExist();
+            (bool c3Dir, _) = ProjIO.GetCompany3DirIfExist();
+            (bool c4Dir, _) = ProjIO.GetCompany4DirIfExist();
+            (bool c5Dir, _) = ProjIO.GetCompany5DirIfExist();
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company1Code), code) && c1Dir)
+                return true;
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company2Code), code) && c2Dir)
+                return true;
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company3Code), code) && c3Dir)
+                return true;
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company4Code), code) && c4Dir)
+                return true;
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company5Code), code) && c5Dir)
+                return true;
+
+            return false;
+        }
+
+        internal static (bool, string) GetCompanyMapDirIfExist(string code)
+        {
+            (bool c1Exist, string c1DirPath) = ProjIO.GetCompany1DirIfExist();
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company1Code), code) && c1Exist)
+                return (c1Exist, c1DirPath);
+
+            (bool c2Exist, string c2DirPath) = ProjIO.GetCompany2DirIfExist();
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company2Code), code) && c2Exist)
+                return (c2Exist, c2DirPath);
+
+            (bool c3Exist, string c3DirPath) = ProjIO.GetCompany3DirIfExist();
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company3Code), code) && c3Exist)
+                return (c3Exist, c3DirPath);
+
+            (bool c4Exist, string c4DirPath) = ProjIO.GetCompany4DirIfExist();
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company4Code), code) && c4Exist)
+                return (c4Exist, c4DirPath);
+
+            (bool c5Exist, string c5DirPath) = ProjIO.GetCompany5DirIfExist();
+            if (string.Equals(ProjIO.GetUserSetting(Constants.Company5Code), code) && c5Exist)
+                return (c5Exist, c5DirPath);
+
+            return (false, string.Empty);
+        }
+
 
         //internal static void ImportMap1FileToLastSavedLocation(string fileName, string companyCode)
         //{
@@ -200,9 +254,16 @@ namespace SellerSense.Helper
             File.Copy(fileName, mapFileLocation);
         }
 
-        internal static void ExportMap(string companyCode)
+        internal static void ExportMap(string companyCode,string zipFileDir, Action sameNameFileExistsinTargetDir)
         {
+            
+
             string tempDirPath =  ProjIO.CleanAndPrepareLocalAppData();
+            if (File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
+            {
+                sameNameFileExistsinTargetDir();
+                return;
+            }
             string targetDir = Path.Combine(tempDirPath, companyCode);
             Directory.CreateDirectory(targetDir);
             string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
@@ -210,6 +271,10 @@ namespace SellerSense.Helper
             File.Copy(mapFileLocation, Path.Combine(targetDir,Constants.MapFileName)); // [temp]/company_code
 
             ZipFile.CreateFromDirectory(targetDir,Path.Combine(tempDirPath, companyCode+".zip") );
+            if (!File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
+                File.Copy(Path.Combine(tempDirPath, companyCode + ".zip"), Path.Combine(zipFileDir, companyCode + ".zip"));
+           
+
         }
     }
 }

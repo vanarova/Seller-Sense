@@ -1,5 +1,6 @@
 ﻿using AngleSharp.Dom.Events;
 using SellerSense.Helper;
+using SellerSense.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -83,12 +84,12 @@ namespace SellerSense
         private bool CreateCompanies(out string error)
         {
             error = "" ;
-            if (_companies.DoesCompanyCodeExist(txtComp1Code.Text) && _companies.DoesCompanyCodeExist(txtComp2Code.Text))
+            if (ProjIO.DoesCompanyCodeExist(txtComp1Code.Text) && ProjIO.DoesCompanyCodeExist(txtComp2Code.Text))
             { error = "Company with same code exist."; return false; }
-            if(!_companies.DoesCompanyCodeExist(txtComp1Code.Text) && 
+            if(!ProjIO.DoesCompanyCodeExist(txtComp1Code.Text) && 
                 !string.IsNullOrEmpty(txtComp1Name.Text) && !string.IsNullOrEmpty(txtComp1Code.Text))
                 _companies.AddCompany1(txtComp1Name.Text, txtComp1Code.Text);
-            if (!_companies.DoesCompanyCodeExist(txtComp2Code.Text) && !string.IsNullOrEmpty(txtComp2Name.Text) && !string.IsNullOrEmpty(txtComp2Code.Text))
+            if (!ProjIO.DoesCompanyCodeExist(txtComp2Code.Text) && !string.IsNullOrEmpty(txtComp2Name.Text) && !string.IsNullOrEmpty(txtComp2Code.Text))
                 _companies.AddCompany2(txtComp2Name.Text, txtComp2Code.Text);
             return true;
         }
@@ -163,7 +164,13 @@ namespace SellerSense
         
         private void ExportMap(string mapCode)
         {
-            ProjIO.ExportMap(mapCode);
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                ProjIO.ExportMap(mapCode, folderBrowserDialog.SelectedPath,
+                    () =>
+                    {  // In case file already exists in target dir
+                        (new AlertBox("File with same name exists in target directory, please choose another directory.")).ShowDialog();
+                    });
         }
 
         private void ImportMap(string mapCode)

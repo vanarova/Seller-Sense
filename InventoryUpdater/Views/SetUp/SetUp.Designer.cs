@@ -89,7 +89,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.42082F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtComp1Name, 1, 1);
@@ -157,7 +157,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 65);
+            this.label1.Location = new System.Drawing.Point(46, 65);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 25);
@@ -168,7 +168,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 121);
+            this.label2.Location = new System.Drawing.Point(46, 121);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 25);
@@ -178,22 +178,22 @@
             // txtComp1Name
             // 
             this.txtComp1Name.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtComp1Name.Location = new System.Drawing.Point(129, 62);
+            this.txtComp1Name.Location = new System.Drawing.Point(128, 62);
             this.txtComp1Name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp1Name.MaxLength = 50;
             this.txtComp1Name.Name = "txtComp1Name";
-            this.txtComp1Name.Size = new System.Drawing.Size(243, 31);
+            this.txtComp1Name.Size = new System.Drawing.Size(242, 31);
             this.txtComp1Name.TabIndex = 2;
             this.txtComp1Name.TextChanged += new System.EventHandler(this.txtComp1Name_TextChanged);
             // 
             // txtComp2Name
             // 
             this.txtComp2Name.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtComp2Name.Location = new System.Drawing.Point(129, 118);
+            this.txtComp2Name.Location = new System.Drawing.Point(128, 118);
             this.txtComp2Name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp2Name.MaxLength = 50;
             this.txtComp2Name.Name = "txtComp2Name";
-            this.txtComp2Name.Size = new System.Drawing.Size(243, 31);
+            this.txtComp2Name.Size = new System.Drawing.Size(242, 31);
             this.txtComp2Name.TabIndex = 3;
             this.txtComp2Name.TextChanged += new System.EventHandler(this.txtComp2Name_TextChanged);
             // 
@@ -201,7 +201,7 @@
             // 
             this.txtComp1Code.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp1Code.Enabled = false;
-            this.txtComp1Code.Location = new System.Drawing.Point(486, 62);
+            this.txtComp1Code.Location = new System.Drawing.Point(484, 62);
             this.txtComp1Code.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp1Code.Name = "txtComp1Code";
             this.txtComp1Code.Size = new System.Drawing.Size(202, 31);
@@ -211,7 +211,7 @@
             // 
             this.txtComp2Code.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp2Code.Enabled = false;
-            this.txtComp2Code.Location = new System.Drawing.Point(486, 118);
+            this.txtComp2Code.Location = new System.Drawing.Point(484, 118);
             this.txtComp2Code.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp2Code.Name = "txtComp2Code";
             this.txtComp2Code.Size = new System.Drawing.Size(202, 31);
@@ -221,7 +221,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(409, 65);
+            this.label3.Location = new System.Drawing.Point(407, 65);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 25);
@@ -232,7 +232,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(409, 121);
+            this.label4.Location = new System.Drawing.Point(407, 121);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 25);
@@ -243,7 +243,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(129, 25);
+            this.label5.Location = new System.Drawing.Point(128, 25);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(126, 25);
@@ -257,7 +257,7 @@
             this.chk_linkCompany1.Checked = true;
             this.chk_linkCompany1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_linkCompany1.Enabled = false;
-            this.chk_linkCompany1.Location = new System.Drawing.Point(708, 63);
+            this.chk_linkCompany1.Location = new System.Drawing.Point(705, 63);
             this.chk_linkCompany1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chk_linkCompany1.Name = "chk_linkCompany1";
             this.chk_linkCompany1.Size = new System.Drawing.Size(178, 29);
@@ -272,7 +272,7 @@
             this.chk_linkCompany2.Checked = true;
             this.chk_linkCompany2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_linkCompany2.Enabled = false;
-            this.chk_linkCompany2.Location = new System.Drawing.Point(708, 119);
+            this.chk_linkCompany2.Location = new System.Drawing.Point(705, 119);
             this.chk_linkCompany2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chk_linkCompany2.Name = "chk_linkCompany2";
             this.chk_linkCompany2.Size = new System.Drawing.Size(178, 29);
@@ -288,7 +288,7 @@
             this.label6.Location = new System.Drawing.Point(4, 486);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(1293, 75);
+            this.label6.Size = new System.Drawing.Size(1289, 75);
             this.label6.TabIndex = 12;
             this.label6.Text = resources.GetString("label6.Text");
             // 
@@ -297,19 +297,19 @@
             this.txtWorkSpaceLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.txtWorkSpaceLocation, 3);
             this.txtWorkSpaceLocation.Enabled = false;
-            this.txtWorkSpaceLocation.Location = new System.Drawing.Point(380, 387);
+            this.txtWorkSpaceLocation.Location = new System.Drawing.Point(378, 387);
             this.txtWorkSpaceLocation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtWorkSpaceLocation.MaxLength = 50;
             this.txtWorkSpaceLocation.Multiline = true;
             this.txtWorkSpaceLocation.Name = "txtWorkSpaceLocation";
-            this.txtWorkSpaceLocation.Size = new System.Drawing.Size(542, 79);
+            this.txtWorkSpaceLocation.Size = new System.Drawing.Size(540, 79);
             this.txtWorkSpaceLocation.TabIndex = 14;
             // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(139, 414);
+            this.label7.Location = new System.Drawing.Point(137, 414);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(233, 25);
@@ -320,7 +320,7 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(47, 177);
+            this.label8.Location = new System.Drawing.Point(46, 177);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 25);
@@ -331,7 +331,7 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(47, 233);
+            this.label9.Location = new System.Drawing.Point(46, 233);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 25);
@@ -342,7 +342,7 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(47, 289);
+            this.label10.Location = new System.Drawing.Point(46, 289);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 25);
@@ -353,11 +353,11 @@
             // 
             this.txtComp3Name.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp3Name.Enabled = false;
-            this.txtComp3Name.Location = new System.Drawing.Point(129, 174);
+            this.txtComp3Name.Location = new System.Drawing.Point(128, 174);
             this.txtComp3Name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp3Name.MaxLength = 50;
             this.txtComp3Name.Name = "txtComp3Name";
-            this.txtComp3Name.Size = new System.Drawing.Size(243, 31);
+            this.txtComp3Name.Size = new System.Drawing.Size(242, 31);
             this.txtComp3Name.TabIndex = 21;
             this.txtComp3Name.TextChanged += new System.EventHandler(this.txtComp3Name_TextChanged);
             // 
@@ -365,11 +365,11 @@
             // 
             this.txtComp4Name.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp4Name.Enabled = false;
-            this.txtComp4Name.Location = new System.Drawing.Point(129, 230);
+            this.txtComp4Name.Location = new System.Drawing.Point(128, 230);
             this.txtComp4Name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp4Name.MaxLength = 50;
             this.txtComp4Name.Name = "txtComp4Name";
-            this.txtComp4Name.Size = new System.Drawing.Size(243, 31);
+            this.txtComp4Name.Size = new System.Drawing.Size(242, 31);
             this.txtComp4Name.TabIndex = 22;
             this.txtComp4Name.TextChanged += new System.EventHandler(this.txtComp4Name_TextChanged);
             // 
@@ -377,18 +377,18 @@
             // 
             this.txtComp5Name.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp5Name.Enabled = false;
-            this.txtComp5Name.Location = new System.Drawing.Point(129, 286);
+            this.txtComp5Name.Location = new System.Drawing.Point(128, 286);
             this.txtComp5Name.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp5Name.MaxLength = 50;
             this.txtComp5Name.Name = "txtComp5Name";
-            this.txtComp5Name.Size = new System.Drawing.Size(243, 31);
+            this.txtComp5Name.Size = new System.Drawing.Size(242, 31);
             this.txtComp5Name.TabIndex = 23;
             // 
             // label11
             // 
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(409, 177);
+            this.label11.Location = new System.Drawing.Point(407, 177);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 25);
@@ -399,7 +399,7 @@
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(409, 233);
+            this.label12.Location = new System.Drawing.Point(407, 233);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(69, 25);
@@ -410,7 +410,7 @@
             // 
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(409, 289);
+            this.label13.Location = new System.Drawing.Point(407, 289);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(69, 25);
@@ -421,7 +421,7 @@
             // 
             this.txtComp3Code.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp3Code.Enabled = false;
-            this.txtComp3Code.Location = new System.Drawing.Point(486, 174);
+            this.txtComp3Code.Location = new System.Drawing.Point(484, 174);
             this.txtComp3Code.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp3Code.Name = "txtComp3Code";
             this.txtComp3Code.Size = new System.Drawing.Size(202, 31);
@@ -431,7 +431,7 @@
             // 
             this.txtComp4Code.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp4Code.Enabled = false;
-            this.txtComp4Code.Location = new System.Drawing.Point(486, 230);
+            this.txtComp4Code.Location = new System.Drawing.Point(484, 230);
             this.txtComp4Code.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp4Code.Name = "txtComp4Code";
             this.txtComp4Code.Size = new System.Drawing.Size(202, 31);
@@ -441,7 +441,7 @@
             // 
             this.txtComp5Code.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp5Code.Enabled = false;
-            this.txtComp5Code.Location = new System.Drawing.Point(486, 286);
+            this.txtComp5Code.Location = new System.Drawing.Point(484, 286);
             this.txtComp5Code.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtComp5Code.Name = "txtComp5Code";
             this.txtComp5Code.Size = new System.Drawing.Size(202, 31);
@@ -454,7 +454,7 @@
             this.chk_linkCompany3.Checked = true;
             this.chk_linkCompany3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_linkCompany3.Enabled = false;
-            this.chk_linkCompany3.Location = new System.Drawing.Point(708, 175);
+            this.chk_linkCompany3.Location = new System.Drawing.Point(705, 175);
             this.chk_linkCompany3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chk_linkCompany3.Name = "chk_linkCompany3";
             this.chk_linkCompany3.Size = new System.Drawing.Size(178, 29);
@@ -469,7 +469,7 @@
             this.chk_linkCompany4.Checked = true;
             this.chk_linkCompany4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_linkCompany4.Enabled = false;
-            this.chk_linkCompany4.Location = new System.Drawing.Point(708, 231);
+            this.chk_linkCompany4.Location = new System.Drawing.Point(705, 231);
             this.chk_linkCompany4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chk_linkCompany4.Name = "chk_linkCompany4";
             this.chk_linkCompany4.Size = new System.Drawing.Size(178, 29);
@@ -484,7 +484,7 @@
             this.chk_linkCompany5.Checked = true;
             this.chk_linkCompany5.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_linkCompany5.Enabled = false;
-            this.chk_linkCompany5.Location = new System.Drawing.Point(708, 287);
+            this.chk_linkCompany5.Location = new System.Drawing.Point(705, 287);
             this.chk_linkCompany5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chk_linkCompany5.Name = "chk_linkCompany5";
             this.chk_linkCompany5.Size = new System.Drawing.Size(178, 29);
@@ -502,7 +502,7 @@
             this.lbl_Error.Location = new System.Drawing.Point(4, 670);
             this.lbl_Error.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Error.Name = "lbl_Error";
-            this.lbl_Error.Size = new System.Drawing.Size(368, 25);
+            this.lbl_Error.Size = new System.Drawing.Size(366, 25);
             this.lbl_Error.TabIndex = 33;
             this.lbl_Error.Text = ".";
             // 
@@ -510,7 +510,7 @@
             // 
             this.btn_ImportMap1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ImportMap1.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_ImportMap1.Location = new System.Drawing.Point(930, 55);
+            this.btn_ImportMap1.Location = new System.Drawing.Point(926, 55);
             this.btn_ImportMap1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ImportMap1.Name = "btn_ImportMap1";
             this.btn_ImportMap1.Size = new System.Drawing.Size(201, 46);
@@ -523,7 +523,7 @@
             // 
             this.btn_ImportMap2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ImportMap2.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_ImportMap2.Location = new System.Drawing.Point(930, 112);
+            this.btn_ImportMap2.Location = new System.Drawing.Point(926, 112);
             this.btn_ImportMap2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ImportMap2.Name = "btn_ImportMap2";
             this.btn_ImportMap2.Size = new System.Drawing.Size(201, 43);
@@ -537,7 +537,7 @@
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.Cornsilk;
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(930, 167);
+            this.button3.Location = new System.Drawing.Point(926, 167);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(201, 46);
@@ -550,7 +550,7 @@
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.BackColor = System.Drawing.Color.Cornsilk;
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(930, 223);
+            this.button4.Location = new System.Drawing.Point(926, 223);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(201, 46);
@@ -563,7 +563,7 @@
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.BackColor = System.Drawing.Color.Cornsilk;
             this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(930, 279);
+            this.button5.Location = new System.Drawing.Point(926, 279);
             this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(201, 46);
@@ -575,7 +575,7 @@
             // 
             this.btn_emailSetup.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_emailSetup.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_emailSetup.Location = new System.Drawing.Point(129, 591);
+            this.btn_emailSetup.Location = new System.Drawing.Point(128, 591);
             this.btn_emailSetup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_emailSetup.Name = "btn_emailSetup";
             this.btn_emailSetup.Size = new System.Drawing.Size(194, 59);
@@ -588,7 +588,7 @@
             // 
             this.btn_exportMap1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_exportMap1.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_exportMap1.Location = new System.Drawing.Point(1139, 56);
+            this.btn_exportMap1.Location = new System.Drawing.Point(1135, 56);
             this.btn_exportMap1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_exportMap1.Name = "btn_exportMap1";
             this.btn_exportMap1.Size = new System.Drawing.Size(158, 44);
@@ -601,7 +601,7 @@
             // 
             this.btn_exportMap2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_exportMap2.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_exportMap2.Location = new System.Drawing.Point(1139, 112);
+            this.btn_exportMap2.Location = new System.Drawing.Point(1135, 112);
             this.btn_exportMap2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_exportMap2.Name = "btn_exportMap2";
             this.btn_exportMap2.Size = new System.Drawing.Size(158, 44);
@@ -613,7 +613,7 @@
             // 
             this.btn_exportMap3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_exportMap3.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_exportMap3.Location = new System.Drawing.Point(1139, 168);
+            this.btn_exportMap3.Location = new System.Drawing.Point(1135, 168);
             this.btn_exportMap3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_exportMap3.Name = "btn_exportMap3";
             this.btn_exportMap3.Size = new System.Drawing.Size(158, 44);
@@ -625,7 +625,7 @@
             // 
             this.btn_exportMap4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_exportMap4.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_exportMap4.Location = new System.Drawing.Point(1139, 224);
+            this.btn_exportMap4.Location = new System.Drawing.Point(1135, 224);
             this.btn_exportMap4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_exportMap4.Name = "btn_exportMap4";
             this.btn_exportMap4.Size = new System.Drawing.Size(158, 44);
@@ -637,7 +637,7 @@
             // 
             this.btn_exportMap5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_exportMap5.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_exportMap5.Location = new System.Drawing.Point(1139, 280);
+            this.btn_exportMap5.Location = new System.Drawing.Point(1135, 280);
             this.btn_exportMap5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_exportMap5.Name = "btn_exportMap5";
             this.btn_exportMap5.Size = new System.Drawing.Size(158, 44);
@@ -649,10 +649,10 @@
             // 
             this.btn_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ok.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_ok.Location = new System.Drawing.Point(486, 335);
+            this.btn_ok.Location = new System.Drawing.Point(484, 335);
             this.btn_ok.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(214, 40);
+            this.btn_ok.Size = new System.Drawing.Size(213, 40);
             this.btn_ok.TabIndex = 13;
             this.btn_ok.Text = "Ok";
             this.btn_ok.UseVisualStyleBackColor = false;
@@ -662,10 +662,10 @@
             // 
             this.btn_Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Reset.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_Reset.Location = new System.Drawing.Point(708, 335);
+            this.btn_Reset.Location = new System.Drawing.Point(705, 335);
             this.btn_Reset.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Reset.Name = "btn_Reset";
-            this.btn_Reset.Size = new System.Drawing.Size(214, 40);
+            this.btn_Reset.Size = new System.Drawing.Size(213, 40);
             this.btn_Reset.TabIndex = 17;
             this.btn_Reset.Text = "Reset";
             this.btn_Reset.UseVisualStyleBackColor = false;
@@ -675,7 +675,8 @@
             // 
             this.btn_changeLoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_changeLoc.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_changeLoc.Location = new System.Drawing.Point(930, 403);
+            this.btn_changeLoc.Enabled = false;
+            this.btn_changeLoc.Location = new System.Drawing.Point(926, 403);
             this.btn_changeLoc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_changeLoc.Name = "btn_changeLoc";
             this.btn_changeLoc.Size = new System.Drawing.Size(201, 47);

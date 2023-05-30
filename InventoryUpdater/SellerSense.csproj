@@ -94,6 +94,13 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Docs\Notes.cs" />
+    <Compile Include="Helper\Logger.cs" />
+    <Compile Include="Views\AlertBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AlertBox.Designer.cs">
+      <DependentUpon>AlertBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SetUp\EmailSetup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +191,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AlertBox.resx">
+      <DependentUpon>AlertBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SetUp\EmailSetup.resx">
       <DependentUpon>EmailSetup.cs</DependentUpon>

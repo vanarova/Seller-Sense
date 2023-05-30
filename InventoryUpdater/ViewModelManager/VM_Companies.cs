@@ -44,6 +44,7 @@ namespace SellerSense.ViewModelManager
 
         private void LoadLastSavedCompanies()
         {
+           
             if (!ProjIO.DoesWorkspaceAndProjectsExists())
                 return;
             _lastSavedWorkspaceLocation =  ProjIO.GetUserSetting(Constants.WorkspaceDir);
@@ -74,21 +75,28 @@ namespace SellerSense.ViewModelManager
                 return false;
         }
 
-        internal bool DoesCompanyCodeExist(string code)
-        {
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company1Code), code) && ProjIO.IsCompany1DirExist())
-                return true;
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company2Code), code) && ProjIO.IsCompany2DirExist())
-                return true;
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company3Code), code) && ProjIO.IsCompany3DirExist())
-                return true;
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company4Code), code) && ProjIO.IsCompany4DirExist())
-                return true;
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company5Code), code) && ProjIO.IsCompany5DirExist())
-                return true;
+        //internal bool DoesCompanyCodeExist(string code)
+        //{
+        //    (bool c1Dir,_) = ProjIO.GetCompany1DirIfExist();
+        //    (bool c2Dir,_) = ProjIO.GetCompany2DirIfExist();
+        //    (bool c3Dir,_) = ProjIO.GetCompany3DirIfExist();
+        //    (bool c4Dir,_) = ProjIO.GetCompany4DirIfExist();
+        //    (bool c5Dir,_) = ProjIO.GetCompany5DirIfExist();
+        //    if (string.Equals(ProjIO.GetUserSetting(Constants.Company1Code), code) && c1Dir)
+        //        return true;
+        //    if (string.Equals(ProjIO.GetUserSetting(Constants.Company2Code), code) && c2Dir)
+        //        return true;
+        //    if (string.Equals(ProjIO.GetUserSetting(Constants.Company3Code), code) && c3Dir)
+        //        return true;
+        //    if (string.Equals(ProjIO.GetUserSetting(Constants.Company4Code), code) && c4Dir)
+        //        return true;
+        //    if (string.Equals(ProjIO.GetUserSetting(Constants.Company5Code), code) && c5Dir)
+        //        return true;
 
-            return false;
-        }
+        //    return false;
+        //}
+
+        
 
         internal void AddCompany1(string name, string code)
         {
