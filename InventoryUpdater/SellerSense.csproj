@@ -198,6 +198,9 @@
     <EmbeddedResource Include="Views\SetUp\EmailSetup.resx">
       <DependentUpon>EmailSetup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\SetUp\ExportProject.resx">
+      <DependentUpon>ExportProject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\SetUp\SetUp.resx">
       <DependentUpon>SetUp.cs</DependentUpon>
     </EmbeddedResource>
