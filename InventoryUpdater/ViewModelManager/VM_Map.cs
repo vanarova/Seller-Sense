@@ -29,6 +29,7 @@ namespace SellerSense.ViewModelManager
         internal void FillLoadedMapToGridDataset(Action DataSetLoaded)
         {
             //this.WindowState = FormWindowState.Minimized;
+            //TODO : Remove background worker
             BackgroundWorker bg = new BackgroundWorker();
             DataSet ds = new DataSet(); ds.Tables.Add("t");
             ds.Tables[0].Columns.Add(Constants.MCols.Image, typeof(Image));

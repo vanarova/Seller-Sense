@@ -35,8 +35,8 @@ namespace SellerSense
 
         private void btn_mapping_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 //DataSet mapGridData = new DataSet();
                 pbarLoadForms.Visible = true;
                 //_company._map.LoadLastSavedMap();
@@ -58,6 +58,7 @@ namespace SellerSense
                                                 _companiesMgr._companies[4]._mapping.FillLoadedMapToGridDataset(() => {
                                                     //max count reached, 5th company
                                                     DisplayMapForm();
+                                                   
                                                 });
 
                                             }
@@ -128,11 +129,11 @@ namespace SellerSense
                 //    AdjustUI("SendWelcomeButtonToBack");
                 //});
                 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
         }
 

@@ -21,7 +21,7 @@ namespace SellerSense.Views
 
         private void AlertBox_Load(object sender, EventArgs e)
         {
-            lbl_msg.Text = _msg;
+            txt_msg.Text = _msg;
         }
 
         private void button1_Click(object sender, EventArgs e)

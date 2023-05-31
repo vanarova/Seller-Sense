@@ -1,5 +1,7 @@
 ﻿using InventoryUpdater.ViewModelManager;
+using SellerSense.Helper;
 using SellerSense.Model;
+using SellerSense.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,16 +17,18 @@ namespace SellerSense
 {
     public partial class MappingCntrl : UserControl
     {
-        public MappingCntrl()
-        {
-            InitializeComponent();
-            //_company = company;
-        }
+        Logger _logger;
+        //public MappingCntrl()
+        //{
+        //    InitializeComponent();
+        //    //_company = company;
+        //}
 
         public MappingCntrl(VM_Company company)
         {
             InitializeComponent();
             _company = company;
+            _logger = new FileLogger(company._code);
            
             //foreach (ToolStripItem item in fileStrip.Items)
             //{
@@ -49,7 +53,7 @@ namespace SellerSense
         private void MappingCntrl_Load(object sender, EventArgs e)
         {
             AdjustUI("OnLoad", sender, e);
-            
+
             //if (string.IsNullOrEmpty(_driver._map._lastSavedMapFilePath))
             //{
             //    MessageBox.Show("No last saved Map file found, please import Map data");
@@ -62,8 +66,10 @@ namespace SellerSense
             //    fileStrip.Items[0].Text = fileStrip.Items[0].Text + "_CC";
             //else
             //    fileStrip.Items[0].Text = fileStrip.Items[0].Text.Replace("_HE", "");
-
-            FillMapGrid();
+            //try
+            //{
+                FillMapGrid();
+           
         }
 
         
@@ -76,23 +82,33 @@ namespace SellerSense
 
         private void ImportMapFile()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Inv Map Files|*.json";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                //FileInfo fi = new FileInfo(openFileDialog.FileName);
-                DirectoryInfo di = new DirectoryInfo(openFileDialog.FileName);
-                if (di.Parent.GetFiles().Count() > 1)
+                //throw new Exception("test");
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Inv Map Files|*.json";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Map file directory is containing more then 1 file, Please create a new directory and place map file in it");
-                    return;
+                    //FileInfo fi = new FileInfo(openFileDialog.FileName);
+                    DirectoryInfo di = new DirectoryInfo(openFileDialog.FileName);
+                    if (di.Parent.GetFiles().Count() > 1)
+                    {
+                        MessageBox.Show("Map file directory is containing more then 1 file, Please create a new directory and place map file in it");
+                        return;
+
+                    }
+                    _company._mapping._map.SetLastSavedMapFileAndLoadMap(openFileDialog.FileName);
+                    _company._mapping.FillLoadedMapToGridDataset(() => { FillMapGrid(); });
 
                 }
-                _company._mapping._map.SetLastSavedMapFileAndLoadMap(openFileDialog.FileName);
-                _company._mapping.FillLoadedMapToGridDataset(() => { FillMapGrid(); });
+            }
+            catch (Exception ex) //TODO: [IMP] Add try/catch in all public functions/button events in this page and other pages
+            {
+                _logger.Log(ex.Message, Logger.LogLevel.error);
+                (new AlertBox("Error occured for company:"
+                    + _company._name + ", For further assitance, Export error logs and contact support.")).ShowDialog();
 
             }
-
 
 
         }
@@ -128,21 +144,33 @@ namespace SellerSense
 
         private void FillMapGrid()
         {
-            AdjustUI("MapGridUISettings");
-            if (_company._mapping._mapGridData == null || _company._mapping._mapGridData.Tables.Count == 0 ||
-               _company._mapping._mapGridData.Tables[0].Rows.Count == 0)
+            try
             {
-                MessageBox.Show("No last saved Map file found, please Open/Import Map file");
-                return;
+                AdjustUI("MapGridUISettings");
+                if (_company._mapping._mapGridData == null || _company._mapping._mapGridData.Tables.Count == 0 ||
+                   _company._mapping._mapGridData.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show("No last saved Map file found, please Open/Import Map file");
+                    return;
+                }
+                grdmapGrid.DataSource = _company._mapping._mapGridData.Tables[0];
+                //for (int i = 0; i < grdmapGrid.Rows.Count; i++)
+                //    grdmapGrid.Size(i++);
+                //grdmapGrid.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                grdmapGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+                //grdmapGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                //grdmapGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                grdmapGrid.Invalidate();
+
+
             }
-            grdmapGrid.DataSource = _company._mapping._mapGridData.Tables[0];
-            //for (int i = 0; i < grdmapGrid.Rows.Count; i++)
-            //    grdmapGrid.Size(i++);
-            //grdmapGrid.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            grdmapGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-            //grdmapGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            //grdmapGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            grdmapGrid.Invalidate();
+            catch (Exception ex)
+            {
+                _logger.Log(ex.Message, Logger.LogLevel.error);
+                (new AlertBox("Error occured for company:"
+                    + _company._name + ", For further assitance, Export error logs and contact support.")).ShowDialog();
+
+            }
         }
 
         private void importAmazonInvFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -440,7 +468,11 @@ namespace SellerSense
 
         private void importMapFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImportMapFile();
+            //try
+            //{
+                ImportMapFile();
+            
+           
         }
 
        

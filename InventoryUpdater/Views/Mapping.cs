@@ -19,6 +19,7 @@ namespace SellerSense
         //public TabControl _tab { get; set; }
         private List<MappingCntrl> _mappingCntrlList;
         internal ViewModelManager.VM_Companies _companiesMgr;
+        
         //public Company _company { get; set; }
         //private enum _colNames
         //{
@@ -35,7 +36,6 @@ namespace SellerSense
         {
             InitializeComponent();
             //_mappingCntrlList = ctrls;
-            
             this._companiesMgr = companies;
             CreateTabControls();
             
