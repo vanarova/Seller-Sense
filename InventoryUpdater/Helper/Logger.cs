@@ -24,7 +24,7 @@ namespace SellerSense.Helper
     {
         private readonly string _mapDirPath;
         private readonly string _globalLogPath;
-        private const string logFileName = "log.txt";
+        private const string logFileName = Constants.logFileName;
 
         public FileLogger(string companyCode)
         {

@@ -14,7 +14,7 @@ namespace SellerSense.Model
     {
         internal List<InvEntry> _invEntries { get; set; }
         internal M_Map _map { get; set; }
-        const string _snapshotDir = "Snapshots";
+        const string _snapshotDir = Constants.Snapshots;
         static private string _fileName = DateTime.Now.Year.ToString()
                 + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString()+ ".json";
 

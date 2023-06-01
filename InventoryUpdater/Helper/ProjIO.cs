@@ -254,27 +254,93 @@ namespace SellerSense.Helper
             File.Copy(fileName, mapFileLocation);
         }
 
-        internal static void ExportMap(string companyCode,string zipFileDir, Action sameNameFileExistsinTargetDir)
+        internal static void ExportMap(string companyCode,string zipFileDir, 
+            bool exportLog, bool exportImgs, bool exportSnapshots, Action sameNameFileExistsinTargetDir)
         {
             
-
             string tempDirPath =  ProjIO.CleanAndPrepareLocalAppData();
             if (File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
             {
                 sameNameFileExistsinTargetDir();
                 return;
             }
-            string targetDir = Path.Combine(tempDirPath, companyCode);
-            Directory.CreateDirectory(targetDir);
+            string zipSrcDir = Path.Combine(tempDirPath, companyCode);
+            Directory.CreateDirectory(zipSrcDir);
+            //copy map file
             string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
                companyCode, Constants.MapFileName);
-            File.Copy(mapFileLocation, Path.Combine(targetDir,Constants.MapFileName)); // [temp]/company_code
+            File.Copy(mapFileLocation, Path.Combine(zipSrcDir,Constants.MapFileName)); // [temp]/company_code
 
-            ZipFile.CreateFromDirectory(targetDir,Path.Combine(tempDirPath, companyCode+".zip") );
+            //copy log files
+            if (exportLog)
+            {
+                string localLogFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                   companyCode, Constants.logFileName);
+                if (File.Exists(localLogFileLocation))
+                    File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                string globalLogFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                    Constants.logFileName);
+                if (File.Exists(globalLogFileLocation))
+                    File.Copy(globalLogFileLocation, Path.Combine(zipSrcDir, "global"+Constants.logFileName));
+            }
+
+            //copy images
+            if (exportImgs)
+            {
+                string imgsLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                   companyCode, Constants.Imgs);
+                if (Directory.Exists(imgsLocation))
+                    CopyDirectory(imgsLocation, Path.Combine(zipSrcDir, Constants.Imgs), true);
+            }
+
+            //copy snapshots
+            if (exportSnapshots)
+            {
+                string snapShotsLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                   companyCode, Constants.Snapshots);
+                if (Directory.Exists(snapShotsLocation))
+                    CopyDirectory(snapShotsLocation, Path.Combine(zipSrcDir, Constants.Snapshots), true);
+            }
+
+            ZipFile.CreateFromDirectory(zipSrcDir,Path.Combine(tempDirPath, companyCode+".zip") );
             if (!File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
                 File.Copy(Path.Combine(tempDirPath, companyCode + ".zip"), Path.Combine(zipFileDir, companyCode + ".zip"));
            
 
+        }
+
+        //taken from msdn
+       private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        {
+            // Get information about the source directory
+            var dir = new DirectoryInfo(sourceDir);
+
+            // Check if the source directory exists
+            if (!dir.Exists)
+                throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
+
+            // Cache directories before we start copying
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            // Create the destination directory
+            Directory.CreateDirectory(destinationDir);
+
+            // Get the files in the source directory and copy to the destination directory
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                string targetFilePath = Path.Combine(destinationDir, file.Name);
+                file.CopyTo(targetFilePath);
+            }
+
+            // If recursive and copying subdirectories, recursively call this method
+            if (recursive)
+            {
+                foreach (DirectoryInfo subDir in dirs)
+                {
+                    string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+                    CopyDirectory(subDir.FullName, newDestinationDir, true);
+                }
+            }
         }
     }
 }

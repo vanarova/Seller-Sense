@@ -10,6 +10,8 @@ namespace SellerSense
     {
         public const string Imgs = "imgs";
         public const string MapFileName = "map.json";
+        public const string logFileName = "log.txt";
+        public const string Snapshots = "Snapshots";
 
 
         public const string WorkspaceDir = "workspace";

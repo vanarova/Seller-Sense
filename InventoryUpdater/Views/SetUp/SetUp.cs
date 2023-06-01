@@ -159,14 +159,18 @@ namespace SellerSense
 
         private void btn_exportMap1_Click(object sender, EventArgs e)
         {
-            ExportMap(txtComp1Code.Text);
+            ExportProject ep = new ExportProject();
+            if (ep.ShowDialog() == DialogResult.OK)
+            {
+                ExportMap(txtComp1Code.Text, ep.IsLog, ep.IsImgs, ep.IsSnapshot);
+            }
         }
         
-        private void ExportMap(string mapCode)
+        private void ExportMap(string mapCode, bool exportLog, bool exportImgs, bool exportSnapshots)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                ProjIO.ExportMap(mapCode, folderBrowserDialog.SelectedPath,
+                ProjIO.ExportMap(mapCode, folderBrowserDialog.SelectedPath,exportLog,exportImgs, exportSnapshots,
                     () =>
                     {  // In case file already exists in target dir
                         (new AlertBox("File with same name exists in target directory, please choose another directory.")).ShowDialog();
