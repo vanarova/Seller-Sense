@@ -503,6 +503,42 @@ namespace SellerSense
             toolStripTxtSearchBox.Text = "Search Code";
         }
 
+        private void grdmapGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //TODO : more this below code to repective decoders projects, as url may change and this code will break
+           if( grdmapGrid.CurrentCell.OwningColumn.Name== Constants.MCols.amz_Code)
+                System.Diagnostics.Process.Start("https://www.amazon.in/s?k=" + grdmapGrid.CurrentCell.EditedFormattedValue);
+            if (grdmapGrid.CurrentCell.OwningColumn.Name == Constants.MCols.fK_Code)
+                System.Diagnostics.Process.Start("https://www.flipkart.com/na/p/na?pid=" + grdmapGrid.CurrentCell.EditedFormattedValue);
+            if (grdmapGrid.CurrentCell.OwningColumn.Name == Constants.MCols.spd_Code)
+                System.Diagnostics.Process.Start("https://www.snapdeal.com/search?keyword=" + grdmapGrid.CurrentCell.EditedFormattedValue);
+            //https://www.snapdeal.com/search?keyword=SDL946305473
+            //https://www.flipkart.com/na/p/na?pid=CCEGAUH8KN6Z6HCW
+            //https://www.amazon.in/s?k=B00LLZ82O4
+        }
+
+        /// <summary>  
+        /// This function is use to get hyperlink style .  
+        /// </summary>  
+        /// <returns></returns>  
+        private DataGridViewCellStyle GetHyperLinkStyleForGridCell()
+        {
+            // Set the Font and Uderline into the Content of the grid cell .  
+            {
+                DataGridViewCellStyle l_objDGVCS = new DataGridViewCellStyle();
+                //System.Drawing.Font l_objFont = new System.Drawing.Font(FontFamily.GenericSansSerif, 8, FontStyle.Underline);
+                //l_objDGVCS.Font = l_objFont;
+                l_objDGVCS.ForeColor = Color.Blue;
+                return l_objDGVCS;
+            }
+        }
+
+        private void grdmapGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            grdmapGrid.Columns[Constants.MCols.amz_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+            grdmapGrid.Columns[Constants.MCols.fK_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+            grdmapGrid.Columns[Constants.MCols.spd_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+        }
 
 
         //private void toolStripMenuItemShowMsoInv_Click_1(object sender, EventArgs e)
