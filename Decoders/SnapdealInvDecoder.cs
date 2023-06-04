@@ -16,6 +16,13 @@ namespace Decoders
         private static List<ISpdInventory> _invSnapdeal;
         private static string _invSnapdealFileName;
         private static IEnumerable<SkInv> _invSnapdealUnModified;
+
+
+        public static void OpenProductSearchURL(string productId)
+        {
+            System.Diagnostics.Process.Start("https://www.snapdeal.com/search?keyword=" + productId);
+        }
+
         public static List<ISpdInventory> GetData(string excelFile)
         {
             if (_invSnapdeal == null)

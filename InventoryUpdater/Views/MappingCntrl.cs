@@ -1,4 +1,5 @@
-﻿using InventoryUpdater.ViewModelManager;
+﻿using Decoders;
+using InventoryUpdater.ViewModelManager;
 using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Views;
@@ -505,16 +506,14 @@ namespace SellerSense
 
         private void grdmapGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO : more this below code to repective decoders projects, as url may change and this code will break
-           if( grdmapGrid.CurrentCell.OwningColumn.Name== Constants.MCols.amz_Code)
-                System.Diagnostics.Process.Start("https://www.amazon.in/s?k=" + grdmapGrid.CurrentCell.EditedFormattedValue);
+            if (grdmapGrid.CurrentCell.OwningColumn.Name == Constants.MCols.amz_Code)
+                AmazonInvDecoder.OpenProductSearchURL(grdmapGrid.CurrentCell.EditedFormattedValue.ToString());
             if (grdmapGrid.CurrentCell.OwningColumn.Name == Constants.MCols.fK_Code)
-                System.Diagnostics.Process.Start("https://www.flipkart.com/na/p/na?pid=" + grdmapGrid.CurrentCell.EditedFormattedValue);
+                FlipkartInvDecoder.OpenProductSearchURL(grdmapGrid.CurrentCell.EditedFormattedValue.ToString());
             if (grdmapGrid.CurrentCell.OwningColumn.Name == Constants.MCols.spd_Code)
-                System.Diagnostics.Process.Start("https://www.snapdeal.com/search?keyword=" + grdmapGrid.CurrentCell.EditedFormattedValue);
-            //https://www.snapdeal.com/search?keyword=SDL946305473
-            //https://www.flipkart.com/na/p/na?pid=CCEGAUH8KN6Z6HCW
-            //https://www.amazon.in/s?k=B00LLZ82O4
+                SnapdealInvDecoder.OpenProductSearchURL(grdmapGrid.CurrentCell.EditedFormattedValue.ToString());
+            if (grdmapGrid.CurrentCell.OwningColumn.Name == Constants.MCols.mso_Code)
+                MeeshoInvDecoder.OpenProductSearchURL(grdmapGrid.CurrentCell.EditedFormattedValue.ToString());
         }
 
         /// <summary>  
@@ -538,6 +537,7 @@ namespace SellerSense
             grdmapGrid.Columns[Constants.MCols.amz_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             grdmapGrid.Columns[Constants.MCols.fK_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             grdmapGrid.Columns[Constants.MCols.spd_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+            grdmapGrid.Columns[Constants.MCols.mso_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
         }
 
 

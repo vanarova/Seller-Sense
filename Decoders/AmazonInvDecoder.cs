@@ -21,6 +21,11 @@ namespace Decoders
             "fulfillment-channel",
             "merchant_shipping_group_name"};
 
+        public static void OpenProductSearchURL(string productId)
+        {
+            System.Diagnostics.Process.Start("https://www.amazon.in/s?k=" + productId);
+        }
+
         public static IList<IAmzInventory> ImportAmazonInventory(string fileName)
         {
             if (_amvInventoryUnmodified == null)

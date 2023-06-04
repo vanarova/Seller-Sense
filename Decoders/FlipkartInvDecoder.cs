@@ -17,8 +17,11 @@ namespace Decoders
         private static string _invFlipkartFileName;
         private static IEnumerable<FkInv> _invFlipkartUnModified;
 
-        
-        
+        public static void OpenProductSearchURL(string productId)
+        {
+            System.Diagnostics.Process.Start("https://www.flipkart.com/na/p/na?pid=" + productId);
+        }
+
         public static List<IFkInventory> GetData(string excelFile)
         {
             if (_invFlipkart == null)

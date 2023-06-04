@@ -16,7 +16,13 @@ namespace Decoders
         private static string _invMeeshoFileName;
         private static IEnumerable<MsoInv> _invMeeshoUnModified;
         private static List<IMsoInventory> _invMeesho;
-        
+
+
+        public static void OpenProductSearchURL(string productId)
+        {
+            System.Diagnostics.Process.Start("https://www.meesho.com/na/p/" + productId);
+        }
+
         public static List<IMsoInventory> GetData(string excelFile)
         {
             if (_invMeesho == null)
