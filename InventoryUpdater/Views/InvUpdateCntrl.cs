@@ -159,6 +159,7 @@ namespace SellerSense
                 pbar_Loading.Visible = true;
             }
             else return;
+            _company._invUpdate.AssignAmzInvAndPricesToInvUpdateCollection(() => { RefreshGrid();});
             //_driver.AssignAmzInvAndPricesToInvUpdateCollection();
             RefreshGrid();
         }
@@ -173,7 +174,7 @@ namespace SellerSense
                 pbar_Loading.Visible = true;
             }
             else return;
-            //_driver.AssignFkInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
+            _company._invUpdate.AssignFkInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
             RefreshGrid();
         }
 
@@ -187,7 +188,7 @@ namespace SellerSense
                 pbar_Loading.Visible = true;
             }
             else return;
-            //_driver.AssignSpdInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
+            _company._invUpdate.AssignSpdInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
             RefreshGrid();
         }
 
@@ -201,7 +202,7 @@ namespace SellerSense
                 pbar_Loading.Visible = true;
             }
             else return;
-            //_driver.AssignMsoInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
+            _company._invUpdate.AssignMsoInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
             RefreshGrid();
         }
 
@@ -229,6 +230,7 @@ namespace SellerSense
                     if (item.asin == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.acode].Value.ToString())
                     {
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.acount].Value.ToString();
+                        AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount();
                         _company._inventories._amzImportedInvList._amzModifiedInventoryList.Add(item);
                         _company._invUpdate.SaveInvSnapshot();
                     }
@@ -242,6 +244,7 @@ namespace SellerSense
                     if (item.fsn == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.fcode].Value.ToString())
                     {
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.fcount].Value.ToString();
+                        AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount();
                         _company._inventories._fkImportedInventoryList._fkUIModifiedInvList.Add(item);
                         _company._invUpdate.SaveInvSnapshot();
                     }
@@ -255,6 +258,7 @@ namespace SellerSense
                     if (item.fsn == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.scode].Value.ToString())
                     {
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.scount].Value.ToString();
+                        AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount();
                         _company._inventories._spdImportedInventoryList._spdUIModifiedInvList.Add(item);
                         _company._invUpdate.SaveInvSnapshot();
                     }
@@ -268,12 +272,31 @@ namespace SellerSense
                     if (item.fsn == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.mcode].Value.ToString())
                     {
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.mcount].Value.ToString();
+                        AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount();
                         _company._inventories._msoImportedInventoryList._msoUIModifiedInvList.Add(item);
                         _company._invUpdate.SaveInvSnapshot();
                     }
                 }
             }
+            RefreshGrid();
 
+            void AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount()
+            {
+                int acount;int fcount;int scount; int mcount;
+                _company._invUpdate._inv._invEntries.All(x =>
+                {
+                    if (x.MapEntry.BaseCodeValue == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString())
+                    {
+                        Int32.TryParse(grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.fcount].Value.ToString(),out fcount);
+                        Int32.TryParse(grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.acount].Value.ToString(),out acount);
+                        Int32.TryParse(grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.scount].Value.ToString(),out scount);
+                        Int32.TryParse(grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.mcount].Value.ToString(), out mcount);
+                        x.WarehouseInv = acount + fcount + scount + mcount;
+                        return true;
+                    }
+                    return false;
+                });
+            }
         }
 
         //private void btn_exportSllInv_Click(object sender, EventArgs e)
