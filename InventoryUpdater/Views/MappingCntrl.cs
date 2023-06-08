@@ -484,7 +484,9 @@ namespace SellerSense
             {
                 for (int r = 0; r < grdmapGrid.Rows.Count; r++)
                 {
-                    if (grdmapGrid[1, r].Value !=null && grdmapGrid[1, r].Value.ToString().ToLower().
+                    if (grdmapGrid[1, r].Value !=null && 
+                        // code + title
+                        (grdmapGrid[1, r].Value.ToString().ToLower() + grdmapGrid[2, r].Value.ToString().ToLower()).
                         Contains(toolStripTxtSearchBox.Text.ToLower()))
                     {
                         grdmapGrid.FirstDisplayedScrollingRowIndex = r;
@@ -538,6 +540,11 @@ namespace SellerSense
             grdmapGrid.Columns[Constants.MCols.fK_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             grdmapGrid.Columns[Constants.MCols.spd_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             grdmapGrid.Columns[Constants.MCols.mso_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+        }
+
+        private void toolStripTxtSearchBox_Click(object sender, EventArgs e)
+        {
+
         }
 
 

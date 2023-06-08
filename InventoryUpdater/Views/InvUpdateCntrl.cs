@@ -19,7 +19,7 @@ namespace SellerSense
             InitializeComponent();
         }
 
-
+        private BindingSource _grdBindingSource;
 
         //private Manager.Companies _companiesMgr; //TODO Change to CompaniesMgr
 
@@ -29,6 +29,7 @@ namespace SellerSense
         {
             InitializeComponent();
             _company = company;
+            _grdBindingSource  = new BindingSource();   
             //_companiesMgr = companies; 
 
         }
@@ -65,12 +66,29 @@ namespace SellerSense
             if (_company._mapping._map._mapEntries == null || _company._mapping._map._mapEntries.Count == 0)
                 return;
 
-            grdInvUpdate.DataSource = _company._invUpdate._invUpdateGridData.Tables[0];
-            //for (int i = 0; i < grdmapGrid.Rows.Count; i++)
-            //    grdmapGrid.Size(i++);
-            grdInvUpdate.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+           // grdInvUpdate.Columns[0].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             grdInvUpdate.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             grdInvUpdate.Invalidate();
+
+
+            //if (_grdBindingSource.DataSource == null)
+            //{
+            // _grdBindingSource = null; grdInvUpdate.DataSource = null;
+            //_grdBindingSource = new BindingSource();
+            //    _grdBindingSource.DataSource = _company._invUpdate._invUpdateGridData.Tables[0];
+            //    grdInvUpdate.DataSource = _grdBindingSource;
+            //_grdBindingSource.ResetBindings(true);
+            //}
+            // _grdBindingSource.ResetBindings(true);
+            grdInvUpdate.DataBindings.Clear();
+            grdInvUpdate.DataSource = null;
+            grdInvUpdate.DataSource = _company._invUpdate._invUpdateGridData.Tables[0];
+            grdInvUpdate.Update();// grdInvUpdate.Refresh();
+            
+            //for (int i = 0; i < grdmapGrid.Rows.Count; i++)
+            //    grdmapGrid.Size(i++);
+
 
         }
 
@@ -91,29 +109,29 @@ namespace SellerSense
             }
         }
 
-        private void RefreshGrid()
+        private void DeepRefreshGridAndTakeSnapshots()
         {
             _company._invUpdate.AssignAmzInvAndPricesToInvUpdateCollection(() => {
-                _company._invUpdate.SaveInvSnapshot();
+                //_company._invUpdate.SaveInvSnapshot();
                 FillInvGrid();
                 pbar_Loading.Visible = false;
             });
             _company._invUpdate.AssignFkInvAndPricesToInvUpdateCollection(() => {
-                _company._invUpdate.SaveInvSnapshot();
+                //_company._invUpdate.SaveInvSnapshot();
                 FillInvGrid();
                 pbar_Loading.Visible = false;
             });
             _company._invUpdate.AssignSpdInvAndPricesToInvUpdateCollection(() => {
-                _company._invUpdate.SaveInvSnapshot();
+                //_company._invUpdate.SaveInvSnapshot();
                 FillInvGrid();
                 pbar_Loading.Visible = false;
             });
             _company._invUpdate.AssignMsoInvAndPricesToInvUpdateCollection(() => {
-                _company._invUpdate.SaveInvSnapshot();
+                //_company._invUpdate.SaveInvSnapshot();
                 FillInvGrid();
                 pbar_Loading.Visible = false;
             });
-
+            _company._invUpdate.SaveInvSnapshot();
         }
 
 
@@ -159,9 +177,9 @@ namespace SellerSense
                 pbar_Loading.Visible = true;
             }
             else return;
-            _company._invUpdate.AssignAmzInvAndPricesToInvUpdateCollection(() => { RefreshGrid();});
+            _company._invUpdate.AssignAmzInvAndPricesToInvUpdateCollection(() => { DeepRefreshGridAndTakeSnapshots();});
             //_driver.AssignAmzInvAndPricesToInvUpdateCollection();
-            RefreshGrid();
+            //RefreshGrid();
         }
 
         private void flipkartInventoryFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -174,8 +192,8 @@ namespace SellerSense
                 pbar_Loading.Visible = true;
             }
             else return;
-            _company._invUpdate.AssignFkInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
-            RefreshGrid();
+            _company._invUpdate.AssignFkInvAndPricesToInvUpdateCollection(() => { DeepRefreshGridAndTakeSnapshots(); });
+            //RefreshGrid();
         }
 
         private void snapdealInventoryFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,8 +206,8 @@ namespace SellerSense
                 pbar_Loading.Visible = true;
             }
             else return;
-            _company._invUpdate.AssignSpdInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
-            RefreshGrid();
+            _company._invUpdate.AssignSpdInvAndPricesToInvUpdateCollection(() => { DeepRefreshGridAndTakeSnapshots(); });
+            //RefreshGrid();
         }
 
         private void meeshoInventoryFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -202,8 +220,8 @@ namespace SellerSense
                 pbar_Loading.Visible = true;
             }
             else return;
-            _company._invUpdate.AssignMsoInvAndPricesToInvUpdateCollection(() => { RefreshGrid(); });
-            RefreshGrid();
+            _company._invUpdate.AssignMsoInvAndPricesToInvUpdateCollection(() => { DeepRefreshGridAndTakeSnapshots(); });
+            //RefreshGrid();
         }
 
         private void grdInvUpdate_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -219,6 +237,7 @@ namespace SellerSense
                         //_driver._amzImportedInvList._amzModifiedInventoryList.Add(item);
 
                         _company._invUpdate.SaveInvSnapshot();
+                        break;
                     }
                 }
             }
@@ -232,7 +251,8 @@ namespace SellerSense
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.acount].Value.ToString();
                         AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount();
                         _company._inventories._amzImportedInvList._amzModifiedInventoryList.Add(item);
-                        _company._invUpdate.SaveInvSnapshot();
+                        //_company._invUpdate.SaveInvSnapshot();
+                        break;
                     }
                 }
             }
@@ -246,7 +266,8 @@ namespace SellerSense
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.fcount].Value.ToString();
                         AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount();
                         _company._inventories._fkImportedInventoryList._fkUIModifiedInvList.Add(item);
-                        _company._invUpdate.SaveInvSnapshot();
+                        //_company._invUpdate.SaveInvSnapshot(); 
+                        break;
                     }
                 }
             }
@@ -260,7 +281,8 @@ namespace SellerSense
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.scount].Value.ToString();
                         AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount();
                         _company._inventories._spdImportedInventoryList._spdUIModifiedInvList.Add(item);
-                        _company._invUpdate.SaveInvSnapshot();
+                        //_company._invUpdate.SaveInvSnapshot();
+                        break;
                     }
                 }
             }
@@ -274,16 +296,19 @@ namespace SellerSense
                         item.sellerQuantity = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.mcount].Value.ToString();
                         AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount();
                         _company._inventories._msoImportedInventoryList._msoUIModifiedInvList.Add(item);
-                        _company._invUpdate.SaveInvSnapshot();
+                        //_company._invUpdate.SaveInvSnapshot();
+                        break;
                     }
                 }
             }
-            RefreshGrid();
+            //grdInvUpdate.Invalidate();
+            DeepRefreshGridAndTakeSnapshots();
+            //FillInvGrid();
 
             void AddInventoryCountsForAllMartketplacesToCalculateWarehouseCount()
             {
                 int acount;int fcount;int scount; int mcount;
-                _company._invUpdate._inv._invEntries.All(x =>
+                _company._invUpdate._inv._invEntries.ForEach(x =>
                 {
                     if (x.MapEntry.BaseCodeValue == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString())
                     {
@@ -292,9 +317,9 @@ namespace SellerSense
                         Int32.TryParse(grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.scount].Value.ToString(),out scount);
                         Int32.TryParse(grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.mcount].Value.ToString(), out mcount);
                         x.WarehouseInv = acount + fcount + scount + mcount;
-                        return true;
+                        return ;
                     }
-                    return false;
+                    //return false;
                 });
             }
         }
