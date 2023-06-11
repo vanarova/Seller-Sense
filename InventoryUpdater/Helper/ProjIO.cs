@@ -164,6 +164,8 @@ namespace SellerSense.Helper
             return toSavePath;
         }
 
+       
+
         internal static (bool,string) GetCompany1DirIfExist()
         {
            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code))),
@@ -246,24 +248,46 @@ namespace SellerSense.Helper
         //    File.Copy(fileName, mapFileLocation);
         //}
 
-        internal static void ImportMap(string fileName, string companyCode, Action MapExists
-            ,Action FileIOError)
+        internal static void ImportMap(string fileName, string companyCode,Action SuggestUserUnSafeOperation, Func<string,bool> MapExists
+            ,Action<string> Result)
         {
+            SuggestUserUnSafeOperation();//potential unsafe operation, close existing 
+            bool overwrite = false;
             string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
                 companyCode, Constants.MapFileName);
-            File.Copy(fileName, mapFileLocation);
+            if (File.Exists(mapFileLocation))
+                overwrite = MapExists("File already exists, Continue?");
+            if (overwrite)
+            {
+                File.Copy(mapFileLocation, mapFileLocation + "arv");
+                File.Delete(mapFileLocation);
+                try
+                {
+                    File.Copy(fileName, mapFileLocation);
+                    Result("Map file imported successfully.");
+                }
+                catch { File.Copy(mapFileLocation + "arv", mapFileLocation); Result("Import map failed."); } // if copy fails, revert to original map file.
+                finally { 
+                    if(File.Exists(mapFileLocation + "arv"))
+                        File.Delete(mapFileLocation + "arv"); 
+                    } //delete backup file
+
+            }
         }
 
-        internal static void ExportMap(string companyCode,string zipFileDir, 
-            bool exportLog, bool exportImgs, bool exportSnapshots, Action sameNameFileExistsinTargetDir)
+        internal static Task ExportMap(string companyCode,string zipFileDir, 
+            bool exportLog, bool exportImgs, bool exportSnapshots, Action sameNameFileExistsinTargetDir, Action FileExported)
         {
-            
+            if (string.IsNullOrEmpty(companyCode))
+                return Task.FromResult(false);
             string tempDirPath =  ProjIO.CleanAndPrepareLocalAppData();
             if (File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
             {
+
                 sameNameFileExistsinTargetDir();
-                return;
+                return Task.FromResult(false);
             }
+           return Task.Run(() => { 
             string zipSrcDir = Path.Combine(tempDirPath, companyCode);
             Directory.CreateDirectory(zipSrcDir);
             //copy map file
@@ -305,12 +329,34 @@ namespace SellerSense.Helper
             ZipFile.CreateFromDirectory(zipSrcDir,Path.Combine(tempDirPath, companyCode+".zip") );
             if (!File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
                 File.Copy(Path.Combine(tempDirPath, companyCode + ".zip"), Path.Combine(zipFileDir, companyCode + ".zip"));
-           
+            FileExported();
+            
+            });
 
         }
 
+        internal async static void ExportAllMaps(string mapCode1, string mapCode2, string mapCode3, string mapCode4, string mapCode5,
+           string selectedPath, bool exportLog, bool exportImgs, bool exportSnapshots, Action<string> FileExported)
+        {
+            Guid uniqId = Guid.NewGuid();
+            string exportAllPath = Path.Combine(selectedPath, uniqId.ToString());
+            Directory.CreateDirectory(exportAllPath);
+           await ExportMap(mapCode1, exportAllPath,
+             exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+           await ExportMap(mapCode2, exportAllPath,
+             exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+           await ExportMap(mapCode3, exportAllPath,
+             exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+           await ExportMap(mapCode4, exportAllPath,
+             exportLog, exportImgs, exportSnapshots, () => { }, () => {  });
+           await ExportMap(mapCode5, exportAllPath,
+             exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+
+            FileExported(exportAllPath);
+        }
+
         //taken from msdn
-       private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
         {
             // Get information about the source directory
             var dir = new DirectoryInfo(sourceDir);

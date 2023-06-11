@@ -116,6 +116,7 @@ namespace SellerSense
             txtComp1Code.Text = ProjIO.GetUserSetting(Constants.Company1Code);
             txtComp2Name.Text = ProjIO.GetUserSetting(Constants.Company2Name);
             txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
+            pbar.Visible = false;
             //if (string.IsNullOrEmpty(txtWorkSpaceLocation.Text))
             //    txtWorkSpaceLocation.Text = ProjIO.DefaultWorkspaceLocation();
         }
@@ -157,24 +158,47 @@ namespace SellerSense
             email.ShowDialog();
         }
 
-        private void btn_exportMap1_Click(object sender, EventArgs e)
-        {
-            ExportProject ep = new ExportProject();
-            if (ep.ShowDialog() == DialogResult.OK)
-            {
-                ExportMap(txtComp1Code.Text, ep.IsLog, ep.IsImgs, ep.IsSnapshot);
-            }
-        }
+      
         
-        private void ExportMap(string mapCode, bool exportLog, bool exportImgs, bool exportSnapshots)
+        private async void ExportMap(string mapCode, bool exportLog, bool exportImgs, bool exportSnapshots)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                ProjIO.ExportMap(mapCode, folderBrowserDialog.SelectedPath,exportLog,exportImgs, exportSnapshots,
-                    () =>
-                    {  // In case file already exists in target dir
-                        (new AlertBox("File with same name exists in target directory, please choose another directory.")).ShowDialog();
-                    });
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                pbar.Visible = true;
+                await ProjIO.ExportMap(mapCode, folderBrowserDialog.SelectedPath, exportLog, exportImgs, exportSnapshots,
+                     () =>
+                     {  // In case file already exists in target dir
+                         (new AlertBox("Error", "File with same name exists in target directory, please choose another directory.")).ShowDialog();
+                     },
+
+                     () =>
+                     {
+                        //File exported
+                         (new AlertBox("Info", "Exported file : " + mapCode + ".zip", isError: false)).ShowDialog(); ;
+                     }
+                     );
+                pbar.Visible = false;
+            }
+        }
+
+
+        private void ExportAllMaps(string mapCode1, string mapCode2, string mapCode3, string mapCode4, string mapCode5,
+            bool exportLog, bool exportImgs, bool exportSnapshots)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                pbar.Visible = true;
+                ProjIO.ExportAllMaps(mapCode1, mapCode2, mapCode3, mapCode4, mapCode5,
+                    folderBrowserDialog.SelectedPath, exportLog, exportImgs, exportSnapshots,
+                     (zipFile) => {
+                         pbar.Visible = false;
+                         (new AlertBox("Info", "Exported file : " + zipFile + ". Click below link to open.", isError: false, link:zipFile)).ShowDialog(); ; }
+                    );
+
+
+            }
         }
 
         private void ImportMap(string mapCode)
@@ -186,14 +210,64 @@ namespace SellerSense
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     _map1File = openFileDialog.FileName;
-                    ProjIO.ImportMap(openFileDialog.FileName, txtComp1Code.Text,
-                        () => { }, // file exists
-                        () => { });//file IO error
+                    ProjIO.ImportMap(openFileDialog.FileName, txtComp1Code.Text, () => { },
+                        (msg) => {
+                            if (DialogResult.Yes == MessageBox.Show(msg, "File exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
+                                return true;
+                            else
+                                return false;
+                        }, // file exists
+                        (msg) => { MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); });//result
                 }
                 else return;
             }
         }
 
+        private void btn_exportMap1_Click(object sender, EventArgs e)
+        {
+            ExportProject(txtComp1Code.Text);
+        }
 
+        private void btn_exportMap2_Click(object sender, EventArgs e)
+        {
+            ExportProject(txtComp2Code.Text);
+        }
+
+        private void btn_exportMap3_Click(object sender, EventArgs e)
+        {
+            ExportProject(txtComp3Code.Text);
+        }
+
+        private void btn_exportMap4_Click(object sender, EventArgs e)
+        {
+            ExportProject(txtComp4Code.Text);
+        }
+
+        private void btn_exportMap5_Click(object sender, EventArgs e)
+        {
+            ExportProject(txtComp5Code.Text);
+        }
+
+        private void ExportProject(string companyCode)
+        {
+            if(string.IsNullOrEmpty(companyCode))
+                return;
+            ExportProject ep = new ExportProject(companyCode);
+            if (ep.ShowDialog() == DialogResult.OK)
+            {
+                ExportMap(companyCode, ep.IsLog, ep.IsImgs, ep.IsSnapshot);
+            }
+        }
+
+        private void btn_ExportAll_Click(object sender, EventArgs e)
+        {
+            ExportProject ep = new ExportProject("");
+            if (ep.ShowDialog() == DialogResult.OK)
+            {
+                ExportAllMaps(txtComp1Code.Text, txtComp2Code.Text, txtComp3Code.Text, txtComp4Code.Text, txtComp5Code.Text,
+                ep.IsLog, ep.IsImgs, ep.IsSnapshot
+                );
+            }
+        }
     }
 }

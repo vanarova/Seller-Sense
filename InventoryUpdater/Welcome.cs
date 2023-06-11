@@ -317,12 +317,16 @@ namespace SellerSense
 
         private void btn_Setup_Click(object sender, EventArgs e)
         {
-            SetUp c = new SetUp(_companiesMgr);
+            SetUp c = new SetUp(_companiesMgr); //TODO : sometimes user double click these dashboard buttons and 2 windows open, handle this issue.
             c.FormClosed += (senderObj, formClosedEventArgs) => {
                 CheckIfSetupNeedsToRun();
             };
             c.Show();
         }
 
+        private void btn_products_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace SellerSense
             this.pbarLoadForms = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.btn_products = new System.Windows.Forms.Button();
             this.tblWelcomeButtons.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,19 +51,21 @@ namespace SellerSense
             this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tblWelcomeButtons.Controls.Add(this.btn_products, 1, 3);
             this.tblWelcomeButtons.Controls.Add(this.btn_Reports, 2, 1);
             this.tblWelcomeButtons.Controls.Add(this.btn_Setup, 1, 1);
             this.tblWelcomeButtons.Controls.Add(this.btn_mapping, 2, 2);
             this.tblWelcomeButtons.Controls.Add(this.btn_invUpdate, 1, 2);
-            this.tblWelcomeButtons.Controls.Add(this.pbarLoadForms, 1, 3);
-            this.tblWelcomeButtons.Controls.Add(this.label1, 0, 3);
+            this.tblWelcomeButtons.Controls.Add(this.pbarLoadForms, 1, 4);
+            this.tblWelcomeButtons.Controls.Add(this.label1, 0, 4);
             this.tblWelcomeButtons.Location = new System.Drawing.Point(269, 186);
             this.tblWelcomeButtons.Name = "tblWelcomeButtons";
-            this.tblWelcomeButtons.RowCount = 4;
-            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.77686F));
-            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.20661F));
-            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.01653F));
-            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 87F));
+            this.tblWelcomeButtons.RowCount = 5;
+            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.06061F));
+            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.90909F));
+            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.18182F));
+            this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tblWelcomeButtons.Size = new System.Drawing.Size(740, 330);
             this.tblWelcomeButtons.TabIndex = 0;
             // 
@@ -72,9 +75,9 @@ namespace SellerSense
             this.btn_Reports.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_Reports.Enabled = false;
             this.btn_Reports.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Reports.Location = new System.Drawing.Point(383, 92);
+            this.btn_Reports.Location = new System.Drawing.Point(383, 56);
             this.btn_Reports.Name = "btn_Reports";
-            this.btn_Reports.Size = new System.Drawing.Size(210, 55);
+            this.btn_Reports.Size = new System.Drawing.Size(210, 63);
             this.btn_Reports.TabIndex = 4;
             this.btn_Reports.Text = "Reports";
             this.btn_Reports.UseVisualStyleBackColor = false;
@@ -84,9 +87,9 @@ namespace SellerSense
             this.btn_Setup.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_Setup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_Setup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Setup.Location = new System.Drawing.Point(167, 92);
+            this.btn_Setup.Location = new System.Drawing.Point(167, 56);
             this.btn_Setup.Name = "btn_Setup";
-            this.btn_Setup.Size = new System.Drawing.Size(210, 55);
+            this.btn_Setup.Size = new System.Drawing.Size(210, 63);
             this.btn_Setup.TabIndex = 3;
             this.btn_Setup.Text = "SetUp";
             this.btn_Setup.UseVisualStyleBackColor = false;
@@ -97,9 +100,9 @@ namespace SellerSense
             this.btn_mapping.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_mapping.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_mapping.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_mapping.Location = new System.Drawing.Point(383, 153);
+            this.btn_mapping.Location = new System.Drawing.Point(383, 125);
             this.btn_mapping.Name = "btn_mapping";
-            this.btn_mapping.Size = new System.Drawing.Size(210, 86);
+            this.btn_mapping.Size = new System.Drawing.Size(210, 93);
             this.btn_mapping.TabIndex = 1;
             this.btn_mapping.Text = "Mapping";
             this.btn_mapping.UseVisualStyleBackColor = false;
@@ -110,9 +113,9 @@ namespace SellerSense
             this.btn_invUpdate.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_invUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_invUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_invUpdate.Location = new System.Drawing.Point(167, 153);
+            this.btn_invUpdate.Location = new System.Drawing.Point(167, 125);
             this.btn_invUpdate.Name = "btn_invUpdate";
-            this.btn_invUpdate.Size = new System.Drawing.Size(210, 86);
+            this.btn_invUpdate.Size = new System.Drawing.Size(210, 93);
             this.btn_invUpdate.TabIndex = 0;
             this.btn_invUpdate.Text = "Inventory Update";
             this.btn_invUpdate.UseVisualStyleBackColor = false;
@@ -122,7 +125,7 @@ namespace SellerSense
             // 
             this.pbarLoadForms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tblWelcomeButtons.SetColumnSpan(this.pbarLoadForms, 2);
-            this.pbarLoadForms.Location = new System.Drawing.Point(167, 279);
+            this.pbarLoadForms.Location = new System.Drawing.Point(167, 298);
             this.pbarLoadForms.Name = "pbarLoadForms";
             this.pbarLoadForms.Size = new System.Drawing.Size(426, 14);
             this.pbarLoadForms.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -137,7 +140,7 @@ namespace SellerSense
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(93, 16);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Version 1.0.1.0";
+            this.label1.Text = "Version 1.0.2.0";
             // 
             // menuStrip1
             // 
@@ -147,6 +150,20 @@ namespace SellerSense
             this.menuStrip1.Size = new System.Drawing.Size(1199, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // btn_products
+            // 
+            this.btn_products.BackColor = System.Drawing.Color.Cornsilk;
+            this.tblWelcomeButtons.SetColumnSpan(this.btn_products, 2);
+            this.btn_products.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_products.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_products.Location = new System.Drawing.Point(167, 224);
+            this.btn_products.Name = "btn_products";
+            this.btn_products.Size = new System.Drawing.Size(426, 54);
+            this.btn_products.TabIndex = 6;
+            this.btn_products.Text = "Products";
+            this.btn_products.UseVisualStyleBackColor = false;
+            this.btn_products.Click += new System.EventHandler(this.btn_products_Click);
             // 
             // Welcome
             // 
@@ -183,6 +200,7 @@ namespace SellerSense
         private System.Windows.Forms.Button btn_Reports;
         private System.Windows.Forms.Button btn_Setup;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_products;
     }
 }
 

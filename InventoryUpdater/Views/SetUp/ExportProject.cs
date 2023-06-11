@@ -5,11 +5,13 @@ namespace SellerSense.Views
 {
     public partial class ExportProject : Form
     {
+        private string _msg { get; set; }
         public bool IsLog { get; set; }
         public bool IsImgs { get; set; }
         public bool IsSnapshot { get; set; }
-        public ExportProject()
+        public ExportProject( string msg)
         {
+            _msg = msg;
             InitializeComponent();
         }
 
@@ -20,6 +22,12 @@ namespace SellerSense.Views
             IsSnapshot = chk_snapshot.Checked;
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void ExportProject_Load(object sender, EventArgs e)
+        {
+            label1.Text = "Exporting Map file as " + _msg + ".zip" +
+                ", Do you also want to export below files(s)";
         }
     }
 }

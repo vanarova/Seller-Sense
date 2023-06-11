@@ -106,7 +106,7 @@ namespace SellerSense
             catch (Exception ex) //TODO: [IMP] Add try/catch in all public functions/button events in this page and other pages
             {
                 _logger.Log(ex.Message, Logger.LogLevel.error);
-                (new AlertBox("Error occured for company:"
+                (new AlertBox("Error","Error occured for company:"
                     + _company._name + ", For further assitance, Export error logs and contact support.")).ShowDialog();
 
             }
@@ -168,7 +168,7 @@ namespace SellerSense
             catch (Exception ex)
             {
                 _logger.Log(ex.Message, Logger.LogLevel.error);
-                (new AlertBox("Error occured for company:"
+                (new AlertBox("Error", "Error occured for company:"
                     + _company._name + ", For further assitance, Export error logs and contact support.")).ShowDialog();
 
             }

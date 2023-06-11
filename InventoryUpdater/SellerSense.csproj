@@ -251,9 +251,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Decoders\Decoders.csproj">
       <Project>{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}</Project>
@@ -262,6 +260,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Docs\Diagram.bmp" />
+    <Content Include="Images\1138px-OOjs_UI_icon_alert-warning-black.svg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Information.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
