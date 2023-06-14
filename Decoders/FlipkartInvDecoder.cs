@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Decoders
 {
@@ -20,6 +21,12 @@ namespace Decoders
         public static void OpenProductSearchURL(string productId)
         {
             System.Diagnostics.Process.Start("https://www.flipkart.com/na/p/na?pid=" + productId);
+        }
+
+        public static string GetProductIdFromURL(string url)
+        {
+            Uri myUri = new Uri(url);
+            return HttpUtility.ParseQueryString(myUri.Query).Get("pid");
         }
 
         public static List<IFkInventory> GetData(string excelFile)

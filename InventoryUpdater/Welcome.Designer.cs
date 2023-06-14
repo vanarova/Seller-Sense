@@ -29,17 +29,26 @@ namespace SellerSense
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Welcome));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tblWelcomeButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_products = new System.Windows.Forms.Button();
             this.btn_Reports = new System.Windows.Forms.Button();
             this.btn_Setup = new System.Windows.Forms.Button();
             this.btn_mapping = new System.Windows.Forms.Button();
             this.btn_invUpdate = new System.Windows.Forms.Button();
             this.pbarLoadForms = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.btn_products = new System.Windows.Forms.Button();
             this.tblWelcomeButtons.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // tblWelcomeButtons
             // 
@@ -68,6 +77,20 @@ namespace SellerSense
             this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tblWelcomeButtons.Size = new System.Drawing.Size(740, 330);
             this.tblWelcomeButtons.TabIndex = 0;
+            // 
+            // btn_products
+            // 
+            this.btn_products.BackColor = System.Drawing.Color.Cornsilk;
+            this.tblWelcomeButtons.SetColumnSpan(this.btn_products, 2);
+            this.btn_products.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_products.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_products.Location = new System.Drawing.Point(167, 224);
+            this.btn_products.Name = "btn_products";
+            this.btn_products.Size = new System.Drawing.Size(426, 54);
+            this.btn_products.TabIndex = 6;
+            this.btn_products.Text = "Products";
+            this.btn_products.UseVisualStyleBackColor = false;
+            this.btn_products.Click += new System.EventHandler(this.btn_products_Click);
             // 
             // btn_Reports
             // 
@@ -142,35 +165,12 @@ namespace SellerSense
             this.label1.TabIndex = 5;
             this.label1.Text = "Version 1.0.2.0";
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1199, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // btn_products
-            // 
-            this.btn_products.BackColor = System.Drawing.Color.Cornsilk;
-            this.tblWelcomeButtons.SetColumnSpan(this.btn_products, 2);
-            this.btn_products.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_products.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_products.Location = new System.Drawing.Point(167, 224);
-            this.btn_products.Name = "btn_products";
-            this.btn_products.Size = new System.Drawing.Size(426, 54);
-            this.btn_products.TabIndex = 6;
-            this.btn_products.Text = "Products";
-            this.btn_products.UseVisualStyleBackColor = false;
-            this.btn_products.Click += new System.EventHandler(this.btn_products_Click);
-            // 
             // Welcome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(1199, 658);
+            this.ClientSize = new System.Drawing.Size(1200, 842);
             this.Controls.Add(this.tblWelcomeButtons);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -30,9 +30,9 @@ namespace SellerSense.Views
         {
             lblTitle.Text = _title; 
             if (_isError)
-                pictureBox2.Image = Image.FromFile("Images\\1138px-OOjs_UI_icon_alert-warning-black.svg.png");
+                pictureBox2.Image = SellerSense.Properties.Resources._1138px_OOjs_UI_icon_alert_warning_black_svg;
             else
-                pictureBox2.Image = Image.FromFile("Images\\Information.png");
+                pictureBox2.Image = SellerSense.Properties.Resources.Information;
             lnkLabelClick.Visible = !string.IsNullOrEmpty(_link);
             button2.Visible = _isError;
             txt_msg.Text = _msg;

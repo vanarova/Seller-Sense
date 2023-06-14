@@ -42,13 +42,9 @@
             this.importMeeshoInvFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertMapFileURLsToLocalImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importAmazonInvFileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowAmzInv = new System.Windows.Forms.ToolStripMenuItem();
-            this.importFlipkartInvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowFkInv = new System.Windows.Forms.ToolStripMenuItem();
-            this.importSnapdealInvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowSpdInv = new System.Windows.Forms.ToolStripMenuItem();
-            this.importMeeshoInvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemShowMsoInv = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTxtSearchBox = new System.Windows.Forms.ToolStripTextBox();
             this.grdmapGrid = new System.Windows.Forms.DataGridView();
@@ -81,13 +77,9 @@
             this.fileStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.fileStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.importAmazonInvFileToolStripMenuItem1,
             this.toolStripMenuItemShowAmzInv,
-            this.importFlipkartInvToolStripMenuItem,
             this.toolStripMenuItemShowFkInv,
-            this.importSnapdealInvToolStripMenuItem,
             this.toolStripMenuItemShowSpdInv,
-            this.importMeeshoInvToolStripMenuItem,
             this.toolStripMenuItemShowMsoInv,
             this.toolStripTxtSearchBox});
             this.fileStrip.Location = new System.Drawing.Point(0, 0);
@@ -196,76 +188,50 @@
             this.convertMapFileURLsToLocalImagesToolStripMenuItem.Size = new System.Drawing.Size(347, 26);
             this.convertMapFileURLsToLocalImagesToolStripMenuItem.Text = "Convert Map File URLsTo Local Images";
             // 
-            // importAmazonInvFileToolStripMenuItem1
-            // 
-            this.importAmazonInvFileToolStripMenuItem1.Enabled = false;
-            this.importAmazonInvFileToolStripMenuItem1.Name = "importAmazonInvFileToolStripMenuItem1";
-            this.importAmazonInvFileToolStripMenuItem1.Size = new System.Drawing.Size(150, 27);
-            this.importAmazonInvFileToolStripMenuItem1.Text = "Import Amazon Inv";
-            this.importAmazonInvFileToolStripMenuItem1.Click += new System.EventHandler(this.importAmazonInvFileToolStripMenuItem1_Click);
-            // 
             // toolStripMenuItemShowAmzInv
             // 
             this.toolStripMenuItemShowAmzInv.BackColor = System.Drawing.Color.Cornsilk;
-            this.toolStripMenuItemShowAmzInv.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItemShowAmzInv.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.toolStripMenuItemShowAmzInv.Name = "toolStripMenuItemShowAmzInv";
-            this.toolStripMenuItemShowAmzInv.Size = new System.Drawing.Size(37, 27);
-            this.toolStripMenuItemShowAmzInv.Text = "⤷";
+            this.toolStripMenuItemShowAmzInv.Size = new System.Drawing.Size(110, 27);
+            this.toolStripMenuItemShowAmzInv.Text = "Amazon🪄";
             this.toolStripMenuItemShowAmzInv.Click += new System.EventHandler(this.toolStripMenuItemShowAmzInv_Click);
-            // 
-            // importFlipkartInvToolStripMenuItem
-            // 
-            this.importFlipkartInvToolStripMenuItem.Enabled = false;
-            this.importFlipkartInvToolStripMenuItem.Name = "importFlipkartInvToolStripMenuItem";
-            this.importFlipkartInvToolStripMenuItem.Size = new System.Drawing.Size(144, 27);
-            this.importFlipkartInvToolStripMenuItem.Text = "Import Flipkart Inv";
-            this.importFlipkartInvToolStripMenuItem.Click += new System.EventHandler(this.importFlipkartInvToolStripMenuItem_Click);
             // 
             // toolStripMenuItemShowFkInv
             // 
             this.toolStripMenuItemShowFkInv.BackColor = System.Drawing.Color.Cornsilk;
-            this.toolStripMenuItemShowFkInv.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItemShowFkInv.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripMenuItemShowFkInv.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.toolStripMenuItemShowFkInv.Name = "toolStripMenuItemShowFkInv";
-            this.toolStripMenuItemShowFkInv.Size = new System.Drawing.Size(37, 27);
-            this.toolStripMenuItemShowFkInv.Text = "⤷";
+            this.toolStripMenuItemShowFkInv.Size = new System.Drawing.Size(102, 27);
+            this.toolStripMenuItemShowFkInv.Text = "Flipkart🚀";
             this.toolStripMenuItemShowFkInv.Click += new System.EventHandler(this.toolStripMenuItemShowFkInv_Click);
-            // 
-            // importSnapdealInvToolStripMenuItem
-            // 
-            this.importSnapdealInvToolStripMenuItem.Name = "importSnapdealInvToolStripMenuItem";
-            this.importSnapdealInvToolStripMenuItem.Size = new System.Drawing.Size(157, 27);
-            this.importSnapdealInvToolStripMenuItem.Text = "Import Snapdeal Inv";
-            this.importSnapdealInvToolStripMenuItem.Click += new System.EventHandler(this.importSnapdealInvToolStripMenuItem_Click);
             // 
             // toolStripMenuItemShowSpdInv
             // 
             this.toolStripMenuItemShowSpdInv.BackColor = System.Drawing.Color.Cornsilk;
-            this.toolStripMenuItemShowSpdInv.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItemShowSpdInv.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripMenuItemShowSpdInv.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.toolStripMenuItemShowSpdInv.Name = "toolStripMenuItemShowSpdInv";
-            this.toolStripMenuItemShowSpdInv.Size = new System.Drawing.Size(35, 27);
-            this.toolStripMenuItemShowSpdInv.Text = "⤷";
+            this.toolStripMenuItemShowSpdInv.Size = new System.Drawing.Size(117, 27);
+            this.toolStripMenuItemShowSpdInv.Text = "Snapdeal👜";
             this.toolStripMenuItemShowSpdInv.Click += new System.EventHandler(this.toolStripMenuItemShowSpdInv_Click);
-            // 
-            // importMeeshoInvToolStripMenuItem
-            // 
-            this.importMeeshoInvToolStripMenuItem.Name = "importMeeshoInvToolStripMenuItem";
-            this.importMeeshoInvToolStripMenuItem.Size = new System.Drawing.Size(147, 27);
-            this.importMeeshoInvToolStripMenuItem.Text = "Import Meesho Inv";
-            this.importMeeshoInvToolStripMenuItem.Click += new System.EventHandler(this.importMeeshoInvToolStripMenuItem_Click);
             // 
             // toolStripMenuItemShowMsoInv
             // 
             this.toolStripMenuItemShowMsoInv.BackColor = System.Drawing.Color.Cornsilk;
-            this.toolStripMenuItemShowMsoInv.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItemShowMsoInv.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripMenuItemShowMsoInv.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.toolStripMenuItemShowMsoInv.Name = "toolStripMenuItemShowMsoInv";
-            this.toolStripMenuItemShowMsoInv.Size = new System.Drawing.Size(35, 27);
-            this.toolStripMenuItemShowMsoInv.Text = "⤷";
+            this.toolStripMenuItemShowMsoInv.Size = new System.Drawing.Size(107, 27);
+            this.toolStripMenuItemShowMsoInv.Text = "Meesho🍱";
             this.toolStripMenuItemShowMsoInv.Click += new System.EventHandler(this.toolStripMenuItemShowMsoInv_Click);
             // 
             // toolStripTxtSearchBox
             // 
             this.toolStripTxtSearchBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTxtSearchBox.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripTxtSearchBox.Margin = new System.Windows.Forms.Padding(5, 0, 1, 0);
             this.toolStripTxtSearchBox.Name = "toolStripTxtSearchBox";
             this.toolStripTxtSearchBox.Size = new System.Drawing.Size(100, 27);
             this.toolStripTxtSearchBox.Text = "Search Code";
@@ -286,9 +252,11 @@
             this.grdmapGrid.Size = new System.Drawing.Size(993, 645);
             this.grdmapGrid.TabIndex = 4;
             this.grdmapGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdmapGrid_CellContentClick);
+            this.grdmapGrid.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdmapGrid_CellContentDoubleClick);
             this.grdmapGrid.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdmapGrid_CellEnter);
             this.grdmapGrid.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdmapGrid_CellLeave);
             this.grdmapGrid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdmapGrid_DataBindingComplete);
+            this.grdmapGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdmapGrid_KeyDown);
             // 
             // MappingCntrl
             // 
@@ -323,13 +291,9 @@
         private System.Windows.Forms.ToolStripMenuItem importMeeshoInvFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem utilitiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem convertMapFileURLsToLocalImagesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importAmazonInvFileToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowAmzInv;
-        private System.Windows.Forms.ToolStripMenuItem importFlipkartInvToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowFkInv;
-        private System.Windows.Forms.ToolStripMenuItem importSnapdealInvToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowSpdInv;
-        private System.Windows.Forms.ToolStripMenuItem importMeeshoInvToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemShowMsoInv;
         private System.Windows.Forms.ToolStripTextBox toolStripTxtSearchBox;
     }

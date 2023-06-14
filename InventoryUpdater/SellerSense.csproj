@@ -76,6 +76,7 @@
     <Reference Include="System.Text.Encoding.CodePages, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encoding.CodePages.6.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -260,12 +261,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Docs\Diagram.bmp" />
-    <Content Include="Images\1138px-OOjs_UI_icon_alert-warning-black.svg.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Information.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Images\1138px-OOjs_UI_icon_alert-warning-black.svg.png" />
+    <Content Include="Images\android-chrome-192x192.png" />
+    <Content Include="Images\favicon-32x32.png" />
+    <Content Include="Images\Information.png" />
+    <None Include="Images\link.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

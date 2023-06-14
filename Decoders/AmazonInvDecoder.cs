@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Decoders
@@ -24,6 +25,17 @@ namespace Decoders
         public static void OpenProductSearchURL(string productId)
         {
             System.Diagnostics.Process.Start("https://www.amazon.in/s?k=" + productId);
+        }
+
+        public static string GetProductIdFromURL(string url)
+        {
+            string result = string.Empty;
+            string pattern = @"dp\/([^/]+)\/";
+            Regex regex = new Regex(pattern);
+            Match match = regex.Match(url);
+            if (match.Success)
+                result = match.Groups[1].Value.Replace("dp/", "").Replace("/", "");
+            return result;
         }
 
         public static IList<IAmzInventory> ImportAmazonInventory(string fileName)

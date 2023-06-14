@@ -5,7 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using Decoders.Interfaces;
 using InventoryUpdater.ViewModelManager;
@@ -15,7 +17,8 @@ namespace SellerSense
     public partial class InvFiller : Form
     {
         public VM_Company _company { get; set; }
-        public Constants.Company _companyConst { get; set; }
+        //private Constants.Company _companyType;
+        public Constants.Company _companyType { get; set; }
         public IList<IAmzInventory> _amzInventory { get; set; }
         public IList<IFkInventory> _fkInventory { get; set; }
         public IList<ISpdInventory> _spdInventory { get; set; }
@@ -29,6 +32,59 @@ namespace SellerSense
             InitializeComponent();
         }
 
+        public InvFiller(Constants.Company company, Image selectedImg, string selectedCode, string selectedTitle, VM_Company companyModel)
+        {
+            InitializeComponent();
+            _companyType = company;
+            selectedImgBox.Image = selectedImg;
+            lbl_Code.Text = selectedCode;
+            lbl_title.Text = selectedTitle;
+            //_amzInventory = amzInv;
+            _company = companyModel;
+
+            switch (company)
+            {
+                case Constants.Company.Amazon:
+                    btn_loadInvFile.Text = "Load Amazon inv file";
+                    btn_loadInvFile.Click += (s, e) => { LoadAmzCodes(); };
+                    break;
+                case Constants.Company.Flipkart:
+                    btn_loadInvFile.Text = "Load Flipkart inv file";
+                    btn_loadInvFile.Click += (s, e) => { LoadFkCodes(); };
+                    break;
+                case Constants.Company.Snapdeal:
+                    btn_loadInvFile.Text = "Load Snapdeal inv file";
+                    btn_loadInvFile.Click += (s, e) => { LoadSkCodes(); };
+                    break;
+                case Constants.Company.Meesho:
+                    btn_loadInvFile.Text = "Load Meesho inv file";
+                    btn_loadInvFile.Click += (s, e) => { LoadMsoCodes(); };
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void RefreshGrid()
+        {
+            grd_InvData.DataSource = null;
+            if (_company._inventories._amzImportedInvList._amzInventoryList.Count > 0)
+                _amzInventory = _company._inventories._amzImportedInvList._amzInventoryList;
+
+
+            if (_amzInventory != null)
+                grd_InvData.DataSource = _amzInventory;
+
+            if (_fkInventory != null)
+                grd_InvData.DataSource = _fkInventory;
+
+            if (_spdInventory != null)
+                grd_InvData.DataSource = _spdInventory;
+
+            if (_msoInventory != null)
+                grd_InvData.DataSource = _msoInventory;
+        }
+
         public InvFiller(Image selectedImg, string selectedCode, string selectedTitle,IList<IAmzInventory> amzInv, VM_Company company)
         {
             InitializeComponent();
@@ -37,7 +93,7 @@ namespace SellerSense
             lbl_title.Text = selectedTitle;
             _amzInventory = amzInv;
             _company = company;
-            _companyConst = Constants.Company.Amazon;
+            //_companyType = Constants.Company.Amazon;
         }
 
 
@@ -49,7 +105,7 @@ namespace SellerSense
             lbl_title.Text = selectedTitle;
             _fkInventory = fkinv;
             _company = company;
-            _companyConst = Constants.Company.Flipkart;
+            //_companyType = Constants.Company.Flipkart;
         }
 
         public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<ISpdInventory> spdinv, VM_Company company)
@@ -60,7 +116,7 @@ namespace SellerSense
             lbl_title.Text = selectedTitle;
             _spdInventory = spdinv;
             _company = company;
-            _companyConst= Constants.Company.Snapdeal;
+            //_companyType= Constants.Company.Snapdeal;
         }
 
         public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IMsoInventory> msoinv, VM_Company company)
@@ -71,22 +127,23 @@ namespace SellerSense
             lbl_title.Text = selectedTitle;
             _msoInventory = msoinv;
             _company = company;
-            _companyConst = Constants.Company.Meesho;
+            //_companyType = Constants.Company.Meesho;
         }
 
         private void InvFiller_Load(object sender, EventArgs e)
         {
-            if (_amzInventory!=null)
-                grd_InvData.DataSource = _amzInventory;
+            RefreshGrid();
+            //if (_amzInventory!=null)
+            //    grd_InvData.DataSource = _amzInventory;
 
-            if (_fkInventory != null)
-                grd_InvData.DataSource = _fkInventory;
+            //if (_fkInventory != null)
+            //    grd_InvData.DataSource = _fkInventory;
 
-            if (_spdInventory != null)
-                grd_InvData.DataSource = _spdInventory;
+            //if (_spdInventory != null)
+            //    grd_InvData.DataSource = _spdInventory;
 
-            if (_msoInventory != null)
-                grd_InvData.DataSource = _msoInventory;
+            //if (_msoInventory != null)
+            //    grd_InvData.DataSource = _msoInventory;
         }
 
         private void txt_CompanyId_TextChanged(object sender, EventArgs e)
@@ -101,13 +158,91 @@ namespace SellerSense
                 SearchMsoInvList();
         }
 
+        private void LoadAmzCodes()
+        {
+            DialogResult r = DialogResult.None;
+            if (_company._inventories._amzImportedInvList != null &&
+                _company._inventories._amzImportedInvList._amzInventoryList != null &&
+                _company._inventories._amzImportedInvList._amzInventoryList.Count > 0)
+            { r = MessageBox.Show("Inventory list is already loaded, do you want to re-load ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); }
+            if (r == DialogResult.Yes || r == DialogResult.None)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Amazon inv text file|*.txt";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _company._inventories.ImportAmazonInventoryFile(openFileDialog.FileName);
+                    _amzInventory = _company._inventories._amzImportedInvList._amzInventoryList;
+                    RefreshGrid();
+                }
+            }
+        }
 
+        private void LoadSkCodes()
+        {
+            DialogResult r = DialogResult.None;
+            if (_company._inventories._spdImportedInventoryList != null &&
+                _company._inventories._spdImportedInventoryList._spdInventoryList != null &&
+                _company._inventories._spdImportedInventoryList._spdInventoryList.Count > 0)
+            { r = MessageBox.Show("Inventory list is already loaded, do you want to re-load ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); }
+            if (r == DialogResult.Yes || r == DialogResult.None)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Snapdeal inv file|*.xlsx";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _company._inventories.ImportSnapdealInventoryFile(openFileDialog.FileName);
+                    _spdInventory = _company._inventories._spdImportedInventoryList._spdInventoryList;
+                    RefreshGrid();
+                }
+            }
+        }
+
+        private void LoadFkCodes()
+        {
+            DialogResult r = DialogResult.None;
+            if (_company._inventories._fkImportedInventoryList != null &&
+                _company._inventories._fkImportedInventoryList._fkInventoryList != null &&
+                _company._inventories._fkImportedInventoryList._fkInventoryList.Count > 0)
+            { r = MessageBox.Show("Inventory list is already loaded, do you want to re-load ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); }
+            if (r == DialogResult.Yes || r == DialogResult.None)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Flipkart inv file|*.xls";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _company._inventories.ImportFlipkartInventoryFile(openFileDialog.FileName);
+                    _fkInventory = _company._inventories._fkImportedInventoryList._fkInventoryList;
+                    RefreshGrid();
+                }
+            }
+        }
+
+        private void LoadMsoCodes()
+        {
+            DialogResult r = DialogResult.None;
+            if (_company._inventories._msoImportedInventoryList != null &&
+                _company._inventories._msoImportedInventoryList._msoInventoryList != null &&
+                _company._inventories._msoImportedInventoryList._msoInventoryList.Count > 0)
+            { r = MessageBox.Show("Inventory list is already loaded, do you want to re-load ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); }
+            if (r == DialogResult.Yes || r == DialogResult.None)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Meesho inv file|*.xlsx";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    _company._inventories.ImportMeeshoInventoryFile(openFileDialog.FileName);
+                    _msoInventory = _company._inventories._msoImportedInventoryList._msoInventoryList;
+                    RefreshGrid();
+                }
+            }
+        }
 
         private async void SearchMsoInvList()
         {
             Task<List<int>> t = _company._inventories.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _companyConst);
+                            _companyType);
             //(iList) =>
             //{ //call back
             await t;
@@ -137,7 +272,7 @@ namespace SellerSense
         {
             Task<List<int>> t = _company._inventories.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _companyConst);
+                            _companyType);
             await t;
             List<int> iList = t.Result;
             //(iList) =>
@@ -169,7 +304,7 @@ namespace SellerSense
         {
            Task<List<int>> t = _company._inventories.SearchFkInvCollectionTask(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _companyConst);
+                            _companyType);
             await t;
             List<int> iList = t.Result;
             if (grd_InvData.DataSource != null)
@@ -199,7 +334,7 @@ namespace SellerSense
         {
             Task<List<int>> t = _company._inventories.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
-                            _companyConst);
+                            _companyType);
             await t;
             List<int> iList = t.Result;
 
@@ -243,18 +378,81 @@ namespace SellerSense
             if (e.KeyCode == Keys.Enter)
             {
                 //
-                if(_companyConst == Constants.Company.Amazon)
+                if(_companyType == Constants.Company.Amazon)
                     SelectedID = grd_InvData[1, 0].Value.ToString(); //second column is asin for amazon.
-                if (_companyConst == Constants.Company.Flipkart)
+                if (_companyType == Constants.Company.Flipkart)
                     SelectedID = grd_InvData[1, 0].Value.ToString(); //fsn
-                if (_companyConst == Constants.Company.Snapdeal)
+                if (_companyType == Constants.Company.Snapdeal)
                     SelectedID = grd_InvData[1, 0].Value.ToString();
-                if (_companyConst == Constants.Company.Meesho)
+                if (_companyType == Constants.Company.Meesho)
                     SelectedID = grd_InvData[1, 0].Value.ToString();  
 
                 e.SuppressKeyPress = true;
                 this.Close();
             }
+           
         }
+
+        private void btn_loadInvFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_MapViaCode_Click(object sender, EventArgs e)
+        {
+            if (_companyType == Constants.Company.Amazon)
+                SelectedID = grd_InvData[1, 0].Value.ToString(); //second column is asin for amazon.
+            if (_companyType == Constants.Company.Flipkart)
+                SelectedID = grd_InvData[1, 0].Value.ToString(); //fsn
+            if (_companyType == Constants.Company.Snapdeal)
+                SelectedID = grd_InvData[1, 0].Value.ToString();
+            if (_companyType == Constants.Company.Meesho)
+                SelectedID = grd_InvData[1, 0].Value.ToString();
+
+            this.Close();
+        }
+
+        private void btn_MapViaScrapping_Click(object sender, EventArgs e)
+        {
+            lbl_URLMappedValue.Text = Scrap(_companyType, txtbox_URL.Text);
+        }
+
+        private string Scrap(Constants.Company company, string url)
+        {
+            string result = string.Empty;
+            switch (company)
+            {
+                case Constants.Company.Amazon:
+                     result = Decoders.AmazonInvDecoder.GetProductIdFromURL(url);
+                     break;
+                case Constants.Company.Flipkart:
+                    result = Decoders.FlipkartInvDecoder.GetProductIdFromURL(url);
+                    break;
+                case Constants.Company.Snapdeal:
+                    break;
+                case Constants.Company.Meesho:
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+
+        private void btn_MapViaURLAccept_Click(object sender, EventArgs e)
+        {
+            SelectedID = lbl_URLMappedValue.Text;
+            //if (_companyType == Constants.Company.Amazon)
+            //    SelectedID = grd_InvData[1, 0].Value.ToString(); //second column is asin for amazon.
+            //if (_companyType == Constants.Company.Flipkart)
+            //    SelectedID = grd_InvData[1, 0].Value.ToString(); //fsn
+            //if (_companyType == Constants.Company.Snapdeal)
+            //    SelectedID = grd_InvData[1, 0].Value.ToString();
+            //if (_companyType == Constants.Company.Meesho)
+            //    SelectedID = grd_InvData[1, 0].Value.ToString();
+
+            this.Close();
+        }
+
+        //TODO Change all label fonts to, search all and replace all ("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
     }
 }
