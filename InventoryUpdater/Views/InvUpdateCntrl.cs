@@ -1,4 +1,5 @@
 ﻿using InventoryUpdater.ViewModelManager;
+using SellerSense.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -241,6 +242,8 @@ namespace SellerSense
                     }
                 }
             }
+
+           
 
             if (_company._inventories._amzImportedInvList._amzInventoryList != null && grdInvUpdate.SelectedCells[0].OwningColumn.Name == Constants.ICols.acount)
             {

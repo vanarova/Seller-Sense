@@ -41,7 +41,8 @@ namespace SellerSense
             lbl_title.Text = selectedTitle;
             //_amzInventory = amzInv;
             _company = companyModel;
-
+            if (Screen.PrimaryScreen.WorkingArea.Height/2 < 1300)
+                this.Height = 1300;
             switch (company)
             {
                 case Constants.Company.Amazon:
@@ -415,6 +416,7 @@ namespace SellerSense
         private void btn_MapViaScrapping_Click(object sender, EventArgs e)
         {
             lbl_URLMappedValue.Text = Scrap(_companyType, txtbox_URL.Text);
+            lbl_Error.Visible = string.IsNullOrEmpty(lbl_URLMappedValue.Text);
         }
 
         private string Scrap(Constants.Company company, string url)
@@ -429,6 +431,7 @@ namespace SellerSense
                     result = Decoders.FlipkartInvDecoder.GetProductIdFromURL(url);
                     break;
                 case Constants.Company.Snapdeal:
+                    result = Decoders.SnapdealInvDecoder.GetProductIdFromURL(url);
                     break;
                 case Constants.Company.Meesho:
                     break;

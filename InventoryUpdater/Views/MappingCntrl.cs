@@ -587,6 +587,26 @@ namespace SellerSense
             }
         }
 
+        private void grdmapGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.ICols.Title)
+            {
+                M_Map.MapEntry r_item = _company._mapping._map._mapEntries.FirstOrDefault
+                    (it => it.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
+                if (r_item != null)
+                    r_item.Title = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Title].Value.ToString();
+
+            }
+            if (grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.ICols.notes)
+            {
+                M_Map.MapEntry r_item = _company._mapping._map._mapEntries.FirstOrDefault
+                    (it => it.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
+                if (r_item != null)
+                    r_item.Notes = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.notes].Value.ToString();
+
+            }
+        }
+
         //private void toolStripMenuItemLinks_Click(object sender, EventArgs e)
         //{
         //    _convertCodesToLinks = !_convertCodesToLinks;

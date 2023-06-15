@@ -1,12 +1,15 @@
 ﻿using Decoders.Interfaces;
 using Ganss.Excel;
+using HtmlAgilityPack;
 using NPOI.SS.Formula.Functions;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Decoders
 {
@@ -21,6 +24,27 @@ namespace Decoders
         public static void OpenProductSearchURL(string productId)
         {
             System.Diagnostics.Process.Start("https://www.snapdeal.com/search?keyword=" + productId);
+        }
+
+        public static string GetProductIdFromURL(string url)
+        {
+            string result = string.Empty;
+            HtmlWeb web = new HtmlWeb();
+
+            HtmlAgilityPack.HtmlDocument page = web.Load(url);
+            HtmlNodeCollection nodes = page.DocumentNode.SelectNodes("//li[@id='highlightSupc']/span[@class='h-content']");
+            if (nodes != null && nodes.Count > 0) 
+                result = nodes[0].InnerText.Replace("SUPC:", "").Trim();
+            
+            //foreach (var item in nodes)
+            //{
+            //    //Image ig = null;
+            //    //if (item.Attributes["src"] != null)
+            //    //    ig = LoadImage(item.Attributes["src"].Value);
+            //    //if (ig != null)
+            //    //    imageList1.Images.Add(ig);//listView1.Items.Add(CampUrl"",)
+            //}
+            return result;
         }
 
         public static List<ISpdInventory> GetData(string excelFile)
