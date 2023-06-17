@@ -1,6 +1,6 @@
 
-$pre_version = "1.0.1.0"
-$new_version = "1.0.2.0"
+$pre_version = "1.0.2.0"
+$new_version = "1.0.3.0"
 $p = "Version " + $pre_version
 $n = "Version " + $new_version
 

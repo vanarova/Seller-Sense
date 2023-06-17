@@ -578,11 +578,30 @@ namespace SellerSense
         {
             if (e.KeyCode == Keys.Delete)
             {//Delet only if, selected cell's column name is a code/////
-                if(grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.amz_Code ||
-                    grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.spd_Code ||
-                    grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.fK_Code ||
-                    grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.mso_Code)
-                grdmapGrid.SelectedCells[0].Value = string.Empty;
+                bool amzCol = grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.amz_Code;
+                bool spdCol = grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.spd_Code;
+                bool fkCol = grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.fK_Code;
+                bool msoCol = grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.mso_Code;
+                bool titleCol = grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.MCols.Title;
+                
+                //TODO : Move below business logic in VM - viewmodel layer.
+                //TODO : Add Notes col also.. for deletion, in below code
+                if (amzCol || spdCol || fkCol || msoCol || titleCol)
+                {
+                    grdmapGrid.SelectedCells[0].Value = string.Empty;
+                    M_Map.MapEntry r_item = _company._mapping._map._mapEntries.FirstOrDefault
+                       (it => it.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
+                    if (amzCol)
+                        r_item.AmzCodeValue = String.Empty;
+                    if (spdCol)
+                        r_item.SpdCodeValue = String.Empty;
+                    if(fkCol)
+                        r_item.FkCodeValue = String.Empty;
+                    if (msoCol)
+                        r_item.MsoCodeValue = String.Empty;
+                    if (titleCol)
+                        r_item.Title = String.Empty;
+                }
                 e.SuppressKeyPress = true;
             }
         }

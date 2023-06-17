@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="2C67A738-BC8E-4E8C-8A18-292085B4C9D5" Name="Seller-Sense" Language="1033" Version="1.0.3.1" Manufacturer="CC-INDIA" UpgradeCode="ADCBBA79-4A98-4324-B85D-D8D76093B42E">
+        <Package Description="Seller-Sense" Comments="Seller-Sense" InstallerVersion="200" Compressed="yes" />
+        <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder" Name="PFiles">
+                <Directory Name="Seller-Sense" Id="SELLER_SENSE">
+                    <Component Id="SS" DiskId="1"  Guid="1f51a7bd-600e-4038-8393-c0d91a17dcc8">
+                        <File Id="SELLERSENSE.EXE" Name="SellerSense.exe" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\SellerSense.exe" KeyPath="yes">
+                            <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="Seller-Sense" WorkingDirectory="INSTALLDIR" Advertise="yes" Icon="favicon.ico" IconIndex="0" />
+                        </File>
+                        <File Id="ANGLESHARP.DLL" Name="AngleSharp.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\AngleSharp.dll" />
+                        <File Id="BOUNCYCASTLE.CRYPTO.DLL" Name="BouncyCastle.Crypto.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\BouncyCastle.Crypto.dll" />
+                        <File Id="DECODERS.DLL" Name="Decoders.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Decoders.dll" />
+                        <File Id="ENUMS.NET.DLL" Name="Enums.NET.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Enums.NET.dll" />
+                        <File Id="EXCELMAPPER.DLL" Name="ExcelMapper.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ExcelMapper.dll" />
+                        <File Id="HTMLAGILITYPACK.DLL" Name="HtmlAgilityPack.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\HtmlAgilityPack.dll" />
+                        <File Id="ICSHARPCODE.SHARPZIPLIB.DLL" Name="ICSharpCode.SharpZipLib.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.dll" />
+                        <File Id="MATHNET.NUMERICS.DLL" Name="MathNet.Numerics.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\MathNet.Numerics.dll" />
+                        <File Id="MICROSOFT.BCL.ASYNCINTERFACES.DLL" Name="Microsoft.Bcl.AsyncInterfaces.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll" />
+                        <File Id="MICROSOFT.IO.RECYCLABLEMEMORYSTREAM.DLL" Name="Microsoft.IO.RecyclableMemoryStream.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Microsoft.IO.RecyclableMemoryStream.dll" />
+                        <File Id="MICROSOFT.WINDOWSAPICODEPACK.DLL" Name="Microsoft.WindowsAPICodePack.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Microsoft.WindowsAPICodePack.dll" />
+                        <File Id="NEWTONSOFT.JSON.DLL" Name="Newtonsoft.Json.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Newtonsoft.Json.dll" />
+                        <File Id="NPOI.DLL" Name="NPOI.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\NPOI.dll" />
+                        <File Id="NPOI.OOXML.DLL" Name="NPOI.OOXML.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\NPOI.OOXML.dll" />
+                        <File Id="NPOI.OPENXML4NET.DLL" Name="NPOI.OpenXml4Net.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\NPOI.OpenXml4Net.dll" />
+                        <File Id="NPOI.OPENXMLFORMATS.DLL" Name="NPOI.OpenXmlFormats.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\NPOI.OpenXmlFormats.dll" />
+                        <File Id="SIXLABORS.FONTS.DLL" Name="SixLabors.Fonts.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\SixLabors.Fonts.dll" />
+                        <File Id="SIXLABORS.IMAGESHARP.DLL" Name="SixLabors.ImageSharp.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\SixLabors.ImageSharp.dll" />
+                        <File Id="SYSTEM.BUFFERS.DLL" Name="System.Buffers.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Buffers.dll" />
+                        <File Id="SYSTEM.MEMORY.DLL" Name="System.Memory.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Memory.dll" />
+                        <File Id="SYSTEM.NUMERICS.VECTORS.DLL" Name="System.Numerics.Vectors.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Numerics.Vectors.dll" />
+                        <File Id="SYSTEM.RUNTIME.COMPILERSERVICES.UNSAFE.DLL" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Runtime.CompilerServices.Unsafe.dll" />
+                        <File Id="SYSTEM.TEXT.ENCODING.CODEPAGES.DLL" Name="System.Text.Encoding.CodePages.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Text.Encoding.CodePages.dll" />
+                        <File Id="SYSTEM.TEXT.ENCODINGS.WEB.DLL" Name="System.Text.Encodings.Web.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Text.Encodings.Web.dll" />
+                        <File Id="SYSTEM.TEXT.JSON.DLL" Name="System.Text.Json.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Text.Json.dll" />
+                        <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.DLL" Name="System.Threading.Tasks.Extensions.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.dll" />
+                        <File Id="SYSTEM.VALUETUPLE.DLL" Name="System.ValueTuple.dll" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.ValueTuple.dll" />
+                        <File Id="ANGLESHARP.XML" Name="AngleSharp.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\AngleSharp.xml" />
+                        <File Id="BOUNCYCASTLE.CRYPTO.XML" Name="BouncyCastle.Crypto.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\BouncyCastle.Crypto.xml" />
+                        <File Id="ENUMS.NET.XML" Name="Enums.NET.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Enums.NET.xml" />
+                        <File Id="EXCELMAPPER.XML" Name="ExcelMapper.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ExcelMapper.xml" />
+                        <File Id="HTMLAGILITYPACK.XML" Name="HtmlAgilityPack.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\HtmlAgilityPack.xml" />
+                        <File Id="ICSHARPCODE.SHARPZIPLIB.XML" Name="ICSharpCode.SharpZipLib.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.xml" />
+                        <File Id="MATHNET.NUMERICS.XML" Name="MathNet.Numerics.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\MathNet.Numerics.xml" />
+                        <File Id="MICROSOFT.BCL.ASYNCINTERFACES.XML" Name="Microsoft.Bcl.AsyncInterfaces.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml" />
+                        <File Id="MICROSOFT.IO.RECYCLABLEMEMORYSTREAM.XML" Name="Microsoft.IO.RecyclableMemoryStream.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Microsoft.IO.RecyclableMemoryStream.xml" />
+                        <File Id="MICROSOFT.WINDOWSAPICODEPACK.XML" Name="Microsoft.WindowsAPICodePack.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Microsoft.WindowsAPICodePack.xml" />
+                        <File Id="NEWTONSOFT.JSON.XML" Name="Newtonsoft.Json.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Newtonsoft.Json.xml" />
+                        <File Id="NPOI.OOXML.XML" Name="NPOI.OOXML.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\NPOI.OOXML.xml" />
+                        <File Id="NPOI.OPENXML4NET.XML" Name="NPOI.OpenXml4Net.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\NPOI.OpenXml4Net.xml" />
+                        <File Id="NPOI.XML" Name="NPOI.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\NPOI.xml" />
+                        <File Id="SIXLABORS.FONTS.XML" Name="SixLabors.Fonts.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\SixLabors.Fonts.xml" />
+                        <File Id="SIXLABORS.IMAGESHARP.XML" Name="SixLabors.ImageSharp.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\SixLabors.ImageSharp.xml" />
+                        <File Id="SYSTEM.BUFFERS.XML" Name="System.Buffers.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Buffers.xml" />
+                        <File Id="SYSTEM.MEMORY.XML" Name="System.Memory.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Memory.xml" />
+                        <File Id="SYSTEM.NUMERICS.VECTORS.XML" Name="System.Numerics.Vectors.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Numerics.Vectors.xml" />
+                        <File Id="SYSTEM.RUNTIME.COMPILERSERVICES.UNSAFE.XML" Name="System.Runtime.CompilerServices.Unsafe.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Runtime.CompilerServices.Unsafe.xml" />
+                        <File Id="SYSTEM.TEXT.ENCODING.CODEPAGES.XML" Name="System.Text.Encoding.CodePages.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Text.Encoding.CodePages.xml" />
+                        <File Id="SYSTEM.TEXT.ENCODINGS.WEB.XML" Name="System.Text.Encodings.Web.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Text.Encodings.Web.xml" />
+                        <File Id="SYSTEM.TEXT.JSON.XML" Name="System.Text.Json.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Text.Json.xml" />
+                        <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.XML" Name="System.Threading.Tasks.Extensions.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.xml" />
+                        <File Id="SYSTEM.VALUETUPLE.XML" Name="System.ValueTuple.xml" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.ValueTuple.xml" />
+                        <File Id="DECODERS.DLL.CONFIG" Name="Decoders.dll.config" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\Decoders.dll.config" />
+                        <File Id="INVENTORYUPDATER.EXE.CONFIG" Name="InventoryUpdater.exe.config" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\InventoryUpdater.exe.config" />
+                        <File Id="NPOI.OPENXMLFORMATS.DLL.CONFIG" Name="NPOI.OpenXmlFormats.dll.config" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\NPOI.OpenXmlFormats.dll.config" />
+                        <File Id="SELLERSENSE.EXE.CONFIG" Name="SellerSense.exe.config" Source="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\SellerSense.exe.config" />
+                    </Component>
+                </Directory>
+            </Directory>
+            <Directory Id="DesktopFolder" />
+        </Directory>
+        <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+            <ComponentRef Id="SS" />
+        </Feature>
+
+        <UI />
+        <UIRef Id="WixUI_Minimal" />
+        <Icon Id="favicon.ico" SourceFile="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\Images\favicon.ico" />
+        <Icon Id="DesktopIcon.exe" SourceFile="C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\Images\favicon.ico" />
+		<Property Id="ARPPRODUCTICON" Value="favicon.ico" />
+    </Product>
+</Wix>

@@ -36,14 +36,6 @@ namespace Decoders
             if (nodes != null && nodes.Count > 0) 
                 result = nodes[0].InnerText.Replace("SUPC:", "").Trim();
             
-            //foreach (var item in nodes)
-            //{
-            //    //Image ig = null;
-            //    //if (item.Attributes["src"] != null)
-            //    //    ig = LoadImage(item.Attributes["src"].Value);
-            //    //if (ig != null)
-            //    //    imageList1.Images.Add(ig);//listView1.Items.Add(CampUrl"",)
-            //}
             return result;
         }
 

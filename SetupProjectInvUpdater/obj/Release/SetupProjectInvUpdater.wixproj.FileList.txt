@@ -1,7 +1,0 @@
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\cab1.cab
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\SetupProjectInvUpdater.msi
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\SetupProjectInvUpdater\bin\Release\SetupProjectInvUpdater.wixpdb
-obj\Release\Product.wixobj
-obj\Release\SetupProjectInvUpdater.wixproj.BindContentsFileListnull.txt
-obj\Release\SetupProjectInvUpdater.wixproj.BindOutputsFileListnull.txt
-obj\Release\SetupProjectInvUpdater.wixproj.BindBuiltOutputsFileListnull.txt

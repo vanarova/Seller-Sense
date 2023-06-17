@@ -1,24 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\varun\\source\\repos\\vanarova\\InvUpd\\ImgCompare\\ImgCompare.csproj": {}
+    "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgCompare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\varun\\source\\repos\\vanarova\\InvUpd\\ImgCompare\\ImgCompare.csproj": {
+    "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgCompare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\varun\\source\\repos\\vanarova\\InvUpd\\ImgCompare\\ImgCompare.csproj",
+        "projectUniqueName": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgCompare.csproj",
         "projectName": "ImgCompare",
-        "projectPath": "C:\\Users\\varun\\source\\repos\\vanarova\\InvUpd\\ImgCompare\\ImgCompare.csproj",
-        "packagesPath": "C:\\Users\\varun\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\varun\\source\\repos\\vanarova\\InvUpd\\ImgCompare\\obj\\",
+        "projectPath": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgCompare.csproj",
+        "packagesPath": "C:\\Users\\Arunav\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\varun\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Arunav\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net6.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -59,8 +62,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -72,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

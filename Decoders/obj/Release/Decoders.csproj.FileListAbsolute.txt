@@ -56,3 +56,12 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\obj\Re
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\obj\Release\Decoders.csproj.CopyComplete
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\obj\Release\Decoders.dll
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\obj\Release\Decoders.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\HtmlAgilityPack.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\Sawmill.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\Sawmill.HtmlAgilityPack.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\System.Collections.Immutable.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\HtmlAgilityPack.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\HtmlAgilityPack.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\Sawmill.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\Sawmill.HtmlAgilityPack.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\System.Collections.Immutable.xml
