@@ -1,1 +1,0 @@
-"C:\Program Files (x86)\WiX Toolset v3.11\bin\heat.exe" dir "..\InventoryUpdater\bin\Release" -gg -sfrag -template:fragment -out directory.wxs

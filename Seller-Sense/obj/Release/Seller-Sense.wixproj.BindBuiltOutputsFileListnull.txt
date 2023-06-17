@@ -1,2 +1,0 @@
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Seller-Sense\bin\Release\Seller_Sense.msi
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Seller-Sense\bin\Release\Seller_Sense.wixpdb
