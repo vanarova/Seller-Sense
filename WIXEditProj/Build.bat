@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\WixEdit\wix-3.0.5419.0\light.exe" -nologo "SS.wixobj" -out "Seller-Sense.msi"  -ext WixUIExtension
