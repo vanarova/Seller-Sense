@@ -29,42 +29,40 @@ namespace SellerSense
 
         private void SendEmail()
         {
-            try
-            {
-                SmtpClient smtpClient = new SmtpClient();
-                smtpClient.Port = Convert.ToInt16(txt_ServerPort.Text.Trim());
-                smtpClient.Host = txt_SMTP.Text.Trim();
-                smtpClient.EnableSsl = true;
-                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtpClient.UseDefaultCredentials = false;
-                smtpClient.Credentials = new NetworkCredential(txt_SenderEmail.Text.Trim(), txt_SenderPwd.Text.Trim());
 
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress(txt_SenderEmail.Text.Trim());
-                mailMessage.To.Add(txt_RecipentEmail.Text.Trim());
-                mailMessage.Subject = txt_Subject.Text.Trim();
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Body = txt_Body.Text.Trim();
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Port = Convert.ToInt16(txt_ServerPort.Text.Trim());
+            smtpClient.Host = txt_SMTP.Text.Trim();
+            smtpClient.EnableSsl = true;
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential(txt_SenderEmail.Text.Trim(), txt_SenderPwd.Text.Trim());
 
-                string fattach1; string fattach2;
-                ProjIO.CleanAndPrepareLocalAppData();
-                (fattach1, fattach2, _, _, _) = ProjIO.RenameAppendCompanyCodeAndCopyFilesToTempDir(
-                    ProjIO.GetCompany1MapFilePathAndCheckFileExists(),
-                    ProjIO.GetCompany2MapFilePathAndCheckFileExists());
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress(txt_SenderEmail.Text.Trim());
+            mailMessage.To.Add(txt_RecipentEmail.Text.Trim());
+            mailMessage.Subject = txt_Subject.Text.Trim();
+            mailMessage.IsBodyHtml = true;
+            mailMessage.Body = txt_Body.Text.Trim();
 
-                if (!string.IsNullOrEmpty(fattach1))
-                    mailMessage.Attachments.Add(new Attachment(fattach1));
-                if (!string.IsNullOrEmpty(fattach2))
-                    mailMessage.Attachments.Add(new Attachment(fattach2));
+            string fattach1; string fattach2;
+            ProjIO.CleanAndPrepareLocalAppData();
+            (fattach1, fattach2, _, _, _) = ProjIO.RenameAppendCompanyCodeAndCopyFilesToTempDir(
+                ProjIO.GetCompany1MapFilePathAndCheckFileExists(),
+                ProjIO.GetCompany2MapFilePathAndCheckFileExists());
 
-                //if(!string.IsNullOrEmpty(ProjIO.GetCompany1MapFilePathAndCheckFileExists()))
-                //    mailMessage.Attachments.Add(new Attachment(ProjIO.GetCompany1MapFilePathAndCheckFileExists()));
-                //if (!string.IsNullOrEmpty(ProjIO.GetCompany2MapFilePathAndCheckFileExists()))
-                //    mailMessage.Attachments.Add(new Attachment(ProjIO.GetCompany2MapFilePathAndCheckFileExists()));
+            if (!string.IsNullOrEmpty(fattach1))
+                mailMessage.Attachments.Add(new Attachment(fattach1));
+            if (!string.IsNullOrEmpty(fattach2))
+                mailMessage.Attachments.Add(new Attachment(fattach2));
 
-                smtpClient.Send(mailMessage);
-            }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            //if(!string.IsNullOrEmpty(ProjIO.GetCompany1MapFilePathAndCheckFileExists()))
+            //    mailMessage.Attachments.Add(new Attachment(ProjIO.GetCompany1MapFilePathAndCheckFileExists()));
+            //if (!string.IsNullOrEmpty(ProjIO.GetCompany2MapFilePathAndCheckFileExists()))
+            //    mailMessage.Attachments.Add(new Attachment(ProjIO.GetCompany2MapFilePathAndCheckFileExists()));
+
+            smtpClient.Send(mailMessage);
+
         }
 
     }

@@ -190,86 +190,58 @@ namespace SellerSense
 
         private void btn_invUpdate_Click(object sender, EventArgs e)
         {
-            try
-            {
-                pbarLoadForms.Visible = true;
+            
+            pbarLoadForms.Visible = true;
 
-                _companiesMgr._companies[0]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+            _companiesMgr._companies[0]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+            if (_companiesMgr._companies.Count > 1)
+                _companiesMgr._companies[1]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+            if (_companiesMgr._companies.Count > 2)
+                _companiesMgr._companies[2]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+            if (_companiesMgr._companies.Count > 3)
+                _companiesMgr._companies[3]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+            if (_companiesMgr._companies.Count > 4)
+                _companiesMgr._companies[4]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+
+
+            _companiesMgr._companies[0]._invUpdate.GetInvUpdateGridDataset(() =>
+            {
                 if (_companiesMgr._companies.Count > 1)
-                    _companiesMgr._companies[1]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
-                if (_companiesMgr._companies.Count > 2)
-                    _companiesMgr._companies[2]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
-                if (_companiesMgr._companies.Count > 3)
-                    _companiesMgr._companies[3]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
-                if (_companiesMgr._companies.Count > 4)
-                    _companiesMgr._companies[4]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
-
-
-                _companiesMgr._companies[0]._invUpdate.GetInvUpdateGridDataset(() =>
                 {
-                    if (_companiesMgr._companies.Count > 1)
+                    _companiesMgr._companies[1]._invUpdate.GetInvUpdateGridDataset(() =>
                     {
-                        _companiesMgr._companies[1]._invUpdate.GetInvUpdateGridDataset(() =>
+                        if (_companiesMgr._companies.Count > 2)
                         {
-                            if (_companiesMgr._companies.Count > 2)
+                            _companiesMgr._companies[2]._invUpdate.GetInvUpdateGridDataset(() =>
                             {
-                                _companiesMgr._companies[2]._invUpdate.GetInvUpdateGridDataset(() =>
+                                if (_companiesMgr._companies.Count > 2)
                                 {
-                                    if (_companiesMgr._companies.Count > 2)
+                                    _companiesMgr._companies[3]._invUpdate.GetInvUpdateGridDataset(() =>
                                     {
-                                        _companiesMgr._companies[3]._invUpdate.GetInvUpdateGridDataset(() =>
+                                        if (_companiesMgr._companies.Count > 3)
                                         {
-                                            if (_companiesMgr._companies.Count > 3)
+                                            _companiesMgr._companies[4]._invUpdate.GetInvUpdateGridDataset(() =>
                                             {
-                                                _companiesMgr._companies[4]._invUpdate.GetInvUpdateGridDataset(() =>
-                                                {
-                                                    DisplayInvForm();
-                                                });
-                                            }
-                                            else DisplayInvForm();
+                                                DisplayInvForm();
+                                            });
+                                        }
+                                        else DisplayInvForm();
 
-                                        });
-                                    }
-                                    else DisplayInvForm();
+                                    });
+                                }
+                                else DisplayInvForm();
 
-                                });
-                            }
-                            else DisplayInvForm();
+                            });
+                        }
+                        else DisplayInvForm();
 
-                        });
-                    }
-                    else DisplayInvForm();
-
-                });
-
+                    });
                 }
-            catch (Exception ex)
-            {
+                else DisplayInvForm();
 
-                MessageBox.Show(ex.Message, "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            });
 
-
-
-            //try
-            //{
-            //    pbarLoadForms.Visible = true;
-            //    _company.LoadInvDataFromLastSavedMap();
-            //    _company.GetInvUpdateGridDataset(() =>
-            //    {
-            //        InvUpdate mp = new InvUpdate(_company);
-            //        mp.MdiParent = this;
-            //        pbarLoadForms.Visible = !pbarLoadForms.Visible;
-            //        mp.Show();
-            //        mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
-            //        AdjustUI("SendWelcomeButtonToBack");
-            //    });
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message,"Error occurred",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            //}
-           
+            
         }
 
         private void Welcome_Load(object sender, EventArgs e)
@@ -326,7 +298,7 @@ namespace SellerSense
 
         private void btn_products_Click(object sender, EventArgs e)
         {
-
+            throw new ArgumentException();
         }
     }
 }

@@ -20,12 +20,7 @@ namespace SellerSense.Helper
             localappdata_sellersense = Path.Combine(Path.GetTempPath(), "Seller-Sense");
 
         }
-        //internal static void SaveEmailSettings(string senderEmail, string )
-        //{
-
-
-        //}
-
+     
 
         internal static string CleanAndPrepareLocalAppData()
         {
@@ -275,6 +270,71 @@ namespace SellerSense.Helper
             }
         }
 
+        internal static Task<string> ExportAllLogs(string selectedPath)
+        {
+            string companyCode1 = GetUserSetting(Constants.Company1Code);
+            string companyCode2 = GetUserSetting(Constants.Company2Code);
+            string companyCode3 = GetUserSetting(Constants.Company3Code);
+            string companyCode4 = GetUserSetting(Constants.Company4Code);
+            string workSpace = GetUserSetting(Constants.WorkspaceDir);
+            Guid uniqId = Guid.NewGuid();
+            string exportAllPath = Path.Combine(selectedPath, uniqId.ToString());
+            Directory.CreateDirectory(exportAllPath);
+
+            string tempDirPath = ProjIO.CleanAndPrepareLocalAppData();
+
+            return Task<string>.Run(() => {
+
+
+                //copy log files
+                if (!string.IsNullOrWhiteSpace(companyCode1))
+                {
+                    string localLogFileLocation = Path.Combine(workSpace, companyCode1, Constants.logFileName);
+                    string zipSrcDir = Path.Combine(tempDirPath, companyCode1); Directory.CreateDirectory(zipSrcDir);
+                    if (File.Exists(localLogFileLocation))
+                        File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                }
+
+                if (!string.IsNullOrWhiteSpace(companyCode2))
+                {
+                    string localLogFileLocation = Path.Combine(workSpace, companyCode2, Constants.logFileName);
+                    string zipSrcDir = Path.Combine(tempDirPath, companyCode2); Directory.CreateDirectory(zipSrcDir);
+                    if (File.Exists(localLogFileLocation))
+                        File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                }
+
+                if (!string.IsNullOrWhiteSpace(companyCode3))
+                {
+                    string localLogFileLocation = Path.Combine(workSpace, companyCode3, Constants.logFileName);
+                    string zipSrcDir = Path.Combine(tempDirPath, companyCode3); Directory.CreateDirectory(zipSrcDir);
+                    if (File.Exists(localLogFileLocation))
+                        File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                }
+
+                if (!string.IsNullOrWhiteSpace(companyCode4))
+                {
+                    string localLogFileLocation = Path.Combine(workSpace, companyCode4, Constants.logFileName);
+                    string zipSrcDir = Path.Combine(tempDirPath, companyCode4); Directory.CreateDirectory(zipSrcDir);
+                    if (File.Exists(localLogFileLocation))
+                        File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                }
+
+                
+                string globalLogFileLocation = Path.Combine(workSpace, Constants.logFileName);
+                if (File.Exists(globalLogFileLocation))
+                    File.Copy(globalLogFileLocation, Path.Combine(tempDirPath, "global" + Constants.logFileName));
+               
+
+                ZipFile.CreateFromDirectory(tempDirPath, Path.Combine(exportAllPath, "logs.zip"));
+                //File.Copy(Path.Combine(tempDirPath, "logs.zip"), Path.Combine(exportAllPath, "logs.zip"));
+                //FileExported();
+                
+                return Path.Combine(exportAllPath, "logs.zip");
+            });
+
+        }
+
+
         internal static Task ExportMap(string companyCode,string zipFileDir, 
             bool exportLog, bool exportImgs, bool exportSnapshots, Action sameNameFileExistsinTargetDir, Action FileExported)
         {
@@ -334,6 +394,26 @@ namespace SellerSense.Helper
             });
 
         }
+
+        //internal async static void ExportAllLogs(string mapCode1, string mapCode2, string mapCode3, string mapCode4, string mapCode5,
+        //   string selectedPath, bool exportLog, bool exportImgs, bool exportSnapshots, Action<string> FileExported)
+        //{
+        //    Guid uniqId = Guid.NewGuid();
+        //    string exportAllPath = Path.Combine(selectedPath, uniqId.ToString());
+        //    Directory.CreateDirectory(exportAllPath);
+        //    await ExportMap(mapCode1, exportAllPath,
+        //      exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+        //    await ExportMap(mapCode2, exportAllPath,
+        //      exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+        //    await ExportMap(mapCode3, exportAllPath,
+        //      exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+        //    await ExportMap(mapCode4, exportAllPath,
+        //      exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+        //    await ExportMap(mapCode5, exportAllPath,
+        //      exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+
+        //    FileExported(exportAllPath);
+        //}
 
         internal async static void ExportAllMaps(string mapCode1, string mapCode2, string mapCode3, string mapCode4, string mapCode5,
            string selectedPath, bool exportLog, bool exportImgs, bool exportSnapshots, Action<string> FileExported)

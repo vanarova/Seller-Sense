@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SellerSense.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,6 +52,28 @@ namespace SellerSense.Views
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                  string logDir =  await ProjIO.ExportAllLogs(folderBrowserDialog.SelectedPath);
+                    MessageBox.Show("Logs exported : " + logDir, "Info"
+                        , MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error exporting logs, Please contact/search support forum, to manually copy logs", "Error"
+                        ,MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+              
+
+            }
+            //ProjIO.ExportAllLogs()
         }
     }
 }

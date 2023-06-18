@@ -84,35 +84,23 @@ namespace SellerSense
 
         private void ImportMapFile()
         {
-            try
+            //throw new Exception("test");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Inv Map Files|*.json";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //throw new Exception("test");
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Inv Map Files|*.json";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                //FileInfo fi = new FileInfo(openFileDialog.FileName);
+                DirectoryInfo di = new DirectoryInfo(openFileDialog.FileName);
+                if (di.Parent.GetFiles().Count() > 1)
                 {
-                    //FileInfo fi = new FileInfo(openFileDialog.FileName);
-                    DirectoryInfo di = new DirectoryInfo(openFileDialog.FileName);
-                    if (di.Parent.GetFiles().Count() > 1)
-                    {
-                        MessageBox.Show("Map file directory is containing more then 1 file, Please create a new directory and place map file in it");
-                        return;
-
-                    }
-                    _company._mapping._map.SetLastSavedMapFileAndLoadMap(openFileDialog.FileName);
-                    _company._mapping.FillLoadedMapToGridDataset(() => { FillMapGrid(); });
+                    MessageBox.Show("Map file directory is containing more then 1 file, Please create a new directory and place map file in it");
+                    return;
 
                 }
-            }
-            catch (Exception ex) //TODO: [IMP] Add try/catch in all public functions/button events in this page and other pages
-            {
-                _logger.Log(ex.Message, Logger.LogLevel.error);
-                (new AlertBox("Error","Error occured for company:"
-                    + _company._name + ", For further assitance, Export error logs and contact support.")).ShowDialog();
+                _company._mapping._map.SetLastSavedMapFileAndLoadMap(openFileDialog.FileName);
+                _company._mapping.FillLoadedMapToGridDataset(() => { FillMapGrid(); });
 
             }
-
-
         }
 
         private void importInvCodesToolStripMenuItem_Click(object sender, EventArgs e)

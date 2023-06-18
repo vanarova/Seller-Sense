@@ -102,6 +102,12 @@
     <Compile Include="Views\AlertBox.Designer.cs">
       <DependentUpon>AlertBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductListing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProductListing.Designer.cs">
+      <DependentUpon>ProductListing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SetUp\EmailSetup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,7 +178,7 @@
     <Compile Include="Model\Map\M_Map.cs" />
     <Compile Include="Model\Inventories\MsoInventory\M_MsoInventory.cs" />
     <Compile Include="Model\Inventories\MsoInventory\M_MsoInventoryList.cs" />
-    <Compile Include="Model\ProjectMgr\ProjectMgr.cs" />
+    <Compile Include="Model\Product\ProjectMgr.cs" />
     <Compile Include="Model\Inventories\SpdInventory\M_SpdInventoryList.cs" />
     <Compile Include="Model\Inventories\SpdInventory\M_SpdInventory.cs" />
     <Compile Include="Admin.cs">
@@ -195,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AlertBox.resx">
       <DependentUpon>AlertBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductListing.resx">
+      <DependentUpon>ProductListing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SetUp\EmailSetup.resx">
       <DependentUpon>EmailSetup.cs</DependentUpon>

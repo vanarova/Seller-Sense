@@ -28,6 +28,8 @@ namespace Decoders
 
         public static string GetProductIdFromURL(string url)
         {
+            if (string.IsNullOrEmpty(url))
+                return default(string);
             string result = string.Empty;
             HtmlWeb web = new HtmlWeb();
 

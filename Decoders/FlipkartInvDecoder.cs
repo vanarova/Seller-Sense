@@ -25,6 +25,8 @@ namespace Decoders
 
         public static string GetProductIdFromURL(string url)
         {
+            if(string.IsNullOrEmpty(url))
+                return default(string);
             Uri myUri = new Uri(url);
             return HttpUtility.ParseQueryString(myUri.Query).Get("pid");
         }
