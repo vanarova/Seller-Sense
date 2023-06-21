@@ -267,6 +267,10 @@
       <Project>{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}</Project>
       <Name>Decoders</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ImageSearch\ImageSearch.csproj">
+      <Project>{469e5ab8-4f2d-4ba2-9423-70117ba1514a}</Project>
+      <Name>ImageSearch</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Docs\Diagram.bmp" />

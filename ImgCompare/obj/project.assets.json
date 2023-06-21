@@ -1567,9 +1567,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgCompare.csproj",
-      "projectName": "ImgCompare",
-      "projectPath": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgCompare.csproj",
+      "projectUniqueName": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgSearch.csproj",
+      "projectName": "ImgSearch",
+      "projectPath": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgSearch.csproj",
       "packagesPath": "C:\\Users\\Arunav\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\obj\\",
       "projectStyle": "PackageReference",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uz553I9hU0QN0XxxLMzLCBbjbvCn5Qx7WHY3m9sfl7pGwe0TYkJ2yARJd2kSS5xz8MtiTZqg6xaxwkitQwWobA==",
+  "dgSpecHash": "AHZHBatmKHNsdlcdkburC9ITJJcwZXU2V0YXwH0aVGjTpHNxOQ556lx3ZQAFRyM1BsCLP3eTlF+FmiW10tNR6A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgCompare.csproj",
+  "projectFilePath": "C:\\Users\\Arunav\\Documents\\_Project packs\\DotNet\\InventoryUpdater\\ImgCompare\\ImgSearch.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Arunav\\.nuget\\packages\\emgu.cv\\4.7.0.5276\\emgu.cv.4.7.0.5276.nupkg.sha512",
     "C:\\Users\\Arunav\\.nuget\\packages\\emgu.cv.runtime.windows\\4.7.0.5276\\emgu.cv.runtime.windows.4.7.0.5276.nupkg.sha512",

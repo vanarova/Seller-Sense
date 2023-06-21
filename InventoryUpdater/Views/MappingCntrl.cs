@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace SellerSense
 {
     public partial class MappingCntrl : UserControl
@@ -612,6 +613,14 @@ namespace SellerSense
                     r_item.Notes = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.notes].Value.ToString();
 
             }
+        }
+
+        private void toolStripMenuItemImgSearch_Click(object sender, EventArgs e)
+        {
+            ImageSearch.Search search = new ImageSearch.Search();
+            search.ShowDialog();
+
+
         }
 
         //private void toolStripMenuItemLinks_Click(object sender, EventArgs e)
