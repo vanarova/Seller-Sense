@@ -34,11 +34,13 @@
             this.btn_pasteImg = new System.Windows.Forms.Button();
             this.dataGridView_imgSearchResults = new System.Windows.Forms.DataGridView();
             this.btn_close = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.progressBar_imgSearch = new System.Windows.Forms.ProgressBar();
+            this.numericUpDown_threshold = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_imgSearchResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_threshold)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -53,7 +55,8 @@
             this.tableLayoutPanel1.Controls.Add(this.dataGridView_imgSearchResults, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btn_close, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.btn_pasteImg, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.progressBar1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.progressBar_imgSearch, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.numericUpDown_threshold, 2, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -74,6 +77,7 @@
             this.picBoxSrc.Location = new System.Drawing.Point(25, 17);
             this.picBoxSrc.Name = "picBoxSrc";
             this.picBoxSrc.Size = new System.Drawing.Size(310, 262);
+            this.picBoxSrc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxSrc.TabIndex = 0;
             this.picBoxSrc.TabStop = false;
             // 
@@ -124,13 +128,29 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // progressBar1
+            // progressBar_imgSearch
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(25, 385);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(310, 23);
-            this.progressBar1.TabIndex = 5;
+            this.progressBar_imgSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar_imgSearch.Location = new System.Drawing.Point(25, 385);
+            this.progressBar_imgSearch.MarqueeAnimationSpeed = 20;
+            this.progressBar_imgSearch.Name = "progressBar_imgSearch";
+            this.progressBar_imgSearch.Size = new System.Drawing.Size(310, 23);
+            this.progressBar_imgSearch.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar_imgSearch.TabIndex = 5;
+            // 
+            // numericUpDown_threshold
+            // 
+            this.numericUpDown_threshold.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.numericUpDown_threshold.DecimalPlaces = 1;
+            this.numericUpDown_threshold.Location = new System.Drawing.Point(681, 386);
+            this.numericUpDown_threshold.Name = "numericUpDown_threshold";
+            this.numericUpDown_threshold.Size = new System.Drawing.Size(91, 22);
+            this.numericUpDown_threshold.TabIndex = 6;
+            this.numericUpDown_threshold.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            65536});
             // 
             // Search
             // 
@@ -145,6 +165,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_imgSearchResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_threshold)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -157,6 +178,7 @@
         private System.Windows.Forms.Button btn_pasteImg;
         private System.Windows.Forms.DataGridView dataGridView_imgSearchResults;
         private System.Windows.Forms.Button btn_close;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progressBar_imgSearch;
+        private System.Windows.Forms.NumericUpDown numericUpDown_threshold;
     }
 }

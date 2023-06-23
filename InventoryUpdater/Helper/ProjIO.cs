@@ -235,15 +235,25 @@ namespace SellerSense.Helper
             return (false, string.Empty);
         }
 
+        internal static (bool, string) GetCompanyImageDirIfExist(string code)
+        {
+            (bool doExist, string mapDir) = GetCompanyMapDirIfExist(code);
+            if (doExist)
+                return (doExist, Path.Combine(mapDir, Constants.Imgs));
+            else
+                return (false, string.Empty);
+        }
 
-        //internal static void ImportMap1FileToLastSavedLocation(string fileName, string companyCode)
-        //{
-        //    string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
-        //        companyCode,Constants.MapFileName);
-        //    File.Copy(fileName, mapFileLocation);
-        //}
 
-        internal static void ImportMap(string fileName, string companyCode,Action SuggestUserUnSafeOperation, Func<string,bool> MapExists
+
+            //internal static void ImportMap1FileToLastSavedLocation(string fileName, string companyCode)
+            //{
+            //    string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+            //        companyCode,Constants.MapFileName);
+            //    File.Copy(fileName, mapFileLocation);
+            //}
+
+            internal static void ImportMap(string fileName, string companyCode,Action SuggestUserUnSafeOperation, Func<string,bool> MapExists
             ,Action<string> Result)
         {
             SuggestUserUnSafeOperation();//potential unsafe operation, close existing 

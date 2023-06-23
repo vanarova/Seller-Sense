@@ -617,10 +617,13 @@ namespace SellerSense
 
         private void toolStripMenuItemImgSearch_Click(object sender, EventArgs e)
         {
-            ImageSearch.Search search = new ImageSearch.Search();
-            search.ShowDialog();
+            (bool doExist, string imgDir) = ProjIO.GetCompanyImageDirIfExist(_company._code);
+            if (doExist)
+            {
+                ImageSearch.Search search = new ImageSearch.Search(imgDir);
+                search.ShowDialog();
 
-
+            }
         }
 
         //private void toolStripMenuItemLinks_Click(object sender, EventArgs e)

@@ -15,28 +15,40 @@ namespace ImageSearch
         public string _resultCode { get; set; }
         private string _searchPath;
         private List<Data> _dataList { get; set; }
+        //public List<string> _resultImages { get; set; }
 
         public Search(string searchPath)
         {
             _searchPath = searchPath;
+            //_thresholdV = thresholdV;
             InitializeComponent();
         }
         //TODO : Rename all controls in program : default control name_context  like: button_dosomething
-        private void Search_Load(object sender, EventArgs e)
+        private  async void Search_Load(object sender, EventArgs e)
         {
-            Image img = GetClipboardImage();
+            Bitmap img = GetClipboardImage();
             if (img != null)
             {
                 picBoxSrc.Image = img;
+                progressBar_imgSearch.Visible = true;
+                var progressHandle = new Progress<ImageSearchByImage.progressiveMatchList>();
+                progressHandle.ProgressChanged += (s, ex) => {
+                    DataGridViewRow dr = new DataGridViewRow();
+                    //dr.
+                    dataGridView_imgSearchResults.Rows.Add(false,ex.fileName, ex.Error);
+                };
+                await ImageSearchByImage.SearchDirForImages(_searchPath, img, numericUpDown_threshold.Value, progressHandle);
+                progressBar_imgSearch.Visible = false;
 
+                //_resultImages = await ImageSearchByImage.SearchDirForImages(_searchPath, img);
             }
         }
 
-        public System.Drawing.Image GetClipboardImage()
+        public Bitmap GetClipboardImage()
         {
-            System.Drawing.Image returnImage = null;
+            Bitmap returnImage = null;
             if (Clipboard.ContainsImage())
-                returnImage = Clipboard.GetImage();
+                returnImage = Clipboard.GetImage() as Bitmap;
             return returnImage;
         }
 

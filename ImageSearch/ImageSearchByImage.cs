@@ -13,48 +13,116 @@ namespace ImageSearch
 {
     public class ImageSearchByImage
     {
-        internal static Task<List<string>> SearchDirForImages(string searchPath, Image queryImage)
+        //internal static string CleanAndPrepareLocalAppData()
+        //{
+        //    string localappdata_sellersense = Path.Combine(Path.GetTempPath(), "Seller-Sense");
+        //    if (Directory.Exists(localappdata_sellersense))
+        //        Directory.Delete(localappdata_sellersense, true);
+        //    Directory.CreateDirectory(localappdata_sellersense);
+        //    return localappdata_sellersense;
+        //}
+        private static object _locker = new object();
+        public class progressiveMatchList
         {
-           return Task<List<string>>.Run(() =>
+            public progressiveMatchList(string fileName, string error)
             {
-                List<string> filePaths = new List<string>();
-                List<string> fileNames = new List<string>();
-                foreach (var item in Directory.GetFiles(searchPath))
-                {
-                    (Point x, Point y) = FindImage(queryImage, item);
-                    if (x != null && y != null)
-                        filePaths.Add(item);
-                }
-                foreach (var item in filePaths)
-                {
-                    fileNames.Add(Path.GetFileName(item));
-                }
-                return fileNames;
-            });
+                this.fileName = fileName;
+                this.Error = error;
+            }
+            public string fileName { get; set; }
+            public string Error { get; set; }
         }
 
-        internal static (Point, Point) FindImage(Image queryImage, string targetImagePath)
+
+        internal static Task SearchDirForImages(string searchPath, 
+            Bitmap queryImage, decimal thresholdV, IProgress<progressiveMatchList> progress)
         {
-            Bitmap bitmap = new Bitmap(queryImage);
+            return Task.Run(() =>
+             {
+                 //queryImage.MakeTransparent();
+                 string imagePath = Path.GetTempFileName();
+            queryImage.Save(imagePath);
+                 // List<string> filePaths = new List<string>();
+                 // List<string> fileNames = new List<string>();
+                 lock (_locker)
+                 {
+                     foreach (var item in Directory.GetFiles(searchPath))
+                     {
+                         try
+                         {
+                             (bool found, Point x, Point y) = FindImage(imagePath, item, thresholdV);
+                             if (found)
+                             { //filePaths.Add(item); }
+                                 progress.Report(new progressiveMatchList(item, string.Empty));
+                             }
+                         }
+                         catch (Exception ex)
+                         {
+                             progress.Report(new progressiveMatchList(string.Empty, ex.Message));
+                         }
+
+                     }
+                 }
+                //foreach (var item in filePaths)
+                //{
+                //    fileNames.Add(Path.GetFileName(item));
+                //}
+                 try
+                 {
+                     File.Delete(imagePath);
+                 }
+                 catch (Exception ex) { progress.Report(new progressiveMatchList(string.Empty, ex.Message)); }
+                //return fileNames;
+           });
+        }
+
+
+        //internal static Task<List<string>> SearchDirForImages(string searchPath, Image queryImage)
+        //{
+        //    return Task<List<string>>.Run(() =>
+        //    {
+        //        List<string> filePaths = new List<string>();
+        //        List<string> fileNames = new List<string>();
+        //        foreach (var item in Directory.GetFiles(searchPath))
+        //        {
+        //            (Point x, Point y) = FindImage(queryImage, item);
+        //            if (x != null && y != null)
+        //                filePaths.Add(item);
+        //        }
+        //        foreach (var item in filePaths)
+        //        {
+        //            fileNames.Add(Path.GetFileName(item));
+        //        }
+        //        return fileNames;
+        //    });
+        //}
+
+        internal static (bool, Point, Point) FindImage(string queryImagePath, string targetImagePath, decimal thresholdV)
+        {
+            //Bitmap bitmap = new Bitmap(queryImage);
             // Create a new Mat object
-            Mat mat = new Mat();
-            Mat grayMat = new Mat();
+            //OpenCvSharp.Size s = new OpenCvSharp.Size(queryImage.Width, queryImage.Height);   
+            //Mat mat = new Mat();
+            //Mat grayMat = new Mat();
+           
+            Mat grayMat = Cv2.ImRead(queryImagePath, ImreadModes.Grayscale);
+            //Bitmap bmp = new Bitmap(imagePath);
             // Convert the Bitmap to a Mat
-            BitmapConverter.ToMat(bitmap, mat);
-            Cv2.CvtColor(mat, grayMat, ColorConversionCodes.BGR2GRAY);
+            //BitmapConverter.ToMat(bmp, mat);
+            //Cv2.CvtColor(mat, grayMat, ColorConversionCodes.BGR2GRAY);
             //using (var queryImage = new Mat(queryImagePath, ImreadModes.Grayscale))
                 using (var targetImage = new Mat(targetImagePath, ImreadModes.Grayscale))
                 using(var result = new Mat())
             {
                 Cv2.MatchTemplate(targetImage, grayMat, result, TemplateMatchModes.CCoeffNormed);
                 Cv2.MinMaxLoc(result, out _, out double maxVal, out Point minLoc, out Point maxLoc);
-                CropImage(targetImagePath, maxLoc.X, maxLoc.Y, targetImage.Width - maxLoc.X, targetImage.Height - maxLoc.Y);
-                double threshold = 0.8;
-                if(maxVal >= threshold)
-                { return (minLoc, maxLoc); }
+                //CropImage(targetImagePath, maxLoc.X, maxLoc.Y, targetImage.Width - maxLoc.X, targetImage.Height - maxLoc.Y);
+                //decimal threshold = thresholdV;
+                if(maxVal >= Convert.ToDouble(thresholdV))
+                { return (true, minLoc, maxLoc); }
                 else
                 {
-                    return (default(Point), default(Point));
+                    return (false, default(Point), default(Point));
                 }
 
             }

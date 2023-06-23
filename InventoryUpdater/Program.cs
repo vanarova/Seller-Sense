@@ -24,15 +24,18 @@ namespace SellerSense
                 Application.SetCompatibleTextRenderingDefault(false);
 
                 // Add the event handler for handling UI thread exceptions to the event.
-                Application.ThreadException += new ThreadExceptionEventHandler(Form1_UIThreadException);
-              
+                if(!System.Diagnostics.Debugger.IsAttached)
+                    Application.ThreadException += new ThreadExceptionEventHandler(Form1_UIThreadException);
+
 
                 // Set the unhandled exception mode to force all Windows Forms errors
                 // to go through our handler.
-                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                if (!System.Diagnostics.Debugger.IsAttached)
+                    Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
                 // Add the event handler for handling non-UI thread exceptions to the event. 
-                AppDomain.CurrentDomain.UnhandledException += new
+                if (!System.Diagnostics.Debugger.IsAttached)
+                    AppDomain.CurrentDomain.UnhandledException += new
                 UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
                 //throw new InvalidOperationException("Testing");
