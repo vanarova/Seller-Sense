@@ -44,14 +44,16 @@ namespace SellerSense.ViewModelManager
             bg.WorkerReportsProgress = true;
             bg.DoWork += (sender, doWorkEventArgs) =>
             {
+                Dictionary<string,Image> imgs = Helper.ProjIO.LoadAllImagesAndDownSize75x75(_map._lastSavedMapImageDirectory);
                 _map._mapEntries.ForEach((x) =>
                 {
-                    Image img = null; Image timg = null;
-                    if (File.Exists(Path.Combine(_map._lastSavedMapImageDirectory, x.Image))) //TODO : Remove File IO code, already in ProjIO
-                    {
-                        img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.Image));
-                        timg = new Bitmap(img, new Size(75, 75));
-                    }
+                    Image timg = imgs.Where(i => Path.GetFileName(i.Key) == x.Image).FirstOrDefault().Value;
+                    //Image img = null; Image timg = null;
+                    //if (File.Exists(Path.Combine(_map._lastSavedMapImageDirectory, x.Image))) //TODO : Remove File IO code, already in ProjIO
+                    //{
+                    //    img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.Image));
+                    //    timg = new Bitmap(img, new Size(75, 75));
+                    //}
                     DataRow dr = ds.Tables[0].Rows.Add(timg, x.BaseCodeValue, x.Title, x.AmzCodeValue, x.FkCodeValue, x.SpdCodeValue, x.MsoCodeValue, x.Notes);
                 });
             };

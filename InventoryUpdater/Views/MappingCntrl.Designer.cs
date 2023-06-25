@@ -48,8 +48,8 @@
             this.toolStripMenuItemShowMsoInv = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTxtSearchBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.grdmapGrid = new System.Windows.Forms.DataGridView();
             this.toolStripMenuItemImgSearch = new System.Windows.Forms.ToolStripMenuItem();
+            this.grdmapGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdmapGrid)).BeginInit();
@@ -248,6 +248,15 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(14, 27);
             // 
+            // toolStripMenuItemImgSearch
+            // 
+            this.toolStripMenuItemImgSearch.BackColor = System.Drawing.Color.Cornsilk;
+            this.toolStripMenuItemImgSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripMenuItemImgSearch.Name = "toolStripMenuItemImgSearch";
+            this.toolStripMenuItemImgSearch.Size = new System.Drawing.Size(156, 27);
+            this.toolStripMenuItemImgSearch.Text = "Image Search ⛳";
+            this.toolStripMenuItemImgSearch.Click += new System.EventHandler(this.toolStripMenuItemImgSearch_Click);
+            // 
             // grdmapGrid
             // 
             this.grdmapGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -267,15 +276,6 @@
             this.grdmapGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdmapGrid_CellValueChanged);
             this.grdmapGrid.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.grdmapGrid_DataBindingComplete);
             this.grdmapGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdmapGrid_KeyDown);
-            // 
-            // toolStripMenuItemImgSearch
-            // 
-            this.toolStripMenuItemImgSearch.BackColor = System.Drawing.Color.Cornsilk;
-            this.toolStripMenuItemImgSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.toolStripMenuItemImgSearch.Name = "toolStripMenuItemImgSearch";
-            this.toolStripMenuItemImgSearch.Size = new System.Drawing.Size(156, 27);
-            this.toolStripMenuItemImgSearch.Text = "Image Search ⛳";
-            this.toolStripMenuItemImgSearch.Click += new System.EventHandler(this.toolStripMenuItemImgSearch_Click);
             // 
             // MappingCntrl
             // 

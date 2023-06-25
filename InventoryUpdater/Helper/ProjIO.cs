@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Compression;
+using System.Drawing;
 
 namespace SellerSense.Helper
 {
@@ -101,7 +102,26 @@ namespace SellerSense.Helper
             UserSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         }
 
+        internal static (string, Image) LoadImageAndDownSize75x75(string filePath)
+        {
+            using (var bmpTemp = new Bitmap(filePath))
+            {
+                return (filePath, new Bitmap(bmpTemp, new Size(75, 75)));
+            }
+        }
 
+        internal static Dictionary<string,Image> LoadAllImagesAndDownSize75x75(string dirPath)
+        {
+            Dictionary<string, Image> imgs = new Dictionary<string, Image>();
+            foreach (var item in Directory.GetFiles(dirPath))
+            {
+                using (var bmpTemp = new Bitmap(item))
+                {
+                    imgs.Add(item, new Bitmap(bmpTemp, new Size(75,75)));
+                }
+            }
+            return imgs;
+        }
 
 
         internal static string GetUserSetting(string key)

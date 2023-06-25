@@ -135,13 +135,19 @@ namespace SellerSense.ViewModelManager
             bg.WorkerReportsProgress = true;
             bg.DoWork += (sender, doWorkEventArgs) =>
             {
+                Dictionary<string, Image> imgs = Helper.ProjIO.LoadAllImagesAndDownSize75x75(_map._lastSavedMapImageDirectory);
+
                 _inv._invEntries.ForEach((x) =>
                 {
-                    Image img = null; Image timg = null;
-                    if (File.Exists(Path.Combine(_map._lastSavedMapImageDirectory, x.MapEntry.Image))) //TODO : move IO operation in another class
-                        img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.MapEntry.Image));
-                    if (img != null)
-                        timg = new Bitmap(img, new Size(75, 75));
+                    Image timg = imgs.Where(i => Path.GetFileName(i.Key) == x.MapEntry.Image).FirstOrDefault().Value;
+
+                    //Image img = null; Image timg = null;
+                    //if (File.Exists(Path.Combine(_map._lastSavedMapImageDirectory, x.MapEntry.Image))) //TODO : move IO operation in another class
+                    //    img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.MapEntry.Image));
+                    //if (img != null)
+                    //    timg = new Bitmap(img, new Size(75, 75));
+
+
                     ds.Tables[0].Rows.Add(timg,
                         x.MapEntry.BaseCodeValue,
                         x.MapEntry.Title,

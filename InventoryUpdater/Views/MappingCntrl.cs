@@ -492,16 +492,23 @@ namespace SellerSense
         {
             if (toolStripTxtSearchBox.Text.Length >= 2 && !toolStripTxtSearchBox.Text.Equals("Search Code"))
             {
-                for (int r = 0; r < grdmapGrid.Rows.Count; r++)
+                SearchDataGridForCode(toolStripTxtSearchBox.Text);
+            }
+        }
+
+        private void SearchDataGridForCode(string code)
+        {
+            if (string.IsNullOrEmpty(code))
+                return;
+            for (int r = 0; r < grdmapGrid.Rows.Count; r++)
+            {
+                if (grdmapGrid[1, r].Value != null && //#index dependent
+                                                      // code + title
+                    (grdmapGrid[1, r].Value.ToString().ToLower() + grdmapGrid[2, r].Value.ToString().ToLower()).
+                    Contains(code.ToLower()))
                 {
-                    if (grdmapGrid[1, r].Value !=null && //#index dependent
-                        // code + title
-                        (grdmapGrid[1, r].Value.ToString().ToLower() + grdmapGrid[2, r].Value.ToString().ToLower()).
-                        Contains(toolStripTxtSearchBox.Text.ToLower()))
-                    {
-                        grdmapGrid.FirstDisplayedScrollingRowIndex = r;
-                        break;
-                    }
+                    grdmapGrid.FirstDisplayedScrollingRowIndex = r;
+                    break;
                 }
             }
         }
@@ -543,6 +550,7 @@ namespace SellerSense
             grdmapGrid.Columns[Constants.MCols.fK_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             grdmapGrid.Columns[Constants.MCols.spd_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             grdmapGrid.Columns[Constants.MCols.mso_Code].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+            grdmapGrid.RowHeadersVisible = false;
         }
 
         private void toolStripTxtSearchBox_Click(object sender, EventArgs e)
@@ -621,6 +629,7 @@ namespace SellerSense
             if (doExist)
             {
                 ImageSearch.Search search = new ImageSearch.Search(imgDir);
+                search.FormClosed += (s, ev) => { SearchDataGridForCode(search._resultCode); };
                 search.ShowDialog();
 
             }

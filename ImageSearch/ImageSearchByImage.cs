@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Point = OpenCvSharp.Point; //TODO this this statement, use usings to shorten collections all over project.
 
@@ -35,21 +36,26 @@ namespace ImageSearch
 
 
         internal static Task SearchDirForImages(string searchPath, 
-            Bitmap queryImage, decimal thresholdV, IProgress<progressiveMatchList> progress)
+            Bitmap queryImage, decimal thresholdV, IProgress<progressiveMatchList> progress, CancellationToken cancellationToken)
         {
+            string imagePath = Path.GetTempFileName();
+            queryImage.Save(imagePath, System.Drawing.Imaging.ImageFormat.Png);
             return Task.Run(() =>
              {
                  //queryImage.MakeTransparent();
-                 string imagePath = Path.GetTempFileName();
-            queryImage.Save(imagePath);
+                 //var imagePath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+                 
+                //queryImage.Save(imagePath, System.Drawing.Imaging.ImageFormat.Png);
                  // List<string> filePaths = new List<string>();
                  // List<string> fileNames = new List<string>();
-                 lock (_locker)
-                 {
+                 //lock (_locker)
+                 //{
                      foreach (var item in Directory.GetFiles(searchPath))
                      {
                          try
                          {
+                            if (cancellationToken.IsCancellationRequested)
+                                return;
                              (bool found, Point x, Point y) = FindImage(imagePath, item, thresholdV);
                              if (found)
                              { //filePaths.Add(item); }
@@ -62,7 +68,7 @@ namespace ImageSearch
                          }
 
                      }
-                 }
+                // }
                 //foreach (var item in filePaths)
                 //{
                 //    fileNames.Add(Path.GetFileName(item));
@@ -97,6 +103,40 @@ namespace ImageSearch
         //    });
         //}
 
+
+
+
+        //Reduce by height or by width..keeping aspect ration same
+        static Mat MatImgResize(Mat img, bool byHeight, int desiredSize)
+        {
+            // Calculate the aspect ratio of the original image
+            double aspectRatio = (double)img.Width / img.Height;
+
+            // Calculate the new dimensions while maintaining the aspect ratio
+            int newWidth=0, newHeight=0;
+            if (!byHeight) // Landscape image
+            {
+                newWidth = desiredSize;
+                newHeight = (int)(desiredSize / aspectRatio);
+            }
+            if(byHeight) // Portrait or square image
+            {
+                newWidth = (int)(desiredSize * aspectRatio);
+                newHeight = desiredSize;
+            }
+
+            // Create a new Mat object for the resized image
+            Mat resizedMat = new Mat();
+
+            // Resize the image while maintaining the aspect ratio
+            Cv2.Resize(img, resizedMat, new OpenCvSharp.Size(newWidth, newHeight));
+
+            // Remember to release the resources when you're done with the Mat objects
+            img.Release();
+            return resizedMat;
+            //resizedMat.Release();
+        }
+
         internal static (bool, Point, Point) FindImage(string queryImagePath, string targetImagePath, decimal thresholdV)
         {
             //Bitmap bitmap = new Bitmap(queryImage);
@@ -105,7 +145,8 @@ namespace ImageSearch
             //Mat mat = new Mat();
             //Mat grayMat = new Mat();
            
-            Mat grayMat = Cv2.ImRead(queryImagePath, ImreadModes.Grayscale);
+            Mat queryImgMat = Cv2.ImRead(queryImagePath, ImreadModes.Grayscale);
+            
             //Bitmap bmp = new Bitmap(imagePath);
             // Convert the Bitmap to a Mat
             //BitmapConverter.ToMat(bmp, mat);
@@ -114,18 +155,28 @@ namespace ImageSearch
                 using (var targetImage = new Mat(targetImagePath, ImreadModes.Grayscale))
                 using(var result = new Mat())
             {
-                Cv2.MatchTemplate(targetImage, grayMat, result, TemplateMatchModes.CCoeffNormed);
+                //Below code, shorten qury image, if its size is bigger that target image, opencv desnt work if query img is large.
+                if (queryImgMat.Height > targetImage.Height)
+                    queryImgMat = MatImgResize(queryImgMat, byHeight: true, desiredSize: targetImage.Height); //TODO good practice, add names in function arguments, whenever func definition is not clear.
+                if (queryImgMat.Width > targetImage.Width)
+                    queryImgMat = MatImgResize(queryImgMat, byHeight: false, desiredSize: targetImage.Width);
+                if (queryImgMat.Height > targetImage.Height)
+                    queryImgMat = MatImgResize(queryImgMat, byHeight: true, desiredSize: targetImage.Height);
+
+                Cv2.MatchTemplate(targetImage, queryImgMat, result, TemplateMatchModes.CCoeffNormed);
                 Cv2.MinMaxLoc(result, out _, out double maxVal, out Point minLoc, out Point maxLoc);
                 //CropImage(targetImagePath, maxLoc.X, maxLoc.Y, targetImage.Width - maxLoc.X, targetImage.Height - maxLoc.Y);
                 //decimal threshold = thresholdV;
-                if(maxVal >= Convert.ToDouble(thresholdV))
+                result.Release();targetImage.Release();
+                if (maxVal >= Convert.ToDouble(thresholdV))
                 { return (true, minLoc, maxLoc); }
                 else
                 {
                     return (false, default(Point), default(Point));
                 }
-
+                
             }
+            
         }
 
         private static void SaveAsJpeg(Mat image, string outputPath)
