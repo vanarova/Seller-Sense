@@ -138,7 +138,22 @@
             // 
             this.numericUpDown_threshold.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.numericUpDown_threshold.DecimalPlaces = 1;
+            this.numericUpDown_threshold.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numericUpDown_threshold.Location = new System.Drawing.Point(682, 386);
+            this.numericUpDown_threshold.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            65536});
+            this.numericUpDown_threshold.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.numericUpDown_threshold.Name = "numericUpDown_threshold";
             this.numericUpDown_threshold.Size = new System.Drawing.Size(91, 22);
             this.numericUpDown_threshold.TabIndex = 6;
@@ -163,11 +178,11 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(356, 389);
+            this.label2.Location = new System.Drawing.Point(335, 389);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(290, 16);
+            this.label2.Size = new System.Drawing.Size(311, 16);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Adjust threshold (Higher value for strict search) : ";
+            this.label2.Text = "Adjust threshold 0-1 (Higher value for strict search) : ";
             // 
             // Search
             // 
