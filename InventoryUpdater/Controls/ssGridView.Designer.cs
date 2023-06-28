@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button_Back = new System.Windows.Forms.Button();
             this.button_Next = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView_data = new System.Windows.Forms.DataGridView();
             this.progressBar_Search = new System.Windows.Forms.ProgressBar();
             this.button_Last = new System.Windows.Forms.Button();
             this.button_First = new System.Windows.Forms.Button();
@@ -39,7 +39,7 @@
             this.textBox_Code = new System.Windows.Forms.TextBox();
             this.textBox_Title = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -57,7 +57,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView_data, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.progressBar_Search, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.button_Next, 7, 1);
             this.tableLayoutPanel1.Controls.Add(this.button_Back, 6, 1);
@@ -96,17 +96,17 @@
             this.button_Next.Text = "Next >";
             this.button_Next.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridView_data
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 9);
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 82;
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(1398, 912);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridView_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView_data, 9);
+            this.dataGridView_data.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_data.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView_data.Name = "dataGridView_data";
+            this.dataGridView_data.RowHeadersWidth = 82;
+            this.dataGridView_data.RowTemplate.Height = 33;
+            this.dataGridView_data.Size = new System.Drawing.Size(1398, 912);
+            this.dataGridView_data.TabIndex = 2;
             // 
             // progressBar_Search
             // 
@@ -173,7 +173,7 @@
             this.Size = new System.Drawing.Size(1404, 985);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -183,7 +183,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button_Back;
         private System.Windows.Forms.Button button_Next;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView_data;
         private System.Windows.Forms.ProgressBar progressBar_Search;
         private System.Windows.Forms.Button button_Last;
         private System.Windows.Forms.Button button_First;
