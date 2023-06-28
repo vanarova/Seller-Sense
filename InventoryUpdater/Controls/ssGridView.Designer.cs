@@ -1,0 +1,194 @@
+﻿namespace SellerSense.Controls
+{
+    partial class ssGridView
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.button_Back = new System.Windows.Forms.Button();
+            this.button_Next = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.progressBar_Search = new System.Windows.Forms.ProgressBar();
+            this.button_Last = new System.Windows.Forms.Button();
+            this.button_First = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_Code = new System.Windows.Forms.TextBox();
+            this.textBox_Title = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 9;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.progressBar_Search, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button_Next, 7, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button_Back, 6, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button_First, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_Code, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button_Last, 9, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_Title, 4, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1404, 985);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // button_Back
+            // 
+            this.button_Back.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button_Back.Location = new System.Drawing.Point(906, 921);
+            this.button_Back.Name = "button_Back";
+            this.button_Back.Size = new System.Drawing.Size(111, 61);
+            this.button_Back.TabIndex = 0;
+            this.button_Back.Text = "< Back";
+            this.button_Back.UseVisualStyleBackColor = true;
+            // 
+            // button_Next
+            // 
+            this.button_Next.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button_Next.Location = new System.Drawing.Point(1023, 921);
+            this.button_Next.Name = "button_Next";
+            this.button_Next.Size = new System.Drawing.Size(111, 61);
+            this.button_Next.TabIndex = 1;
+            this.button_Next.Text = "Next >";
+            this.button_Next.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 9);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 82;
+            this.dataGridView1.RowTemplate.Height = 33;
+            this.dataGridView1.Size = new System.Drawing.Size(1398, 912);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // progressBar_Search
+            // 
+            this.progressBar_Search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar_Search.Location = new System.Drawing.Point(3, 937);
+            this.progressBar_Search.Name = "progressBar_Search";
+            this.progressBar_Search.Size = new System.Drawing.Size(250, 28);
+            this.progressBar_Search.TabIndex = 3;
+            // 
+            // button_Last
+            // 
+            this.button_Last.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button_Last.Location = new System.Drawing.Point(1140, 921);
+            this.button_Last.Name = "button_Last";
+            this.button_Last.Size = new System.Drawing.Size(111, 61);
+            this.button_Last.TabIndex = 4;
+            this.button_Last.Text = "Last >>";
+            this.button_Last.UseVisualStyleBackColor = true;
+            // 
+            // button_First
+            // 
+            this.button_First.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button_First.Location = new System.Drawing.Point(789, 921);
+            this.button_First.Name = "button_First";
+            this.button_First.Size = new System.Drawing.Size(111, 61);
+            this.button_First.TabIndex = 5;
+            this.button_First.Text = "<< First";
+            this.button_First.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(279, 939);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 25);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Search :";
+            // 
+            // textBox_Code
+            // 
+            this.textBox_Code.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_Code.Location = new System.Drawing.Point(377, 936);
+            this.textBox_Code.Name = "textBox_Code";
+            this.textBox_Code.Size = new System.Drawing.Size(200, 31);
+            this.textBox_Code.TabIndex = 7;
+            this.textBox_Code.Text = "Code";
+            // 
+            // textBox_Title
+            // 
+            this.textBox_Title.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_Title.Location = new System.Drawing.Point(583, 936);
+            this.textBox_Title.Name = "textBox_Title";
+            this.textBox_Title.Size = new System.Drawing.Size(200, 31);
+            this.textBox_Title.TabIndex = 8;
+            this.textBox_Title.Text = "Title/Name";
+            // 
+            // ssGridView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Name = "ssGridView";
+            this.Size = new System.Drawing.Size(1404, 985);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button button_Back;
+        private System.Windows.Forms.Button button_Next;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ProgressBar progressBar_Search;
+        private System.Windows.Forms.Button button_Last;
+        private System.Windows.Forms.Button button_First;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_Code;
+        private System.Windows.Forms.TextBox textBox_Title;
+    }
+}

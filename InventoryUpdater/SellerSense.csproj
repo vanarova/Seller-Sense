@@ -97,6 +97,12 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ssGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ssGridView.Designer.cs">
+      <DependentUpon>ssGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Views\AlertBox.cs">
@@ -201,6 +207,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ssGridView.resx">
+      <DependentUpon>ssGridView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AlertBox.resx">
       <DependentUpon>AlertBox.cs</DependentUpon>
