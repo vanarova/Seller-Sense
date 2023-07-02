@@ -71,13 +71,18 @@ namespace SellerSense
             public const string spd_Code = "Spd_Code";
             public const string mso_Code = "Mso_Code";
 
-
-
-
-            //ds.Tables[0].Columns.Add("Amazon_Code");
-            //ds.Tables[0].Columns.Add("FK_Code");
-            //ds.Tables[0].Columns.Add("Spd_Code");
-            //ds.Tables[0].Columns.Add("Mso_Code");
         }
+
+        public struct PCols
+        {
+            public const string AmazonCode = "AmazonCode";
+            public const string FlipkartCode = "FlipkartCode";
+            public const string SnapDealCode = "SnapDealCode";
+            public const string MeeshoCode = "MeeshoCode";
+            public const string BaseCodeValue = "BaseCodeValue";
+
+        }
+
+
     }
 }

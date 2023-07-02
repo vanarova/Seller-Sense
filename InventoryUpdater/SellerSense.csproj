@@ -97,12 +97,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ssGridView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\ssGridView.Designer.cs">
-      <DependentUpon>ssGridView.cs</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModelManager\VM_ProductListing.cs" />
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Views\AlertBox.cs">
@@ -111,10 +106,16 @@
     <Compile Include="Views\AlertBox.Designer.cs">
       <DependentUpon>AlertBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProductListing.cs">
+    <Compile Include="Views\Products\ProductCntrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Products\ProductCntrl.Designer.cs">
+      <DependentUpon>ProductCntrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductListing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ProductListing.Designer.cs">
+    <Compile Include="Views\Products\ProductListing.Designer.cs">
       <DependentUpon>ProductListing.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SetUp\EmailSetup.cs">
@@ -139,38 +140,38 @@
     <Compile Include="Views\SetUp\ExportProject.Designer.cs">
       <DependentUpon>ExportProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\InvUpdateCntrl.cs">
+    <Compile Include="Views\InvUpdate\InvUpdateCntrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\InvUpdateCntrl.Designer.cs">
+    <Compile Include="Views\InvUpdate\InvUpdateCntrl.Designer.cs">
       <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModelManager\VM_Companies.cs" />
     <Compile Include="ViewModelManager\VM_Company.cs" />
     <Compile Include="Helper\ProjIO.cs" />
     <Compile Include="Helper\HTMLToJSON.cs" />
-    <Compile Include="Views\InvFiller.cs">
+    <Compile Include="Views\InvUpdate\InvFiller.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\InvFiller.Designer.cs">
+    <Compile Include="Views\InvUpdate\InvFiller.Designer.cs">
       <DependentUpon>InvFiller.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\InvUpdate.cs">
+    <Compile Include="Views\InvUpdate\InvUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\InvUpdate.Designer.cs">
+    <Compile Include="Views\InvUpdate\InvUpdate.Designer.cs">
       <DependentUpon>InvUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Mapping.cs">
+    <Compile Include="Views\Mapping\Mapping.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Mapping.Designer.cs">
+    <Compile Include="Views\Mapping\Mapping.Designer.cs">
       <DependentUpon>Mapping.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MappingCntrl.cs">
+    <Compile Include="Views\Mapping\MappingCntrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\MappingCntrl.Designer.cs">
+    <Compile Include="Views\Mapping\MappingCntrl.Designer.cs">
       <DependentUpon>MappingCntrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Inventories\AmzInventory\M_AmzInventoryList.cs" />
@@ -187,7 +188,7 @@
     <Compile Include="Model\Map\M_Map.cs" />
     <Compile Include="Model\Inventories\MsoInventory\M_MsoInventory.cs" />
     <Compile Include="Model\Inventories\MsoInventory\M_MsoInventoryList.cs" />
-    <Compile Include="Model\Product\ProjectMgr.cs" />
+    <Compile Include="Model\Product\M_Products.cs" />
     <Compile Include="Model\Inventories\SpdInventory\M_SpdInventoryList.cs" />
     <Compile Include="Model\Inventories\SpdInventory\M_SpdInventory.cs" />
     <Compile Include="Admin.cs">
@@ -208,13 +209,13 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ssGridView.resx">
-      <DependentUpon>ssGridView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\AlertBox.resx">
       <DependentUpon>AlertBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProductListing.resx">
+    <EmbeddedResource Include="Views\Products\ProductCntrl.resx">
+      <DependentUpon>ProductCntrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Products\ProductListing.resx">
       <DependentUpon>ProductListing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SetUp\EmailSetup.resx">
@@ -226,19 +227,19 @@
     <EmbeddedResource Include="Views\SetUp\SetUp.resx">
       <DependentUpon>SetUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\InvFiller.resx">
+    <EmbeddedResource Include="Views\InvUpdate\InvFiller.resx">
       <DependentUpon>InvFiller.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\InvUpdate.resx">
+    <EmbeddedResource Include="Views\InvUpdate\InvUpdate.resx">
       <DependentUpon>InvUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\InvUpdateCntrl.resx">
+    <EmbeddedResource Include="Views\InvUpdate\InvUpdateCntrl.resx">
       <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Mapping.resx">
+    <EmbeddedResource Include="Views\Mapping\Mapping.resx">
       <DependentUpon>Mapping.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\MappingCntrl.resx">
+    <EmbeddedResource Include="Views\Mapping\MappingCntrl.resx">
       <DependentUpon>MappingCntrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
@@ -273,7 +274,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Controls\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Decoders\Decoders.csproj">
       <Project>{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}</Project>
@@ -282,6 +285,10 @@
     <ProjectReference Include="..\ImageSearch\ImageSearch.csproj">
       <Project>{469e5ab8-4f2d-4ba2-9423-70117ba1514a}</Project>
       <Name>ImageSearch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ssViewControls\ssViewControls.csproj">
+      <Project>{bf6792b9-aa6f-45e2-b88f-70cb77472b6b}</Project>
+      <Name>ssViewControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

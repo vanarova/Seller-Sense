@@ -635,55 +635,6 @@ namespace SellerSense
             }
         }
 
-        //private void toolStripMenuItemLinks_Click(object sender, EventArgs e)
-        //{
-        //    _convertCodesToLinks = !_convertCodesToLinks;
-        //    if (_convertCodesToLinks)
-        //    { toolStripMenuItemLinks.ForeColor = Color.Black;  }
-        //    else
-        //    { toolStripMenuItemLinks.ForeColor = Color.Blue; }
-
-        //}
-
-
-        //private void toolStripMenuItemShowMsoInv_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void toolStripMenuItemShowSpdInv_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void toolStripMenuItemShowFkInv_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void toolStripMenuItemShowAmzInv_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void importSnapdealInvToolStripMenuItem_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void importMeeshoInvToolStripMenuItem_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void importFlipkartInvToolStripMenuItem_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void importAmazonInvFileToolStripMenuItem1_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
+       
     }
 }

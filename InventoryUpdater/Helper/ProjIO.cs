@@ -123,6 +123,22 @@ namespace SellerSense.Helper
             return imgs;
         }
 
+        internal static Task<Dictionary<string,Image>> LoadAllImagesAndDownSize75x75Async(string dirPath)
+        {
+           return Task<Dictionary<string, Image>>.Run(() =>
+            {
+                Dictionary<string, Image> imgs = new Dictionary<string, Image>();
+                foreach (var item in Directory.GetFiles(dirPath))
+                {
+                    using (var bmpTemp = new Bitmap(item))
+                    {
+                        imgs.Add(Path.GetFileName(item), new Bitmap(bmpTemp, new Size(75, 75)));
+                    }
+                }
+                return imgs;
+            });
+        }
+
 
         internal static string GetUserSetting(string key)
         {

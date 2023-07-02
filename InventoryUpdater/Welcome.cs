@@ -79,61 +79,7 @@ namespace SellerSense
                 });
 
 
-                //for (int i = 0; i < _companiesMgr._companies.Count; i++)
-                //{
-                //    _companiesMgr._companies[i].FillLoadedMapToGridDataset(() => {
-                //        if(_companiesMgr._companies[i+1] == null)
-                //        {
-                //            Mapping mp = new Mapping(_companiesMgr);
-                //            mp.MdiParent = this;
-                //            pbarLoadForms.Visible = false;
-                //            mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
-                //            mp.Show();
-
-                //            AdjustUI("SendWelcomeButtonToBack");
-                //        }
-
-                //    });
-                //}
-
-
-                //foreach (var company in _companiesMgr._companies)
-                //{
-                //    company.FillLoadedMapToGridDataset(() => { 
-                    
-                    
-                //    });
-                //}
-
-                //Mapping mp = new Mapping(_companiesMgr);
-                //mp.MdiParent = this;
-                //pbarLoadForms.Visible = false;
-                //mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
-                //mp.Show();
-
-                //AdjustUI("SendWelcomeButtonToBack");
-
-
-
-                //Load first company
-                //_companies._companies[0].FillLoadedMapToGridDataset(() =>
-                //{
-                //    List<MappingCntrl> mpc = new List<MappingCntrl>();
-                //    mpc.Add(new MappingCntrl(_companies._companies[0])); //test
-                //    Mapping mp = new Mapping(mpc, _companies);
-                //    mp.MdiParent = this;
-                //    pbarLoadForms.Visible = false;
-                //    mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
-                //    mp.Show();
-
-                //    AdjustUI("SendWelcomeButtonToBack");
-                //});
-                
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+              
 
         }
 
@@ -141,6 +87,18 @@ namespace SellerSense
         private void DisplayMapForm()
         {
             Mapping mp = new Mapping(_companiesMgr);
+            mp.MdiParent = this;
+            pbarLoadForms.Visible = false;
+            mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+            mp.Show();
+
+            AdjustUI("SendWelcomeButtonToBack");
+        }
+
+
+        private void DisplayProductForm()
+        {
+            ProductListing mp = new ProductListing(_companiesMgr);
             mp.MdiParent = this;
             pbarLoadForms.Visible = false;
             mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
@@ -296,9 +254,61 @@ namespace SellerSense
             c.Show();
         }
 
-        private void btn_products_Click(object sender, EventArgs e)
+        private async void btn_products_Click(object sender, EventArgs e)
         {
-            throw new ArgumentException();
+           
+            pbarLoadForms.Visible = true;
+
+            //load images for all companies async
+            if (_companiesMgr._companies[0]._images == null)
+            { var imgs = await _companiesMgr._companies[0].LoadImages(); 
+                _companiesMgr._companies[0]._products.AssignImages(imgs); 
+            }
+            if (_companiesMgr._companies[1]._images == null)
+            {
+                var imgs = await _companiesMgr._companies[1].LoadImages();
+                _companiesMgr._companies[1]._products.AssignImages(imgs);
+            }
+            DisplayProductForm();
+
+            //Load data one after another async fashion..at the end display form.
+            //_companiesMgr._companies[0]._mapping.FillLoadedMapToGridDataset(() => {
+            //    if (_companiesMgr._companies.Count > 1)
+            //    {
+            //        _companiesMgr._companies[1]._mapping.FillLoadedMapToGridDataset(() => {
+            //            if (_companiesMgr._companies.Count > 2)
+            //            {
+            //                _companiesMgr._companies[2]._mapping.FillLoadedMapToGridDataset(() => {
+            //                    if (_companiesMgr._companies.Count > 3)
+            //                    {
+
+            //                        _companiesMgr._companies[3]._mapping.FillLoadedMapToGridDataset(() => {
+            //                            if (_companiesMgr._companies.Count > 4)
+            //                            {
+            //                                _companiesMgr._companies[4]._mapping.FillLoadedMapToGridDataset(() => {
+            //                                    //max count reached, 5th company
+            //                                    DisplayProductForm();
+
+            //                                });
+
+            //                            }
+            //                            else
+            //                                DisplayProductForm();
+            //                        });
+            //                    }
+            //                    else
+            //                        DisplayProductForm();
+            //                });
+
+            //            }
+            //            else
+            //                DisplayProductForm();
+            //        });
+            //    }
+            //    else
+            //        DisplayProductForm();
+            //});
+
         }
     }
 }

@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace SellerSense
 {
-    internal partial class ProjectListing : Form
+    internal partial class ProductListing : Form
     {
         private ViewModelManager.VM_Companies _companiesMgr;
 
-        private List<InvUpdateCntrl> _invUpdateCntrlList;
+        private List<ProductCntrl> _productCntrlList;
 
 
-        public ProjectListing(ViewModelManager.VM_Companies companies)
+        public ProductListing(ViewModelManager.VM_Companies companies)
         {
             InitializeComponent();
             _companiesMgr = companies;
@@ -30,16 +30,16 @@ namespace SellerSense
         private void CreateTabControls()
         {
             tabControl1.TabPages.Clear(); int i = 0;
-            _invUpdateCntrlList = new List<InvUpdateCntrl>();
+            _productCntrlList = new List<ProductCntrl>();
 
             foreach (var company in _companiesMgr._companies)
             {
                 if (company != null)
                 {
                     tabControl1.TabPages.Add(company._name);
-                    _invUpdateCntrlList.Add(new InvUpdateCntrl(company));
-                    _invUpdateCntrlList[i].Dock = DockStyle.Fill;
-                    tabControl1.TabPages[i].Controls.Add(_invUpdateCntrlList[i]);
+                    _productCntrlList.Add(new ProductCntrl(company));
+                    _productCntrlList[i].Dock = DockStyle.Fill;
+                    tabControl1.TabPages[i].Controls.Add(_productCntrlList[i]);
                     i++;
                 }
             }
@@ -49,6 +49,8 @@ namespace SellerSense
         {
             
         }
+
+        
 
     }
 }
