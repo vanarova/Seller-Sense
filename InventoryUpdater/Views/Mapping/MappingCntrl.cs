@@ -57,20 +57,6 @@ namespace SellerSense
         {
             AdjustUI("OnLoad", sender, e);
 
-            //if (string.IsNullOrEmpty(_driver._map._lastSavedMapFilePath))
-            //{
-            //    MessageBox.Show("No last saved Map file found, please import Map data");
-            //    ImportMapFile();
-            //}
-            //fileStrip.ContextMenu.MergeMenu(this.ParentForm.Menu);
-
-
-            //if (_company._code == "cratialc_PKVV")
-            //    fileStrip.Items[0].Text = fileStrip.Items[0].Text + "_CC";
-            //else
-            //    fileStrip.Items[0].Text = fileStrip.Items[0].Text.Replace("_HE", "");
-            //try
-            //{
                 FillMapGrid();
            
         }

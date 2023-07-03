@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SellerSense.ViewModelManager
 {
@@ -39,6 +40,30 @@ namespace SellerSense.ViewModelManager
         internal void DataGridDataBindingComplete(System.Windows.Forms.DataGridView gridView)
         {
             SetHyperlinks(gridView);
+            AddEditButton(gridView);
+        }
+
+        private void AddEditButton(DataGridView gridView)
+        {
+            Padding newPadding = new Padding(2, 30, 2, 20);
+            FontFamily fontFamily = new FontFamily("Segoe UI");
+            Font font = new Font(
+               fontFamily,
+               10,
+               FontStyle.Regular,
+               GraphicsUnit.Point);
+            DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+            editButtonColumn.Name = "Edit";
+            editButtonColumn.Text = "\uD83D\uDD8D";// "\u270E"; //"\u2713";
+            editButtonColumn.UseColumnTextForButtonValue = true;
+            editButtonColumn.Width = 40;
+            editButtonColumn.DefaultCellStyle.Font = font;
+            editButtonColumn.DefaultCellStyle.Padding = newPadding;
+            int columnIndex = 0;
+            if (gridView.Columns["Edit"] == null)
+            {
+                gridView.Columns.Insert(columnIndex, editButtonColumn);
+            }
         }
 
         private void SetHyperlinks(System.Windows.Forms.DataGridView gridView)

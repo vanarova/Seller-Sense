@@ -97,7 +97,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewModelManager\VM_ProductListing.cs" />
+    <Compile Include="ViewManager\VM_ProductListing.cs" />
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Views\AlertBox.cs">
@@ -132,8 +132,8 @@
       <DependentUpon>SetUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
-    <Compile Include="ViewModelManager\VM_Map.cs" />
-    <Compile Include="ViewModelManager\VM_InvUpdate.cs" />
+    <Compile Include="ViewManager\VM_Map.cs" />
+    <Compile Include="ViewManager\VM_InvUpdate.cs" />
     <Compile Include="Views\SetUp\ExportProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,8 +146,8 @@
     <Compile Include="Views\InvUpdate\InvUpdateCntrl.Designer.cs">
       <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewModelManager\VM_Companies.cs" />
-    <Compile Include="ViewModelManager\VM_Company.cs" />
+    <Compile Include="ViewManager\VM_Companies.cs" />
+    <Compile Include="ViewManager\VM_Company.cs" />
     <Compile Include="Helper\ProjIO.cs" />
     <Compile Include="Helper\HTMLToJSON.cs" />
     <Compile Include="Views\InvUpdate\InvFiller.cs">
@@ -197,7 +197,7 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewModelManager\VM_Inventories.cs" />
+    <Compile Include="ViewManager\VM_Inventories.cs" />
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
