@@ -197,7 +197,7 @@ namespace SellerSense
             if (inf.SelectedID != null && !string.IsNullOrEmpty(inf.SelectedID))
             {
                 grdmapGrid.SelectedCells[0].Value = inf.SelectedID;
-                _company._mapping._map._mapEntries[grdmapGrid.SelectedCells[0].RowIndex].AmzCodeValue = inf.SelectedID;
+                _company._mapping._map._productEntries[grdmapGrid.SelectedCells[0].RowIndex].AmazonCode = inf.SelectedID;
                 grdmapGrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
             }
         }
@@ -332,7 +332,7 @@ namespace SellerSense
         {
             try
             {
-                M_Map.ConvertJSONHttpImagesToLocalImages();
+                M_Product.ConvertJSONHttpImagesToLocalImages();
             }
             catch (Exception)
             {
@@ -458,7 +458,7 @@ namespace SellerSense
         private void grdmapGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             //find selected row's code
-            var entry = _company._mapping._map._mapEntries.Find(x => x.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.MCols.Code].Value.ToString());
+            var entry = _company._mapping._map._productEntries.Find(x => x.InHouseCode == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.MCols.Code].Value.ToString());
             entry.Notes = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.MCols.notes].Value.ToString();
             entry.Title = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.MCols.Title].Value.ToString();
         }
@@ -572,16 +572,16 @@ namespace SellerSense
                 if (amzCol || spdCol || fkCol || msoCol || titleCol)
                 {
                     grdmapGrid.SelectedCells[0].Value = string.Empty;
-                    M_Map.MapEntry r_item = _company._mapping._map._mapEntries.FirstOrDefault
-                       (it => it.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
+                    M_Product.ProductEntry r_item = _company._mapping._map._productEntries.FirstOrDefault
+                       (it => it.InHouseCode == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
                     if (amzCol)
-                        r_item.AmzCodeValue = String.Empty;
+                        r_item.AmazonCode = String.Empty;
                     if (spdCol)
-                        r_item.SpdCodeValue = String.Empty;
+                        r_item.SnapdealCode = String.Empty;
                     if(fkCol)
-                        r_item.FkCodeValue = String.Empty;
+                        r_item.FlipkartCode = String.Empty;
                     if (msoCol)
-                        r_item.MsoCodeValue = String.Empty;
+                        r_item.MeeshoCode = String.Empty;
                     if (titleCol)
                         r_item.Title = String.Empty;
                 }
@@ -593,16 +593,16 @@ namespace SellerSense
         {
             if (grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.ICols.Title)
             {
-                M_Map.MapEntry r_item = _company._mapping._map._mapEntries.FirstOrDefault
-                    (it => it.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
+                M_Product.ProductEntry r_item = _company._mapping._map._productEntries.FirstOrDefault
+                    (it => it.InHouseCode == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
                 if (r_item != null)
                     r_item.Title = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Title].Value.ToString();
 
             }
             if (grdmapGrid.SelectedCells[0].OwningColumn.Name == Constants.ICols.notes)
             {
-                M_Map.MapEntry r_item = _company._mapping._map._mapEntries.FirstOrDefault
-                    (it => it.BaseCodeValue == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
+                M_Product.ProductEntry r_item = _company._mapping._map._productEntries.FirstOrDefault
+                    (it => it.InHouseCode == grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
                 if (r_item != null)
                     r_item.Notes = grdmapGrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.notes].Value.ToString();
 

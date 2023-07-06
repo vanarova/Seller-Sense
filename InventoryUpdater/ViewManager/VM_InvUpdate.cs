@@ -16,9 +16,9 @@ namespace SellerSense.ViewModelManager
     {
         internal VM_Inventories _inventories { get; set; }
         internal M_InvUpdate _inv { get; set; }
-        internal M_Map _map { get; set; }
+        internal M_Product _map { get; set; }
         internal DataSet _invUpdateGridData { get; set; }
-        public VM_InvUpdate(VM_Inventories inventories, M_Map map)
+        public VM_InvUpdate(VM_Inventories inventories, M_Product map)
         {
             _inventories = inventories;
             _map = map;
@@ -41,7 +41,7 @@ namespace SellerSense.ViewModelManager
             //var predicate = new Predicate<string>(pairNumber);
             foreach (var invItem in _inv._invEntries)
             {
-                var amzInvItem = amzInvList.Find(amz => amz.asin == invItem.MapEntry.AmzCodeValue);
+                var amzInvItem = amzInvList.Find(amz => amz.asin == invItem.MapEntry.AmazonCode);
                 if (amzInvItem != null)
                 {
                     invItem.AmzSystemInv = Convert.ToInt16(amzInvItem.systemQuantity);
@@ -58,7 +58,7 @@ namespace SellerSense.ViewModelManager
             //var predicate = new Predicate<string>(pairNumber);
             foreach (var invItem in _inv._invEntries)
             {
-                var fkInvItem = fkInvList.Find(fk => fk.fsn == invItem.MapEntry.FkCodeValue);
+                var fkInvItem = fkInvList.Find(fk => fk.fsn == invItem.MapEntry.FlipkartCode);
                 if (fkInvItem != null)
                 {
                     invItem.FkSystemInv = Convert.ToInt16(fkInvItem.systemQuantity);
@@ -75,7 +75,7 @@ namespace SellerSense.ViewModelManager
             //var predicate = new Predicate<string>(pairNumber);
             foreach (var invItem in _inv._invEntries)
             {
-                var fkInvItem = spdInvList.Find(x => x.fsn == invItem.MapEntry.SpdCodeValue);
+                var fkInvItem = spdInvList.Find(x => x.fsn == invItem.MapEntry.SnapdealCode);
                 if (fkInvItem != null)
                 {
                     invItem.SpdSystemInv = Convert.ToInt16(fkInvItem.systemQuantity);
@@ -92,7 +92,7 @@ namespace SellerSense.ViewModelManager
             //var predicate = new Predicate<string>(pairNumber);
             foreach (var invItem in _inv._invEntries)
             {
-                var msoInvItem = msoInvList.Find(mso => mso.fsn == invItem.MapEntry.MsoCodeValue);
+                var msoInvItem = msoInvList.Find(mso => mso.fsn == invItem.MapEntry.MeeshoCode);
                 if (msoInvItem != null)
                 {
                     invItem.MsoSystemInv = Convert.ToInt16(msoInvItem.systemQuantity);
@@ -149,16 +149,16 @@ namespace SellerSense.ViewModelManager
 
 
                     ds.Tables[0].Rows.Add(timg,
-                        x.MapEntry.BaseCodeValue,
+                        x.MapEntry.InHouseCode,
                         x.MapEntry.Title,
                         x.WarehouseInv,
-                        x.MapEntry.AmzCodeValue,
+                        x.MapEntry.AmazonCode,
                         x.AmzInv, x.AmzSystemInv,
-                        x.MapEntry.FkCodeValue,
+                        x.MapEntry.FlipkartCode,
                         x.FkInv, x.FkSystemInv,
-                        x.MapEntry.SpdCodeValue,
+                        x.MapEntry.SnapdealCode,
                         x.SpdInv, x.SpdSystemInv,
-                        x.MapEntry.MsoCodeValue,
+                        x.MapEntry.MeeshoCode,
                         x.MsoInv, x.MsoSystemInv,
                         x.Notes);
                 });

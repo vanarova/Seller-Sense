@@ -132,7 +132,7 @@ namespace SellerSense.Helper
                 {
                     using (var bmpTemp = new Bitmap(item))
                     {
-                        imgs.Add(Path.GetFileName(item), new Bitmap(bmpTemp, new Size(75, 75)));
+                        imgs.Add(Path.GetFileNameWithoutExtension(item), new Bitmap(bmpTemp, new Size(75, 75)));
                     }
                 }
                 return imgs;

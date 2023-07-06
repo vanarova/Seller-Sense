@@ -63,13 +63,13 @@ namespace SellerSense
         public struct MCols
         {
             public const string Image = "Image";
-            public const string Code = "Code";
+            public const string Code = "InHouseCode";
             public const string Title = "Title";
             public const string notes = "Notes";
-            public const string amz_Code = "Amazon_Code";
-            public const string fK_Code = "FK_Code";
-            public const string spd_Code = "Spd_Code";
-            public const string mso_Code = "Mso_Code";
+            public const string amz_Code = "AmazonCode";
+            public const string fK_Code = "FlipkartCode";
+            public const string spd_Code = "SnapDealCode";
+            public const string mso_Code = "MeeshoCode";
 
         }
 

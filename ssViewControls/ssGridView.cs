@@ -11,6 +11,15 @@ using System.Windows.Forms;
 namespace ssViewControls
 {
 
+    /// <summary>
+    /// Story:
+    /// This view is created by using grid and other form controls, grid is binded with a binding list
+    /// This binding list contains 1 page at a time. Another collection in this page contains full list including all pages.
+    /// Paging is implemented in this view, For all other logic a view manager is responsible.
+    /// All the events are handled by view manager class : VM_[Class name]
+    /// This view is used at multiple places in different forms, each managed by respective view managers
+    /// </summary>
+    /// <typeparam name="T">Type of class, used for binding data in grid</typeparam>
 
     public partial  class ssGridView<T> : UserControl
     {
@@ -19,36 +28,60 @@ namespace ssViewControls
             get { return _currentPageNumber_backingField; }
             set { _currentPageNumber_backingField = value; UpdateBindings(); } 
         }
+        private bool _isBindingListDirtyValue = false;
+        public bool _isBindingListDirty { get { return _isBindingListDirtyValue; } 
+            set {  
+                _isBindingListDirtyValue = value;
+                if(value)
+                    panel_isDirty.BackColor = Color.Red;
+                else
+                    panel_isDirty.BackColor = Color.Transparent;
+            }
+        }
+
+        
+        private const string _tag = "Tag", _title = "Title";
         //This action can be subscribed, outside this control, by parent control etc..
         //bool is to diable events
         private bool _EN = true; //set to false to disable all events.
-        public event Action<DataGridView> DataBindingComplete;
         public event Action<bool, string, BindingList<T>> SearchTitleTriggered;
         public event Action<bool,string, BindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindingsAfterSearchTriggered;
+        public event Action<DataGridView> OnControlLoad;
+        //public event Action<object,ListChangedEventArgs> BindedListChanged;
         
         private int _pageSize { get; set; }
         private int _lastPageNumber { get; set; }
         private int _TotalRowsInDataSet { get; set; }
+
+        /// <summary> full data list, contains all records </summary>
         private List<T> _data = new List<T>();
+
+        /// <summary> Partial list, contains data for one page at a time. </summary>
         private BindingList<T> _bindeddata = new BindingList<T>();
-        private Dictionary<string, Image> _imgs { get; set; }
-        public ssGridView(List<T> data, Dictionary<string, Image> imgs)
+
+        public ssGridView(List<T> data)
         {
-            this._imgs = imgs;
+            //this._imgs = imgs;
             _data = data;
             _TotalRowsInDataSet = _data.Count;
             _pageSize = 100;
             _lastPageNumber = _TotalRowsInDataSet/_pageSize;
+            //_bindeddata.ListChanged += (o, e) => { BindedListChanged?.Invoke(o,e); };
             InitializeComponent();
         }
+
+
 
         private void ssGridView_Load(object sender, EventArgs e)
         {
             AdjustUI();
             dataGridView_data.DataSource = _bindeddata;
             UpdateBindings();
-            
+            OnControlLoad?.Invoke(dataGridView_data);
+            dataGridView_data.CellValueChanged += (s, ev) => { _isBindingListDirty = true;
+                
+            };
         }
 
         private void AdjustUI()
@@ -87,36 +120,7 @@ namespace ssViewControls
             _currentPageNumber = _lastPageNumber;
         }
 
-        private void dataGridView_data_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            //var imgKey = _bindeddata[1].ToString();
-            //if (dataGridView_data.Columns[e.ColumnIndex].Name == "Image")
-            //{
-            //    e.Value = _imgs[imgKey];
-            //    e.FormattingApplied = true;
-            //}
-        }
-
-        private void dataGridView_data_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            if(DataBindingComplete!= null)
-                DataBindingComplete(dataGridView_data);
-        }
-
-        /// <summary>  
-        /// This function is use to get hyperlink style .  
-        /// </summary>  
-        /// <returns></returns>  
-        private DataGridViewCellStyle GetHyperLinkStyleForGridCell()
-        {
-            // Set the Font and Uderline into the Content of the grid cell .  
-            {
-                DataGridViewCellStyle l_objDGVCS = new DataGridViewCellStyle();
-                l_objDGVCS.ForeColor = Color.Blue;
-                return l_objDGVCS;
-            }
-        }
-
+       
         private void textBox_Code_Enter(object sender, EventArgs e)
         {
             textBox_Title.Text = "";
@@ -124,7 +128,7 @@ namespace ssViewControls
 
         private void textBox_Code_Leave(object sender, EventArgs e)
         {
-            textBox_Title.Text = "Title";
+            textBox_Title.Text = _title;
         }
 
         private void textBox_Title_Enter(object sender, EventArgs e)
@@ -134,27 +138,27 @@ namespace ssViewControls
 
         private void textBox_Title_Leave(object sender, EventArgs e)
         {
-            textBox_Tag.Text = "Tag";
+            textBox_Tag.Text = _tag;
 
         }
 
         private void textBox_Tag_TextChanged(object sender, EventArgs e)
         {
-            if (textBox_Tag.Text.Length >= 2 && !textBox_Tag.Text.Equals("Tag"))
+            if (textBox_Tag.Text.Length >= 2 && !textBox_Tag.Text.Equals(_tag))
             {
                 _bindeddata.Clear();
-                if(SearchTagTriggered != null)
-                    SearchTagTriggered(_EN,textBox_Tag.Text, _bindeddata);
+                //if(SearchTagTriggered != null)
+                SearchTagTriggered?.Invoke(_EN,textBox_Tag.Text, _bindeddata);
             }
         }
 
         private void textBox_Title_TextChanged(object sender, EventArgs e)
         {
-            if (textBox_Title.Text.Length >= 2 && !textBox_Title.Text.Equals("Title"))
+            if (textBox_Title.Text.Length >= 2 && !textBox_Title.Text.Equals(_title))
             {
                 _bindeddata.Clear();
-                if (SearchTitleTriggered != null)
-                    SearchTitleTriggered(_EN, textBox_Title.Text, _bindeddata);
+                //if (SearchTitleTriggered != null)
+                SearchTitleTriggered?.Invoke(_EN, textBox_Title.Text, _bindeddata);
             }
             
         }
@@ -162,10 +166,10 @@ namespace ssViewControls
         private void button_Refresh_Click(object sender, EventArgs e)
         {
             _EN = false; //disable all events
-            textBox_Title.Text = "Title"; //to stop this text_changed event
-            textBox_Tag.Text = "Tag";
-            if (ResetBindingsAfterSearchTriggered != null)
-                ResetBindingsAfterSearchTriggered(_EN);
+            textBox_Title.Text = _title; //to stop this text_changed event
+            textBox_Tag.Text = _tag;
+            //if (ResetBindingsAfterSearchTriggered != null)
+            ResetBindingsAfterSearchTriggered?.Invoke(_EN);
             UpdateBindings();
             _EN = true; //enable back events
         }

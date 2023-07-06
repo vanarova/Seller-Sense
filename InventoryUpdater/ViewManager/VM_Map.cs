@@ -15,14 +15,14 @@ namespace SellerSense.ViewModelManager
     {
         internal string _name;
         internal string _code;
-        internal M_Map _map { get; set; }
+        internal M_Product _map { get; set; }
         internal DataSet _mapGridData { get; set; }
 
         public VM_Map(string name, string code)
         {
             _name = name;
             _code = code;
-            _map = new M_Map(_code);
+            _map = new M_Product(_code);
             _map.LoadLastSavedMap(); //Todo : Why calling twice, already called inside ctor of Map
         }
 
@@ -45,7 +45,7 @@ namespace SellerSense.ViewModelManager
             bg.DoWork += (sender, doWorkEventArgs) =>
             {
                 Dictionary<string,Image> imgs = Helper.ProjIO.LoadAllImagesAndDownSize75x75(_map._lastSavedMapImageDirectory);
-                _map._mapEntries.ForEach((x) =>
+                _map._productEntries.ForEach((x) =>
                 {
                     Image timg = imgs.Where(i => Path.GetFileName(i.Key) == x.Image).FirstOrDefault().Value;
                     //Image img = null; Image timg = null;
@@ -54,7 +54,7 @@ namespace SellerSense.ViewModelManager
                     //    img = Image.FromFile(Path.Combine(_map._lastSavedMapImageDirectory, x.Image));
                     //    timg = new Bitmap(img, new Size(75, 75));
                     //}
-                    DataRow dr = ds.Tables[0].Rows.Add(timg, x.BaseCodeValue, x.Title, x.AmzCodeValue, x.FkCodeValue, x.SpdCodeValue, x.MsoCodeValue, x.Notes);
+                    DataRow dr = ds.Tables[0].Rows.Add(timg, x.InHouseCode, x.Title, x.AmazonCode, x.FlipkartCode, x.SnapdealCode, x.MeeshoCode, x.Notes);
                 });
             };
             bg.RunWorkerCompleted += (s, ev) =>

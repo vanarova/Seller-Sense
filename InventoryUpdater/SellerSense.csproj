@@ -97,7 +97,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewManager\VM_ProductListing.cs" />
+    <Compile Include="ViewManager\VM_Products.cs" />
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Views\AlertBox.cs">
@@ -185,7 +185,7 @@
     <Compile Include="Model\InvMap.cs" />
     <Compile Include="Model\AppVersion.cs" />
     <Compile Include="Model\InvUpdate\M_InvUpdate.cs" />
-    <Compile Include="Model\Map\M_Map.cs" />
+    <Compile Include="Model\Product\M_Product.cs" />
     <Compile Include="Model\Inventories\MsoInventory\M_MsoInventory.cs" />
     <Compile Include="Model\Inventories\MsoInventory\M_MsoInventoryList.cs" />
     <Compile Include="Model\Product\M_Products.cs" />
@@ -275,6 +275,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\Map\" />
     <Folder Include="Views\Controls\" />
   </ItemGroup>
   <ItemGroup>

@@ -13,17 +13,17 @@ namespace SellerSense.Model
     internal class M_InvUpdate
     {
         internal List<InvEntry> _invEntries { get; set; }
-        internal M_Map _map { get; set; }
+        internal M_Product _map { get; set; }
         const string _snapshotDir = Constants.Snapshots;
         static private string _fileName = DateTime.Now.Year.ToString()
                 + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString()+ ".json";
 
 
-        public M_InvUpdate(M_Map map, VM_Inventories inventories=null)
+        public M_InvUpdate(M_Product map, VM_Inventories inventories=null)
         {
             _map = map;
             _invEntries = new List<InvEntry>();
-            map._mapEntries.ForEach(e =>
+            map._productEntries.ForEach(e =>
             {
                 _invEntries.Add(new InvEntry() { MapEntry = e });
             });
@@ -51,7 +51,7 @@ namespace SellerSense.Model
 
     internal class InvEntry
     {
-       public M_Map.MapEntry MapEntry { get; set; }
+       public M_Product.ProductEntry MapEntry { get; set; }
        public int? AmzInv { get; set; }
        public int? AmzSystemInv { get; set; }
        public int? FkInv { get; set; }    

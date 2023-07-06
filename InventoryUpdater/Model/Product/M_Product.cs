@@ -8,13 +8,14 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace SellerSense.Model
 {
 
-    internal class M_Map
+    internal class M_Product
     {
-        public List<MapEntry> _mapEntries { get; set; }
+        public List<ProductEntry> _productEntries { get; set; }
         private string _companyCode;
         //private string _mapFilePath;
         //private const string _imageDir = "imgs";
@@ -28,15 +29,18 @@ namespace SellerSense.Model
          } }
 
 
-        internal string _lastSavedMapDirectory
+        
+    
+
+    internal string _lastSavedMapDirectory
         {
             get { return Path.Combine(_workspace, _companyCode); }
         }
 
-        public M_Map(string companyCode)
+        public M_Product(string companyCode)
         {
             _companyCode = companyCode;
-            _mapEntries = new List<MapEntry>();
+            _productEntries = new List<ProductEntry>();
             LoadLastSavedMap();
         }
 
@@ -45,7 +49,8 @@ namespace SellerSense.Model
         public void CreateAnEmptyMap(M_BaseCodeList baseCodeList) {
             foreach (var item in baseCodeList.codes)
             {
-                _mapEntries.Add(new MapEntry(item.BaseCodeValue, item.Image, item.Title, String.Empty, String.Empty,string.Empty, string.Empty, string.Empty));
+                _productEntries.Add(new ProductEntry(item.BaseCodeValue, item.Image, item.Title, String.Empty,
+                    String.Empty,string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
             }
         }
 
@@ -56,7 +61,7 @@ namespace SellerSense.Model
         }
 
         public void SerializeMap(string fileName) { 
-           string json = JsonConvert.SerializeObject(_mapEntries, Formatting.Indented);
+           string json = JsonConvert.SerializeObject(_productEntries, Formatting.Indented);
             File.WriteAllText(fileName, json);
         }
 
@@ -69,7 +74,7 @@ namespace SellerSense.Model
             {
                 string txt = File.ReadAllText(_lastSavedMapFilePath); //create separate function for file IO
                 //JObject jobj = JObject.Parse(txt);
-                _mapEntries =  JsonConvert.DeserializeObject<List<MapEntry>>(txt);
+                _productEntries =  JsonConvert.DeserializeObject<List<ProductEntry>>(txt);
                 //string json = JsonConvert.SerializeObject(MapEntries, Formatting.Indented);
                 //foreach (var item in jobj.Property("Inventory").Values())
                 //{
@@ -106,7 +111,7 @@ namespace SellerSense.Model
         {
 
             string txt = File.ReadAllText(fileName);
-            _mapEntries = JsonConvert.DeserializeObject<List<MapEntry>>(txt);
+            _productEntries = JsonConvert.DeserializeObject<List<ProductEntry>>(txt);
             SaveMapFile();
             //_lastSavedMapFilePath = fileName;
             //ProjIO.SaveUserSetting("LastSavedMapFilePath", _lastSavedMapFilePath);
@@ -124,10 +129,10 @@ namespace SellerSense.Model
         {
             string lastSavedFilePath = ProjIO.GetUserSetting("LastSavedMapFilePath");
             string jsonText = File.ReadAllText(lastSavedFilePath);
-            List<MapEntry> jobj = JsonConvert.DeserializeObject<List<MapEntry>>(jsonText);
+            List<ProductEntry> jobj = JsonConvert.DeserializeObject<List<ProductEntry>>(jsonText);
             foreach (var item in jobj)
             {
-                item.Image = SaveImage(item.Image, item.BaseCodeValue, lastSavedFilePath);
+                item.Image = SaveImage(item.Image, item.InHouseCode, lastSavedFilePath);
                 
             }
             string json = JsonConvert.SerializeObject(jobj);
@@ -156,33 +161,41 @@ namespace SellerSense.Model
         }
 
 
-        internal class MapEntry
+        internal class ProductEntry
         {
             //Mark pubic, required for JSON serialization
             //internal Guid Id { get; set; }
-            public string BaseCodeValue { get; set; }
+            public string InHouseCode { get; set; }
             public string Image { get; set; }
+            public string ImageAlt1 { get; set; }
+            public string ImageAlt2 { get; set; }
+            public string ImageAlt3 { get; set; }
             public string Title { get; set; }
-            public string AmzCodeValue { get; set; }
-            public string FkCodeValue { get; set; }
-            public string SpdCodeValue { get; set; }
-            public string MsoCodeValue { get; set; }
+            public string Tag { get; set; }
+            public string Description { get; set; }
+            public string AmazonCode { get; set; }
+            public string FlipkartCode { get; set; }
+            public string SnapdealCode { get; set; }
+            public string MeeshoCode { get; set; }
             public string Notes { get; set; }
 
 
-            public MapEntry(string baseCodeValue, string img, string title,
+            public ProductEntry(string baseCodeValue, string img, string title,
                 string amzInventory, string fkCodeValue,string spdCodeValue,
-                string msoCodeValue, string notes)
+                string msoCodeValue, string notes, string tag, string desc)
             {
                 //this.Id = Guid.NewGuid();
-                this.BaseCodeValue = baseCodeValue;
+                this.InHouseCode = baseCodeValue;
                 this.Image = img;
                 this.Title = title;
-                this.FkCodeValue = fkCodeValue;
-                this.SpdCodeValue = spdCodeValue;
-                this.MsoCodeValue = msoCodeValue;
-                this.AmzCodeValue = amzInventory;
+                this.Tag = tag;
+                this.Description = desc;
+                this.FlipkartCode = fkCodeValue;
+                this.SnapdealCode = spdCodeValue;
+                this.MeeshoCode = msoCodeValue;
+                this.AmazonCode = amzInventory;
                 this.Notes = notes;
+                
                 
                 
             }

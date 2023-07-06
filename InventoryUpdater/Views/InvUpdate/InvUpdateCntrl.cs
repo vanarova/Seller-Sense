@@ -64,7 +64,7 @@ namespace SellerSense
 
         private void FillInvGrid()
         {
-            if (_company._mapping._map._mapEntries == null || _company._mapping._map._mapEntries.Count == 0)
+            if (_company._mapping._map._productEntries == null || _company._mapping._map._productEntries.Count == 0)
                 return;
 
 
@@ -232,7 +232,7 @@ namespace SellerSense
             {
                 foreach (var item in _company._invUpdate._inv._invEntries)
                 {
-                    if (item.MapEntry.BaseCodeValue == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString())
+                    if (item.MapEntry.InHouseCode == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString())
                     {
                         item.Notes = grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.notes].Value.ToString();
                         //_driver._amzImportedInvList._amzModifiedInventoryList.Add(item);
@@ -313,7 +313,7 @@ namespace SellerSense
                 int acount;int fcount;int scount; int mcount;
                 _company._invUpdate._inv._invEntries.ForEach(x =>
                 {
-                    if (x.MapEntry.BaseCodeValue == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString())
+                    if (x.MapEntry.InHouseCode == grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString())
                     {
                         Int32.TryParse(grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.fcount].Value.ToString(),out fcount);
                         Int32.TryParse(grdInvUpdate.SelectedCells[0].OwningRow.Cells[Constants.ICols.acount].Value.ToString(),out acount);
