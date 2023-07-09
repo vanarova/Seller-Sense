@@ -33,8 +33,22 @@ namespace SellerSense
                 AdjustUI("EnableAllButton");
         }
 
-        private void btn_mapping_Click(object sender, EventArgs e)
+        private async void btn_mapping_Click(object sender, EventArgs e)
         {
+            pbarLoadForms.Visible = true;
+
+            //load images for all companies async
+            var imgs = await _companiesMgr._companies[0].LoadImages();
+            _companiesMgr._companies[0]._images = imgs;
+            _companiesMgr._companies[0]._productViewManager.AssignImagesToProducts(imgs);
+
+            var imgs1 = await _companiesMgr._companies[1].LoadImages();
+            _companiesMgr._companies[1]._images = imgs1;
+            _companiesMgr._companies[1]._productViewManager.AssignImagesToProducts(imgs1);
+
+            DisplayProductForm();
+
+
             ////try
             ////{
             //    //DataSet mapGridData = new DataSet();
@@ -58,7 +72,7 @@ namespace SellerSense
             //                                    _companiesMgr._companies[4]._mapping.FillLoadedMapToGridDataset(() => {
             //                                        //max count reached, 5th company
             //                                        DisplayMapForm();
-                                                   
+
             //                                    });
 
             //                                }
@@ -79,7 +93,7 @@ namespace SellerSense
             //    });
 
 
-              
+
 
         }
 
