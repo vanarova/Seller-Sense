@@ -1,10 +1,10 @@
 ﻿using Decoders;
-using InventoryUpdater.ViewModelManager;
+using SellerSense.ViewManager;
 using SellerSense.Helper;
 using System;
 using System.Windows.Forms;
 using ssViewControls;
-using SellerSense.ViewModelManager;
+using SellerSense.ViewManager;
 
 namespace SellerSense
 {

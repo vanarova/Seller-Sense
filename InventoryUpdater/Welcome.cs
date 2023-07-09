@@ -14,10 +14,10 @@ namespace SellerSense
     internal partial class Welcome : Form
     {
         //Company _company;
-        SellerSense.ViewModelManager.VM_Companies _companiesMgr;
+        SellerSense.ViewManager.VM_Companies _companiesMgr;
         public Welcome()
         {
-            _companiesMgr = new SellerSense.ViewModelManager.VM_Companies();
+            _companiesMgr = new SellerSense.ViewManager.VM_Companies();
             
             InitializeComponent();
             //ProjIO.LoadUserSettings();
@@ -35,48 +35,48 @@ namespace SellerSense
 
         private void btn_mapping_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-                //DataSet mapGridData = new DataSet();
-                pbarLoadForms.Visible = true;
-                //_company._map.LoadLastSavedMap();
+            ////try
+            ////{
+            //    //DataSet mapGridData = new DataSet();
+            //    pbarLoadForms.Visible = true;
+            //    //_company._map.LoadLastSavedMap();
 
-                //Load data one after another async fashion..at the end display form.
-                _companiesMgr._companies[0]._mapping.FillLoadedMapToGridDataset(() => {
-                    if (_companiesMgr._companies.Count > 1)
-                    {
-                        _companiesMgr._companies[1]._mapping.FillLoadedMapToGridDataset(() => {
-                            if (_companiesMgr._companies.Count > 2)
-                            {
-                                _companiesMgr._companies[2]._mapping.FillLoadedMapToGridDataset(() => {
-                                    if (_companiesMgr._companies.Count > 3)
-                                    {
+            //    //Load data one after another async fashion..at the end display form.
+            //    _companiesMgr._companies[0]._mapping.FillLoadedMapToGridDataset(() => {
+            //        if (_companiesMgr._companies.Count > 1)
+            //        {
+            //            _companiesMgr._companies[1]._mapping.FillLoadedMapToGridDataset(() => {
+            //                if (_companiesMgr._companies.Count > 2)
+            //                {
+            //                    _companiesMgr._companies[2]._mapping.FillLoadedMapToGridDataset(() => {
+            //                        if (_companiesMgr._companies.Count > 3)
+            //                        {
 
-                                        _companiesMgr._companies[3]._mapping.FillLoadedMapToGridDataset(() => {
-                                            if (_companiesMgr._companies.Count > 4)
-                                            {
-                                                _companiesMgr._companies[4]._mapping.FillLoadedMapToGridDataset(() => {
-                                                    //max count reached, 5th company
-                                                    DisplayMapForm();
+            //                            _companiesMgr._companies[3]._mapping.FillLoadedMapToGridDataset(() => {
+            //                                if (_companiesMgr._companies.Count > 4)
+            //                                {
+            //                                    _companiesMgr._companies[4]._mapping.FillLoadedMapToGridDataset(() => {
+            //                                        //max count reached, 5th company
+            //                                        DisplayMapForm();
                                                    
-                                                });
+            //                                    });
 
-                                            }
-                                            else
-                                                DisplayMapForm();
-                                        });
-                                    }
-                                    else
-                                        DisplayMapForm();
-                                });
+            //                                }
+            //                                else
+            //                                    DisplayMapForm();
+            //                            });
+            //                        }
+            //                        else
+            //                            DisplayMapForm();
+            //                    });
 
-                            } else
-                                DisplayMapForm();
-                        });
-                    }
-                    else
-                        DisplayMapForm();
-                });
+            //                } else
+            //                    DisplayMapForm();
+            //            });
+            //        }
+            //        else
+            //            DisplayMapForm();
+            //    });
 
 
               
@@ -84,16 +84,16 @@ namespace SellerSense
         }
 
 
-        private void DisplayMapForm()
-        {
-            Mapping mp = new Mapping(_companiesMgr);
-            mp.MdiParent = this;
-            pbarLoadForms.Visible = false;
-            mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
-            mp.Show();
+        //private void DisplayMapForm()
+        //{
+        //    Mapping mp = new Mapping(_companiesMgr);
+        //    mp.MdiParent = this;
+        //    pbarLoadForms.Visible = false;
+        //    mp.FormClosed += (s, args) => { AdjustUI("BringWelcomeButtonToFront"); };
+        //    mp.Show();
 
-            AdjustUI("SendWelcomeButtonToBack");
-        }
+        //    AdjustUI("SendWelcomeButtonToBack");
+        //}
 
 
         private void DisplayProductForm()
@@ -151,34 +151,34 @@ namespace SellerSense
             
             pbarLoadForms.Visible = true;
 
-            _companiesMgr._companies[0]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+            _companiesMgr._companies[0]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
             if (_companiesMgr._companies.Count > 1)
-                _companiesMgr._companies[1]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+                _companiesMgr._companies[1]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
             if (_companiesMgr._companies.Count > 2)
-                _companiesMgr._companies[2]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+                _companiesMgr._companies[2]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
             if (_companiesMgr._companies.Count > 3)
-                _companiesMgr._companies[3]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+                _companiesMgr._companies[3]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
             if (_companiesMgr._companies.Count > 4)
-                _companiesMgr._companies[4]._invUpdate.LoadInvDataFromLastSavedMap(); //TODO load async
+                _companiesMgr._companies[4]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
 
 
-            _companiesMgr._companies[0]._invUpdate.GetInvUpdateGridDataset(() =>
+            _companiesMgr._companies[0]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
             {
                 if (_companiesMgr._companies.Count > 1)
                 {
-                    _companiesMgr._companies[1]._invUpdate.GetInvUpdateGridDataset(() =>
+                    _companiesMgr._companies[1]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
                     {
                         if (_companiesMgr._companies.Count > 2)
                         {
-                            _companiesMgr._companies[2]._invUpdate.GetInvUpdateGridDataset(() =>
+                            _companiesMgr._companies[2]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
                             {
                                 if (_companiesMgr._companies.Count > 2)
                                 {
-                                    _companiesMgr._companies[3]._invUpdate.GetInvUpdateGridDataset(() =>
+                                    _companiesMgr._companies[3]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
                                     {
                                         if (_companiesMgr._companies.Count > 3)
                                         {
-                                            _companiesMgr._companies[4]._invUpdate.GetInvUpdateGridDataset(() =>
+                                            _companiesMgr._companies[4]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
                                             {
                                                 DisplayInvForm();
                                             });
@@ -260,58 +260,15 @@ namespace SellerSense
             pbarLoadForms.Visible = true;
 
             //load images for all companies async
-            if (_companiesMgr._companies[0]._images == null)
-            { var imgs = await _companiesMgr._companies[0].LoadImages();
-                //_companiesMgr._companies[0]._products.AssignImages(imgs); 
-                _companiesMgr._companies[0]._images = imgs;
-                _companiesMgr._companies[0]._productViewManager.AssignImagesToProducts(imgs);
-            }
-            if (_companiesMgr._companies[1]._images == null)
-            {
-                var imgs = await _companiesMgr._companies[1].LoadImages();
-                _companiesMgr._companies[1]._images = imgs;
-                _companiesMgr._companies[1]._productViewManager.AssignImagesToProducts(imgs);
-                //_companiesMgr._companies[1]._products.AssignImages(imgs);
-            }
+            var imgs = await _companiesMgr._companies[0].LoadImages();
+            _companiesMgr._companies[0]._images = imgs;
+            _companiesMgr._companies[0]._productViewManager.AssignImagesToProducts(imgs);
+               
+            var imgs1 = await _companiesMgr._companies[1].LoadImages();
+            _companiesMgr._companies[1]._images = imgs1;
+            _companiesMgr._companies[1]._productViewManager.AssignImagesToProducts(imgs1);
+            
             DisplayProductForm();
-
-            //Load data one after another async fashion..at the end display form.
-            //_companiesMgr._companies[0]._mapping.FillLoadedMapToGridDataset(() => {
-            //    if (_companiesMgr._companies.Count > 1)
-            //    {
-            //        _companiesMgr._companies[1]._mapping.FillLoadedMapToGridDataset(() => {
-            //            if (_companiesMgr._companies.Count > 2)
-            //            {
-            //                _companiesMgr._companies[2]._mapping.FillLoadedMapToGridDataset(() => {
-            //                    if (_companiesMgr._companies.Count > 3)
-            //                    {
-
-            //                        _companiesMgr._companies[3]._mapping.FillLoadedMapToGridDataset(() => {
-            //                            if (_companiesMgr._companies.Count > 4)
-            //                            {
-            //                                _companiesMgr._companies[4]._mapping.FillLoadedMapToGridDataset(() => {
-            //                                    //max count reached, 5th company
-            //                                    DisplayProductForm();
-
-            //                                });
-
-            //                            }
-            //                            else
-            //                                DisplayProductForm();
-            //                        });
-            //                    }
-            //                    else
-            //                        DisplayProductForm();
-            //                });
-
-            //            }
-            //            else
-            //                DisplayProductForm();
-            //        });
-            //    }
-            //    else
-            //        DisplayProductForm();
-            //});
 
         }
     }

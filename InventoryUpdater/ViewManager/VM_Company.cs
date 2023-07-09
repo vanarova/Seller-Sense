@@ -10,10 +10,10 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
-using SellerSense.ViewModelManager;
+using SellerSense.ViewManager;
 using SellerSense;
 
-namespace InventoryUpdater.ViewModelManager
+namespace SellerSense.ViewManager
 {
 
     /// <summary>
@@ -23,8 +23,8 @@ namespace InventoryUpdater.ViewModelManager
     {
         internal string _name;
         internal string _code;
-        internal VM_Inventories _inventories { get; set; }
-        internal VM_InvUpdate _invUpdate { get; set; }
+        internal M_Inventories _inventoriesModel { get; set; }
+        internal VM_Inventories _inventoriesViewManager { get; set; }
         internal VM_Map _mapping { get; set; }
         internal VM_Products _productViewManager { get; set; }
         internal Dictionary<string, Image> _images;
@@ -33,16 +33,16 @@ namespace InventoryUpdater.ViewModelManager
         {
             _name = name;
             _code = code;
-            _inventories = new VM_Inventories();
+            _inventoriesModel = new M_Inventories();
             _mapping = new VM_Map(_name, _code);
-            _invUpdate = new VM_InvUpdate(_inventories, _mapping._map);
-            _productViewManager = new VM_Products(_mapping._map,_inventories);
+            _inventoriesViewManager = new VM_Inventories(_inventoriesModel, _mapping._map);
+            _productViewManager = new VM_Products(_mapping._map,_inventoriesModel);
         }
 
 
         public void CreateAnEmptyMapWithImportedBaseCodes()
         {
-            _mapping._map.CreateAnEmptyMap(_inventories._baseCodes);
+            _mapping._map.CreateAnEmptyMap(_inventoriesModel._baseCodes);
         }
 
 
@@ -53,8 +53,12 @@ namespace InventoryUpdater.ViewModelManager
 
         internal Task<Dictionary<string, Image>> LoadImages()
         {
-            _images = new Dictionary<string, Image>();
-            return ProjIO.LoadAllImagesAndDownSize75x75Async(_mapping._map._lastSavedMapImageDirectory);
+            if (_images == null)
+            {
+                _images = new Dictionary<string, Image>();
+                return ProjIO.LoadAllImagesAndDownSize75x75Async(_mapping._map._lastSavedMapImageDirectory);
+            }
+            else return Task.FromResult(_images);
         }
 
 

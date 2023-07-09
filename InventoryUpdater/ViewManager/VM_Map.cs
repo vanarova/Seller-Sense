@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SellerSense.ViewModelManager
+namespace SellerSense.ViewManager
 {
     internal class VM_Map
     {

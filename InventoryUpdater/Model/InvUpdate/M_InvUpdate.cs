@@ -1,6 +1,6 @@
 ﻿using Decoders.Interfaces;
 using Newtonsoft.Json;
-using SellerSense.ViewModelManager;
+using SellerSense.ViewManager;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +19,7 @@ namespace SellerSense.Model
                 + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString()+ ".json";
 
 
-        public M_InvUpdate(M_Product map, VM_Inventories inventories=null)
+        public M_InvUpdate(M_Product map, M_Inventories inventories=null)
         {
             _map = map;
             _invEntries = new List<InvEntry>();

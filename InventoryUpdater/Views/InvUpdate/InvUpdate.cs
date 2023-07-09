@@ -14,12 +14,12 @@ namespace SellerSense
 {
     internal partial class InvUpdate : Form
     {
-        private ViewModelManager.VM_Companies _companiesMgr; //TODO Change to CompaniesMgr
+        private ViewManager.VM_Companies _companiesMgr; //TODO Change to CompaniesMgr
 
         private List<InvUpdateCntrl> _invUpdateCntrlList;
 
 
-        public InvUpdate(ViewModelManager.VM_Companies companies)
+        public InvUpdate(ViewManager.VM_Companies companies)
         {
             InitializeComponent();
             _companiesMgr = companies;

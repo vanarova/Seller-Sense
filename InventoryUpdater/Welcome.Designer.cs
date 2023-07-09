@@ -134,7 +134,7 @@ namespace SellerSense
             this.btn_mapping.Name = "btn_mapping";
             this.btn_mapping.Size = new System.Drawing.Size(316, 145);
             this.btn_mapping.TabIndex = 1;
-            this.btn_mapping.Text = "Mapping";
+            this.btn_mapping.Text = "New Inventories";
             this.btn_mapping.UseVisualStyleBackColor = false;
             this.btn_mapping.Click += new System.EventHandler(this.btn_mapping_Click);
             // 

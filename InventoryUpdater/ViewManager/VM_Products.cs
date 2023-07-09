@@ -15,8 +15,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SellerSense.ViewModelManager
+namespace SellerSense.ViewManager
 {
+    /// <summary>
+    /// This is view manager class, manages all events and logic for one view tree.
+    /// One form with all child user controls, are managed by one view manager, this VM manages product form 
+    /// and all child user control forms.
+    /// </summary>
     internal class VM_Products
     {
         internal string _name;
@@ -26,11 +31,11 @@ namespace SellerSense.ViewModelManager
         private ProductCntrl _v_productCntrl;
         private ssGridView<ProductView> _v_ssGridViewCntrl;
         private DataGridView _datagrid;
-        private VM_Inventories _vm_Inventories;
+        private M_Inventories _InventoriesModel;
 
-        public VM_Products(M_Product m_Product,VM_Inventories vm_Inventories)
+        public VM_Products(M_Product m_Product,M_Inventories vm_Inventories)
         {
-            _vm_Inventories = vm_Inventories;   
+            _InventoriesModel = vm_Inventories;   
             _m_product = m_Product;
             TranslateProductModelToProductsView();
         }
@@ -56,6 +61,8 @@ namespace SellerSense.ViewModelManager
             HandleProductControlEvents();
         }
 
+
+
         
         private void OpenInvFiller(Constants.Company company)
         {
@@ -65,7 +72,7 @@ namespace SellerSense.ViewModelManager
             string selectedCode = _datagrid[Constants.PCols.InHouseCode, selectedRow].Value.ToString();
             string selectedTitle = _datagrid[Constants.PCols.Title, selectedRow].Value.ToString();
 
-            InvFiller inf = new InvFiller(company, selectedImg, selectedCode, selectedTitle, _vm_Inventories);
+            InvFiller inf = new InvFiller(company, selectedImg, selectedCode, selectedTitle, _InventoriesModel);
             inf.ShowDialog();
             //assign map ID
             if (inf.SelectedID != null && !string.IsNullOrEmpty(inf.SelectedID))

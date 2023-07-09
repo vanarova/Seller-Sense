@@ -14,12 +14,12 @@ namespace SellerSense
 {
     internal partial class ProductListing : Form
     {
-        private ViewModelManager.VM_Companies _companiesMgr;
+        private ViewManager.VM_Companies _companiesMgr;
 
         private List<ProductCntrl> _productCntrlList;
 
 
-        public ProductListing(ViewModelManager.VM_Companies companies)
+        public ProductListing(ViewManager.VM_Companies companies)
         {
             InitializeComponent();
             _companiesMgr = companies;

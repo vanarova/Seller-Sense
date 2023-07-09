@@ -1,4 +1,4 @@
-﻿using InventoryUpdater.ViewModelManager;
+﻿using SellerSense.ViewManager;
 using SellerSense.Helper;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SellerSense.ViewModelManager
+namespace SellerSense.ViewManager
 {
     internal class VM_Companies
     {

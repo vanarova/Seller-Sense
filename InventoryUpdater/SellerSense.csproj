@@ -106,6 +106,18 @@
     <Compile Include="Views\AlertBox.Designer.cs">
       <DependentUpon>AlertBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventories\Inventories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventories\Inventories.Designer.cs">
+      <DependentUpon>Inventories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventories\InvCntrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Inventories\InvCntrl.Designer.cs">
+      <DependentUpon>InvCntrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Products\ProductCntrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -133,7 +145,7 @@
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="ViewManager\VM_Map.cs" />
-    <Compile Include="ViewManager\VM_InvUpdate.cs" />
+    <Compile Include="ViewManager\VM_Inventories.cs" />
     <Compile Include="Views\SetUp\ExportProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,18 +174,6 @@
     <Compile Include="Views\InvUpdate\InvUpdate.Designer.cs">
       <DependentUpon>InvUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Mapping\Mapping.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Mapping\Mapping.Designer.cs">
-      <DependentUpon>Mapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Mapping\MappingCntrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\Mapping\MappingCntrl.Designer.cs">
-      <DependentUpon>MappingCntrl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Model\Inventories\AmzInventory\M_AmzInventoryList.cs" />
     <Compile Include="Model\Inventories\AmzInventory\M_AmzInventory.cs" />
     <Compile Include="Model\Inventories\BaseCode\M_BaseCodeList.cs" />
@@ -197,7 +197,7 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewManager\VM_Inventories.cs" />
+    <Compile Include="Model\Inventories\M_Inventories.cs" />
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +211,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AlertBox.resx">
       <DependentUpon>AlertBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventories\Inventories.resx">
+      <DependentUpon>Inventories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventories\InvCntrl.resx">
+      <DependentUpon>InvCntrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Products\ProductCntrl.resx">
       <DependentUpon>ProductCntrl.cs</DependentUpon>
@@ -235,12 +241,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\InvUpdate\InvUpdateCntrl.resx">
       <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Mapping\Mapping.resx">
-      <DependentUpon>Mapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Mapping\MappingCntrl.resx">
-      <DependentUpon>MappingCntrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
