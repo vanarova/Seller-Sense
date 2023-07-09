@@ -1,6 +1,8 @@
 ﻿using Decoders;
+using Newtonsoft.Json.Linq;
 using SellerSense.Model;
 using SellerSense.Model.Product;
+using ssViewControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,26 +21,86 @@ namespace SellerSense.ViewModelManager
     {
         internal string _name;
         internal string _code;
+        internal M_Product _m_product { get; set; }
+        internal List<ProductView> _vm_productsView { get; set; }
+        private ProductCntrl _v_productCntrl;
+        private ssGridView<ProductView> _v_ssGridViewCntrl;
+        private DataGridView _datagrid;
+        private VM_Inventories _vm_Inventories;
 
-        internal M_Product _productModel { get; set; }
-        internal List<ProductView> _productsView { get; set; }
-        
-        //internal Dictionary<string, Image> _imgs;
-
-        public VM_Products(M_Product map)
+        public VM_Products(M_Product m_Product,VM_Inventories vm_Inventories)
         {
-            _productModel = map;
+            _vm_Inventories = vm_Inventories;   
+            _m_product = m_Product;
             TranslateProductModelToProductsView();
-            //_productGridData = new M_Products(map._mapEntries);
-            //_name = name;
-            //_code = code;
         }
+
+ #region ProductUserControl
+
+        private void HandleProductControlEvents()
+        {
+            _v_productCntrl.toolStripMenuItem_Save.Click += (s, e) => {
+                WriteBackProductViewToProductsModelAndSave();
+                _v_ssGridViewCntrl._isBindingListDirty = false;
+            };
+            _v_productCntrl.amazonToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Amazon); };
+            _v_productCntrl.flipkartToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Flipkart); };
+            _v_productCntrl.snapdealToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
+            _v_productCntrl.meeshoToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Meesho); };
+        }
+
+
+        internal void AssignViewManager(ProductCntrl pcntrl)
+        {
+            _v_productCntrl =pcntrl;
+            HandleProductControlEvents();
+        }
+
+        
+        private void OpenInvFiller(Constants.Company company)
+        {
+            int selectedRow = _datagrid.SelectedCells[0].RowIndex;
+            //_productModel._productEntries.FirstOrDefault()
+            Image selectedImg = _datagrid[Constants.PCols.Image, selectedRow].Value as Image;
+            string selectedCode = _datagrid[Constants.PCols.InHouseCode, selectedRow].Value.ToString();
+            string selectedTitle = _datagrid[Constants.PCols.Title, selectedRow].Value.ToString();
+
+            InvFiller inf = new InvFiller(company, selectedImg, selectedCode, selectedTitle, _vm_Inventories);
+            inf.ShowDialog();
+            //assign map ID
+            if (inf.SelectedID != null && !string.IsNullOrEmpty(inf.SelectedID))
+            {
+                _datagrid.SelectedCells[0].Value = inf.SelectedID;
+                _datagrid.SelectedCells[0].Style.BackColor = Color.LightGreen;
+            }
+        }
+
+
+        #endregion ProductUserControl
+
+
+        #region ssGridViewUserControl
+
+        internal void AssignViewManager(ssGridView<ProductView> ssGrid)
+        {
+            _v_ssGridViewCntrl = ssGrid;
+            HandlessGridViewControlEvents();
+        }
+
+        private void HandlessGridViewControlEvents()
+        {
+            _v_ssGridViewCntrl.SearchTitleTriggered += SearchTitle;
+            _v_ssGridViewCntrl.SearchTagTriggered += SearchTags;
+            _v_ssGridViewCntrl.ResetBindingsAfterSearchTriggered += ResetBindings;
+            _v_ssGridViewCntrl.OnControlLoad += OnControlLoadHandler;
+        }
+
 
         internal void WriteBackProductViewToProductsModelAndSave()
         {
-            foreach (var p in _productsView)
+            foreach (var p in _vm_productsView)
             {
-                foreach (var m in _productModel._productEntries)
+                foreach (var m in _m_product._productEntries)
                 {
                     if(p.InHouseCode == m.InHouseCode)
                     {
@@ -53,31 +115,17 @@ namespace SellerSense.ViewModelManager
                         
                     }
                 }
-                //_productsView.Add(new ProductView(
-                //    item.InHouseCode,
-                //    null, item.Title,
-                //    item.Description,
-                //    item.Tag,
-                //    item.AmazonCode,
-                //    item.FlipkartCode,
-                //    item.SnapdealCode,
-                //    item.MeeshoCode,
-                //    item.Notes));
 
             }
-            _productModel.SaveMapFile();
+            _m_product.SaveMapFile();
         }
 
         private void TranslateProductModelToProductsView()
         {
-            _productsView = new List<ProductView>();
-            foreach (var item in _productModel._productEntries)
+            _vm_productsView = new List<ProductView>();
+            foreach (var item in _m_product._productEntries)
             {
-                //Image timg = null;
-                //if (_imgs.ContainsKey(item.Image))
-                //    timg = _imgs[item.Image];
-
-                _productsView.Add(new ProductView(
+                _vm_productsView.Add(new ProductView(
                     item.InHouseCode,
                     null, item.Title,
                     item.Tag,
@@ -87,20 +135,25 @@ namespace SellerSense.ViewModelManager
                     item.SnapdealCode,
                     item.MeeshoCode,
                     item.Notes));
-                
             }
         }
-    
-
-    /// Start - Event handlers for data grid view
 
 
-    internal void OnControlLoadHandler(DataGridView datagrid)
+# region Event handlers for data grid view
+
+
+        internal void OnControlLoadHandler(DataGridView datagrid)
         {
-            //datagrid.CellValueChanged += (s, e) => {
-            //    _isBindingListDirty = true; 
-
-            //};
+            this._datagrid = datagrid;
+            datagrid.CellEnter += (s, e) =>
+            {
+                if (datagrid.SelectedCells.Count <= 0)
+                    return;
+                _v_productCntrl.amazonToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.AmazonCode;
+                _v_productCntrl.flipkartToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.FlipkartCode;
+                _v_productCntrl.snapdealToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.SnapDealCode;
+                _v_productCntrl.meeshoToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.MeeshoCode;
+            };
 
             datagrid.DataBindingComplete += (s, e) =>
             {
@@ -115,17 +168,7 @@ namespace SellerSense.ViewModelManager
             datagrid.KeyDown += (s, e) => { grdmapGrid_KeyDown(datagrid, e); };
         }
 
-        //internal void BindingListChanged(object blist, ListChangedEventArgs e)
-        //{
-        //    if(e.OldIndex>0 && e.NewIndex>0 && e.OldIndex == e.NewIndex) //item changed, no insertion or deletion
-        //    {
-        //        //_productModel.SaveMapFile();
-        //        //_productModel._productEntries.FirstOrDefault(
-        //        //    x => x.InHouseCode == (blist as BindingList<ProductView>)[e.NewIndex].InHouseCode);
-        //    }
-        //}
-
-
+       
         private void grdmapGrid_KeyDown(DataGridView datagrid, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
@@ -134,27 +177,20 @@ namespace SellerSense.ViewModelManager
                 bool spdCol = datagrid.SelectedCells[0].OwningColumn.Name == Constants.PCols.SnapDealCode;
                 bool fkCol = datagrid.SelectedCells[0].OwningColumn.Name == Constants.PCols.FlipkartCode;
                 bool msoCol = datagrid.SelectedCells[0].OwningColumn.Name == Constants.PCols.MeeshoCode;
-                //bool titleCol = datagrid.SelectedCells[0].OwningColumn.Name == Constants.PCols.AmazonCode;
 
-                //TODO : Move below business logic in VM - viewmodel layer.
                 //TODO : Add Notes col also.. for deletion, in below code
                 if (amzCol || spdCol || fkCol || msoCol )//|| titleCol)
                 {
                     datagrid.SelectedCells[0].Value = string.Empty;
-                  var r_item =  _productModel._productEntries.FirstOrDefault(i=>i.InHouseCode == datagrid.SelectedCells[0].OwningRow.Cells[Constants.PCols.BaseCodeValue].Value.ToString());
-                    
-                    //M_Map.MapEntry r_item = _productGridData.products.FirstOrDefault
-                    //   (it => it.BaseCodeValue == datagrid.SelectedCells[0].OwningRow.Cells[Constants.ICols.Code].Value.ToString());
-                    if (amzCol)
-                        r_item.AmazonCode = String.Empty;
-                    if (spdCol)
-                        r_item.SnapdealCode = String.Empty;
-                    if (fkCol)
-                        r_item.FlipkartCode = String.Empty;
-                    if (msoCol)
-                        r_item.MeeshoCode = String.Empty;
-                    //if (titleCol)
-                    //    r_item.Title = String.Empty;
+                    //var r_item =  _m_product._productEntries.FirstOrDefault(i=>i.InHouseCode == datagrid.SelectedCells[0].OwningRow.Cells[Constants.PCols.BaseCodeValue].Value.ToString());
+                    //if (r_item!=null && amzCol)
+                    //    r_item.AmazonCode = String.Empty;
+                    //if (r_item != null && spdCol)
+                    //    r_item.SnapdealCode = String.Empty;
+                    //if (r_item != null && fkCol)
+                    //    r_item.FlipkartCode = String.Empty;
+                    //if (r_item != null && msoCol)
+                    //    r_item.MeeshoCode = String.Empty;
                 }
                 e.SuppressKeyPress = true;
             }
@@ -211,20 +247,16 @@ namespace SellerSense.ViewModelManager
         private System.Windows.Forms.DataGridViewCellStyle GetHyperLinkStyleForGridCell()
         {
             // Set the Font and Uderline into the Content of the grid cell .  
-            {
-                System.Windows.Forms.DataGridViewCellStyle l_objDGVCS = new System.Windows.Forms.DataGridViewCellStyle();
-                //System.Drawing.Font l_objFont = new System.Drawing.Font(FontFamily.GenericSansSerif, 8, FontStyle.Underline);
-                //l_objDGVCS.Font = l_objFont;
-                l_objDGVCS.ForeColor = Color.Blue;
-                return l_objDGVCS;
-            }
+            System.Windows.Forms.DataGridViewCellStyle l_objDGVCS = new System.Windows.Forms.DataGridViewCellStyle();
+            l_objDGVCS.ForeColor = Color.Blue;
+            return l_objDGVCS;
         }
 
         internal void SearchTags(bool IsEnable, string textToSearch, BindingList<VM_Products.ProductView> bindedProducts)
         {
             bindedProducts.Clear();
 
-            _productsView.Where(y=> !string.IsNullOrEmpty(y.Tag)).ToList().Where((x) => 
+            _vm_productsView.Where(y=> !string.IsNullOrEmpty(y.Tag)).ToList().Where((x) => 
             //if(!string.IsNullOrEmpty(x.Tag))
             x.Tag.ToLower().Contains(textToSearch.ToLower())).ToList().
                 ForEach(p => bindedProducts.Add(p)
@@ -234,7 +266,7 @@ namespace SellerSense.ViewModelManager
         internal void SearchTitle(bool IsEnable, string textToSearch, BindingList<VM_Products.ProductView> bindedProducts)
         {
             bindedProducts.Clear();
-            _productsView.Where(x => x.Title.ToLower().Contains(textToSearch.ToLower())).ToList().
+            _vm_productsView.Where(x => x.Title.ToLower().Contains(textToSearch.ToLower())).ToList().
                 ForEach(p=> bindedProducts.Add(p));
         }
 
@@ -243,12 +275,12 @@ namespace SellerSense.ViewModelManager
 
         }
 
-        /// End - Event handlers for data grid view
+#endregion Event handlers for data grid view
 
 
         internal void AssignImagesToProducts(Dictionary<string, Image> imgs)
         {
-            foreach (var item in _productsView)
+            foreach (var item in _vm_productsView)
             {
                 if (imgs.ContainsKey(item.InHouseCode))
                     item.Image = imgs[item.InHouseCode];
@@ -273,7 +305,6 @@ namespace SellerSense.ViewModelManager
             public string Notes { get; set; }
 
 
-            //public event PropertyChangedEventHandler PropertyChanged;
 
             //// This method is called by the Set accessor of each property.  
             //// The CallerMemberName attribute that is applied to the optional propertyName  
@@ -287,7 +318,6 @@ namespace SellerSense.ViewModelManager
                 string amzInventory, string fkCodeValue, string spdCodeValue,
                 string msoCodeValue, string notes)
             {
-                //this.Id = Guid.NewGuid();
                 this.InHouseCode = baseCodeValue;
                 this.Image = img;
                 this.Title = title;
@@ -298,34 +328,13 @@ namespace SellerSense.ViewModelManager
                 this.MeeshoCode = msoCodeValue;
                 this.AmazonCode = amzInventory;
                 this.Notes = notes;
-
-
             }
         }
 
+        #endregion ssGridViewUserControl
 
-
-
-
-
-        //internal Dictionary<string, Image> LoadImages()
-        //{
-        //    //TODO : Remove background worker
-        //    BackgroundWorker bg = new BackgroundWorker();
-
-        //    bg.WorkerReportsProgress = true;
-        //    bg.DoWork += (sender, doWorkEventArgs) =>
-        //    {
-        //        Dictionary<string,Image> imgs = Helper.ProjIO.LoadAllImagesAndDownSize75x75(_map._lastSavedMapImageDirectory);
-        //    };
-        //    bg.RunWorkerCompleted += (s, ev) =>
-        //    {
-
-        //    };
-        //    bg.RunWorkerAsync();
-        //}
     }
 
-   
+
 
 }

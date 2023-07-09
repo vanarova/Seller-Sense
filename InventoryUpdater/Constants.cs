@@ -77,9 +77,12 @@ namespace SellerSense
         {
             public const string AmazonCode = "AmazonCode";
             public const string FlipkartCode = "FlipkartCode";
-            public const string SnapDealCode = "SnapDealCode";
+            public const string SnapDealCode = "SnapdealCode";
             public const string MeeshoCode = "MeeshoCode";
             public const string BaseCodeValue = "BaseCodeValue";
+            public const string Image = "Image";
+            public const string InHouseCode = "InHouseCode";
+            public const string Title = "Title";
 
         }
 

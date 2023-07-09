@@ -37,7 +37,9 @@ namespace SellerSense
                 if (company != null)
                 {
                     tabControl1.TabPages.Add(company._name);
-                    _productCntrlList.Add(new ProductCntrl(company));
+                    var pcntrl = new ProductCntrl(company);
+                    company._productViewManager.AssignViewManager(pcntrl);
+                    _productCntrlList.Add(pcntrl);
                     _productCntrlList[i].Dock = DockStyle.Fill;
                     tabControl1.TabPages[i].Controls.Add(_productCntrlList[i]);
                     i++;

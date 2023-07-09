@@ -48,26 +48,24 @@ namespace ssViewControls
         public event Action<bool,string, BindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindingsAfterSearchTriggered;
         public event Action<DataGridView> OnControlLoad;
-        //public event Action<object,ListChangedEventArgs> BindedListChanged;
         
         private int _pageSize { get; set; }
         private int _lastPageNumber { get; set; }
         private int _TotalRowsInDataSet { get; set; }
 
         /// <summary> full data list, contains all records </summary>
-        private List<T> _data = new List<T>();
+        private List<T> _data;
 
         /// <summary> Partial list, contains data for one page at a time. </summary>
         private BindingList<T> _bindeddata = new BindingList<T>();
 
         public ssGridView(List<T> data)
         {
-            //this._imgs = imgs;
+            _data = new List<T>();
             _data = data;
             _TotalRowsInDataSet = _data.Count;
             _pageSize = 100;
             _lastPageNumber = _TotalRowsInDataSet/_pageSize;
-            //_bindeddata.ListChanged += (o, e) => { BindedListChanged?.Invoke(o,e); };
             InitializeComponent();
         }
 
@@ -147,7 +145,6 @@ namespace ssViewControls
             if (textBox_Tag.Text.Length >= 2 && !textBox_Tag.Text.Equals(_tag))
             {
                 _bindeddata.Clear();
-                //if(SearchTagTriggered != null)
                 SearchTagTriggered?.Invoke(_EN,textBox_Tag.Text, _bindeddata);
             }
         }
@@ -157,7 +154,6 @@ namespace ssViewControls
             if (textBox_Title.Text.Length >= 2 && !textBox_Title.Text.Equals(_title))
             {
                 _bindeddata.Clear();
-                //if (SearchTitleTriggered != null)
                 SearchTitleTriggered?.Invoke(_EN, textBox_Title.Text, _bindeddata);
             }
             
@@ -168,7 +164,6 @@ namespace ssViewControls
             _EN = false; //disable all events
             textBox_Title.Text = _title; //to stop this text_changed event
             textBox_Tag.Text = _tag;
-            //if (ResetBindingsAfterSearchTriggered != null)
             ResetBindingsAfterSearchTriggered?.Invoke(_EN);
             UpdateBindings();
             _EN = true; //enable back events

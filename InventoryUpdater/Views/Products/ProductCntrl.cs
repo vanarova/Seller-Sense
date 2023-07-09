@@ -19,17 +19,18 @@ namespace SellerSense
             InitializeComponent();
             _company = company;
             _logger = new FileLogger(company._code);
-
+            
             // Add a child control, custom control using datagridview
-            cntrlGridView = new ssGridView<VM_Products.ProductView>(company._products._productsView);
+            cntrlGridView = new ssGridView<VM_Products.ProductView>(company._productViewManager._vm_productsView);
             cntrlGridView.Dock = DockStyle.Fill;
+            company._productViewManager.AssignViewManager(cntrlGridView);
+
             // Events of child control
-            //frm.DataBindingComplete += _company._products.DataGridDataBindingComplete;
-            cntrlGridView.SearchTitleTriggered += _company._products.SearchTitle;
-            cntrlGridView.SearchTagTriggered += _company._products.SearchTags;
-            //frm.BindedListChanged += _company._products.BindingListChanged;
-            cntrlGridView.ResetBindingsAfterSearchTriggered += _company._products.ResetBindings;
-            cntrlGridView.OnControlLoad += _company._products.OnControlLoadHandler;
+            //cntrlGridView.SearchTitleTriggered += _company._products.SearchTitle;
+            //cntrlGridView.SearchTagTriggered += _company._products.SearchTags;
+            //cntrlGridView.ResetBindingsAfterSearchTriggered += _company._products.ResetBindings;
+            //cntrlGridView.OnControlLoad += _company._products.OnControlLoadHandler;
+
             tableLayoutPanel1.Controls.Add(
                 //sending list of M_Product
                 cntrlGridView, 0,1);
@@ -59,11 +60,10 @@ namespace SellerSense
             //}
         }
 
-        private void toolStripMenuItem_Save_Click(object sender, EventArgs e)
-        {
-            //_company._products._productModel.SaveMapFile();
-            _company._products.WriteBackProductViewToProductsModelAndSave();
-            cntrlGridView._isBindingListDirty = false;
-        }
+        //private void toolStripMenuItem_Save_Click(object sender, EventArgs e)
+        //{
+        //    _company._productViewManager.WriteBackProductViewToProductsModelAndSave();
+        //    cntrlGridView._isBindingListDirty = false;
+        //}
     }
 }

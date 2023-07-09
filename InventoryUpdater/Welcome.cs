@@ -264,13 +264,13 @@ namespace SellerSense
             { var imgs = await _companiesMgr._companies[0].LoadImages();
                 //_companiesMgr._companies[0]._products.AssignImages(imgs); 
                 _companiesMgr._companies[0]._images = imgs;
-                _companiesMgr._companies[0]._products.AssignImagesToProducts(imgs);
+                _companiesMgr._companies[0]._productViewManager.AssignImagesToProducts(imgs);
             }
             if (_companiesMgr._companies[1]._images == null)
             {
                 var imgs = await _companiesMgr._companies[1].LoadImages();
                 _companiesMgr._companies[1]._images = imgs;
-                _companiesMgr._companies[1]._products.AssignImagesToProducts(imgs);
+                _companiesMgr._companies[1]._productViewManager.AssignImagesToProducts(imgs);
                 //_companiesMgr._companies[1]._products.AssignImages(imgs);
             }
             DisplayProductForm();

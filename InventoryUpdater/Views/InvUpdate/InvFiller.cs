@@ -11,36 +11,34 @@ using System.Web;
 using System.Windows.Forms;
 using Decoders.Interfaces;
 using InventoryUpdater.ViewModelManager;
+using SellerSense.ViewModelManager;
 
 namespace SellerSense
 {
     public partial class InvFiller : Form
     {
-        public VM_Company _company { get; set; }
-        //private Constants.Company _companyType;
+        internal VM_Inventories _vm_Inventories { get; set; }
         public Constants.Company _companyType { get; set; }
         public IList<IAmzInventory> _amzInventory { get; set; }
         public IList<IFkInventory> _fkInventory { get; set; }
         public IList<ISpdInventory> _spdInventory { get; set; }
         public IList<IMsoInventory> _msoInventory { get; set; }
         public string SelectedID { get; set; }
-        //private Image _img;
-        //private string _code;
-        //private string _title;
+
         public InvFiller()
         {
             InitializeComponent();
         }
 
-        public InvFiller(Constants.Company company, Image selectedImg, string selectedCode, string selectedTitle, VM_Company companyModel)
+        internal InvFiller(Constants.Company company, Image selectedImg, 
+            string selectedCode, string selectedTitle, VM_Inventories inv)
         {
             InitializeComponent();
             _companyType = company;
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
-            //_amzInventory = amzInv;
-            _company = companyModel;
+            _vm_Inventories = inv;
             if (Screen.PrimaryScreen.WorkingArea.Height/2 < 1300)
                 this.Height = 1300;
             switch (company)
@@ -69,8 +67,8 @@ namespace SellerSense
         private void RefreshGrid()
         {
             grd_InvData.DataSource = null;
-            if (_company._inventories._amzImportedInvList._amzInventoryList.Count > 0)
-                _amzInventory = _company._inventories._amzImportedInvList._amzInventoryList;
+            if (_vm_Inventories._amzImportedInvList._amzInventoryList.Count > 0)
+                _amzInventory = _vm_Inventories._amzImportedInvList._amzInventoryList;
 
 
             if (_amzInventory != null)
@@ -86,49 +84,49 @@ namespace SellerSense
                 grd_InvData.DataSource = _msoInventory;
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle,IList<IAmzInventory> amzInv, VM_Company company)
+        internal InvFiller(Image selectedImg, string selectedCode, 
+            string selectedTitle,IList<IAmzInventory> amzInv, VM_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
             _amzInventory = amzInv;
-            _company = company;
-            //_companyType = Constants.Company.Amazon;
+            this._vm_Inventories = vm_Inventories;
         }
 
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IFkInventory> fkinv, VM_Company company)
+        internal InvFiller(Image selectedImg, string selectedCode, 
+            string selectedTitle, IList<IFkInventory> fkinv, VM_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
             _fkInventory = fkinv;
-            _company = company;
-            //_companyType = Constants.Company.Flipkart;
+            this._vm_Inventories = vm_Inventories;
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<ISpdInventory> spdinv, VM_Company company)
+        internal InvFiller(Image selectedImg, string selectedCode, 
+            string selectedTitle, IList<ISpdInventory> spdinv, VM_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
             _spdInventory = spdinv;
-            _company = company;
-            //_companyType= Constants.Company.Snapdeal;
+            this._vm_Inventories = vm_Inventories;
         }
 
-        public InvFiller(Image selectedImg, string selectedCode, string selectedTitle, IList<IMsoInventory> msoinv, VM_Company company)
+        internal InvFiller(Image selectedImg, string selectedCode, 
+            string selectedTitle, IList<IMsoInventory> msoinv, VM_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
             lbl_Code.Text = selectedCode;
             lbl_title.Text = selectedTitle;
             _msoInventory = msoinv;
-            _company = company;
-            //_companyType = Constants.Company.Meesho;
+            this._vm_Inventories = vm_Inventories;
         }
 
         private void InvFiller_Load(object sender, EventArgs e)
@@ -162,9 +160,9 @@ namespace SellerSense
         private void LoadAmzCodes()
         {
             DialogResult r = DialogResult.None;
-            if (_company._inventories._amzImportedInvList != null &&
-                _company._inventories._amzImportedInvList._amzInventoryList != null &&
-                _company._inventories._amzImportedInvList._amzInventoryList.Count > 0)
+            if (_vm_Inventories._amzImportedInvList != null &&
+                _vm_Inventories._amzImportedInvList._amzInventoryList != null &&
+                _vm_Inventories._amzImportedInvList._amzInventoryList.Count > 0)
             { r = MessageBox.Show("Inventory list is already loaded, do you want to re-load ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); }
             if (r == DialogResult.Yes || r == DialogResult.None)
             {
@@ -172,8 +170,8 @@ namespace SellerSense
                 openFileDialog.Filter = "Amazon inv text file|*.txt";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    _company._inventories.ImportAmazonInventoryFile(openFileDialog.FileName);
-                    _amzInventory = _company._inventories._amzImportedInvList._amzInventoryList;
+                    _vm_Inventories.ImportAmazonInventoryFile(openFileDialog.FileName);
+                    _amzInventory = _vm_Inventories._amzImportedInvList._amzInventoryList;
                     RefreshGrid();
                 }
             }
@@ -182,9 +180,9 @@ namespace SellerSense
         private void LoadSkCodes()
         {
             DialogResult r = DialogResult.None;
-            if (_company._inventories._spdImportedInventoryList != null &&
-                _company._inventories._spdImportedInventoryList._spdInventoryList != null &&
-                _company._inventories._spdImportedInventoryList._spdInventoryList.Count > 0)
+            if (_vm_Inventories._spdImportedInventoryList != null &&
+                _vm_Inventories._spdImportedInventoryList._spdInventoryList != null &&
+                _vm_Inventories._spdImportedInventoryList._spdInventoryList.Count > 0)
             { r = MessageBox.Show("Inventory list is already loaded, do you want to re-load ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); }
             if (r == DialogResult.Yes || r == DialogResult.None)
             {
@@ -192,8 +190,8 @@ namespace SellerSense
                 openFileDialog.Filter = "Snapdeal inv file|*.xlsx";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    _company._inventories.ImportSnapdealInventoryFile(openFileDialog.FileName);
-                    _spdInventory = _company._inventories._spdImportedInventoryList._spdInventoryList;
+                    _vm_Inventories.ImportSnapdealInventoryFile(openFileDialog.FileName);
+                    _spdInventory = _vm_Inventories._spdImportedInventoryList._spdInventoryList;
                     RefreshGrid();
                 }
             }
@@ -202,9 +200,9 @@ namespace SellerSense
         private void LoadFkCodes()
         {
             DialogResult r = DialogResult.None;
-            if (_company._inventories._fkImportedInventoryList != null &&
-                _company._inventories._fkImportedInventoryList._fkInventoryList != null &&
-                _company._inventories._fkImportedInventoryList._fkInventoryList.Count > 0)
+            if (_vm_Inventories._fkImportedInventoryList != null &&
+                _vm_Inventories._fkImportedInventoryList._fkInventoryList != null &&
+                _vm_Inventories._fkImportedInventoryList._fkInventoryList.Count > 0)
             { r = MessageBox.Show("Inventory list is already loaded, do you want to re-load ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); }
             if (r == DialogResult.Yes || r == DialogResult.None)
             {
@@ -212,8 +210,8 @@ namespace SellerSense
                 openFileDialog.Filter = "Flipkart inv file|*.xls";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    _company._inventories.ImportFlipkartInventoryFile(openFileDialog.FileName);
-                    _fkInventory = _company._inventories._fkImportedInventoryList._fkInventoryList;
+                    _vm_Inventories.ImportFlipkartInventoryFile(openFileDialog.FileName);
+                    _fkInventory = _vm_Inventories._fkImportedInventoryList._fkInventoryList;
                     RefreshGrid();
                 }
             }
@@ -222,9 +220,9 @@ namespace SellerSense
         private void LoadMsoCodes()
         {
             DialogResult r = DialogResult.None;
-            if (_company._inventories._msoImportedInventoryList != null &&
-                _company._inventories._msoImportedInventoryList._msoInventoryList != null &&
-                _company._inventories._msoImportedInventoryList._msoInventoryList.Count > 0)
+            if (_vm_Inventories._msoImportedInventoryList != null &&
+                _vm_Inventories._msoImportedInventoryList._msoInventoryList != null &&
+                _vm_Inventories._msoImportedInventoryList._msoInventoryList.Count > 0)
             { r = MessageBox.Show("Inventory list is already loaded, do you want to re-load ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information); }
             if (r == DialogResult.Yes || r == DialogResult.None)
             {
@@ -232,8 +230,8 @@ namespace SellerSense
                 openFileDialog.Filter = "Meesho inv file|*.xlsx";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    _company._inventories.ImportMeeshoInventoryFile(openFileDialog.FileName);
-                    _msoInventory = _company._inventories._msoImportedInventoryList._msoInventoryList;
+                    _vm_Inventories.ImportMeeshoInventoryFile(openFileDialog.FileName);
+                    _msoInventory = _vm_Inventories._msoImportedInventoryList._msoInventoryList;
                     RefreshGrid();
                 }
             }
@@ -241,7 +239,7 @@ namespace SellerSense
 
         private async void SearchMsoInvList()
         {
-            Task<List<int>> t = _company._inventories.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _vm_Inventories.SearchMsoInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
                             _companyType);
             //(iList) =>
@@ -271,7 +269,7 @@ namespace SellerSense
 
         private async void SearchSpdInvList()
         {
-            Task<List<int>> t = _company._inventories.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _vm_Inventories.SearchSpdInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
                             _companyType);
             await t;
@@ -303,7 +301,7 @@ namespace SellerSense
 
         private async void SearchFkInvList()
         {
-           Task<List<int>> t = _company._inventories.SearchFkInvCollectionTask(txt_CompanyId.Text,
+           Task<List<int>> t = _vm_Inventories.SearchFkInvCollectionTask(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
                             _companyType);
             await t;
@@ -333,7 +331,7 @@ namespace SellerSense
 
         private async void SearchAmzInvList()
         {
-            Task<List<int>> t = _company._inventories.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
+            Task<List<int>> t = _vm_Inventories.SearchAmzInvCollectionAsync(txt_CompanyId.Text,
                             Constants.SearchType.ByCompanyId,
                             _companyType);
             await t;
