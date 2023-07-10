@@ -121,6 +121,7 @@
             this.progressBar_Search.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar_Search.Name = "progressBar_Search";
             this.progressBar_Search.Size = new System.Drawing.Size(68, 39);
+            this.progressBar_Search.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar_Search.TabIndex = 3;
             // 
             // button_Next

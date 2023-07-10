@@ -136,7 +136,7 @@ namespace SellerSense
             this.btn_mapping.TabIndex = 1;
             this.btn_mapping.Text = "New Inventories";
             this.btn_mapping.UseVisualStyleBackColor = false;
-            this.btn_mapping.Click += new System.EventHandler(this.btn_mapping_Click);
+            this.btn_mapping.Click += new System.EventHandler(this.btn_Inventories_Click);
             // 
             // btn_invUpdate
             // 

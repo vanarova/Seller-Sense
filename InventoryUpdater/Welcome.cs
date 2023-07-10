@@ -1,4 +1,5 @@
 ﻿using SellerSense.Helper;
+using SellerSense.Views.Inventories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,20 +34,20 @@ namespace SellerSense
                 AdjustUI("EnableAllButton");
         }
 
-        private async void btn_mapping_Click(object sender, EventArgs e)
+        private async void btn_Inventories_Click(object sender, EventArgs e)
         {
             pbarLoadForms.Visible = true;
 
             //load images for all companies async
             var imgs = await _companiesMgr._companies[0].LoadImages();
             _companiesMgr._companies[0]._images = imgs;
-            _companiesMgr._companies[0]._productViewManager.AssignImagesToProducts(imgs);
+            _companiesMgr._companies[0]._inventoriesViewManager.AssignImagesToProducts(imgs);
 
             var imgs1 = await _companiesMgr._companies[1].LoadImages();
             _companiesMgr._companies[1]._images = imgs1;
-            _companiesMgr._companies[1]._productViewManager.AssignImagesToProducts(imgs1);
+            _companiesMgr._companies[1]._inventoriesViewManager.AssignImagesToProducts(imgs1);
 
-            DisplayProductForm();
+            DisplayInvForm();
 
 
             ////try
@@ -140,7 +141,7 @@ namespace SellerSense
         {
 
         }
-
+        
 
         private void DisplayInvForm()
         {
@@ -151,7 +152,7 @@ namespace SellerSense
             //mp.Show();
             //AdjustUI("SendWelcomeButtonToBack");
 
-            InvUpdate iu = new InvUpdate(_companiesMgr);
+            Inventories iu = new Inventories(_companiesMgr);
             iu.MdiParent = this;
             pbarLoadForms.Visible = !pbarLoadForms.Visible;
             iu.Show();

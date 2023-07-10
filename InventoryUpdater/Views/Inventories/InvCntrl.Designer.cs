@@ -135,10 +135,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.MenuStrip fileStrip;
         internal System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Save;
-        private System.Windows.Forms.ToolStripMenuItem importAmazonToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importFlipkartToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importSnapdealToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importMeeshoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportAllToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem importAmazonToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem importFlipkartToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem importSnapdealToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem importMeeshoToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem exportAllToolStripMenuItem;
     }
 }

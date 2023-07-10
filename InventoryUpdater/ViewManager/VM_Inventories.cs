@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static SellerSense.ViewManager.VM_Products;
 
 namespace SellerSense.ViewManager
@@ -27,11 +28,64 @@ namespace SellerSense.ViewManager
         {
             _m_inventoriesModel = inventories;
             _m_productModel = m_product;
+            TranslateInvModelToInvView();
         }
 
         internal void AssignViewManager(InvCntrl invUserControl) {
             _v_invCntrl = invUserControl;
-            //HandleProductControlEvents();
+            HandleProductControlEvents();
+        }
+
+        private void HandleProductControlEvents()
+        {
+            _v_invCntrl.importAmazonToolStripMenuItem.Click += (s, e) => { ImportAmazonInv(); };
+            _v_invCntrl.importFlipkartToolStripMenuItem.Click += (s, e) => { };
+            _v_invCntrl.importSnapdealToolStripMenuItem.Click += (s, e) => { };
+            _v_invCntrl.importMeeshoToolStripMenuItem.Click += (s, e) => { };
+        }
+
+
+
+        private void ImportAmazonInv()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Amazon inv text file|*.txt";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _m_inventoriesModel.ImportAmazonInventoryFile(openFileDialog.FileName);
+                _ssGridView.IsLoading = true;
+            }
+            else return;
+            //AssignAmzInvAndPricesToInvUpdateCollection(() => { DeepRefreshGridAndTakeSnapshots(); });
+            AssignAmazonInvAndPricesToInvView();
+        
+        
+        }
+
+        internal void AssignImagesToProducts(Dictionary<string, Image> imgs)
+        {
+            foreach (var item in _inventoryViewList)
+            {
+                if (imgs.ContainsKey(item.InHouseCode))
+                    item.Image = imgs[item.InHouseCode];
+
+            }
+        }
+
+        private void AssignAmazonInvAndPricesToInvView()
+        {
+            foreach (var amzItem in _m_inventoriesModel._amzImportedInvList._amzInventoryList)
+            {
+                foreach (var viewItem in _inventoryViewList)
+                {
+                    if(amzItem.asin == viewItem.AmazonCode)
+                    {
+                       if(int.TryParse(amzItem.systemQuantity, out int val))
+                        viewItem.AmazonSystemCount = val;
+                    }
+                }
+            }
+            
         }
 
         internal void AssignViewManager(ssGridView<InventoryView> ssGrid)
@@ -190,6 +244,52 @@ namespace SellerSense.ViewManager
         }
 
 
+
+
+
+
+
+
+        //internal void WriteBackInvViewToInvModelAndSave()
+        //{
+        //    foreach (var p in _inventoryViewList)
+        //    {
+        //        foreach (var m in _m_product._productEntries)
+        //        {
+        //            if(p.InHouseCode == m.InHouseCode)
+        //            {
+        //                m.SnapdealCode = p.SnapdealCode;
+        //                m.FlipkartCode = p.FlipkartCode;
+        //                m.Notes = p.Notes;
+        //                m.Title = p.Title;
+        //                m.Description = p.Description;
+        //                m.Tag = p.Tag;
+        //                m.AmazonCode = p.AmazonCode;
+        //                m.MeeshoCode = p.MeeshoCode;
+                        
+        //            }
+        //        }
+
+        //    }
+        //    _m_product.SaveMapFile();
+        //}
+
+
+        private void TranslateInvModelToInvView()
+        {
+            _inventoryViewList = new List<InventoryView>();
+            foreach (var item in _m_productModel._productEntries)
+            {
+                _inventoryViewList.Add(new InventoryView() {
+                    InHouseCode = item.InHouseCode,
+                    Title = item.Title, Tag = item.Tag, Image = null, AmazonCode = item.AmazonCode, FlipkartCode=item.FlipkartCode,
+                    MeeshoCode=item.MeeshoCode,SnapdealCode=item.SnapdealCode
+                    });
+            }
+        }
+
+
+
         internal void SaveInvSnapshot()
         {
 
@@ -199,7 +299,30 @@ namespace SellerSense.ViewManager
 
         internal class InventoryView
         {
+            //below values from Product 
+            public string InHouseCode { get; set; }
+            public Image Image { get; set; }
+            public string Title { get; set; }
+            public string Tag { get; set; }
+            
 
+            //below values fron InvUpdate
+            public int? AmazonCount { get; set; }
+            public int? AmazonSystemCount { get; set; }
+            public int? FlipkartCount { get; set; }
+            public int? FlipkartSystemCount { get; set; }
+            public int? SnapdealCount { get; set; }
+            public int? SnapdealSystemCount { get; set; }
+            public int? MeeshoCount { get; set; }
+            public int? MeeshoSystemCount { get; set; }
+            public int? InHouseCount { get; set; }
+            public string Notes { get; set; }
+
+            //below values from Product
+            public string AmazonCode { get; set; }
+            public string FlipkartCode { get; set; }
+            public string SnapdealCode { get; set; }
+            public string MeeshoCode { get; set; }
         }
 
     }

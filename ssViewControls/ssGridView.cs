@@ -48,7 +48,8 @@ namespace ssViewControls
         public event Action<bool,string, BindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindingsAfterSearchTriggered;
         public event Action<DataGridView> OnControlLoad;
-        
+        public bool IsLoading { set { progressBar_Search.Visible = value; } }
+
         private int _pageSize { get; set; }
         private int _lastPageNumber { get; set; }
         private int _TotalRowsInDataSet { get; set; }
@@ -84,6 +85,7 @@ namespace ssViewControls
 
         private void AdjustUI()
         {
+            IsLoading = false;
             dataGridView_data.AutoGenerateColumns = true;
             dataGridView_data.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
         }
