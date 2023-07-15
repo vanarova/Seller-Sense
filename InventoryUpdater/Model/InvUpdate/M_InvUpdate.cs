@@ -12,26 +12,27 @@ namespace SellerSense.Model
 {
     internal class M_InvUpdate
     {
-        internal List<InvEntry> _invEntries { get; set; }
-        internal M_Product _map { get; set; }
+        internal List<InvSnapshotEntry> _invEntries { get; set; }
+        internal M_Product _m_ProductModel { get; set; }
         const string _snapshotDir = Constants.Snapshots;
         static private string _fileName = DateTime.Now.Year.ToString()
                 + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString()+ ".json";
 
 
-        public M_InvUpdate(M_Product map, M_Inventories inventories=null)
+        public M_InvUpdate(M_Product m_productModel, M_Inventories inventories=null)
         {
-            _map = map;
-            _invEntries = new List<InvEntry>();
-            map._productEntries.ForEach(e =>
+            this._m_ProductModel = m_productModel;
+            _invEntries = new List<InvSnapshotEntry>();
+            m_productModel._productEntries.ForEach(e =>
             {
-                _invEntries.Add(new InvEntry() { MapEntry = e });
+                _invEntries.Add(new InvSnapshotEntry() { MapEntry = e });
             });
+            //inventories._fkImportedInventoryList
         }
 
         internal void SaveInvSnapshot()
         {
-            SerializeInv(_map._lastSavedMapDirectory);
+            SerializeInv(_m_ProductModel._lastSavedMapDirectory);
         }
 
         private void SerializeInv(string dirName)
@@ -49,7 +50,7 @@ namespace SellerSense.Model
 
     }
 
-    internal class InvEntry
+    internal class InvSnapshotEntry
     {
        public M_Product.ProductEntry MapEntry { get; set; }
        public int? AmzInv { get; set; }

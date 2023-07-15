@@ -208,7 +208,7 @@ namespace SellerSense
             if (!string.IsNullOrEmpty(mapCode))
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Inventory file|map.json";
+                openFileDialog.Filter = "Inventory file|*.json";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     _map1File = openFileDialog.FileName;

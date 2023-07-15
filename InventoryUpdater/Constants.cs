@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -86,6 +87,27 @@ namespace SellerSense
 
         }
 
+
+        public struct InventoryViewCols
+        {
+            public const string AmazonCount = "AmazonCount";
+            public const string AmazonSystemCount = "AmazonSystemCount";
+            public const string FlipkartCount = "FlipkartCount";
+            public const string FlipkartSystemCount = "FlipkartSystemCount";
+            public const string SnapdealCount = "SnapdealCount";
+            public const string SnapdealSystemCount = "SnapdealSystemCount";
+            public const string MeeshoCount = "MeeshoCount";
+            public const string MeeshoSystemCount = "MeeshoSystemCount";
+            public const string AmazonCode = "AmazonCode";
+            public const string FlipkartCode = "FlipkartCode";
+            public const string SnapdealCode = "SnapdealCode";
+            public const string MeeshoCode = "MeeshoCode";
+            public const string InHouseCode = "InHouseCode";
+            public const string Title = "Title";
+            public const string Tag = "Tag";
+
+
+        }
 
     }
 }

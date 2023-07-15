@@ -9,7 +9,7 @@ namespace Decoders.Interfaces
 {
     public interface ISpdInventory
     {
-        string name { get; set; }
+        string sku { get; set; }
         string fsn { get; set; } // serial number
         string price { get; set; }
         string systemQuantity { get; set; }

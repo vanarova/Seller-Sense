@@ -11,7 +11,7 @@ namespace SellerSense.Model
     internal class M_FkInventoryList
     {
         internal IList<IFkInventory> _fkInventoryList { get; set; }
-        internal IList<IFkInventory> _fkUIModifiedInvList { get; set; } //collects user modifications
+        internal IList<IFkInventory> _fkUIModifiedInvList { get; set; } //collects user modifications rows only, leave unmodifed rows.
 
         public M_FkInventoryList()
         {

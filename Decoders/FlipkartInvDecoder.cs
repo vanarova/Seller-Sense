@@ -78,7 +78,7 @@ namespace Decoders
     class FkInv : IFkInventory
     {
         [Column(1)]
-        public string name { get; set; }
+        public string sku { get; set; }
         [Column(5)]
         public string fsn { get; set; }
         [Column(10)]

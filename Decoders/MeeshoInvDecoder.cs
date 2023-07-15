@@ -28,8 +28,8 @@ namespace Decoders
             if (_invMeesho == null)
             {
                 _invMeeshoFileName = excelFile;
-                ExcelMapper exm = new ExcelMapper(excelFile) { HeaderRow = true };
-                _invMeeshoUnModified = exm.Fetch<MsoInv>();
+                _exm = new ExcelMapper(excelFile) { HeaderRow = true };
+                _invMeeshoUnModified = _exm.Fetch<MsoInv>();
 
                 //var otems = new ExcelMapper(excelFile) { HeaderRow = false }.Fetch<FkInv>();
                 _invMeesho = _invMeeshoUnModified.ToList<IMsoInventory>();
@@ -79,7 +79,7 @@ namespace Decoders
     class MsoInv : IMsoInventory
     {
         [Column(4)]
-        public string name { get; set; }
+        public string sku { get; set; }
         [Column(6)]
         public string fsn { get; set; }
         [Column(0)]

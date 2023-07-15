@@ -18,8 +18,6 @@ namespace SellerSense.Model
         internal M_MsoInventoryList _msoImportedInventoryList { get; set; }
 
 
-
-
         public M_Inventories()
         {
             _baseCodes = new M_BaseCodeList();

@@ -9,15 +9,15 @@ namespace SellerSense.Model
 {
     internal abstract class M_FkInventory : IFkInventory
     {
-       public string name { get; set; }
+       public string sku { get; set; }
        public string fsn { get; set; }
        public string price { get; set; }
         public string systemQuantity { get; set; }
         public string sellerQuantity { get; set; }
 
-        public M_FkInventory(string sku, string fsn, string price, string systemQuantity, string sellerQuantity)
+        protected M_FkInventory(string sku, string fsn, string price, string systemQuantity, string sellerQuantity)
         {
-            this.name = sku;
+            this.sku = sku;
             this.fsn = fsn;
             this.price = price;
             this.systemQuantity = systemQuantity;

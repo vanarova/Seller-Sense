@@ -86,7 +86,7 @@ namespace Decoders
         {
             const int nam = 2; //make a separate config file for mapping cols
             [Column(nam)]
-            public string name { get; set; }
+            public string sku { get; set; }
             [Column(1)]
             public string fsn { get; set; }
             [Column(7)]

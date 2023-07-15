@@ -9,7 +9,7 @@ namespace SellerSense.Model
 {
     internal abstract class M_SpdInventory : ISpdInventory
     {
-       public string name { get; set; }
+       public string sku { get; set; }
        public string fsn { get; set; }
        public string price { get; set; }
        public string systemQuantity { get; set; }
@@ -19,7 +19,7 @@ namespace SellerSense.Model
 
         public M_SpdInventory(string sku, string fsn, string price, string systemQuantity, string sellerQuantity)
         {
-            this.name = sku;
+            this.sku = sku;
             this.fsn = fsn;
             this.price = price;
             this.systemQuantity = systemQuantity;

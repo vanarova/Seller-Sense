@@ -114,6 +114,7 @@
             this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
             this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(363, 44);
             this.exportAllToolStripMenuItem.Text = "Export All 🡽";
+            this.exportAllToolStripMenuItem.Click += new System.EventHandler(this.exportAllToolStripMenuItem_Click);
             // 
             // InvCntrl
             // 

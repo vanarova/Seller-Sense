@@ -261,7 +261,7 @@ namespace SellerSense
 
             iList.ForEach((i) =>
             {
-                grd_InvData.Rows.Add(_msoInventory[i].name, _msoInventory[i].fsn,
+                grd_InvData.Rows.Add(_msoInventory[i].sku, _msoInventory[i].fsn,
                     _msoInventory[i].price, _msoInventory[i].systemQuantity);
             });
         //});
@@ -291,7 +291,7 @@ namespace SellerSense
 
             iList.ForEach((i) =>
             {
-                grd_InvData.Rows.Add(_spdInventory[i].name, _spdInventory[i].fsn,
+                grd_InvData.Rows.Add(_spdInventory[i].sku, _spdInventory[i].fsn,
                     _spdInventory[i].price, _spdInventory[i].systemQuantity);
             });
                            // });
@@ -321,7 +321,7 @@ namespace SellerSense
 
             iList.ForEach((i) =>
             {
-                grd_InvData.Rows.Add(_fkInventory[i].name, _fkInventory[i].fsn,
+                grd_InvData.Rows.Add(_fkInventory[i].sku, _fkInventory[i].fsn,
                     _fkInventory[i].price, _fkInventory[i].systemQuantity);
             });
                            

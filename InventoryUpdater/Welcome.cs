@@ -164,55 +164,55 @@ namespace SellerSense
         private void btn_invUpdate_Click(object sender, EventArgs e)
         {
             
-            pbarLoadForms.Visible = true;
+            //pbarLoadForms.Visible = true;
 
-            _companiesMgr._companies[0]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-            if (_companiesMgr._companies.Count > 1)
-                _companiesMgr._companies[1]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-            if (_companiesMgr._companies.Count > 2)
-                _companiesMgr._companies[2]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-            if (_companiesMgr._companies.Count > 3)
-                _companiesMgr._companies[3]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-            if (_companiesMgr._companies.Count > 4)
-                _companiesMgr._companies[4]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
+            //_companiesMgr._companies[0]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
+            //if (_companiesMgr._companies.Count > 1)
+            //    _companiesMgr._companies[1]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
+            //if (_companiesMgr._companies.Count > 2)
+            //    _companiesMgr._companies[2]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
+            //if (_companiesMgr._companies.Count > 3)
+            //    _companiesMgr._companies[3]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
+            //if (_companiesMgr._companies.Count > 4)
+            //    _companiesMgr._companies[4]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
 
 
-            _companiesMgr._companies[0]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-            {
-                if (_companiesMgr._companies.Count > 1)
-                {
-                    _companiesMgr._companies[1]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-                    {
-                        if (_companiesMgr._companies.Count > 2)
-                        {
-                            _companiesMgr._companies[2]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-                            {
-                                if (_companiesMgr._companies.Count > 2)
-                                {
-                                    _companiesMgr._companies[3]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-                                    {
-                                        if (_companiesMgr._companies.Count > 3)
-                                        {
-                                            _companiesMgr._companies[4]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-                                            {
-                                                DisplayInvForm();
-                                            });
-                                        }
-                                        else DisplayInvForm();
+            //_companiesMgr._companies[0]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
+            //{
+            //    if (_companiesMgr._companies.Count > 1)
+            //    {
+            //        _companiesMgr._companies[1]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
+            //        {
+            //            if (_companiesMgr._companies.Count > 2)
+            //            {
+            //                _companiesMgr._companies[2]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
+            //                {
+            //                    if (_companiesMgr._companies.Count > 2)
+            //                    {
+            //                        _companiesMgr._companies[3]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
+            //                        {
+            //                            if (_companiesMgr._companies.Count > 3)
+            //                            {
+            //                                _companiesMgr._companies[4]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
+            //                                {
+            //                                    DisplayInvForm();
+            //                                });
+            //                            }
+            //                            else DisplayInvForm();
 
-                                    });
-                                }
-                                else DisplayInvForm();
+            //                        });
+            //                    }
+            //                    else DisplayInvForm();
 
-                            });
-                        }
-                        else DisplayInvForm();
+            //                });
+            //            }
+            //            else DisplayInvForm();
 
-                    });
-                }
-                else DisplayInvForm();
+            //        });
+            //    }
+            //    else DisplayInvForm();
 
-            });
+            //});
 
             
         }

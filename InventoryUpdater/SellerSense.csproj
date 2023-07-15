@@ -118,6 +118,12 @@
     <Compile Include="Views\Inventories\InvCntrl.Designer.cs">
       <DependentUpon>InvCntrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventories\InvFiller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventories\InvFiller.Designer.cs" >
+	<DependentUpon>InvFiller.cs</DependentUpon>
+	</Compile>
     <Compile Include="Views\Products\ProductCntrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,28 +158,10 @@
     <Compile Include="Views\SetUp\ExportProject.Designer.cs">
       <DependentUpon>ExportProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\InvUpdate\InvUpdateCntrl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\InvUpdate\InvUpdateCntrl.Designer.cs">
-      <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewManager\VM_Companies.cs" />
     <Compile Include="ViewManager\VM_Company.cs" />
     <Compile Include="Helper\ProjIO.cs" />
     <Compile Include="Helper\HTMLToJSON.cs" />
-    <Compile Include="Views\InvUpdate\InvFiller.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\InvUpdate\InvFiller.Designer.cs">
-      <DependentUpon>InvFiller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\InvUpdate\InvUpdate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\InvUpdate\InvUpdate.Designer.cs">
-      <DependentUpon>InvUpdate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Model\Inventories\AmzInventory\M_AmzInventoryList.cs" />
     <Compile Include="Model\Inventories\AmzInventory\M_AmzInventory.cs" />
     <Compile Include="Model\Inventories\BaseCode\M_BaseCodeList.cs" />
@@ -218,6 +206,7 @@
     <EmbeddedResource Include="Views\Inventories\InvCntrl.resx">
       <DependentUpon>InvCntrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventories\InvFiller.resx" />
     <EmbeddedResource Include="Views\Products\ProductCntrl.resx">
       <DependentUpon>ProductCntrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,15 +221,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SetUp\SetUp.resx">
       <DependentUpon>SetUp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\InvUpdate\InvFiller.resx">
-      <DependentUpon>InvFiller.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\InvUpdate\InvUpdate.resx">
-      <DependentUpon>InvUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\InvUpdate\InvUpdateCntrl.resx">
-      <DependentUpon>InvUpdateCntrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>

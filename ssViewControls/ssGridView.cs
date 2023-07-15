@@ -48,6 +48,9 @@ namespace ssViewControls
         public event Action<bool,string, BindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindingsAfterSearchTriggered;
         public event Action<DataGridView> OnControlLoad;
+        //BindingListChanged event is fired by INotifychanged property setters of view manager.
+        //If InotifypropertyChanged is not implemented, this event wont fire.
+        public event Action<BindingList<T>,ListChangedEventArgs> BindingListChanged; 
         public bool IsLoading { set { progressBar_Search.Visible = value; } }
 
         private int _pageSize { get; set; }
@@ -74,12 +77,12 @@ namespace ssViewControls
 
         private void ssGridView_Load(object sender, EventArgs e)
         {
+            _bindeddata.ListChanged += (s, ev) => { BindingListChanged?.Invoke(s as BindingList<T>, ev); };
             AdjustUI();
             dataGridView_data.DataSource = _bindeddata;
             UpdateBindings();
             OnControlLoad?.Invoke(dataGridView_data);
             dataGridView_data.CellValueChanged += (s, ev) => { _isBindingListDirty = true;
-                
             };
         }
 
