@@ -1,7 +1,6 @@
 ﻿using Decoders;
 using Newtonsoft.Json.Linq;
 using SellerSense.Model;
-using SellerSense.Model.Product;
 using ssViewControls;
 using System;
 using System.Collections.Generic;
@@ -31,9 +30,9 @@ namespace SellerSense.ViewManager
         private ProductCntrl _v_productCntrl;
         private ssGridView<ProductView> _v_ssGridViewCntrl;
         private DataGridView _datagrid;
-        private M_Inventories _InventoriesModel;
+        private M_External_Inventories _InventoriesModel;
 
-        public VM_Products(M_Product m_Product,M_Inventories vm_Inventories)
+        public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories)
         {
             _InventoriesModel = vm_Inventories;   
             _m_product = m_Product;

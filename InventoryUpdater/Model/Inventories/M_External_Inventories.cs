@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SellerSense.Model
 {
     //consolidated inventory model class..
-    internal class M_Inventories
+    internal class M_External_Inventories
     {
         internal M_BaseCodeList _baseCodes { get; set; }
         internal M_AmzInventoryList _amzImportedInvList { get; set; }
@@ -18,7 +18,7 @@ namespace SellerSense.Model
         internal M_MsoInventoryList _msoImportedInventoryList { get; set; }
 
 
-        public M_Inventories()
+        public M_External_Inventories()
         {
             _baseCodes = new M_BaseCodeList();
             _amzImportedInvList = new M_AmzInventoryList();

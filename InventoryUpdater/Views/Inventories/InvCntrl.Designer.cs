@@ -36,6 +36,11 @@
             this.importSnapdealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importMeeshoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_compare = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.withPreviousInventoryUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alwaysCompareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onceCompareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
             this.SuspendLayout();
@@ -64,7 +69,8 @@
             this.fileStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.fileStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.fileStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem_Save});
+            this.toolStripMenuItem_Save,
+            this.toolStripMenuItem_compare});
             this.fileStrip.Location = new System.Drawing.Point(0, 0);
             this.fileStrip.MinimumSize = new System.Drawing.Size(0, 23);
             this.fileStrip.Name = "fileStrip";
@@ -114,7 +120,47 @@
             this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
             this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(363, 44);
             this.exportAllToolStripMenuItem.Text = "Export All 🡽";
-            this.exportAllToolStripMenuItem.Click += new System.EventHandler(this.exportAllToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem_compare
+            // 
+            this.toolStripMenuItem_compare.Checked = true;
+            this.toolStripMenuItem_compare.CheckOnClick = true;
+            this.toolStripMenuItem_compare.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripMenuItem_compare.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1,
+            this.withPreviousInventoryUpdateToolStripMenuItem});
+            this.toolStripMenuItem_compare.Name = "toolStripMenuItem_compare";
+            this.toolStripMenuItem_compare.Size = new System.Drawing.Size(131, 42);
+            this.toolStripMenuItem_compare.Text = "Compare";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(477, 6);
+            // 
+            // withPreviousInventoryUpdateToolStripMenuItem
+            // 
+            this.withPreviousInventoryUpdateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alwaysCompareToolStripMenuItem,
+            this.onceCompareToolStripMenuItem});
+            this.withPreviousInventoryUpdateToolStripMenuItem.Name = "withPreviousInventoryUpdateToolStripMenuItem";
+            this.withPreviousInventoryUpdateToolStripMenuItem.Size = new System.Drawing.Size(480, 44);
+            this.withPreviousInventoryUpdateToolStripMenuItem.Text = "with previous inventory update";
+            // 
+            // alwaysCompareToolStripMenuItem
+            // 
+            this.alwaysCompareToolStripMenuItem.Checked = true;
+            this.alwaysCompareToolStripMenuItem.CheckOnClick = true;
+            this.alwaysCompareToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.alwaysCompareToolStripMenuItem.Name = "alwaysCompareToolStripMenuItem";
+            this.alwaysCompareToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.alwaysCompareToolStripMenuItem.Text = "Always";
+            // 
+            // onceToolStripMenuItem
+            // 
+            this.onceCompareToolStripMenuItem.Name = "onceToolStripMenuItem";
+            this.onceCompareToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.onceCompareToolStripMenuItem.Text = "Once";
             // 
             // InvCntrl
             // 
@@ -141,5 +187,10 @@
         internal System.Windows.Forms.ToolStripMenuItem importSnapdealToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem importMeeshoToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem exportAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_compare;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem withPreviousInventoryUpdateToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem alwaysCompareToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem onceCompareToolStripMenuItem;
     }
 }

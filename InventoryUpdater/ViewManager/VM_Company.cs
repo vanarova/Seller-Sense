@@ -23,7 +23,7 @@ namespace SellerSense.ViewManager
     {
         internal string _name;
         internal string _code;
-        internal M_Inventories _inventoriesModel { get; set; }
+        internal M_External_Inventories _inventoriesModel { get; set; }
         internal VM_Inventories _inventoriesViewManager { get; set; }
         internal VM_Map _mapping { get; set; }
         internal VM_Products _productViewManager { get; set; }
@@ -33,7 +33,7 @@ namespace SellerSense.ViewManager
         {
             _name = name;
             _code = code;
-            _inventoriesModel = new M_Inventories();
+            _inventoriesModel = new M_External_Inventories();
             _mapping = new VM_Map(_name, _code);
             _inventoriesViewManager = new VM_Inventories(_inventoriesModel, _mapping._map);
             _productViewManager = new VM_Products(_mapping._map,_inventoriesModel);

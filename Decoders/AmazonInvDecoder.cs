@@ -40,7 +40,7 @@ namespace Decoders
 
         public static IList<IAmzInventory> ImportAmazonInventory(string fileName)
         {
-            if (_amvInventoryUnmodified == null)
+            if (_amvInventoryUnmodified == null || _amvInventoryUnmodified.Count==0)
             {
                 _invAmazonFileName = fileName;
                 _amvInventoryUnmodified = new List<IAmzInventory>();

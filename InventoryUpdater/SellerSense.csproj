@@ -121,9 +121,9 @@
     <Compile Include="Views\Inventories\InvFiller.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Inventories\InvFiller.Designer.cs" >
-	<DependentUpon>InvFiller.cs</DependentUpon>
-	</Compile>
+    <Compile Include="Views\Inventories\InvFiller.Designer.cs">
+      <DependentUpon>InvFiller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Products\ProductCntrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -170,13 +170,11 @@
     <Compile Include="Model\Inventories\BaseCode\Interfaces\IBaseCodeV1.cs" />
     <Compile Include="Model\Inventories\FkInventory\M_FkInventoryList.cs" />
     <Compile Include="Model\Inventories\FkInventory\M_FkInventory.cs" />
-    <Compile Include="Model\InvMap.cs" />
     <Compile Include="Model\AppVersion.cs" />
-    <Compile Include="Model\InvUpdate\M_InvUpdate.cs" />
+    <Compile Include="Model\InvUpdate\M_InvSnapshot.cs" />
     <Compile Include="Model\Product\M_Product.cs" />
     <Compile Include="Model\Inventories\MsoInventory\M_MsoInventory.cs" />
     <Compile Include="Model\Inventories\MsoInventory\M_MsoInventoryList.cs" />
-    <Compile Include="Model\Product\M_Products.cs" />
     <Compile Include="Model\Inventories\SpdInventory\M_SpdInventoryList.cs" />
     <Compile Include="Model\Inventories\SpdInventory\M_SpdInventory.cs" />
     <Compile Include="Admin.cs">
@@ -185,7 +183,7 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Inventories\M_Inventories.cs" />
+    <Compile Include="Model\Inventories\M_External_Inventories.cs" />
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>

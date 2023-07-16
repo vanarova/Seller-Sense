@@ -25,7 +25,7 @@ namespace Decoders
 
         public static List<IMsoInventory> GetData(string excelFile)
         {
-            if (_invMeesho == null)
+            if (_invMeesho == null || _invMeesho.Count == 0)
             {
                 _invMeeshoFileName = excelFile;
                 _exm = new ExcelMapper(excelFile) { HeaderRow = true };

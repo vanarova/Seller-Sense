@@ -1,5 +1,6 @@
 ﻿using Decoders.Interfaces;
 using SellerSense.Model;
+using SellerSense.Views.Inventories;
 using ssViewControls;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static SellerSense.Constants;
 using static SellerSense.ViewManager.VM_Products;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -22,19 +24,19 @@ namespace SellerSense.ViewManager
     /// </summary>
     internal class VM_Inventories
     {
-        internal M_Inventories _m_inventoriesModel { get; set; }
-        internal M_InvUpdate _m_invModel { get; set; }
+        internal M_External_Inventories _m_externalInventoriesModel { get; set; }
+        internal M_InvSnapshot _m_invSnapShotModel { get; set; }
         internal M_Product _m_productModel { get; set; }
-        internal DataSet _invUpdateGridData { get; set; }
+        //internal DataSet _invUpdateGridData { get; set; }
         private InvCntrl _v_invCntrl;
         private ssGridView<InventoryView> _ssGridView;
         private Action<Object, ListChangedEventArgs> _bindingListChanged;
         internal List<InventoryView> _inventoryViewList { get; set; }
 
 
-        public VM_Inventories(M_Inventories inventories, M_Product m_product)
+        public VM_Inventories(M_External_Inventories inventories, M_Product m_product)
         {
-            _m_inventoriesModel = inventories;
+            _m_externalInventoriesModel = inventories;
             _m_productModel = m_product;
             LoadInvSnapshotDataFromLastSavedMap();
             TranslateInvModelToInvView();
@@ -75,6 +77,40 @@ namespace SellerSense.ViewManager
             _v_invCntrl.importFlipkartToolStripMenuItem.Click += (s, e) => {ImportFlipkartInv();  };
             _v_invCntrl.importSnapdealToolStripMenuItem.Click += (s, e) => { ImportSnapdealInv();  };
             _v_invCntrl.importMeeshoToolStripMenuItem.Click += (s, e) => { ImportMeeshoInv(); };
+            _v_invCntrl.exportAllToolStripMenuItem.Click += (s, e) => { ExportAllInventoryUpdateFiles(); };
+            _v_invCntrl.alwaysCompareToolStripMenuItem.Click += (s, e) => {
+                //TODO:save system preferences settings here
+                //for always compare with invntory window is open.
+                LoadSnapshotAndUpdateBindingListWithComparisons(); };
+            _v_invCntrl.onceCompareToolStripMenuItem.Click += (s, e) => { LoadSnapshotAndUpdateBindingListWithComparisons(); };
+        }
+
+        private void LoadSnapshotAndUpdateBindingListWithComparisons()
+        {
+
+        }
+
+        private void ExportAllInventoryUpdateFiles()
+        {
+            _m_invSnapShotModel.SaveInvSnapshot();
+            OpenFileDialog folderBrowser = new OpenFileDialog();
+            // Set validate names and check file exists to false otherwise windows will
+            // not let you select "Folder Selection."
+            folderBrowser.ValidateNames = false;
+            folderBrowser.CheckFileExists = false;
+            folderBrowser.CheckPathExists = true;
+            // Always default to Folder Selection.
+            folderBrowser.FileName = "Folder Selection";
+            if (folderBrowser.ShowDialog() == DialogResult.OK)
+            {
+                string folderPath = Path.GetDirectoryName(folderBrowser.FileName);
+                _m_externalInventoriesModel.ExportAmazonInventoryFile(folderPath);
+                _m_externalInventoriesModel.ExportFlipkartInventoryFile(folderPath);
+                _m_externalInventoriesModel.ExportSnapdealInventoryFile(folderPath);
+                _m_externalInventoriesModel.ExportMeeshoInventoryFile(folderPath);
+
+                // ...
+            }
         }
 
         private void DisengageCellEvents()
@@ -104,7 +140,7 @@ namespace SellerSense.ViewManager
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.AmazonCount)
                {
                    string asin = list[e.NewIndex].AmazonCode;
-                   var invobj = _m_inventoriesModel._amzImportedInvList._amzInventoryList.FirstOrDefault(x => x.asin == asin);
+                   var invobj = _m_externalInventoriesModel._amzImportedInvList._amzInventoryList.FirstOrDefault(x => x.asin == asin);
                    if (invobj != null)
                    {
                        AmzInventoryV1 iamz = new AmzInventoryV1(
@@ -113,13 +149,20 @@ namespace SellerSense.ViewManager
                            invobj.price,
                            list[e.NewIndex].AmazonSystemCount.ToString(),
                            list[e.NewIndex].AmazonCount.ToString());
-                       _m_inventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
+                       _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
+                       //Update snapshot collection as well..
+                       var snapshotObj =_m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.ACode == invobj.asin);
+                       if(snapshotObj != null)
+                       {
+                           snapshotObj.AInv = list[e.NewIndex].AmazonCount.ToString();
+                           snapshotObj.ASystemInv = list[e.NewIndex].AmazonSystemCount.ToString();
+                       }
                    }
                }
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.FlipkartCount)
                {
                    string asin = list[e.NewIndex].FlipkartCode;
-                   var invobj = _m_inventoriesModel._fkImportedInventoryList._fkInventoryList.FirstOrDefault(x => x.fsn == asin);
+                   var invobj = _m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList.FirstOrDefault(x => x.fsn == asin);
                    if (invobj != null)
                    {
                        FkInventoryV2 iamz = new FkInventoryV2(
@@ -128,13 +171,20 @@ namespace SellerSense.ViewManager
                            invobj.price,
                            list[e.NewIndex].FlipkartSystemCount.ToString(),
                            list[e.NewIndex].FlipkartCount.ToString());
-                       _m_inventoriesModel._fkImportedInventoryList._fkUIModifiedInvList.Add(iamz);
+                       _m_externalInventoriesModel._fkImportedInventoryList._fkUIModifiedInvList.Add(iamz);
+
+                       var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.FCode == invobj.fsn);
+                       if (snapshotObj != null)
+                       {
+                           snapshotObj.FInv = list[e.NewIndex].FlipkartCount.ToString();
+                           snapshotObj.FSystemInv = list[e.NewIndex].FlipkartSystemCount.ToString();
+                       }
                    }
                }
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.SnapdealCount)
                {
                    string asin = list[e.NewIndex].SnapdealCode;
-                   var invobj = _m_inventoriesModel._spdImportedInventoryList._spdInventoryList.FirstOrDefault(x => x.fsn == asin);
+                   var invobj = _m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList.FirstOrDefault(x => x.fsn == asin);
                    if (invobj != null)
                    {
                        SpdInventoryV2 iamz = new SpdInventoryV2(
@@ -143,13 +193,20 @@ namespace SellerSense.ViewManager
                            invobj.price,
                            list[e.NewIndex].SnapdealSystemCount.ToString(),
                            list[e.NewIndex].SnapdealCount.ToString());
-                       _m_inventoriesModel._spdImportedInventoryList._spdUIModifiedInvList.Add(iamz);
+                       _m_externalInventoriesModel._spdImportedInventoryList._spdUIModifiedInvList.Add(iamz);
+
+                       var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.SCode == invobj.fsn);
+                       if (snapshotObj != null)
+                       {
+                           snapshotObj.SInv = list[e.NewIndex].SnapdealCount.ToString();
+                           snapshotObj.SSystemInv = list[e.NewIndex].SnapdealSystemCount.ToString();
+                       }
                    }
                }
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.MeeshoCount)
                {
                    string asin = list[e.NewIndex].MeeshoCode;
-                   var invobj = _m_inventoriesModel._msoImportedInventoryList._msoInventoryList.FirstOrDefault(x => x.fsn == asin);
+                   var invobj = _m_externalInventoriesModel._msoImportedInventoryList._msoInventoryList.FirstOrDefault(x => x.fsn == asin);
                    if (invobj != null)
                    {
                        MsoInventoryV2 iamz = new MsoInventoryV2(
@@ -158,7 +215,14 @@ namespace SellerSense.ViewManager
                            invobj.price,
                            list[e.NewIndex].MeeshoSystemCount.ToString(),
                            list[e.NewIndex].MeeshoCount.ToString());
-                       _m_inventoriesModel._msoImportedInventoryList._msoUIModifiedInvList.Add(iamz);
+                       _m_externalInventoriesModel._msoImportedInventoryList._msoUIModifiedInvList.Add(iamz);
+                   }
+
+                   var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.MCode == invobj.fsn);
+                   if (snapshotObj != null)
+                   {
+                       snapshotObj.MInv = list[e.NewIndex].MeeshoCount.ToString();
+                       snapshotObj.MSystemInv = list[e.NewIndex].MeeshoSystemCount.ToString();
                    }
                }
            };
@@ -168,56 +232,64 @@ namespace SellerSense.ViewManager
         private async void ImportAmazonInv()
         {
             DisengageCellEvents();
+            _ssGridView.ClearBindingListRows();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Amazon inv text file|*.txt";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-                _m_inventoriesModel.ImportAmazonInventoryFile(openFileDialog.FileName);
+                _m_externalInventoriesModel.ImportAmazonInventoryFile(openFileDialog.FileName);
             else return;
             _ssGridView.IsLoading = true;
             await AssignAmazonInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            _ssGridView.UpdateBindings();
             EngageCellEvents();
         }
 
         private async void ImportFlipkartInv()
         {
             DisengageCellEvents();
+            _ssGridView.ClearBindingListRows();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Flipkart inv file|*.xls";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-                _m_inventoriesModel.ImportFlipkartInventoryFile(openFileDialog.FileName);
+                _m_externalInventoriesModel.ImportFlipkartInventoryFile(openFileDialog.FileName);
             else return;
             _ssGridView.IsLoading = true;
             await AssignFlipkartInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            _ssGridView.UpdateBindings();
             EngageCellEvents() ;    
         }
 
         private async void ImportSnapdealInv()
         {
             DisengageCellEvents();
+            _ssGridView.ClearBindingListRows();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Snapdeal inv file|*.xlsx";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-                _m_inventoriesModel.ImportSnapdealInventoryFile(openFileDialog.FileName);
+                _m_externalInventoriesModel.ImportSnapdealInventoryFile(openFileDialog.FileName);
             else return;
             _ssGridView.IsLoading = true;
             await AssignSnapdealInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            _ssGridView.UpdateBindings();
             EngageCellEvents();
         }
 
         private async void ImportMeeshoInv()
         {
             DisengageCellEvents();
+            _ssGridView.ClearBindingListRows();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Meesho inv file|*.xlsx";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-                _m_inventoriesModel.ImportMeeshoInventoryFile(openFileDialog.FileName);
+                _m_externalInventoriesModel.ImportMeeshoInventoryFile(openFileDialog.FileName);
             else return;
             _ssGridView.IsLoading = true;
             await AssignMeeshoInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            _ssGridView.UpdateBindings();
             EngageCellEvents();
         }
 
@@ -236,17 +308,30 @@ namespace SellerSense.ViewManager
         {
            return Task.Run(() =>
             {
-                foreach (var amzItem in _m_inventoriesModel._amzImportedInvList._amzInventoryList)
+                foreach (var amzItem in _m_externalInventoriesModel._amzImportedInvList._amzInventoryList)
                 {
                     foreach (var viewItem in _inventoryViewList)
                     {
-                        if (amzItem.asin == viewItem.AmazonCode && int.TryParse(amzItem.systemQuantity, out int val))
+                        if (amzItem.asin.Trim().ToLower() == viewItem.AmazonCode.Trim().ToLower() 
+                        && int.TryParse(amzItem.systemQuantity, out int val))
                         {
-                            viewItem.AmazonSystemCount = val;
-                            viewItem.AmazonCount = val;
+                            string sval = string.Empty;
+                            if(val!=0) sval = Convert.ToString(val);
+                            viewItem.AmazonSystemCount = sval;
+                            viewItem.AmazonCount = sval;
+
+                            //update snapshot as well
+                            var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.ACode == viewItem.AmazonCode);
+                            if (snapshotObj != null)
+                            {
+                                snapshotObj.AInv = viewItem.AmazonCount;
+                                snapshotObj.ASystemInv = viewItem.AmazonSystemCount;
+                            }
                         }
                     }
                 }
+
+                
             });
 
 
@@ -256,14 +341,16 @@ namespace SellerSense.ViewManager
         {
             return Task.Run(() =>
             {
-                foreach (var fkItem in _m_inventoriesModel._fkImportedInventoryList._fkInventoryList)
+                foreach (var fkItem in _m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList)
                 {
                     foreach (var viewItem in _inventoryViewList)
                     {
                         if (fkItem.fsn == viewItem.FlipkartCode && int.TryParse(fkItem.systemQuantity, out int val))
                         {
-                            viewItem.FlipkartSystemCount = val;
-                            viewItem.FlipkartCount = val;
+                            string sval = string.Empty;
+                            if (val != 0) sval = Convert.ToString(val);
+                            viewItem.FlipkartSystemCount = sval;
+                            viewItem.FlipkartCount = sval;
                         }
                     }
                 }
@@ -275,14 +362,16 @@ namespace SellerSense.ViewManager
         {
             return Task.Run(() =>
             {
-                foreach (var spdItem in _m_inventoriesModel._spdImportedInventoryList._spdInventoryList)
+                foreach (var spdItem in _m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList)
                 {
                     foreach (var viewItem in _inventoryViewList)
                     {
                         if (spdItem.fsn == viewItem.SnapdealCode && int.TryParse(spdItem.systemQuantity, out int val))
                         {
-                            viewItem.SnapdealSystemCount = val;
-                            viewItem.SnapdealCount = val;
+                            string sval = string.Empty;
+                            if (val != 0) sval = Convert.ToString(val);
+                            viewItem.SnapdealSystemCount = sval;
+                            viewItem.SnapdealCount = sval;
                         }
                     }
                 }
@@ -294,14 +383,16 @@ namespace SellerSense.ViewManager
         {
             return Task.Run(() =>
             {
-                foreach (var msoItem in _m_inventoriesModel._msoImportedInventoryList._msoInventoryList)
+                foreach (var msoItem in _m_externalInventoriesModel._msoImportedInventoryList._msoInventoryList)
                 {
                     foreach (var viewItem in _inventoryViewList)
                     {
                         if (msoItem.fsn == viewItem.MeeshoCode && int.TryParse(msoItem.systemQuantity, out int val))
                         {
-                            viewItem.MeeshoSystemCount = val;
-                            viewItem.MeeshoCount = val;
+                            string sval = string.Empty;
+                            if (val != 0) sval = Convert.ToString(val);
+                            viewItem.MeeshoSystemCount = sval;
+                            viewItem.MeeshoCount = sval;
                         }
                     }
                 }
@@ -310,14 +401,12 @@ namespace SellerSense.ViewManager
 
 
        
-        internal bool LoadInvSnapshotDataFromLastSavedMap()
+        internal void LoadInvSnapshotDataFromLastSavedMap()
         {
             _m_productModel.LoadLastSavedMap();
             if (!string.IsNullOrWhiteSpace(_m_productModel._lastSavedMapFilePath))
-                _m_invModel = new M_InvUpdate(_m_productModel);
-            else return false;
-
-            return true;
+                _m_invSnapShotModel = new M_InvSnapshot(_m_productModel);
+            
         }
 
           
@@ -327,10 +416,18 @@ namespace SellerSense.ViewManager
             _inventoryViewList = new List<InventoryView>();
             foreach (var item in _m_productModel._productEntries)
             {
+                //binding list source for grid
                 _inventoryViewList.Add(new InventoryView() {
                     InHouseCode = item.InHouseCode,
                     Title = item.Title, Tag = item.Tag, Image = null, AmazonCode = item.AmazonCode, FlipkartCode=item.FlipkartCode,
                     MeeshoCode=item.MeeshoCode,SnapdealCode=item.SnapdealCode
+                    });
+
+                //fill snapshot
+                _m_invSnapShotModel._invSnapshotEntries.Add(new InvSnapshotEntry() { 
+                    ICode=item.InHouseCode, 
+                    ACode=item.AmazonCode, FCode = item.FlipkartCode, SCode = item.SnapdealCode, MCode = item.MeeshoCode
+                    
                     });
             }
         }
@@ -339,17 +436,17 @@ namespace SellerSense.ViewManager
         internal void SaveInvSnapshot()
         {
 
-            _m_invModel.SaveInvSnapshot();
+            _m_invSnapShotModel.SaveInvSnapshot();
         }
 
 
         internal class InventoryView : INotifyPropertyChanged
         {
-            private int? _amazonCount;
-            private int? _flipkartCount;
-            private int? _snapdealCount;
-            private int? _meeshoCount;
-            private int? _inhouseCount;
+            private string _amazonCount;
+            private string _flipkartCount;
+            private string _snapdealCount;
+            private string _meeshoCount;
+            private string _inhouseCount;
             private string _notes;
 
             //below values from Product 
@@ -360,31 +457,31 @@ namespace SellerSense.ViewManager
             
 
 
-        //below values fron InvUpdate
-        public int? AmazonCount { 
+            //below values fron InvUpdate
+            public string AmazonCount { 
                 get { return _amazonCount; } 
                 set { if (value != this._amazonCount) { _amazonCount = value; NotifyPropertyChanged(); } } 
             }
-            public int? AmazonSystemCount { get; set; }
-            public int? FlipkartCount
+            public string AmazonSystemCount { get; set; }
+            public string FlipkartCount
             {
                 get { return _flipkartCount; }
                 set { if (value != this._flipkartCount) { _flipkartCount = value; NotifyPropertyChanged(); } }
             }
-            public int? FlipkartSystemCount { get; set; }
-            public int? SnapdealCount
+            public string FlipkartSystemCount { get; set; }
+            public string SnapdealCount
             {
                 get { return _snapdealCount; }
                 set { if (value != this._snapdealCount) { _snapdealCount = value; NotifyPropertyChanged(); } }
             }
-            public int? SnapdealSystemCount { get; set; }
-            public int? MeeshoCount
+            public string SnapdealSystemCount { get; set; }
+            public string MeeshoCount
             {
                 get { return _meeshoCount; }
                 set { if (value != this._meeshoCount) { _meeshoCount = value; NotifyPropertyChanged(); } }
             }
-            public int? MeeshoSystemCount { get; set; }
-            public int? InHouseCount
+            public string MeeshoSystemCount { get; set; }
+            public string InHouseCount
             {
                 get { return _inhouseCount; }
                 set { if (value != this._inhouseCount) { _inhouseCount = value; NotifyPropertyChanged(); } }

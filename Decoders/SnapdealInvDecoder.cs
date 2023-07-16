@@ -43,7 +43,7 @@ namespace Decoders
 
         public static List<ISpdInventory> GetData(string excelFile)
         {
-            if (_invSnapdeal == null)
+            if (_invSnapdeal == null || _invSnapdeal.Count == 0)
             {
                 _invSnapdealFileName = excelFile;
                 _exm = new ExcelMapper(excelFile) { HeaderRow = true };

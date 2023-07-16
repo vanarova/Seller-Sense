@@ -17,7 +17,7 @@ namespace SellerSense
 {
     public partial class InvFiller : Form
     {
-        internal M_Inventories _m_Inventories_Model { get; set; }
+        internal M_External_Inventories _m_Inventories_Model { get; set; }
         public Constants.Company _companyType { get; set; }
         public IList<IAmzInventory> _amzInventory { get; set; }
         public IList<IFkInventory> _fkInventory { get; set; }
@@ -31,7 +31,7 @@ namespace SellerSense
         }
 
         internal InvFiller(Constants.Company company, Image selectedImg, 
-            string selectedCode, string selectedTitle, M_Inventories inv)
+            string selectedCode, string selectedTitle, M_External_Inventories inv)
         {
             InitializeComponent();
             _companyType = company;
@@ -85,7 +85,7 @@ namespace SellerSense
         }
 
         internal InvFiller(Image selectedImg, string selectedCode, 
-            string selectedTitle,IList<IAmzInventory> amzInv, M_Inventories vm_Inventories)
+            string selectedTitle,IList<IAmzInventory> amzInv, M_External_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
@@ -97,7 +97,7 @@ namespace SellerSense
 
 
         internal InvFiller(Image selectedImg, string selectedCode, 
-            string selectedTitle, IList<IFkInventory> fkinv, M_Inventories vm_Inventories)
+            string selectedTitle, IList<IFkInventory> fkinv, M_External_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
@@ -108,7 +108,7 @@ namespace SellerSense
         }
 
         internal InvFiller(Image selectedImg, string selectedCode, 
-            string selectedTitle, IList<ISpdInventory> spdinv, M_Inventories vm_Inventories)
+            string selectedTitle, IList<ISpdInventory> spdinv, M_External_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
@@ -119,7 +119,7 @@ namespace SellerSense
         }
 
         internal InvFiller(Image selectedImg, string selectedCode, 
-            string selectedTitle, IList<IMsoInventory> msoinv, M_Inventories vm_Inventories)
+            string selectedTitle, IList<IMsoInventory> msoinv, M_External_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;

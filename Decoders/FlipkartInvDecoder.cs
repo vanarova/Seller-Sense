@@ -33,7 +33,7 @@ namespace Decoders
 
         public static List<IFkInventory> GetData(string excelFile)
         {
-            if (_invFlipkart == null)
+            if (_invFlipkart == null || _invFlipkart.Count == 0)
             {
                 _invFlipkartFileName = excelFile;
                 _exm = new ExcelMapper(excelFile) { HeaderRow=true};

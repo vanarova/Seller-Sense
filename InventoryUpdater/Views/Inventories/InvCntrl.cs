@@ -41,24 +41,26 @@ namespace SellerSense
 
         private void exportAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog folderBrowser = new OpenFileDialog();
-            // Set validate names and check file exists to false otherwise windows will
-            // not let you select "Folder Selection."
-            folderBrowser.ValidateNames = false;
-            folderBrowser.CheckFileExists = false;
-            folderBrowser.CheckPathExists = true;
-            // Always default to Folder Selection.
-            folderBrowser.FileName = "Folder Selection";
-            if (folderBrowser.ShowDialog() == DialogResult.OK)
-            {
-                string folderPath = Path.GetDirectoryName(folderBrowser.FileName);
-                _company._inventoriesModel.ExportAmazonInventoryFile(folderPath);
-                _company._inventoriesModel.ExportFlipkartInventoryFile(folderPath);
-                _company._inventoriesModel.ExportSnapdealInventoryFile(folderPath);
-                _company._inventoriesModel.ExportMeeshoInventoryFile(folderPath);
+            //OpenFileDialog folderBrowser = new OpenFileDialog();
+            //// Set validate names and check file exists to false otherwise windows will
+            //// not let you select "Folder Selection."
+            //folderBrowser.ValidateNames = false;
+            //folderBrowser.CheckFileExists = false;
+            //folderBrowser.CheckPathExists = true;
+            //// Always default to Folder Selection.
+            //folderBrowser.FileName = "Folder Selection";
+            //if (folderBrowser.ShowDialog() == DialogResult.OK)
+            //{
+            //    string folderPath = Path.GetDirectoryName(folderBrowser.FileName);
+            //    _company._inventoriesModel.ExportAmazonInventoryFile(folderPath);
+            //    _company._inventoriesModel.ExportFlipkartInventoryFile(folderPath);
+            //    _company._inventoriesModel.ExportSnapdealInventoryFile(folderPath);
+            //    _company._inventoriesModel.ExportMeeshoInventoryFile(folderPath);
 
-                // ...
-            }
+            //    // ...
+            //}
         }
+
+        
     }
 }

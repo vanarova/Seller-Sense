@@ -77,13 +77,21 @@ namespace ssViewControls
 
         private void ssGridView_Load(object sender, EventArgs e)
         {
-            _bindeddata.ListChanged += (s, ev) => { BindingListChanged?.Invoke(s as BindingList<T>, ev); };
+            _bindeddata.ListChanged += (s, ev) => { 
+                if(_EN) //_EN will stop cell level events, mostly useful for reset bindings button.
+                    BindingListChanged?.Invoke(s as BindingList<T>, ev); 
+            };
             AdjustUI();
             dataGridView_data.DataSource = _bindeddata;
             UpdateBindings();
             OnControlLoad?.Invoke(dataGridView_data);
             dataGridView_data.CellValueChanged += (s, ev) => { _isBindingListDirty = true;
             };
+        }
+
+        public void ClearBindingListRows()
+        {
+            _bindeddata.Clear();
         }
 
         private void AdjustUI()
@@ -93,7 +101,7 @@ namespace ssViewControls
             dataGridView_data.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
         }
 
-        private void UpdateBindings()
+        public void UpdateBindings()
         {
             _bindeddata.Clear();
             _data.Skip(_pageSize * _currentPageNumber).Take(_pageSize).ToList().ForEach(x=>_bindeddata.Add(x));
