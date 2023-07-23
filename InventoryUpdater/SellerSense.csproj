@@ -97,6 +97,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewManager\VM_Inventories.CmpSnapShot.cs" />
     <Compile Include="ViewManager\VM_Products.cs" />
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
@@ -105,6 +106,12 @@
     </Compile>
     <Compile Include="Views\AlertBox.Designer.cs">
       <DependentUpon>AlertBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventories\ConfirmInventoryAction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventories\ConfirmInventoryAction.Designer.cs">
+      <DependentUpon>ConfirmInventoryAction.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventories\Inventories.cs">
       <SubType>Form</SubType>
@@ -197,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AlertBox.resx">
       <DependentUpon>AlertBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventories\ConfirmInventoryAction.resx">
+      <DependentUpon>ConfirmInventoryAction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\Inventories.resx">
       <DependentUpon>Inventories.cs</DependentUpon>

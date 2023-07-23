@@ -23,7 +23,7 @@ namespace SellerSense.ViewManager
     /// <summary>
     /// view manager for inventory form hierarchy, handles events and binding for all usercontrols in Inventories form
     /// </summary>
-    internal class VM_Inventories
+    internal partial class VM_Inventories
     {
         internal M_External_Inventories _m_externalInventoriesModel { get; set; }
         internal M_InvSnapshot _m_invSnapShotModel { get; set; }
@@ -60,6 +60,7 @@ namespace SellerSense.ViewManager
                 //sortablebindinglist 
             };
             _ssGridView.OnCellFormatting += (gridview,e) => { HighlightCell(gridview,e); };
+            _ssGridView.ResetBindings += (e) => { ResetAllBindings(); };
         }
 
 
@@ -95,17 +96,25 @@ namespace SellerSense.ViewManager
             _v_invCntrl.importSnapdealToolStripMenuItem.Click += (s, e) => { ImportSnapdealInv();  };
             _v_invCntrl.importMeeshoToolStripMenuItem.Click += (s, e) => { ImportMeeshoInv(); };
             _v_invCntrl.exportAllToolStripMenuItem.Click += (s, e) => { ExportAllInventoryUpdateFiles(); };
-            _v_invCntrl.alwaysCompareToolStripMenuItem.Click += (s, e) => {
-                //TODO:save system preferences settings here
-                //for always compare with invntory window is open.
-                LoadSnapshotAndUpdateBindingListWithComparisons(); };
-            _v_invCntrl.onceCompareToolStripMenuItem.Click += (s, e) => { LoadSnapshotAndUpdateBindingListWithComparisons(); };
+            
+            _v_invCntrl.withPreviousInventoryUpdateToolStripMenuItem.Click += (s, e) => {
+                if (((ToolStripMenuItem)s).Checked)
+                    LoadSnapshotAndUpdateBindingListWithComparisons();
+                else
+                    ResetAllBindings();
+            };
         }
 
         private void LoadSnapshotAndUpdateBindingListWithComparisons()
         {
             _m_invSnapShotModel.DeSerializeLastInvSnapshot();
-            CompareAmazonInventoryListWithSnapshots();
+            ConfirmInventoryAction ca=new ConfirmInventoryAction();
+            ca.ShowDialog();
+            CompareAmazonInventoryListWithSnapshots(_inventoryViewList, _m_invSnapShotModel,ca);
+            CompareFlipkartInventoryListWithSnapshots(_inventoryViewList, _m_invSnapShotModel,ca);
+            CompareSnapdealInventoryListWithSnapshots(_inventoryViewList, _m_invSnapShotModel,ca);
+            CompareMeeshoInventoryListWithSnapshots(_inventoryViewList, _m_invSnapShotModel,ca);
+            
         }
 
         private void ExportAllInventoryUpdateFiles()
@@ -131,38 +140,39 @@ namespace SellerSense.ViewManager
             }
         }
 
-        private void CompareAmazonInventoryListWithSnapshots()
-        {
-            
-            foreach (var invItem in _inventoryViewList)
-            {
-                foreach (var snapItem in _m_invSnapShotModel._invLastSavedSnapshotEntries)
-                {
-                    //no inv updation by user, only by system (orders)  OR inv was updated by user, but not uploaded to Amazon
-                    //if(invItem.AmazonCode==snapItem.ACode && invItem.AmazonSystemCount!= snapItem.ASystemInv
-                    //    && snapItem.ASystemInv== snapItem.AInv)
-                    //{
-                    //    invItem.AmazonSystemCount = "was:"+ snapItem.ASystemInv+" | now:"+invItem.AmazonSystemCount;
-                    //}
+        //private void CompareAmazonInventoryListWithSnapshots()
+        //{
 
-                    //inv was updated by user & user uploaded file on Amazon
-                    if (invItem.AmazonCode == snapItem.ACode && snapItem.AInv!= snapItem.ASystemInv)
-                    {
-                        int orders = Convert.ToInt16(snapItem.AInv) - Convert.ToInt16(invItem.AmazonSystemCount);
-                        invItem.AmazonSystemCount = "orders:" + orders.ToString() + " | was:" + snapItem.AInv + " | now:" + invItem.AmazonSystemCount;
-                    }
+        //    foreach (var invItem in _inventoryViewList)
+        //    {
+        //        foreach (var snapItem in _m_invSnapShotModel._invLastSavedSnapshotEntries)
+        //        {
+        //            //no inv updation by user, only by system (orders)  OR inv was updated by user, but not uploaded to Amazon
+        //            //if(invItem.AmazonCode==snapItem.ACode && invItem.AmazonSystemCount!= snapItem.ASystemInv
+        //            //    && snapItem.ASystemInv== snapItem.AInv)
+        //            //{
+        //            //    invItem.AmazonSystemCount = "was:"+ snapItem.ASystemInv+" | now:"+invItem.AmazonSystemCount;
+        //            //}
 
-                    //not updated by user, just order came
-                    if (invItem.AmazonCode == snapItem.ACode && snapItem.AInv == snapItem.ASystemInv &&
-                        invItem.AmazonSystemCount != snapItem.ASystemInv)
-                    {
-                        int orders = Convert.ToInt16(snapItem.AInv) - Convert.ToInt16(invItem.AmazonSystemCount);
-                        invItem.AmazonSystemCount = "orders:" + orders.ToString() + " | was:" + snapItem.AInv + " | now:" + invItem.AmazonSystemCount;
-                    }
+        //            //inv was updated by user & user uploaded file on Amazon
+        //            if (invItem.AmazonCode == snapItem.ACode && snapItem.AInv != snapItem.ASystemInv)
+        //            {
+        //                //int.TryParse()
+        //                int orders = Convert.ToInt16(snapItem.AInv) - Convert.ToInt16(invItem.AmazonSystemCount);
+        //                invItem.AmazonSystemCount = "orders:" + orders.ToString() + " | was:" + snapItem.AInv + " | now:" + invItem.AmazonSystemCount;
+        //            }
 
-                }
-            }
-        }
+        //            //not updated by user, just order came
+        //            if (invItem.AmazonCode == snapItem.ACode && snapItem.AInv == snapItem.ASystemInv &&
+        //                invItem.AmazonSystemCount != snapItem.ASystemInv)
+        //            {
+        //                int orders = Convert.ToInt16(snapItem.AInv) - Convert.ToInt16(invItem.AmazonSystemCount);
+        //                invItem.AmazonSystemCount = "orders:" + orders.ToString() + " | was:" + snapItem.AInv + " | now:" + invItem.AmazonSystemCount;
+        //            }
+
+        //        }
+        //    }
+        //}
 
 
         private void DisengageCellEvents()
@@ -171,6 +181,8 @@ namespace SellerSense.ViewManager
         }
 
         //Events generated by bindinglist changed event, these events are coming from setter of class: InventoryView properties
+        //update underlying collection, when grid changes
+
         private void EngageCellEvents()
         {
            _bindingListChanged = (s, e) => {
@@ -268,6 +280,23 @@ namespace SellerSense.ViewManager
             _ssGridView.BindingListChanged += _bindingListChanged;
         }
 
+
+        private async Task ResetAllBindings()
+        {
+            DisengageCellEvents();
+            _ssGridView.ClearBindingListRows();
+            
+            _ssGridView.IsLoading = true;
+            await AssignAmazonInvAndPricesToInvView();
+            await AssignFlipkartInvAndPricesToInvView();
+            await AssignSnapdealInvAndPricesToInvView();
+            await AssignMeeshoInvAndPricesToInvView();
+
+            _ssGridView.IsLoading = false;
+            _ssGridView.UpdateBindings();
+            EngageCellEvents();
+        }
+
         private async Task ImportAmazonInv()
         {
             DisengageCellEvents();
@@ -351,7 +380,8 @@ namespace SellerSense.ViewManager
                 {
                     foreach (var viewItem in _inventoryViewList)
                     {
-                        if (amzItem.asin.Trim().ToLower() == viewItem.AmazonCode.Trim().ToLower() 
+                        if (!string.IsNullOrWhiteSpace(viewItem.AmazonCode) && !string.IsNullOrWhiteSpace(amzItem.asin) &&
+                        amzItem.asin.Trim().ToLower() == viewItem.AmazonCode.Trim().ToLower() 
                         && int.TryParse(amzItem.systemQuantity, out int val))
                         {
                             string sval = string.Empty;

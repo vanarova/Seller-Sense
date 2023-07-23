@@ -39,8 +39,8 @@
             this.toolStripMenuItem_compare = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.withPreviousInventoryUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alwaysCompareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.onceCompareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +70,8 @@
             this.fileStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.fileStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_Save,
-            this.toolStripMenuItem_compare});
+            this.toolStripMenuItem_compare,
+            this.linkToolStripMenuItem});
             this.fileStrip.Location = new System.Drawing.Point(0, 0);
             this.fileStrip.MinimumSize = new System.Drawing.Size(0, 23);
             this.fileStrip.Name = "fileStrip";
@@ -140,27 +141,26 @@
             // 
             // withPreviousInventoryUpdateToolStripMenuItem
             // 
-            this.withPreviousInventoryUpdateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alwaysCompareToolStripMenuItem,
-            this.onceCompareToolStripMenuItem});
+            this.withPreviousInventoryUpdateToolStripMenuItem.CheckOnClick = true;
             this.withPreviousInventoryUpdateToolStripMenuItem.Name = "withPreviousInventoryUpdateToolStripMenuItem";
             this.withPreviousInventoryUpdateToolStripMenuItem.Size = new System.Drawing.Size(480, 44);
             this.withPreviousInventoryUpdateToolStripMenuItem.Text = "with previous inventory update";
             // 
-            // alwaysCompareToolStripMenuItem
+            // linkToolStripMenuItem
             // 
-            this.alwaysCompareToolStripMenuItem.Checked = true;
-            this.alwaysCompareToolStripMenuItem.CheckOnClick = true;
-            this.alwaysCompareToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.alwaysCompareToolStripMenuItem.Name = "alwaysCompareToolStripMenuItem";
-            this.alwaysCompareToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.alwaysCompareToolStripMenuItem.Text = "Always";
+            this.linkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem});
+            this.linkToolStripMenuItem.Name = "linkToolStripMenuItem";
+            this.linkToolStripMenuItem.Size = new System.Drawing.Size(77, 42);
+            this.linkToolStripMenuItem.Text = "Link";
             // 
-            // onceCompareToolStripMenuItem
+            // linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem
             // 
-            this.onceCompareToolStripMenuItem.Name = "onceCompareToolStripMenuItem";
-            this.onceCompareToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
-            this.onceCompareToolStripMenuItem.Text = "Once";
+            this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem.Name = "linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStr" +
+    "ipMenuItem";
+            this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem.Size = new System.Drawing.Size(1093, 44);
+            this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem.Text = "Link products which are sold as a package, whose inventories reduces/increases to" +
+    "gether";
             // 
             // InvCntrl
             // 
@@ -189,8 +189,8 @@
         internal System.Windows.Forms.ToolStripMenuItem exportAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_compare;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem withPreviousInventoryUpdateToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem alwaysCompareToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem onceCompareToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem withPreviousInventoryUpdateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem linkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem;
     }
 }

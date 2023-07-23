@@ -23,6 +23,10 @@ namespace ssViewControls
 
     public partial  class ssGridView<T> : UserControl
     {
+        /// <summary> Partial list, contains data for one page at a time. </summary>
+        private SortableBindingList<T> _bindeddata = new SortableBindingList<T>();
+
+
         private int _currentPageNumber_backingField;
         private int _currentPageNumber { 
             get { return _currentPageNumber_backingField; }
@@ -44,14 +48,14 @@ namespace ssViewControls
         //This action can be subscribed, outside this control, by parent control etc..
         //bool is to diable events
         private bool _EN = true; //set to false to disable all events.
-        public event Action<bool, string, BindingList<T>> SearchTitleTriggered;
-        public event Action<bool,string, BindingList<T>> SearchTagTriggered;
-        public event Action<bool> ResetBindingsAfterSearchTriggered;
+        public event Action<bool, string, SortableBindingList<T>> SearchTitleTriggered;
+        public event Action<bool,string, SortableBindingList<T>> SearchTagTriggered;
+        public event Action<bool> ResetBindings;
         public event Action<DataGridView> OnControlLoad;
         public event Action<DataGridView, DataGridViewCellFormattingEventArgs> OnCellFormatting;
         //BindingListChanged event is fired by INotifychanged property setters of view manager.
         //If InotifypropertyChanged is not implemented, this event wont fire.
-        public event Action<BindingList<T>,ListChangedEventArgs> BindingListChanged; 
+        public event Action<SortableBindingList<T>,ListChangedEventArgs> BindingListChanged; 
         public bool IsLoading { set { progressBar_Search.Visible = value; } }
 
         private int _pageSize { get; set; }
@@ -61,8 +65,7 @@ namespace ssViewControls
         /// <summary> full data list, contains all records </summary>
         private List<T> _data;
 
-        /// <summary> Partial list, contains data for one page at a time. </summary>
-        private BindingList<T> _bindeddata = new BindingList<T>();
+
 
         public ssGridView(List<T> data)
         {
@@ -74,15 +77,13 @@ namespace ssViewControls
             InitializeComponent();
         }
 
-
-
-
+        
 
         private void ssGridView_Load(object sender, EventArgs e)
         {
             _bindeddata.ListChanged += (s, ev) => { 
                 if(_EN) //_EN will stop cell level events, mostly useful for reset bindings button.
-                    BindingListChanged?.Invoke(s as BindingList<T>, ev); 
+                    BindingListChanged?.Invoke(s as SortableBindingList<T>, ev); 
             };
             AdjustUI();
             dataGridView_data.DataSource = _bindeddata;
@@ -191,7 +192,7 @@ namespace ssViewControls
             _EN = false; //disable all events
             textBox_Title.Text = _title; //to stop this text_changed event
             textBox_Tag.Text = _tag;
-            ResetBindingsAfterSearchTriggered?.Invoke(_EN);
+            ResetBindings?.Invoke(_EN);
             UpdateBindings();
             _EN = true; //enable back events
         }

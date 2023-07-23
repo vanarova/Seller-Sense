@@ -97,7 +97,7 @@ namespace SellerSense.ViewManager
         {
             _v_ssGridViewCntrl.SearchTitleTriggered += SearchTitle;
             _v_ssGridViewCntrl.SearchTagTriggered += SearchTags;
-            _v_ssGridViewCntrl.ResetBindingsAfterSearchTriggered += ResetBindings;
+            _v_ssGridViewCntrl.ResetBindings += ResetBindings;
             _v_ssGridViewCntrl.OnControlLoad += OnControlLoadHandler;
         }
 

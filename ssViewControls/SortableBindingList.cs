@@ -5,78 +5,88 @@ using System.Linq;
 
 public class SortableBindingList<T> : BindingList<T>
 {
-    // reference to the list provided at the time of instantiation
-    private List<T> _originalList;
-    private ListSortDirection? _sortDirection;
-    private PropertyDescriptor _sortProperty;
-
-    protected override bool IsSortedCore => _sortDirection != null;
-    protected override bool SupportsSortingCore => true;
-    protected override ListSortDirection SortDirectionCore => _sortDirection ?? ListSortDirection.Ascending;
-    protected override PropertyDescriptor SortPropertyCore => _sortProperty;
+    private bool isSortedValue;
+    ListSortDirection sortDirectionValue;
+    PropertyDescriptor sortPropertyValue;
 
     public SortableBindingList()
     {
-        _originalList = new List<T>();
     }
 
-    public SortableBindingList(List<T> list)
+    public SortableBindingList(IList<T> list)
     {
-        _originalList = list;
-        ResetItems(_originalList);
-    }
-
-    public void Sort(PropertyDescriptor property, ListSortDirection direction) => this.ApplySortCore(property, direction);
-
-    protected override void ApplySortCore(PropertyDescriptor property, ListSortDirection direction)
-    {
-        _sortProperty = property;
-        _sortDirection = direction;
-
-        if (!(Items is List<T> items))
-            return;
-
-        items.Sort((left, right) =>
+        foreach (object o in list)
         {
-            var compareRes = Compare(left == null ? null : _sortProperty.GetValue(left),
-                                        right == null ? null : _sortProperty.GetValue(right));
-            if (_sortDirection == ListSortDirection.Descending)
-                return -compareRes;
-            return compareRes;
-        });
-
-        ResetBindings();
-    }
-
-    private static int Compare(object lhs, object rhs)
-    {
-        if (lhs == null)
-            return rhs == null ? 0 : -1;
-        if (rhs == null)
-            return 1;
-        if (lhs is IComparable comparable)
-            return comparable.CompareTo(rhs);
-        return lhs.Equals(rhs) ? 0 : string.Compare(lhs.ToString(), rhs.ToString(), StringComparison.Ordinal);
-    }
-
-    protected override void RemoveSortCore()
-    {
-        _sortDirection = null;
-        ResetItems(_originalList);
-    }
-
-    private void ResetItems(List<T> items)
-    {
-        base.ClearItems();
-
-        for (var i = 0; i < items.Count; i++)
-        {
-            base.InsertItem(i, items[i]);
+            this.Add((T)o);
         }
     }
 
-    protected override void OnListChanged(ListChangedEventArgs e)
+    protected override void ApplySortCore(PropertyDescriptor prop,
+        ListSortDirection direction)
     {
-        _originalList = Items.ToList();
+        Type interfaceType = prop.PropertyType.GetInterface("IComparable");
+
+        if (interfaceType == null && prop.PropertyType.IsValueType)
+        {
+            Type underlyingType = Nullable.GetUnderlyingType(prop.PropertyType);
+
+            if (underlyingType != null)
+            {
+                interfaceType = underlyingType.GetInterface("IComparable");
+            }
+        }
+
+        if (interfaceType != null)
+        {
+            sortPropertyValue = prop;
+            sortDirectionValue = direction;
+
+            IEnumerable<T> query = base.Items;
+
+            if (direction == ListSortDirection.Ascending)
+            {
+                query = query.OrderBy(i => prop.GetValue(i));
+            }
+            else
+            {
+                query = query.OrderByDescending(i => prop.GetValue(i));
+            }
+
+            int newIndex = 0;
+            foreach (object item in query)
+            {
+                this.Items[newIndex] = (T)item;
+                newIndex++;
+            }
+
+            isSortedValue = true;
+            this.OnListChanged(new ListChangedEventArgs(ListChangedType.Reset, -1));
+        }
+        else
+        {
+            throw new NotSupportedException("Cannot sort by " + prop.Name +
+                ". This" + prop.PropertyType.ToString() +
+                " does not implement IComparable");
+        }
+    }
+
+    protected override PropertyDescriptor SortPropertyCore
+    {
+        get { return sortPropertyValue; }
+    }
+
+    protected override ListSortDirection SortDirectionCore
+    {
+        get { return sortDirectionValue; }
+    }
+
+    protected override bool SupportsSortingCore
+    {
+        get { return true; }
+    }
+
+    protected override bool IsSortedCore
+    {
+        get { return isSortedValue; }
     }
 }

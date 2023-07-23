@@ -134,7 +134,7 @@ namespace SellerSense
             this.btn_mapping.Name = "btn_mapping";
             this.btn_mapping.Size = new System.Drawing.Size(316, 145);
             this.btn_mapping.TabIndex = 1;
-            this.btn_mapping.Text = "New Inventories";
+            this.btn_mapping.Text = "Inventory";
             this.btn_mapping.UseVisualStyleBackColor = false;
             this.btn_mapping.Click += new System.EventHandler(this.btn_Inventories_Click);
             // 
@@ -148,7 +148,7 @@ namespace SellerSense
             this.btn_invUpdate.Name = "btn_invUpdate";
             this.btn_invUpdate.Size = new System.Drawing.Size(316, 145);
             this.btn_invUpdate.TabIndex = 0;
-            this.btn_invUpdate.Text = "Inventory Update";
+            this.btn_invUpdate.Text = "Products";
             this.btn_invUpdate.UseVisualStyleBackColor = false;
             this.btn_invUpdate.Click += new System.EventHandler(this.btn_invUpdate_Click);
             // 
