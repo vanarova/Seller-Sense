@@ -43,8 +43,8 @@ namespace Decoders
 
         public static List<ISpdInventory> GetData(string excelFile)
         {
-            if (_invSnapdeal == null || _invSnapdeal.Count == 0)
-            {
+            //if (_invSnapdeal == null || _invSnapdeal.Count == 0)
+            //{
                 _invSnapdealFileName = excelFile;
                 _exm = new ExcelMapper(excelFile) { HeaderRow = true };
                 _invSnapdealUnModified = _exm.Fetch<SkInv>();
@@ -52,8 +52,8 @@ namespace Decoders
                 //var otems = new ExcelMapper(excelFile) { HeaderRow = false }.Fetch<FkInv>();
                 _invSnapdeal = _invSnapdealUnModified.ToList<ISpdInventory>();
                 return _invSnapdeal;
-            }
-            else return _invSnapdeal;
+           // }
+            //else return _invSnapdeal;
 
         }
 

@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SellerSense.Constants;
@@ -45,13 +46,29 @@ namespace SellerSense.ViewManager
         internal void AssignViewManager(ssGridView<InventoryView> ssGrid)
         {
             _ssGridView = ssGrid;
+            
             HandlessGridViewControlEvents();
         }
 
         //Custom event, fires when grid control is loaded
         private void HandlessGridViewControlEvents()
         {//attach binding List changed events here
-            _ssGridView.OnControlLoad += (gridview) => { DisengageCellEvents();  EngageCellEvents(); DisableColumnEditingForSomeColumns(gridview); };
+            _ssGridView.OnControlLoad += (gridview) => { 
+                DisengageCellEvents();  EngageCellEvents(); DisableColumnEditingForSomeColumns(gridview);
+                //gridview.Columns[Constants.InventoryViewCols.AmazonSystemCount].SortMode = DataGridViewColumnSortMode.Automatic;
+                //gridview.Columns[Constants.InventoryViewCols.InHouseCode].SortMode = DataGridViewColumnSortMode.Automatic;
+                //sortablebindinglist 
+            };
+            _ssGridView.OnCellFormatting += (gridview,e) => { HighlightCell(gridview,e); };
+        }
+
+
+        private void HighlightCell(DataGridView grid, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value == null || e.Value is Bitmap) return;
+            var cellValue = e.Value.ToString(); 
+            if (cellValue != null && Regex.IsMatch(e.Value.ToString(), @"orders:\d.*\|.*"))
+                e.CellStyle.BackColor = Color.Yellow;
         }
 
         private void DisableColumnEditingForSomeColumns(DataGridView gridview)
@@ -87,7 +104,8 @@ namespace SellerSense.ViewManager
 
         private void LoadSnapshotAndUpdateBindingListWithComparisons()
         {
-
+            _m_invSnapShotModel.DeSerializeLastInvSnapshot();
+            CompareAmazonInventoryListWithSnapshots();
         }
 
         private void ExportAllInventoryUpdateFiles()
@@ -113,6 +131,40 @@ namespace SellerSense.ViewManager
             }
         }
 
+        private void CompareAmazonInventoryListWithSnapshots()
+        {
+            
+            foreach (var invItem in _inventoryViewList)
+            {
+                foreach (var snapItem in _m_invSnapShotModel._invLastSavedSnapshotEntries)
+                {
+                    //no inv updation by user, only by system (orders)  OR inv was updated by user, but not uploaded to Amazon
+                    //if(invItem.AmazonCode==snapItem.ACode && invItem.AmazonSystemCount!= snapItem.ASystemInv
+                    //    && snapItem.ASystemInv== snapItem.AInv)
+                    //{
+                    //    invItem.AmazonSystemCount = "was:"+ snapItem.ASystemInv+" | now:"+invItem.AmazonSystemCount;
+                    //}
+
+                    //inv was updated by user & user uploaded file on Amazon
+                    if (invItem.AmazonCode == snapItem.ACode && snapItem.AInv!= snapItem.ASystemInv)
+                    {
+                        int orders = Convert.ToInt16(snapItem.AInv) - Convert.ToInt16(invItem.AmazonSystemCount);
+                        invItem.AmazonSystemCount = "orders:" + orders.ToString() + " | was:" + snapItem.AInv + " | now:" + invItem.AmazonSystemCount;
+                    }
+
+                    //not updated by user, just order came
+                    if (invItem.AmazonCode == snapItem.ACode && snapItem.AInv == snapItem.ASystemInv &&
+                        invItem.AmazonSystemCount != snapItem.ASystemInv)
+                    {
+                        int orders = Convert.ToInt16(snapItem.AInv) - Convert.ToInt16(invItem.AmazonSystemCount);
+                        invItem.AmazonSystemCount = "orders:" + orders.ToString() + " | was:" + snapItem.AInv + " | now:" + invItem.AmazonSystemCount;
+                    }
+
+                }
+            }
+        }
+
+
         private void DisengageCellEvents()
         {
             _ssGridView.BindingListChanged -= _bindingListChanged;
@@ -123,20 +175,7 @@ namespace SellerSense.ViewManager
         {
            _bindingListChanged = (s, e) => {
                var list = s as BindingList<InventoryView>;
-               //if (e!=null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == "AmazonCount") {
-               //    string asin = list[e.NewIndex].AmazonCode;
-               //    var invobj = _m_inventoriesModel._amzImportedInvList._amzInventoryList.FirstOrDefault(x => x.asin == asin);
-               //    if (invobj != null)
-               //    {
-               //        AmzInventoryV1 iamz = new AmzInventoryV1(
-               //            invobj.sku, 
-               //            list[e.NewIndex].AmazonCode, 
-               //            invobj.price, 
-               //            list[e.NewIndex].AmazonSystemCount.ToString(), 
-               //            list[e.NewIndex].AmazonCount.ToString());
-               //        _m_inventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
-               //    }
-               //}
+               
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.AmazonCount)
                {
                    string asin = list[e.NewIndex].AmazonCode;
@@ -229,7 +268,7 @@ namespace SellerSense.ViewManager
             _ssGridView.BindingListChanged += _bindingListChanged;
         }
 
-        private async void ImportAmazonInv()
+        private async Task ImportAmazonInv()
         {
             DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
@@ -245,7 +284,7 @@ namespace SellerSense.ViewManager
             EngageCellEvents();
         }
 
-        private async void ImportFlipkartInv()
+        private async Task ImportFlipkartInv()
         {
             DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
@@ -261,7 +300,7 @@ namespace SellerSense.ViewManager
             EngageCellEvents() ;    
         }
 
-        private async void ImportSnapdealInv()
+        private async Task ImportSnapdealInv()
         {
             DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
@@ -277,7 +316,7 @@ namespace SellerSense.ViewManager
             EngageCellEvents();
         }
 
-        private async void ImportMeeshoInv()
+        private async Task ImportMeeshoInv()
         {
             DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
@@ -443,11 +482,15 @@ namespace SellerSense.ViewManager
         internal class InventoryView : INotifyPropertyChanged
         {
             private string _amazonCount;
+            private string _amazonSystemCount;
             private string _flipkartCount;
             private string _snapdealCount;
             private string _meeshoCount;
             private string _inhouseCount;
             private string _notes;
+
+            //private bool _pin;
+            //private bool _highlightV1;
 
             //below values from Product 
             public string InHouseCode { get; set; }
@@ -455,14 +498,18 @@ namespace SellerSense.ViewManager
             public string Title { get; set; }
             public string Tag { get; set; }
             
-
+            //internal void PinThisCell() {          }
+            //internal void PinThisCell() { }
 
             //below values fron InvUpdate
             public string AmazonCount { 
                 get { return _amazonCount; } 
                 set { if (value != this._amazonCount) { _amazonCount = value; NotifyPropertyChanged(); } } 
             }
-            public string AmazonSystemCount { get; set; }
+            public string AmazonSystemCount {
+                get { return _amazonSystemCount; }
+                set { if (value != this._amazonSystemCount) { _amazonSystemCount = value; NotifyPropertyChanged(); } }
+            }
             public string FlipkartCount
             {
                 get { return _flipkartCount; }

@@ -33,8 +33,8 @@ namespace Decoders
 
         public static List<IFkInventory> GetData(string excelFile)
         {
-            if (_invFlipkart == null || _invFlipkart.Count == 0)
-            {
+            //if (_invFlipkart == null || _invFlipkart.Count == 0)
+            //{
                 _invFlipkartFileName = excelFile;
                 _exm = new ExcelMapper(excelFile) { HeaderRow=true};
                 _invFlipkartUnModified = _exm.Fetch<FkInv>();
@@ -44,7 +44,7 @@ namespace Decoders
 
                 _invFlipkart.RemoveAt(0); //remove first 2 rows, headers
                 return _invFlipkart;
-            }else return _invFlipkart;
+            //}else return _invFlipkart;
         }
 
         public static void SaveAllData(IList<IFkInventory> UIModifiedInvList, string dirPath)

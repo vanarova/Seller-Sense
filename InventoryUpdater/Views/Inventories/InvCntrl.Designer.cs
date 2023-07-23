@@ -156,9 +156,9 @@
             this.alwaysCompareToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.alwaysCompareToolStripMenuItem.Text = "Always";
             // 
-            // onceToolStripMenuItem
+            // onceCompareToolStripMenuItem
             // 
-            this.onceCompareToolStripMenuItem.Name = "onceToolStripMenuItem";
+            this.onceCompareToolStripMenuItem.Name = "onceCompareToolStripMenuItem";
             this.onceCompareToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.onceCompareToolStripMenuItem.Text = "Once";
             // 

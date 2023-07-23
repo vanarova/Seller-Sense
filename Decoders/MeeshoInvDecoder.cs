@@ -25,8 +25,8 @@ namespace Decoders
 
         public static List<IMsoInventory> GetData(string excelFile)
         {
-            if (_invMeesho == null || _invMeesho.Count == 0)
-            {
+            //if (_invMeesho == null || _invMeesho.Count == 0)
+            //{
                 _invMeeshoFileName = excelFile;
                 _exm = new ExcelMapper(excelFile) { HeaderRow = true };
                 _invMeeshoUnModified = _exm.Fetch<MsoInv>();
@@ -43,8 +43,8 @@ namespace Decoders
                 //_invFlipkart.RemoveAt(1);
                 //_invFlipkart.RemoveAt(2);
                 return _invMeesho;
-            }
-            else return _invMeesho;
+            //}
+           // else return _invMeesho;
         }
 
 

@@ -40,8 +40,8 @@ namespace Decoders
 
         public static IList<IAmzInventory> ImportAmazonInventory(string fileName)
         {
-            if (_amvInventoryUnmodified == null || _amvInventoryUnmodified.Count==0)
-            {
+           // if (_amvInventoryUnmodified == null || _amvInventoryUnmodified.Count==0)
+          //  {
                 _invAmazonFileName = fileName;
                 _amvInventoryUnmodified = new List<IAmzInventory>();
                 var lines = File.ReadAllLines(fileName);
@@ -52,7 +52,7 @@ namespace Decoders
                 }
                 _amvInventoryUnmodified.RemoveAt(0); // remove header
                 return _amvInventoryUnmodified;
-            }else return _amvInventoryUnmodified;
+            //}else return _amvInventoryUnmodified;
         }
 
         public static void SaveAllData(IList<IAmzInventory> UIModifiedInvList, string dirPath)

@@ -48,6 +48,7 @@ namespace ssViewControls
         public event Action<bool,string, BindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindingsAfterSearchTriggered;
         public event Action<DataGridView> OnControlLoad;
+        public event Action<DataGridView, DataGridViewCellFormattingEventArgs> OnCellFormatting;
         //BindingListChanged event is fired by INotifychanged property setters of view manager.
         //If InotifypropertyChanged is not implemented, this event wont fire.
         public event Action<BindingList<T>,ListChangedEventArgs> BindingListChanged; 
@@ -72,6 +73,8 @@ namespace ssViewControls
             _lastPageNumber = _TotalRowsInDataSet/_pageSize;
             InitializeComponent();
         }
+
+
 
 
 
@@ -170,6 +173,17 @@ namespace ssViewControls
                 SearchTitleTriggered?.Invoke(_EN, textBox_Title.Text, _bindeddata);
             }
             
+        }
+
+        private void dataGridView_data_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            OnCellFormatting?.Invoke((DataGridView)sender,e);
+            //if (!HighlightCellsFlag_1) return;
+            //var cell= ((DataGridView) sender).CurrentCell;
+            //if (cell == null || cell.Value == null) return;
+            //var cellValue = cell.Value.ToString();
+            //if (cellValue!=null && cell.Value.ToString().StartsWith("was"))
+            //  cell.Style.BackColor = Color.Yellow;
         }
 
         private void button_Refresh_Click(object sender, EventArgs e)

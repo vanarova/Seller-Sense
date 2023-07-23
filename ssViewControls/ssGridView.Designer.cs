@@ -108,6 +108,7 @@
             this.dataGridView_data.RowTemplate.Height = 33;
             this.dataGridView_data.Size = new System.Drawing.Size(1398, 902);
             this.dataGridView_data.TabIndex = 2;
+            this.dataGridView_data.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_data_CellFormatting);
             // 
             // progressBar_Search
             // 
