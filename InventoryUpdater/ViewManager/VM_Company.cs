@@ -12,6 +12,8 @@ using System.IO;
 using System.Threading.Tasks;
 using SellerSense.ViewManager;
 using SellerSense;
+using System.CodeDom;
+using System.Linq;
 
 namespace SellerSense.ViewManager
 {
@@ -25,41 +27,89 @@ namespace SellerSense.ViewManager
         internal string _code;
         internal M_External_Inventories _inventoriesModel { get; set; }
         internal VM_Inventories _inventoriesViewManager { get; set; }
-        internal VM_Map _mapping { get; set; }
-        internal VM_Products _productViewManager { get; set; }
+        internal VM_Products _productsViewManager { get; set; }
+        internal M_Product _product_Model;
         internal Dictionary<string, Image> _images;
+        internal CrossCompanyLinkedInventoryCount _crossCompanyLinkedInventoryCount;
 
         public VM_Company(string name, string code)
         {
             _name = name;
             _code = code;
             _inventoriesModel = new M_External_Inventories();
-            _mapping = new VM_Map(_name, _code);
-            _inventoriesViewManager = new VM_Inventories(_inventoriesModel, _mapping._map);
-            _productViewManager = new VM_Products(_mapping._map,_inventoriesModel);
+            _product_Model = new M_Product(_code);
+            _crossCompanyLinkedInventoryCount = new CrossCompanyLinkedInventoryCount(_code);
+            _inventoriesViewManager = new VM_Inventories(_inventoriesModel, _product_Model,
+                _crossCompanyLinkedInventoryCount, _code);
+            _productsViewManager = new VM_Products(_product_Model, _inventoriesModel);
         }
 
 
-        public void CreateAnEmptyMapWithImportedBaseCodes()
-        {
-            _mapping._map.CreateAnEmptyMap(_inventoriesModel._baseCodes);
-        }
+        //public void CreateAnEmptyMapWithImportedBaseCodes()
+        //{
+        //    _mapping._map.CreateAnEmptyMap(_inventoriesModel._baseCodes);
+        //}
 
 
-        internal void LoadInvUpdateDataFromUserSuppliedMapFile(string fileName)
-        {
-            _mapping._map.SetLastSavedMapFileAndLoadMap(fileName);
-        }
+        //internal void LoadInvUpdateDataFromUserSuppliedMapFile(string fileName)
+        //{
+        //    _mapping._map.SetLastSavedMapFileAndLoadMap(fileName);
+        //}
 
         internal Task<Dictionary<string, Image>> LoadImages()
         {
             if (_images == null)
             {
                 _images = new Dictionary<string, Image>();
-                return ProjIO.LoadAllImagesAndDownSize75x75Async(_mapping._map._lastSavedMapImageDirectory);
+                return ProjIO.LoadAllImagesAndDownSize75x75Async(_product_Model._lastSavedMapImageDirectory);
             }
             else return Task.FromResult(_images);
         }
+
+
+
+        // Represents linked inhouse inventory, stores individual inv counts from all vendors in all companies.
+        // Then used to update inhouse inventory column, shows user total all inventory asssigned to 
+        // all vendors.
+        internal class CrossCompanyLinkedInventoryCount
+        {
+            internal CrossCompanyLinkedInventoryCount(string companyCode)   {
+                linkedInv = new Dictionary<string, LinkedInventoryList>{{ companyCode, new LinkedInventoryList() }};
+            }
+            //<company code, linkedCompany>
+            internal Dictionary<string, LinkedInventoryList>  linkedInv { get; set; }
+            internal int GetTotalInventoryCountForAllCompanies(string inhouseCode)
+            { int total = 0;
+                foreach (var comp in linkedInv)
+                {
+                    var prod = comp.Value.FindProduct(inhouseCode);
+                    if (prod != null)
+                        total = total + prod.AmzCount + prod.SnpCount + prod.FkCount + prod.MesshoCount;
+                }
+                return total;
+            }
+
+            internal class LinkedInventoryList
+            {
+                internal LinkedInventoryList() { LinkedInventoryCounts = new List<LinkedProductInventory>(); }
+                internal List<LinkedProductInventory> LinkedInventoryCounts { get; set; }
+                internal LinkedProductInventory FindProduct(string inhouseCode)
+                {
+                   return LinkedInventoryCounts.FirstOrDefault(x => x.LinkedInhouseCode == inhouseCode);
+                }
+               
+                internal class LinkedProductInventory
+                {
+                    internal string LinkedInhouseCode { get; set; }
+                    internal int AmzCount { get; set; }
+                    internal int FkCount { get; set; }
+                    internal int SnpCount { get; set; }
+                    internal int MesshoCount { get; set; }
+                }
+            }
+
+        }
+
 
 
     }

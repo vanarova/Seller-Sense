@@ -46,6 +46,8 @@ namespace SellerSense.Model
         private void GetLastSavedSnapshot()
         {
             string snapShotDir = Path.Combine(_m_ProductModel._lastSavedMapDirectory, _snapshotDir);
+            if (!Directory.Exists(snapShotDir))
+                return;
             SortedList<double,string> sortedSnapShorts = new SortedList<double,string>();    
             foreach (var item in Directory.GetFiles(snapShotDir))
             {
