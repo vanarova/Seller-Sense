@@ -60,7 +60,10 @@ namespace SellerSense.ViewManager
         {
             AddProduct addproduct = new AddProduct();
             VM_AddProduct vm_addProduct = new VM_AddProduct(addproduct);
-            addproduct.ShowDialog();
+            if(addproduct.ShowDialog() == DialogResult.OK)
+            {
+                _vm_productsView.Add(vm_addProduct.)
+            }
         }
 
         internal void AssignViewManager(ProductCntrl pcntrl)
