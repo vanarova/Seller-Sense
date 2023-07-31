@@ -122,11 +122,13 @@ namespace ssViewControls
 
         private void button_Back_Click(object sender, EventArgs e)
         {
+            if (_currentPageNumber <= 0) return;
             _currentPageNumber--;
         }
 
         private void button_Next_Click(object sender, EventArgs e)
         {
+            if(_currentPageNumber >= _lastPageNumber) return;
             _currentPageNumber++;
         }
 
@@ -179,12 +181,6 @@ namespace ssViewControls
         private void dataGridView_data_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             OnCellFormatting?.Invoke((DataGridView)sender,e);
-            //if (!HighlightCellsFlag_1) return;
-            //var cell= ((DataGridView) sender).CurrentCell;
-            //if (cell == null || cell.Value == null) return;
-            //var cellValue = cell.Value.ToString();
-            //if (cellValue!=null && cell.Value.ToString().StartsWith("was"))
-            //  cell.Style.BackColor = Color.Yellow;
         }
 
         private void button_Refresh_Click(object sender, EventArgs e)

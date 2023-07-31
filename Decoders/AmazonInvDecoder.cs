@@ -1,6 +1,7 @@
 ﻿using Decoders.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Decoders
 {
     public static class AmazonInvDecoder
     {
-        private static List<IAmzInventory> _amvInventoryUnmodified;
+        private static ObservableCollection<IAmzInventory> _amvInventoryUnmodified;
         private static string _invAmazonFileName;
         private static readonly string[] _colsToExport = {
             "sku",
@@ -38,12 +39,12 @@ namespace Decoders
             return result;
         }
 
-        public static IList<IAmzInventory> ImportAmazonInventory(string fileName)
+        public static ObservableCollection<IAmzInventory> ImportAmazonInventory(string fileName)
         {
            // if (_amvInventoryUnmodified == null || _amvInventoryUnmodified.Count==0)
           //  {
                 _invAmazonFileName = fileName;
-                _amvInventoryUnmodified = new List<IAmzInventory>();
+                _amvInventoryUnmodified = new ObservableCollection<IAmzInventory>();
                 var lines = File.ReadAllLines(fileName);
                 for (var i = 0; i < lines.Length; i += 1)
                 {

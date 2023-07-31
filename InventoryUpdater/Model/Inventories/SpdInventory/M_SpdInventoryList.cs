@@ -10,9 +10,10 @@ namespace SellerSense.Model
 {
     internal class M_SpdInventoryList
     {
-        internal IList<ISpdInventory> _spdInventoryList { get; set; }
+        private IList<ISpdInventory> _m_spdInventoryList { get; set; }
+        internal IList<ISpdInventory> _spdInventoryList { get { return _m_spdInventoryList; } set { _m_spdInventoryList = value; SpdInventorySet?.Invoke(_m_spdInventoryList);  } }
         internal IList<ISpdInventory> _spdUIModifiedInvList { get; set; } //collects user modifications
-
+        internal event Action<IList<ISpdInventory>> SpdInventorySet;
 
         public M_SpdInventoryList()
         {

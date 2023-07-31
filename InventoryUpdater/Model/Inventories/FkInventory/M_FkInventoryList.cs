@@ -10,8 +10,10 @@ namespace SellerSense.Model
 {
     internal class M_FkInventoryList
     {
-        internal IList<IFkInventory> _fkInventoryList { get; set; }
+        private  IList<IFkInventory> m_fkInventoryList;
+        internal IList<IFkInventory> _fkInventoryList { get { return m_fkInventoryList; } set { m_fkInventoryList = value; FkInventorySet?.Invoke(m_fkInventoryList); } }
         internal IList<IFkInventory> _fkUIModifiedInvList { get; set; } //collects user modifications rows only, leave unmodifed rows.
+        internal event Action<IList<IFkInventory>> FkInventorySet;
 
         public M_FkInventoryList()
         {

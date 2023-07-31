@@ -61,7 +61,7 @@ namespace SellerSense.Model
         }
 
         public void SerializeMap(string fileName) { 
-           string json = JsonConvert.SerializeObject(_productEntries, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(_productEntries, Formatting.Indented);
             File.WriteAllText(fileName, json);
         }
 

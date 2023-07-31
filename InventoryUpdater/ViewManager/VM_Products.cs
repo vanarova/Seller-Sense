@@ -1,6 +1,7 @@
 ﻿using Decoders;
 using Newtonsoft.Json.Linq;
 using SellerSense.Model;
+using SellerSense.Views;
 using ssViewControls;
 using System;
 using System.Collections.Generic;
@@ -51,8 +52,16 @@ namespace SellerSense.ViewManager
             _v_productCntrl.flipkartToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Flipkart); };
             _v_productCntrl.snapdealToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
             _v_productCntrl.meeshoToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Meesho); };
+            _v_productCntrl.button_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
         }
 
+
+        private void OpenAddEditProductForm()
+        {
+            AddProduct addproduct = new AddProduct();
+            VM_AddProduct vm_addProduct = new VM_AddProduct(addproduct);
+            addproduct.ShowDialog();
+        }
 
         internal void AssignViewManager(ProductCntrl pcntrl)
         {

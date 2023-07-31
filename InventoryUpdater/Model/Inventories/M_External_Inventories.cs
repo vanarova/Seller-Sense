@@ -11,10 +11,11 @@ namespace SellerSense.Model
     //consolidated inventory model class..
     internal class M_External_Inventories
     {
+       
         internal M_BaseCodeList _baseCodes { get; set; }
         internal M_AmzInventoryList _amzImportedInvList { get; set; }
-        internal M_FkInventoryList _fkImportedInventoryList { get; set; }
-        internal M_SpdInventoryList _spdImportedInventoryList { get; set; }
+        internal M_FkInventoryList _fkImportedInventoryList   {get; set;}
+        internal M_SpdInventoryList _spdImportedInventoryList {get; set;}
         internal M_MsoInventoryList _msoImportedInventoryList { get; set; }
 
 

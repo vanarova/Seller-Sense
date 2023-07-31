@@ -34,6 +34,7 @@ namespace SellerSense
             tableLayoutPanel1.Controls.Add(
                 //sending list of M_Product
                 cntrlGridView, 0,1);
+            tableLayoutPanel1.SetColumnSpan(cntrlGridView, 2);
 
         }
 

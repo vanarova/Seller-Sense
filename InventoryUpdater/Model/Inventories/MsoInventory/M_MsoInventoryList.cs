@@ -10,8 +10,10 @@ namespace SellerSense.Model
 {
     internal class M_MsoInventoryList
     {
-        internal IList<IMsoInventory> _msoInventoryList { get; set; }
+        private IList<IMsoInventory> _m_msoInventoryList { get; set; }
+        internal IList<IMsoInventory> _msoInventoryList { get { return _m_msoInventoryList; } set { _m_msoInventoryList = value; MsoInventorySet?.Invoke(_m_msoInventoryList); } }
         internal IList<IMsoInventory> _msoUIModifiedInvList { get; set; }
+        internal event Action<IList<IMsoInventory>> MsoInventorySet;
 
         public M_MsoInventoryList()
         {

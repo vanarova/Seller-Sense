@@ -1,6 +1,7 @@
 ﻿using Decoders.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,12 @@ namespace SellerSense.Model
 {
     internal class M_AmzInventoryList
     {
-        internal IList<IAmzInventory> _amzInventoryList { get; set; }
+        private IList<IAmzInventory> _m_amzInvList;
+        internal IList<IAmzInventory> _amzInventoryList { get { return _m_amzInvList; } set { _m_amzInvList = value; AmzInventorySet?.Invoke(_m_amzInvList); } }
         internal IList<IAmzInventory> _amzModifiedInventoryList { get; set; }
+        internal event Action<IList<IAmzInventory>> AmzInventorySet;
+
+        //internal event Action AmzIncChanged;
 
         public M_AmzInventoryList()
         {
