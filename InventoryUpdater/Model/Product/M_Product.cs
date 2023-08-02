@@ -9,6 +9,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using SellerSense.Views;
+using System.Drawing.Imaging;
 
 namespace SellerSense.Model
 {
@@ -141,6 +143,47 @@ namespace SellerSense.Model
             File.WriteAllText(newFilePath, json);
         }
 
+        internal string SaveImage(Image img, string imageNameWithoutExtension)
+        {
+            string result = null;
+            try
+            {
+                string imageName = imageNameWithoutExtension + ".jpg";
+                string lastSavedFilePath = Path.Combine(_workspace, _companyCode);
+                if (!Directory.Exists(lastSavedFilePath))
+                { result = null; goto ret; }
+                string destinationDirPath = Path.Combine(lastSavedFilePath, Constants.Imgs);
+                if (!Directory.Exists(destinationDirPath))
+                    Directory.CreateDirectory(destinationDirPath);
+                string destinationImagePath = Path.Combine(destinationDirPath, imageName);
+                if(File.Exists(destinationImagePath))
+                {
+                    (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", true, "")).ShowDialog();
+                    result = null; goto ret;
+                }
+                img.Save(destinationImagePath, ImageFormat.Jpeg); 
+                int w = img.Width; int h = img.Height;
+                img.Dispose();
+                if (File.Exists(destinationImagePath) && (w > 1000 || h > 1000))
+                {
+                    Image rimg = ProjIO.ResizeImage(1000, 1000, destinationImagePath);
+                    rimg.Save(destinationImagePath, ImageFormat.Jpeg); rimg.Dispose();
+                }
+                result = destinationImagePath;
+
+            }
+            catch (Exception e)
+            {
+                (new AlertBox("Error", e.Message, true, "")).ShowDialog();
+                result = null;
+            }
+
+            ret:
+            if (result == null)
+                (new AlertBox("Image not saved", "Image not saved, please try again, if error persists, contact support", true, "")).ShowDialog();
+            return result;
+
+        }
 
         private static string SaveImage(string imageURL, string title, string lastSavedFilePath)
         {
@@ -161,6 +204,9 @@ namespace SellerSense.Model
         }
 
 
+
+
+
         internal class ProductEntry
         {
             //Mark pubic, required for JSON serialization
@@ -172,6 +218,12 @@ namespace SellerSense.Model
             public string ImageAlt3 { get; set; }
             public string Title { get; set; }
             public string Tag { get; set; }
+            public string MRP { get; set; }
+            public string SellingPrice { get; set; }
+            public string Weight { get; set; }
+            public string WeightAfterPackaging { get; set; }
+            public string DimensionsBeforePackaging { get; set; }
+            public string DimensionsAfterPackaging { get; set; }
             public string Description { get; set; }
             public string AmazonCode { get; set; }
             public string FlipkartCode { get; set; }
@@ -179,6 +231,7 @@ namespace SellerSense.Model
             public string MeeshoCode { get; set; }
             public string Notes { get; set; }
 
+            //public ProductEntry() { }
 
             public ProductEntry(string baseCodeValue, string img, string title,
                 string amzInventory, string fkCodeValue,string spdCodeValue,
@@ -195,10 +248,9 @@ namespace SellerSense.Model
                 this.MeeshoCode = msoCodeValue;
                 this.AmazonCode = amzInventory;
                 this.Notes = notes;
-                
-                
-                
             }
+
+            
 
         }
     }

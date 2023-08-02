@@ -26,8 +26,12 @@ namespace SellerSense.ViewManager
 
         private void HandleAddProductEvents()
         {
-            _v_AddProduct.button_cancel.Click += (s, e) => { _v_AddProduct.Close(); };
-            _v_AddProduct.button_ok.Click += (s, e) => {  _v_AddProduct.Close(); };
+            _v_AddProduct.button_cancel.Click += (s, e) => {
+                _v_AddProduct.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                _v_AddProduct.Close(); };
+            _v_AddProduct.button_ok.Click += (s, e) => { 
+                _v_AddProduct.DialogResult = System.Windows.Forms.DialogResult.OK;
+                _v_AddProduct.Close(); };
             
             //_v_AddProduct.propertyGrid_AddProduct.PropertyValueChanged += (s, e) => { 
             //    var obj = s as System.Windows.Forms.PropertyGrid;

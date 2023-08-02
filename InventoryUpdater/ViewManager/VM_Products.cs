@@ -1,5 +1,6 @@
 ﻿using Decoders;
 using Newtonsoft.Json.Linq;
+using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Views;
 using ssViewControls;
@@ -58,12 +59,34 @@ namespace SellerSense.ViewManager
 
         private void OpenAddEditProductForm()
         {
-            AddProduct addproduct = new AddProduct();
-            VM_AddProduct vm_addProduct = new VM_AddProduct(addproduct);
-            if(addproduct.ShowDialog() == DialogResult.OK)
+            AddProduct _v_addproduct = new AddProduct();
+            VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct);
+            if(_v_addproduct.ShowDialog() == DialogResult.OK)
             {
-                _vm_productsView.Add(vm_addProduct.)
+                 Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(vm_addProduct.AddProductViewBindingObj);
             }
+        }
+
+        private void Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(VM_AddProduct.AddProductView addProductView)
+        {
+            string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty;
+            string primaryImagePath = _m_product.SaveImage(addProductView.PrimaryImage, addProductView.InHouseCode);
+            if(addProductView.Image2!=null)
+                Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode);
+            if (addProductView.Image3 != null)
+                Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode);
+            if (addProductView.Image4 != null)
+                Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode);
+            if (string.IsNullOrEmpty(primaryImagePath))
+                return;
+             (_, var img) = ProjIO.LoadImageAndDownSize75x75(primaryImagePath);
+            ProductView view = new ProductView(addProductView.InHouseCode,img, addProductView.Name
+                , addProductView.Tag, addProductView.Description, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+            view.AddInvisibleColumnsFields(primaryImagePath, Image2Path, Image3Path, Image4Path, addProductView.MRP,
+                addProductView.SellingPrice, addProductView.Weight, addProductView.WeightAfterPackaging,
+                addProductView.DimensionAfterPackaging, addProductView.DimensionBeforePackaging);
+            _vm_productsView.Add(view);
+            
         }
 
         internal void AssignViewManager(ProductCntrl pcntrl)
@@ -307,22 +330,73 @@ namespace SellerSense.ViewManager
         }
 
 
+
+
         //This class is used to filter product properties, only those, which are shown to user are kept in this class.
         //It is filled by iterating on Product model, any changes will be saved back into product model.
-        internal class ProductView  //:INotifyPropertyChanged
+        internal class ProductView :INotifyPropertyChanged
         {
-            public string InHouseCode { get; set; }
-            public Image Image { get; set; }
-            public string Title { get; set; }
-            public string Tag { get; set; }
-            public string Description { get; set; }
-            public string AmazonCode { get; set; }
-            public string FlipkartCode { get; set; }
-            public string SnapdealCode { get; set; }
-            public string MeeshoCode { get; set; }
-            public string Notes { get; set; }
+            //Below are invisible columns, marked as private, private fields are not visible while binding to datagrid.
+            private string PrimaryImage;
+            private string Image2;
+            private string Image3;
+            private string Image4;
+            private string MRP;
+            private string SellingPrice;
+            private string Weight;
+            private string WeightAfterPackaging;
+            private string DimensionsAfterPackaging;
+            private string DimensionsBeforePackaging;
 
 
+            //bacling fields
+            private string _inHouseCode;
+            public string InHouseCode { get { return _inHouseCode; } set { _inHouseCode = value; } }
+            private Image _image;
+            public Image Image { get { return _image; } set { _image = value; } }
+            private string _title;
+            public string Title { get { return _title; } set { _title = value; } }
+            private string _tag;
+            public string Tag { get { return _tag; } set { _tag = value; } }
+            private string _desc;
+            public string Description { get { return _desc; } set { _desc = value; } }
+            private string _amzCode;
+            public string AmazonCode { get { return _amzCode; } set { _amzCode = value; } }
+            private string _fkCode;
+            public string FlipkartCode { get { return _fkCode; } set { _fkCode = value; } }
+            private string _spdCode;
+            public string SnapdealCode { get { return _spdCode; } set{ _spdCode = value; } }
+            private string _msoCode;
+            public string MeeshoCode { get { return _msoCode; } set { _msoCode = value; } }
+            private string _notes;
+            public string Notes { get { return _notes; } set { _notes = value; } }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            // This method is called by the Set accessor of each property.  
+            // The CallerMemberName attribute that is applied to the optional propertyName  
+            // parameter causes the property name of the caller to be substituted as an argument.  
+            private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+            internal void AddInvisibleColumnsFields(string primaryImage,string  image2,string image3,string image4,
+                string mrp, string sellingPrice, string weight,string weightAfterPackaging, string dimensionsAfterPackaging,
+                string dimensionsBeforePackaging)
+            { 
+                PrimaryImage = primaryImage;
+                Image2 = image2;
+                Image3 = image3;
+                Image4 = image4;
+                MRP = mrp;
+                SellingPrice = sellingPrice;
+                Weight = weight;
+                WeightAfterPackaging = weightAfterPackaging;
+                DimensionsAfterPackaging = dimensionsAfterPackaging;
+                DimensionsBeforePackaging = dimensionsBeforePackaging;
+
+            }
 
             //// This method is called by the Set accessor of each property.  
             //// The CallerMemberName attribute that is applied to the optional propertyName  
