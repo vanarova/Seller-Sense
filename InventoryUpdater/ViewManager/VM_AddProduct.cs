@@ -44,11 +44,34 @@ namespace SellerSense.ViewManager
                 //var obj = s as System.Windows.Forms.PropertyGrid;
                 //var item = obj.SelectedObject as AddProductView;
             };
+
+            _v_AddProduct.checkBox_markForDeletion.CheckedChanged += (s,e) => {
+                //if(_v_AddProduct.checkBox_markForDeletion.Checked)
+
+            };
         }
 
         private bool ValidateForm()
         {
-            throw new NotImplementedException();
+            string empties = string.Empty;
+            //check empties ---
+            if (string.IsNullOrEmpty(AddProductViewBindingObj.Name))
+                empties = empties + "Name ";
+            if (string.IsNullOrEmpty(AddProductViewBindingObj.Tag))
+                empties = empties + "Tag ";
+            if (string.IsNullOrEmpty(AddProductViewBindingObj.MRP))
+                empties = empties + "Mrp ";
+            if (string.IsNullOrEmpty(AddProductViewBindingObj.InHouseCode))
+                empties = empties + "InHouseCode ";
+            if (string.IsNullOrEmpty(AddProductViewBindingObj.SellingPrice))
+                empties = empties + "SellingPrice ";
+            if (!string.IsNullOrEmpty(empties))
+            {
+                MessageBox.Show("Empty field(s), please provide value for :" + empties);
+                return false;
+            }
+            else return true;
+
         }
 
        
@@ -92,9 +115,8 @@ namespace SellerSense.ViewManager
         
         public class AddProductView
         {
-            [CategoryAttribute("Product Details"), DescriptionAttribute("Name of product, generally this will display as title on emcommerce site")
+            [CategoryAttribute("1 Product Details"), DescriptionAttribute("Name of product, generally this will display as title on emcommerce site")
                 , PropertyOrder(1)]
-            
             public string Name { get; set; }
 
             [Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
@@ -112,6 +134,7 @@ namespace SellerSense.ViewManager
 
             [CategoryAttribute("1 Product Details"), DescriptionAttribute("Weight of product only, excluding any packaging weight")
                 , PropertyOrder(5)]
+            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b")]
             public string Weight { get; set; }
 
             [CategoryAttribute("1 Product Details"), DescriptionAttribute("MRP : Maximum retail price. \n Valid values : Positive Numbers"), PropertyOrder(6)]
@@ -119,6 +142,8 @@ namespace SellerSense.ViewManager
             public string MRP { get; set; }
 
             [CategoryAttribute("1 Product Details"), DescriptionAttribute("Selling price"), PropertyOrder(7)]
+
+            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b")]
             public string SellingPrice { get; set; }
 
             [CategoryAttribute("2 Product Images"), DescriptionAttribute("Primary Image"), PropertyOrder(8)]
@@ -133,7 +158,9 @@ namespace SellerSense.ViewManager
             [CategoryAttribute("2 Product Images"), DescriptionAttribute("Image 4"), PropertyOrder(11)]
             public Image Image4 { get; set; }
 
-            [CategoryAttribute("3 Addtional Details"), DescriptionAttribute("Weight of product with packaging"), PropertyOrder(12)]
+            //TODO : Add another drop down to choose, if weight should be in gms/kgs
+            [CategoryAttribute("3 Addtional Details"), DescriptionAttribute("Weight of product with packaging in grams"), PropertyOrder(12)]
+            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b")]
             public string WeightAfterPackaging { get; set; }
 
             [CategoryAttribute("3 Addtional Details"), DescriptionAttribute("Dimensions of product WITHOUT packaging"), PropertyOrder(13)]
