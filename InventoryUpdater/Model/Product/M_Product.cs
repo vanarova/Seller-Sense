@@ -69,24 +69,10 @@ namespace SellerSense.Model
 
         public  void LoadLastSavedMap()
         {
-            //string lastSavedFileName = GetLastSavedMapFile();
-            //MapEntries = JsonConvert.DeserializeObject<List<MapEntry>>(json);
-
             if (!string.IsNullOrEmpty(_lastSavedMapFilePath) &&  File.Exists(_lastSavedMapFilePath))
             {
                 string txt = File.ReadAllText(_lastSavedMapFilePath); //create separate function for file IO
-                //JObject jobj = JObject.Parse(txt);
                 _productEntries =  JsonConvert.DeserializeObject<List<ProductEntry>>(txt);
-                //string json = JsonConvert.SerializeObject(MapEntries, Formatting.Indented);
-                //foreach (var item in jobj.Property("Inventory").Values())
-                //{
-                //    if (AppVersion.Ver == AppVersion.Number.V1)
-                //        codes.Add(item.ToObject<BaseCodeV1>());
-                //    else if (AppVersion.Ver == AppVersion.Number.V2)
-                //        codes.Add(item.ToObject<BaseCodeV2>());
-
-                //}
-                //_map.CreateAnEmptyMap(_baseCodes);
             }
         }
 
@@ -95,19 +81,6 @@ namespace SellerSense.Model
             SerializeMap(_lastSavedMapFilePath);
         }
 
-        //internal void SaveAsMapFile(string mapFileTxt)
-        //{
-        //    SerializeMap(_lastSavedMapFilePath);
-        //}
-
-        //internal void SaveAsMapFile(string fileName)
-        //{
-        //    //_lastSavedMapFilePath = fileName;
-        //    ProjIO.SaveUserSetting("LastSavedMapFilePath", _lastSavedMapFilePath);
-        //    SerializeMap(fileName);
-        //}
-
-
 
         internal void SetLastSavedMapFileAndLoadMap(string fileName)
         {
@@ -115,18 +88,10 @@ namespace SellerSense.Model
             string txt = File.ReadAllText(fileName);
             _productEntries = JsonConvert.DeserializeObject<List<ProductEntry>>(txt);
             SaveMapFile();
-            //_lastSavedMapFilePath = fileName;
-            //ProjIO.SaveUserSetting("LastSavedMapFilePath", _lastSavedMapFilePath);
-            //LoadLastSavedMap();
         }
 
 
-        //internal string GetLastSavedMapFile()
-        //{
-        //    _lastSavedMapFilePath = ProjIO.GetUserSetting("LastSavedMapFilePath");
-        //    return _lastSavedMapFilePath;
-        //}
-
+        
         internal static void ConvertJSONHttpImagesToLocalImages()
         {
             string lastSavedFilePath = ProjIO.GetUserSetting("LastSavedMapFilePath");
@@ -146,6 +111,8 @@ namespace SellerSense.Model
         internal string SaveImage(Image img, string imageNameWithoutExtension)
         {
             string result = null;
+            if (String.IsNullOrEmpty(imageNameWithoutExtension))
+                goto ret;
             try
             {
                 string imageName = imageNameWithoutExtension + ".jpg";
@@ -231,13 +198,11 @@ namespace SellerSense.Model
             public string MeeshoCode { get; set; }
             public string Notes { get; set; }
 
-            //public ProductEntry() { }
 
             public ProductEntry(string baseCodeValue, string img, string title,
                 string amzInventory, string fkCodeValue,string spdCodeValue,
                 string msoCodeValue, string notes, string tag, string desc)
             {
-                //this.Id = Guid.NewGuid();
                 this.InHouseCode = baseCodeValue;
                 this.Image = img;
                 this.Title = title;

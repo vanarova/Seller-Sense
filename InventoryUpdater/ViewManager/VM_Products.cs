@@ -72,11 +72,11 @@ namespace SellerSense.ViewManager
             string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty;
             string primaryImagePath = _m_product.SaveImage(addProductView.PrimaryImage, addProductView.InHouseCode);
             if(addProductView.Image2!=null)
-                Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode);
+                Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode + "_2");
             if (addProductView.Image3 != null)
-                Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode);
+                Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode + "_3");
             if (addProductView.Image4 != null)
-                Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode);
+                Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode + "_4");
             if (string.IsNullOrEmpty(primaryImagePath))
                 return;
              (_, var img) = ProjIO.LoadImageAndDownSize75x75(primaryImagePath);

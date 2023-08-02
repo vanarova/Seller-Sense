@@ -109,13 +109,15 @@
     <Compile Include="Views\AddEditProduct\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddEditProduct\PropertySorter.cs" />
+    <Compile Include="Views\Controls\CustomPropertyGrid\PatternRuleAttribute.cs" />
+    <Compile Include="Views\Controls\CustomPropertyGrid\PropertySorter.cs" />
     <Compile Include="Views\AlertBox.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\AlertBox.Designer.cs">
       <DependentUpon>AlertBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\CustomPropertyGrid\RuleBaseAttribute.cs" />
     <Compile Include="Views\Inventories\ConfirmInventoryAction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,7 +278,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\Map\" />
-    <Folder Include="Views\Controls\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Decoders\Decoders.csproj">
