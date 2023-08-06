@@ -1,5 +1,7 @@
 ﻿using CustomControls.Rule;
 using OrderedPropertyGrid;
+using SellerSense.Helper;
+using SellerSense.Model;
 using SellerSense.Views;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
 using System.Drawing.Design;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -18,14 +21,63 @@ namespace SellerSense.ViewManager
     internal class VM_AddProduct
     {
         AddProduct _v_AddProduct;
+        M_Product _m_Product;
+        public bool MarkedForDeletion { get { return _v_AddProduct.checkBox_markForDeletion.Checked; } }
         internal AddProductView AddProductViewBindingObj;
-        internal VM_AddProduct(AddProduct v_product)
+        private Dictionary<string, Image> _images;
+
+        //new product add mode
+        internal VM_AddProduct(AddProduct v_addproduct, M_Product m_Product )
         {
-            _v_AddProduct = v_product;
+            _m_Product = m_Product;
+            _v_AddProduct = v_addproduct;
             AddProductViewBindingObj = new AddProductView();
+            AddProductViewBindingObj.EditMode = false;
+            AddProductViewBindingObj.SetPropertyReadOnly("InHouseCode", false);
+            AddProductViewBindingObj.SetPropertyReadOnly("PrimaryImage", false);
+            AddProductViewBindingObj.SetPropertyReadOnly("Image2", false);
+            AddProductViewBindingObj.SetPropertyReadOnly("Image3", false);
+            AddProductViewBindingObj.SetPropertyReadOnly("Image4", false);
             _v_AddProduct.propertyGrid_AddProduct.SelectedObject = AddProductViewBindingObj;
             HandleAddProductEvents();
         }
+
+
+        //edit mode
+        internal VM_AddProduct(AddProduct v_addproduct, M_Product.ProductEntry _m_productModelEntry,
+            Dictionary<string, Image> images, string companyCode)
+        {
+            _images = images;
+            _v_AddProduct = v_addproduct;
+            AddProductViewBindingObj = new AddProductView();
+            AddProductViewBindingObj.SetPropertyReadOnly("InHouseCode", true);
+            AddProductViewBindingObj.SetPropertyReadOnly("PrimaryImage", true);
+            AddProductViewBindingObj.SetPropertyReadOnly("Image2", true);
+            AddProductViewBindingObj.SetPropertyReadOnly("Image3", true);
+            AddProductViewBindingObj.SetPropertyReadOnly("Image4", true);
+
+            AddProductViewBindingObj.EditMode = true;
+            AddProductViewBindingObj.Name = _m_productModelEntry.Title;
+            AddProductViewBindingObj.Tag = _m_productModelEntry.Tag;
+            AddProductViewBindingObj.Description = _m_productModelEntry.Description;
+            AddProductViewBindingObj.MRP = _m_productModelEntry.MRP;
+            AddProductViewBindingObj.Weight= _m_productModelEntry.Weight;
+            AddProductViewBindingObj.DimensionAfterPackaging = _m_productModelEntry.DimensionsAfterPackaging;
+            AddProductViewBindingObj.DimensionBeforePackaging = _m_productModelEntry.DimensionsBeforePackaging;
+            AddProductViewBindingObj.InHouseCode = _m_productModelEntry.InHouseCode;
+
+            //Image pathis incorrect, fix, use full path
+            (_, AddProductViewBindingObj.Image2) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.ImageAlt1,companyCode);
+            (_, AddProductViewBindingObj.Image3) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.ImageAlt2,companyCode);
+            (_, AddProductViewBindingObj.Image4) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.ImageAlt3, companyCode);
+            AddProductViewBindingObj.PrimaryImage = _images[Path.GetFileNameWithoutExtension(_m_productModelEntry.Image)];
+            AddProductViewBindingObj.SellingPrice = _m_productModelEntry.SellingPrice;
+            AddProductViewBindingObj.WeightAfterPackaging = _m_productModelEntry.WeightAfterPackaging;
+
+            _v_AddProduct.propertyGrid_AddProduct.SelectedObject = AddProductViewBindingObj;
+            HandleAddProductEvents();
+        }
+
 
         private void HandleAddProductEvents()
         {
@@ -53,10 +105,24 @@ namespace SellerSense.ViewManager
 
         private bool ValidateForm()
         {
+            if (!AddProductViewBindingObj.EditMode)
+            {
+                if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.PrimaryImage, AddProductViewBindingObj.InHouseCode))
+                    return false;
+                if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image2, AddProductViewBindingObj.InHouseCode + "_2"))
+                    return false;
+                if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image3, AddProductViewBindingObj.InHouseCode + "_3"))
+                    return false;
+                if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image4, AddProductViewBindingObj.InHouseCode + "_4"))
+                    return false;
+            }
+
             string empties = string.Empty;
             //check empties ---
             if (string.IsNullOrEmpty(AddProductViewBindingObj.Name))
                 empties = empties + "Name ";
+            if (AddProductViewBindingObj.PrimaryImage == null)
+                empties = empties + "Image ";
             if (string.IsNullOrEmpty(AddProductViewBindingObj.Tag))
                 empties = empties + "Tag ";
             if (string.IsNullOrEmpty(AddProductViewBindingObj.MRP))
@@ -115,59 +181,99 @@ namespace SellerSense.ViewManager
         
         public class AddProductView
         {
-            [CategoryAttribute("1 Product Details"), DescriptionAttribute("Name of product, generally this will display as title on emcommerce site")
-                , PropertyOrder(1)]
-            public string Name { get; set; }
+            public AddProductView()
+            {
+               
+                EditMode = false;
+            }
+
+            private string _m_Name;
+            private string _m_desc;
+            private string _m_InHouseCode;
+            private string _m_Tag;
+            private string _m_Weight;
+            private string _m_Weight_After_Pkging;
+            private string _m_MRP;
+            private string _m_SellingPrice;
+            private string _m_DimensionBeforePackaging;
+            private string _m_DimensionAfterPackaging;
+            private Image _m_PrimaryImg;
+            private Image _m_Img2;
+            private Image _m_Img3;
+            private Image _m_Img4;
+
+            //internal bool IsDirty { get; set; }
+            //internal bool Img1Dirty { get; set; }
+            //internal bool Img22Dirty { get; set; }
+            //internal bool Img3Dirty { get; set; }
+            //internal bool Img4Dirty { get; set; }
+            internal bool EditMode { get; set; }
+
+            // this method, dynamically changes attribute value, and applies ReadyOnlyAttrbute to a property
+            // Note, ReadOnlyAttribute is already available in Property grid, this method just switches it to true or false.
+            internal void SetPropertyReadOnly(string lsProperty, bool lbIsReadOnly)
+            {
+                PropertyDescriptor descriptor = TypeDescriptor.GetProperties(this.GetType())[lsProperty];
+                ReadOnlyAttribute attribute = (ReadOnlyAttribute) descriptor.Attributes[typeof(ReadOnlyAttribute)];
+                FieldInfo fieldToChange = attribute.GetType().GetField("isReadOnly",
+                    System.Reflection.BindingFlags.NonPublic |
+                    System.Reflection.BindingFlags.Instance);
+                fieldToChange.SetValue(attribute, lbIsReadOnly);
+            }
+
+            [CategoryAttribute("1. Product Details"), DescriptionAttribute("Name of product, generally this will display as title on emcommerce site")
+                , PropertyOrder(1), ReadOnlyAttribute(false)]
+            public string Name { get { return _m_Name; } set { _m_Name = value;  } }
 
             [Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
-            [CategoryAttribute("1 Product Details"), DescriptionAttribute("Description : for buyers to know more about your product")
-                , PropertyOrder(2)]
-            public string Description { get; set; }
+            [CategoryAttribute("1. Product Details"), DescriptionAttribute("Description : for buyers to know more about your product")
+                , PropertyOrder(2), ReadOnlyAttribute(false)]
+            public string Description { get { return _m_desc; } set { _m_desc = value;  } }
 
-            [CategoryAttribute("1 Product Details"), DescriptionAttribute("Inhouse Code : Internal inventory code, will be used by Seller-Sense to keep track of products")
-                , PropertyOrder(3)]
-            public string InHouseCode { get; set; }
+            [CategoryAttribute("1. Product Details"), DescriptionAttribute("Inhouse Code : Internal inventory code, will be used by Seller-Sense to keep track of products \n You can not change InHouseCode once it is set, Delete and re-create product.")
+                , PropertyOrder(3), ReadOnlyAttribute(false)]
+            public string InHouseCode { get { return _m_InHouseCode; } set { 
+                     _m_InHouseCode = value;  } }
 
-            [CategoryAttribute("1 Product Details"), DescriptionAttribute("Tag helps in searching product, use keywords which you can use later on product screen to search product faster.")
-                , PropertyOrder(4)]
-            public string Tag { get; set; }
+            [CategoryAttribute("1. Product Details"), DescriptionAttribute("Tag helps in searching product, use keywords which you can use later on product screen to search product faster.")
+                , PropertyOrder(4), ReadOnlyAttribute(false)]
+            public string Tag { get { return _m_Tag; } set { _m_Tag = value;  } }
 
-            [CategoryAttribute("1 Product Details"), DescriptionAttribute("Weight of product only, excluding any packaging weight")
-                , PropertyOrder(5)]
+            [CategoryAttribute("1. Product Details"), DescriptionAttribute("Weight of product only, excluding any packaging weight. \n Valid values : Positive Numbers")
+                , PropertyOrder(5), ReadOnlyAttribute(false)]
             [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b")]
-            public string Weight { get; set; }
+            public string Weight { get { return _m_Weight; } set { _m_Weight = value;  } }
 
-            [CategoryAttribute("1 Product Details"), DescriptionAttribute("MRP : Maximum retail price. \n Valid values : Positive Numbers"), PropertyOrder(6)]
-            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b")] //Regex.IsMatch( "1", @"\b(?:\d+\.\d+|\d+(?!\.))\b")
-            public string MRP { get; set; }
+            [CategoryAttribute("1. Product Details"), DescriptionAttribute("MRP : Maximum retail price. \n Valid values : Positive Numbers"), PropertyOrder(6)]
+            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b"), ReadOnlyAttribute(false)] //Regex.IsMatch( "1", @"\b(?:\d+\.\d+|\d+(?!\.))\b")
+            public string MRP { get { return _m_MRP; } set { _m_MRP = value;  } }
 
-            [CategoryAttribute("1 Product Details"), DescriptionAttribute("Selling price"), PropertyOrder(7)]
+            [CategoryAttribute("1. Product Details"), DescriptionAttribute("Selling price. \n Valid values : Positive Numbers"), PropertyOrder(7)]
+            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b"), ReadOnlyAttribute(false)]
+            public string SellingPrice { get { return _m_SellingPrice; } set { _m_SellingPrice = value;  } }
 
-            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b")]
-            public string SellingPrice { get; set; }
+            [CategoryAttribute("2. Product Images"), DescriptionAttribute("Primary Image"), PropertyOrder(8), ReadOnlyAttribute(false)]
+            public Image PrimaryImage { get { return _m_PrimaryImg; } set { _m_PrimaryImg = value;   } }
 
-            [CategoryAttribute("2 Product Images"), DescriptionAttribute("Primary Image"), PropertyOrder(8)]
-            public Image PrimaryImage { get; set; }
+            [CategoryAttribute("2. Product Images"), DescriptionAttribute("Image 2"), PropertyOrder(9), ReadOnlyAttribute(false)]
+            public Image Image2 { get { return _m_Img2; } set { if (value != null) {  _m_Img2 = value; } } }
 
-            [CategoryAttribute("2 Product Images"), DescriptionAttribute("Image 2"), PropertyOrder(9)]
-            public Image Image2 { get; set; }
+            [CategoryAttribute("2. Product Images"), DescriptionAttribute("Image 3"), PropertyOrder(10), ReadOnlyAttribute(false)]
+        public Image Image3 { get { return _m_Img3; } set { if (value != null) {  _m_Img3 = value;   } } }
 
-            [CategoryAttribute("2 Product Images"), DescriptionAttribute("Image 3"), PropertyOrder(10)]
-            public Image Image3 { get; set; }
-
-            [CategoryAttribute("2 Product Images"), DescriptionAttribute("Image 4"), PropertyOrder(11)]
-            public Image Image4 { get; set; }
+            [CategoryAttribute("2. Product Images"), DescriptionAttribute("Image 4"), PropertyOrder(11), ReadOnlyAttribute(false)]
+            public Image Image4 { get { return _m_Img4; } set { if (value != null) { _m_Img4 = value;   } } }
 
             //TODO : Add another drop down to choose, if weight should be in gms/kgs
-            [CategoryAttribute("3 Addtional Details"), DescriptionAttribute("Weight of product with packaging in grams"), PropertyOrder(12)]
-            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b")]
-            public string WeightAfterPackaging { get; set; }
+            [CategoryAttribute("3. Addtional Details"), DescriptionAttribute("Weight of product with packaging in grams. \n Valid values : Positive Numbers"), PropertyOrder(12)]
+            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b"), ReadOnlyAttribute(false)]
+            public string WeightAfterPackaging { get { return _m_Weight_After_Pkging; } set { _m_Weight_After_Pkging = value;  } }
 
-            [CategoryAttribute("3 Addtional Details"), DescriptionAttribute("Dimensions of product WITHOUT packaging"), PropertyOrder(13)]
-            public string DimensionBeforePackaging { get; set; }
+            [CategoryAttribute("3. Addtional Details"), DescriptionAttribute("Dimensions of product WITHOUT packaging"), PropertyOrder(13), ReadOnlyAttribute(false)]
+            public string DimensionBeforePackaging { get { return _m_DimensionBeforePackaging; } set { _m_DimensionBeforePackaging = value;  } }
 
-            [CategoryAttribute("3 Addtional Details"), DescriptionAttribute("Dimensions of product WITH packaging"), PropertyOrder(14)]
-            public string DimensionAfterPackaging { get; set; }
+            [CategoryAttribute("3. Addtional Details"), DescriptionAttribute("Dimensions of product WITH packaging"), PropertyOrder(14), ReadOnlyAttribute(false)]
+            public string DimensionAfterPackaging { get { return _m_DimensionAfterPackaging; } set { _m_DimensionAfterPackaging = value;  } }
         }
 
     }

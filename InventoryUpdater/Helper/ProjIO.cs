@@ -164,9 +164,36 @@ namespace SellerSense.Helper
 
         internal static (string, Image) LoadImageAndDownSize75x75(string filePath)
         {
+            if (string.IsNullOrEmpty(filePath))
+                return (null, null);
             using (var bmpTemp = new Bitmap(filePath))
             {
                 return (filePath, new Bitmap(bmpTemp, new Size(75, 75)));
+            }
+        }
+
+
+        internal static (string, Image) LoadImageUsingFileNameAndDownSize75x75(string fileName, string companyCode)
+        {
+            if (string.IsNullOrEmpty(fileName))
+                return (null, null);
+            (bool exist, string dir) = GetCompanyMapDirIfExist(companyCode);
+            if (!exist)
+                return (null,null);
+            string imgPath = Path.Combine(dir,Constants.Imgs,fileName);
+            using (var bmpTemp = new Bitmap(imgPath))
+            {
+                return (imgPath, new Bitmap(bmpTemp, new Size(75, 75)));
+            }
+        }
+
+        internal static (string, Image) LoadImageWithoutLocking(string filePath)
+        {
+            if(string.IsNullOrEmpty(filePath))
+                return (null, null);
+            using (var bmpTemp = new Bitmap(filePath))
+            {
+                return (filePath, new Bitmap(bmpTemp));
             }
         }
 

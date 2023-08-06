@@ -151,7 +151,7 @@
             this.btn_invUpdate.TabIndex = 0;
             this.btn_invUpdate.Text = "🛍 Products";
             this.btn_invUpdate.UseVisualStyleBackColor = false;
-            this.btn_invUpdate.Click += new System.EventHandler(this.btn_invUpdate_Click);
+            this.btn_invUpdate.Click += new System.EventHandler(this.btn_Products_Click);
             // 
             // pbarLoadForms
             // 

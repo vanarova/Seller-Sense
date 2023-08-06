@@ -33,12 +33,15 @@ namespace SellerSense.ViewManager
         private ssGridView<ProductView> _v_ssGridViewCntrl;
         private DataGridView _datagrid;
         private M_External_Inventories _InventoriesModel;
+        private Dictionary<string, Image> _images;
 
-        public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories)
+        public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories, string companycode)
         {
+            //_images = images;
+            _code = companycode;
             _InventoriesModel = vm_Inventories;   
             _m_product = m_Product;
-            TranslateProductModelToProductsView();
+            FillFromProductModelToProductsViewWithoutImages();
         }
 
  #region ProductUserControl
@@ -59,34 +62,101 @@ namespace SellerSense.ViewManager
 
         private void OpenAddEditProductForm()
         {
-            AddProduct _v_addproduct = new AddProduct();
-            VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct);
+            AddProduct _v_addproduct = new AddProduct(false);
+            VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct, _m_product);
             if(_v_addproduct.ShowDialog() == DialogResult.OK)
             {
-                 Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(vm_addProduct.AddProductViewBindingObj);
+                Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(vm_addProduct.AddProductViewBindingObj, IsAddNewProduct:true);
+                AddNewProductFromProductModelToProductView();
+                
+                _m_product.SaveMapFile();
+                //AddNewProductInProductModel();
+                //FillFromProductModelToProductsView();
+                //WriteBackProductViewToProductsModelAndSave();
             }
         }
 
-        private void Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(VM_AddProduct.AddProductView addProductView)
+      
+
+        private void AddNewProductFromProductModelToProductView()
         {
-            string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty;
-            string primaryImagePath = _m_product.SaveImage(addProductView.PrimaryImage, addProductView.InHouseCode);
-            if(addProductView.Image2!=null)
-                Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode + "_2");
-            if (addProductView.Image3 != null)
-                Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode + "_3");
-            if (addProductView.Image4 != null)
-                Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode + "_4");
-            if (string.IsNullOrEmpty(primaryImagePath))
-                return;
-             (_, var img) = ProjIO.LoadImageAndDownSize75x75(primaryImagePath);
-            ProductView view = new ProductView(addProductView.InHouseCode,img, addProductView.Name
-                , addProductView.Tag, addProductView.Description, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
-            view.AddInvisibleColumnsFields(primaryImagePath, Image2Path, Image3Path, Image4Path, addProductView.MRP,
-                addProductView.SellingPrice, addProductView.Weight, addProductView.WeightAfterPackaging,
-                addProductView.DimensionAfterPackaging, addProductView.DimensionBeforePackaging);
-            _vm_productsView.Add(view);
+            //Update, For existing items
+            foreach (var product in _m_product._productEntries)
+            {
+                var productViewItem = _vm_productsView.Find(x => x.InHouseCode == product.InHouseCode);
+                //For new Item
+                if (productViewItem== null)
+                { (_,Image img) = ProjIO.LoadImageAndDownSize75x75(product.Image);
+                    var prod = new ProductView(product.InHouseCode, img,
+                    product.Title, product.Tag, product.Description, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                    prod.AddInvisibleColumnsFields(product.Image, product.ImageAlt1, product.ImageAlt2, product.ImageAlt3,
+                    product.MRP, product.SellingPrice, product.Weight, product.WeightAfterPackaging, product.DimensionsAfterPackaging,
+                    product.DimensionsBeforePackaging);
+                    _vm_productsView.Add(prod);
+                }
+            }
+
             
+        }
+
+        private void Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(VM_AddProduct.AddProductView addProductView, bool IsAddNewProduct)
+        {
+            if (IsAddNewProduct) // add new product
+            {
+                string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty;
+                // validation for this and other images happens in VM_AddProdiuct class.
+                string primaryImagePath = _m_product.SaveImage(addProductView.PrimaryImage, addProductView.InHouseCode);
+                if (addProductView.Image2 != null)
+                    Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode + "_2", overwrite: addProductView.EditMode); //overwrite image, in case of edit mode
+                if (addProductView.Image3 != null)
+                    Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode + "_3", overwrite: addProductView.EditMode);
+                if (addProductView.Image4 != null)
+                    Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode + "_4", overwrite: addProductView.EditMode);
+                if (string.IsNullOrEmpty(primaryImagePath))
+                    return;
+                (_, var img) = ProjIO.LoadImageAndDownSize75x75(primaryImagePath);
+
+                var prod = new M_Product.ProductEntry(addProductView.InHouseCode,String.Empty,addProductView.Name,
+                    String.Empty,String.Empty,String.Empty,String.Empty,String.Empty, addProductView.Tag,addProductView.Description) 
+                {
+                    Image = primaryImagePath,
+                    ImageAlt1 = Image2Path,
+                    ImageAlt2 = Image3Path,
+                    ImageAlt3 = Image4Path,
+                    MRP = addProductView.MRP,
+                    Tag = addProductView.Tag,
+                    SellingPrice = addProductView.SellingPrice,
+                    Weight = addProductView.Weight,
+                    WeightAfterPackaging = addProductView.WeightAfterPackaging,
+                    DimensionsBeforePackaging = addProductView.DimensionBeforePackaging,
+                    DimensionsAfterPackaging = addProductView.DimensionAfterPackaging
+                };
+                _m_product._productEntries.Add(prod);
+                
+                //ProductView view = new ProductView(addProductView.InHouseCode, img, addProductView.Name
+                //    , addProductView.Tag, addProductView.Description, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                //view.AddInvisibleColumnsFields(primaryImagePath, Image2Path, Image3Path, Image4Path, addProductView.MRP,
+                //    addProductView.SellingPrice, addProductView.Weight, addProductView.WeightAfterPackaging,
+                //    addProductView.DimensionAfterPackaging, addProductView.DimensionBeforePackaging);
+                //_vm_productsView.Add(view);
+            }
+            else  //edit product
+            {
+                var product = _vm_productsView.Find(x=>x.InHouseCode == addProductView.InHouseCode);
+                if(product != null)
+                {
+                    product.Title = addProductView.Name;
+                    product.Description = addProductView.Description;
+                    product.Tag = addProductView.Tag;
+                    //product.Image = addProductView.PrimaryImage;
+                    product.AddInvisibleColumnsFieldsWithoutImages(addProductView.MRP,
+                    addProductView.SellingPrice, addProductView.Weight, addProductView.WeightAfterPackaging,
+                    addProductView.DimensionAfterPackaging, addProductView.DimensionBeforePackaging);
+                }
+                //find this product in addProductView
+                // edit product
+
+            }
         }
 
         internal void AssignViewManager(ProductCntrl pcntrl)
@@ -134,8 +204,39 @@ namespace SellerSense.ViewManager
             _v_ssGridViewCntrl.SearchTagTriggered += SearchTags;
             _v_ssGridViewCntrl.ResetBindings += ResetBindings;
             _v_ssGridViewCntrl.OnControlLoad += OnControlLoadHandler;
+            _v_ssGridViewCntrl.OnGridButtonClicked += _v_ssGridViewCntrl_OnGridButtonClicked; ;
         }
 
+        private void _v_ssGridViewCntrl_OnGridButtonClicked(DataGridView grid, int rowIndex, int colIndex)
+        {
+            string inhouseCode = grid.Rows[rowIndex].Cells[Constants.PCols.InHouseCode].Value.ToString();
+            if (!string.IsNullOrEmpty(inhouseCode))
+            {
+                var prod = _m_product._productEntries.Find(x => x.InHouseCode == inhouseCode);
+                if (prod == null)
+                    return;
+                AddProduct _v_addproduct = new AddProduct(true);
+                VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct, prod, _images, _code);
+                if (_v_addproduct.ShowDialog() == DialogResult.OK)
+                {
+                    if (vm_addProduct.MarkedForDeletion)
+                        RemoveMarkedProduct(prod);
+                    else
+                        Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(vm_addProduct.AddProductViewBindingObj, IsAddNewProduct: false);
+                    WriteBackProductViewToProductsModelAndSave();
+                }
+            }
+        }
+
+        private void RemoveMarkedProduct( M_Product.ProductEntry product)
+        {
+            var itemToDel = _vm_productsView.Find(x => x.InHouseCode == product.InHouseCode);
+            if (itemToDel != null)
+                _vm_productsView.Remove(itemToDel);
+            _m_product._productEntries.Remove(product);
+            _v_ssGridViewCntrl.Invalidate();
+
+        }
 
         internal void WriteBackProductViewToProductsModelAndSave()
         {
@@ -145,6 +246,11 @@ namespace SellerSense.ViewManager
                 {
                     if(p.InHouseCode == m.InHouseCode)
                     {
+                        (string primaryImage, string image2, 
+                            string image3, string image4, string mrp, 
+                            string sellingPrice, string weight, 
+                            string weightAfterPackaging, string dimensionsAfterPackaging, 
+                            string dimensionsBeforePackaging) value = p.GetInvisibleColumnsFields();
                         m.SnapdealCode = p.SnapdealCode;
                         m.FlipkartCode = p.FlipkartCode;
                         m.Notes = p.Notes;
@@ -153,7 +259,17 @@ namespace SellerSense.ViewManager
                         m.Tag = p.Tag;
                         m.AmazonCode = p.AmazonCode;
                         m.MeeshoCode = p.MeeshoCode;
-                        
+                        m.Description = p.Description;
+                        m.MRP = value.mrp;
+                        m.DimensionsAfterPackaging = value.dimensionsAfterPackaging;
+                        m.DimensionsBeforePackaging = value.dimensionsBeforePackaging;
+                        m.SellingPrice = value.sellingPrice;
+                        m.Weight = value.weight;
+                        m.Image = value.primaryImage;
+                        m.ImageAlt1 = value.image2;
+                        m.ImageAlt2 = value.image3;
+                        m.ImageAlt3 = value.image4;
+                        m.WeightAfterPackaging = value.weightAfterPackaging;
                     }
                 }
 
@@ -161,12 +277,33 @@ namespace SellerSense.ViewManager
             _m_product.SaveMapFile();
         }
 
-        private void TranslateProductModelToProductsView()
+        //private void UpdateFromProductModelToProductsView()
+        //{
+            
+        //    foreach (var item in _m_product._productEntries)
+        //    {
+        //        (_, Image img) = ProjIO.LoadImageAndDownSize75x75(item.Image);
+        //        _vm_productsView.Add(new ProductView(
+        //            item.InHouseCode,
+        //            img, 
+        //            item.Title,
+        //            item.Tag,
+        //            item.Description,
+        //            item.AmazonCode,
+        //            item.FlipkartCode,
+        //            item.SnapdealCode,
+        //            item.MeeshoCode,
+        //            item.Notes));
+        //    }
+        //}
+
+        private void FillFromProductModelToProductsViewWithoutImages()
         {
             _vm_productsView = new List<ProductView>();
             foreach (var item in _m_product._productEntries)
             {
-                _vm_productsView.Add(new ProductView(
+                var prod =
+                new ProductView(
                     item.InHouseCode,
                     null, item.Title,
                     item.Tag,
@@ -175,7 +312,13 @@ namespace SellerSense.ViewManager
                     item.FlipkartCode,
                     item.SnapdealCode,
                     item.MeeshoCode,
-                    item.Notes));
+                    item.Notes);
+                prod.AddInvisibleColumnsFields(item.Image, item.ImageAlt1, item.ImageAlt2, item.ImageAlt3,
+                    item.MRP, item.SellingPrice, item.Weight, item.WeightAfterPackaging, item.DimensionsAfterPackaging,
+                    item.DimensionsBeforePackaging);
+                _vm_productsView.Add(prod);
+               
+
             }
         }
 
@@ -321,12 +464,23 @@ namespace SellerSense.ViewManager
 
         internal void AssignImagesToProducts(Dictionary<string, Image> imgs)
         {
-            foreach (var item in _vm_productsView)
+            try
             {
-                if (imgs.ContainsKey(item.InHouseCode))
-                    item.Image = imgs[item.InHouseCode];
-
+                _images = imgs;
+                //foreach (var item in _m_product._productEntries)
+                //{
+                //    if (imgs.ContainsKey(item.InHouseCode))
+                //        item.Image = imgs[item.InHouseCode];
+                //}
+                foreach (var item in _vm_productsView)
+                {
+                    if (imgs.ContainsKey(item.InHouseCode))
+                        item.Image = imgs[item.InHouseCode];
+                }
             }
+            catch(Exception e) {
+            }
+
         }
 
 
@@ -395,6 +549,30 @@ namespace SellerSense.ViewManager
                 WeightAfterPackaging = weightAfterPackaging;
                 DimensionsAfterPackaging = dimensionsAfterPackaging;
                 DimensionsBeforePackaging = dimensionsBeforePackaging;
+
+            }
+
+            internal void AddInvisibleColumnsFieldsWithoutImages(
+                string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
+                string dimensionsBeforePackaging)
+            {
+               
+                MRP = mrp;
+                SellingPrice = sellingPrice;
+                Weight = weight;
+                WeightAfterPackaging = weightAfterPackaging;
+                DimensionsAfterPackaging = dimensionsAfterPackaging;
+                DimensionsBeforePackaging = dimensionsBeforePackaging;
+
+            }
+
+
+            internal (string primaryImage, string image2, string image3, string image4,
+                string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
+                string dimensionsBeforePackaging) GetInvisibleColumnsFields()
+            {
+                return (PrimaryImage, Image2, Image3, Image4, MRP, SellingPrice, Weight, WeightAfterPackaging,
+                    DimensionsAfterPackaging, DimensionsBeforePackaging);
 
             }
 

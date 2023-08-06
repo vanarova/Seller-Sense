@@ -52,6 +52,7 @@ namespace ssViewControls
         public event Action<bool,string, SortableBindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindings;
         public event Action<DataGridView> OnControlLoad;
+        public event Action<DataGridView,int,int> OnGridButtonClicked;
         public event Action<DataGridView, DataGridViewCellFormattingEventArgs> OnCellFormatting;
         //BindingListChanged event is fired by INotifychanged property setters of view manager.
         //If InotifypropertyChanged is not implemented, this event wont fire.
@@ -181,6 +182,16 @@ namespace ssViewControls
         private void dataGridView_data_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             OnCellFormatting?.Invoke((DataGridView)sender,e);
+        }
+
+        private void dataGridView_data_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                OnGridButtonClicked?.Invoke(senderGrid,e.RowIndex,e.ColumnIndex);            
+            }
         }
 
         private void button_Refresh_Click(object sender, EventArgs e)

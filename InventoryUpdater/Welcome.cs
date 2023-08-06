@@ -161,7 +161,7 @@ namespace SellerSense
         }
 
 
-        private async void btn_invUpdate_Click(object sender, EventArgs e)
+        private async void btn_Products_Click(object sender, EventArgs e)
         {
 
             pbarLoadForms.Visible = true;

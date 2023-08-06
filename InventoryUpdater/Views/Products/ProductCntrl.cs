@@ -61,10 +61,6 @@ namespace SellerSense
             //}
         }
 
-        //private void toolStripMenuItem_Save_Click(object sender, EventArgs e)
-        //{
-        //    _company._productViewManager.WriteBackProductViewToProductsModelAndSave();
-        //    cntrlGridView._isBindingListDirty = false;
-        //}
+       
     }
 }

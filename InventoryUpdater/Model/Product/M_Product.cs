@@ -108,7 +108,22 @@ namespace SellerSense.Model
             File.WriteAllText(newFilePath, json);
         }
 
-        internal string SaveImage(Image img, string imageNameWithoutExtension)
+
+        internal bool ChecKProductImageExists(Image img, string imageNameWithoutExtension)
+        {
+            string imageName = imageNameWithoutExtension + ".jpg";
+            string lastSavedFilePath = Path.Combine(_workspace, _companyCode);
+            string destinationDirPath = Path.Combine(lastSavedFilePath, Constants.Imgs);
+            string destinationImagePath = Path.Combine(destinationDirPath, imageName);
+            if (File.Exists(destinationImagePath))
+            {
+                (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", true, "")).ShowDialog();
+                return true;
+            }
+            return false;
+        }
+
+            internal string SaveImage(Image img, string imageNameWithoutExtension, bool overwrite = false)
         {
             string result = null;
             if (String.IsNullOrEmpty(imageNameWithoutExtension))
@@ -123,21 +138,22 @@ namespace SellerSense.Model
                 if (!Directory.Exists(destinationDirPath))
                     Directory.CreateDirectory(destinationDirPath);
                 string destinationImagePath = Path.Combine(destinationDirPath, imageName);
-                if(File.Exists(destinationImagePath))
+                if (File.Exists(destinationImagePath) && overwrite == false)
                 {
                     (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", true, "")).ShowDialog();
                     result = null; goto ret;
                 }
-                img.Save(destinationImagePath, ImageFormat.Jpeg); 
-                int w = img.Width; int h = img.Height;
-                img.Dispose();
-                if (File.Exists(destinationImagePath) && (w > 1000 || h > 1000))
+                else if (File.Exists(destinationImagePath) && overwrite == true)
                 {
-                    Image rimg = ProjIO.ResizeImage(1000, 1000, destinationImagePath);
-                    rimg.Save(destinationImagePath, ImageFormat.Jpeg); rimg.Dispose();
+                    File.Delete(destinationImagePath);
+                    img.Save(destinationImagePath, ImageFormat.Jpeg);
+                    result = ResizeBelow1000x1000(img, destinationImagePath);
                 }
-                result = destinationImagePath;
-
+                else if (!File.Exists(destinationImagePath))
+                {
+                    img.Save(destinationImagePath, ImageFormat.Jpeg);
+                    result = ResizeBelow1000x1000(img, destinationImagePath);
+                }
             }
             catch (Exception e)
             {
@@ -150,6 +166,20 @@ namespace SellerSense.Model
                 (new AlertBox("Image not saved", "Image not saved, please try again, if error persists, contact support", true, "")).ShowDialog();
             return result;
 
+        }
+
+        private static string ResizeBelow1000x1000(Image img, string destinationImagePath)
+        {
+            string result;
+            int w = img.Width; int h = img.Height;
+            img.Dispose();
+            if (File.Exists(destinationImagePath) && (w > 1000 || h > 1000))
+            {
+                Image rimg = ProjIO.ResizeImage(1000, 1000, destinationImagePath);
+                rimg.Save(destinationImagePath, ImageFormat.Jpeg); rimg.Dispose();
+            }
+            result = destinationImagePath;
+            return result;
         }
 
         private static string SaveImage(string imageURL, string title, string lastSavedFilePath)
@@ -198,6 +228,7 @@ namespace SellerSense.Model
             public string MeeshoCode { get; set; }
             public string Notes { get; set; }
 
+            //public ProductEntry()  { }
 
             public ProductEntry(string baseCodeValue, string img, string title,
                 string amzInventory, string fkCodeValue,string spdCodeValue,

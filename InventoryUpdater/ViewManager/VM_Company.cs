@@ -41,7 +41,7 @@ namespace SellerSense.ViewManager
             _crossCompanyLinkedInventoryCount = new CrossCompanyLinkedInventoryCount(_code);
             _inventoriesViewManager = new VM_Inventories(_inventoriesModel, _product_Model,
                 _crossCompanyLinkedInventoryCount, _code);
-            _productsViewManager = new VM_Products(_product_Model, _inventoriesModel);
+            _productsViewManager = new VM_Products(_product_Model, _inventoriesModel, _code);
         }
 
 

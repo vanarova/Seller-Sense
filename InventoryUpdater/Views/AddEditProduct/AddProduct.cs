@@ -12,9 +12,10 @@ namespace SellerSense.Views
 {
     public partial class AddProduct : Form
     {
-        public AddProduct()
+        public AddProduct(bool editMode)
         {
             InitializeComponent();
+            checkBox_markForDeletion.Enabled = editMode;
         }
     }
 }
