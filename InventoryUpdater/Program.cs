@@ -22,9 +22,9 @@ namespace SellerSense
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-
+#if DebugWithNoGlobalExeceptions
                 // Add the event handler for handling UI thread exceptions to the event.
-                if(!System.Diagnostics.Debugger.IsAttached)
+                if (!System.Diagnostics.Debugger.IsAttached)
                     Application.ThreadException += new ThreadExceptionEventHandler(Form1_UIThreadException);
 
 
@@ -37,7 +37,7 @@ namespace SellerSense
                 if (!System.Diagnostics.Debugger.IsAttached)
                     AppDomain.CurrentDomain.UnhandledException += new
                 UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-
+#endif
                 //throw new InvalidOperationException("Testing");
                 Application.Run(new Welcome());
             }

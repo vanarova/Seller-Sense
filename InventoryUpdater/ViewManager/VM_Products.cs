@@ -68,7 +68,7 @@ namespace SellerSense.ViewManager
             {
                 Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(vm_addProduct.AddProductViewBindingObj, IsAddNewProduct:true);
                 AddNewProductFromProductModelToProductView();
-                
+
                 _m_product.SaveMapFile();
                 //AddNewProductInProductModel();
                 //FillFromProductModelToProductsView();
@@ -86,12 +86,13 @@ namespace SellerSense.ViewManager
                 var productViewItem = _vm_productsView.Find(x => x.InHouseCode == product.InHouseCode);
                 //For new Item
                 if (productViewItem== null)
-                { (_,Image img) = ProjIO.LoadImageAndDownSize75x75(product.Image);
+                { 
+                    (_,Image img) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(product.Image, _code);
                     var prod = new ProductView(product.InHouseCode, img,
                     product.Title, product.Tag, product.Description, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
-                    prod.AddInvisibleColumnsFields(product.Image, product.ImageAlt1, product.ImageAlt2, product.ImageAlt3,
-                    product.MRP, product.SellingPrice, product.Weight, product.WeightAfterPackaging, product.DimensionsAfterPackaging,
-                    product.DimensionsBeforePackaging);
+                    //prod.AddInvisibleColumnsFields(product.Image, product.ImageAlt1, product.ImageAlt2, product.ImageAlt3,
+                    //product.MRP, product.SellingPrice, product.Weight, product.WeightAfterPackaging, product.DimensionsAfterPackaging,
+                    //product.DimensionsBeforePackaging);
                     _vm_productsView.Add(prod);
                 }
             }
@@ -119,10 +120,10 @@ namespace SellerSense.ViewManager
                 var prod = new M_Product.ProductEntry(addProductView.InHouseCode,String.Empty,addProductView.Name,
                     String.Empty,String.Empty,String.Empty,String.Empty,String.Empty, addProductView.Tag,addProductView.Description) 
                 {
-                    Image = primaryImagePath,
-                    ImageAlt1 = Image2Path,
-                    ImageAlt2 = Image3Path,
-                    ImageAlt3 = Image4Path,
+                    Image = Path.GetFileName(primaryImagePath),
+                    ImageAlt1 = Path.GetFileName(Image2Path),
+                    ImageAlt2 = Path.GetFileName(Image3Path),
+                    ImageAlt3 = Path.GetFileName(Image4Path),
                     MRP = addProductView.MRP,
                     Tag = addProductView.Tag,
                     SellingPrice = addProductView.SellingPrice,
@@ -142,17 +143,33 @@ namespace SellerSense.ViewManager
             }
             else  //edit product
             {
-                var product = _vm_productsView.Find(x=>x.InHouseCode == addProductView.InHouseCode);
-                if(product != null)
+                //var product = _vm_productsView.Find(x=>x.InHouseCode == addProductView.InHouseCode);
+                //if(product != null)
+                //{
+                //    product.Title = addProductView.Name;
+                //    product.Description = addProductView.Description;
+                //    product.Tag = addProductView.Tag;
+                //    //product.Image = addProductView.PrimaryImage;
+                //    product.AddInvisibleColumnsFieldsWithoutImages(addProductView.MRP,
+                //    addProductView.SellingPrice, addProductView.Weight, addProductView.WeightAfterPackaging,
+                //    addProductView.DimensionAfterPackaging, addProductView.DimensionBeforePackaging);
+                //}
+
+                var pEntry = _m_product._productEntries.Find(x => x.InHouseCode == addProductView.InHouseCode);
+                if(pEntry != null)
                 {
-                    product.Title = addProductView.Name;
-                    product.Description = addProductView.Description;
-                    product.Tag = addProductView.Tag;
-                    //product.Image = addProductView.PrimaryImage;
-                    product.AddInvisibleColumnsFieldsWithoutImages(addProductView.MRP,
-                    addProductView.SellingPrice, addProductView.Weight, addProductView.WeightAfterPackaging,
-                    addProductView.DimensionAfterPackaging, addProductView.DimensionBeforePackaging);
+                   pEntry.Title = addProductView.Name;
+                    pEntry.Description = addProductView.Description;
+                    pEntry.Tag = addProductView.Tag;
+                    pEntry.DimensionsAfterPackaging = addProductView.DimensionAfterPackaging;
+                    pEntry.DimensionsBeforePackaging = addProductView.DimensionBeforePackaging;
+                    pEntry.Weight = addProductView.Weight;
+                    pEntry.WeightAfterPackaging = addProductView.WeightAfterPackaging;
+                    pEntry.MRP = addProductView.MRP;
+                    pEntry.SellingPrice = addProductView.SellingPrice;
+
                 }
+                FillFromProductModelToProductsViewWithoutImages();
                 //find this product in addProductView
                 // edit product
 
@@ -223,7 +240,8 @@ namespace SellerSense.ViewManager
                         RemoveMarkedProduct(prod);
                     else
                         Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(vm_addProduct.AddProductViewBindingObj, IsAddNewProduct: false);
-                    WriteBackProductViewToProductsModelAndSave();
+                    //WriteBackProductViewToProductsModelAndSave();
+                    _m_product.SaveMapFile();
                 }
             }
         }
@@ -246,11 +264,11 @@ namespace SellerSense.ViewManager
                 {
                     if(p.InHouseCode == m.InHouseCode)
                     {
-                        (string primaryImage, string image2, 
-                            string image3, string image4, string mrp, 
-                            string sellingPrice, string weight, 
-                            string weightAfterPackaging, string dimensionsAfterPackaging, 
-                            string dimensionsBeforePackaging) value = p.GetInvisibleColumnsFields();
+                        //(string primaryImage, string image2, 
+                        //    string image3, string image4, string mrp, 
+                        //    string sellingPrice, string weight, 
+                        //    string weightAfterPackaging, string dimensionsAfterPackaging, 
+                        //    string dimensionsBeforePackaging) value = p.GetInvisibleColumnsFields();
                         m.SnapdealCode = p.SnapdealCode;
                         m.FlipkartCode = p.FlipkartCode;
                         m.Notes = p.Notes;
@@ -259,17 +277,17 @@ namespace SellerSense.ViewManager
                         m.Tag = p.Tag;
                         m.AmazonCode = p.AmazonCode;
                         m.MeeshoCode = p.MeeshoCode;
-                        m.Description = p.Description;
-                        m.MRP = value.mrp;
-                        m.DimensionsAfterPackaging = value.dimensionsAfterPackaging;
-                        m.DimensionsBeforePackaging = value.dimensionsBeforePackaging;
-                        m.SellingPrice = value.sellingPrice;
-                        m.Weight = value.weight;
-                        m.Image = value.primaryImage;
-                        m.ImageAlt1 = value.image2;
-                        m.ImageAlt2 = value.image3;
-                        m.ImageAlt3 = value.image4;
-                        m.WeightAfterPackaging = value.weightAfterPackaging;
+                        //m.Description = p.Description;
+                        //m.MRP = value.mrp;
+                        //m.DimensionsAfterPackaging = value.dimensionsAfterPackaging;
+                        //m.DimensionsBeforePackaging = value.dimensionsBeforePackaging;
+                        //m.SellingPrice = value.sellingPrice;
+                        //m.Weight = value.weight;
+                        //m.Image = value.primaryImage;
+                        //m.ImageAlt1 = value.image2;
+                        //m.ImageAlt2 = value.image3;
+                        //m.ImageAlt3 = value.image4;
+                        //m.WeightAfterPackaging = value.weightAfterPackaging;
                     }
                 }
 
@@ -279,7 +297,7 @@ namespace SellerSense.ViewManager
 
         //private void UpdateFromProductModelToProductsView()
         //{
-            
+
         //    foreach (var item in _m_product._productEntries)
         //    {
         //        (_, Image img) = ProjIO.LoadImageAndDownSize75x75(item.Image);
@@ -313,17 +331,17 @@ namespace SellerSense.ViewManager
                     item.SnapdealCode,
                     item.MeeshoCode,
                     item.Notes);
-                prod.AddInvisibleColumnsFields(item.Image, item.ImageAlt1, item.ImageAlt2, item.ImageAlt3,
-                    item.MRP, item.SellingPrice, item.Weight, item.WeightAfterPackaging, item.DimensionsAfterPackaging,
-                    item.DimensionsBeforePackaging);
+                //prod.AddInvisibleColumnsFields(item.Image, item.ImageAlt1, item.ImageAlt2, item.ImageAlt3,
+                //    item.MRP, item.SellingPrice, item.Weight, item.WeightAfterPackaging, item.DimensionsAfterPackaging,
+                //    item.DimensionsBeforePackaging);
                 _vm_productsView.Add(prod);
-               
+
 
             }
         }
 
 
-# region Event handlers for data grid view
+        #region Event handlers for data grid view
 
 
         internal void OnControlLoadHandler(DataGridView datagrid)
@@ -535,46 +553,46 @@ namespace SellerSense.ViewManager
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
 
-            internal void AddInvisibleColumnsFields(string primaryImage,string  image2,string image3,string image4,
-                string mrp, string sellingPrice, string weight,string weightAfterPackaging, string dimensionsAfterPackaging,
-                string dimensionsBeforePackaging)
-            { 
-                PrimaryImage = primaryImage;
-                Image2 = image2;
-                Image3 = image3;
-                Image4 = image4;
-                MRP = mrp;
-                SellingPrice = sellingPrice;
-                Weight = weight;
-                WeightAfterPackaging = weightAfterPackaging;
-                DimensionsAfterPackaging = dimensionsAfterPackaging;
-                DimensionsBeforePackaging = dimensionsBeforePackaging;
+            //internal void AddInvisibleColumnsFields(string primaryImage,string  image2,string image3,string image4,
+            //    string mrp, string sellingPrice, string weight,string weightAfterPackaging, string dimensionsAfterPackaging,
+            //    string dimensionsBeforePackaging)
+            //{ 
+            //    PrimaryImage = primaryImage;
+            //    Image2 = image2;
+            //    Image3 = image3;
+            //    Image4 = image4;
+            //    MRP = mrp;
+            //    SellingPrice = sellingPrice;
+            //    Weight = weight;
+            //    WeightAfterPackaging = weightAfterPackaging;
+            //    DimensionsAfterPackaging = dimensionsAfterPackaging;
+            //    DimensionsBeforePackaging = dimensionsBeforePackaging;
 
-            }
+            //}
 
-            internal void AddInvisibleColumnsFieldsWithoutImages(
-                string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
-                string dimensionsBeforePackaging)
-            {
+            //internal void AddInvisibleColumnsFieldsWithoutImages(
+            //    string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
+            //    string dimensionsBeforePackaging)
+            //{
                
-                MRP = mrp;
-                SellingPrice = sellingPrice;
-                Weight = weight;
-                WeightAfterPackaging = weightAfterPackaging;
-                DimensionsAfterPackaging = dimensionsAfterPackaging;
-                DimensionsBeforePackaging = dimensionsBeforePackaging;
+            //    MRP = mrp;
+            //    SellingPrice = sellingPrice;
+            //    Weight = weight;
+            //    WeightAfterPackaging = weightAfterPackaging;
+            //    DimensionsAfterPackaging = dimensionsAfterPackaging;
+            //    DimensionsBeforePackaging = dimensionsBeforePackaging;
 
-            }
+            //}
 
 
-            internal (string primaryImage, string image2, string image3, string image4,
-                string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
-                string dimensionsBeforePackaging) GetInvisibleColumnsFields()
-            {
-                return (PrimaryImage, Image2, Image3, Image4, MRP, SellingPrice, Weight, WeightAfterPackaging,
-                    DimensionsAfterPackaging, DimensionsBeforePackaging);
+            //internal (string primaryImage, string image2, string image3, string image4,
+            //    string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
+            //    string dimensionsBeforePackaging) GetInvisibleColumnsFields()
+            //{
+            //    return (PrimaryImage, Image2, Image3, Image4, MRP, SellingPrice, Weight, WeightAfterPackaging,
+            //        DimensionsAfterPackaging, DimensionsBeforePackaging);
 
-            }
+            //}
 
             //// This method is called by the Set accessor of each property.  
             //// The CallerMemberName attribute that is applied to the optional propertyName  

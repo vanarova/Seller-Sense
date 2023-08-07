@@ -30,10 +30,10 @@
         {
             this.propertyGrid_AddProduct = new System.Windows.Forms.PropertyGrid();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.button_editImages = new System.Windows.Forms.Button();
             this.button_ok = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
             this.checkBox_markForDeletion = new System.Windows.Forms.CheckBox();
-            this.button_editImages = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,6 +41,7 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.propertyGrid_AddProduct, 4);
             this.propertyGrid_AddProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid_AddProduct.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.propertyGrid_AddProduct.Location = new System.Drawing.Point(3, 3);
             this.propertyGrid_AddProduct.Name = "propertyGrid_AddProduct";
             this.propertyGrid_AddProduct.Size = new System.Drawing.Size(705, 619);
@@ -66,6 +67,19 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.680945F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(711, 677);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // button_editImages
+            // 
+            this.button_editImages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.button_editImages.Enabled = false;
+            this.button_editImages.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_editImages.Location = new System.Drawing.Point(299, 628);
+            this.button_editImages.Name = "button_editImages";
+            this.button_editImages.Size = new System.Drawing.Size(168, 46);
+            this.button_editImages.TabIndex = 4;
+            this.button_editImages.Text = "🌄 Edit Images";
+            this.button_editImages.UseVisualStyleBackColor = true;
             // 
             // button_ok
             // 
@@ -104,19 +118,6 @@
             this.checkBox_markForDeletion.TabIndex = 3;
             this.checkBox_markForDeletion.Text = "Mark this product deletion";
             this.checkBox_markForDeletion.UseVisualStyleBackColor = true;
-            // 
-            // button_editImages
-            // 
-            this.button_editImages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_editImages.Enabled = false;
-            this.button_editImages.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_editImages.Location = new System.Drawing.Point(299, 628);
-            this.button_editImages.Name = "button_editImages";
-            this.button_editImages.Size = new System.Drawing.Size(168, 46);
-            this.button_editImages.TabIndex = 4;
-            this.button_editImages.Text = "🌄 Edit Images";
-            this.button_editImages.UseVisualStyleBackColor = true;
             // 
             // AddProduct
             // 

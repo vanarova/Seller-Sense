@@ -1,0 +1,8 @@
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\bin\DebugWithNoGlobalExeceptions\ssViewControls.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\bin\DebugWithNoGlobalExeceptions\ssViewControls.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.csproj.AssemblyReference.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.ssGridView.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.csproj.GenerateResource.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.csproj.CoreCompileInputs.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.pdb

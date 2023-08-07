@@ -70,7 +70,7 @@ namespace SellerSense.ViewManager
             (_, AddProductViewBindingObj.Image2) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.ImageAlt1,companyCode);
             (_, AddProductViewBindingObj.Image3) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.ImageAlt2,companyCode);
             (_, AddProductViewBindingObj.Image4) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.ImageAlt3, companyCode);
-            AddProductViewBindingObj.PrimaryImage = _images[Path.GetFileNameWithoutExtension(_m_productModelEntry.Image)];
+            (_,AddProductViewBindingObj.PrimaryImage) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.Image,companyCode);
             AddProductViewBindingObj.SellingPrice = _m_productModelEntry.SellingPrice;
             AddProductViewBindingObj.WeightAfterPackaging = _m_productModelEntry.WeightAfterPackaging;
 
