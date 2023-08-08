@@ -509,16 +509,16 @@ namespace SellerSense.ViewManager
         internal class ProductView :INotifyPropertyChanged
         {
             //Below are invisible columns, marked as private, private fields are not visible while binding to datagrid.
-            private string PrimaryImage;
-            private string Image2;
-            private string Image3;
-            private string Image4;
-            private string MRP;
-            private string SellingPrice;
-            private string Weight;
-            private string WeightAfterPackaging;
-            private string DimensionsAfterPackaging;
-            private string DimensionsBeforePackaging;
+            //private string PrimaryImage;
+            //private string Image2;
+            //private string Image3;
+            //private string Image4;
+            //private string MRP;
+            //private string SellingPrice;
+            //private string Weight;
+            //private string WeightAfterPackaging;
+            //private string DimensionsAfterPackaging;
+            //private string DimensionsBeforePackaging;
 
 
             //bacling fields
