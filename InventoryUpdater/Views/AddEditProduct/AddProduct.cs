@@ -14,7 +14,7 @@ namespace SellerSense.Views
     {
         public AddProduct(bool editMode)
         {
-            InitializeComponent();
+            InitializeComponent(); 
             checkBox_markForDeletion.Enabled = editMode;
         }
     }

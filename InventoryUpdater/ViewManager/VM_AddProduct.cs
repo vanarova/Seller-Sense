@@ -103,6 +103,7 @@ namespace SellerSense.ViewManager
             };
         }
 
+        
         private bool ValidateForm()
         {
             if (!AddProductViewBindingObj.EditMode)
@@ -125,8 +126,8 @@ namespace SellerSense.ViewManager
                 empties = empties + "Image ";
             if (string.IsNullOrEmpty(AddProductViewBindingObj.Tag))
                 empties = empties + "Tag ";
-            if (string.IsNullOrEmpty(AddProductViewBindingObj.MRP))
-                empties = empties + "Mrp ";
+            if (string.IsNullOrEmpty(AddProductViewBindingObj.Weight))
+                empties = empties + "Weight ";
             if (string.IsNullOrEmpty(AddProductViewBindingObj.InHouseCode))
                 empties = empties + "InHouseCode ";
             if (string.IsNullOrEmpty(AddProductViewBindingObj.SellingPrice))
@@ -141,8 +142,10 @@ namespace SellerSense.ViewManager
         }
 
        
-        private static void PropertyGridControl_PropertyValueChanged(PropertyValueChangedEventArgs e)
+        private void PropertyGridControl_PropertyValueChanged(PropertyValueChangedEventArgs e)
         {
+            if (_v_AddProduct.propertyGrid_AddProduct.ActiveControl.Text == string.Empty)
+                return;
             RuleBaseAttribute rule;
             Type classType;
             string propertyName;
@@ -165,6 +168,9 @@ namespace SellerSense.ViewManager
                         // Validate the data using the rule
                         if (rule.IsValid(e.ChangedItem.Value) == false)
                         {
+                            _v_AddProduct.propertyGrid_AddProduct.ActiveControl.Text = "";
+                            //propertgrid
+                            //propertyInfo.SetValue(e.OldValue, attribute, null);
                             // Data was invalid - show the error
                             MessageBox.Show(rule.ErrorMessage, "Data Entry Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
