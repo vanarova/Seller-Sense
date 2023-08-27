@@ -1,0 +1,2 @@
+sku	price	minimum-seller-allowed-price	maximum-seller-allowed-price	quantity	leadtime-to-ship	fulfillment-channel	merchant_shipping_group_name
+N6-UCJL-SAXF	299.00			10

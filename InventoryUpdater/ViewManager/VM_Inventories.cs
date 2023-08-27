@@ -1,5 +1,7 @@
 ﻿using Decoders.Interfaces;
+using SellerSense.Helper;
 using SellerSense.Model;
+using SellerSense.Model.InvUpdate;
 using SellerSense.Views;
 using SellerSense.Views.Inventories;
 using ssViewControls;
@@ -26,10 +28,13 @@ namespace SellerSense.ViewManager
     /// <summary>
     /// view manager for inventory form hierarchy, handles events and binding for all usercontrols in Inventories form
     /// </summary>
-    internal partial class VM_Inventories
+    internal partial class VM_Inventories :IManageUserControl
     {
         internal M_External_Inventories _m_externalInventoriesModel { get; set; }
-        internal M_InvSnapshot _m_invSnapShotModel { get; set; }
+        internal M_Snapshot _m_invSnapShotModel_Amz { get; set; }
+        internal M_Snapshot _m_invSnapShotModel_Fk { get; set; }
+        internal M_Snapshot _m_invSnapShotModel_Spd { get; set; }
+        internal M_Snapshot _m_invSnapShotModel_Mso { get; set; }
         internal M_Product _m_productModel { get; set; }
         private string _companyCode { get; set; }
         //internal DataSet _invUpdateGridData { get; set; }
@@ -37,23 +42,59 @@ namespace SellerSense.ViewManager
         private ssGridView<InventoryView> _ssGridView;
         private Action<Object, ListChangedEventArgs> _bindingListChanged;
         internal List<InventoryView> _inventoryViewList { get; set; }
-        private CrossCompanyLinkedInventoryCount _crossCompanyLinkedInventoryCount;
+        private VM_Companies.CrossCompanySharedWrapper _crossCompanySharedWrapper;
+        //private VM_Companies.CrossCompanyEvents _crossCompanyEvents;
 
         public VM_Inventories(M_External_Inventories inventories, M_Product m_product,
-            CrossCompanyLinkedInventoryCount crossCompanyLinkedInventoryCount, string companyCode)
+           VM_Companies.CrossCompanySharedWrapper crossCompanySharedWrapper, string companyCode,
+            VM_Companies.CrossCompanyEvents crossCompanyEvents)
         {
+            //_crossCompanyEvents = crossCompanyEvents;
             _companyCode = companyCode;
-            _crossCompanyLinkedInventoryCount = crossCompanyLinkedInventoryCount;
+            _crossCompanySharedWrapper = crossCompanySharedWrapper;
             _m_externalInventoriesModel = inventories;
             _m_productModel = m_product;
-            LoadInvSnapshotDataFromLastSavedMap();
+            _m_invSnapShotModel_Amz = new M_Snapshot(_companyCode, M_Snapshot.Site.amz);
+            _m_invSnapShotModel_Spd = new M_Snapshot(_companyCode, M_Snapshot.Site.spd);
+            _m_invSnapShotModel_Fk = new M_Snapshot(_companyCode, M_Snapshot.Site.fk);
+            _m_invSnapShotModel_Mso = new M_Snapshot(_companyCode, M_Snapshot.Site.mso);
             TranslateInvModelToInvView();
             HandleExternalInventoryImportEvents();
+            crossCompanyEvents.CrossCompanySharedInventoryUpdated += _crossCompanyEvents_CrossCompanySharedInventoryUpdated;
         }
 
-        internal void AssignViewManager(ssGridView<InventoryView> ssGrid)
+
+        private void TranslateInvModelToInvView()
         {
-            _ssGridView = ssGrid;
+            _inventoryViewList = new List<InventoryView>();
+            foreach (var item in _m_productModel._productEntries)
+            {
+                //binding list source for grid
+                _inventoryViewList.Add(new InventoryView()
+                {
+                    InHouseCode = item.InHouseCode,
+                    Title = item.Title,
+                    Tag = item.Tag,
+                    Image = null,
+                    AmazonCode = item.AmazonCode,
+                    FlipkartCode = item.FlipkartCode,
+                    MeeshoCode = item.MeeshoCode,
+                    SnapdealCode = item.SnapdealCode
+                });
+
+            }
+        }
+
+        private void _crossCompanyEvents_CrossCompanySharedInventoryUpdated(object sender, EventArgs e)
+        {
+            _inventoryViewList.ForEach(x => x.InHouseCount =
+            _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(x.InHouseCode).ToString());
+        }
+    
+
+        public void AssignViewManager(UserControl ssGrid)
+        {
+            _ssGridView = ssGrid as ssGridView<InventoryView>;
             
             HandlessGridViewControlEvents();
             
@@ -88,12 +129,16 @@ namespace SellerSense.ViewManager
         {//attach binding List changed events here
             _ssGridView.OnControlLoad += (gridview) => { 
                 DisengageCellEvents();  EngageCellEvents(); DisableColumnEditingForSomeColumns(gridview);
-                
+                gridview.Columns["AmazonOrders"].DefaultCellStyle.BackColor = Color.Silver;
+                gridview.Columns["FlipkartOrders"].DefaultCellStyle.BackColor = Color.Silver;
+                gridview.Columns["SnapdealOrders"].DefaultCellStyle.BackColor = Color.Silver;
+                gridview.Columns["MeeshoOrders"].DefaultCellStyle.BackColor = Color.Silver;
             };
-            _ssGridView.OnCellFormatting += (gridview,e) => { HighlightCell(gridview,e); };
-            _ssGridView.ResetBindings += (e) => { ResetAllBindings(); };
+            //_ssGridView.OnCellFormatting += (gridview,e) => { HighlightCell(gridview,e); };
+            _ssGridView.ResetBindings += async (e) => {await ResetAllBindings(); };
             _ssGridView.SearchTitleTriggered += SearchTitle;
             _ssGridView.SearchTagTriggered += SearchTags;
+            //_ssGridView.OnCellFormatting
         }
 
 
@@ -115,13 +160,14 @@ namespace SellerSense.ViewManager
                 ForEach(p => bindedProducts.Add(p));
         }
 
-        private void HighlightCell(DataGridView grid, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.Value == null || e.Value is Bitmap) return;
-            var cellValue = e.Value.ToString(); 
-            if (cellValue != null && Regex.IsMatch(e.Value.ToString(), @"orders:\d.*\|.*"))
-                e.CellStyle.BackColor = Color.Yellow;
-        }
+        //private void HighlightCell(DataGridView grid, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (e.Value == null || e.Value is Bitmap) return;
+        //    var cellValue = e.Value.ToString(); 
+            
+        //    if (cellValue != null && Regex.IsMatch(e.Value.ToString(), @"(?<=\.(orders))"))
+        //        e.CellStyle.BackColor = Color.Yellow;
+        //}
 
         private void DisableColumnEditingForSomeColumns(DataGridView gridview)
         {
@@ -138,6 +184,7 @@ namespace SellerSense.ViewManager
         }
 
         /// <summary>
+        /// <summary>
         /// Hendles events generated by product usecontrol, this is one level up from datagridview usercontrol.
         /// </summary>
         private async void HandleProductControlEvents()
@@ -147,20 +194,60 @@ namespace SellerSense.ViewManager
             _v_invCntrl.importSnapdealToolStripMenuItem.Click += async (s, e) => { await ImportSnapdealInv();  };
             _v_invCntrl.importMeeshoToolStripMenuItem.Click += async (s, e) => { await ImportMeeshoInv(); };
             _v_invCntrl.exportAllToolStripMenuItem.Click += (s, e) => { ExportAllInventoryUpdateFiles(); };
-            
-            _v_invCntrl.withPreviousInventoryUpdateToolStripMenuItem.Click += (s, e) => {
-                if (((ToolStripMenuItem)s).Checked)
-                    LoadSnapshotAndUpdateBindingListWithComparisons();
-                else
-                    ResetAllBindings();
+            _v_invCntrl.sendTotalOrderCountToolStripMenuItem.Click += (s, e) => { SendTotalOrderReport(); };
+            _v_invCntrl.allToolStripMenuItem_lastDay.Click += (s, e) => { 
+                CompareAmz_LastDayInvWithSnapshot();
+                CompareFk_LastDayInvWithSnapshot();
+                CompareSpd_LastDayInvWithSnapshot();
+                CompareMso_LastDayInvWithSnapshot();
             };
+            _v_invCntrl.lastDayToolStripMenuItemAmz.Click += (s, e) => { CompareAmz_LastDayInvWithSnapshot(); };
+            _v_invCntrl.lastDayToolStripMenuItemFk.Click += (s, e) => { CompareFk_LastDayInvWithSnapshot(); };
+            _v_invCntrl.lastDayToolStripMenuItemSpd.Click += (s, e) => { CompareSpd_LastDayInvWithSnapshot(); };
+            _v_invCntrl.lastDayToolStripMenuItemMso.Click += (s, e) => { CompareMso_LastDayInvWithSnapshot(); };
+            //_v_invCntrl.withPreviousInventoryUpdateToolStripMenuItem.Click += async (s, e) => {
+            //    //if (((ToolStripMenuItem)s).Checked)
+            //    //    LoadSnapshotAndUpdateBindingListWithComparisons();
+            //    //else
+            //    //   await ResetAllBindings();
+            //};
+
+
         }
 
-       
+
+        private void SendTotalOrderReport()
+        {
+            //Send order to telegram
+            //int orders = _crossCompanySharedWrapper.GetCrossCompanyTodaysOrderReport().TotalOrders_Today.TotalOrder;
+            var orders = _crossCompanySharedWrapper.GetCrossCompanyTodaysOrderReport().TotalOrders_Today;
+            Logger.Telegram(Environment.NewLine +
+                "Total orders today: " + orders.TotalOrder + Environment.NewLine +
+                "Company: " + orders.CompanyA.Company + Environment.NewLine +
+                "Amazon: " + orders.CompanyA.AmzOrderCount + Environment.NewLine +
+                "Flipkart: " + orders.CompanyA.FkOrderCount + Environment.NewLine +
+                "Snapdeal: " + orders.CompanyA.SpdOrderCount + Environment.NewLine +
+                "Meesho: " + orders.CompanyA.MsoOrderCount + Environment.NewLine +
+                "Company: " + orders.CompanyB.Company + Environment.NewLine +
+                "Amazon: " + orders.CompanyB.AmzOrderCount + Environment.NewLine +
+                "Flipkart: " + orders.CompanyB.FkOrderCount + Environment.NewLine +
+                "Snapdeal: " + orders.CompanyB.SpdOrderCount + Environment.NewLine +
+                "Meesho: " + orders.CompanyB.MsoOrderCount + Environment.NewLine 
+                , Logger.LogLevel.info);
+        }
+
+        //private void _crossCompanyLinkedInventoryCount_SharedInventoryUpdated(object sender, EventArgs e)
+        //{
+        //    _inventoryViewList.ForEach(x => x.InHouseCount =
+        //    _crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(x.InHouseCode).ToString()) ;
+        //}
 
         private void ExportAllInventoryUpdateFiles()
         {
-            _m_invSnapShotModel.SaveInvSnapshot();
+            //_m_invSnapShotModel_Amz.SerializeInvSnapshot();
+
+           
+                
             OpenFileDialog folderBrowser = new OpenFileDialog();
             // Set validate names and check file exists to false otherwise windows will
             // not let you select "Folder Selection."
@@ -201,17 +288,18 @@ namespace SellerSense.ViewManager
             int.TryParse(list[index].InHouseCount, out int hcount);
 
             //_crossCompanyLinkedInventoryCount.Company1.LinkedInventoryCounts
-            var item = _crossCompanyLinkedInventoryCount.linkedInv[_companyCode].FindProduct(inHouseCode);
-            if (item != null)
-            { item.AmzCount = acount; item.FkCount = fcount; item.SnpCount = scount; item.MesshoCount = mcount; }
-            else
-            {
-                _crossCompanyLinkedInventoryCount.linkedInv[_companyCode].
-                    LinkedInventoryCounts.Add(
-                new CrossCompanyLinkedInventoryCount.LinkedInventoryList.LinkedProductInventory() 
-                { AmzCount=acount, FkCount=fcount, SnpCount=scount, MesshoCount=mcount, LinkedInhouseCode=inHouseCode });
-            }
-            list[index].InHouseCount = _crossCompanyLinkedInventoryCount.GetTotalInventoryCountForAllCompanies(inHouseCode).ToString();
+            //var item = _crossCompanyLinkedInventoryCount.linkedInv[_companyCode].FindProduct(inHouseCode);
+            //if (item != null)
+            //{ item.AmzCount = acount; item.FkCount = fcount; item.SnpCount = scount; item.MesshoCount = mcount; }
+            //else
+            //{
+            _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.AddToSharedInventory(inHouseCode, acount, fcount, scount, mcount);
+            //_crossCompanyLinkedInventoryCount.linkedInv.Add(
+            //new VM_Companies.CrossCompanyLinkedInventoryCount.LinkedProductInventory() 
+            //{ AmzCount=acount, FkCount=fcount, SnpCount=scount, MesshoCount=mcount, LinkedInhouseCode=inHouseCode });
+            //}
+            list[index].InHouseCount = _crossCompanySharedWrapper.
+                _crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(inHouseCode).ToString();
         }
 
         //Events generated by bindinglist changed event, these events are coming from setter of class: InventoryView properties
@@ -239,12 +327,12 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].AmazonCount.ToString());
                        _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
                        //Update snapshot collection as well..
-                       var snapshotObj =_m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.ACode == invobj.asin);
-                       if(snapshotObj != null)
-                       {
-                           snapshotObj.AInv = list[e.NewIndex].AmazonCount.ToString();
-                           snapshotObj.ASystemInv = list[e.NewIndex].AmazonSystemCount.ToString();
-                       }
+                       //var snapshotObj =_m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.ACode == invobj.asin);
+                       //if(snapshotObj != null)
+                       //{
+                       //    snapshotObj.AInv = list[e.NewIndex].AmazonCount.ToString();
+                       //    snapshotObj.ASystemInv = list[e.NewIndex].AmazonSystemCount.ToString();
+                       //}
                        UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
                        ////update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
                        //if(string.IsNullOrWhiteSpace(list[e.NewIndex].InHouseCount)) list[e.NewIndex].InHouseCount = "0";
@@ -271,12 +359,12 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].FlipkartCount.ToString());
                        _m_externalInventoriesModel._fkImportedInventoryList._fkUIModifiedInvList.Add(iamz);
 
-                       var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.FCode == invobj.fsn);
-                       if (snapshotObj != null)
-                       {
-                           snapshotObj.FInv = list[e.NewIndex].FlipkartCount.ToString();
-                           snapshotObj.FSystemInv = list[e.NewIndex].FlipkartSystemCount.ToString();
-                       }
+                       //var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.FCode == invobj.fsn);
+                       //if (snapshotObj != null)
+                       //{
+                       //    snapshotObj.FInv = list[e.NewIndex].FlipkartCount.ToString();
+                       //    snapshotObj.FSystemInv = list[e.NewIndex].FlipkartSystemCount.ToString();
+                       //}
                        UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
                        ////update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
                        //if (string.IsNullOrWhiteSpace(list[e.NewIndex].InHouseCount)) list[e.NewIndex].InHouseCount = "0";
@@ -299,12 +387,12 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].SnapdealCount.ToString());
                        _m_externalInventoriesModel._spdImportedInventoryList._spdUIModifiedInvList.Add(iamz);
 
-                       var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.SCode == invobj.fsn);
-                       if (snapshotObj != null)
-                       {
-                           snapshotObj.SInv = list[e.NewIndex].SnapdealCount.ToString();
-                           snapshotObj.SSystemInv = list[e.NewIndex].SnapdealSystemCount.ToString();
-                       }
+                       //var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.SCode == invobj.fsn);
+                       //if (snapshotObj != null)
+                       //{
+                       //    snapshotObj.SInv = list[e.NewIndex].SnapdealCount.ToString();
+                       //    snapshotObj.SSystemInv = list[e.NewIndex].SnapdealSystemCount.ToString();
+                       //}
                        UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
                        //update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
                        //if (string.IsNullOrWhiteSpace(list[e.NewIndex].InHouseCount)) list[e.NewIndex].InHouseCount = "0";
@@ -328,17 +416,19 @@ namespace SellerSense.ViewManager
                        _m_externalInventoriesModel._msoImportedInventoryList._msoUIModifiedInvList.Add(iamz);
                    }
 
-                   var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.MCode == invobj.fsn);
-                   if (snapshotObj != null)
-                   {
-                       snapshotObj.MInv = list[e.NewIndex].MeeshoCount.ToString();
-                       snapshotObj.MSystemInv = list[e.NewIndex].MeeshoSystemCount.ToString();
-                   }
+                   //var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.MCode == invobj.fsn);
+                   //if (snapshotObj != null)
+                   //{
+                   //    snapshotObj.MInv = list[e.NewIndex].MeeshoCount.ToString();
+                   //    snapshotObj.MSystemInv = list[e.NewIndex].MeeshoSystemCount.ToString();
+                   //}
                    UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
                    ////update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
                    //if (string.IsNullOrWhiteSpace(list[e.NewIndex].InHouseCount)) list[e.NewIndex].InHouseCount = "0";
                    //list[e.NewIndex].InHouseCount = (int.Parse(list[e.NewIndex].InHouseCount) + int.Parse(list[e.NewIndex].MeeshoCount)).ToString();
                }
+
+               //_m_invSnapShotModel.SaveInvSnapshot();
            };
             _ssGridView.BindingListChanged += _bindingListChanged;
         }
@@ -373,6 +463,7 @@ namespace SellerSense.ViewManager
             await AssignAmazonInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
+            _m_invSnapShotModel_Amz.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
             EngageCellEvents();
         }
 
@@ -389,6 +480,7 @@ namespace SellerSense.ViewManager
             await AssignFlipkartInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
+            _m_invSnapShotModel_Fk.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
             EngageCellEvents() ;    
         }
 
@@ -405,6 +497,7 @@ namespace SellerSense.ViewManager
             await AssignSnapdealInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
+            _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
             EngageCellEvents();
         }
 
@@ -421,6 +514,7 @@ namespace SellerSense.ViewManager
             await AssignMeeshoInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
+            _m_invSnapShotModel_Mso.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
             EngageCellEvents();
         }
 
@@ -453,12 +547,12 @@ namespace SellerSense.ViewManager
                             viewItem.AmazonCount = sval;
 
                             //update snapshot as well
-                            var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.ACode == viewItem.AmazonCode);
-                            if (snapshotObj != null)
-                            {
-                                snapshotObj.AInv = viewItem.AmazonCount;
-                                snapshotObj.ASystemInv = viewItem.AmazonSystemCount;
-                            }
+                            //var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.ACode == viewItem.AmazonCode);
+                            //if (snapshotObj != null)
+                            //{
+                            //    snapshotObj.AInv = viewItem.AmazonCount;
+                            //    snapshotObj.ASystemInv = viewItem.AmazonSystemCount;
+                            //}
                         }
                     }
                 }
@@ -539,9 +633,13 @@ namespace SellerSense.ViewManager
         {
             private string _amazonCount;
             private string _snpSystemCount;
+            private string _snpOrders;
             private string _amazonSystemCount;
+            private string _amazonOrders;
             private string _flipkartSystemCount;
+            private string _flipkartOrders;
             private string _meeshoSystemCount;
+            private string _meeshoOrders;
             private string _flipkartCount;
             private string _snapdealCount;
             private string _meeshoCount;
@@ -570,10 +668,18 @@ namespace SellerSense.ViewManager
                 get { return _amazonCount; } 
                 set { if (value != this._amazonCount) { _amazonCount = value; NotifyPropertyChanged(); } } 
             }
-            public string AmazonSystemCount {
+
+            public string AmazonSystemCount
+            {
                 get { return _amazonSystemCount; }
                 set { if (value != this._amazonSystemCount) { _amazonSystemCount = value; NotifyPropertyChanged(); } }
             }
+
+            public string AmazonOrders {
+                get { return _amazonOrders; }
+                set { if (value != this._amazonOrders) { _amazonOrders = value; NotifyPropertyChanged(); } }
+            }
+
             public string FlipkartCount
             {
                 get { return _flipkartCount; }
@@ -584,6 +690,13 @@ namespace SellerSense.ViewManager
                 get { return _flipkartSystemCount; }
                 set { if (value != this._flipkartSystemCount) { _flipkartSystemCount = value; NotifyPropertyChanged(); } }
             }
+
+            public string FlipkartOrders
+            {
+                get { return _flipkartOrders; }
+                set { if (value != this._flipkartOrders) { _flipkartOrders = value; NotifyPropertyChanged(); } }
+            }
+
             public string SnapdealCount
             {
                 get { return _snapdealCount; }
@@ -594,6 +707,13 @@ namespace SellerSense.ViewManager
                 get { return _snpSystemCount; }
                 set { if (value != this._snpSystemCount) { _snpSystemCount = value; NotifyPropertyChanged(); } }
             }
+
+            public string SnapdealOrders
+            {
+                get { return _snpOrders; }
+                set { if (value != this._snpOrders) { _snpOrders = value; NotifyPropertyChanged(); } }
+            }
+
             public string MeeshoCount
             {
                 get { return _meeshoCount; }
@@ -604,7 +724,13 @@ namespace SellerSense.ViewManager
                 get { return _meeshoSystemCount; }
                 set { if (value != this._meeshoSystemCount) { _meeshoSystemCount = value; NotifyPropertyChanged(); } }
             }
-            
+
+            public string MeeshoOrders
+            {
+                get { return _meeshoOrders; }
+                set { if (value != this._meeshoOrders) { _meeshoOrders = value; NotifyPropertyChanged(); } }
+            }
+
             public string Notes
             {
                 get { return _notes; }

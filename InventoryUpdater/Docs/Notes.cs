@@ -11,4 +11,33 @@
 // 2. This de-couples form design completely, and form tree including all user and custom controls can be changed/replaced any time, even
 // whole form can be kept in another project/dll for re-usage
 
+
 //All forms use a M_ class, which acts as a Model, for all data related operations.
+
+
+/// If a product is listed 2x times, Create a prop with duplicate_inHouseCode, this property will contains original product code
+/// The inhouse code for duplicate product can be anything, but for sorting reason, make it inhousecode_1 
+/// This duplicate product listing can have diff background color
+/// when in house inventory updates, it will also add/substract duplicate items
+
+//if (invSnapshotList == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
+ //return;
+// use everywhere comparisons like above to check return values from a function.
+
+//in product proprty page add buttons to show big image, disable button with no image.
+
+//In product grid page, add selection col to select and export product images with rates appended in names
+
+// product property page shud close with ESC button
+
+//After searching a product add a feature to export product to telegram.
+
+//Add telegram based logging feature. - done
+
+//Improve loggerm robust logging is needed - done
+
+//make a snapshot comparison form - compare snapshots from diff dates, provide option to compare last day, weekly analysis etc
+// in comparr grid, mark with spcecial color, rows where user imported inventory
+// make another columns for inv comparison, make checkboxes to show hide, data for 1 company only.
+
+

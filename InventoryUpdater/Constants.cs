@@ -29,6 +29,13 @@ namespace SellerSense
         public const string Company5Code = "Company5Code";
         public const string Company5Name = "Company5Name";
 
+
+       public enum TelegramSettings
+        {
+            BotID, ChatID
+        }
+
+
         public enum Company
         {
             Amazon,Flipkart,Snapdeal, Meesho

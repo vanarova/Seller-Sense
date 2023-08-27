@@ -1,6 +1,7 @@
 ﻿using AngleSharp.Dom.Events;
 using SellerSense.Helper;
 using SellerSense.Views;
+using SellerSense.Views.SetUp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -270,6 +271,12 @@ namespace SellerSense
                 ep.IsLog, ep.IsImgs, ep.IsSnapshot
                 );
             }
+        }
+
+        private void button_telegramSetup_Click(object sender, EventArgs e)
+        {
+            TelegramSetup tSetp = new TelegramSetup(new ViewManager.VM_TelegramSetup());
+            tSetp.ShowDialog();
         }
     }
 }

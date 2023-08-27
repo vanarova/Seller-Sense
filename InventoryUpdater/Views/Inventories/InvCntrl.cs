@@ -1,17 +1,13 @@
-﻿using Decoders;
-using SellerSense.ViewManager;
-using SellerSense.Helper;
+﻿using SellerSense.ViewManager;
+using ssViewControls;
 using System;
 using System.Windows.Forms;
-using ssViewControls;
-using SellerSense.ViewManager;
-using System.IO;
 
 namespace SellerSense
 {
     public partial class InvCntrl : UserControl
     {
-        Logger _logger;
+        //Logger _logger;
         private VM_Company _company { get; set; }
         private ssGridView<VM_Inventories.InventoryView> cntrlGridView;
 
@@ -19,7 +15,7 @@ namespace SellerSense
         {
             InitializeComponent();
             _company = company;
-            _logger = new FileLogger(company._code);
+            //_logger = new FileLogger(company._code);
             
             // Add a child control, custom control using datagridview
             cntrlGridView = new ssGridView<VM_Inventories.InventoryView>(company._inventoriesViewManager._inventoryViewList);

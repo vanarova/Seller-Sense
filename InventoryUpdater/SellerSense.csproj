@@ -108,11 +108,19 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\QuickLog.cs" />
+    <Compile Include="Model\InvUpdate\M_Snapshot.cs" />
+    <Compile Include="Model\Reports\Reports.cs" />
+    <Compile Include="ViewManager\Interfaces\IManageForm.cs" />
+    <Compile Include="ViewManager\Interfaces\IManageTwoUserControls.cs" />
+    <Compile Include="ViewManager\Interfaces\IManageUserControl.cs" />
     <Compile Include="ViewManager\VM_AddProduct.cs" />
     <Compile Include="ViewManager\VM_Inventories.CmpSnapShot.cs" />
     <Compile Include="ViewManager\VM_Products.cs" />
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
+    <Compile Include="ViewManager\VM_Reports.cs" />
+    <Compile Include="ViewManager\VM_TelegramSetup.cs" />
     <Compile Include="Views\AddEditProduct\AddProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,7 +186,6 @@
       <DependentUpon>SetUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
-    <Compile Include="ViewManager\VM_Map.cs" />
     <Compile Include="ViewManager\VM_Inventories.cs" />
     <Compile Include="Views\SetUp\ExportProject.cs">
       <SubType>Form</SubType>
@@ -212,6 +219,12 @@
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Inventories\M_External_Inventories.cs" />
+    <Compile Include="Views\SetUp\TelegramSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SetUp\TelegramSetup.Designer.cs">
+      <DependentUpon>TelegramSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +270,9 @@
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\SetUp\TelegramSetup.resx">
+      <DependentUpon>TelegramSetup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,6 +317,10 @@
     <ProjectReference Include="..\ssViewControls\ssViewControls.csproj">
       <Project>{bf6792b9-aa6f-45e2-b88f-70cb77472b6b}</Project>
       <Name>ssViewControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TelegramBot\TelegramBot.csproj">
+      <Project>{041ab2d6-a445-4074-aad9-0242b831005d}</Project>
+      <Name>TelegramBot</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

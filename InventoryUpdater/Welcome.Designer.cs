@@ -44,12 +44,10 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(2016, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1283, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -58,11 +56,11 @@
             this.tblWelcomeButtons.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tblWelcomeButtons.BackgroundImage")));
             this.tblWelcomeButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.tblWelcomeButtons.ColumnCount = 5;
-            this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 246F));
+            this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
             this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
+            this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
+            this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tblWelcomeButtons.Controls.Add(this.btn_products, 2, 3);
             this.tblWelcomeButtons.Controls.Add(this.btn_Reports, 2, 1);
             this.tblWelcomeButtons.Controls.Add(this.btn_Setup, 1, 1);
@@ -71,8 +69,7 @@
             this.tblWelcomeButtons.Controls.Add(this.pbarLoadForms, 1, 4);
             this.tblWelcomeButtons.Controls.Add(this.label1, 0, 4);
             this.tblWelcomeButtons.Controls.Add(this.comboBox1, 1, 3);
-            this.tblWelcomeButtons.Location = new System.Drawing.Point(404, 291);
-            this.tblWelcomeButtons.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tblWelcomeButtons.Location = new System.Drawing.Point(269, 186);
             this.tblWelcomeButtons.Name = "tblWelcomeButtons";
             this.tblWelcomeButtons.RowCount = 5;
             this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.06061F));
@@ -80,7 +77,7 @@
             this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.18182F));
             this.tblWelcomeButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tblWelcomeButtons.Size = new System.Drawing.Size(1110, 516);
+            this.tblWelcomeButtons.Size = new System.Drawing.Size(740, 330);
             this.tblWelcomeButtons.TabIndex = 0;
             // 
             // btn_products
@@ -88,10 +85,9 @@
             this.btn_products.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_products.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_products.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_products.Location = new System.Drawing.Point(574, 351);
-            this.btn_products.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_products.Location = new System.Drawing.Point(383, 224);
             this.btn_products.Name = "btn_products";
-            this.btn_products.Size = new System.Drawing.Size(316, 84);
+            this.btn_products.Size = new System.Drawing.Size(210, 54);
             this.btn_products.TabIndex = 6;
             this.btn_products.Text = "▶ Open";
             this.btn_products.UseVisualStyleBackColor = false;
@@ -101,25 +97,23 @@
             // 
             this.btn_Reports.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_Reports.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_Reports.Enabled = false;
             this.btn_Reports.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Reports.Location = new System.Drawing.Point(574, 88);
-            this.btn_Reports.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_Reports.Location = new System.Drawing.Point(383, 56);
             this.btn_Reports.Name = "btn_Reports";
-            this.btn_Reports.Size = new System.Drawing.Size(316, 98);
+            this.btn_Reports.Size = new System.Drawing.Size(210, 63);
             this.btn_Reports.TabIndex = 4;
             this.btn_Reports.Text = "🗄Reports";
             this.btn_Reports.UseVisualStyleBackColor = false;
+            this.btn_Reports.Click += new System.EventHandler(this.btn_Reports_Click);
             // 
             // btn_Setup
             // 
             this.btn_Setup.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_Setup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_Setup.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Setup.Location = new System.Drawing.Point(250, 88);
-            this.btn_Setup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_Setup.Location = new System.Drawing.Point(167, 56);
             this.btn_Setup.Name = "btn_Setup";
-            this.btn_Setup.Size = new System.Drawing.Size(316, 98);
+            this.btn_Setup.Size = new System.Drawing.Size(210, 63);
             this.btn_Setup.TabIndex = 3;
             this.btn_Setup.Text = "⛏SetUp";
             this.btn_Setup.UseVisualStyleBackColor = false;
@@ -130,10 +124,9 @@
             this.btn_mapping.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_mapping.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_mapping.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_mapping.Location = new System.Drawing.Point(574, 196);
-            this.btn_mapping.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_mapping.Location = new System.Drawing.Point(383, 125);
             this.btn_mapping.Name = "btn_mapping";
-            this.btn_mapping.Size = new System.Drawing.Size(316, 145);
+            this.btn_mapping.Size = new System.Drawing.Size(210, 93);
             this.btn_mapping.TabIndex = 1;
             this.btn_mapping.Text = "🏭 Inventory";
             this.btn_mapping.UseVisualStyleBackColor = false;
@@ -144,10 +137,9 @@
             this.btn_invUpdate.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_invUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_invUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_invUpdate.Location = new System.Drawing.Point(250, 196);
-            this.btn_invUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_invUpdate.Location = new System.Drawing.Point(167, 125);
             this.btn_invUpdate.Name = "btn_invUpdate";
-            this.btn_invUpdate.Size = new System.Drawing.Size(316, 145);
+            this.btn_invUpdate.Size = new System.Drawing.Size(210, 93);
             this.btn_invUpdate.TabIndex = 0;
             this.btn_invUpdate.Text = "🛍 Products";
             this.btn_invUpdate.UseVisualStyleBackColor = false;
@@ -157,10 +149,9 @@
             // 
             this.pbarLoadForms.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tblWelcomeButtons.SetColumnSpan(this.pbarLoadForms, 2);
-            this.pbarLoadForms.Location = new System.Drawing.Point(250, 467);
-            this.pbarLoadForms.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbarLoadForms.Location = new System.Drawing.Point(167, 298);
             this.pbarLoadForms.Name = "pbarLoadForms";
-            this.pbarLoadForms.Size = new System.Drawing.Size(640, 22);
+            this.pbarLoadForms.Size = new System.Drawing.Size(426, 14);
             this.pbarLoadForms.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.pbarLoadForms.TabIndex = 2;
             this.pbarLoadForms.Visible = false;
@@ -169,10 +160,9 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 491);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(3, 314);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 25);
+            this.label1.Size = new System.Drawing.Size(93, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Version 1.0.3.0";
             // 
@@ -185,24 +175,24 @@
             "Materials",
             "Attendance",
             "Tasks"});
-            this.comboBox1.Location = new System.Drawing.Point(249, 359);
+            this.comboBox1.Location = new System.Drawing.Point(166, 228);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(318, 67);
+            this.comboBox1.Size = new System.Drawing.Size(212, 45);
             this.comboBox1.TabIndex = 7;
             // 
             // Welcome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(2016, 1378);
+            this.ClientSize = new System.Drawing.Size(1283, 675);
             this.Controls.Add(this.tblWelcomeButtons);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Welcome";
             this.Text = "Seller-Sense";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

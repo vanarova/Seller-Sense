@@ -77,7 +77,7 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -91,7 +91,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.button_Refresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.button_Refresh.Location = new System.Drawing.Point(770, 583);
-            this.button_Refresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Refresh.Margin = new System.Windows.Forms.Padding(2);
             this.button_Refresh.Name = "button_Refresh";
             this.button_Refresh.Size = new System.Drawing.Size(53, 45);
             this.button_Refresh.TabIndex = 10;
@@ -105,7 +105,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.dataGridView_data, 12);
             this.dataGridView_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_data.Location = new System.Drawing.Point(2, 2);
-            this.dataGridView_data.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView_data.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_data.Name = "dataGridView_data";
             this.dataGridView_data.RowHeadersWidth = 82;
             this.dataGridView_data.RowTemplate.Height = 33;
@@ -120,7 +120,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar_Search.Location = new System.Drawing.Point(28, 583);
-            this.progressBar_Search.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar_Search.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar_Search.Name = "progressBar_Search";
             this.progressBar_Search.Size = new System.Drawing.Size(68, 45);
             this.progressBar_Search.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -131,7 +131,7 @@
             this.button_Next.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button_Next.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.button_Next.Location = new System.Drawing.Point(669, 586);
-            this.button_Next.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Next.Margin = new System.Windows.Forms.Padding(2);
             this.button_Next.Name = "button_Next";
             this.button_Next.Size = new System.Drawing.Size(38, 39);
             this.button_Next.TabIndex = 1;
@@ -144,7 +144,7 @@
             this.button_First.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button_First.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.button_First.Location = new System.Drawing.Point(516, 586);
-            this.button_First.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_First.Margin = new System.Windows.Forms.Padding(2);
             this.button_First.Name = "button_First";
             this.button_First.Size = new System.Drawing.Size(57, 39);
             this.button_First.TabIndex = 5;
@@ -170,7 +170,7 @@
             this.textBox_Title.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Title.ForeColor = System.Drawing.Color.DimGray;
             this.textBox_Title.Location = new System.Drawing.Point(309, 590);
-            this.textBox_Title.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Title.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Title.Name = "textBox_Title";
             this.textBox_Title.Size = new System.Drawing.Size(101, 30);
             this.textBox_Title.TabIndex = 7;
@@ -184,7 +184,7 @@
             this.button_Last.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button_Last.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.button_Last.Location = new System.Drawing.Point(711, 586);
-            this.button_Last.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Last.Margin = new System.Windows.Forms.Padding(2);
             this.button_Last.Name = "button_Last";
             this.button_Last.Size = new System.Drawing.Size(55, 39);
             this.button_Last.TabIndex = 4;
@@ -198,7 +198,7 @@
             this.textBox_Tag.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Tag.ForeColor = System.Drawing.Color.DimGray;
             this.textBox_Tag.Location = new System.Drawing.Point(414, 590);
-            this.textBox_Tag.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_Tag.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_Tag.Name = "textBox_Tag";
             this.textBox_Tag.Size = new System.Drawing.Size(98, 30);
             this.textBox_Tag.TabIndex = 8;
@@ -212,7 +212,7 @@
             this.button_Back.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button_Back.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.button_Back.Location = new System.Drawing.Point(577, 586);
-            this.button_Back.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Back.Margin = new System.Windows.Forms.Padding(2);
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(37, 39);
             this.button_Back.TabIndex = 0;
@@ -239,7 +239,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.button1.Location = new System.Drawing.Point(100, 583);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(141, 45);
             this.button1.TabIndex = 11;
@@ -259,7 +259,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ssGridView";
             this.Size = new System.Drawing.Size(936, 630);
             this.Load += new System.EventHandler(this.ssGridView_Load);
@@ -268,6 +268,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_data)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        private void DataGridView_data_GotFocus(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

@@ -1,16 +1,13 @@
-﻿using Decoders;
-using SellerSense.ViewManager;
-using SellerSense.Helper;
+﻿using SellerSense.ViewManager;
+using ssViewControls;
 using System;
 using System.Windows.Forms;
-using ssViewControls;
-using SellerSense.ViewManager;
 
 namespace SellerSense
 {
     public partial class ProductCntrl : UserControl
     {
-        Logger _logger;
+        //Logger _logger;
         public VM_Company _company { get; set; }
         private ssGridView<VM_Products.ProductView> cntrlGridView;
 
@@ -18,12 +15,12 @@ namespace SellerSense
         {
             InitializeComponent();
             _company = company;
-            _logger = new FileLogger(company._code);
+            //_logger = new FileLogger(company._code);
             
             // Add a child control, custom control using datagridview
             cntrlGridView = new ssGridView<VM_Products.ProductView>(company._productsViewManager._vm_productsView);
             cntrlGridView.Dock = DockStyle.Fill;
-            company._productsViewManager.AssignViewManager(cntrlGridView);
+            company._productsViewManager.AssignViewBManager(cntrlGridView);
 
             // Events of child control
             //cntrlGridView.SearchTitleTriggered += _company._products.SearchTitle;

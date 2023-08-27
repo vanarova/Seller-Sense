@@ -36,6 +36,9 @@ namespace SellerSense
 
         private async void btn_Inventories_Click(object sender, EventArgs e)
         {
+            //re init company.
+            _companiesMgr = new SellerSense.ViewManager.VM_Companies();
+
             pbarLoadForms.Visible = true;
 
             //load images for all companies async
@@ -163,6 +166,8 @@ namespace SellerSense
 
         private async void btn_Products_Click(object sender, EventArgs e)
         {
+            //re-init company
+            _companiesMgr = new SellerSense.ViewManager.VM_Companies();
 
             pbarLoadForms.Visible = true;
 
@@ -298,6 +303,11 @@ namespace SellerSense
             
             //DisplayProductForm();
 
+        }
+
+        private async void btn_Reports_Click(object sender, EventArgs e)
+        {
+           //await TelegramBot.Messenger.SendTelegramMessage("");
         }
     }
 }

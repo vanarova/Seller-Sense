@@ -17,11 +17,14 @@ namespace SellerSense
         [STAThread]
         static void Main()
         {
-            Logger logger = new FileLogger();
+            ///Logger logger = new FileLogger();
             try
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+                Logger.SetTelegramLogDepth_LogAboveThisLevelOnly(TelegramBot.Messenger.LogDepth.LogAllActions);
+                Logger.SetLoggerLevel_LogAboveThisLevelOnly(Logger.LogLevel.info);
+
 #if DebugWithNoGlobalExeceptions
                 // Add the event handler for handling UI thread exceptions to the event.
                 if (!System.Diagnostics.Debugger.IsAttached)
@@ -43,7 +46,7 @@ namespace SellerSense
             }
             catch (Exception e)
             {
-                logger.Log(e.Message, Logger.LogLevel.fatal, true);
+                Logger.Log(e.Message, Logger.LogLevel.fatal, true);
                 AlertBox abox = new AlertBox("Error","Unexpected Error occurred, application cant be recovered, " +
                     "restart required. If problem persists, send logs to customer support, logs location :[]"); //TODO : assign logs location
                 abox.ShowDialog();
@@ -65,8 +68,8 @@ namespace SellerSense
                 Exception ex = (Exception)e.ExceptionObject;
                 string errorMsg = "An application error occurred. Please contact the adminstrator " +
                     "with the following information:\n\n";
-                Logger logger = new FileLogger();
-                logger.Log(errorMsg + ex.Message + "\n\nStack Trace:\n" + ex.StackTrace, Logger.LogLevel.fatal, true);
+                //Logger logger = new FileLogger();
+                Logger.Log(errorMsg + ex.Message + "\n\nStack Trace:\n" + ex.StackTrace, Logger.LogLevel.fatal, true);
                 AlertBox abox = new AlertBox("Error", "Unexpected Error occurred, application cant be recovered, " +
                     "restart required. If problem persists, send logs to customer support, Setup > Export All > Select Logs"); //TODO : assign logs location
                 abox.ShowDialog();
@@ -116,8 +119,8 @@ namespace SellerSense
             {
                 //result = ShowThreadExceptionDialog("Windows Forms Error", t.Exception);
                 string errorMsg =  t.Exception.Message + "\n\nStack Trace:\n" + t.Exception.StackTrace;
-                Logger logger = new FileLogger();
-                logger.Log(errorMsg, Logger.LogLevel.fatal, true);
+                //Logger logger = new FileLogger();
+                Logger.Log(errorMsg, Logger.LogLevel.fatal, true);
                 AlertBox abox = new AlertBox("Error", "Unexpected Error occurred, application cant be recovered, " +
                     "restart required. If problem persists, send logs to customer support, Setup > Export All > Select Logs"); //TODO : assign logs location
                 abox.ShowDialog();

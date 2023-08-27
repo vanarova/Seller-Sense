@@ -18,7 +18,7 @@ using System.Windows.Forms;
 
 namespace SellerSense.ViewManager
 {
-    internal class VM_AddProduct
+    internal class VM_AddProduct:IManageForm
     {
         AddProduct _v_AddProduct;
         M_Product _m_Product;
@@ -26,11 +26,17 @@ namespace SellerSense.ViewManager
         internal AddProductView AddProductViewBindingObj;
         private Dictionary<string, Image> _images;
 
+
+        public void AssignViewManager(Form view)
+        {
+            _v_AddProduct = view as AddProduct;
+        }
+
         //new product add mode
         internal VM_AddProduct(AddProduct v_addproduct, M_Product m_Product )
         {
             _m_Product = m_Product;
-            _v_AddProduct = v_addproduct;
+            AssignViewManager(v_addproduct);
             AddProductViewBindingObj = new AddProductView();
             AddProductViewBindingObj.EditMode = false;
             AddProductViewBindingObj.SetPropertyReadOnly("InHouseCode", false);
@@ -48,13 +54,14 @@ namespace SellerSense.ViewManager
             Dictionary<string, Image> images, string companyCode)
         {
             _images = images;
-            _v_AddProduct = v_addproduct;
+            //_v_AddProduct = v_addproduct;
+            AssignViewManager(v_addproduct);
             AddProductViewBindingObj = new AddProductView();
             AddProductViewBindingObj.SetPropertyReadOnly("InHouseCode", true);
-            AddProductViewBindingObj.SetPropertyReadOnly("PrimaryImage", true);
-            AddProductViewBindingObj.SetPropertyReadOnly("Image2", true);
-            AddProductViewBindingObj.SetPropertyReadOnly("Image3", true);
-            AddProductViewBindingObj.SetPropertyReadOnly("Image4", true);
+            //AddProductViewBindingObj.SetPropertyReadOnly("PrimaryImage", true);
+            //AddProductViewBindingObj.SetPropertyReadOnly("Image2", true);
+            //AddProductViewBindingObj.SetPropertyReadOnly("Image3", true);
+            //AddProductViewBindingObj.SetPropertyReadOnly("Image4", true);
 
             AddProductViewBindingObj.EditMode = true;
             AddProductViewBindingObj.Name = _m_productModelEntry.Title;
@@ -73,7 +80,7 @@ namespace SellerSense.ViewManager
             (_,AddProductViewBindingObj.PrimaryImage) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.Image,companyCode);
             AddProductViewBindingObj.SellingPrice = _m_productModelEntry.SellingPrice;
             AddProductViewBindingObj.WeightAfterPackaging = _m_productModelEntry.WeightAfterPackaging;
-
+            AddProductViewBindingObj.SetDirtyImages(false, false, false, false);
             _v_AddProduct.propertyGrid_AddProduct.SelectedObject = AddProductViewBindingObj;
             HandleAddProductEvents();
         }
@@ -189,8 +196,8 @@ namespace SellerSense.ViewManager
         {
             public AddProductView()
             {
-               
                 EditMode = false;
+                Img1Dirty = false; Img22Dirty = false; Img3Dirty = false; Img4Dirty = false;
             }
 
             private string _m_Name;
@@ -209,11 +216,20 @@ namespace SellerSense.ViewManager
             private Image _m_Img4;
 
             //internal bool IsDirty { get; set; }
-            //internal bool Img1Dirty { get; set; }
-            //internal bool Img22Dirty { get; set; }
-            //internal bool Img3Dirty { get; set; }
-            //internal bool Img4Dirty { get; set; }
+            private bool Img1Dirty { get; set; }
+            private bool Img22Dirty { get; set; }
+            private bool Img3Dirty { get; set; }
+            private bool Img4Dirty { get; set; }
             internal bool EditMode { get; set; }
+            internal  (bool,bool,bool,bool) GetDirtyImages()
+            {
+                return(Img1Dirty, Img22Dirty, Img3Dirty, Img4Dirty);
+            }
+
+            internal void SetDirtyImages(bool i1, bool i2, bool i3, bool i4)
+            {
+                Img1Dirty = i1; Img22Dirty = i2; Img3Dirty = i3; Img4Dirty=i4;
+            }
 
             // this method, dynamically changes attribute value, and applies ReadyOnlyAttrbute to a property
             // Note, ReadOnlyAttribute is already available in Property grid, this method just switches it to true or false.
@@ -259,16 +275,16 @@ namespace SellerSense.ViewManager
             public string SellingPrice { get { return _m_SellingPrice; } set { _m_SellingPrice = value;  } }
 
             [CategoryAttribute("2. Product Images"), DescriptionAttribute("Primary Image"), PropertyOrder(8), ReadOnlyAttribute(false)]
-            public Image PrimaryImage { get { return _m_PrimaryImg; } set { _m_PrimaryImg = value;   } }
+            public Image PrimaryImage { get { return _m_PrimaryImg; } set { _m_PrimaryImg = value; Img1Dirty = true;  } }
 
             [CategoryAttribute("2. Product Images"), DescriptionAttribute("Image 2"), PropertyOrder(9), ReadOnlyAttribute(false)]
-            public Image Image2 { get { return _m_Img2; } set { if (value != null) {  _m_Img2 = value; } } }
+            public Image Image2 { get { return _m_Img2; } set { if (value != null) {  _m_Img2 = value; Img22Dirty = true; } } }
 
             [CategoryAttribute("2. Product Images"), DescriptionAttribute("Image 3"), PropertyOrder(10), ReadOnlyAttribute(false)]
-        public Image Image3 { get { return _m_Img3; } set { if (value != null) {  _m_Img3 = value;   } } }
+        public Image Image3 { get { return _m_Img3; } set { if (value != null) {  _m_Img3 = value; Img3Dirty = true; } } }
 
             [CategoryAttribute("2. Product Images"), DescriptionAttribute("Image 4"), PropertyOrder(11), ReadOnlyAttribute(false)]
-            public Image Image4 { get { return _m_Img4; } set { if (value != null) { _m_Img4 = value;   } } }
+            public Image Image4 { get { return _m_Img4; } set { if (value != null) { _m_Img4 = value; Img4Dirty = true; } } }
 
             //TODO : Add another drop down to choose, if weight should be in gms/kgs
             [CategoryAttribute("3. Addtional Details"), DescriptionAttribute("Weight of product with packaging in grams. \n Valid values : Positive Numbers"), PropertyOrder(12)]

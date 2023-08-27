@@ -23,7 +23,7 @@ namespace SellerSense.ViewManager
     /// One form with all child user controls, are managed by one view manager, this VM manages product form 
     /// and all child user control forms.
     /// </summary>
-    internal class VM_Products
+    internal class VM_Products:IManageTwoUserControls
     {
         internal string _name;
         internal string _code;
@@ -44,7 +44,14 @@ namespace SellerSense.ViewManager
             FillFromProductModelToProductsViewWithoutImages();
         }
 
- #region ProductUserControl
+        public void AssignViewAManager(UserControl pcntrl)
+        {
+            _v_productCntrl = pcntrl as ProductCntrl;
+            HandleProductControlEvents();
+        }
+
+       
+        #region ProductUserControl
 
         private void HandleProductControlEvents()
         {
@@ -104,21 +111,15 @@ namespace SellerSense.ViewManager
         {
             if (IsAddNewProduct) // add new product
             {
-                string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty;
+                string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty, primaryImagePath = String.Empty;
                 // validation for this and other images happens in VM_AddProdiuct class.
-                string primaryImagePath = _m_product.SaveImage(addProductView.PrimaryImage, addProductView.InHouseCode);
-                if (addProductView.Image2 != null)
-                    Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode + "_2", overwrite: addProductView.EditMode); //overwrite image, in case of edit mode
-                if (addProductView.Image3 != null)
-                    Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode + "_3", overwrite: addProductView.EditMode);
-                if (addProductView.Image4 != null)
-                    Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode + "_4", overwrite: addProductView.EditMode);
+                SaveImages(addProductView,ref primaryImagePath,  ref Image2Path, ref Image3Path, ref Image4Path);
                 if (string.IsNullOrEmpty(primaryImagePath))
                     return;
                 (_, var img) = ProjIO.LoadImageAndDownSize75x75(primaryImagePath);
 
-                var prod = new M_Product.ProductEntry(addProductView.InHouseCode,String.Empty,addProductView.Name,
-                    String.Empty,String.Empty,String.Empty,String.Empty,String.Empty, addProductView.Tag,addProductView.Description) 
+                var prod = new M_Product.ProductEntry(addProductView.InHouseCode, String.Empty, addProductView.Name,
+                    String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, addProductView.Tag, addProductView.Description)
                 {
                     Image = Path.GetFileName(primaryImagePath),
                     ImageAlt1 = Path.GetFileName(Image2Path),
@@ -133,32 +134,19 @@ namespace SellerSense.ViewManager
                     DimensionsAfterPackaging = addProductView.DimensionAfterPackaging
                 };
                 _m_product._productEntries.Add(prod);
-                
-                //ProductView view = new ProductView(addProductView.InHouseCode, img, addProductView.Name
-                //    , addProductView.Tag, addProductView.Description, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
-                //view.AddInvisibleColumnsFields(primaryImagePath, Image2Path, Image3Path, Image4Path, addProductView.MRP,
-                //    addProductView.SellingPrice, addProductView.Weight, addProductView.WeightAfterPackaging,
-                //    addProductView.DimensionAfterPackaging, addProductView.DimensionBeforePackaging);
-                //_vm_productsView.Add(view);
+
             }
             else  //edit product
             {
-                //var product = _vm_productsView.Find(x=>x.InHouseCode == addProductView.InHouseCode);
-                //if(product != null)
-                //{
-                //    product.Title = addProductView.Name;
-                //    product.Description = addProductView.Description;
-                //    product.Tag = addProductView.Tag;
-                //    //product.Image = addProductView.PrimaryImage;
-                //    product.AddInvisibleColumnsFieldsWithoutImages(addProductView.MRP,
-                //    addProductView.SellingPrice, addProductView.Weight, addProductView.WeightAfterPackaging,
-                //    addProductView.DimensionAfterPackaging, addProductView.DimensionBeforePackaging);
-                //}
-
+               
+                string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty, primaryImagePath = String.Empty;
+                
+                SaveImages(addProductView, ref primaryImagePath, ref Image2Path, ref Image3Path, ref Image4Path);
                 var pEntry = _m_product._productEntries.Find(x => x.InHouseCode == addProductView.InHouseCode);
                 if(pEntry != null)
                 {
-                   pEntry.Title = addProductView.Name;
+                    (bool img1, bool img2, bool img3, bool img4) = addProductView.GetDirtyImages();
+                    pEntry.Title = addProductView.Name;
                     pEntry.Description = addProductView.Description;
                     pEntry.Tag = addProductView.Tag;
                     pEntry.DimensionsAfterPackaging = addProductView.DimensionAfterPackaging;
@@ -167,20 +155,35 @@ namespace SellerSense.ViewManager
                     pEntry.WeightAfterPackaging = addProductView.WeightAfterPackaging;
                     pEntry.MRP = addProductView.MRP;
                     pEntry.SellingPrice = addProductView.SellingPrice;
-
+                    if(img1 && !string.IsNullOrEmpty(primaryImagePath))
+                        pEntry.Image = Path.GetFileName(primaryImagePath);
+                    if (img2 && !string.IsNullOrEmpty(Image2Path))
+                        pEntry.ImageAlt1 = Path.GetFileName(Image2Path);
+                    if (img3 && !string.IsNullOrEmpty(Image3Path))
+                        pEntry.ImageAlt2 = Path.GetFileName(Image3Path);
+                    if (img4 && !string.IsNullOrEmpty(Image4Path))
+                        pEntry.ImageAlt3 = Path.GetFileName(Image4Path);
                 }
                 FillFromProductModelToProductsViewWithoutImages();
-                //find this product in addProductView
-                // edit product
-
             }
         }
 
-        internal void AssignViewManager(ProductCntrl pcntrl)
+        private void SaveImages(VM_AddProduct.AddProductView addProductView, ref string primaryImagePath,
+            ref string Image2Path, ref string Image3Path, ref string Image4Path)
         {
-            _v_productCntrl =pcntrl;
-            HandleProductControlEvents();
+            (bool img1, bool img2, bool img3, bool img4) = addProductView.GetDirtyImages();
+            //SAVE IMAGE ONLY, IF NEW PRODUCT ENTRY OR IN EDIT MODE, IF IMAGE IS DIRTY
+            if (img1 || !addProductView.EditMode)
+                primaryImagePath = _m_product.SaveImage(addProductView.PrimaryImage, addProductView.InHouseCode, overwrite: addProductView.EditMode);
+            if (addProductView.Image2 != null && (img2 || !addProductView.EditMode))
+                Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode + "_2", overwrite: addProductView.EditMode); //overwrite image, in case of edit mode
+            if (addProductView.Image3 != null && (img3 || !addProductView.EditMode))
+                Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode + "_3", overwrite: addProductView.EditMode);
+            if (addProductView.Image4 != null && (img4 || !addProductView.EditMode))
+                Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode + "_4", overwrite: addProductView.EditMode);
         }
+
+      
 
 
 
@@ -209,9 +212,9 @@ namespace SellerSense.ViewManager
 
         #region ssGridViewUserControl
 
-        internal void AssignViewManager(ssGridView<ProductView> ssGrid)
+        public void AssignViewBManager(UserControl ssGrid)
         {
-            _v_ssGridViewCntrl = ssGrid;
+            _v_ssGridViewCntrl = ssGrid as ssGridView<ProductView>;
             HandlessGridViewControlEvents();
         }
 
@@ -249,6 +252,10 @@ namespace SellerSense.ViewManager
         private void RemoveMarkedProduct( M_Product.ProductEntry product)
         {
             var itemToDel = _vm_productsView.Find(x => x.InHouseCode == product.InHouseCode);
+            _m_product.DeleteProductImage(product.Image);
+            _m_product.DeleteProductImage(product.ImageAlt1);
+            _m_product.DeleteProductImage(product.ImageAlt2);
+            _m_product.DeleteProductImage(product.ImageAlt3);
             if (itemToDel != null)
                 _vm_productsView.Remove(itemToDel);
             _m_product._productEntries.Remove(product);
@@ -501,6 +508,7 @@ namespace SellerSense.ViewManager
 
         }
 
+        
 
 
 

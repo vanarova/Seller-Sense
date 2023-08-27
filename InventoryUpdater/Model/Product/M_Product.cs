@@ -18,7 +18,7 @@ namespace SellerSense.Model
     internal class M_Product
     {
         public List<ProductEntry> _productEntries { get; set; }
-        private string _companyCode;
+        internal string _companyCode;
         //private string _mapFilePath;
         //private const string _imageDir = "imgs";
         internal string _lastSavedMapFilePath { 
@@ -200,7 +200,27 @@ namespace SellerSense.Model
             }
         }
 
-
+        internal  void DeleteProductImage(string imgName)
+        {
+            if (string.IsNullOrEmpty(imgName))
+                return;
+            try
+            {
+                string lastSavedFilePath = Path.Combine(_workspace, _companyCode);
+                if (!Directory.Exists(lastSavedFilePath))
+                {
+                    (new AlertBox("Error", "Seller-Sense or company directory not found.", true, "")).ShowDialog();
+                    return;
+                }
+                string destinationDirPath = Path.Combine(lastSavedFilePath, Constants.Imgs);
+                File.Delete(Path.Combine(destinationDirPath, imgName));
+            }
+            catch (Exception)
+            {
+                (new AlertBox("Error", "Error removing image, it might be open in another program or locked.", true, "")).ShowDialog();
+            }
+           
+        }
 
 
 

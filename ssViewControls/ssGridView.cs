@@ -194,6 +194,11 @@ namespace ssViewControls
             }
         }
 
+        //private void dataGridView_data_GotFocus(object sender, EventArgs e)
+        //{
+
+        //}
+
         private void button_Refresh_Click(object sender, EventArgs e)
         {
             _EN = false; //disable all events
