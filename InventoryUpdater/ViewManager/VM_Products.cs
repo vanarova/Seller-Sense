@@ -44,7 +44,7 @@ namespace SellerSense.ViewManager
             FillFromProductModelToProductsViewWithoutImages();
         }
 
-        public void AssignViewAManager(UserControl pcntrl)
+        public void AssignViewA(UserControl pcntrl)
         {
             _v_productCntrl = pcntrl as ProductCntrl;
             HandleProductControlEvents();
@@ -212,7 +212,7 @@ namespace SellerSense.ViewManager
 
         #region ssGridViewUserControl
 
-        public void AssignViewBManager(UserControl ssGrid)
+        public void AssignViewB(UserControl ssGrid)
         {
             _v_ssGridViewCntrl = ssGrid as ssGridView<ProductView>;
             HandlessGridViewControlEvents();

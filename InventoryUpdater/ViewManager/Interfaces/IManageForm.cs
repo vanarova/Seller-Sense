@@ -9,6 +9,6 @@ namespace SellerSense.ViewManager
 {
     internal interface IManageForm
     {
-        void AssignViewManager(Form view);
+        void AssignView(Form view);
     }
 }

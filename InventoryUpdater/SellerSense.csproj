@@ -115,6 +115,7 @@
     <Compile Include="ViewManager\Interfaces\IManageTwoUserControls.cs" />
     <Compile Include="ViewManager\Interfaces\IManageUserControl.cs" />
     <Compile Include="ViewManager\VM_AddProduct.cs" />
+    <Compile Include="ViewManager\VM_CustomSnapshotDate.cs" />
     <Compile Include="ViewManager\VM_Inventories.CmpSnapShot.cs" />
     <Compile Include="ViewManager\VM_Products.cs" />
     <Compile Include="Docs\Notes.cs" />
@@ -141,6 +142,12 @@
     </Compile>
     <Compile Include="Views\Inventories\ConfirmInventoryAction.Designer.cs">
       <DependentUpon>ConfirmInventoryAction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventories\CustomSnapshotDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Inventories\CustomSnapshotDate.Designer.cs">
+      <DependentUpon>CustomSnapshotDate.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventories\Inventories.cs">
       <SubType>Form</SubType>
@@ -244,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\ConfirmInventoryAction.resx">
       <DependentUpon>ConfirmInventoryAction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Inventories\CustomSnapshotDate.resx">
+      <DependentUpon>CustomSnapshotDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\Inventories.resx">
       <DependentUpon>Inventories.cs</DependentUpon>

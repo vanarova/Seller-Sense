@@ -181,13 +181,13 @@
             // lastDayToolStripMenuItemFk
             // 
             this.lastDayToolStripMenuItemFk.Name = "lastDayToolStripMenuItemFk";
-            this.lastDayToolStripMenuItemFk.Size = new System.Drawing.Size(224, 26);
+            this.lastDayToolStripMenuItemFk.Size = new System.Drawing.Size(176, 26);
             this.lastDayToolStripMenuItemFk.Text = "Last day";
             // 
             // customDateToolStripMenuItemFk
             // 
             this.customDateToolStripMenuItemFk.Name = "customDateToolStripMenuItemFk";
-            this.customDateToolStripMenuItemFk.Size = new System.Drawing.Size(224, 26);
+            this.customDateToolStripMenuItemFk.Size = new System.Drawing.Size(176, 26);
             this.customDateToolStripMenuItemFk.Text = "Custom date";
             // 
             // amazonInventoryToolStripMenuItem
@@ -244,13 +244,13 @@
             // lastDayToolStripMenuItemMso
             // 
             this.lastDayToolStripMenuItemMso.Name = "lastDayToolStripMenuItemMso";
-            this.lastDayToolStripMenuItemMso.Size = new System.Drawing.Size(224, 26);
+            this.lastDayToolStripMenuItemMso.Size = new System.Drawing.Size(178, 26);
             this.lastDayToolStripMenuItemMso.Text = "Last Day";
             // 
             // customDateToolStripMenuItemMso
             // 
             this.customDateToolStripMenuItemMso.Name = "customDateToolStripMenuItemMso";
-            this.customDateToolStripMenuItemMso.Size = new System.Drawing.Size(224, 26);
+            this.customDateToolStripMenuItemMso.Size = new System.Drawing.Size(178, 26);
             this.customDateToolStripMenuItemMso.Text = "Custom Date";
             // 
             // linkToolStripMenuItem

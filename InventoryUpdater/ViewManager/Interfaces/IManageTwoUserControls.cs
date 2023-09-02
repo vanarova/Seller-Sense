@@ -9,8 +9,8 @@ namespace SellerSense.ViewManager
 {
     public interface IManageTwoUserControls
     {
-        void AssignViewAManager(UserControl view);
-        void AssignViewBManager(UserControl view);
+        void AssignViewA(UserControl view);
+        void AssignViewB(UserControl view);
     }
 
 }

@@ -9,19 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SellerSense.Views.SetUp
+namespace SellerSense.Views.Inventories
 {
-    internal partial class TelegramSetup : Form
+    internal partial class CustomSnapshotDate : Form
     {
-        public string BotToken { get; set; }
-        public string ChatId { get; set; }
-
-        public TelegramSetup(VM_TelegramSetup vm_Telegram)
+        public CustomSnapshotDate(VM_CustomSnapshotDate vm_CustomSnapshotDate)
         {
             InitializeComponent();
-            vm_Telegram.AssignView(this);
+            vm_CustomSnapshotDate.AssignView(this);
         }
-
-       
     }
 }

@@ -9,7 +9,7 @@ namespace SellerSense.ViewManager
 {
     public interface IManageUserControl
     {
-        void AssignViewManager(UserControl view);
+        void AssignView(UserControl view);
     }
 
 }

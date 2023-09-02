@@ -92,7 +92,7 @@ namespace SellerSense.ViewManager
         }
     
 
-        public void AssignViewManager(UserControl ssGrid)
+        public void AssignView(UserControl ssGrid)
         {
             _ssGridView = ssGrid as ssGridView<InventoryView>;
             
@@ -196,15 +196,43 @@ namespace SellerSense.ViewManager
             _v_invCntrl.exportAllToolStripMenuItem.Click += (s, e) => { ExportAllInventoryUpdateFiles(); };
             _v_invCntrl.sendTotalOrderCountToolStripMenuItem.Click += (s, e) => { SendTotalOrderReport(); };
             _v_invCntrl.allToolStripMenuItem_lastDay.Click += (s, e) => { 
-                CompareAmz_LastDayInvWithSnapshot();
-                CompareFk_LastDayInvWithSnapshot();
-                CompareSpd_LastDayInvWithSnapshot();
-                CompareMso_LastDayInvWithSnapshot();
+                CompareAmz_InvWithCurrentSnapshot();
+                CompareFk_InvWithCurrentSnapshot();
+                CompareSpd_InvWithCurrentSnapshot();
+                CompareMso_InvWithCurrentSnapshot();
             };
-            _v_invCntrl.lastDayToolStripMenuItemAmz.Click += (s, e) => { CompareAmz_LastDayInvWithSnapshot(); };
-            _v_invCntrl.lastDayToolStripMenuItemFk.Click += (s, e) => { CompareFk_LastDayInvWithSnapshot(); };
-            _v_invCntrl.lastDayToolStripMenuItemSpd.Click += (s, e) => { CompareSpd_LastDayInvWithSnapshot(); };
-            _v_invCntrl.lastDayToolStripMenuItemMso.Click += (s, e) => { CompareMso_LastDayInvWithSnapshot(); };
+            _v_invCntrl.lastDayToolStripMenuItemAmz.Click += (s, e) => { CompareAmz_InvWithCurrentSnapshot(); };
+            _v_invCntrl.lastDayToolStripMenuItemFk.Click += (s, e) => { CompareFk_InvWithCurrentSnapshot(); };
+            _v_invCntrl.lastDayToolStripMenuItemSpd.Click += (s, e) => { CompareSpd_InvWithCurrentSnapshot(); };
+            _v_invCntrl.lastDayToolStripMenuItemMso.Click += (s, e) => { CompareMso_InvWithCurrentSnapshot(); };
+            _v_invCntrl.customDateToolStripMenuItemAmz.Click += (s, e) => {
+                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Amazon, _m_invSnapShotModel_Amz);
+                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
+                cd.ShowDialog();
+                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Amazon); };
+
+            _v_invCntrl.customDateToolStripMenuItemFk.Click += (s, e) => {
+                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Flipkart, _m_invSnapShotModel_Fk);
+                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
+                cd.ShowDialog();
+                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Flipkart);
+            };
+
+            _v_invCntrl.customDateToolStripMenuItemSpd.Click += (s, e) => {
+                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Snapdeal, _m_invSnapShotModel_Spd);
+                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
+                cd.ShowDialog();
+                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Snapdeal);
+            };
+
+
+            _v_invCntrl.customDateToolStripMenuItemMso.Click += (s, e) => {
+                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Meesho, _m_invSnapShotModel_Mso);
+                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
+                cd.ShowDialog();
+                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Meesho);
+            };
+
             //_v_invCntrl.withPreviousInventoryUpdateToolStripMenuItem.Click += async (s, e) => {
             //    //if (((ToolStripMenuItem)s).Checked)
             //    //    LoadSnapshotAndUpdateBindingListWithComparisons();

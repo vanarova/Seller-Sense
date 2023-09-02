@@ -101,3 +101,4 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdate
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\TelegramBot.pdb
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\TelegramBot.dll.config
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.SetUp.TelegramSetup.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Inventories.CustomSnapshotDate.resources

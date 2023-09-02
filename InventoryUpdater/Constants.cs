@@ -9,6 +9,7 @@ namespace SellerSense
 {
     public static class Constants
     {
+        public const int MaxHistoryDaysToKeepSnapshots = 30;
         public const string Imgs = "imgs";
         public const string MapFileName = "map.json";
         public const string logFileName = "log.txt";

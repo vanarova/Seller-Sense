@@ -27,7 +27,7 @@ namespace SellerSense.ViewManager
         private Dictionary<string, Image> _images;
 
 
-        public void AssignViewManager(Form view)
+        public void AssignView(Form view)
         {
             _v_AddProduct = view as AddProduct;
         }
@@ -36,7 +36,7 @@ namespace SellerSense.ViewManager
         internal VM_AddProduct(AddProduct v_addproduct, M_Product m_Product )
         {
             _m_Product = m_Product;
-            AssignViewManager(v_addproduct);
+            AssignView(v_addproduct);
             AddProductViewBindingObj = new AddProductView();
             AddProductViewBindingObj.EditMode = false;
             AddProductViewBindingObj.SetPropertyReadOnly("InHouseCode", false);
@@ -55,7 +55,7 @@ namespace SellerSense.ViewManager
         {
             _images = images;
             //_v_AddProduct = v_addproduct;
-            AssignViewManager(v_addproduct);
+            AssignView(v_addproduct);
             AddProductViewBindingObj = new AddProductView();
             AddProductViewBindingObj.SetPropertyReadOnly("InHouseCode", true);
             //AddProductViewBindingObj.SetPropertyReadOnly("PrimaryImage", true);

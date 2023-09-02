@@ -119,11 +119,25 @@ namespace SellerSense.Model.InvUpdate
             GetSortedSnapshotsList();
             if (_sortedSnapShorts!=null && _sortedSnapShorts.Count > 0)
             {
-                var yesterday = DateTime.Today.AddDays(-1);
-                DateTime yesterdaysSnps = _sortedSnapShorts.Select(x => x.Key).
-                    Where(d => d > yesterday && d < DateTime.Today).Min();
-                if(yesterdaysSnps != null)
-                    return _sortedSnapShorts[yesterdaysSnps];
+                DateTime lastImportSnps = default(DateTime);
+                int prevDay = 1;
+                bool found = false;
+                while (!found) {
+                    var lastImportDay = DateTime.Today.AddDays(-prevDay);
+                    var lastImportSnpsList = _sortedSnapShorts.Select(x => x.Key).
+                        Where(d => d > lastImportDay && d < DateTime.Today);
+                    if (lastImportSnpsList.Any())
+                        lastImportSnps = lastImportSnpsList.Min();
+                    if (lastImportSnps != default(DateTime) &&
+                        lastImportSnps < DateTime.Today.AddDays(-Constants.MaxHistoryDaysToKeepSnapshots))
+                        return String.Empty;
+                    if (lastImportSnps == default(DateTime))
+                        prevDay++;
+                    else
+                        found = true;
+                }
+                if (lastImportSnps != default(DateTime))
+                    return _sortedSnapShorts[lastImportSnps];
                 else
                     return String.Empty; 
             
@@ -140,7 +154,7 @@ namespace SellerSense.Model.InvUpdate
                 //var yesterday = DateTime.Today.AddDays(-1);
                 DateTime customSnpshot = _sortedSnapShorts.Select(x => x.Key).
                     Where(d => d == customDate).FirstOrDefault();
-                if (customSnpshot != null)
+                if (customSnpshot != null && _sortedSnapShorts.ContainsKey(customSnpshot))
                     return _sortedSnapShorts[customSnpshot];
                 else
                     return String.Empty;

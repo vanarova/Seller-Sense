@@ -20,7 +20,7 @@ namespace SellerSense
             // Add a child control, custom control using datagridview
             cntrlGridView = new ssGridView<VM_Inventories.InventoryView>(company._inventoriesViewManager._inventoryViewList);
             cntrlGridView.Dock = DockStyle.Fill;
-            company._inventoriesViewManager.AssignViewManager(cntrlGridView);
+            company._inventoriesViewManager.AssignView(cntrlGridView);
 
             tableLayoutPanel1.Controls.Add(
                 //sending list of M_Product

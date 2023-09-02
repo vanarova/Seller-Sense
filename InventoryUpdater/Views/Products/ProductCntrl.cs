@@ -20,7 +20,7 @@ namespace SellerSense
             // Add a child control, custom control using datagridview
             cntrlGridView = new ssGridView<VM_Products.ProductView>(company._productsViewManager._vm_productsView);
             cntrlGridView.Dock = DockStyle.Fill;
-            company._productsViewManager.AssignViewBManager(cntrlGridView);
+            company._productsViewManager.AssignViewB(cntrlGridView);
 
             // Events of child control
             //cntrlGridView.SearchTitleTriggered += _company._products.SearchTitle;

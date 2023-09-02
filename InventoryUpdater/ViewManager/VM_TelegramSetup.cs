@@ -16,7 +16,7 @@ namespace SellerSense.ViewManager
         public string ChatId { get; set; }
         
 
-        public void AssignViewManager(Form view)
+        public void AssignView(Form view)
         {
             _v_TelegramSetup = view as TelegramSetup;
             HandleTeleGramSetUpEvents();
