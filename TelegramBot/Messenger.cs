@@ -83,7 +83,7 @@ namespace TelegramBot
             }
         }
 
-        public static async Task SendTelegramImage(string botToken, long chatId, 
+        public static async Task SendTelegramImage(string botToken, long chatId, string message,
             string imagePath, string fileName, LogDepth logDepth)
         {
             if (logDepth != _logLevel)
@@ -94,8 +94,10 @@ namespace TelegramBot
                 var content = new MultipartFormDataContent();
                 content.Add(new StringContent(chatId.ToString()), "chat_id");
                 content.Add(new ByteArrayContent(System.IO.File.ReadAllBytes(imagePath)), "photo", fileName);
-
+                content.Add(new StringContent(message), "caption");
                 HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+               //Task< HttpResponseMessage> t = client.PostAsync(apiUrl, content);
+               // t.RunSynchronously();
                 string responseContent = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TelegramBot;
+using static TelegramBot.Messenger;
 
 namespace SellerSense.Helper
 {
@@ -66,6 +67,20 @@ namespace SellerSense.Helper
             var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
             await Messenger.SendTelegramMessage(_botToken, _chatId, logMessage, _TelegramlogDepth);
         }
+
+        internal static async void TelegramMedia(string filePath,string fileName, string message,
+            LogLevel logLevel, string companyCode = "")
+        {
+            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
+                return;
+            if ((int)_logLevel < (int)logLevel)
+                return;
+            
+            await Messenger.SendTelegramImage(_botToken, _chatId,message, filePath, fileName, _TelegramlogDepth);
+           
+        }
+
+
 
         internal static void Log(string companyCode, string message, LogLevel logLevel)
         {

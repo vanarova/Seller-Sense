@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SellerSense.Model.InvUpdate
 {
@@ -62,7 +63,6 @@ namespace SellerSense.Model.InvUpdate
 
         internal IList<InvSnapshotEntry> GetCustomDayInvSnapshot(DateTime customDate)
         {
-            //List<InvSnapshotEntry> invSnapshotEntries = new List<InvSnapshotEntry>();
             string customSnapshotFileName = GetCsutomDayInvSnapshotFileName(customDate);
             if (string.IsNullOrEmpty(customSnapshotFileName))
                 return default;
@@ -119,14 +119,26 @@ namespace SellerSense.Model.InvUpdate
             GetSortedSnapshotsList();
             if (_sortedSnapShorts!=null && _sortedSnapShorts.Count > 0)
             {
-                var yesterday = DateTime.Today.AddDays(-1);
-                DateTime yesterdaysSnps = _sortedSnapShorts.Select(x => x.Key).
-                    Where(d => d > yesterday && d < DateTime.Today).Min();
-                if(yesterdaysSnps != null)
-                    return _sortedSnapShorts[yesterdaysSnps];
-                else
-                    return String.Empty; 
-            
+                int day = 1; 
+                var yesterday = DateTime.Today.AddDays(-day);
+                DateTime minYesterdaysSnps=yesterday;
+                bool notFound = true;
+                while (notFound)
+                {
+                    var yesterdaysSnps = _sortedSnapShorts.Select(x => x.Key).
+                        Where(d => d > yesterday && d < DateTime.Today);
+                    day = day + 1;
+                    if (yesterdaysSnps == null || yesterdaysSnps.Count() == 0)
+                        yesterday = DateTime.Today.AddDays(-day);
+                    else
+                    { notFound = false;
+                        minYesterdaysSnps = yesterdaysSnps.Min();
+                    }
+                }
+                if (notFound)
+                { MessageBox.Show("No inventory snapshot found for last 7 days","Info", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                    return string.Empty; }
+                return _sortedSnapShorts[minYesterdaysSnps];
             }
             else return String.Empty;
         }
@@ -137,16 +149,15 @@ namespace SellerSense.Model.InvUpdate
             GetSortedSnapshotsList();
             if (_sortedSnapShorts != null && _sortedSnapShorts.Count > 0)
             {
-                //var yesterday = DateTime.Today.AddDays(-1);
                 DateTime customSnpshot = _sortedSnapShorts.Select(x => x.Key).
                     Where(d => d == customDate).FirstOrDefault();
                 if (customSnpshot != null)
                     return _sortedSnapShorts[customSnpshot];
-                else
-                    return String.Empty;
-
             }
-            else return String.Empty;
+           
+            MessageBox.Show("No inventory snapshot found for this date", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information); 
+            return String.Empty; 
         }
 
 

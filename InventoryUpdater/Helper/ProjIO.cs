@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.IO.Compression;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace SellerSense.Helper
 {
@@ -367,7 +368,20 @@ namespace SellerSense.Helper
                 return (false, string.Empty);
         }
 
+        internal static (string filePath, string fileName) GetImageFilePath(string companyCode, string productCode)
+        {
+            string imgsLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                   companyCode, Constants.Imgs);
+            string filePath = string.Empty;
+            if (Directory.Exists(imgsLocation))
+            {
+                filePath =Path.Combine(imgsLocation, productCode);
+                if (File.Exists(filePath + ".jpg"))
+                    return (filePath + ".jpg", productCode+ ".jpg"); 
 
+            }
+            return ("", "");
+        }
 
             //internal static void ImportMap1FileToLastSavedLocation(string fileName, string companyCode)
             //{

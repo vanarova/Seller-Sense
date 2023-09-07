@@ -1,8 +1,10 @@
 ﻿using Decoders;
 using Newtonsoft.Json.Linq;
+using PrimitiveExt;
 using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Views;
+using SellerSense.Views.Products;
 using ssViewControls;
 using System;
 using System.Collections.Generic;
@@ -34,6 +36,7 @@ namespace SellerSense.ViewManager
         private DataGridView _datagrid;
         private M_External_Inventories _InventoriesModel;
         private Dictionary<string, Image> _images;
+        internal CompareProductView _compareProductViews;
 
         public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories, string companycode)
         {
@@ -41,6 +44,7 @@ namespace SellerSense.ViewManager
             _code = companycode;
             _InventoriesModel = vm_Inventories;   
             _m_product = m_Product;
+            _compareProductViews = new CompareProductView();
             FillFromProductModelToProductsViewWithoutImages();
         }
 
@@ -50,7 +54,23 @@ namespace SellerSense.ViewManager
             HandleProductControlEvents();
         }
 
-       
+
+        #region ProductViewComparer
+
+        //internal bool CompareProductViews(CompareProductView pview) { CompareProductView cmpProducts = new CompareProductView(); return cmpProducts.Compare(pview, pview); }
+
+        internal class CompareProductView : IComparer<ProductView>
+        {
+            public int Compare(ProductView x, ProductView y)
+            {
+                if (x.InHouseCode == y.InHouseCode) return 0;
+                else return 1;
+                        ;
+            }
+        }
+
+        #endregion
+
         #region ProductUserControl
 
         private void HandleProductControlEvents()
@@ -225,6 +245,41 @@ namespace SellerSense.ViewManager
             _v_ssGridViewCntrl.ResetBindings += ResetBindings;
             _v_ssGridViewCntrl.OnControlLoad += OnControlLoadHandler;
             _v_ssGridViewCntrl.OnGridButtonClicked += _v_ssGridViewCntrl_OnGridButtonClicked; ;
+            _v_ssGridViewCntrl.SelectedRowsActionButtonClicked += _v_ssGridViewCntrl_OnGridButtonActionSelectedClicked;
+        }
+
+        private void _v_ssGridViewCntrl_OnGridButtonActionSelectedClicked(EventList<ProductView> toExportList)
+        {
+            ExportProducts exportProducts = new ExportProducts();
+            string message = string.Empty;
+            exportProducts.FormClosed += (s, e) => {
+                if (!exportProducts.ExportTelegram)
+                    return;
+                foreach (var item in toExportList)
+                {
+                    message = item.InHouseCode + " " + item.Title;
+                    if (exportProducts.IncludePrices)
+                    {
+                        var prod = _m_product._productEntries.Find(x => x.InHouseCode == item.InHouseCode);
+                        if (prod != null) { message = message + " Rs: " + prod.SellingPrice; }
+                    }
+                    if (exportProducts.IncludePrimaryImages)
+                    {
+                       (string filePath, string fileName)= ProjIO.GetImageFilePath(_code, item.InHouseCode);
+                        Logger.TelegramMedia(filePath, fileName, message,Logger.LogLevel.info, _code);
+                    }
+                    //if (exportProducts.IncludePrimaryImages)
+                    //    Logger.Log(item., Logger.LogLevel.info, false);
+                   
+                       
+                }
+            };
+            exportProducts.ShowDialog();
+            //below code may not be needed..
+            //DataGridViewRow[] rowsSelected = new DataGridViewRow[grid.SelectedRows.Count];
+            //grid.SelectedRows.CopyTo(rowsSelected, 0);
+            //here dialog shud be able to handle all selected rows in all pages
+            //open dialog and select export options and send msg to telegram.
         }
 
         private void _v_ssGridViewCntrl_OnGridButtonClicked(DataGridView grid, int rowIndex, int colIndex)
@@ -446,7 +501,7 @@ namespace SellerSense.ViewManager
             gridView.Columns[Constants.PCols.FlipkartCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             gridView.Columns[Constants.PCols.SnapDealCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             gridView.Columns[Constants.PCols.MeeshoCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
-            gridView.RowHeadersVisible = false;
+            //gridView.RowHeadersVisible = false;
         }
 
         /// <summary>  
