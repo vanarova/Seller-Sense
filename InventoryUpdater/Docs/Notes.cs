@@ -40,4 +40,4 @@
 // in comparr grid, mark with spcecial color, rows where user imported inventory
 // make another columns for inv comparison, make checkboxes to show hide, data for 1 company only.
 
-
+// On mapping screen, snapdeal mapping takes long time,, add a loading control async.

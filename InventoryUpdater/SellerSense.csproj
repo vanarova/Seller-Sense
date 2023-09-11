@@ -127,6 +127,12 @@
     <Compile Include="Views\AddEditProduct\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddEditProduct\PasteImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\PasteImage.Designer.cs">
+      <DependentUpon>PasteImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\CustomPropertyGrid\PatternRuleAttribute.cs" />
     <Compile Include="Views\Controls\CustomPropertyGrid\PropertySorter.cs" />
     <Compile Include="Views\AlertBox.cs">
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AddEditProduct\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddEditProduct\PasteImage.resx">
+      <DependentUpon>PasteImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AlertBox.resx">
       <DependentUpon>AlertBox.cs</DependentUpon>

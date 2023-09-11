@@ -3,6 +3,7 @@ using OrderedPropertyGrid;
 using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Views;
+using SellerSense.Views.AddEditProduct;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -88,6 +89,19 @@ namespace SellerSense.ViewManager
 
         private void HandleAddProductEvents()
         {
+            _v_AddProduct.button_editImages.Click += (s, e) => { 
+                PasteImage pi = new PasteImage();
+                ////pi.FormClosed += (se, ev) => { };
+                pi.ShowDialog();
+                if(pi.DialogResult == DialogResult.OK && pi._isImg1)
+                    AddProductViewBindingObj.PrimaryImage = pi._image;
+                if (pi.DialogResult == DialogResult.OK && pi._isImg2)
+                    AddProductViewBindingObj.Image2 = pi._image;
+                if (pi.DialogResult == DialogResult.OK && pi._isImg3)
+                    AddProductViewBindingObj.Image3 = pi._image;
+                if (pi.DialogResult == DialogResult.OK && pi._isImg4)
+                    AddProductViewBindingObj.Image4 = pi._image;
+            };
             _v_AddProduct.button_cancel.Click += (s, e) => {
                 _v_AddProduct.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 _v_AddProduct.Close(); };
@@ -100,8 +114,6 @@ namespace SellerSense.ViewManager
             _v_AddProduct.propertyGrid_AddProduct.PropertyValueChanged += (s, e) =>
             {
                 PropertyGridControl_PropertyValueChanged(e);
-                //var obj = s as System.Windows.Forms.PropertyGrid;
-                //var item = obj.SelectedObject as AddProductView;
             };
 
             _v_AddProduct.checkBox_markForDeletion.CheckedChanged += (s,e) => {

@@ -41,6 +41,25 @@ namespace Decoders
             return result;
         }
 
+
+        public static  Task<string> GetProductIdFromURLAsync(string url)
+        {
+          return  Task<string>.Run(() => {
+                if (string.IsNullOrEmpty(url))
+                    return default(string);
+                string result = string.Empty;
+                HtmlWeb web = new HtmlWeb();
+
+                HtmlAgilityPack.HtmlDocument page = web.Load(url);
+                HtmlNodeCollection nodes = page.DocumentNode.SelectNodes("//li[@id='highlightSupc']/span[@class='h-content']");
+                if (nodes != null && nodes.Count > 0)
+                    result = nodes[0].InnerText.Replace("SUPC:", "").Trim();
+                
+                return result;
+            });
+            
+        }
+
         public static List<ISpdInventory> GetData(string excelFile)
         {
             //if (_invSnapdeal == null || _invSnapdeal.Count == 0)

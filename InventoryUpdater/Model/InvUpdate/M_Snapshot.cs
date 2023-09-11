@@ -31,6 +31,8 @@ namespace SellerSense.Model.InvUpdate
 
         internal void SaveInvSnapshot(IList<Decoders.Interfaces.IAmzInventory> _amzInventoryList)
         {
+            if (_invSnapshotEntries.Count > 0)
+                _invSnapshotEntries.Clear();
             foreach (var item in _amzInventoryList)
             {
                 _invSnapshotEntries.Add(new InvSnapshotEntry()
@@ -38,6 +40,58 @@ namespace SellerSense.Model.InvUpdate
                     Sku = item.sku,
                     InvSysCount = item.systemQuantity,
                     asin = item.asin
+                });
+            }
+            SerializeInvSnapshot();
+        }
+
+
+
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IFkInventory> _fkInventoryList)
+        {
+            if(_invSnapshotEntries.Count > 0)
+                _invSnapshotEntries.Clear();
+            foreach (var item in _fkInventoryList)
+            {
+                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                {
+                    Sku = item.sku,
+                    InvSysCount = item.systemQuantity,
+                    asin = item.fsn
+                });
+            }
+            SerializeInvSnapshot();
+        }
+
+
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.ISpdInventory> _spdInventoryList)
+        {
+            if (_invSnapshotEntries.Count > 0)
+                _invSnapshotEntries.Clear();
+            foreach (var item in _spdInventoryList)
+            {
+                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                {
+                    Sku = item.sku,
+                    InvSysCount = item.systemQuantity,
+                    asin = item.fsn
+                });
+            }
+            SerializeInvSnapshot();
+        }
+
+
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IMsoInventory> _msoInventoryList)
+        {
+            if (_invSnapshotEntries.Count > 0)
+                _invSnapshotEntries.Clear();
+            foreach (var item in _msoInventoryList)
+            {
+                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                {
+                    Sku = item.sku,
+                    InvSysCount = item.systemQuantity,
+                    asin = item.fsn
                 });
             }
             SerializeInvSnapshot();
@@ -125,6 +179,8 @@ namespace SellerSense.Model.InvUpdate
                 bool notFound = true;
                 while (notFound)
                 {
+                    if (day > 7)
+                    { notFound = true;break; }
                     var yesterdaysSnps = _sortedSnapShorts.Select(x => x.Key).
                         Where(d => d > yesterday && d < DateTime.Today);
                     day = day + 1;
@@ -133,8 +189,7 @@ namespace SellerSense.Model.InvUpdate
                     else
                     { notFound = false;
                         minYesterdaysSnps = yesterdaysSnps.Min();
-                    }
-                }
+                    }                }
                 if (notFound)
                 { MessageBox.Show("No inventory snapshot found for last 7 days","Info", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                     return string.Empty; }

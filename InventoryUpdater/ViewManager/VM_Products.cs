@@ -268,6 +268,10 @@ namespace SellerSense.ViewManager
                        (string filePath, string fileName)= ProjIO.GetImageFilePath(_code, item.InHouseCode);
                         Logger.TelegramMedia(filePath, fileName, message,Logger.LogLevel.info, _code);
                     }
+                    else
+                    {
+                        Logger.Telegram(message);
+                    }
                     //if (exportProducts.IncludePrimaryImages)
                     //    Logger.Log(item., Logger.LogLevel.info, false);
                    

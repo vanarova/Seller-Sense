@@ -35,6 +35,7 @@
             this.button_ExportPDF = new System.Windows.Forms.Button();
             this.button_ExportToTelegram = new System.Windows.Forms.Button();
             this.checkBox_ExportPrices = new System.Windows.Forms.CheckBox();
+            this.button_ExportProduct = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,22 +44,23 @@
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.230848F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.86415F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.97336F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.06326F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.24703F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.85511F));
             this.tableLayoutPanel1.Controls.Add(this.checkBox_ExportPrimaryImages, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.checkBox_ExportSecondaryImages, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button_ExportCSV, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.button_ExportPDF, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.button_ExportToTelegram, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.checkBox_ExportPrices, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.button_ExportProduct, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.button_ExportCSV, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button_ExportPDF, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.74926F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.14159F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.22222F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.44444F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.55556F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.11111F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(842, 450);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -70,7 +72,7 @@
             this.checkBox_ExportPrimaryImages.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tableLayoutPanel1.SetColumnSpan(this.checkBox_ExportPrimaryImages, 2);
             this.checkBox_ExportPrimaryImages.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_ExportPrimaryImages.Location = new System.Drawing.Point(55, 69);
+            this.checkBox_ExportPrimaryImages.Location = new System.Drawing.Point(55, 50);
             this.checkBox_ExportPrimaryImages.Name = "checkBox_ExportPrimaryImages";
             this.checkBox_ExportPrimaryImages.Size = new System.Drawing.Size(324, 41);
             this.checkBox_ExportPrimaryImages.TabIndex = 3;
@@ -83,6 +85,7 @@
             this.checkBox_ExportSecondaryImages.Checked = true;
             this.checkBox_ExportSecondaryImages.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tableLayoutPanel1.SetColumnSpan(this.checkBox_ExportSecondaryImages, 2);
+            this.checkBox_ExportSecondaryImages.Enabled = false;
             this.checkBox_ExportSecondaryImages.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_ExportSecondaryImages.Location = new System.Drawing.Point(55, 150);
             this.checkBox_ExportSecondaryImages.Name = "checkBox_ExportSecondaryImages";
@@ -93,10 +96,11 @@
             // 
             // button_ExportCSV
             // 
+            this.button_ExportCSV.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button_ExportCSV.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ExportCSV.Location = new System.Drawing.Point(55, 337);
+            this.button_ExportCSV.Location = new System.Drawing.Point(500, 154);
             this.button_ExportCSV.Name = "button_ExportCSV";
-            this.button_ExportCSV.Size = new System.Drawing.Size(219, 73);
+            this.button_ExportCSV.Size = new System.Drawing.Size(199, 73);
             this.button_ExportCSV.TabIndex = 1;
             this.button_ExportCSV.Text = "Export CSV";
             this.button_ExportCSV.UseVisualStyleBackColor = true;
@@ -104,8 +108,9 @@
             // 
             // button_ExportPDF
             // 
+            this.button_ExportPDF.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button_ExportPDF.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ExportPDF.Location = new System.Drawing.Point(280, 337);
+            this.button_ExportPDF.Location = new System.Drawing.Point(500, 60);
             this.button_ExportPDF.Name = "button_ExportPDF";
             this.button_ExportPDF.Size = new System.Drawing.Size(195, 73);
             this.button_ExportPDF.TabIndex = 0;
@@ -116,7 +121,7 @@
             // button_ExportToTelegram
             // 
             this.button_ExportToTelegram.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ExportToTelegram.Location = new System.Drawing.Point(481, 337);
+            this.button_ExportToTelegram.Location = new System.Drawing.Point(500, 337);
             this.button_ExportToTelegram.Name = "button_ExportToTelegram";
             this.button_ExportToTelegram.Size = new System.Drawing.Size(295, 73);
             this.button_ExportToTelegram.TabIndex = 2;
@@ -131,12 +136,23 @@
             this.checkBox_ExportPrices.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tableLayoutPanel1.SetColumnSpan(this.checkBox_ExportPrices, 2);
             this.checkBox_ExportPrices.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_ExportPrices.Location = new System.Drawing.Point(55, 232);
+            this.checkBox_ExportPrices.Location = new System.Drawing.Point(55, 238);
             this.checkBox_ExportPrices.Name = "checkBox_ExportPrices";
             this.checkBox_ExportPrices.Size = new System.Drawing.Size(210, 41);
             this.checkBox_ExportPrices.TabIndex = 5;
             this.checkBox_ExportPrices.Text = "Include Prices";
             this.checkBox_ExportPrices.UseVisualStyleBackColor = true;
+            // 
+            // button_ExportProduct
+            // 
+            this.button_ExportProduct.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button_ExportProduct.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_ExportProduct.Location = new System.Drawing.Point(500, 248);
+            this.button_ExportProduct.Name = "button_ExportProduct";
+            this.button_ExportProduct.Size = new System.Drawing.Size(233, 73);
+            this.button_ExportProduct.TabIndex = 6;
+            this.button_ExportProduct.Text = "Export Product";
+            this.button_ExportProduct.UseVisualStyleBackColor = true;
             // 
             // ExportProducts
             // 
@@ -163,5 +179,6 @@
         private System.Windows.Forms.CheckBox checkBox_ExportPrimaryImages;
         private System.Windows.Forms.CheckBox checkBox_ExportSecondaryImages;
         private System.Windows.Forms.CheckBox checkBox_ExportPrices;
+        private System.Windows.Forms.Button button_ExportProduct;
     }
 }

@@ -221,7 +221,7 @@ namespace SellerSense.ViewManager
             //Send order to telegram
             //int orders = _crossCompanySharedWrapper.GetCrossCompanyTodaysOrderReport().TotalOrders_Today.TotalOrder;
             var orders = _crossCompanySharedWrapper.GetCrossCompanyTodaysOrderReport().TotalOrders_Today;
-            Logger.Telegram(Environment.NewLine +
+            Logger.TelegramLog(Environment.NewLine +
                 "Total orders today: " + orders.TotalOrder + Environment.NewLine +
                 "Company: " + orders.CompanyA.Company + Environment.NewLine +
                 "Amazon: " + orders.CompanyA.AmzOrderCount + Environment.NewLine +
@@ -480,7 +480,7 @@ namespace SellerSense.ViewManager
             await AssignFlipkartInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
-            _m_invSnapShotModel_Fk.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
+            _m_invSnapShotModel_Fk.SaveInvSnapshot(_m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList);
             EngageCellEvents() ;    
         }
 
@@ -497,7 +497,7 @@ namespace SellerSense.ViewManager
             await AssignSnapdealInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
-            _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
+            _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList);
             EngageCellEvents();
         }
 
@@ -514,7 +514,7 @@ namespace SellerSense.ViewManager
             await AssignMeeshoInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
-            _m_invSnapShotModel_Mso.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
+            _m_invSnapShotModel_Mso.SaveInvSnapshot(_m_externalInventoriesModel._msoImportedInventoryList._msoInventoryList);
             EngageCellEvents();
         }
 

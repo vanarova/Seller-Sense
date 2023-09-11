@@ -6,66 +6,85 @@
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="ProgramFilesFolder" Name="PFiles">
                 <Directory Name="Seller-Sense" Id="SELLER_SENSE">
-                    <Component Id="SS" DiskId="1"  Guid="1f51a7bd-600e-4038-8393-c0d91a17dcc8">
-                        <File Id="SELLERSENSE.EXE" Name="SellerSense.exe" Source="..\InventoryUpdater\bin\Release\SellerSense.exe" KeyPath="yes">
-                            <Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="Seller-Sense" WorkingDirectory="INSTALLDIR" Advertise="yes" Icon="favicon.ico" IconIndex="0" />
-                        </File>
+                    <Component Id="SS" Guid="">
                         <File Id="ANGLESHARP.DLL" Name="AngleSharp.dll" Source="..\InventoryUpdater\bin\Release\AngleSharp.dll" />
+                        <File Id="ANGLESHARP.XML" Name="AngleSharp.xml" Source="..\InventoryUpdater\bin\Release\AngleSharp.xml" />
                         <File Id="BOUNCYCASTLE.CRYPTO.DLL" Name="BouncyCastle.Crypto.dll" Source="..\InventoryUpdater\bin\Release\BouncyCastle.Crypto.dll" />
+                        <File Id="BOUNCYCASTLE.CRYPTO.XML" Name="BouncyCastle.Crypto.xml" Source="..\InventoryUpdater\bin\Release\BouncyCastle.Crypto.xml" />
                         <File Id="DECODERS.DLL" Name="Decoders.dll" Source="..\InventoryUpdater\bin\Release\Decoders.dll" />
+                        <File Id="DECODERS.DLL.CONFIG" Name="Decoders.dll.config" Source="..\InventoryUpdater\bin\Release\Decoders.dll.config" />
+                        <File Id="DECODERS.PDB" Name="Decoders.pdb" Source="..\InventoryUpdater\bin\Release\Decoders.pdb" />
                         <File Id="ENUMS.NET.DLL" Name="Enums.NET.dll" Source="..\InventoryUpdater\bin\Release\Enums.NET.dll" />
+                        <File Id="ENUMS.NET.PDB" Name="Enums.NET.pdb" Source="..\InventoryUpdater\bin\Release\Enums.NET.pdb" />
+                        <File Id="ENUMS.NET.XML" Name="Enums.NET.xml" Source="..\InventoryUpdater\bin\Release\Enums.NET.xml" />
                         <File Id="EXCELMAPPER.DLL" Name="ExcelMapper.dll" Source="..\InventoryUpdater\bin\Release\ExcelMapper.dll" />
+                        <File Id="EXCELMAPPER.XML" Name="ExcelMapper.xml" Source="..\InventoryUpdater\bin\Release\ExcelMapper.xml" />
                         <File Id="HTMLAGILITYPACK.DLL" Name="HtmlAgilityPack.dll" Source="..\InventoryUpdater\bin\Release\HtmlAgilityPack.dll" />
+                        <File Id="HTMLAGILITYPACK.PDB" Name="HtmlAgilityPack.pdb" Source="..\InventoryUpdater\bin\Release\HtmlAgilityPack.pdb" />
+                        <File Id="HTMLAGILITYPACK.XML" Name="HtmlAgilityPack.xml" Source="..\InventoryUpdater\bin\Release\HtmlAgilityPack.xml" />
                         <File Id="ICSHARPCODE.SHARPZIPLIB.DLL" Name="ICSharpCode.SharpZipLib.dll" Source="..\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.dll" />
+                        <File Id="ICSHARPCODE.SHARPZIPLIB.PDB" Name="ICSharpCode.SharpZipLib.pdb" Source="..\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.pdb" />
+                        <File Id="ICSHARPCODE.SHARPZIPLIB.XML" Name="ICSharpCode.SharpZipLib.xml" Source="..\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.xml" />
+                        <File Id="IMAGESEARCH.DLL" Name="ImageSearch.dll" Source="..\InventoryUpdater\bin\Release\ImageSearch.dll" />
+                        <File Id="IMAGESEARCH.DLL.CONFIG" Name="ImageSearch.dll.config" Source="..\InventoryUpdater\bin\Release\ImageSearch.dll.config" />
+                        <File Id="IMAGESEARCH.PDB" Name="ImageSearch.pdb" Source="..\InventoryUpdater\bin\Release\ImageSearch.pdb" />
                         <File Id="MATHNET.NUMERICS.DLL" Name="MathNet.Numerics.dll" Source="..\InventoryUpdater\bin\Release\MathNet.Numerics.dll" />
+                        <File Id="MATHNET.NUMERICS.XML" Name="MathNet.Numerics.xml" Source="..\InventoryUpdater\bin\Release\MathNet.Numerics.xml" />
                         <File Id="MICROSOFT.BCL.ASYNCINTERFACES.DLL" Name="Microsoft.Bcl.AsyncInterfaces.dll" Source="..\InventoryUpdater\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll" />
+                        <File Id="MICROSOFT.BCL.ASYNCINTERFACES.XML" Name="Microsoft.Bcl.AsyncInterfaces.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml" />
                         <File Id="MICROSOFT.IO.RECYCLABLEMEMORYSTREAM.DLL" Name="Microsoft.IO.RecyclableMemoryStream.dll" Source="..\InventoryUpdater\bin\Release\Microsoft.IO.RecyclableMemoryStream.dll" />
+                        <File Id="MICROSOFT.IO.RECYCLABLEMEMORYSTREAM.XML" Name="Microsoft.IO.RecyclableMemoryStream.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.IO.RecyclableMemoryStream.xml" />
                         <File Id="MICROSOFT.WINDOWSAPICODEPACK.DLL" Name="Microsoft.WindowsAPICodePack.dll" Source="..\InventoryUpdater\bin\Release\Microsoft.WindowsAPICodePack.dll" />
+                        <File Id="MICROSOFT.WINDOWSAPICODEPACK.XML" Name="Microsoft.WindowsAPICodePack.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.WindowsAPICodePack.xml" />
                         <File Id="NEWTONSOFT.JSON.DLL" Name="Newtonsoft.Json.dll" Source="..\InventoryUpdater\bin\Release\Newtonsoft.Json.dll" />
+                        <File Id="NEWTONSOFT.JSON.XML" Name="Newtonsoft.Json.xml" Source="..\InventoryUpdater\bin\Release\Newtonsoft.Json.xml" />
                         <File Id="NPOI.DLL" Name="NPOI.dll" Source="..\InventoryUpdater\bin\Release\NPOI.dll" />
                         <File Id="NPOI.OOXML.DLL" Name="NPOI.OOXML.dll" Source="..\InventoryUpdater\bin\Release\NPOI.OOXML.dll" />
-                        <File Id="NPOI.OPENXML4NET.DLL" Name="NPOI.OpenXml4Net.dll" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXml4Net.dll" />
-                        <File Id="NPOI.OPENXMLFORMATS.DLL" Name="NPOI.OpenXmlFormats.dll" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXmlFormats.dll" />
-                        <File Id="SIXLABORS.FONTS.DLL" Name="SixLabors.Fonts.dll" Source="..\InventoryUpdater\bin\Release\SixLabors.Fonts.dll" />
-                        <File Id="SIXLABORS.IMAGESHARP.DLL" Name="SixLabors.ImageSharp.dll" Source="..\InventoryUpdater\bin\Release\SixLabors.ImageSharp.dll" />
-                        <File Id="SYSTEM.BUFFERS.DLL" Name="System.Buffers.dll" Source="..\InventoryUpdater\bin\Release\System.Buffers.dll" />
-                        <File Id="SYSTEM.MEMORY.DLL" Name="System.Memory.dll" Source="..\InventoryUpdater\bin\Release\System.Memory.dll" />
-                        <File Id="SYSTEM.NUMERICS.VECTORS.DLL" Name="System.Numerics.Vectors.dll" Source="..\InventoryUpdater\bin\Release\System.Numerics.Vectors.dll" />
-                        <File Id="SYSTEM.RUNTIME.COMPILERSERVICES.UNSAFE.DLL" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="..\InventoryUpdater\bin\Release\System.Runtime.CompilerServices.Unsafe.dll" />
-                        <File Id="SYSTEM.TEXT.ENCODING.CODEPAGES.DLL" Name="System.Text.Encoding.CodePages.dll" Source="..\InventoryUpdater\bin\Release\System.Text.Encoding.CodePages.dll" />
-                        <File Id="SYSTEM.TEXT.ENCODINGS.WEB.DLL" Name="System.Text.Encodings.Web.dll" Source="..\InventoryUpdater\bin\Release\System.Text.Encodings.Web.dll" />
-                        <File Id="SYSTEM.TEXT.JSON.DLL" Name="System.Text.Json.dll" Source="..\InventoryUpdater\bin\Release\System.Text.Json.dll" />
-                        <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.DLL" Name="System.Threading.Tasks.Extensions.dll" Source="..\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.dll" />
-                        <File Id="SYSTEM.VALUETUPLE.DLL" Name="System.ValueTuple.dll" Source="..\InventoryUpdater\bin\Release\System.ValueTuple.dll" />
-                        <File Id="ANGLESHARP.XML" Name="AngleSharp.xml" Source="..\InventoryUpdater\bin\Release\AngleSharp.xml" />
-                        <File Id="BOUNCYCASTLE.CRYPTO.XML" Name="BouncyCastle.Crypto.xml" Source="..\InventoryUpdater\bin\Release\BouncyCastle.Crypto.xml" />
-                        <File Id="ENUMS.NET.XML" Name="Enums.NET.xml" Source="..\InventoryUpdater\bin\Release\Enums.NET.xml" />
-                        <File Id="EXCELMAPPER.XML" Name="ExcelMapper.xml" Source="..\InventoryUpdater\bin\Release\ExcelMapper.xml" />
-                        <File Id="HTMLAGILITYPACK.XML" Name="HtmlAgilityPack.xml" Source="..\InventoryUpdater\bin\Release\HtmlAgilityPack.xml" />
-                        <File Id="ICSHARPCODE.SHARPZIPLIB.XML" Name="ICSharpCode.SharpZipLib.xml" Source="..\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.xml" />
-                        <File Id="MATHNET.NUMERICS.XML" Name="MathNet.Numerics.xml" Source="..\InventoryUpdater\bin\Release\MathNet.Numerics.xml" />
-                        <File Id="MICROSOFT.BCL.ASYNCINTERFACES.XML" Name="Microsoft.Bcl.AsyncInterfaces.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml" />
-                        <File Id="MICROSOFT.IO.RECYCLABLEMEMORYSTREAM.XML" Name="Microsoft.IO.RecyclableMemoryStream.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.IO.RecyclableMemoryStream.xml" />
-                        <File Id="MICROSOFT.WINDOWSAPICODEPACK.XML" Name="Microsoft.WindowsAPICodePack.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.WindowsAPICodePack.xml" />
-                        <File Id="NEWTONSOFT.JSON.XML" Name="Newtonsoft.Json.xml" Source="..\InventoryUpdater\bin\Release\Newtonsoft.Json.xml" />
+                        <File Id="NPOI.OOXML.PDB" Name="NPOI.OOXML.pdb" Source="..\InventoryUpdater\bin\Release\NPOI.OOXML.pdb" />
                         <File Id="NPOI.OOXML.XML" Name="NPOI.OOXML.xml" Source="..\InventoryUpdater\bin\Release\NPOI.OOXML.xml" />
+                        <File Id="NPOI.OPENXML4NET.DLL" Name="NPOI.OpenXml4Net.dll" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXml4Net.dll" />
+                        <File Id="NPOI.OPENXML4NET.PDB" Name="NPOI.OpenXml4Net.pdb" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXml4Net.pdb" />
                         <File Id="NPOI.OPENXML4NET.XML" Name="NPOI.OpenXml4Net.xml" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXml4Net.xml" />
-                        <File Id="NPOI.XML" Name="NPOI.xml" Source="..\InventoryUpdater\bin\Release\NPOI.xml" />
-                        <File Id="SIXLABORS.FONTS.XML" Name="SixLabors.Fonts.xml" Source="..\InventoryUpdater\bin\Release\SixLabors.Fonts.xml" />
-                        <File Id="SIXLABORS.IMAGESHARP.XML" Name="SixLabors.ImageSharp.xml" Source="..\InventoryUpdater\bin\Release\SixLabors.ImageSharp.xml" />
-                        <File Id="SYSTEM.BUFFERS.XML" Name="System.Buffers.xml" Source="..\InventoryUpdater\bin\Release\System.Buffers.xml" />
-                        <File Id="SYSTEM.MEMORY.XML" Name="System.Memory.xml" Source="..\InventoryUpdater\bin\Release\System.Memory.xml" />
-                        <File Id="SYSTEM.NUMERICS.VECTORS.XML" Name="System.Numerics.Vectors.xml" Source="..\InventoryUpdater\bin\Release\System.Numerics.Vectors.xml" />
-                        <File Id="SYSTEM.RUNTIME.COMPILERSERVICES.UNSAFE.XML" Name="System.Runtime.CompilerServices.Unsafe.xml" Source="..\InventoryUpdater\bin\Release\System.Runtime.CompilerServices.Unsafe.xml" />
-                        <File Id="SYSTEM.TEXT.ENCODING.CODEPAGES.XML" Name="System.Text.Encoding.CodePages.xml" Source="..\InventoryUpdater\bin\Release\System.Text.Encoding.CodePages.xml" />
-                        <File Id="SYSTEM.TEXT.ENCODINGS.WEB.XML" Name="System.Text.Encodings.Web.xml" Source="..\InventoryUpdater\bin\Release\System.Text.Encodings.Web.xml" />
-                        <File Id="SYSTEM.TEXT.JSON.XML" Name="System.Text.Json.xml" Source="..\InventoryUpdater\bin\Release\System.Text.Json.xml" />
-                        <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.XML" Name="System.Threading.Tasks.Extensions.xml" Source="..\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.xml" />
-                        <File Id="SYSTEM.VALUETUPLE.XML" Name="System.ValueTuple.xml" Source="..\InventoryUpdater\bin\Release\System.ValueTuple.xml" />
-                        <File Id="DECODERS.DLL.CONFIG" Name="Decoders.dll.config" Source="..\InventoryUpdater\bin\Release\Decoders.dll.config" />
-                        <File Id="INVENTORYUPDATER.EXE.CONFIG" Name="InventoryUpdater.exe.config" Source="..\InventoryUpdater\bin\Release\InventoryUpdater.exe.config" />
+                        <File Id="NPOI.OPENXMLFORMATS.DLL" Name="NPOI.OpenXmlFormats.dll" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXmlFormats.dll" />
                         <File Id="NPOI.OPENXMLFORMATS.DLL.CONFIG" Name="NPOI.OpenXmlFormats.dll.config" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXmlFormats.dll.config" />
+                        <File Id="NPOI.OPENXMLFORMATS.PDB" Name="NPOI.OpenXmlFormats.pdb" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXmlFormats.pdb" />
+                        <File Id="NPOI.PDB" Name="NPOI.pdb" Source="..\InventoryUpdater\bin\Release\NPOI.pdb" />
+                        <File Id="NPOI.XML" Name="NPOI.xml" Source="..\InventoryUpdater\bin\Release\NPOI.xml" />
+                        <File Id="OPENCVSHARP.DLL" Name="OpenCvSharp.dll" Source="..\InventoryUpdater\bin\Release\OpenCvSharp.dll" />
+                        <File Id="OPENCVSHARP.XML" Name="OpenCvSharp.xml" Source="..\InventoryUpdater\bin\Release\OpenCvSharp.xml" />
+                        <File Id="PRIMITIVEEXT.DLL" Name="PrimitiveExt.dll" Source="..\InventoryUpdater\bin\Release\PrimitiveExt.dll" />
+                        <File Id="PRIMITIVEEXT.PDB" Name="PrimitiveExt.pdb" Source="..\InventoryUpdater\bin\Release\PrimitiveExt.pdb" />
+                        <File Id="SELLERSENSE.EXE" Name="SellerSense.exe" Source="..\InventoryUpdater\bin\Release\SellerSense.exe" />
                         <File Id="SELLERSENSE.EXE.CONFIG" Name="SellerSense.exe.config" Source="..\InventoryUpdater\bin\Release\SellerSense.exe.config" />
+                        <File Id="SELLERSENSE.PDB" Name="SellerSense.pdb" Source="..\InventoryUpdater\bin\Release\SellerSense.pdb" />
+                        <File Id="SIXLABORS.FONTS.DLL" Name="SixLabors.Fonts.dll" Source="..\InventoryUpdater\bin\Release\SixLabors.Fonts.dll" />
+                        <File Id="SIXLABORS.FONTS.XML" Name="SixLabors.Fonts.xml" Source="..\InventoryUpdater\bin\Release\SixLabors.Fonts.xml" />
+                        <File Id="SIXLABORS.IMAGESHARP.DLL" Name="SixLabors.ImageSharp.dll" Source="..\InventoryUpdater\bin\Release\SixLabors.ImageSharp.dll" />
+                        <File Id="SIXLABORS.IMAGESHARP.XML" Name="SixLabors.ImageSharp.xml" Source="..\InventoryUpdater\bin\Release\SixLabors.ImageSharp.xml" />
+                        <File Id="SSVIEWCONTROLS.DLL" Name="ssViewControls.dll" Source="..\InventoryUpdater\bin\Release\ssViewControls.dll" />
+                        <File Id="SSVIEWCONTROLS.PDB" Name="ssViewControls.pdb" Source="..\InventoryUpdater\bin\Release\ssViewControls.pdb" />
+                        <File Id="SYSTEM.BUFFERS.DLL" Name="System.Buffers.dll" Source="..\InventoryUpdater\bin\Release\System.Buffers.dll" />
+                        <File Id="SYSTEM.BUFFERS.XML" Name="System.Buffers.xml" Source="..\InventoryUpdater\bin\Release\System.Buffers.xml" />
+                        <File Id="SYSTEM.DRAWING.COMMON.DLL" Name="System.Drawing.Common.dll" Source="..\InventoryUpdater\bin\Release\System.Drawing.Common.dll" />
+                        <File Id="SYSTEM.MEMORY.DLL" Name="System.Memory.dll" Source="..\InventoryUpdater\bin\Release\System.Memory.dll" />
+                        <File Id="SYSTEM.MEMORY.XML" Name="System.Memory.xml" Source="..\InventoryUpdater\bin\Release\System.Memory.xml" />
+                        <File Id="SYSTEM.NUMERICS.VECTORS.DLL" Name="System.Numerics.Vectors.dll" Source="..\InventoryUpdater\bin\Release\System.Numerics.Vectors.dll" />
+                        <File Id="SYSTEM.NUMERICS.VECTORS.XML" Name="System.Numerics.Vectors.xml" Source="..\InventoryUpdater\bin\Release\System.Numerics.Vectors.xml" />
+                        <File Id="SYSTEM.RUNTIME.COMPILERSERVICES.UNSAFE.DLL" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="..\InventoryUpdater\bin\Release\System.Runtime.CompilerServices.Unsafe.dll" />
+                        <File Id="SYSTEM.RUNTIME.COMPILERSERVICES.UNSAFE.XML" Name="System.Runtime.CompilerServices.Unsafe.xml" Source="..\InventoryUpdater\bin\Release\System.Runtime.CompilerServices.Unsafe.xml" />
+                        <File Id="SYSTEM.TEXT.ENCODING.CODEPAGES.DLL" Name="System.Text.Encoding.CodePages.dll" Source="..\InventoryUpdater\bin\Release\System.Text.Encoding.CodePages.dll" />
+                        <File Id="SYSTEM.TEXT.ENCODING.CODEPAGES.XML" Name="System.Text.Encoding.CodePages.xml" Source="..\InventoryUpdater\bin\Release\System.Text.Encoding.CodePages.xml" />
+                        <File Id="SYSTEM.TEXT.ENCODINGS.WEB.DLL" Name="System.Text.Encodings.Web.dll" Source="..\InventoryUpdater\bin\Release\System.Text.Encodings.Web.dll" />
+                        <File Id="SYSTEM.TEXT.ENCODINGS.WEB.XML" Name="System.Text.Encodings.Web.xml" Source="..\InventoryUpdater\bin\Release\System.Text.Encodings.Web.xml" />
+                        <File Id="SYSTEM.TEXT.JSON.DLL" Name="System.Text.Json.dll" Source="..\InventoryUpdater\bin\Release\System.Text.Json.dll" />
+                        <File Id="SYSTEM.TEXT.JSON.XML" Name="System.Text.Json.xml" Source="..\InventoryUpdater\bin\Release\System.Text.Json.xml" />
+                        <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.DLL" Name="System.Threading.Tasks.Extensions.dll" Source="..\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.dll" />
+                        <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.XML" Name="System.Threading.Tasks.Extensions.xml" Source="..\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.xml" />
+                        <File Id="SYSTEM.VALUETUPLE.DLL" Name="System.ValueTuple.dll" Source="..\InventoryUpdater\bin\Release\System.ValueTuple.dll" />
+                        <File Id="SYSTEM.VALUETUPLE.XML" Name="System.ValueTuple.xml" Source="..\InventoryUpdater\bin\Release\System.ValueTuple.xml" />
+                        <File Id="TELEGRAMBOT.DLL" Name="TelegramBot.dll" Source="..\InventoryUpdater\bin\Release\TelegramBot.dll" />
+                        <File Id="TELEGRAMBOT.DLL.CONFIG" Name="TelegramBot.dll.config" Source="..\InventoryUpdater\bin\Release\TelegramBot.dll.config" />
+                        <File Id="TELEGRAMBOT.PDB" Name="TelegramBot.pdb" Source="..\InventoryUpdater\bin\Release\TelegramBot.pdb" />
                     </Component>
                 </Directory>
             </Directory>
@@ -74,11 +93,10 @@
         <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
             <ComponentRef Id="SS" />
         </Feature>
-
         <UI />
         <UIRef Id="WixUI_Minimal" />
         <Icon Id="favicon.ico" SourceFile="..\InventoryUpdater\Images\favicon.ico" />
         <Icon Id="DesktopIcon.exe" SourceFile="..\InventoryUpdater\Images\favicon.ico" />
-		<Property Id="ARPPRODUCTICON" Value="favicon.ico" />
+        <Property Id="ARPPRODUCTICON" Value="favicon.ico" />
     </Product>
 </Wix>

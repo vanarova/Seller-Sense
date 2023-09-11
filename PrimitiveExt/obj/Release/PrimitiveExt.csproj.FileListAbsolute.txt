@@ -1,0 +1,6 @@
+C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\bin\Release\PrimitiveExt.dll
+C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\bin\Release\PrimitiveExt.pdb
+C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\obj\Release\PrimitiveExt.csproj.AssemblyReference.cache
+C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\obj\Release\PrimitiveExt.csproj.CoreCompileInputs.cache
+C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\obj\Release\PrimitiveExt.dll
+C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\obj\Release\PrimitiveExt.pdb

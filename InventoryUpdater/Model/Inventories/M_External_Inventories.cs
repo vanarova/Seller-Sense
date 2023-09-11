@@ -67,11 +67,15 @@ namespace SellerSense.Model
 
         internal void ImportAmazonInventoryFile(string fileName)
         {
+            if (_amzImportedInvList._amzInventoryList.Count > 0) 
+                _amzImportedInvList._amzInventoryList.Clear();
             _amzImportedInvList._amzInventoryList = AmazonInvDecoder.ImportAmazonInventory(fileName);
         }
 
         internal void ImportFlipkartInventoryFile(string fileName)
         {
+            if (_fkImportedInventoryList._fkInventoryList.Count > 0)
+                _fkImportedInventoryList._fkInventoryList.Clear();
             _fkImportedInventoryList._fkInventoryList = FlipkartInvDecoder.GetData(fileName);
         }
 
@@ -88,6 +92,8 @@ namespace SellerSense.Model
 
         internal void ImportSnapdealInventoryFile(string fileName)
         {
+            if (_spdImportedInventoryList._spdInventoryList.Count > 0)
+                _spdImportedInventoryList._spdInventoryList.Clear();    
             _spdImportedInventoryList._spdInventoryList = SnapdealInvDecoder.GetData(fileName);
         }
 
@@ -98,6 +104,8 @@ namespace SellerSense.Model
 
         internal void ImportMeeshoInventoryFile(string fileName)
         {
+            if (_msoImportedInventoryList._msoInventoryList.Count > 0)
+                _msoImportedInventoryList._msoInventoryList.Clear();
             _msoImportedInventoryList._msoInventoryList = MeeshoInvDecoder.GetData(fileName);
         }
 

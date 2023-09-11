@@ -36,6 +36,8 @@ namespace SellerSense
 
         private async void btn_Inventories_Click(object sender, EventArgs e)
         {
+
+            AdjustUI("DisableAllButtons");
             //re init company.
             _companiesMgr = new SellerSense.ViewManager.VM_Companies();
 
@@ -51,7 +53,7 @@ namespace SellerSense
             _companiesMgr._companies[1]._inventoriesViewManager.AssignImagesToProducts(imgs1);
 
             DisplayInvForm();
-
+            AdjustUI("EnableAllButtons");
 
             ////try
             ////{
@@ -167,6 +169,7 @@ namespace SellerSense
         private async void btn_Products_Click(object sender, EventArgs e)
         {
             //re-init company
+            AdjustUI("DisableAllButtons");
             _companiesMgr = new SellerSense.ViewManager.VM_Companies();
 
             pbarLoadForms.Visible = true;
@@ -181,56 +184,9 @@ namespace SellerSense
             _companiesMgr._companies[1]._productsViewManager.AssignImagesToProducts(imgs1);
 
             DisplayProductForm();
+            AdjustUI("EnableAllButtons");
 
-            //pbarLoadForms.Visible = true;
-
-            //_companiesMgr._companies[0]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-            //if (_companiesMgr._companies.Count > 1)
-            //    _companiesMgr._companies[1]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-            //if (_companiesMgr._companies.Count > 2)
-            //    _companiesMgr._companies[2]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-            //if (_companiesMgr._companies.Count > 3)
-            //    _companiesMgr._companies[3]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-            //if (_companiesMgr._companies.Count > 4)
-            //    _companiesMgr._companies[4]._inventoriesViewManager.LoadInvDataFromLastSavedMap(); //TODO load async
-
-
-            //_companiesMgr._companies[0]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-            //{
-            //    if (_companiesMgr._companies.Count > 1)
-            //    {
-            //        _companiesMgr._companies[1]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-            //        {
-            //            if (_companiesMgr._companies.Count > 2)
-            //            {
-            //                _companiesMgr._companies[2]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-            //                {
-            //                    if (_companiesMgr._companies.Count > 2)
-            //                    {
-            //                        _companiesMgr._companies[3]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-            //                        {
-            //                            if (_companiesMgr._companies.Count > 3)
-            //                            {
-            //                                _companiesMgr._companies[4]._inventoriesViewManager.GetInvUpdateGridDataset(() =>
-            //                                {
-            //                                    DisplayInvForm();
-            //                                });
-            //                            }
-            //                            else DisplayInvForm();
-
-            //                        });
-            //                    }
-            //                    else DisplayInvForm();
-
-            //                });
-            //            }
-            //            else DisplayInvForm();
-
-            //        });
-            //    }
-            //    else DisplayInvForm();
-
-            //});
+            
 
 
         }
@@ -246,16 +202,24 @@ namespace SellerSense
             switch (trigger)
             {
                 case "EnableOnlySetupButton":
-                    btn_invUpdate.Enabled = false;
+                    btn_Product.Enabled = false;
                     btn_Reports.Enabled = false;
                     btn_Setup.Enabled = true;
-                    btn_mapping.Enabled = false;
+                    btn_Inv.Enabled = false;
                     break;
                 case "EnableAllButtons":
-                    btn_invUpdate.Enabled = true;
+                    btn_Product.Enabled = true;
                     btn_Reports.Enabled = true;
                     btn_Setup.Enabled = true;
-                    btn_mapping.Enabled = true;
+                    btn_Inv.Enabled = true;
+                    btn_Open.Enabled = true;
+                    break;
+                case "DisableAllButtons":
+                    btn_Product.Enabled = false;
+                    btn_Reports.Enabled = false;
+                    btn_Setup.Enabled = false;
+                    btn_Inv.Enabled = false;
+                    btn_Open.Enabled= false;
                     break;
                 case "AdjustWelcomeButtons":
                     tblWelcomeButtons.Location = 
@@ -268,6 +232,7 @@ namespace SellerSense
                     tblWelcomeButtons.BringToFront();
                     break;
                 default:
+                    comboBox1.SelectedIndex = 0;
                     break;
             }
 

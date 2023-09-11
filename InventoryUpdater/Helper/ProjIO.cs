@@ -376,8 +376,10 @@ namespace SellerSense.Helper
             if (Directory.Exists(imgsLocation))
             {
                 filePath =Path.Combine(imgsLocation, productCode);
-                if (File.Exists(filePath + ".jpg"))
-                    return (filePath + ".jpg", productCode+ ".jpg"); 
+                if (File.Exists(filePath + Constants.JPG) )
+                    return (filePath + Constants.JPG, productCode+ Constants.JPG); 
+                if( File.Exists(filePath + Constants.PNG))
+                    return (filePath + Constants.PNG, productCode + Constants.PNG);
 
             }
             return ("", "");
