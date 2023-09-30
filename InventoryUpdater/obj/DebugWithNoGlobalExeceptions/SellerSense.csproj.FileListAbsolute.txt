@@ -208,3 +208,5 @@ C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\DebugWithNoGlob
 C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.csproj.CopyComplete
 C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.exe
 C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.pdb
+C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.AddEditProduct.LinkedProducts.resources
+C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.AddEditProduct.AddLinkedProduct.resources

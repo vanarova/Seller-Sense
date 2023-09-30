@@ -9,6 +9,7 @@ namespace SellerSense.Views
         public bool IsLog { get; set; }
         public bool IsImgs { get; set; }
         public bool IsSnapshot { get; set; }
+        public bool IsTelegranExport { get; set; }
         public ExportProject( string msg)
         {
             _msg = msg;
@@ -20,6 +21,7 @@ namespace SellerSense.Views
             IsLog = chk_error.Checked;
             IsImgs = chk_img.Checked;
             IsSnapshot = chk_snapshot.Checked;
+            IsTelegranExport = checkBox_Telegram.Checked;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -20,7 +20,7 @@ namespace SellerSense
         internal M_External_Inventories _m_Inventories_Model { get; set; }
         public Constants.Company _companyType { get; set; }
         public IList<IAmzInventory> _amzInventory { get; set; }
-        public IList<IFkInventory> _fkInventory { get; set; }
+        public IList<IFkInventoryV2> _fkInventory { get; set; }
         public IList<ISpdInventory> _spdInventory { get; set; }
         public IList<IMsoInventory> _msoInventory { get; set; }
         public string SelectedID { get; set; }
@@ -97,7 +97,7 @@ namespace SellerSense
 
 
         internal InvFiller(Image selectedImg, string selectedCode, 
-            string selectedTitle, IList<IFkInventory> fkinv, M_External_Inventories vm_Inventories)
+            string selectedTitle, IList<IFkInventoryV2> fkinv, M_External_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Decoders.Interfaces
 {
-    public interface IFkInventory
+    public interface IFkInventoryV1
     {
         string sku { get; set; }
         string fsn { get; set; } //flipkart serial number

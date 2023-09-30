@@ -14,9 +14,10 @@ namespace Decoders
     public static class FlipkartInvDecoder
     {
         private static ExcelMapper _exm;
-        private static List<IFkInventory> _invFlipkart;
+        //private static List<IFkInventoryV1> _invFlipkart;
         private static string _invFlipkartFileName;
-        private static IEnumerable<FkInv> _invFlipkartUnModified;
+        private static IEnumerable<FkInvV1> _invFlipkartUnModifiedV1;
+        private static IEnumerable<FkInvV2> _invFlipkartUnModifiedV2;
 
         public static void OpenProductSearchURL(string productId)
         {
@@ -31,30 +32,72 @@ namespace Decoders
             return HttpUtility.ParseQueryString(myUri.Query).Get("pid");
         }
 
-        public static List<IFkInventory> GetData(string excelFile)
+        public static List<IFkInventoryV2> GetDataV2(string excelFile, out string error)
         {
-            //if (_invFlipkart == null || _invFlipkart.Count == 0)
-            //{
-                _invFlipkartFileName = excelFile;
-                _exm = new ExcelMapper(excelFile) { HeaderRow=true};
-                _invFlipkartUnModified = _exm.Fetch<FkInv>();
-                
-                //var otems = new ExcelMapper(excelFile) { HeaderRow = false }.Fetch<FkInv>();
-                _invFlipkart = _invFlipkartUnModified.ToList<IFkInventory>();
 
-                _invFlipkart.RemoveAt(0); //remove first 2 rows, headers
-                return _invFlipkart;
-            //}else return _invFlipkart;
+            error = string.Empty; List<IFkInventoryV2> _invFlipkart;
+            _invFlipkartFileName = excelFile;
+            try
+            {
+                _exm = new ExcelMapper(excelFile) { HeaderRow = true };
+            }
+            catch (Exception e) { error = e.Message; return new List<IFkInventoryV2>(); }
+            _invFlipkartUnModifiedV2 = _exm.Fetch<FkInvV2>();
+            _invFlipkart = _invFlipkartUnModifiedV2.ToList<IFkInventoryV2>();
+            _invFlipkart.RemoveAt(0); //remove first 2 rows, headers
+            return _invFlipkart;
         }
 
-        public static void SaveAllData(IList<IFkInventory> UIModifiedInvList, string dirPath)
+        public static List<IFkInventoryV1> GetDataV1(string excelFile, out string error)
+        {
+            error = string.Empty; List<IFkInventoryV1> _invFlipkart;
+            _invFlipkartFileName = excelFile;
+            try
+            {
+                _exm = new ExcelMapper(excelFile) { HeaderRow = true };
+            }
+            catch (Exception e) { error = e.Message; return new List<IFkInventoryV1>(); }
+            _invFlipkartUnModifiedV1 = _exm.Fetch<FkInvV1>();
+            _invFlipkart = _invFlipkartUnModifiedV1.ToList<IFkInventoryV1>();
+            _invFlipkart.RemoveAt(0); //remove first 2 rows, headers
+            return _invFlipkart;
+        }
+
+
+
+        public static void SaveAllData(IList<IFkInventoryV2> UIModifiedInvList, string dirPath)
         {
             string fileName = "";
-            if (_invFlipkartUnModified != null && _invFlipkartUnModified.Count() > 0)
+            if (_invFlipkartUnModifiedV2 != null && _invFlipkartUnModifiedV2.Count() > 0)
             {
-                List<FkInv> fkInvs = new List<FkInv>();
-                foreach (IFkInventory item in _invFlipkartUnModified)
-                    fkInvs.Add(item as FkInv);
+                List<FkInvV2> fkInvs = new List<FkInvV2>();
+                foreach (IFkInventoryV2 item in _invFlipkartUnModifiedV2)
+                    fkInvs.Add(item as FkInvV2);
+
+                foreach (var pristineInvItem in fkInvs)
+                {
+                    foreach (var modifiedInvItem in UIModifiedInvList)
+                    {
+                        if (pristineInvItem.fsn == modifiedInvItem.fsn)
+                            pristineInvItem.sellerQuantity = modifiedInvItem.sellerQuantity;
+                    }
+                }
+                fileName = Path.Combine(dirPath, "Modified_" + Path.GetFileName(_invFlipkartFileName));
+
+                _exm.Save<FkInvV2>(fileName, fkInvs, 0, true);
+            }
+        }
+
+
+
+        public static void SaveAllData(IList<IFkInventoryV1> UIModifiedInvList, string dirPath)
+        {
+            string fileName = "";
+            if (_invFlipkartUnModifiedV1 != null && _invFlipkartUnModifiedV1.Count() > 0)
+            {
+                List<FkInvV1> fkInvs = new List<FkInvV1>();
+                foreach (IFkInventoryV1 item in _invFlipkartUnModifiedV1)
+                    fkInvs.Add(item as FkInvV1);
 
                 foreach (var pristineInvItem in fkInvs)
                 {
@@ -66,7 +109,7 @@ namespace Decoders
                 }
                 fileName = Path.Combine(dirPath, "Modified_"+ Path.GetFileName(_invFlipkartFileName));
                
-                _exm.Save<FkInv>(fileName, fkInvs, 0, true);
+                _exm.Save<FkInvV1>(fileName, fkInvs, 0, true);
             }
         }
 
@@ -75,7 +118,7 @@ namespace Decoders
 
 
     //This class is mapped to flipkart inventory report.
-    class FkInv : IFkInventory
+    class FkInvV1 : IFkInventoryV1
     {
         [Column(2)]
         public string sku { get; set; }
@@ -83,9 +126,23 @@ namespace Decoders
         public string fsn { get; set; }
         [Column(11)]
         public string price { get; set; }
-        [Column(14)]
-        public string systemQuantity { get; set; }
         [Column(15)]
+        public string systemQuantity { get; set; }
+        [Column(16)]
+        public string sellerQuantity { get; set; }
+    }
+
+    class FkInvV2 : IFkInventoryV2
+    {
+        [Column("Seller SKU Id")]
+        public string sku { get; set; }
+        [Column("Flipkart Serial Number")]
+        public string fsn { get; set; }
+        [Column("Your Selling Price")]
+        public string price { get; set; }
+        [Column("System Stock count")]
+        public string systemQuantity { get; set; }
+        [Column("Your Stock Count")]
         public string sellerQuantity { get; set; }
     }
 

@@ -185,15 +185,16 @@ namespace SellerSense
 
 
         private void ExportAllMaps(string mapCode1, string mapCode2, string mapCode3, string mapCode4, string mapCode5,
-            bool exportLog, bool exportImgs, bool exportSnapshots)
+            bool exportLog, bool exportImgs, bool exportSnapshots, bool exportViaTelegram)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 pbar.Visible = true;
                 ProjIO.ExportAllMaps(mapCode1, mapCode2, mapCode3, mapCode4, mapCode5,
-                    folderBrowserDialog.SelectedPath, exportLog, exportImgs, exportSnapshots,
+                    folderBrowserDialog.SelectedPath, exportLog, exportImgs, exportSnapshots, exportViaTelegram,
                      (zipFile) => {
+                         //ExportToTelegram(zipFile);
                          pbar.Visible = false;
                          (new AlertBox("Info", "Exported file : " + zipFile + ". Click below link to open.", isError: false, link:zipFile)).ShowDialog(); ; }
                     );
@@ -202,7 +203,7 @@ namespace SellerSense
             }
         }
 
-
+       
 
         private void ImportMap(string mapCode)
         {
@@ -268,7 +269,7 @@ namespace SellerSense
             if (ep.ShowDialog() == DialogResult.OK)
             {
                 ExportAllMaps(txtComp1Code.Text, txtComp2Code.Text, txtComp3Code.Text, txtComp4Code.Text, txtComp5Code.Text,
-                ep.IsLog, ep.IsImgs, ep.IsSnapshot
+                ep.IsLog, ep.IsImgs, ep.IsSnapshot, ep.IsTelegranExport
                 );
             }
         }

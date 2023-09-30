@@ -565,7 +565,7 @@ namespace SellerSense.Helper
         //}
 
         internal async static void ExportAllMaps(string mapCode1, string mapCode2, string mapCode3, string mapCode4, string mapCode5,
-           string selectedPath, bool exportLog, bool exportImgs, bool exportSnapshots, Action<string> FileExported)
+           string selectedPath, bool exportLog, bool exportImgs, bool exportSnapshots, bool exportViaTelegram, Action<string> FileExported)
         {
             Guid uniqId = Guid.NewGuid();
             string exportAllPath = Path.Combine(selectedPath, uniqId.ToString());
@@ -580,8 +580,17 @@ namespace SellerSense.Helper
              exportLog, exportImgs, exportSnapshots, () => { }, () => {  });
            await ExportMap(mapCode5, exportAllPath,
              exportLog, exportImgs, exportSnapshots, () => { }, () => { });
-
+           await ExportToTelegram(exportAllPath);
             FileExported(exportAllPath);
+        }
+
+        private async static Task ExportToTelegram(string zipFile)
+        {
+            foreach (var item in Directory.GetFiles(zipFile))
+            {
+                var fileName = Path.GetFileName(item);
+               await Logger.TelegramDocument(zipFile, fileName, Logger.LogLevel.info);
+            }
         }
 
         //taken from msdn

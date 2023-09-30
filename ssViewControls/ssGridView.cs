@@ -53,6 +53,7 @@ namespace ssViewControls
         public event Action<bool, string, SortableBindingList<T>> SearchTitleTriggered;
         public event Action<bool,string, SortableBindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindings;
+        public event Action<EventList<T>> OnRowSelectionChanged;
         public event Action<DataGridView> OnControlLoad;
         public event Action<DataGridView,int,int> OnGridButtonClicked;
         //public event Action<DataGridView> OnGridButtonActionSelectedClicked;
@@ -78,9 +79,12 @@ namespace ssViewControls
             _pageSize = 100;
             _lastPageNumber = _TotalRowsInDataSet / _pageSize;
             _selectedRows = new EventList<T>();
-            _selectedRows.ItemRemoved += (s,e) => { button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
-            _selectedRows.ItemAdded += (s,e) => { button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
-            _selectedRows.ListCleared += (s,e) => { button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
+            _selectedRows.ItemRemoved += (s,e) => { OnRowSelectionChanged?.Invoke(_selectedRows);
+                button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
+            _selectedRows.ItemAdded += (s,e) => { OnRowSelectionChanged?.Invoke(_selectedRows);
+                button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
+            _selectedRows.ListCleared += (s,e) => { OnRowSelectionChanged?.Invoke(_selectedRows); 
+                button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
 
         }
 

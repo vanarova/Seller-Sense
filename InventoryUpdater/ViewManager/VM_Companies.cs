@@ -191,28 +191,12 @@ namespace SellerSense.ViewManager
             {
                 _vm_companies = vm_companies;
                 _crossCompanyLinkedInventoryCount = new CrossCompanyLinkedInventoryCount(vm_companies);
-                //_crossCompany2LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company2Code, vm_companies);
-                //_crossCompany3LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company3Code, vm_companies);
-                //_crossCompany4LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company4Code, vm_companies);
-                //_crossCompany5LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company5Code, vm_companies);
             }
 
         }
 
 
 
-        //public class CrossCompanyTotalOrders
-        //{
-
-
-
-        //    public class Order
-        //    {
-        //        public string site { get; set; }
-
-        //    }
-
-        //}
 
         // Represents linked inhouse inventory, stores individual inv counts from all vendors in all companies.
         // Then used to update inhouse inventory column, shows user total all inventory asssigned to 

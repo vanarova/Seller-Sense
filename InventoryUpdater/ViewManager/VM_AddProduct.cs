@@ -40,6 +40,9 @@ namespace SellerSense.ViewManager
             AssignViewManager(v_addproduct);
             AddProductViewBindingObj = new AddProductView();
             AddProductViewBindingObj.EditMode = false;
+            _v_AddProduct.button_linkedProducts.Enabled = AddProductViewBindingObj.EditMode;
+            _v_AddProduct.label_linkProducts.Text = "First create product, then add linked products composing in this product";
+            //_v_AddProduct.labe
             AddProductViewBindingObj.SetPropertyReadOnly("InHouseCode", false);
             AddProductViewBindingObj.SetPropertyReadOnly("PrimaryImage", false);
             AddProductViewBindingObj.SetPropertyReadOnly("Image2", false);
@@ -51,10 +54,11 @@ namespace SellerSense.ViewManager
 
 
         //edit mode
-        internal VM_AddProduct(AddProduct v_addproduct, M_Product.ProductEntry _m_productModelEntry,
+        internal VM_AddProduct(AddProduct v_addproduct, M_Product m_Product, M_Product.ProductEntry _m_productModelEntry,
             Dictionary<string, Image> images, string companyCode)
         {
             _images = images;
+            _m_Product = m_Product;
             //_v_AddProduct = v_addproduct;
             AssignViewManager(v_addproduct);
             AddProductViewBindingObj = new AddProductView();
@@ -65,6 +69,7 @@ namespace SellerSense.ViewManager
             //AddProductViewBindingObj.SetPropertyReadOnly("Image4", true);
 
             AddProductViewBindingObj.EditMode = true;
+            _v_AddProduct.button_linkedProducts.Enabled = AddProductViewBindingObj.EditMode;
             AddProductViewBindingObj.Name = _m_productModelEntry.Title;
             AddProductViewBindingObj.Tag = _m_productModelEntry.Tag;
             AddProductViewBindingObj.Description = _m_productModelEntry.Description;
@@ -102,11 +107,19 @@ namespace SellerSense.ViewManager
                 if (pi.DialogResult == DialogResult.OK && pi._isImg4)
                     AddProductViewBindingObj.Image4 = pi._image;
             };
+
+            _v_AddProduct.button_linkedProducts.Click += (s, e) => { //Linked products form here
+                //_m_Product
+                LinkedProducts linkedProducts = new LinkedProducts();
+                VM_LinkedProducts vM_LinkedProducts = new VM_LinkedProducts(AddProductViewBindingObj, _m_Product, _images);
+                vM_LinkedProducts.AssignViewManager(linkedProducts);
+                linkedProducts.ShowDialog();
+            };
             _v_AddProduct.button_cancel.Click += (s, e) => {
                 _v_AddProduct.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 _v_AddProduct.Close(); };
             _v_AddProduct.button_ok.Click += (s, e) => {
-                if (!ValidateForm())
+                if(!_v_AddProduct.checkBox_markForDeletion.Checked && !ValidateForm() )
                     return;
                 _v_AddProduct.DialogResult = System.Windows.Forms.DialogResult.OK;
                 _v_AddProduct.Close(); };

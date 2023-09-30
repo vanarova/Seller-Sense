@@ -89,6 +89,18 @@ namespace SellerSense.Helper
            
         }
 
+        internal static async Task TelegramDocument(string filePath, string fileName,
+           LogLevel logLevel, string companyCode = "")
+        {
+            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
+                return;
+            if ((int)_logLevel < (int)logLevel)
+                return;
+
+            await Messenger.SendTelegramFile(_botToken, _chatId,  filePath, fileName, _TelegramlogDepth);
+
+        }
+
 
 
         internal static void Log(string companyCode, string message, LogLevel logLevel)

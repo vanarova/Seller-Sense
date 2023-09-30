@@ -123,7 +123,7 @@ namespace TelegramBot
                 string apiUrl = $"https://api.telegram.org/bot{botToken}/sendDocument";
                 var content = new MultipartFormDataContent();
                 content.Add(new StringContent(chatId.ToString()), "chat_id");
-                content.Add(new ByteArrayContent(File.ReadAllBytes(filePath)), "document", fileName);
+                content.Add(new ByteArrayContent(File.ReadAllBytes(Path.Combine(filePath,fileName))), "document", fileName);
 
                 HttpResponseMessage response = await client.PostAsync(apiUrl, content);
                 string responseContent = await response.Content.ReadAsStringAsync();

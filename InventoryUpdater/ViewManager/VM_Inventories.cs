@@ -346,7 +346,7 @@ namespace SellerSense.ViewManager
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.FlipkartCount)
                {
                    //if non-numeric value is entered by user.
-                   if (!int.TryParse(list[e.NewIndex].AmazonCount, out int i)) { (new AlertBox("Wrong Input", "Only numeric values are allowed")).ShowDialog(); return; }
+                   if (!int.TryParse(list[e.NewIndex].FlipkartCount, out int i)) { (new AlertBox("Wrong Input", "Only numeric values are allowed")).ShowDialog(); return; }
                    string asin = list[e.NewIndex].FlipkartCode;
                    var invobj = _m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList.FirstOrDefault(x => x.fsn == asin);
                    if (invobj != null)

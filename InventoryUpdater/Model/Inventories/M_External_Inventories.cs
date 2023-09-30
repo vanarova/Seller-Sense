@@ -1,5 +1,7 @@
 ﻿using Decoders;
+using Decoders.Interfaces;
 using SellerSense.Model;
+using SellerSense.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,8 +77,13 @@ namespace SellerSense.Model
         internal void ImportFlipkartInventoryFile(string fileName)
         {
             if (_fkImportedInventoryList._fkInventoryList.Count > 0)
-                _fkImportedInventoryList._fkInventoryList.Clear();
-            _fkImportedInventoryList._fkInventoryList = FlipkartInvDecoder.GetData(fileName);
+            _fkImportedInventoryList._fkInventoryList.Clear();
+            //List<IFkInventoryV2> _fkInventoryListV2  = FlipkartInvDecoder.GetDataV2(fileName, out string errorV2);
+            _fkImportedInventoryList._fkInventoryList = FlipkartInvDecoder.GetDataV2(fileName, out string error);
+            if (!string.IsNullOrEmpty(error)) { AlertBox ab = new AlertBox("Error accessing inventory file", 
+                "Error accessing inventory file, Please check file might be open in another software or it is locked/ in-accesible",true);
+                ab.ShowDialog();
+            }
         }
 
 

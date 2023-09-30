@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using SellerSense.Helper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -47,7 +48,7 @@ namespace SellerSense.Model.InvUpdate
 
 
 
-        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IFkInventory> _fkInventoryList)
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IFkInventoryV2> _fkInventoryList)
         {
             if(_invSnapshotEntries.Count > 0)
                 _invSnapshotEntries.Clear();
@@ -159,10 +160,18 @@ namespace SellerSense.Model.InvUpdate
 
         private string GetTodaysLastSavedInvSnapshotFileName()
         {
+            //var today = DateTime.Today;
+            //SortedList<
             GetSortedSnapshotsList();
             if (_sortedSnapShorts != null && _sortedSnapShorts.Count > 0)
             {
-               return _sortedSnapShorts.Values[_sortedSnapShorts.Count-1];
+                var todaySnps = _sortedSnapShorts.Select(x => x.Key).
+                        Where(d =>  (DateTime.Today.Date == d.Date)).ToList<DateTime>();
+                //SortedList<DateTime> sortaedList = todaySnps.OrderByDescending(x => x.Date);
+                if(todaySnps.Count>0)
+                    return _sortedSnapShorts[todaySnps[todaySnps.Count-1]];
+                else
+                    return string.Empty;
             }
             else return String.Empty;
         }
@@ -191,7 +200,7 @@ namespace SellerSense.Model.InvUpdate
                         minYesterdaysSnps = yesterdaysSnps.Min();
                     }                }
                 if (notFound)
-                { MessageBox.Show("No inventory snapshot found for last 7 days","Info", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+                { MessageBox.Show("No inventory snapshot found for last 7 days, company:"+ _companyCode,"Info", MessageBoxButtons.OK, MessageBoxIcon.Information); 
                     return string.Empty; }
                 return _sortedSnapShorts[minYesterdaysSnps];
             }

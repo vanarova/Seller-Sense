@@ -116,16 +116,29 @@
     <Compile Include="ViewManager\Interfaces\IManageUserControl.cs" />
     <Compile Include="ViewManager\VM_AddProduct.cs" />
     <Compile Include="ViewManager\VM_Inventories.CmpSnapShot.cs" />
+    <Compile Include="ViewManager\VM_LinkedProducts.cs" />
     <Compile Include="ViewManager\VM_Products.cs" />
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="ViewManager\VM_Reports.cs" />
     <Compile Include="ViewManager\VM_TelegramSetup.cs" />
+    <Compile Include="Views\AddEditProduct\AddLinkedProduct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\AddLinkedProduct.Designer.cs">
+      <DependentUpon>AddLinkedProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddEditProduct\AddProduct.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\AddEditProduct\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\LinkedProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\LinkedProducts.Designer.cs">
+      <DependentUpon>LinkedProducts.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\AddEditProduct\PasteImage.cs">
       <SubType>Form</SubType>
@@ -248,8 +261,14 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddEditProduct\AddLinkedProduct.resx">
+      <DependentUpon>AddLinkedProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\AddEditProduct\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddEditProduct\LinkedProducts.resx">
+      <DependentUpon>LinkedProducts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AddEditProduct\PasteImage.resx">
       <DependentUpon>PasteImage.cs</DependentUpon>

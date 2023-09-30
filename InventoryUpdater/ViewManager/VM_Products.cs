@@ -295,7 +295,7 @@ namespace SellerSense.ViewManager
                 if (prod == null)
                     return;
                 AddProduct _v_addproduct = new AddProduct(true);
-                VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct, prod, _images, _code);
+                VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct,_m_product, prod, _images, _code);
                 if (_v_addproduct.ShowDialog() == DialogResult.OK)
                 {
                     if (vm_addProduct.MarkedForDeletion)

@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace PrimitiveExt
 {
+    /// <summary>
+    /// This extends C# List type, adds events to list, item added and remove event
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class EventList<T> : IList<T>
     {
         private readonly List<T> _list;
