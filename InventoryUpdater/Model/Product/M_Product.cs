@@ -273,7 +273,13 @@ namespace SellerSense.Model
                     LinkedProduct = new List<LinkedProduct>();
             }
 
-            
+            public bool IsComposedOfLinkedProducts()
+            {
+                if (LinkedProduct != null && LinkedProduct.Count > 0)
+                    return true;
+                else
+                    return false;
+            }
 
         }
     }

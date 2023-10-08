@@ -49,6 +49,7 @@
 // while copmparing snapshots, all snapshots must be form same date, if they are not of same date, an warning alert should be shown to user,
 //that is is looking into wrong data, and he should download all snapshots every day.
 
-// Flipkart column headers are jumbled very often, try to find mapping from column headers.. write another decoder.
 
 // Inv updation is having issues, same product - cactus , when updated on HE, is not updated at CC. check.
+
+//in search ssgrd, remove TAG and change it to search by inhousecode,

@@ -156,6 +156,10 @@ namespace SellerSense.ViewManager
 
         public class CrossCompanyEvents
         {
+            public CrossCompanyEvents()
+            {
+                CrossCompanySharedInventoryUpdated?.Invoke(this, EventArgs.Empty);
+            }
             public event EventHandler CrossCompanySharedInventoryUpdated;
             public void InvokeCrossCompanySharedInventoryUpdated()
             {
