@@ -19,6 +19,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SellerSense.Constants;
+using static SellerSense.ViewManager.VM_Companies;
 using static SellerSense.ViewManager.VM_Company;
 using static SellerSense.ViewManager.VM_Products;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -39,17 +40,18 @@ namespace SellerSense.ViewManager
         private string _companyCode { get; set; }
         //internal DataSet _invUpdateGridData { get; set; }
         private InvCntrl _v_invCntrl;
+        //private Action InvokeUpdateInventoryInAllCompanies;
         private ssGridView<InventoryView> _ssGridView;
         private Action<Object, ListChangedEventArgs> _bindingListChanged;
         internal List<InventoryView> _inventoryViewList { get; set; }
         private VM_Companies.CrossCompanySharedWrapper _crossCompanySharedWrapper;
-        //private VM_Companies.CrossCompanyEvents _crossCompanyEvents;
+        private VM_Companies.CrossCompanyEvents _crossCompanyEvents;
 
         public VM_Inventories(M_External_Inventories inventories, M_Product m_product,
            VM_Companies.CrossCompanySharedWrapper crossCompanySharedWrapper, string companyCode,
             VM_Companies.CrossCompanyEvents crossCompanyEvents)
         {
-            //_crossCompanyEvents = crossCompanyEvents;
+            _crossCompanyEvents = crossCompanyEvents;
             _companyCode = companyCode;
             _crossCompanySharedWrapper = crossCompanySharedWrapper;
             _m_externalInventoriesModel = inventories;
@@ -60,9 +62,17 @@ namespace SellerSense.ViewManager
             _m_invSnapShotModel_Mso = new M_Snapshot(_companyCode, M_Snapshot.Site.mso);
             TranslateInvModelToInvView();
             HandleExternalInventoryImportEvents();
-            crossCompanyEvents.CrossCompanySharedInventoryUpdated += _crossCompanyEvents_CrossCompanySharedInventoryUpdated;
+            //InvokeUpdateInventoryInAllCompanies = UpdateInventoryInAllCompaniesAction;
+            //UpdateInventoryInAllCompaniesAction+=       
+            _crossCompanyEvents.CrossCompanySharedInventoryUpdated += (s, e) => { UpdateInvForThisCompany(); };
+            //crossCompanyEvents.CrossCompanySharedInventoryUpdated += _crossCompanyEvents_CrossCompanySharedInventoryUpdated;
         }
 
+        //This event handler is called for all companies, updates inv list, this is subscribed by each company in its CTOR
+        //private void _crossCompanyLinkedInventoryCount_UpdateInventoryInAllCompanies(VM_Companies s, EventArgs e)
+        //{
+        //    UpdateInvForThisCompany();
+        //}
 
         private void TranslateInvModelToInvView()
         {
@@ -85,11 +95,11 @@ namespace SellerSense.ViewManager
             }
         }
 
-        private void _crossCompanyEvents_CrossCompanySharedInventoryUpdated(object sender, EventArgs e)
-        {
-            _inventoryViewList.ForEach(x => x.InHouseCount =
-            _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(x.InHouseCode).ToString());
-        }
+        //private void _crossCompanyEvents_CrossCompanySharedInventoryUpdated(object sender, EventArgs e)
+        //{
+        //    _inventoryViewList.ForEach(x => x.InHouseCount =
+        //    _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(x.InHouseCode).ToString());
+        //}
     
 
         public void AssignViewManager(UserControl ssGrid)
@@ -389,6 +399,194 @@ namespace SellerSense.ViewManager
 
         }
 
+
+        private void UpdateInvForThisCompany()
+        {
+            //First add all counts to chared inv
+            foreach (var item in _inventoryViewList)
+            {
+                int.TryParse(item.AmazonCount, out int acount);
+                int.TryParse(item.FlipkartCount, out int fcount);
+                int.TryParse(item.SnapdealCount, out int scount);
+                int.TryParse(item.MeeshoCount, out int mcount);
+                int.TryParse(item.InHouseCount, out int hcount);
+                _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.AddToSharedInventory(item.InHouseCode, acount, fcount, scount, mcount);
+            }
+
+            foreach (var item in _inventoryViewList)
+            {
+                //Update and sum counts for this product in all companies
+                item.InHouseCount = _crossCompanySharedWrapper.
+                    _crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(item.InHouseCode).ToString();
+            }
+        }
+
+
+        private void UpdateComposedChildProducts(string inHouseCode)
+        {
+            bool thisIsACompositionProduct = false;int index = 0;
+            //Determine, if this inhousecode is a composition product or not.
+            var thisProduct = _m_productModel._productEntries.Find(x => x.InHouseCode == inHouseCode);
+            if (thisProduct == null)
+            { Logger.Log("Cant find product in products list, func: UpdateInhouseInventory", Logger.LogLevel.error, false); return; }
+            if (thisProduct != null && thisProduct.LinkedProduct != null && thisProduct.LinkedProduct.Count > 0)
+                thisIsACompositionProduct = true;
+            if (thisIsACompositionProduct)
+            {
+                //find child products in bindingList and call func recursively
+                            //List<int> childLinkedProducts = new List<int>();
+                List<ChildLinkedProducts> childLinkedProducts = new List<ChildLinkedProducts>();
+                //var thisItemHasLinkedProducts = _m_productModel._productEntries.Find(x => x.InHouseCode == inHouseCode);
+                foreach (var linkedItem in thisProduct.LinkedProduct)
+                {
+                    for (int i = 0; i < _inventoryViewList.Count; i++)
+                    {
+                        if (_inventoryViewList[i].InHouseCode == linkedItem.InHouseCode)
+                        {
+                            int.TryParse(linkedItem.LinkQty, out int linkQty);
+                            if(childLinkedProducts.FirstOrDefault(x=>x.IndexInBindingList == i) == null)
+                                childLinkedProducts.Add(new ChildLinkedProducts(i, linkQty));
+                            //update and cum counts for each child product in all companies.
+                            //UpdateInhouseInventory(list, i, linkedItem.InHouseCode, false);
+                            break;
+                        }
+                    }
+                }
+                int.TryParse(_inventoryViewList[index].InHouseCount, out int p);
+                //int.TryParse(list[index]., out int linkQuantity);
+                foreach (var childProdIndex in childLinkedProducts)
+                {
+                    //int.TryParse(childProdIndex.LinkQty, out int linkQuantity);
+                    int.TryParse(_inventoryViewList[childProdIndex.IndexInBindingList].InHouseCount, out int c);
+                    _inventoryViewList[childProdIndex.IndexInBindingList].InHouseCount = (c + (p * childProdIndex.LinkQty)).ToString();
+                }
+            }
+        }
+
+        private void AddToCommonSharedInvForThisCompany()
+        {
+            //First add all counts to chared inv
+            foreach (var item in _inventoryViewList)
+            {
+                int.TryParse(item.AmazonCount, out int acount);
+                int.TryParse(item.FlipkartCount, out int fcount);
+                int.TryParse(item.SnapdealCount, out int scount);
+                int.TryParse(item.MeeshoCount, out int mcount);
+                int.TryParse(item.InHouseCount, out int hcount);
+                _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.AddToSharedInventory(item.InHouseCode, acount, fcount, scount, mcount);
+            }
+            //update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
+            //if (string.IsNullOrWhiteSpace(invViewList[index].InHouseCount)) invViewList[index].InHouseCount = "0";
+            //int.TryParse(invViewList[index].AmazonCount, out int acount);
+            //int.TryParse(invViewList[index].FlipkartCount, out int fcount);
+            //int.TryParse(invViewList[index].SnapdealCount, out int scount);
+            //int.TryParse(invViewList[index].MeeshoCount, out int mcount);
+            //int.TryParse(invViewList[index].InHouseCount, out int hcount);
+
+
+            ///_crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.AddToSharedInventory(inHouseCode, acount, fcount, scount, mcount);
+
+           
+
+            //_crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdated();
+            ////Update and sum counts for this product in all companies
+            //invViewList[index].InHouseCount = _crossCompanySharedWrapper.
+            //    _crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(inHouseCode).ToString();
+
+
+            ////Here calculate inventory for Composition products,,
+            ///Add inventory for all parent products for composed-in products. Thats it.
+
+            //Determine, if this inhousecode is a composition product or not.
+            //var thisProduct = _m_productModel._productEntries.Find(x => x.InHouseCode == inHouseCode);
+            //if (thisProduct == null)
+            //{ Logger.Log("Cant find product in products list, func: UpdateInhouseInventory", Logger.LogLevel.error, false); return; }
+            //if (thisProduct != null && thisProduct.LinkedProduct != null && thisProduct.LinkedProduct.Count > 0)
+            //    thisIsACompositionProduct = true;
+
+            //if (updateLinkedProds)
+            //{
+            //    //if (!thisIsACompositionProduct)
+            //    //{
+            //    //    //First update inventory for parent product, who is having, this function's input product as linked product
+            //    //    foreach (var parentProduct in _m_productModel._productEntries)
+            //    //    {
+            //    //        if (parentProduct.LinkedProduct != null && parentProduct.LinkedProduct.Count > 0)
+            //    //        {
+            //    //            var thisLinkProductFoundInAnotherProduct = parentProduct.LinkedProduct.Find(x => x.InHouseCode == inHouseCode);
+            //    //            if (thisLinkProductFoundInAnotherProduct != null)
+            //    //            {
+            //    //                int.TryParse(thisLinkProductFoundInAnotherProduct.LinkQty, out int linkQuantity);
+            //    //                //find parent product in bindingList and call func recursively
+            //    //                int indexOfParentProductInBindingList = -1;
+            //    //                for (int i = 0; i < list.Count; i++)
+            //    //                {
+            //    //                    if (list[i].InHouseCode == parentProduct.InHouseCode)
+            //    //                    { indexOfParentProductInBindingList = i; break; }
+            //    //                }
+            //    //                if (indexOfParentProductInBindingList > -1)
+            //    //                {
+            //    //                    //update and sum parents count
+            //    //                    UpdateInhouseInventory(list, indexOfParentProductInBindingList, parentProduct.InHouseCode, false);
+            //    //                    //update and sum child component, is already done in begining of this function.
+            //    //                    int.TryParse(list[index].InHouseCount, out int c);
+            //    //                    int.TryParse(list[indexOfParentProductInBindingList].InHouseCount, out int p);
+            //    //                    //sum child + parents inv counts 
+            //    //                    list[index].InHouseCount = (c + (p * linkQuantity)).ToString();
+            //    //                }
+            //    //            }
+            //    //            ////list[index].InHouseCount= list[index].InHouseCount + item.inhou
+            //    //        }
+            //    //    }
+            //    //}
+
+            //    //if (thisIsACompositionProduct)
+            //    //{
+            //    //    //If child product of this product is having linked products:
+            //    //    var thisItemHasLinkedProducts = _m_productModel._productEntries.Find(x => x.InHouseCode == inHouseCode);
+            //    //    if (thisItemHasLinkedProducts != null && thisItemHasLinkedProducts.LinkedProduct != null
+            //    //        && thisItemHasLinkedProducts.LinkedProduct.Count > 0)
+            //    //    {
+
+            //    //        //find child products in bindingList and call func recursively
+            //    //        //List<int> childLinkedProducts = new List<int>();
+            //    //        List<ChildLinkedProducts> childLinkedProducts = new List<ChildLinkedProducts>();
+            //    //        foreach (var linkedItem in thisItemHasLinkedProducts.LinkedProduct)
+            //    //        {
+            //    //            for (int i = 0; i < list.Count; i++)
+            //    //            {
+            //    //                if (list[i].InHouseCode == linkedItem.InHouseCode)
+            //    //                {
+            //    //                    int.TryParse(linkedItem.LinkQty, out int linkQty);
+            //    //                    childLinkedProducts.Add(new ChildLinkedProducts(i, linkQty));
+            //    //                    //update and cum counts for each child product in all companies.
+            //    //                    UpdateInhouseInventory(list, i, linkedItem.InHouseCode, false);
+            //    //                    break;
+            //    //                }
+            //    //            }
+            //    //        }
+            //    //        int.TryParse(list[index].InHouseCount, out int p);
+            //    //        //int.TryParse(list[index]., out int linkQuantity);
+            //    //        foreach (var childProdIndex in childLinkedProducts)
+            //    //        {
+            //    //            //int.TryParse(childProdIndex.LinkQty, out int linkQuantity);
+            //    //            int.TryParse(list[childProdIndex.IndexInBindingList].InHouseCount, out int c);
+            //    //            list[childProdIndex.IndexInBindingList].InHouseCount = (c + (p * childProdIndex.LinkQty)).ToString();
+            //    //        }
+
+            //    //        //if (indexOfProductInBindingList > -1)
+            //    //        //{ 
+
+            //    //        //}
+
+            //    //    }
+            //    //}
+            //}
+
+
+
+        }
+
         private class ChildLinkedProducts
         {
             internal int IndexInBindingList;
@@ -405,12 +603,10 @@ namespace SellerSense.ViewManager
 
         private void EngageCellEvents()
         {
-           _bindingListChanged = (s, e) => {
+            if (_bindingListChanged == null)
+            {
+                _bindingListChanged = (s, e) => {
                var list = s as BindingList<InventoryView>;
-
-               //update when system count is assigned
-               //if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.AmazonSystemCount)
-               //    UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
 
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.AmazonCount)
                {
@@ -428,21 +624,16 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].AmazonSystemCount.ToString(),
                            list[e.NewIndex].AmazonCount.ToString());
                        _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
-                       //Update snapshot collection as well..
-                       //var snapshotObj =_m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.ACode == invobj.asin);
-                       //if(snapshotObj != null)
-                       //{
-                       //    snapshotObj.AInv = list[e.NewIndex].AmazonCount.ToString();
-                       //    snapshotObj.ASystemInv = list[e.NewIndex].AmazonSystemCount.ToString();
-                       //}
-                       UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
-                       ////update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
-                       //if(string.IsNullOrWhiteSpace(list[e.NewIndex].InHouseCount)) list[e.NewIndex].InHouseCount = "0";
-                       //int.TryParse(list[e.NewIndex].AmazonCount, out int acount);
-                       //int.TryParse(list[e.NewIndex].FlipkartCount, out int fcount);
-                       //int.TryParse(list[e.NewIndex].SnapdealCount, out int scount);
-                       //int.TryParse(list[e.NewIndex].MeeshoCount, out int mcount);
-                       //list[e.NewIndex].InHouseCount = (acount+ fcount + scount + mcount).ToString();
+                            //This is important to update inventory for this company first,
+                            //then update other companies. Else other company wont reflect changes made in currnt company
+                            UpdateInvForThisCompany();
+                            _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
+                            foreach (var item in _inventoryViewList)
+                                UpdateComposedChildProducts(item.InHouseCode);
+                            //UpdateComposedChildProducts(list[e.NewIndex].InHouseCode);
+                            _ssGridView.UpdateBindings();
+                       //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
+                      
                    }
                }
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.FlipkartCount)
@@ -460,18 +651,11 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].FlipkartSystemCount.ToString(),
                            list[e.NewIndex].FlipkartCount.ToString());
                        _m_externalInventoriesModel._fkImportedInventoryList._fkUIModifiedInvList.Add(iamz);
-
-                       //var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.FCode == invobj.fsn);
-                       //if (snapshotObj != null)
-                       //{
-                       //    snapshotObj.FInv = list[e.NewIndex].FlipkartCount.ToString();
-                       //    snapshotObj.FSystemInv = list[e.NewIndex].FlipkartSystemCount.ToString();
-                       //}
-                       UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
-                       ////update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
-                       //if (string.IsNullOrWhiteSpace(list[e.NewIndex].InHouseCount)) list[e.NewIndex].InHouseCount = "0";
-                       //list[e.NewIndex].InHouseCount = (int.Parse(list[e.NewIndex].InHouseCount) + int.Parse(list[e.NewIndex].FlipkartCount)).ToString();
-                   }
+                            UpdateInvForThisCompany();
+                            _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
+                            _ssGridView.UpdateBindings();
+                            //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
+                        }
                }
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.SnapdealCount)
                {
@@ -488,18 +672,11 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].SnapdealSystemCount.ToString(),
                            list[e.NewIndex].SnapdealCount.ToString());
                        _m_externalInventoriesModel._spdImportedInventoryList._spdUIModifiedInvList.Add(iamz);
-
-                       //var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.SCode == invobj.fsn);
-                       //if (snapshotObj != null)
-                       //{
-                       //    snapshotObj.SInv = list[e.NewIndex].SnapdealCount.ToString();
-                       //    snapshotObj.SSystemInv = list[e.NewIndex].SnapdealSystemCount.ToString();
-                       //}
-                       UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
-                       //update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
-                       //if (string.IsNullOrWhiteSpace(list[e.NewIndex].InHouseCount)) list[e.NewIndex].InHouseCount = "0";
-                       //list[e.NewIndex].InHouseCount = (int.Parse(list[e.NewIndex].InHouseCount) + int.Parse(list[e.NewIndex].SnapdealCount)).ToString();
-                   }
+                            UpdateInvForThisCompany();
+                            _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
+                            _ssGridView.UpdateBindings();
+                            //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
+                        }
                }
                if (e != null && e.PropertyDescriptor != null && e.PropertyDescriptor.Name == Constants.InventoryViewCols.MeeshoCount)
                {
@@ -516,22 +693,16 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].MeeshoSystemCount.ToString(),
                            list[e.NewIndex].MeeshoCount.ToString());
                        _m_externalInventoriesModel._msoImportedInventoryList._msoUIModifiedInvList.Add(iamz);
-                   }
-
-                   //var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.MCode == invobj.fsn);
-                   //if (snapshotObj != null)
-                   //{
-                   //    snapshotObj.MInv = list[e.NewIndex].MeeshoCount.ToString();
-                   //    snapshotObj.MSystemInv = list[e.NewIndex].MeeshoSystemCount.ToString();
-                   //}
-                   UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
-                   ////update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
-                   //if (string.IsNullOrWhiteSpace(list[e.NewIndex].InHouseCount)) list[e.NewIndex].InHouseCount = "0";
-                   //list[e.NewIndex].InHouseCount = (int.Parse(list[e.NewIndex].InHouseCount) + int.Parse(list[e.NewIndex].MeeshoCount)).ToString();
+                            UpdateInvForThisCompany();
+                            _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate(); 
+                            _ssGridView.UpdateBindings();
+                        }
+                 
+                   //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
                }
-
-               //_m_invSnapShotModel.SaveInvSnapshot();
            };
+            }
+
             _ssGridView.BindingListChanged += _bindingListChanged;
         }
 
@@ -564,9 +735,11 @@ namespace SellerSense.ViewManager
             _ssGridView.IsLoading = true;
             await AssignAmazonInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            //below event will call all inv update functions in all companies
+            _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Amz.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
-            //Here update inhouse invs -------
+            
             EngageCellEvents();
             //foreach (var item in list)
             //{
@@ -587,8 +760,11 @@ namespace SellerSense.ViewManager
             _ssGridView.IsLoading = true;
             await AssignFlipkartInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            //below event will call all inv update functions in all companies
+            _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Fk.SaveInvSnapshot(_m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList);
+            
             EngageCellEvents() ;    
         }
 
@@ -604,8 +780,10 @@ namespace SellerSense.ViewManager
             _ssGridView.IsLoading = true;
             await AssignSnapdealInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList);
+            
             EngageCellEvents();
         }
 
@@ -621,8 +799,10 @@ namespace SellerSense.ViewManager
             _ssGridView.IsLoading = true;
             await AssignMeeshoInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Mso.SaveInvSnapshot(_m_externalInventoriesModel._msoImportedInventoryList._msoInventoryList);
+            
             EngageCellEvents();
         }
 

@@ -20,6 +20,7 @@ using System.Windows.Forms;
 
 namespace SellerSense.ViewManager
 {
+    //
     /// <summary>
     /// This is view manager class, manages all events and logic for one view tree.
     /// One form with all child user controls, are managed by one view manager, this VM manages product form 
@@ -330,11 +331,7 @@ namespace SellerSense.ViewManager
                 {
                     if(p.InHouseCode == m.InHouseCode)
                     {
-                        //(string primaryImage, string image2, 
-                        //    string image3, string image4, string mrp, 
-                        //    string sellingPrice, string weight, 
-                        //    string weightAfterPackaging, string dimensionsAfterPackaging, 
-                        //    string dimensionsBeforePackaging) value = p.GetInvisibleColumnsFields();
+                        
                         m.SnapdealCode = p.SnapdealCode;
                         m.FlipkartCode = p.FlipkartCode;
                         m.Notes = p.Notes;
@@ -343,17 +340,7 @@ namespace SellerSense.ViewManager
                         m.Tag = p.Tag;
                         m.AmazonCode = p.AmazonCode;
                         m.MeeshoCode = p.MeeshoCode;
-                        //m.Description = p.Description;
-                        //m.MRP = value.mrp;
-                        //m.DimensionsAfterPackaging = value.dimensionsAfterPackaging;
-                        //m.DimensionsBeforePackaging = value.dimensionsBeforePackaging;
-                        //m.SellingPrice = value.sellingPrice;
-                        //m.Weight = value.weight;
-                        //m.Image = value.primaryImage;
-                        //m.ImageAlt1 = value.image2;
-                        //m.ImageAlt2 = value.image3;
-                        //m.ImageAlt3 = value.image4;
-                        //m.WeightAfterPackaging = value.weightAfterPackaging;
+                        
                     }
                 }
 
@@ -361,25 +348,7 @@ namespace SellerSense.ViewManager
             _m_product.SaveMapFile();
         }
 
-        //private void UpdateFromProductModelToProductsView()
-        //{
-
-        //    foreach (var item in _m_product._productEntries)
-        //    {
-        //        (_, Image img) = ProjIO.LoadImageAndDownSize75x75(item.Image);
-        //        _vm_productsView.Add(new ProductView(
-        //            item.InHouseCode,
-        //            img, 
-        //            item.Title,
-        //            item.Tag,
-        //            item.Description,
-        //            item.AmazonCode,
-        //            item.FlipkartCode,
-        //            item.SnapdealCode,
-        //            item.MeeshoCode,
-        //            item.Notes));
-        //    }
-        //}
+        
 
         private void FillFromProductModelToProductsViewWithoutImages()
         {
@@ -397,9 +366,7 @@ namespace SellerSense.ViewManager
                     item.SnapdealCode,
                     item.MeeshoCode,
                     item.Notes);
-                //prod.AddInvisibleColumnsFields(item.Image, item.ImageAlt1, item.ImageAlt2, item.ImageAlt3,
-                //    item.MRP, item.SellingPrice, item.Weight, item.WeightAfterPackaging, item.DimensionsAfterPackaging,
-                //    item.DimensionsBeforePackaging);
+               
                 _vm_productsView.Add(prod);
 
 
@@ -450,15 +417,7 @@ namespace SellerSense.ViewManager
                 if (amzCol || spdCol || fkCol || msoCol )//|| titleCol)
                 {
                     datagrid.SelectedCells[0].Value = string.Empty;
-                    //var r_item =  _m_product._productEntries.FirstOrDefault(i=>i.InHouseCode == datagrid.SelectedCells[0].OwningRow.Cells[Constants.PCols.BaseCodeValue].Value.ToString());
-                    //if (r_item!=null && amzCol)
-                    //    r_item.AmazonCode = String.Empty;
-                    //if (r_item != null && spdCol)
-                    //    r_item.SnapdealCode = String.Empty;
-                    //if (r_item != null && fkCol)
-                    //    r_item.FlipkartCode = String.Empty;
-                    //if (r_item != null && msoCol)
-                    //    r_item.MeeshoCode = String.Empty;
+                    
                 }
                 e.SuppressKeyPress = true;
             }
@@ -551,11 +510,7 @@ namespace SellerSense.ViewManager
             try
             {
                 _images = imgs;
-                //foreach (var item in _m_product._productEntries)
-                //{
-                //    if (imgs.ContainsKey(item.InHouseCode))
-                //        item.Image = imgs[item.InHouseCode];
-                //}
+               
                 foreach (var item in _vm_productsView)
                 {
                     if (imgs.ContainsKey(item.InHouseCode))
@@ -563,6 +518,7 @@ namespace SellerSense.ViewManager
                 }
             }
             catch(Exception e) {
+                Logger.Log("Not able to assign image, AssignImagesToProducts()", Logger.LogLevel.error, false);
             }
 
         }
@@ -575,18 +531,7 @@ namespace SellerSense.ViewManager
         //It is filled by iterating on Product model, any changes will be saved back into product model.
         internal class ProductView :INotifyPropertyChanged
         {
-            //Below are invisible columns, marked as private, private fields are not visible while binding to datagrid.
-            //private string PrimaryImage;
-            //private string Image2;
-            //private string Image3;
-            //private string Image4;
-            //private string MRP;
-            //private string SellingPrice;
-            //private string Weight;
-            //private string WeightAfterPackaging;
-            //private string DimensionsAfterPackaging;
-            //private string DimensionsBeforePackaging;
-
+            
 
             //bacling fields
             private string _inHouseCode;
@@ -610,6 +555,12 @@ namespace SellerSense.ViewManager
             private string _notes;
             public string Notes { get { return _notes; } set { _notes = value; } }
 
+            ////optional columns, added on users request only
+            //private string _itemWeight;
+            //public string ItemWeight   {   get { return _itemWeight; }  set { _itemWeight = value; }
+            //}
+
+
             public event PropertyChangedEventHandler PropertyChanged;
 
             // This method is called by the Set accessor of each property.  
@@ -620,54 +571,6 @@ namespace SellerSense.ViewManager
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
 
-            //internal void AddInvisibleColumnsFields(string primaryImage,string  image2,string image3,string image4,
-            //    string mrp, string sellingPrice, string weight,string weightAfterPackaging, string dimensionsAfterPackaging,
-            //    string dimensionsBeforePackaging)
-            //{ 
-            //    PrimaryImage = primaryImage;
-            //    Image2 = image2;
-            //    Image3 = image3;
-            //    Image4 = image4;
-            //    MRP = mrp;
-            //    SellingPrice = sellingPrice;
-            //    Weight = weight;
-            //    WeightAfterPackaging = weightAfterPackaging;
-            //    DimensionsAfterPackaging = dimensionsAfterPackaging;
-            //    DimensionsBeforePackaging = dimensionsBeforePackaging;
-
-            //}
-
-            //internal void AddInvisibleColumnsFieldsWithoutImages(
-            //    string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
-            //    string dimensionsBeforePackaging)
-            //{
-               
-            //    MRP = mrp;
-            //    SellingPrice = sellingPrice;
-            //    Weight = weight;
-            //    WeightAfterPackaging = weightAfterPackaging;
-            //    DimensionsAfterPackaging = dimensionsAfterPackaging;
-            //    DimensionsBeforePackaging = dimensionsBeforePackaging;
-
-            //}
-
-
-            //internal (string primaryImage, string image2, string image3, string image4,
-            //    string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
-            //    string dimensionsBeforePackaging) GetInvisibleColumnsFields()
-            //{
-            //    return (PrimaryImage, Image2, Image3, Image4, MRP, SellingPrice, Weight, WeightAfterPackaging,
-            //        DimensionsAfterPackaging, DimensionsBeforePackaging);
-
-            //}
-
-            //// This method is called by the Set accessor of each property.  
-            //// The CallerMemberName attribute that is applied to the optional propertyName  
-            //// parameter causes the property name of the caller to be substituted as an argument.  
-            //private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-            //{
-            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            //}
 
             public ProductView(string baseCodeValue, Image img, string title, string tag, string desc,
                 string amzInventory, string fkCodeValue, string spdCodeValue,

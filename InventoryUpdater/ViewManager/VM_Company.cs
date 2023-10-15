@@ -35,7 +35,7 @@ namespace SellerSense.ViewManager
 
         public VM_Company(string name, string code, 
             VM_Companies.CrossCompanySharedWrapper crossCompanySharedWrapper, 
-            VM_Companies.CrossCompanyEvents crossCompanyEvents)
+            VM_Companies.CrossCompanyEvents _crossCompanyEvents)
         {
             _name = name;
             _code = code;
@@ -44,7 +44,7 @@ namespace SellerSense.ViewManager
             _inventoriesModel = new M_External_Inventories();
             _product_Model = new M_Product(_code);
             _inventoriesViewManager = new VM_Inventories(_inventoriesModel, _product_Model,
-                crossCompanySharedWrapper, _code, crossCompanyEvents);
+                crossCompanySharedWrapper, _code, _crossCompanyEvents);
             _productsViewManager = new VM_Products(_product_Model, _inventoriesModel, _code);
         }
 

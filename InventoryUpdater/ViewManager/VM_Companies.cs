@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SellerSense.Model.Reports;
+using static SellerSense.ViewManager.VM_Companies;
 
 namespace SellerSense.ViewManager
 {
@@ -18,6 +19,17 @@ namespace SellerSense.ViewManager
         private CrossCompanySharedWrapper _companiesSharedWrapper3;
         private CrossCompanySharedWrapper _companiesSharedWrapper4;
         private CrossCompanySharedWrapper _companiesSharedWrapper5;
+
+
+        //public event EventHandler UpdateInventoryInAllCompanies;
+        //private Action InvokeInventoryUpdate;
+
+        //public void InvokeInvUpdateEvent()
+        //{
+        //    UpdateInventoryInAllCompanies?.Invoke(this,EventArgs.Empty);
+        //}
+
+
         //private CrossCompanyLinkedInventoryCount _crossCompany1LinkedInventoryCount;
         //private CrossCompanyLinkedInventoryCount _crossCompany2LinkedInventoryCount;
         //private CrossCompanyLinkedInventoryCount _crossCompany3LinkedInventoryCount;
@@ -156,12 +168,12 @@ namespace SellerSense.ViewManager
 
         public class CrossCompanyEvents
         {
-            public CrossCompanyEvents()
-            {
-                CrossCompanySharedInventoryUpdated?.Invoke(this, EventArgs.Empty);
-            }
+            //public CrossCompanyEvents()
+            //{
+            //    CrossCompanySharedInventoryUpdated?.Invoke(this, EventArgs.Empty);
+            //}
             public event EventHandler CrossCompanySharedInventoryUpdated;
-            public void InvokeCrossCompanySharedInventoryUpdated()
+            public void InvokeCrossCompanySharedInventoryUpdate()
             {
                 CrossCompanySharedInventoryUpdated?.Invoke(this, EventArgs.Empty);
             }
@@ -171,7 +183,7 @@ namespace SellerSense.ViewManager
 
 
 
-
+        //IMP - this class is different for each company
         //wraps all cross company shared class objects
         public class CrossCompanySharedWrapper
         {
@@ -179,10 +191,35 @@ namespace SellerSense.ViewManager
             private VM_Companies _vm_companies;
             internal OrderStatusReportBuilder _orderReportBuilder;
 
+            
+
             //internal M_OrderStatusReport GetCrossCompanyDailyOrderReport()
             //{
             //    return _orderReportBuilder.WithTodaysOrderCount().Build();
             //}
+
+            //internal void UpdateCrossCompanyInv()
+            //{
+            //    var cmp0_invList = _vm_companies._companies[0]._inventoriesViewManager._inventoryViewList;
+            //    //First add all counts to shared inv
+            //    foreach (var item in cmp0_invList)
+            //    {
+            //        int.TryParse(item.AmazonCount, out int acount);
+            //        int.TryParse(item.FlipkartCount, out int fcount);
+            //        int.TryParse(item.SnapdealCount, out int scount);
+            //        int.TryParse(item.MeeshoCount, out int mcount);
+            //        int.TryParse(item.InHouseCount, out int hcount);
+            //        _crossCompanyLinkedInventoryCount.AddToSharedInventory(item.InHouseCode, acount, fcount, scount, mcount);
+            //    }
+
+            //    foreach (var item in cmp0_invList)
+            //    {
+            //        //Update and sum counts for this product in all companies
+            //        item.InHouseCount = _crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(item.InHouseCode).ToString();
+            //    }
+            //}
+
+
 
             internal M_OrderStatusReport GetCrossCompanyTodaysOrderReport()
             {
@@ -212,6 +249,7 @@ namespace SellerSense.ViewManager
             private IList<LinkedProductInventory> linkedInv { get; set; }
             private VM_Companies _vm_companies;
             //public event EventHandler SharedInventoryUpdated;
+            
 
             public CrossCompanyLinkedInventoryCount(VM_Companies _companies)
             {
@@ -252,7 +290,7 @@ namespace SellerSense.ViewManager
                     linkedInv.Add(inventory);
                 }
                 //SharedInventoryUpdated?.Invoke(this,null);
-                _vm_companies._crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdated();
+                //_vm_companies._crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdated();
             }
 
 

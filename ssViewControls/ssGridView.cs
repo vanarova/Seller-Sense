@@ -16,7 +16,7 @@ namespace ssViewControls
     /// <summary>
     /// Story:
     /// This view is created by using grid and other form controls, grid is binded with a binding list
-    /// This binding list contains 1 page at a time. Another collection in this page contains full list including all pages.
+    /// This binding list contains 1 page at a time. Anotherin collection in this page contains full list including all pages.
     /// Paging is implemented in this view, For all other logic a view manager is responsible.
     /// All the events are handled by view manager class : VM_[Class name]
     /// This view is used at multiple places in different forms, each managed by respective view managers
