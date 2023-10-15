@@ -18,21 +18,7 @@
     "FlipkartCode": "MLDGEUM8BPDUDAAK",
     "SnapdealCode": "SDL355835631",
     "MeeshoCode": "ay9S1EYN",
-    "Notes": "test ok",
-    "LinkedProduct": [
-      {
-        "InHouseCode": "AAB",
-        "LinkQty": "2"
-      },
-      {
-        "InHouseCode": "AAB",
-        "LinkQty": "2"
-      },
-      {
-        "InHouseCode": "AAK",
-        "LinkQty": "2"
-      }
-    ]
+    "Notes": "test ok"
   },
   {
     "InHouseCode": "AAB",
@@ -53,8 +39,7 @@
     "FlipkartCode": "MLDGFAFH4AHS5BUH",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAC",
@@ -63,10 +48,10 @@
     "ImageAlt2": "AAC_3.jpg",
     "ImageAlt3": null,
     "Title": "man body",
-    "Tag": "Candle",
-    "MRP": "2600",
-    "SellingPrice": "2600",
-    "Weight": "796",
+    "Tag": "test",
+    "MRP": "1234",
+    "SellingPrice": "1234",
+    "Weight": "123",
     "WeightAfterPackaging": null,
     "DimensionsBeforePackaging": null,
     "DimensionsAfterPackaging": null,
@@ -75,8 +60,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAD",
@@ -86,9 +70,9 @@
     "ImageAlt3": null,
     "Title": "balls",
     "Tag": "cube",
-    "MRP": "850",
-    "SellingPrice": "850",
-    "Weight": "300",
+    "MRP": null,
+    "SellingPrice": "500",
+    "Weight": "200",
     "WeightAfterPackaging": null,
     "DimensionsBeforePackaging": null,
     "DimensionsAfterPackaging": null,
@@ -97,17 +81,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": [
-      {
-        "InHouseCode": "AAU",
-        "LinkQty": "1"
-      },
-      {
-        "InHouseCode": "AAF",
-        "LinkQty": "2"
-      }
-    ]
+    "Notes": ""
   },
   {
     "InHouseCode": "AAE",
@@ -116,10 +90,10 @@
     "ImageAlt2": null,
     "ImageAlt3": null,
     "Title": "wool",
-    "Tag": "Candle",
-    "MRP": "999",
-    "SellingPrice": "999",
-    "Weight": "333",
+    "Tag": null,
+    "MRP": null,
+    "SellingPrice": null,
+    "Weight": null,
     "WeightAfterPackaging": null,
     "DimensionsBeforePackaging": null,
     "DimensionsAfterPackaging": null,
@@ -128,8 +102,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAF",
@@ -150,8 +123,7 @@
     "FlipkartCode": "MLDG75NZKBY9ZQVF",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAG",
@@ -159,11 +131,11 @@
     "ImageAlt1": null,
     "ImageAlt2": null,
     "ImageAlt3": null,
-    "Title": "woman nude torso",
-    "Tag": "candle",
-    "MRP": "850",
-    "SellingPrice": "850",
-    "Weight": "270",
+    "Title": "woman",
+    "Tag": null,
+    "MRP": null,
+    "SellingPrice": null,
+    "Weight": null,
     "WeightAfterPackaging": null,
     "DimensionsBeforePackaging": null,
     "DimensionsAfterPackaging": null,
@@ -172,8 +144,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAH",
@@ -194,8 +165,7 @@
     "FlipkartCode": "MLDGEETXZZBSSNTF",
     "SnapdealCode": "SDL264189414",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAI",
@@ -216,8 +186,7 @@
     "FlipkartCode": "MLDGEFFWVFZFYYT5",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAJ",
@@ -238,8 +207,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAK",
@@ -260,8 +228,7 @@
     "FlipkartCode": "MLDGEF2RGNGRGKSS",
     "SnapdealCode": "SDL301466026",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAL",
@@ -282,8 +249,7 @@
     "FlipkartCode": "MLDG75NSDFPNWTQR",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAM",
@@ -304,8 +270,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAN",
@@ -326,8 +291,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAO",
@@ -348,8 +312,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAP",
@@ -370,8 +333,7 @@
     "FlipkartCode": "MLDGEZ9QSYQT5QEA",
     "SnapdealCode": "SDL672342364",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAQ",
@@ -392,8 +354,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAR",
@@ -414,8 +375,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL266595859",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAS",
@@ -436,8 +396,7 @@
     "FlipkartCode": "MLDGEHA6N4BZKH97",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAT",
@@ -458,8 +417,7 @@
     "FlipkartCode": "MLDGEHABMDEWFGSN",
     "SnapdealCode": "SDL676479032",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAU",
@@ -480,8 +438,7 @@
     "FlipkartCode": "MLDGDYVZKNSJFE58",
     "SnapdealCode": "SDL665520152",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAV",
@@ -502,8 +459,7 @@
     "FlipkartCode": "MLDGEEY2FFHYGY3B",
     "SnapdealCode": "SDL304289632",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAW",
@@ -524,8 +480,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAX",
@@ -546,8 +501,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAY",
@@ -568,8 +522,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL272305735",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AAZ",
@@ -590,8 +543,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABA",
@@ -612,8 +564,7 @@
     "FlipkartCode": "MLDGEHBASAFYZBRZ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABB",
@@ -634,8 +585,7 @@
     "FlipkartCode": "MLDGDYVNJDAPQ5MX",
     "SnapdealCode": "SDL293050450",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABC",
@@ -656,8 +606,7 @@
     "FlipkartCode": "MLDGEHBGSSP9KZ7G",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABD",
@@ -678,8 +627,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABE",
@@ -700,8 +648,7 @@
     "FlipkartCode": "MLDG5W96WEAFAWWC",
     "SnapdealCode": "SDL334048280",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABF",
@@ -722,8 +669,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABG",
@@ -744,8 +690,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL353304144",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABH",
@@ -766,8 +711,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL006832450",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABI",
@@ -788,8 +732,7 @@
     "FlipkartCode": "MLDGF6KPAHGWJYCR",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABJ",
@@ -810,8 +753,7 @@
     "FlipkartCode": "MLDGCHDDHXTHQEZV",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABK",
@@ -832,8 +774,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABL",
@@ -854,8 +795,7 @@
     "FlipkartCode": "MLDGF6KPFCWFGGZW",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABM",
@@ -876,8 +816,7 @@
     "FlipkartCode": "MLDGF6KPJMH8FHEJ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABN",
@@ -898,8 +837,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABO",
@@ -920,8 +858,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL078044859",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABP",
@@ -942,8 +879,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABQ",
@@ -964,8 +900,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABR",
@@ -986,8 +921,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABS",
@@ -1008,8 +942,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABT",
@@ -1030,8 +963,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABU",
@@ -1052,8 +984,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABV",
@@ -1074,8 +1005,7 @@
     "FlipkartCode": "MLDGF6KPPPHBY6VA",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABW",
@@ -1096,8 +1026,7 @@
     "FlipkartCode": "MLDGF6KPSRTRVNSZ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABX",
@@ -1118,8 +1047,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL579695818",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABY",
@@ -1140,8 +1068,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ABZ",
@@ -1162,8 +1089,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACA",
@@ -1184,8 +1110,7 @@
     "FlipkartCode": "MLDGF6KP2JEUBQS5",
     "SnapdealCode": "SDL578686591",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACB",
@@ -1206,8 +1131,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACC",
@@ -1228,8 +1152,7 @@
     "FlipkartCode": "MLDGF6KP4GGRYP99",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACD",
@@ -1250,8 +1173,7 @@
     "FlipkartCode": "MLDGEQJXWPHGPAJH",
     "SnapdealCode": "SDL576207596",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACE",
@@ -1272,8 +1194,7 @@
     "FlipkartCode": "MLDGEZ9QURAKWMSE",
     "SnapdealCode": "SDL576956628",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACF",
@@ -1294,8 +1215,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL577290871",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACG",
@@ -1316,8 +1236,7 @@
     "FlipkartCode": "MLDGEZ9QCVYN6XF7",
     "SnapdealCode": "SDL576110949",
     "MeeshoCode": null,
-    "Notes": "improve image",
-    "LinkedProduct": []
+    "Notes": "improve image"
   },
   {
     "InHouseCode": "ACH",
@@ -1338,8 +1257,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACI",
@@ -1360,8 +1278,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACJ",
@@ -1382,8 +1299,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACK",
@@ -1404,8 +1320,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL569073447",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACL",
@@ -1426,8 +1341,7 @@
     "FlipkartCode": "MLDGJFNJCTSVNG6M",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACM",
@@ -1448,8 +1362,7 @@
     "FlipkartCode": "MLDGFBJWRKGWTZ3G",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACN",
@@ -1470,8 +1383,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACO",
@@ -1492,8 +1404,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL563568993",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACP",
@@ -1514,8 +1425,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACQ",
@@ -1536,8 +1446,7 @@
     "FlipkartCode": "MLDGG4AFZWUDCFUH",
     "SnapdealCode": "SDL583049816",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACR",
@@ -1558,8 +1467,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL587204187",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACS",
@@ -1580,8 +1488,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL589597927",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACT",
@@ -1602,8 +1509,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACU",
@@ -1624,8 +1530,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL590674185",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACV",
@@ -1646,8 +1551,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL590753113",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACW",
@@ -1668,8 +1572,7 @@
     "FlipkartCode": "MLDGJAGEJVP4FY66",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACX",
@@ -1690,8 +1593,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACY",
@@ -1712,8 +1614,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ACZ",
@@ -1734,8 +1635,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADA",
@@ -1756,8 +1656,7 @@
     "FlipkartCode": "MLDGK4GTSFBNYBBU",
     "SnapdealCode": "SDL607042725",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADB",
@@ -1778,8 +1677,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADC",
@@ -1800,8 +1698,7 @@
     "FlipkartCode": "MLDGHEW33AHFKMGR",
     "SnapdealCode": "SDL615794367",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADD",
@@ -1822,8 +1719,7 @@
     "FlipkartCode": "MLDGJFNMW3FFFGGP",
     "SnapdealCode": "SDL619180480",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADE",
@@ -1844,8 +1740,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADF",
@@ -1866,8 +1761,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL604684579",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADG",
@@ -1888,8 +1782,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADH",
@@ -1910,8 +1803,7 @@
     "FlipkartCode": "MLDGHWHQTG3EDMZY",
     "SnapdealCode": "SDL594093544",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADI",
@@ -1932,8 +1824,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADJ",
@@ -1954,8 +1845,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADK",
@@ -1976,8 +1866,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADL",
@@ -1998,8 +1887,7 @@
     "FlipkartCode": "MLDGG4ACQYKJBZZD",
     "SnapdealCode": "SDL618158637",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADM",
@@ -2020,8 +1908,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADN",
@@ -2042,8 +1929,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADO",
@@ -2064,8 +1950,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADP",
@@ -2086,8 +1971,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADQ",
@@ -2108,8 +1992,7 @@
     "FlipkartCode": "MLDGHZYRZMFPMQBN",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADR",
@@ -2130,8 +2013,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADS",
@@ -2152,8 +2034,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL616311859",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADT",
@@ -2174,8 +2055,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL603538776",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADU",
@@ -2196,8 +2076,7 @@
     "FlipkartCode": "MLDGJS5HFYE93ZJW",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADV",
@@ -2218,8 +2097,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL626681421",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADW",
@@ -2240,8 +2118,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL628317704",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADX",
@@ -2262,8 +2139,7 @@
     "FlipkartCode": "MLDGJS6KQH35YBKZ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADY",
@@ -2284,8 +2160,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ADZ",
@@ -2306,8 +2181,7 @@
     "FlipkartCode": "MLDGJS72YXEQPHGN",
     "SnapdealCode": "SDL628382802",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEA",
@@ -2328,8 +2202,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL621153519",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEB",
@@ -2350,8 +2223,7 @@
     "FlipkartCode": "MLDGJSESZV5FGHEP",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEC",
@@ -2372,8 +2244,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL444994266",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AED",
@@ -2394,8 +2265,7 @@
     "FlipkartCode": "MLDGG49TABTZDFSC",
     "SnapdealCode": "SDL439432428",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEE",
@@ -2416,8 +2286,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEF",
@@ -2438,8 +2307,7 @@
     "FlipkartCode": "MLDGKYMKWSC4YMB9",
     "SnapdealCode": "SDL469678650",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEG",
@@ -2460,8 +2328,7 @@
     "FlipkartCode": "MLDGJAEKTGBZC3C8",
     "SnapdealCode": "SDL603230665",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEH",
@@ -2482,8 +2349,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEI",
@@ -2504,8 +2370,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL534634263",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEJ",
@@ -2526,8 +2391,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEK",
@@ -2548,8 +2412,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEL",
@@ -2570,8 +2433,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEM",
@@ -2592,8 +2454,7 @@
     "FlipkartCode": "MLDGEZ9Q9XYAB6WG",
     "SnapdealCode": "SDL586019731",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEN",
@@ -2614,8 +2475,7 @@
     "FlipkartCode": "MLDGEZ9QZSCBFZZC",
     "SnapdealCode": "SDL600572769",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEO",
@@ -2636,8 +2496,7 @@
     "FlipkartCode": "MLDGFBACMUGHEBZZ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEP",
@@ -2658,8 +2517,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL634462222",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEQ",
@@ -2680,8 +2538,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AER",
@@ -2702,8 +2559,7 @@
     "FlipkartCode": "MLDGEZ9QADHZTGNZ",
     "SnapdealCode": "SDL672448610",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AES",
@@ -2724,8 +2580,7 @@
     "FlipkartCode": "MLDGEZ9RJUPNHBBJ",
     "SnapdealCode": "SDL744035116",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AET",
@@ -2746,8 +2601,7 @@
     "FlipkartCode": "MLDGEZ9QGZ2RTVTM",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEU",
@@ -2768,8 +2622,7 @@
     "FlipkartCode": "MLDGEZ9QBDSATHKV",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEV",
@@ -2790,8 +2643,7 @@
     "FlipkartCode": "MLDGG6ARHB2RU7ZT",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEW",
@@ -2812,8 +2664,7 @@
     "FlipkartCode": "MLDGEZ9QEBEGZQKE",
     "SnapdealCode": "SDL732032434",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEX",
@@ -2834,8 +2685,7 @@
     "FlipkartCode": "MLDGFAFHGCKWWMNG",
     "SnapdealCode": "SDL729519669",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEY",
@@ -2856,8 +2706,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AEZ",
@@ -2878,8 +2727,7 @@
     "FlipkartCode": "MLDGG6AJ5GFUZQXD",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFA",
@@ -2900,8 +2748,7 @@
     "FlipkartCode": "MLDGFBAFGYTM9THS",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFB",
@@ -2922,8 +2769,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFC",
@@ -2944,8 +2790,7 @@
     "FlipkartCode": "MLDGFBAKYPHTRFV2",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFD",
@@ -2966,8 +2811,7 @@
     "FlipkartCode": "MLDGHK59U46Z6GVE",
     "SnapdealCode": "SDL741340475",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFE",
@@ -2988,8 +2832,7 @@
     "FlipkartCode": "MLDGHFRH9CGSRHDH",
     "SnapdealCode": "SDL633519923",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFF",
@@ -3010,8 +2853,7 @@
     "FlipkartCode": "MLDGHWGU3XHFZZRH",
     "SnapdealCode": "SDL600945961",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFG",
@@ -3032,8 +2874,7 @@
     "FlipkartCode": "MLDGFBJWPU2RQDKA",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFH",
@@ -3054,8 +2895,7 @@
     "FlipkartCode": "MLDGEUM8PDFMTNCH",
     "SnapdealCode": "SDL640683199",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFI",
@@ -3076,8 +2916,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL632684254",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFJ",
@@ -3098,8 +2937,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFK",
@@ -3120,8 +2958,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFL",
@@ -3142,8 +2979,7 @@
     "FlipkartCode": "MLDGFBJWHCZCHWMH",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFM",
@@ -3164,8 +3000,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFN",
@@ -3186,8 +3021,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFO",
@@ -3208,8 +3042,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFP",
@@ -3230,8 +3063,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFQ",
@@ -3252,8 +3084,7 @@
     "FlipkartCode": "MLDGHFRYGHN7B2CG",
     "SnapdealCode": "SDL633169950",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFR",
@@ -3274,8 +3105,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL639021203",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFS",
@@ -3296,8 +3126,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFT",
@@ -3318,8 +3147,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFU",
@@ -3340,8 +3168,7 @@
     "FlipkartCode": "MLDGEZ9RYMERJ6UC",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFV",
@@ -3362,8 +3189,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFW",
@@ -3384,8 +3210,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFX",
@@ -3406,8 +3231,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFY",
@@ -3428,8 +3252,7 @@
     "FlipkartCode": "MLDGCHFAEKZPGBVK",
     "SnapdealCode": "SDL600012697",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AFZ",
@@ -3450,8 +3273,7 @@
     "FlipkartCode": "MLDGEZ9QJYMKXUHY",
     "SnapdealCode": "SDL607066387",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGA",
@@ -3472,8 +3294,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGB",
@@ -3494,8 +3315,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGC",
@@ -3516,8 +3336,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGD",
@@ -3538,8 +3357,7 @@
     "FlipkartCode": "MLDGEUM8ZCQAWXCC",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGE",
@@ -3560,8 +3378,7 @@
     "FlipkartCode": "MLDGBVU9HGQFEJAA",
     "SnapdealCode": "SDL672643687",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGF",
@@ -3582,8 +3399,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGG",
@@ -3604,8 +3420,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL688832217",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGH",
@@ -3626,8 +3441,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL784050877",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGI",
@@ -3648,8 +3462,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL268956860",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGJ",
@@ -3670,8 +3483,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL355835631",
     "MeeshoCode": null,
-    "Notes": "2x snapdeal",
-    "LinkedProduct": []
+    "Notes": "2x snapdeal"
   },
   {
     "InHouseCode": "AGK",
@@ -3692,8 +3504,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGL",
@@ -3714,8 +3525,7 @@
     "FlipkartCode": "MLDGCHFZRNYNYGJN",
     "SnapdealCode": "SDL708551070",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGM",
@@ -3736,8 +3546,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL649912227",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGN",
@@ -3758,8 +3567,7 @@
     "FlipkartCode": "MLDGCHG37YSPMDJP",
     "SnapdealCode": "SDL650305249",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGO",
@@ -3780,8 +3588,7 @@
     "FlipkartCode": "MLDGFAFHGYZX76QC",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGP",
@@ -3802,8 +3609,7 @@
     "FlipkartCode": "MLDGCNHZXK5CYGQ2",
     "SnapdealCode": "SDL652485558",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGQ",
@@ -3824,8 +3630,7 @@
     "FlipkartCode": "MLDGEUM8WH8KHE4H",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGR",
@@ -3846,8 +3651,7 @@
     "FlipkartCode": "MLDG74W5GWAMGEZQ",
     "SnapdealCode": "SDL763612163",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGS",
@@ -3868,8 +3672,7 @@
     "FlipkartCode": "MLDGCNHHTHHFETUE",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGT",
@@ -3890,8 +3693,7 @@
     "FlipkartCode": "MLDGCNH5MUAEF2UC",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGU",
@@ -3912,8 +3714,7 @@
     "FlipkartCode": "MLDGEX5UEAUG4ZHB",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGV",
@@ -3934,8 +3735,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGW",
@@ -3956,8 +3756,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGX",
@@ -3978,8 +3777,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGY",
@@ -4000,8 +3798,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AGZ",
@@ -4022,8 +3819,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHA",
@@ -4044,8 +3840,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHB",
@@ -4066,8 +3861,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHC",
@@ -4088,8 +3882,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHD",
@@ -4110,8 +3903,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHE",
@@ -4132,8 +3924,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHF",
@@ -4154,8 +3945,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHG",
@@ -4176,8 +3966,7 @@
     "FlipkartCode": "MLDGEUM8HFGETBGE",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHH",
@@ -4198,8 +3987,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHI",
@@ -4220,8 +4008,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHJ",
@@ -4242,8 +4029,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHK",
@@ -4264,8 +4050,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHL",
@@ -4286,8 +4071,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHM",
@@ -4308,8 +4092,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHN",
@@ -4330,8 +4113,7 @@
     "FlipkartCode": "MLDGEZ9QVKC8SHWS",
     "SnapdealCode": "SDL738186123",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHO",
@@ -4352,8 +4134,7 @@
     "FlipkartCode": "MLDGEUM8MWZNQZRC",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHQ",
@@ -4374,8 +4155,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHR",
@@ -4396,8 +4176,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL798405502",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHS",
@@ -4418,8 +4197,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHT",
@@ -4440,8 +4218,7 @@
     "FlipkartCode": "MLDGEZ9QGK4EYWYS",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHU",
@@ -4462,8 +4239,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHV",
@@ -4484,8 +4260,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHW",
@@ -4506,8 +4281,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL818025606",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHX",
@@ -4528,8 +4302,7 @@
     "FlipkartCode": "MLDGEZ9Q3GG74GTM",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHY",
@@ -4550,8 +4323,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AHZ",
@@ -4572,8 +4344,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIA",
@@ -4594,8 +4365,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIB",
@@ -4616,8 +4386,7 @@
     "FlipkartCode": "MLDG74UVGZ9MAZZW",
     "SnapdealCode": "SDL817082677",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIC",
@@ -4638,8 +4407,7 @@
     "FlipkartCode": "MLDGEZ9QGC5JGMWB",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AID",
@@ -4660,8 +4428,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIE",
@@ -4682,8 +4449,7 @@
     "FlipkartCode": "MLDGEZ9QSFUH4ZWJ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIF",
@@ -4704,8 +4470,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIG",
@@ -4726,8 +4491,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIH",
@@ -4748,8 +4512,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AII",
@@ -4770,8 +4533,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIJ",
@@ -4792,8 +4554,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIK",
@@ -4814,8 +4575,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIL",
@@ -4836,8 +4596,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIM",
@@ -4858,8 +4617,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIN",
@@ -4880,8 +4638,7 @@
     "FlipkartCode": "MLDG7S5YG4KGP64G",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIO",
@@ -4902,8 +4659,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIP",
@@ -4924,8 +4680,7 @@
     "FlipkartCode": "MLDGY7MDXHH4QMAE",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIQ",
@@ -4946,8 +4701,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIR",
@@ -4968,8 +4722,7 @@
     "FlipkartCode": "MLDGEUM8MTS6FFHY",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIS",
@@ -4990,8 +4743,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIT",
@@ -5012,8 +4764,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIU",
@@ -5034,8 +4785,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIV",
@@ -5056,8 +4806,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIW",
@@ -5078,8 +4827,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIX",
@@ -5100,8 +4848,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIY",
@@ -5122,8 +4869,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AIZ",
@@ -5144,8 +4890,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJA",
@@ -5166,8 +4911,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL238278469",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJB",
@@ -5188,8 +4932,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJC",
@@ -5210,8 +4953,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL354924476",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJD",
@@ -5232,8 +4974,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJE",
@@ -5254,8 +4995,7 @@
     "FlipkartCode": "MLDGASXYGFGT6ZXZ",
     "SnapdealCode": "SDL206194135",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJF",
@@ -5276,8 +5016,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL201323535",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJG",
@@ -5298,8 +5037,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJH",
@@ -5320,8 +5058,7 @@
     "FlipkartCode": "MLDGYUFJGJEWYDRA",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJI",
@@ -5342,8 +5079,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJJ",
@@ -5364,8 +5100,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJK",
@@ -5386,8 +5121,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJL",
@@ -5408,8 +5142,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJM",
@@ -5430,8 +5163,7 @@
     "FlipkartCode": "MLDGANCESQUBPPVZ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJN",
@@ -5452,8 +5184,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJO",
@@ -5474,8 +5205,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL207666266",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJP",
@@ -5496,8 +5226,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJQ",
@@ -5518,8 +5247,7 @@
     "FlipkartCode": "MLDGAU2ZG95PB8YU",
     "SnapdealCode": "SDL200715428",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJR",
@@ -5540,8 +5268,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJS",
@@ -5562,8 +5289,7 @@
     "FlipkartCode": "MLDG74V2GPCHCZPC",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJT",
@@ -5584,8 +5310,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL191983390",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJU",
@@ -5606,8 +5331,7 @@
     "FlipkartCode": "MLDGATYEDHNBH4GA",
     "SnapdealCode": "SDL199990958",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJV",
@@ -5628,8 +5352,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL202749806",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJW",
@@ -5650,8 +5373,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL226149652",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJX",
@@ -5672,8 +5394,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJY",
@@ -5694,8 +5415,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL211251938",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AJZ",
@@ -5716,8 +5436,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL212577344",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKA",
@@ -5738,8 +5457,7 @@
     "FlipkartCode": "MLDGEX5UEGU5PGHR",
     "SnapdealCode": "SDL215383479",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKB",
@@ -5760,8 +5478,7 @@
     "FlipkartCode": "MLDGARYZCR9YZXZG",
     "SnapdealCode": "SDL224426126",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKC",
@@ -5782,8 +5499,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKD",
@@ -5804,8 +5520,7 @@
     "FlipkartCode": "MLDGBGDZKVT6WZMP",
     "SnapdealCode": "SDL221623084",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKE",
@@ -5826,8 +5541,7 @@
     "FlipkartCode": "MLDGAU5EZZ5UTVT7",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKF",
@@ -5848,8 +5562,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL225156094",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKG",
@@ -5870,8 +5583,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKH",
@@ -5892,8 +5604,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL211495186",
     "MeeshoCode": null,
-    "Notes": "listed 2x on snapdeal",
-    "LinkedProduct": []
+    "Notes": "listed 2x on snapdeal"
   },
   {
     "InHouseCode": "AKI",
@@ -5914,8 +5625,7 @@
     "FlipkartCode": "MLDGBE3ZFHHGEMUS",
     "SnapdealCode": "SDL223229148",
     "MeeshoCode": null,
-    "Notes": "2x listed on snapdeal",
-    "LinkedProduct": []
+    "Notes": "2x listed on snapdeal"
   },
   {
     "InHouseCode": "AKJ",
@@ -5936,8 +5646,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL246547512",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKK",
@@ -5958,8 +5667,7 @@
     "FlipkartCode": "MLDGEX5TPZ8TAZTQ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKL",
@@ -5980,8 +5688,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL246737595",
     "MeeshoCode": null,
-    "Notes": "2x snapdeal",
-    "LinkedProduct": []
+    "Notes": "2x snapdeal"
   },
   {
     "InHouseCode": "AKM",
@@ -6002,8 +5709,7 @@
     "FlipkartCode": "MLDGEX5UTYMHXK2J",
     "SnapdealCode": "SDL309081503",
     "MeeshoCode": null,
-    "Notes": "2x snapdeal",
-    "LinkedProduct": []
+    "Notes": "2x snapdeal"
   },
   {
     "InHouseCode": "AKN",
@@ -6024,8 +5730,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKO",
@@ -6046,8 +5751,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKP",
@@ -6068,8 +5772,7 @@
     "FlipkartCode": "MLDGEUMBTCPB7XFZ",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKQ",
@@ -6090,8 +5793,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKR",
@@ -6112,8 +5814,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKS",
@@ -6134,8 +5835,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKT",
@@ -6156,8 +5856,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKU",
@@ -6178,8 +5877,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKV",
@@ -6200,8 +5898,7 @@
     "FlipkartCode": "MLDG75PYMFGXRYCB",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKW",
@@ -6222,8 +5919,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKX",
@@ -6244,8 +5940,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKY",
@@ -6266,8 +5961,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AKZ",
@@ -6288,8 +5982,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALA",
@@ -6310,8 +6003,7 @@
     "FlipkartCode": "MLDGEX5U77ZQTPDE",
     "SnapdealCode": "SDL239127756",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALB",
@@ -6332,8 +6024,7 @@
     "FlipkartCode": "MLDGEX5U8EMVGMYC",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALC",
@@ -6354,8 +6045,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALD",
@@ -6376,8 +6066,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALE",
@@ -6398,8 +6087,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL247071421",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALF",
@@ -6420,8 +6108,7 @@
     "FlipkartCode": "MLDGEUM8VUYSXZHH",
     "SnapdealCode": "SDL253267659",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALG",
@@ -6442,8 +6129,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL253336125",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALH",
@@ -6464,8 +6150,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL258433055",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALI",
@@ -6486,8 +6171,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL266177418",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALJ",
@@ -6508,8 +6192,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL257133484",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALK",
@@ -6530,8 +6213,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL772613317",
     "MeeshoCode": null,
-    "Notes": "2x snapdeal",
-    "LinkedProduct": []
+    "Notes": "2x snapdeal"
   },
   {
     "InHouseCode": "ALL",
@@ -6552,8 +6234,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALM",
@@ -6574,8 +6255,7 @@
     "FlipkartCode": "MLDG5FNRKDDWHP6U",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALN",
@@ -6596,8 +6276,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL269946054",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALO",
@@ -6618,8 +6297,7 @@
     "FlipkartCode": "MLDGASYKFYG8KYWC",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALP",
@@ -6640,8 +6318,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALQ",
@@ -6662,8 +6339,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALR",
@@ -6684,8 +6360,7 @@
     "FlipkartCode": "MLDGAXKEMEHEYXNG",
     "SnapdealCode": "SDL759766162",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALS",
@@ -6706,8 +6381,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALT",
@@ -6728,8 +6402,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALU",
@@ -6750,8 +6423,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALV",
@@ -6772,8 +6444,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL826902351",
     "MeeshoCode": null,
-    "Notes": "improve images, no output img",
-    "LinkedProduct": []
+    "Notes": "improve images, no output img"
   },
   {
     "InHouseCode": "ALW",
@@ -6794,8 +6465,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL852835452",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALX",
@@ -6816,8 +6486,7 @@
     "FlipkartCode": "MLDG5FHSMZFDJP4S",
     "SnapdealCode": "SDL884476993",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALY",
@@ -6838,8 +6507,7 @@
     "FlipkartCode": "MLDGFAFHSZYXYYHM",
     "SnapdealCode": "SDL806333356",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ALZ",
@@ -6860,8 +6528,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMA",
@@ -6882,8 +6549,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL783016783",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMB",
@@ -6904,8 +6570,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL848713533",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMC",
@@ -6926,8 +6591,7 @@
     "FlipkartCode": "MLDGAU5NFHK7C8NF",
     "SnapdealCode": "SDL833884492",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMD",
@@ -6948,8 +6612,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL885068623",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AME",
@@ -6970,8 +6633,7 @@
     "FlipkartCode": "MLDGASTP7KQZKUTG",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMF",
@@ -6992,8 +6654,7 @@
     "FlipkartCode": "MLDGAXHZVS7D6SGF",
     "SnapdealCode": "SDL917385589",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMG",
@@ -7014,8 +6675,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMH",
@@ -7036,8 +6696,7 @@
     "FlipkartCode": "MLDGYTYD7WCFRDRY",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMI",
@@ -7058,8 +6717,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMJ",
@@ -7080,8 +6738,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMK",
@@ -7102,8 +6759,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AML",
@@ -7124,8 +6780,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMM",
@@ -7146,8 +6801,7 @@
     "FlipkartCode": "MLDG5W9KPCRCQF9H",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMN",
@@ -7168,8 +6822,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL948508886",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMO",
@@ -7190,8 +6843,7 @@
     "FlipkartCode": "MLDGASWHUEVZFHCX",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMP",
@@ -7212,8 +6864,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMQ",
@@ -7234,8 +6885,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMR",
@@ -7256,8 +6906,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMS",
@@ -7278,8 +6927,7 @@
     "FlipkartCode": "MLDG5H4XABT9HKR7",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMT",
@@ -7300,8 +6948,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL910909240",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMU",
@@ -7322,8 +6969,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMV",
@@ -7344,8 +6990,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMW",
@@ -7366,8 +7011,7 @@
     "FlipkartCode": "MLDGAU649FHTHQRV",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMX",
@@ -7388,8 +7032,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMY",
@@ -7410,8 +7053,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AMZ",
@@ -7432,8 +7074,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANA",
@@ -7454,8 +7095,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANB",
@@ -7476,8 +7116,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANC",
@@ -7498,8 +7137,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AND",
@@ -7520,8 +7158,7 @@
     "FlipkartCode": "MLDGEZ9U5Z5B6NWU",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANE",
@@ -7542,8 +7179,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANF",
@@ -7564,8 +7200,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANG",
@@ -7586,8 +7221,7 @@
     "FlipkartCode": "MLDGARX53YGBHNXX",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANH",
@@ -7608,8 +7242,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANI",
@@ -7630,8 +7263,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANJ",
@@ -7652,8 +7284,7 @@
     "FlipkartCode": "MLDGASZJFRYCFAK5",
     "SnapdealCode": "SDL271209162",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANK",
@@ -7674,8 +7305,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANL",
@@ -7696,8 +7326,7 @@
     "FlipkartCode": "MLDGASZUE4NTMTYW",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANM",
@@ -7718,8 +7347,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANN",
@@ -7740,8 +7368,7 @@
     "FlipkartCode": "MLDG5W8ZCCEHKCRJ",
     "SnapdealCode": "SDL270679042",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANO",
@@ -7762,8 +7389,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANP",
@@ -7784,8 +7410,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANQ",
@@ -7806,8 +7431,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANR",
@@ -7828,8 +7452,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANS",
@@ -7850,8 +7473,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANT",
@@ -7872,8 +7494,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANU",
@@ -7894,8 +7515,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANV",
@@ -7916,8 +7536,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANW",
@@ -7938,8 +7557,7 @@
     "FlipkartCode": "MLDGEX5TJMFJJRAF",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANX",
@@ -7960,8 +7578,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANY",
@@ -7982,8 +7599,7 @@
     "FlipkartCode": "MLDGYTXXRFPDYH77",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "ANZ",
@@ -8004,8 +7620,7 @@
     "FlipkartCode": "MLDGEX5V5HW6UUZG",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOA",
@@ -8026,8 +7641,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOB",
@@ -8048,8 +7662,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOC",
@@ -8070,8 +7683,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOD",
@@ -8092,8 +7704,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOE",
@@ -8114,8 +7725,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOF",
@@ -8136,8 +7746,7 @@
     "FlipkartCode": "MLDGYPK5HGEGJBXH",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOG",
@@ -8158,8 +7767,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOH",
@@ -8180,8 +7788,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOI",
@@ -8202,8 +7809,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOJ",
@@ -8224,8 +7830,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOK",
@@ -8246,8 +7851,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOL",
@@ -8268,8 +7872,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOM",
@@ -8290,8 +7893,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AON",
@@ -8312,8 +7914,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOO",
@@ -8334,8 +7935,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOP",
@@ -8356,8 +7956,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOQ",
@@ -8378,8 +7977,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOR",
@@ -8400,8 +7998,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOS",
@@ -8422,8 +8019,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOT",
@@ -8444,8 +8040,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOU",
@@ -8466,8 +8061,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOV",
@@ -8475,11 +8069,11 @@
     "ImageAlt1": null,
     "ImageAlt2": null,
     "ImageAlt3": null,
-    "Title": "15 cm woman torso nude",
-    "Tag": "candle",
-    "MRP": "2900",
-    "SellingPrice": "2900",
-    "Weight": "1000",
+    "Title": "woman torso nude",
+    "Tag": null,
+    "MRP": null,
+    "SellingPrice": null,
+    "Weight": null,
     "WeightAfterPackaging": null,
     "DimensionsBeforePackaging": null,
     "DimensionsAfterPackaging": null,
@@ -8488,8 +8082,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOW",
@@ -8510,8 +8103,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOX",
@@ -8532,8 +8124,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOY",
@@ -8554,8 +8145,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AOZ",
@@ -8576,8 +8166,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APA",
@@ -8598,8 +8187,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APB",
@@ -8620,8 +8208,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APC",
@@ -8642,8 +8229,7 @@
     "FlipkartCode": "MLDGYSYE8YFZZDBM",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "check image and code mapping",
-    "LinkedProduct": []
+    "Notes": "check image and code mapping"
   },
   {
     "InHouseCode": "APD",
@@ -8664,8 +8250,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APE",
@@ -8686,8 +8271,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APF",
@@ -8708,8 +8292,7 @@
     "FlipkartCode": "MLDGYTYYHDFF8HAF",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APG",
@@ -8730,8 +8313,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APH",
@@ -8752,8 +8334,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "API",
@@ -8774,8 +8355,7 @@
     "FlipkartCode": "MLDGYPNG2K4F9HFP",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APJ",
@@ -8796,8 +8376,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APK",
@@ -8818,8 +8397,7 @@
     "FlipkartCode": "MLDGYTW5UFZ6XZV2",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APL",
@@ -8840,8 +8418,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APM",
@@ -8862,8 +8439,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APN",
@@ -8884,8 +8460,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "SDL359002207",
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APO",
@@ -8906,8 +8481,7 @@
     "FlipkartCode": "MLDGEUM8KZJFVVQF",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APP",
@@ -8928,8 +8502,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APQ",
@@ -8950,8 +8523,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APR",
@@ -8972,8 +8544,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APS",
@@ -8994,8 +8565,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APT",
@@ -9016,8 +8586,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APU",
@@ -9038,8 +8607,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APV",
@@ -9060,8 +8628,7 @@
     "FlipkartCode": "MLDGEZ9Q3XPVWYJG",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APW",
@@ -9082,8 +8649,7 @@
     "FlipkartCode": "MLDGEQJX9WZ39KGK",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APX",
@@ -9104,8 +8670,7 @@
     "FlipkartCode": "MLDGEZ9QU4HWVNRN",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APY",
@@ -9126,8 +8691,7 @@
     "FlipkartCode": "MLDGEZ9QNG8K3CYK",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "APZ",
@@ -9148,8 +8712,7 @@
     "FlipkartCode": "MLDGYT3FH9M9YZKA",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AQA",
@@ -9170,8 +8733,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AQB",
@@ -9192,8 +8754,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AQC",
@@ -9214,8 +8775,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AQD",
@@ -9236,8 +8796,7 @@
     "FlipkartCode": "",
     "SnapdealCode": null,
     "MeeshoCode": null,
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "asaaa",
@@ -9258,8 +8817,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "",
     "MeeshoCode": "",
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "BAC",
@@ -9280,8 +8838,7 @@
     "FlipkartCode": "MLDGCJ9MEGFX2YKE",
     "SnapdealCode": "",
     "MeeshoCode": "",
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AQF",
@@ -9302,8 +8859,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "",
     "MeeshoCode": "",
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "AQH",
@@ -9324,8 +8880,7 @@
     "FlipkartCode": "",
     "SnapdealCode": "",
     "MeeshoCode": "",
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "BAB",
@@ -9346,8 +8901,7 @@
     "FlipkartCode": "MLDGGP528ZF6YEHS",
     "SnapdealCode": "",
     "MeeshoCode": "",
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   },
   {
     "InHouseCode": "BAA",
@@ -9368,7 +8922,6 @@
     "FlipkartCode": "MLDG5FN4MA8KSV2F",
     "SnapdealCode": "",
     "MeeshoCode": "",
-    "Notes": "",
-    "LinkedProduct": []
+    "Notes": ""
   }
 ]

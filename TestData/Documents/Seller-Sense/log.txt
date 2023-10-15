@@ -1,0 +1,83 @@
+[5/30/2023 8:13:49 PM] [fatal] Testing
+[5/30/2023 8:14:10 PM] [fatal] Testing
+[5/30/2023 8:14:14 PM] [fatal] Testing
+[5/30/2023 8:14:22 PM] [fatal] Testing
+[5/30/2023 8:14:35 PM] [fatal] Testing
+[5/30/2023 8:17:56 PM] [fatal] Testing
+[5/30/2023 8:18:06 PM] [fatal] Testing
+[5/30/2023 8:19:55 PM] [fatal] Testing
+[5/30/2023 8:20:11 PM] [fatal] Testing
+[5/30/2023 8:21:12 PM] [fatal] Exception has been thrown by the target of an invocation.
+[5/30/2023 8:21:42 PM] [fatal] Exception has been thrown by the target of an invocation.
+[7/9/2023 6:04:51 AM] [fatal] Column named BaseCodeValue cannot be found.
+Parameter name: columnName
+[7/15/2023 2:14:11 PM] [fatal] Object reference not set to an instance of an object.
+[7/16/2023 6:10:45 PM] [fatal] Exception has been thrown by the target of an invocation.
+[7/18/2023 8:22:22 AM] [fatal] String was not recognized as a valid DateTime.
+[7/18/2023 8:24:32 AM] [fatal] String was not recognized as a valid DateTime.
+[7/23/2023 12:45:08 PM] [fatal] Index -1 does not have a value.
+[7/23/2023 1:28:14 PM] [fatal] Input string was not in a correct format.
+[7/23/2023 11:26:38 PM] [fatal] Input string was not in a correct format.
+[7/24/2023 1:57:45 AM] [fatal] Could not find a part of the path 'C:\Users\varun\OneDrive\Documents\Seller-Sense\HeRetail_MBHS\Snapshots'.
+[9/2/2023 6:31:27 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 1:52:25 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 2:34:19 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 2:36:34 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 2:37:23 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 2:38:39 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 2:49:54 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 2:50:38 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 3:11:17 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 3:12:37 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 3:14:51 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 3:21:19 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 4:12:56 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 4:16:11 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 4:20:39 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 4:38:04 PM] [warning] Telegram Chat id is empty.
+[9/3/2023 4:43:43 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 2:27:57 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 2:35:16 PM] [fatal] Sequence contains no elements
+[9/4/2023 2:35:26 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 2:36:00 PM] [fatal] Sequence contains no elements
+[9/4/2023 4:12:48 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 4:20:54 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 4:24:12 PM] [fatal] Sequence contains no elements
+[9/4/2023 4:24:19 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 4:36:12 PM] [fatal] Sequence contains no elements
+[9/4/2023 4:36:17 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 5:17:46 PM] [fatal] Sequence contains no elements
+[9/4/2023 5:17:55 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 7:27:25 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 7:48:51 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 9:56:55 PM] [fatal] The method or operation is not implemented.
+[9/4/2023 10:14:17 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 10:31:18 PM] [warning] Telegram Chat id is empty.
+[9/4/2023 10:34:06 PM] [warning] Telegram Chat id is empty.
+[9/5/2023 4:59:09 AM] [warning] Telegram Chat id is empty.
+[9/5/2023 5:13:34 AM] [warning] Telegram Chat id is empty.
+[9/5/2023 2:24:27 PM] [warning] Telegram Chat id is empty.
+[9/5/2023 3:07:51 PM] [warning] Telegram Chat id is empty.
+[9/7/2023 1:28:27 PM] [warning] Telegram Chat id is empty.
+[9/7/2023 2:06:34 PM] [warning] Telegram Chat id is empty.
+[9/7/2023 2:16:36 PM] [warning] Telegram Chat id is empty.
+[9/7/2023 11:06:57 PM] [warning] Telegram Chat id is empty.
+[9/7/2023 11:11:59 PM] [warning] Telegram Chat id is empty.
+[9/7/2023 11:21:17 PM] [warning] Telegram Chat id is empty.
+[9/7/2023 11:22:48 PM] [warning] Telegram Chat id is empty.
+[9/8/2023 8:39:53 PM] [fatal] Parameter is not valid.
+[9/8/2023 8:42:49 PM] [fatal] Parameter is not valid.
+[9/8/2023 8:44:28 PM] [fatal] Parameter is not valid.
+[9/8/2023 8:46:12 PM] [fatal] Parameter is not valid.
+[9/10/2023 9:01:50 PM] [fatal] Parameter is not valid.
+[9/11/2023 1:40:59 PM] [fatal] The added or subtracted value results in an un-representable DateTime.
+Parameter name: value
+[9/11/2023 7:53:45 PM] [fatal] Exception has been thrown by the target of an invocation.
+[9/13/2023 8:50:46 PM] [fatal] Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+[9/28/2023 4:15:11 PM] [fatal] The method or operation is not implemented.
+[9/28/2023 5:07:04 PM] [fatal] The given key was not present in the dictionary.
+[9/28/2023 5:07:54 PM] [fatal] The given key was not present in the dictionary.
+[9/30/2023 4:00:28 PM] [fatal] Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+[10/8/2023 1:15:34 PM] [fatal] Object reference not set to an instance of an object.
