@@ -46,6 +46,7 @@
             this.lbl_URLMappedValue = new System.Windows.Forms.Label();
             this.btn_MapViaURLAccept = new System.Windows.Forms.Button();
             this.lbl_Error = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tbl_Inv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd_InvData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectedImgBox)).BeginInit();
@@ -78,6 +79,7 @@
             this.tbl_Inv.Controls.Add(this.lbl_URLMappedValue, 3, 4);
             this.tbl_Inv.Controls.Add(this.btn_MapViaURLAccept, 4, 4);
             this.tbl_Inv.Controls.Add(this.lbl_Error, 1, 4);
+            this.tbl_Inv.Controls.Add(this.progressBar1, 0, 4);
             this.tbl_Inv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbl_Inv.Location = new System.Drawing.Point(0, 0);
             this.tbl_Inv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -295,6 +297,16 @@
             this.lbl_Error.Text = "Code not found!";
             this.lbl_Error.Visible = false;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.progressBar1.Location = new System.Drawing.Point(98, 410);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(163, 32);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 22;
+            this.progressBar1.Visible = false;
+            // 
             // InvFiller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -335,5 +347,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_MapViaURLAccept;
         private System.Windows.Forms.Label lbl_Error;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

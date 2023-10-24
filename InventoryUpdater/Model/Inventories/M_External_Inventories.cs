@@ -1,5 +1,7 @@
 ﻿using Decoders;
+using Decoders.Interfaces;
 using SellerSense.Model;
+using SellerSense.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,12 +69,21 @@ namespace SellerSense.Model
 
         internal void ImportAmazonInventoryFile(string fileName)
         {
+            if (_amzImportedInvList._amzInventoryList.Count > 0) 
+                _amzImportedInvList._amzInventoryList.Clear();
             _amzImportedInvList._amzInventoryList = AmazonInvDecoder.ImportAmazonInventory(fileName);
         }
 
         internal void ImportFlipkartInventoryFile(string fileName)
         {
-            _fkImportedInventoryList._fkInventoryList = FlipkartInvDecoder.GetData(fileName);
+            if (_fkImportedInventoryList._fkInventoryList.Count > 0)
+            _fkImportedInventoryList._fkInventoryList.Clear();
+            //List<IFkInventoryV2> _fkInventoryListV2  = FlipkartInvDecoder.GetDataV2(fileName, out string errorV2);
+            _fkImportedInventoryList._fkInventoryList = FlipkartInvDecoder.GetDataV2(fileName, out string error);
+            if (!string.IsNullOrEmpty(error)) { AlertBox ab = new AlertBox("Error accessing inventory file", 
+                "Error accessing inventory file, Please check file might be open in another software or it is locked/ in-accesible",true);
+                ab.ShowDialog();
+            }
         }
 
 
@@ -88,6 +99,8 @@ namespace SellerSense.Model
 
         internal void ImportSnapdealInventoryFile(string fileName)
         {
+            if (_spdImportedInventoryList._spdInventoryList.Count > 0)
+                _spdImportedInventoryList._spdInventoryList.Clear();    
             _spdImportedInventoryList._spdInventoryList = SnapdealInvDecoder.GetData(fileName);
         }
 
@@ -98,6 +111,8 @@ namespace SellerSense.Model
 
         internal void ImportMeeshoInventoryFile(string fileName)
         {
+            if (_msoImportedInventoryList._msoInventoryList.Count > 0)
+                _msoImportedInventoryList._msoInventoryList.Clear();
             _msoImportedInventoryList._msoInventoryList = MeeshoInvDecoder.GetData(fileName);
         }
 

@@ -91,7 +91,7 @@ namespace SellerSense.Model.Reports
 
         private static int GetOrders(IList<InvSnapshotEntry> lastSnapShot, IList<InvSnapshotEntry> TodaysSnapShot)
         {
-            if (lastSnapShot == null || lastSnapShot.Count == 0)
+            if (lastSnapShot == null || lastSnapShot.Count == 0 || TodaysSnapShot == null)
                 return default;
             int allOrdersForThisCompany = 0;
             foreach (var lastItem in lastSnapShot)

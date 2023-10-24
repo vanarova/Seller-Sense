@@ -27,6 +27,7 @@ namespace SellerSense.ViewManager
         internal string _code;
         internal M_External_Inventories _inventoriesModel { get; set; }
         internal VM_Inventories _inventoriesViewManager { get; set; }
+        internal VM_Payments _paymentsViewManager { get; set; }
         internal VM_Products _productsViewManager { get; set; }
         internal M_Product _product_Model;
         internal Dictionary<string, Image> _images;
@@ -35,7 +36,7 @@ namespace SellerSense.ViewManager
 
         public VM_Company(string name, string code, 
             VM_Companies.CrossCompanySharedWrapper crossCompanySharedWrapper, 
-            VM_Companies.CrossCompanyEvents crossCompanyEvents)
+            VM_Companies.CrossCompanyEvents _crossCompanyEvents)
         {
             _name = name;
             _code = code;
@@ -43,8 +44,9 @@ namespace SellerSense.ViewManager
             //_crossCompanyLinkedInventoryCount = crossCompanyLinkedInventoryCount;
             _inventoriesModel = new M_External_Inventories();
             _product_Model = new M_Product(_code);
+            _paymentsViewManager = new VM_Payments();
             _inventoriesViewManager = new VM_Inventories(_inventoriesModel, _product_Model,
-                crossCompanySharedWrapper, _code, crossCompanyEvents);
+                crossCompanySharedWrapper, _code, _crossCompanyEvents);
             _productsViewManager = new VM_Products(_product_Model, _inventoriesModel, _code);
         }
 

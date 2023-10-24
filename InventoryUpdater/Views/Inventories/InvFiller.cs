@@ -20,7 +20,7 @@ namespace SellerSense
         internal M_External_Inventories _m_Inventories_Model { get; set; }
         public Constants.Company _companyType { get; set; }
         public IList<IAmzInventory> _amzInventory { get; set; }
-        public IList<IFkInventory> _fkInventory { get; set; }
+        public IList<IFkInventoryV2> _fkInventory { get; set; }
         public IList<ISpdInventory> _spdInventory { get; set; }
         public IList<IMsoInventory> _msoInventory { get; set; }
         public string SelectedID { get; set; }
@@ -97,7 +97,7 @@ namespace SellerSense
 
 
         internal InvFiller(Image selectedImg, string selectedCode, 
-            string selectedTitle, IList<IFkInventory> fkinv, M_External_Inventories vm_Inventories)
+            string selectedTitle, IList<IFkInventoryV2> fkinv, M_External_Inventories vm_Inventories)
         {
             InitializeComponent();
             selectedImgBox.Image = selectedImg;
@@ -411,13 +411,13 @@ namespace SellerSense
             this.Close();
         }
 
-        private void btn_MapViaScrapping_Click(object sender, EventArgs e)
+        private async void btn_MapViaScrapping_Click(object sender, EventArgs e)
         {
-            lbl_URLMappedValue.Text = Scrap(_companyType, txtbox_URL.Text);
+            lbl_URLMappedValue.Text = await Scrap(_companyType, txtbox_URL.Text);
             lbl_Error.Visible = string.IsNullOrEmpty(lbl_URLMappedValue.Text);
         }
 
-        private string Scrap(Constants.Company company, string url)
+        private async Task<string> Scrap(Constants.Company company, string url)
         {
             string result = string.Empty;
             switch (company)
@@ -429,14 +429,22 @@ namespace SellerSense
                     result = Decoders.FlipkartInvDecoder.GetProductIdFromURL(url);
                     break;
                 case Constants.Company.Snapdeal:
-                    result = Decoders.SnapdealInvDecoder.GetProductIdFromURL(url);
+                    progressBar1.Visible = true;
+                    result = await Decoders.SnapdealInvDecoder.GetProductIdFromURLAsync(url);
+                    progressBar1.Visible = false;
                     break;
                 case Constants.Company.Meesho:
                     break;
                 default:
                     break;
             }
+            //return Task.FromResult(result);
             return result;
+        }
+
+        private void CompletedLoadAsync()
+        {
+            progressBar1.Visible = false;
         }
 
         private void btn_MapViaURLAccept_Click(object sender, EventArgs e)

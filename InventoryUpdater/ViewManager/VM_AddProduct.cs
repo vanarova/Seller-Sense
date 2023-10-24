@@ -3,6 +3,7 @@ using OrderedPropertyGrid;
 using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Views;
+using SellerSense.Views.AddEditProduct;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,6 +40,9 @@ namespace SellerSense.ViewManager
             AssignView(v_addproduct);
             AddProductViewBindingObj = new AddProductView();
             AddProductViewBindingObj.EditMode = false;
+            _v_AddProduct.button_linkedProducts.Enabled = AddProductViewBindingObj.EditMode;
+            _v_AddProduct.label_linkProducts.Text = "First create product, then add linked products composing in this product";
+            //_v_AddProduct.labe
             AddProductViewBindingObj.SetPropertyReadOnly("InHouseCode", false);
             AddProductViewBindingObj.SetPropertyReadOnly("PrimaryImage", false);
             AddProductViewBindingObj.SetPropertyReadOnly("Image2", false);
@@ -50,10 +54,11 @@ namespace SellerSense.ViewManager
 
 
         //edit mode
-        internal VM_AddProduct(AddProduct v_addproduct, M_Product.ProductEntry _m_productModelEntry,
+        internal VM_AddProduct(AddProduct v_addproduct, M_Product m_Product, M_Product.ProductEntry _m_productModelEntry,
             Dictionary<string, Image> images, string companyCode)
         {
             _images = images;
+            _m_Product = m_Product;
             //_v_AddProduct = v_addproduct;
             AssignView(v_addproduct);
             AddProductViewBindingObj = new AddProductView();
@@ -64,6 +69,7 @@ namespace SellerSense.ViewManager
             //AddProductViewBindingObj.SetPropertyReadOnly("Image4", true);
 
             AddProductViewBindingObj.EditMode = true;
+            _v_AddProduct.button_linkedProducts.Enabled = AddProductViewBindingObj.EditMode;
             AddProductViewBindingObj.Name = _m_productModelEntry.Title;
             AddProductViewBindingObj.Tag = _m_productModelEntry.Tag;
             AddProductViewBindingObj.Description = _m_productModelEntry.Description;
@@ -79,6 +85,7 @@ namespace SellerSense.ViewManager
             (_, AddProductViewBindingObj.Image4) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.ImageAlt3, companyCode);
             (_,AddProductViewBindingObj.PrimaryImage) = ProjIO.LoadImageUsingFileNameAndDownSize75x75(_m_productModelEntry.Image,companyCode);
             AddProductViewBindingObj.SellingPrice = _m_productModelEntry.SellingPrice;
+            AddProductViewBindingObj.CostPrice = _m_productModelEntry.CostPrice;
             AddProductViewBindingObj.WeightAfterPackaging = _m_productModelEntry.WeightAfterPackaging;
             AddProductViewBindingObj.SetDirtyImages(false, false, false, false);
             _v_AddProduct.propertyGrid_AddProduct.SelectedObject = AddProductViewBindingObj;
@@ -88,11 +95,32 @@ namespace SellerSense.ViewManager
 
         private void HandleAddProductEvents()
         {
+            _v_AddProduct.button_editImages.Click += (s, e) => { 
+                PasteImage pi = new PasteImage();
+                ////pi.FormClosed += (se, ev) => { };
+                pi.ShowDialog();
+                if(pi.DialogResult == DialogResult.OK && pi._isImg1)
+                    AddProductViewBindingObj.PrimaryImage = pi._image;
+                if (pi.DialogResult == DialogResult.OK && pi._isImg2)
+                    AddProductViewBindingObj.Image2 = pi._image;
+                if (pi.DialogResult == DialogResult.OK && pi._isImg3)
+                    AddProductViewBindingObj.Image3 = pi._image;
+                if (pi.DialogResult == DialogResult.OK && pi._isImg4)
+                    AddProductViewBindingObj.Image4 = pi._image;
+            };
+
+            _v_AddProduct.button_linkedProducts.Click += (s, e) => { //Linked products form here
+                //_m_Product
+                LinkedProducts linkedProducts = new LinkedProducts();
+                VM_LinkedProducts vM_LinkedProducts = new VM_LinkedProducts(AddProductViewBindingObj, _m_Product, _images);
+                vM_LinkedProducts.AssignViewManager(linkedProducts);
+                linkedProducts.ShowDialog();
+            };
             _v_AddProduct.button_cancel.Click += (s, e) => {
                 _v_AddProduct.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 _v_AddProduct.Close(); };
             _v_AddProduct.button_ok.Click += (s, e) => {
-                if (!ValidateForm())
+                if(!_v_AddProduct.checkBox_markForDeletion.Checked && !ValidateForm() )
                     return;
                 _v_AddProduct.DialogResult = System.Windows.Forms.DialogResult.OK;
                 _v_AddProduct.Close(); };
@@ -100,8 +128,6 @@ namespace SellerSense.ViewManager
             _v_AddProduct.propertyGrid_AddProduct.PropertyValueChanged += (s, e) =>
             {
                 PropertyGridControl_PropertyValueChanged(e);
-                //var obj = s as System.Windows.Forms.PropertyGrid;
-                //var item = obj.SelectedObject as AddProductView;
             };
 
             _v_AddProduct.checkBox_markForDeletion.CheckedChanged += (s,e) => {
@@ -208,6 +234,7 @@ namespace SellerSense.ViewManager
             private string _m_Weight_After_Pkging;
             private string _m_MRP;
             private string _m_SellingPrice;
+            private string _m_CostPrice;
             private string _m_DimensionBeforePackaging;
             private string _m_DimensionAfterPackaging;
             private Image _m_PrimaryImg;
@@ -269,6 +296,11 @@ namespace SellerSense.ViewManager
             [CategoryAttribute("1. Product Details"), DescriptionAttribute("MRP : Maximum retail price. \n Valid values : Positive Numbers"), PropertyOrder(6)]
             [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b"), ReadOnlyAttribute(false)] //Regex.IsMatch( "1", @"\b(?:\d+\.\d+|\d+(?!\.))\b")
             public string MRP { get { return _m_MRP; } set { _m_MRP = value;  } }
+
+
+            [CategoryAttribute("1. Product Details"), DescriptionAttribute("Cost price. \n Valid values : Positive Numbers"), PropertyOrder(7)]
+            [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b"), ReadOnlyAttribute(false)]
+            public string CostPrice { get { return _m_CostPrice; } set { _m_SellingPrice = value; } }
 
             [CategoryAttribute("1. Product Details"), DescriptionAttribute("Selling price. \n Valid values : Positive Numbers"), PropertyOrder(7)]
             [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b"), ReadOnlyAttribute(false)]

@@ -1,0 +1,11 @@
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\bin\Release\ssViewControls.dll
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\bin\Release\ssViewControls.pdb
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\bin\Release\PrimitiveExt.dll
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\bin\Release\PrimitiveExt.pdb
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.csproj.AssemblyReference.cache
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.ssGridView.resources
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.csproj.GenerateResource.cache
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.csproj.CoreCompileInputs.cache
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.csproj.CopyComplete
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.dll
+C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.pdb

@@ -66,5 +66,11 @@
       <DependentUpon>ssGridView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrimitiveExt\PrimitiveExt.csproj">
+      <Project>{342C5454-252A-4F7A-81A2-6E4330C7B676}</Project>
+      <Name>PrimitiveExt</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

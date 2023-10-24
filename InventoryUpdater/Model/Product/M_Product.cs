@@ -222,7 +222,11 @@ namespace SellerSense.Model
            
         }
 
-
+        internal class LinkedProduct
+        {
+            public string InHouseCode { get; set; }
+            public string LinkQty { get; set; }
+        }
 
         internal class ProductEntry
         {
@@ -237,6 +241,7 @@ namespace SellerSense.Model
             public string Tag { get; set; }
             public string MRP { get; set; }
             public string SellingPrice { get; set; }
+            public string CostPrice { get; set; }
             public string Weight { get; set; }
             public string WeightAfterPackaging { get; set; }
             public string DimensionsBeforePackaging { get; set; }
@@ -247,12 +252,13 @@ namespace SellerSense.Model
             public string SnapdealCode { get; set; }
             public string MeeshoCode { get; set; }
             public string Notes { get; set; }
+            public List<LinkedProduct> LinkedProduct {get; set;}
 
             //public ProductEntry()  { }
 
             public ProductEntry(string baseCodeValue, string img, string title,
                 string amzInventory, string fkCodeValue,string spdCodeValue,
-                string msoCodeValue, string notes, string tag, string desc)
+                string msoCodeValue, string notes, string tag, string desc, LinkedProduct linkedProd = null)
             {
                 this.InHouseCode = baseCodeValue;
                 this.Image = img;
@@ -264,9 +270,17 @@ namespace SellerSense.Model
                 this.MeeshoCode = msoCodeValue;
                 this.AmazonCode = amzInventory;
                 this.Notes = notes;
+                if(linkedProd == null)
+                    LinkedProduct = new List<LinkedProduct>();
             }
 
-            
+            public bool IsComposedOfLinkedProducts()
+            {
+                if (LinkedProduct != null && LinkedProduct.Count > 0)
+                    return true;
+                else
+                    return false;
+            }
 
         }
     }

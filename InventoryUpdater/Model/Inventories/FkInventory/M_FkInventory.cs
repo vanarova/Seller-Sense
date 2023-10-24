@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SellerSense.Model
 {
-    internal abstract class M_FkInventory : IFkInventory
+    internal abstract class M_FkInventory : IFkInventoryV2
     {
        public string sku { get; set; }
        public string fsn { get; set; }

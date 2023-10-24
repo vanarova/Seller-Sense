@@ -50,13 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmazonInvDecoder.cs" />
+    <Compile Include="AmazonPaymentsDecoder.cs" />
+    <Compile Include="Interfaces\IAmzPayments.cs" />
+    <Compile Include="Interfaces\IFkInventoryV2.cs" />
     <Compile Include="MeeshoInvDecoder.cs" />
     <Compile Include="SnapdealInvDecoder.cs" />
     <Compile Include="FlipkartInvDecoder.cs" />
     <Compile Include="Interfaces\IAmzInventory.cs" />
     <Compile Include="Interfaces\IMsoInventory.cs" />
     <Compile Include="Interfaces\ISpdInventory.cs" />
-    <Compile Include="Interfaces\IFkInventory.cs" />
+    <Compile Include="Interfaces\IFkInventoryV1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">

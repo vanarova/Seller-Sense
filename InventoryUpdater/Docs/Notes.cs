@@ -21,7 +21,7 @@
 /// when in house inventory updates, it will also add/substract duplicate items
 
 //if (invSnapshotList == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
- //return;
+//return;
 // use everywhere comparisons like above to check return values from a function.
 
 //in product proprty page add buttons to show big image, disable button with no image.
@@ -40,4 +40,16 @@
 // in comparr grid, mark with spcecial color, rows where user imported inventory
 // make another columns for inv comparison, make checkboxes to show hide, data for 1 company only.
 
+// On mapping screen, snapdeal mapping takes long time,, add a loading control async.
 
+
+//######
+//BUGS ---------------
+
+// while copmparing snapshots, all snapshots must be form same date, if they are not of same date, an warning alert should be shown to user,
+//that is is looking into wrong data, and he should download all snapshots every day.
+
+
+// Inv updation is having issues, same product - cactus , when updated on HE, is not updated at CC. check.
+
+//in search ssgrd, remove TAG and change it to search by inhousecode,

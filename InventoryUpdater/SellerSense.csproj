@@ -117,16 +117,35 @@
     <Compile Include="ViewManager\VM_AddProduct.cs" />
     <Compile Include="ViewManager\VM_CustomSnapshotDate.cs" />
     <Compile Include="ViewManager\VM_Inventories.CmpSnapShot.cs" />
+    <Compile Include="ViewManager\VM_LinkedProducts.cs" />
     <Compile Include="ViewManager\VM_Products.cs" />
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="ViewManager\VM_Reports.cs" />
     <Compile Include="ViewManager\VM_TelegramSetup.cs" />
+    <Compile Include="Views\AddEditProduct\AddLinkedProduct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\AddLinkedProduct.Designer.cs">
+      <DependentUpon>AddLinkedProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddEditProduct\AddProduct.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\AddEditProduct\AddProduct.Designer.cs">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\LinkedProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\LinkedProducts.Designer.cs">
+      <DependentUpon>LinkedProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\PasteImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddEditProduct\PasteImage.Designer.cs">
+      <DependentUpon>PasteImage.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\CustomPropertyGrid\PatternRuleAttribute.cs" />
     <Compile Include="Views\Controls\CustomPropertyGrid\PropertySorter.cs" />
@@ -166,6 +185,12 @@
     </Compile>
     <Compile Include="Views\Inventories\InvFiller.Designer.cs">
       <DependentUpon>InvFiller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ExportProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Products\ExportProducts.Designer.cs">
+      <DependentUpon>ExportProducts.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Products\ProductCntrl.cs">
       <SubType>UserControl</SubType>
@@ -243,8 +268,17 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddEditProduct\AddLinkedProduct.resx">
+      <DependentUpon>AddLinkedProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\AddEditProduct\AddProduct.resx">
       <DependentUpon>AddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddEditProduct\LinkedProducts.resx">
+      <DependentUpon>LinkedProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddEditProduct\PasteImage.resx">
+      <DependentUpon>PasteImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AlertBox.resx">
       <DependentUpon>AlertBox.cs</DependentUpon>
@@ -262,6 +296,9 @@
       <DependentUpon>InvCntrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\InvFiller.resx" />
+    <EmbeddedResource Include="Views\Products\ExportProducts.resx">
+      <DependentUpon>ExportProducts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Products\ProductCntrl.resx">
       <DependentUpon>ProductCntrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,6 +360,10 @@
     <ProjectReference Include="..\ImageSearch\ImageSearch.csproj">
       <Project>{469e5ab8-4f2d-4ba2-9423-70117ba1514a}</Project>
       <Name>ImageSearch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrimitiveExt\PrimitiveExt.csproj">
+      <Project>{342c5454-252a-4f7a-81a2-6e4330c7b676}</Project>
+      <Name>PrimitiveExt</Name>
     </ProjectReference>
     <ProjectReference Include="..\ssViewControls\ssViewControls.csproj">
       <Project>{bf6792b9-aa6f-45e2-b88f-70cb77472b6b}</Project>

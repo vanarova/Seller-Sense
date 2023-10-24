@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Welcome));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tblWelcomeButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_products = new System.Windows.Forms.Button();
+            this.btn_Open = new System.Windows.Forms.Button();
             this.btn_Reports = new System.Windows.Forms.Button();
             this.btn_Setup = new System.Windows.Forms.Button();
-            this.btn_mapping = new System.Windows.Forms.Button();
-            this.btn_invUpdate = new System.Windows.Forms.Button();
+            this.btn_Inv = new System.Windows.Forms.Button();
+            this.btn_Product = new System.Windows.Forms.Button();
             this.pbarLoadForms = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -47,6 +47,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1283, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
@@ -61,11 +62,11 @@
             this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tblWelcomeButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
-            this.tblWelcomeButtons.Controls.Add(this.btn_products, 2, 3);
+            this.tblWelcomeButtons.Controls.Add(this.btn_Open, 2, 3);
             this.tblWelcomeButtons.Controls.Add(this.btn_Reports, 2, 1);
             this.tblWelcomeButtons.Controls.Add(this.btn_Setup, 1, 1);
-            this.tblWelcomeButtons.Controls.Add(this.btn_mapping, 2, 2);
-            this.tblWelcomeButtons.Controls.Add(this.btn_invUpdate, 1, 2);
+            this.tblWelcomeButtons.Controls.Add(this.btn_Inv, 2, 2);
+            this.tblWelcomeButtons.Controls.Add(this.btn_Product, 1, 2);
             this.tblWelcomeButtons.Controls.Add(this.pbarLoadForms, 1, 4);
             this.tblWelcomeButtons.Controls.Add(this.label1, 0, 4);
             this.tblWelcomeButtons.Controls.Add(this.comboBox1, 1, 3);
@@ -80,18 +81,18 @@
             this.tblWelcomeButtons.Size = new System.Drawing.Size(740, 330);
             this.tblWelcomeButtons.TabIndex = 0;
             // 
-            // btn_products
+            // btn_Open
             // 
-            this.btn_products.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_products.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_products.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_products.Location = new System.Drawing.Point(383, 224);
-            this.btn_products.Name = "btn_products";
-            this.btn_products.Size = new System.Drawing.Size(210, 54);
-            this.btn_products.TabIndex = 6;
-            this.btn_products.Text = "▶ Open";
-            this.btn_products.UseVisualStyleBackColor = false;
-            this.btn_products.Click += new System.EventHandler(this.btn_products_Click);
+            this.btn_Open.BackColor = System.Drawing.Color.Cornsilk;
+            this.btn_Open.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Open.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Open.Location = new System.Drawing.Point(383, 224);
+            this.btn_Open.Name = "btn_Open";
+            this.btn_Open.Size = new System.Drawing.Size(210, 54);
+            this.btn_Open.TabIndex = 6;
+            this.btn_Open.Text = "▶ Open";
+            this.btn_Open.UseVisualStyleBackColor = false;
+            this.btn_Open.Click += new System.EventHandler(this.btn_products_Click);
             // 
             // btn_Reports
             // 
@@ -102,7 +103,7 @@
             this.btn_Reports.Name = "btn_Reports";
             this.btn_Reports.Size = new System.Drawing.Size(210, 63);
             this.btn_Reports.TabIndex = 4;
-            this.btn_Reports.Text = "🗄Reports";
+            this.btn_Reports.Text = "🗄Payments";
             this.btn_Reports.UseVisualStyleBackColor = false;
             this.btn_Reports.Click += new System.EventHandler(this.btn_Reports_Click);
             // 
@@ -119,31 +120,31 @@
             this.btn_Setup.UseVisualStyleBackColor = false;
             this.btn_Setup.Click += new System.EventHandler(this.btn_Setup_Click);
             // 
-            // btn_mapping
+            // btn_Inv
             // 
-            this.btn_mapping.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_mapping.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_mapping.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_mapping.Location = new System.Drawing.Point(383, 125);
-            this.btn_mapping.Name = "btn_mapping";
-            this.btn_mapping.Size = new System.Drawing.Size(210, 93);
-            this.btn_mapping.TabIndex = 1;
-            this.btn_mapping.Text = "🏭 Inventory";
-            this.btn_mapping.UseVisualStyleBackColor = false;
-            this.btn_mapping.Click += new System.EventHandler(this.btn_Inventories_Click);
+            this.btn_Inv.BackColor = System.Drawing.Color.Cornsilk;
+            this.btn_Inv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Inv.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Inv.Location = new System.Drawing.Point(383, 125);
+            this.btn_Inv.Name = "btn_Inv";
+            this.btn_Inv.Size = new System.Drawing.Size(210, 93);
+            this.btn_Inv.TabIndex = 1;
+            this.btn_Inv.Text = "🏭 Inventory";
+            this.btn_Inv.UseVisualStyleBackColor = false;
+            this.btn_Inv.Click += new System.EventHandler(this.btn_Inventories_Click);
             // 
-            // btn_invUpdate
+            // btn_Product
             // 
-            this.btn_invUpdate.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_invUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_invUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_invUpdate.Location = new System.Drawing.Point(167, 125);
-            this.btn_invUpdate.Name = "btn_invUpdate";
-            this.btn_invUpdate.Size = new System.Drawing.Size(210, 93);
-            this.btn_invUpdate.TabIndex = 0;
-            this.btn_invUpdate.Text = "🛍 Products";
-            this.btn_invUpdate.UseVisualStyleBackColor = false;
-            this.btn_invUpdate.Click += new System.EventHandler(this.btn_Products_Click);
+            this.btn_Product.BackColor = System.Drawing.Color.Cornsilk;
+            this.btn_Product.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_Product.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Product.Location = new System.Drawing.Point(167, 125);
+            this.btn_Product.Name = "btn_Product";
+            this.btn_Product.Size = new System.Drawing.Size(210, 93);
+            this.btn_Product.TabIndex = 0;
+            this.btn_Product.Text = "🛍 Products";
+            this.btn_Product.UseVisualStyleBackColor = false;
+            this.btn_Product.Click += new System.EventHandler(this.btn_Products_Click);
             // 
             // pbarLoadForms
             // 
@@ -176,7 +177,7 @@
             "Attendance",
             "Tasks"});
             this.comboBox1.Location = new System.Drawing.Point(166, 228);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(212, 45);
             this.comboBox1.TabIndex = 7;
@@ -210,14 +211,14 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tblWelcomeButtons;
-        private System.Windows.Forms.Button btn_mapping;
-        private System.Windows.Forms.Button btn_invUpdate;
+        private System.Windows.Forms.Button btn_Inv;
+        private System.Windows.Forms.Button btn_Product;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ProgressBar pbarLoadForms;
         private System.Windows.Forms.Button btn_Reports;
         private System.Windows.Forms.Button btn_Setup;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_products;
+        private System.Windows.Forms.Button btn_Open;
         private System.Windows.Forms.ComboBox comboBox1;
     }
 }

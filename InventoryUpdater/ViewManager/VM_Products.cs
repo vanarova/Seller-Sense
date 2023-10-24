@@ -1,8 +1,10 @@
 ﻿using Decoders;
 using Newtonsoft.Json.Linq;
+using PrimitiveExt;
 using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Views;
+using SellerSense.Views.Products;
 using ssViewControls;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ using System.Windows.Forms;
 
 namespace SellerSense.ViewManager
 {
+    //
     /// <summary>
     /// This is view manager class, manages all events and logic for one view tree.
     /// One form with all child user controls, are managed by one view manager, this VM manages product form 
@@ -34,6 +37,7 @@ namespace SellerSense.ViewManager
         private DataGridView _datagrid;
         private M_External_Inventories _InventoriesModel;
         private Dictionary<string, Image> _images;
+        internal CompareProductView _compareProductViews;
 
         public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories, string companycode)
         {
@@ -41,6 +45,7 @@ namespace SellerSense.ViewManager
             _code = companycode;
             _InventoriesModel = vm_Inventories;   
             _m_product = m_Product;
+            _compareProductViews = new CompareProductView();
             FillFromProductModelToProductsViewWithoutImages();
         }
 
@@ -50,7 +55,23 @@ namespace SellerSense.ViewManager
             HandleProductControlEvents();
         }
 
-       
+
+        #region ProductViewComparer
+
+        //internal bool CompareProductViews(CompareProductView pview) { CompareProductView cmpProducts = new CompareProductView(); return cmpProducts.Compare(pview, pview); }
+
+        internal class CompareProductView : IComparer<ProductView>
+        {
+            public int Compare(ProductView x, ProductView y)
+            {
+                if (x.InHouseCode == y.InHouseCode) return 0;
+                else return 1;
+                        ;
+            }
+        }
+
+        #endregion
+
         #region ProductUserControl
 
         private void HandleProductControlEvents()
@@ -128,6 +149,7 @@ namespace SellerSense.ViewManager
                     MRP = addProductView.MRP,
                     Tag = addProductView.Tag,
                     SellingPrice = addProductView.SellingPrice,
+                    CostPrice = addProductView.CostPrice,
                     Weight = addProductView.Weight,
                     WeightAfterPackaging = addProductView.WeightAfterPackaging,
                     DimensionsBeforePackaging = addProductView.DimensionBeforePackaging,
@@ -155,6 +177,7 @@ namespace SellerSense.ViewManager
                     pEntry.WeightAfterPackaging = addProductView.WeightAfterPackaging;
                     pEntry.MRP = addProductView.MRP;
                     pEntry.SellingPrice = addProductView.SellingPrice;
+                    pEntry.CostPrice = addProductView.CostPrice;
                     if(img1 && !string.IsNullOrEmpty(primaryImagePath))
                         pEntry.Image = Path.GetFileName(primaryImagePath);
                     if (img2 && !string.IsNullOrEmpty(Image2Path))
@@ -225,6 +248,45 @@ namespace SellerSense.ViewManager
             _v_ssGridViewCntrl.ResetBindings += ResetBindings;
             _v_ssGridViewCntrl.OnControlLoad += OnControlLoadHandler;
             _v_ssGridViewCntrl.OnGridButtonClicked += _v_ssGridViewCntrl_OnGridButtonClicked; ;
+            _v_ssGridViewCntrl.SelectedRowsActionButtonClicked += _v_ssGridViewCntrl_OnGridButtonActionSelectedClicked;
+        }
+
+        private void _v_ssGridViewCntrl_OnGridButtonActionSelectedClicked(EventList<ProductView> toExportList)
+        {
+            ExportProducts exportProducts = new ExportProducts();
+            string message = string.Empty;
+            exportProducts.FormClosed += (s, e) => {
+                if (!exportProducts.ExportTelegram)
+                    return;
+                foreach (var item in toExportList)
+                {
+                    message = item.InHouseCode + " " + item.Title;
+                    if (exportProducts.IncludePrices)
+                    {
+                        var prod = _m_product._productEntries.Find(x => x.InHouseCode == item.InHouseCode);
+                        if (prod != null) { message = message + " Rs: " + prod.SellingPrice; }
+                    }
+                    if (exportProducts.IncludePrimaryImages)
+                    {
+                       (string filePath, string fileName)= ProjIO.GetImageFilePath(_code, item.InHouseCode);
+                        Logger.TelegramMedia(filePath, fileName, message,Logger.LogLevel.info, _code);
+                    }
+                    else
+                    {
+                        Logger.Telegram(message);
+                    }
+                    //if (exportProducts.IncludePrimaryImages)
+                    //    Logger.Log(item., Logger.LogLevel.info, false);
+                   
+                       
+                }
+            };
+            exportProducts.ShowDialog();
+            //below code may not be needed..
+            //DataGridViewRow[] rowsSelected = new DataGridViewRow[grid.SelectedRows.Count];
+            //grid.SelectedRows.CopyTo(rowsSelected, 0);
+            //here dialog shud be able to handle all selected rows in all pages
+            //open dialog and select export options and send msg to telegram.
         }
 
         private void _v_ssGridViewCntrl_OnGridButtonClicked(DataGridView grid, int rowIndex, int colIndex)
@@ -236,7 +298,7 @@ namespace SellerSense.ViewManager
                 if (prod == null)
                     return;
                 AddProduct _v_addproduct = new AddProduct(true);
-                VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct, prod, _images, _code);
+                VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct,_m_product, prod, _images, _code);
                 if (_v_addproduct.ShowDialog() == DialogResult.OK)
                 {
                     if (vm_addProduct.MarkedForDeletion)
@@ -271,11 +333,7 @@ namespace SellerSense.ViewManager
                 {
                     if(p.InHouseCode == m.InHouseCode)
                     {
-                        //(string primaryImage, string image2, 
-                        //    string image3, string image4, string mrp, 
-                        //    string sellingPrice, string weight, 
-                        //    string weightAfterPackaging, string dimensionsAfterPackaging, 
-                        //    string dimensionsBeforePackaging) value = p.GetInvisibleColumnsFields();
+                        
                         m.SnapdealCode = p.SnapdealCode;
                         m.FlipkartCode = p.FlipkartCode;
                         m.Notes = p.Notes;
@@ -284,17 +342,7 @@ namespace SellerSense.ViewManager
                         m.Tag = p.Tag;
                         m.AmazonCode = p.AmazonCode;
                         m.MeeshoCode = p.MeeshoCode;
-                        //m.Description = p.Description;
-                        //m.MRP = value.mrp;
-                        //m.DimensionsAfterPackaging = value.dimensionsAfterPackaging;
-                        //m.DimensionsBeforePackaging = value.dimensionsBeforePackaging;
-                        //m.SellingPrice = value.sellingPrice;
-                        //m.Weight = value.weight;
-                        //m.Image = value.primaryImage;
-                        //m.ImageAlt1 = value.image2;
-                        //m.ImageAlt2 = value.image3;
-                        //m.ImageAlt3 = value.image4;
-                        //m.WeightAfterPackaging = value.weightAfterPackaging;
+                        
                     }
                 }
 
@@ -302,25 +350,7 @@ namespace SellerSense.ViewManager
             _m_product.SaveMapFile();
         }
 
-        //private void UpdateFromProductModelToProductsView()
-        //{
-
-        //    foreach (var item in _m_product._productEntries)
-        //    {
-        //        (_, Image img) = ProjIO.LoadImageAndDownSize75x75(item.Image);
-        //        _vm_productsView.Add(new ProductView(
-        //            item.InHouseCode,
-        //            img, 
-        //            item.Title,
-        //            item.Tag,
-        //            item.Description,
-        //            item.AmazonCode,
-        //            item.FlipkartCode,
-        //            item.SnapdealCode,
-        //            item.MeeshoCode,
-        //            item.Notes));
-        //    }
-        //}
+        
 
         private void FillFromProductModelToProductsViewWithoutImages()
         {
@@ -338,9 +368,7 @@ namespace SellerSense.ViewManager
                     item.SnapdealCode,
                     item.MeeshoCode,
                     item.Notes);
-                //prod.AddInvisibleColumnsFields(item.Image, item.ImageAlt1, item.ImageAlt2, item.ImageAlt3,
-                //    item.MRP, item.SellingPrice, item.Weight, item.WeightAfterPackaging, item.DimensionsAfterPackaging,
-                //    item.DimensionsBeforePackaging);
+               
                 _vm_productsView.Add(prod);
 
 
@@ -391,15 +419,7 @@ namespace SellerSense.ViewManager
                 if (amzCol || spdCol || fkCol || msoCol )//|| titleCol)
                 {
                     datagrid.SelectedCells[0].Value = string.Empty;
-                    //var r_item =  _m_product._productEntries.FirstOrDefault(i=>i.InHouseCode == datagrid.SelectedCells[0].OwningRow.Cells[Constants.PCols.BaseCodeValue].Value.ToString());
-                    //if (r_item!=null && amzCol)
-                    //    r_item.AmazonCode = String.Empty;
-                    //if (r_item != null && spdCol)
-                    //    r_item.SnapdealCode = String.Empty;
-                    //if (r_item != null && fkCol)
-                    //    r_item.FlipkartCode = String.Empty;
-                    //if (r_item != null && msoCol)
-                    //    r_item.MeeshoCode = String.Empty;
+                    
                 }
                 e.SuppressKeyPress = true;
             }
@@ -446,7 +466,7 @@ namespace SellerSense.ViewManager
             gridView.Columns[Constants.PCols.FlipkartCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             gridView.Columns[Constants.PCols.SnapDealCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             gridView.Columns[Constants.PCols.MeeshoCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
-            gridView.RowHeadersVisible = false;
+            //gridView.RowHeadersVisible = false;
         }
 
         /// <summary>  
@@ -492,11 +512,7 @@ namespace SellerSense.ViewManager
             try
             {
                 _images = imgs;
-                //foreach (var item in _m_product._productEntries)
-                //{
-                //    if (imgs.ContainsKey(item.InHouseCode))
-                //        item.Image = imgs[item.InHouseCode];
-                //}
+               
                 foreach (var item in _vm_productsView)
                 {
                     if (imgs.ContainsKey(item.InHouseCode))
@@ -504,6 +520,7 @@ namespace SellerSense.ViewManager
                 }
             }
             catch(Exception e) {
+                Logger.Log("Not able to assign image, AssignImagesToProducts()", Logger.LogLevel.error, false);
             }
 
         }
@@ -516,18 +533,7 @@ namespace SellerSense.ViewManager
         //It is filled by iterating on Product model, any changes will be saved back into product model.
         internal class ProductView :INotifyPropertyChanged
         {
-            //Below are invisible columns, marked as private, private fields are not visible while binding to datagrid.
-            //private string PrimaryImage;
-            //private string Image2;
-            //private string Image3;
-            //private string Image4;
-            //private string MRP;
-            //private string SellingPrice;
-            //private string Weight;
-            //private string WeightAfterPackaging;
-            //private string DimensionsAfterPackaging;
-            //private string DimensionsBeforePackaging;
-
+            
 
             //bacling fields
             private string _inHouseCode;
@@ -551,6 +557,11 @@ namespace SellerSense.ViewManager
             private string _notes;
             public string Notes { get { return _notes; } set { _notes = value; } }
 
+            //optional columns, added on users request only
+            private string _costPrice;
+            public string CostPrice {  get { return _costPrice; } set { _costPrice = value; } }
+
+
             public event PropertyChangedEventHandler PropertyChanged;
 
             // This method is called by the Set accessor of each property.  
@@ -561,54 +572,6 @@ namespace SellerSense.ViewManager
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
 
-            //internal void AddInvisibleColumnsFields(string primaryImage,string  image2,string image3,string image4,
-            //    string mrp, string sellingPrice, string weight,string weightAfterPackaging, string dimensionsAfterPackaging,
-            //    string dimensionsBeforePackaging)
-            //{ 
-            //    PrimaryImage = primaryImage;
-            //    Image2 = image2;
-            //    Image3 = image3;
-            //    Image4 = image4;
-            //    MRP = mrp;
-            //    SellingPrice = sellingPrice;
-            //    Weight = weight;
-            //    WeightAfterPackaging = weightAfterPackaging;
-            //    DimensionsAfterPackaging = dimensionsAfterPackaging;
-            //    DimensionsBeforePackaging = dimensionsBeforePackaging;
-
-            //}
-
-            //internal void AddInvisibleColumnsFieldsWithoutImages(
-            //    string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
-            //    string dimensionsBeforePackaging)
-            //{
-               
-            //    MRP = mrp;
-            //    SellingPrice = sellingPrice;
-            //    Weight = weight;
-            //    WeightAfterPackaging = weightAfterPackaging;
-            //    DimensionsAfterPackaging = dimensionsAfterPackaging;
-            //    DimensionsBeforePackaging = dimensionsBeforePackaging;
-
-            //}
-
-
-            //internal (string primaryImage, string image2, string image3, string image4,
-            //    string mrp, string sellingPrice, string weight, string weightAfterPackaging, string dimensionsAfterPackaging,
-            //    string dimensionsBeforePackaging) GetInvisibleColumnsFields()
-            //{
-            //    return (PrimaryImage, Image2, Image3, Image4, MRP, SellingPrice, Weight, WeightAfterPackaging,
-            //        DimensionsAfterPackaging, DimensionsBeforePackaging);
-
-            //}
-
-            //// This method is called by the Set accessor of each property.  
-            //// The CallerMemberName attribute that is applied to the optional propertyName  
-            //// parameter causes the property name of the caller to be substituted as an argument.  
-            //private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-            //{
-            //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            //}
 
             public ProductView(string baseCodeValue, Image img, string title, string tag, string desc,
                 string amzInventory, string fkCodeValue, string spdCodeValue,

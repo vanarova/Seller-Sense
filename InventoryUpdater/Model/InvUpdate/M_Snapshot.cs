@@ -1,12 +1,14 @@
 ﻿using Newtonsoft.Json;
 using SellerSense.Helper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SellerSense.Model.InvUpdate
 {
@@ -30,6 +32,8 @@ namespace SellerSense.Model.InvUpdate
 
         internal void SaveInvSnapshot(IList<Decoders.Interfaces.IAmzInventory> _amzInventoryList)
         {
+            if (_invSnapshotEntries.Count > 0)
+                _invSnapshotEntries.Clear();
             foreach (var item in _amzInventoryList)
             {
                 _invSnapshotEntries.Add(new InvSnapshotEntry()
@@ -37,6 +41,58 @@ namespace SellerSense.Model.InvUpdate
                     Sku = item.sku,
                     InvSysCount = item.systemQuantity,
                     asin = item.asin
+                });
+            }
+            SerializeInvSnapshot();
+        }
+
+
+
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IFkInventoryV2> _fkInventoryList)
+        {
+            if(_invSnapshotEntries.Count > 0)
+                _invSnapshotEntries.Clear();
+            foreach (var item in _fkInventoryList)
+            {
+                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                {
+                    Sku = item.sku,
+                    InvSysCount = item.systemQuantity,
+                    asin = item.fsn
+                });
+            }
+            SerializeInvSnapshot();
+        }
+
+
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.ISpdInventory> _spdInventoryList)
+        {
+            if (_invSnapshotEntries.Count > 0)
+                _invSnapshotEntries.Clear();
+            foreach (var item in _spdInventoryList)
+            {
+                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                {
+                    Sku = item.sku,
+                    InvSysCount = item.systemQuantity,
+                    asin = item.fsn
+                });
+            }
+            SerializeInvSnapshot();
+        }
+
+
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IMsoInventory> _msoInventoryList)
+        {
+            if (_invSnapshotEntries.Count > 0)
+                _invSnapshotEntries.Clear();
+            foreach (var item in _msoInventoryList)
+            {
+                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                {
+                    Sku = item.sku,
+                    InvSysCount = item.systemQuantity,
+                    asin = item.fsn
                 });
             }
             SerializeInvSnapshot();
@@ -62,7 +118,6 @@ namespace SellerSense.Model.InvUpdate
 
         internal IList<InvSnapshotEntry> GetCustomDayInvSnapshot(DateTime customDate)
         {
-            //List<InvSnapshotEntry> invSnapshotEntries = new List<InvSnapshotEntry>();
             string customSnapshotFileName = GetCsutomDayInvSnapshotFileName(customDate);
             if (string.IsNullOrEmpty(customSnapshotFileName))
                 return default;
@@ -105,10 +160,18 @@ namespace SellerSense.Model.InvUpdate
 
         private string GetTodaysLastSavedInvSnapshotFileName()
         {
+            //var today = DateTime.Today;
+            //SortedList<
             GetSortedSnapshotsList();
             if (_sortedSnapShorts != null && _sortedSnapShorts.Count > 0)
             {
-               return _sortedSnapShorts.Values[_sortedSnapShorts.Count-1];
+                var todaySnps = _sortedSnapShorts.Select(x => x.Key).
+                        Where(d =>  (DateTime.Today.Date == d.Date)).ToList<DateTime>();
+                //SortedList<DateTime> sortaedList = todaySnps.OrderByDescending(x => x.Date);
+                if(todaySnps.Count>0)
+                    return _sortedSnapShorts[todaySnps[todaySnps.Count-1]];
+                else
+                    return string.Empty;
             }
             else return String.Empty;
         }
@@ -151,16 +214,15 @@ namespace SellerSense.Model.InvUpdate
             GetSortedSnapshotsList();
             if (_sortedSnapShorts != null && _sortedSnapShorts.Count > 0)
             {
-                //var yesterday = DateTime.Today.AddDays(-1);
                 DateTime customSnpshot = _sortedSnapShorts.Select(x => x.Key).
                     Where(d => d == customDate).FirstOrDefault();
                 if (customSnpshot != null && _sortedSnapShorts.ContainsKey(customSnpshot))
                     return _sortedSnapShorts[customSnpshot];
-                else
-                    return String.Empty;
-
             }
-            else return String.Empty;
+           
+            MessageBox.Show("No inventory snapshot found for this date", "Info",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information); 
+            return String.Empty; 
         }
 
 

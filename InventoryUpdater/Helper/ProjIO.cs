@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.IO.Compression;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace SellerSense.Helper
 {
@@ -367,7 +368,22 @@ namespace SellerSense.Helper
                 return (false, string.Empty);
         }
 
+        internal static (string filePath, string fileName) GetImageFilePath(string companyCode, string productCode)
+        {
+            string imgsLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                   companyCode, Constants.Imgs);
+            string filePath = string.Empty;
+            if (Directory.Exists(imgsLocation))
+            {
+                filePath =Path.Combine(imgsLocation, productCode);
+                if (File.Exists(filePath + Constants.JPG) )
+                    return (filePath + Constants.JPG, productCode+ Constants.JPG); 
+                if( File.Exists(filePath + Constants.PNG))
+                    return (filePath + Constants.PNG, productCode + Constants.PNG);
 
+            }
+            return ("", "");
+        }
 
             //internal static void ImportMap1FileToLastSavedLocation(string fileName, string companyCode)
             //{
@@ -549,7 +565,7 @@ namespace SellerSense.Helper
         //}
 
         internal async static void ExportAllMaps(string mapCode1, string mapCode2, string mapCode3, string mapCode4, string mapCode5,
-           string selectedPath, bool exportLog, bool exportImgs, bool exportSnapshots, Action<string> FileExported)
+           string selectedPath, bool exportLog, bool exportImgs, bool exportSnapshots, bool exportViaTelegram, Action<string> FileExported)
         {
             Guid uniqId = Guid.NewGuid();
             string exportAllPath = Path.Combine(selectedPath, uniqId.ToString());
@@ -564,8 +580,17 @@ namespace SellerSense.Helper
              exportLog, exportImgs, exportSnapshots, () => { }, () => {  });
            await ExportMap(mapCode5, exportAllPath,
              exportLog, exportImgs, exportSnapshots, () => { }, () => { });
-
+           await ExportToTelegram(exportAllPath);
             FileExported(exportAllPath);
+        }
+
+        private async static Task ExportToTelegram(string zipFile)
+        {
+            foreach (var item in Directory.GetFiles(zipFile))
+            {
+                var fileName = Path.GetFileName(item);
+               await Logger.TelegramDocument(zipFile, fileName, Logger.LogLevel.info);
+            }
         }
 
         //taken from msdn

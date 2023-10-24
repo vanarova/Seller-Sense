@@ -75,11 +75,12 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.545455F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.45455F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(999, 682);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1498, 1066);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // fileStrip
@@ -87,6 +88,7 @@
             this.fileStrip.AllowMerge = false;
             this.fileStrip.BackColor = System.Drawing.Color.Lavender;
             this.fileStrip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fileStrip.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.fileStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.fileStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_Save,
@@ -94,9 +96,10 @@
             this.linkToolStripMenuItem,
             this.sendTotalOrderCountToolStripMenuItem});
             this.fileStrip.Location = new System.Drawing.Point(0, 0);
-            this.fileStrip.MinimumSize = new System.Drawing.Size(0, 15);
+            this.fileStrip.MinimumSize = new System.Drawing.Size(0, 23);
             this.fileStrip.Name = "fileStrip";
-            this.fileStrip.Size = new System.Drawing.Size(580, 31);
+            this.fileStrip.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.fileStrip.Size = new System.Drawing.Size(924, 48);
             this.fileStrip.TabIndex = 9;
             this.fileStrip.Text = "menuStrip1";
             // 
@@ -109,37 +112,37 @@
             this.importMeeshoToolStripMenuItem,
             this.exportAllToolStripMenuItem});
             this.toolStripMenuItem_Save.Name = "toolStripMenuItem_Save";
-            this.toolStripMenuItem_Save.Size = new System.Drawing.Size(111, 27);
+            this.toolStripMenuItem_Save.Size = new System.Drawing.Size(179, 42);
             this.toolStripMenuItem_Save.Text = "Inventory File";
             // 
             // importAmazonToolStripMenuItem
             // 
             this.importAmazonToolStripMenuItem.Name = "importAmazonToolStripMenuItem";
-            this.importAmazonToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.importAmazonToolStripMenuItem.Size = new System.Drawing.Size(363, 44);
             this.importAmazonToolStripMenuItem.Text = "Import Amazon🪄";
             // 
             // importFlipkartToolStripMenuItem
             // 
             this.importFlipkartToolStripMenuItem.Name = "importFlipkartToolStripMenuItem";
-            this.importFlipkartToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.importFlipkartToolStripMenuItem.Size = new System.Drawing.Size(363, 44);
             this.importFlipkartToolStripMenuItem.Text = "Import Flipkart 🚀";
             // 
             // importSnapdealToolStripMenuItem
             // 
             this.importSnapdealToolStripMenuItem.Name = "importSnapdealToolStripMenuItem";
-            this.importSnapdealToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.importSnapdealToolStripMenuItem.Size = new System.Drawing.Size(363, 44);
             this.importSnapdealToolStripMenuItem.Text = "Import Snapdeal 👜";
             // 
             // importMeeshoToolStripMenuItem
             // 
             this.importMeeshoToolStripMenuItem.Name = "importMeeshoToolStripMenuItem";
-            this.importMeeshoToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.importMeeshoToolStripMenuItem.Size = new System.Drawing.Size(363, 44);
             this.importMeeshoToolStripMenuItem.Text = "Import Meesho 🍱";
             // 
             // exportAllToolStripMenuItem
             // 
             this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
-            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(363, 44);
             this.exportAllToolStripMenuItem.Text = "Export All 🡽";
             // 
             // toolStripMenuItem_compare
@@ -155,18 +158,18 @@
             this.snapdealInventoryToolStripMenuItem,
             this.meeshoInventoryToolStripMenuItem});
             this.toolStripMenuItem_compare.Name = "toolStripMenuItem_compare";
-            this.toolStripMenuItem_compare.Size = new System.Drawing.Size(84, 27);
+            this.toolStripMenuItem_compare.Size = new System.Drawing.Size(131, 42);
             this.toolStripMenuItem_compare.Text = "Compare";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(259, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(419, 6);
             // 
             // allToolStripMenuItem_lastDay
             // 
             this.allToolStripMenuItem_lastDay.Name = "allToolStripMenuItem_lastDay";
-            this.allToolStripMenuItem_lastDay.Size = new System.Drawing.Size(262, 26);
+            this.allToolStripMenuItem_lastDay.Size = new System.Drawing.Size(422, 44);
             this.allToolStripMenuItem_lastDay.Text = "All Inventory with last day";
             // 
             // flipkartToolStripMenuItem
@@ -175,19 +178,19 @@
             this.lastDayToolStripMenuItemFk,
             this.customDateToolStripMenuItemFk});
             this.flipkartToolStripMenuItem.Name = "flipkartToolStripMenuItem";
-            this.flipkartToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.flipkartToolStripMenuItem.Size = new System.Drawing.Size(422, 44);
             this.flipkartToolStripMenuItem.Text = "Flipkart Inventory";
             // 
             // lastDayToolStripMenuItemFk
             // 
             this.lastDayToolStripMenuItemFk.Name = "lastDayToolStripMenuItemFk";
-            this.lastDayToolStripMenuItemFk.Size = new System.Drawing.Size(176, 26);
+            this.lastDayToolStripMenuItemFk.Size = new System.Drawing.Size(283, 44);
             this.lastDayToolStripMenuItemFk.Text = "Last day";
             // 
             // customDateToolStripMenuItemFk
             // 
             this.customDateToolStripMenuItemFk.Name = "customDateToolStripMenuItemFk";
-            this.customDateToolStripMenuItemFk.Size = new System.Drawing.Size(176, 26);
+            this.customDateToolStripMenuItemFk.Size = new System.Drawing.Size(283, 44);
             this.customDateToolStripMenuItemFk.Text = "Custom date";
             // 
             // amazonInventoryToolStripMenuItem
@@ -196,19 +199,19 @@
             this.lastDayToolStripMenuItemAmz,
             this.customDateToolStripMenuItemAmz});
             this.amazonInventoryToolStripMenuItem.Name = "amazonInventoryToolStripMenuItem";
-            this.amazonInventoryToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.amazonInventoryToolStripMenuItem.Size = new System.Drawing.Size(422, 44);
             this.amazonInventoryToolStripMenuItem.Text = "Amazon Inventory";
             // 
             // lastDayToolStripMenuItemAmz
             // 
             this.lastDayToolStripMenuItemAmz.Name = "lastDayToolStripMenuItemAmz";
-            this.lastDayToolStripMenuItemAmz.Size = new System.Drawing.Size(224, 26);
+            this.lastDayToolStripMenuItemAmz.Size = new System.Drawing.Size(359, 44);
             this.lastDayToolStripMenuItemAmz.Text = "Last Day";
             // 
             // customDateToolStripMenuItemAmz
             // 
             this.customDateToolStripMenuItemAmz.Name = "customDateToolStripMenuItemAmz";
-            this.customDateToolStripMenuItemAmz.Size = new System.Drawing.Size(224, 26);
+            this.customDateToolStripMenuItemAmz.Size = new System.Drawing.Size(359, 44);
             this.customDateToolStripMenuItemAmz.Text = "Custom Date";
             // 
             // snapdealInventoryToolStripMenuItem
@@ -217,19 +220,19 @@
             this.lastDayToolStripMenuItemSpd,
             this.customDateToolStripMenuItemSpd});
             this.snapdealInventoryToolStripMenuItem.Name = "snapdealInventoryToolStripMenuItem";
-            this.snapdealInventoryToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.snapdealInventoryToolStripMenuItem.Size = new System.Drawing.Size(422, 44);
             this.snapdealInventoryToolStripMenuItem.Text = "Snapdeal Inventory";
             // 
             // lastDayToolStripMenuItemSpd
             // 
             this.lastDayToolStripMenuItemSpd.Name = "lastDayToolStripMenuItemSpd";
-            this.lastDayToolStripMenuItemSpd.Size = new System.Drawing.Size(224, 26);
+            this.lastDayToolStripMenuItemSpd.Size = new System.Drawing.Size(286, 44);
             this.lastDayToolStripMenuItemSpd.Text = "Last Day";
             // 
             // customDateToolStripMenuItemSpd
             // 
             this.customDateToolStripMenuItemSpd.Name = "customDateToolStripMenuItemSpd";
-            this.customDateToolStripMenuItemSpd.Size = new System.Drawing.Size(224, 26);
+            this.customDateToolStripMenuItemSpd.Size = new System.Drawing.Size(286, 44);
             this.customDateToolStripMenuItemSpd.Text = "Custom Date";
             // 
             // meeshoInventoryToolStripMenuItem
@@ -238,19 +241,19 @@
             this.lastDayToolStripMenuItemMso,
             this.customDateToolStripMenuItemMso});
             this.meeshoInventoryToolStripMenuItem.Name = "meeshoInventoryToolStripMenuItem";
-            this.meeshoInventoryToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
+            this.meeshoInventoryToolStripMenuItem.Size = new System.Drawing.Size(422, 44);
             this.meeshoInventoryToolStripMenuItem.Text = "Meesho Inventory";
             // 
             // lastDayToolStripMenuItemMso
             // 
             this.lastDayToolStripMenuItemMso.Name = "lastDayToolStripMenuItemMso";
-            this.lastDayToolStripMenuItemMso.Size = new System.Drawing.Size(178, 26);
+            this.lastDayToolStripMenuItemMso.Size = new System.Drawing.Size(286, 44);
             this.lastDayToolStripMenuItemMso.Text = "Last Day";
             // 
             // customDateToolStripMenuItemMso
             // 
             this.customDateToolStripMenuItemMso.Name = "customDateToolStripMenuItemMso";
-            this.customDateToolStripMenuItemMso.Size = new System.Drawing.Size(178, 26);
+            this.customDateToolStripMenuItemMso.Size = new System.Drawing.Size(286, 44);
             this.customDateToolStripMenuItemMso.Text = "Custom Date";
             // 
             // linkToolStripMenuItem
@@ -258,21 +261,21 @@
             this.linkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem});
             this.linkToolStripMenuItem.Name = "linkToolStripMenuItem";
-            this.linkToolStripMenuItem.Size = new System.Drawing.Size(49, 27);
+            this.linkToolStripMenuItem.Size = new System.Drawing.Size(77, 42);
             this.linkToolStripMenuItem.Text = "Link";
             // 
             // linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem
             // 
             this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem.Name = "linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStr" +
     "ipMenuItem";
-            this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem.Size = new System.Drawing.Size(676, 26);
+            this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem.Size = new System.Drawing.Size(1093, 44);
             this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem.Text = "Link products which are sold as a package, whose inventories reduces/increases to" +
     "gether";
             // 
             // sendTotalOrderCountToolStripMenuItem
             // 
             this.sendTotalOrderCountToolStripMenuItem.Name = "sendTotalOrderCountToolStripMenuItem";
-            this.sendTotalOrderCountToolStripMenuItem.Size = new System.Drawing.Size(178, 27);
+            this.sendTotalOrderCountToolStripMenuItem.Size = new System.Drawing.Size(286, 42);
             this.sendTotalOrderCountToolStripMenuItem.Text = "Send Total Order Count";
             // 
             // flowLayoutPanel1
@@ -285,11 +288,11 @@
             this.flowLayoutPanel1.Controls.Add(this.label5);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(581, 1);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(926, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(417, 29);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(570, 44);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // label6
@@ -298,10 +301,9 @@
             this.label6.AutoSize = true;
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(393, 2);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(534, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(18, 22);
+            this.label6.Size = new System.Drawing.Size(27, 34);
             this.label6.TabIndex = 5;
             this.label6.Text = "?";
             // 
@@ -312,10 +314,9 @@
             this.label_meesho.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_meesho.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_meesho.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_meesho.Location = new System.Drawing.Point(326, 2);
-            this.label_meesho.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_meesho.Location = new System.Drawing.Point(426, 3);
             this.label_meesho.Name = "label_meesho";
-            this.label_meesho.Size = new System.Drawing.Size(63, 22);
+            this.label_meesho.Size = new System.Drawing.Size(102, 34);
             this.label_meesho.TabIndex = 0;
             this.label_meesho.Text = "Meesho";
             // 
@@ -326,10 +327,9 @@
             this.label_snapdeal.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_snapdeal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_snapdeal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_snapdeal.Location = new System.Drawing.Point(249, 2);
-            this.label_snapdeal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_snapdeal.Location = new System.Drawing.Point(306, 3);
             this.label_snapdeal.Name = "label_snapdeal";
-            this.label_snapdeal.Size = new System.Drawing.Size(73, 22);
+            this.label_snapdeal.Size = new System.Drawing.Size(114, 34);
             this.label_snapdeal.TabIndex = 1;
             this.label_snapdeal.Text = "Snapdeal";
             // 
@@ -340,10 +340,9 @@
             this.label_flipkart.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_flipkart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_flipkart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_flipkart.Location = new System.Drawing.Point(185, 2);
-            this.label_flipkart.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_flipkart.Location = new System.Drawing.Point(206, 3);
             this.label_flipkart.Name = "label_flipkart";
-            this.label_flipkart.Size = new System.Drawing.Size(60, 22);
+            this.label_flipkart.Size = new System.Drawing.Size(94, 34);
             this.label_flipkart.TabIndex = 2;
             this.label_flipkart.Text = "Flipkart";
             // 
@@ -354,10 +353,9 @@
             this.label_amazon.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_amazon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_amazon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_amazon.Location = new System.Drawing.Point(115, 2);
-            this.label_amazon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_amazon.Location = new System.Drawing.Point(97, 3);
             this.label_amazon.Name = "label_amazon";
-            this.label_amazon.Size = new System.Drawing.Size(66, 22);
+            this.label_amazon.Size = new System.Drawing.Size(103, 34);
             this.label_amazon.TabIndex = 3;
             this.label_amazon.Text = "Amazon";
             // 
@@ -366,20 +364,20 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(268, 24);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(329, 37);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(143, 20);
+            this.label5.Size = new System.Drawing.Size(232, 32);
             this.label5.TabIndex = 4;
             this.label5.Text = "Inventory imported: ";
             // 
             // InvCntrl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "InvCntrl";
-            this.Size = new System.Drawing.Size(999, 682);
+            this.Size = new System.Drawing.Size(1498, 1066);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.fileStrip.ResumeLayout(false);

@@ -9,6 +9,8 @@ namespace SellerSense
 {
     public static class Constants
     {
+        public const string JPG = ".jpg";
+        public const string PNG = ".png";
         public const int MaxHistoryDaysToKeepSnapshots = 30;
         public const string Imgs = "imgs";
         public const string MapFileName = "map.json";
@@ -47,26 +49,26 @@ namespace SellerSense
             ByUserId,ByCompanyId
         }
 
-        public struct ICols
-        {
-             public const string Image="Image";
-             public const string Code="Code";
-             public const string Title="Title";
-             public const string stock= "Stock Count";
-             public const string acode="Amazon Code";
-             public const string asyscount = "Amazon System Count";
-             public const string acount= "Amazon Count";
-             public const string fcode= "Flipkart Code";
-             public const string fcount= "Flipkart Count";
-             public const string fsyscount= "Flipkart System Count";
-             public const string scode = "Snapdeal Code";
-             public const string scount = "Snapdeal Count";
-             public const string sSyscount = "Snapdeal System Count";
-             public const string mcode = "Meesho Code";
-             public const string mcount = "Meesho Count";
-             public const string msyscount = "Meesho System Count";
-             public const string notes = "Notes";
-        }
+        //public struct ICols
+        //{
+        //     public const string Image="Image";
+        //     public const string Code="Code";
+        //     public const string Title="Title";
+        //     public const string stock= "Stock Count";
+        //     public const string acode="Amazon Code";
+        //     public const string asyscount = "Amazon System Count";
+        //     public const string acount= "Amazon Count";
+        //     public const string fcode= "Flipkart Code";
+        //     public const string fcount= "Flipkart Count";
+        //     public const string fsyscount= "Flipkart System Count";
+        //     public const string scode = "Snapdeal Code";
+        //     public const string scount = "Snapdeal Count";
+        //     public const string sSyscount = "Snapdeal System Count";
+        //     public const string mcode = "Meesho Code";
+        //     public const string mcount = "Meesho Count";
+        //     public const string msyscount = "Meesho System Count";
+        //     public const string notes = "Notes";
+        //}
 
 
         public struct MCols
@@ -88,7 +90,6 @@ namespace SellerSense
             public const string FlipkartCode = "FlipkartCode";
             public const string SnapDealCode = "SnapdealCode";
             public const string MeeshoCode = "MeeshoCode";
-            //public const string BaseCodeValue = "BaseCodeValue";
             public const string Image = "Image";
             public const string InHouseCode = "InHouseCode";
             public const string Title = "Title";

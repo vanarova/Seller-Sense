@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TelegramBot;
+using static TelegramBot.Messenger;
 
 namespace SellerSense.Helper
 {
@@ -57,7 +58,7 @@ namespace SellerSense.Helper
         internal static void SetTelegramSettings(string botToken,long chatId)
         { _botToken = botToken; _chatId = chatId;  }
  
-        internal static async void Telegram(string message, LogLevel logLevel, string companyCode = "")
+        internal static async void TelegramLog(string message, LogLevel logLevel, string companyCode = "")
         {
             if(string.IsNullOrEmpty(_botToken) || _chatId == 0)
                 return;
@@ -66,6 +67,41 @@ namespace SellerSense.Helper
             var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
             await Messenger.SendTelegramMessage(_botToken, _chatId, logMessage, _TelegramlogDepth);
         }
+
+
+        internal static async void Telegram(string message)
+        {
+            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
+                return;
+            
+            await Messenger.SendTelegramMessage(_botToken, _chatId, message, _TelegramlogDepth);
+        }
+
+        internal static async void TelegramMedia(string filePath,string fileName, string message,
+            LogLevel logLevel, string companyCode = "")
+        {
+            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
+                return;
+            if ((int)_logLevel < (int)logLevel)
+                return;
+            
+            await Messenger.SendTelegramImage(_botToken, _chatId,message, filePath, fileName, _TelegramlogDepth);
+           
+        }
+
+        internal static async Task TelegramDocument(string filePath, string fileName,
+           LogLevel logLevel, string companyCode = "")
+        {
+            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
+                return;
+            if ((int)_logLevel < (int)logLevel)
+                return;
+
+            await Messenger.SendTelegramFile(_botToken, _chatId,  filePath, fileName, _TelegramlogDepth);
+
+        }
+
+
 
         internal static void Log(string companyCode, string message, LogLevel logLevel)
         {

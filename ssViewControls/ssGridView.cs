@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PrimitiveExt;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -14,7 +16,7 @@ namespace ssViewControls
     /// <summary>
     /// Story:
     /// This view is created by using grid and other form controls, grid is binded with a binding list
-    /// This binding list contains 1 page at a time. Another collection in this page contains full list including all pages.
+    /// This binding list contains 1 page at a time. Anotherin collection in this page contains full list including all pages.
     /// Paging is implemented in this view, For all other logic a view manager is responsible.
     /// All the events are handled by view manager class : VM_[Class name]
     /// This view is used at multiple places in different forms, each managed by respective view managers
@@ -25,8 +27,8 @@ namespace ssViewControls
     {
         /// <summary> Partial list, contains data for one page at a time. </summary>
         private SortableBindingList<T> _bindeddata = new SortableBindingList<T>();
-
-
+        private EventList<T> _selectedRows;
+        
         private int _currentPageNumber_backingField;
         private int _currentPageNumber { 
             get { return _currentPageNumber_backingField; }
@@ -51,14 +53,17 @@ namespace ssViewControls
         public event Action<bool, string, SortableBindingList<T>> SearchTitleTriggered;
         public event Action<bool,string, SortableBindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindings;
+        public event Action<EventList<T>> OnRowSelectionChanged;
         public event Action<DataGridView> OnControlLoad;
         public event Action<DataGridView,int,int> OnGridButtonClicked;
+        //public event Action<DataGridView> OnGridButtonActionSelectedClicked;
         public event Action<DataGridView, DataGridViewCellFormattingEventArgs> OnCellFormatting;
         //BindingListChanged event is fired by INotifychanged property setters of view manager.
         //If InotifypropertyChanged is not implemented, this event wont fire.
         public event Action<SortableBindingList<T>,ListChangedEventArgs> BindingListChanged; 
+        public event Action<EventList<T>> SelectedRowsActionButtonClicked; 
         public bool IsLoading { set { progressBar_Search.Visible = value; } }
-
+        private IComparer<T> _bindedDataObjectComparer;
         private int _pageSize { get; set; }
         private int _lastPageNumber { get; set; }
         private int _TotalRowsInDataSet { get; set; }
@@ -66,32 +71,68 @@ namespace ssViewControls
         /// <summary> full data list, contains all records </summary>
         private List<T> _data;
 
-
-
-        public ssGridView(List<T> data)
+        private void Init(List<T> data)
         {
             _data = new List<T>();
             _data = data;
             _TotalRowsInDataSet = _data.Count;
             _pageSize = 100;
-            _lastPageNumber = _TotalRowsInDataSet/_pageSize;
+            _lastPageNumber = _TotalRowsInDataSet / _pageSize;
+            _selectedRows = new EventList<T>();
+            _selectedRows.ItemRemoved += (s,e) => { OnRowSelectionChanged?.Invoke(_selectedRows);
+                button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
+            _selectedRows.ItemAdded += (s,e) => { OnRowSelectionChanged?.Invoke(_selectedRows);
+                button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
+            _selectedRows.ListCleared += (s,e) => { OnRowSelectionChanged?.Invoke(_selectedRows); 
+                button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
+
+        }
+
+        public ssGridView(List<T> data)
+        {
+            Init(data);
             InitializeComponent();
         }
 
-        
+        public ssGridView(List<T> data, IComparer<T> bindedDataObjectComparer)
+        {
+            Init(data);
+            _bindedDataObjectComparer= bindedDataObjectComparer;
+            InitializeComponent();
+            dataGridView_data.DataBindingComplete += (s, ev) => { AddChkboxColumn(); };
+        }
+
+
 
         private void ssGridView_Load(object sender, EventArgs e)
         {
+            dataGridView_data.RowHeadersVisible = false;
             _bindeddata.ListChanged += (s, ev) => { 
                 if(_EN) //_EN will stop cell level events, mostly useful for reset bindings button.
                     BindingListChanged?.Invoke(s as SortableBindingList<T>, ev); 
             };
+           
+
             AdjustUI();
             dataGridView_data.DataSource = _bindeddata;
             UpdateBindings();
             OnControlLoad?.Invoke(dataGridView_data);
             dataGridView_data.CellValueChanged += (s, ev) => { _isBindingListDirty = true;
             };
+        }
+
+        
+        private void AddChkboxColumn()
+        {
+            DataGridViewCheckBoxColumn chkColumn = new DataGridViewCheckBoxColumn();
+            
+            chkColumn.Name = "Select";
+            chkColumn.Width =  50;
+            int columnIndex = 0;
+            if (dataGridView_data.Columns["Select"] == null)
+            {
+                dataGridView_data.Columns.Insert(columnIndex, chkColumn);
+            }
         }
 
         public void ClearBindingListRows()
@@ -157,7 +198,6 @@ namespace ssViewControls
         private void textBox_Title_Leave(object sender, EventArgs e)
         {
             textBox_Tag.Text = _tag;
-
         }
 
         private void textBox_Tag_TextChanged(object sender, EventArgs e)
@@ -192,12 +232,60 @@ namespace ssViewControls
             {
                 OnGridButtonClicked?.Invoke(senderGrid,e.RowIndex,e.ColumnIndex);            
             }
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn &&
+                e.RowIndex >= 0)
+            {
+                Nullable<bool> isSelected = (Nullable<bool>)senderGrid.Rows[e.RowIndex].Cells["Select"].EditedFormattedValue;
+                if (isSelected!= null && isSelected == true 
+                    && !IsObjectInBindedDataList(_bindeddata[e.RowIndex]))
+                    _selectedRows.Add(_bindeddata[e.RowIndex]);
+
+                //Un select , delete selected items
+                if (isSelected != null && isSelected == false
+                    && IsObjectInBindedDataList(_bindeddata[e.RowIndex]))
+                {
+                    _selectedRows.RemoveAt(FindElementInBindedDataList(_bindeddata[e.RowIndex]));
+                }
+            }
+            
         }
 
-        //private void dataGridView_data_GotFocus(object sender, EventArgs e)
-        //{
+        private bool IsObjectInBindedDataList(T rowObject)
+        {
+            bool result = false;
+            int i = _selectedRows.FindIndex(x => _bindedDataObjectComparer.Compare(rowObject, x) == 0);
+            return _selectedRows.Any(x =>
+            {
+                if (_bindedDataObjectComparer.Compare(rowObject, x) == 0)
+                    result = true;
+                return result;
+            });
+            
+        }
 
-        //}
+        private int FindElementInBindedDataList(T rowObject)
+        {
+            int i = -1;
+            i = _selectedRows.FindIndex(x => _bindedDataObjectComparer.Compare(rowObject, x) == 0);
+            return i;
+        }
+
+        private void button_ActionSelected_Click(object sender, EventArgs e)
+        {
+            SelectedRowsActionButtonClicked?.Invoke(_selectedRows);
+        }
+
+        private void dataGridView_data_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dataGridView_data_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
 
         private void button_Refresh_Click(object sender, EventArgs e)
         {
@@ -206,6 +294,7 @@ namespace ssViewControls
             textBox_Tag.Text = _tag;
             ResetBindings?.Invoke(_EN);
             UpdateBindings();
+            _selectedRows.Clear();
             _EN = true; //enable back events
         }
     }
