@@ -35,11 +35,11 @@ namespace Decoders
             for (var i = 0; i < lines.Length; i += 1)
             {
                 var line = lines[i].Split('\t');
-                _amvPaymentsUnmodified.Add(new AmazonPayments(line[0], line[3], line[5], 
-                    line[6], line[7], line[10], line[11], line[14], line[15]));
+                _amvPaymentsUnmodified.Add(new AmazonPayments(line[7], line[10], line[12], 
+                    line[13], line[14], line[17], line[18], line[21], line[22]));
             }
             _amvPaymentsUnmodified.RemoveAt(0); // remove header
-            _amvPaymentsUnmodified.RemoveAt(1); // remove second row, contains total payment received etc
+            _amvPaymentsUnmodified.RemoveAt(0); // remove second row, contains total payment received etc
             return _amvPaymentsUnmodified;
         }
 

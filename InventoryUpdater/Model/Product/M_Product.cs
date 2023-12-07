@@ -248,8 +248,11 @@ namespace SellerSense.Model
             public string DimensionsAfterPackaging { get; set; }
             public string Description { get; set; }
             public string AmazonCode { get; set; }
+            public string AmazonSKU { get; set; }
             public string FlipkartCode { get; set; }
+            public string FlipkartSKU { get; set; }
             public string SnapdealCode { get; set; }
+            public string SnapdealSKU { get; set; }
             public string MeeshoCode { get; set; }
             public string Notes { get; set; }
             public List<LinkedProduct> LinkedProduct {get; set;}

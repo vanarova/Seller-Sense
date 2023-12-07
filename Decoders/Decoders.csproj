@@ -51,6 +51,10 @@
   <ItemGroup>
     <Compile Include="AmazonInvDecoder.cs" />
     <Compile Include="AmazonPaymentsDecoder.cs" />
+    <Compile Include="SnapdealPaymentsDecoder.cs" />
+    <Compile Include="FlipkartPaymentsDecoder.cs" />
+    <Compile Include="Interfaces\ISpdPayments.cs" />
+    <Compile Include="Interfaces\IFkPayments.cs" />
     <Compile Include="Interfaces\IAmzPayments.cs" />
     <Compile Include="Interfaces\IFkInventoryV2.cs" />
     <Compile Include="MeeshoInvDecoder.cs" />

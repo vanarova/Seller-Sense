@@ -46,7 +46,9 @@ namespace ssViewControls
         }
 
         
-        private const string _tag = "Tag", _title = "Title";
+        private string _tag = "Tag", _title = "Title";
+        private bool _showSelectButton;
+        private bool _showSearchCntrls;
         //This action can be subscribed, outside this control, by parent control etc..
         //bool is to diable events
         private bool _EN = true; //set to false to disable all events.
@@ -85,19 +87,26 @@ namespace ssViewControls
                 button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
             _selectedRows.ListCleared += (s,e) => { OnRowSelectionChanged?.Invoke(_selectedRows); 
                 button_ActionSelected.Text = _selectedRows.Count.ToString() + " selected ⇱"; };
+           
 
         }
 
-        public ssGridView(List<T> data)
+        public ssGridView(List<T> data, bool showSearchCntrls = false, bool showSelectButton = false, string tagLabel = default, string titleLabel = default)
         {
-            Init(data);
+            if (!string.IsNullOrEmpty(tagLabel))
+                _tag = tagLabel;
+            if (!string.IsNullOrEmpty(titleLabel))
+                _title = titleLabel;
+            _showSearchCntrls = showSearchCntrls; 
+            _showSelectButton = showSelectButton;
+            Init(data); //AdjustUI();
             InitializeComponent();
         }
 
         public ssGridView(List<T> data, IComparer<T> bindedDataObjectComparer)
         {
-            Init(data);
-            _bindedDataObjectComparer= bindedDataObjectComparer;
+            Init(data);// AdjustUI();
+            _bindedDataObjectComparer = bindedDataObjectComparer;
             InitializeComponent();
             dataGridView_data.DataBindingComplete += (s, ev) => { AddChkboxColumn(); };
         }
@@ -109,12 +118,13 @@ namespace ssViewControls
             dataGridView_data.RowHeadersVisible = false;
             _bindeddata.ListChanged += (s, ev) => { 
                 if(_EN) //_EN will stop cell level events, mostly useful for reset bindings button.
-                    BindingListChanged?.Invoke(s as SortableBindingList<T>, ev); 
+                    BindingListChanged?.Invoke(s as SortableBindingList<T>, ev);  
             };
            
 
             AdjustUI();
-            dataGridView_data.DataSource = _bindeddata;
+            if(dataGridView_data.DataSource == null)
+                dataGridView_data.DataSource = _bindeddata;
             UpdateBindings();
             OnControlLoad?.Invoke(dataGridView_data);
             dataGridView_data.CellValueChanged += (s, ev) => { _isBindingListDirty = true;
@@ -143,6 +153,12 @@ namespace ssViewControls
         private void AdjustUI()
         {
             IsLoading = false;
+            button_ActionSelected.Visible = _showSelectButton;
+            textBox_Tag.Visible = _showSearchCntrls;
+            textBox_Title.Visible = _showSearchCntrls;
+            label_search.Visible = _showSearchCntrls;
+            textBox_Tag.Text = _tag;
+            textBox_Title.Text = _title;
             dataGridView_data.AutoGenerateColumns = true;
             dataGridView_data.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
         }
@@ -155,7 +171,14 @@ namespace ssViewControls
 
         }
 
-
+        //public void ReBind_Bindings()
+        //{
+        //    dataGridView_data.DataSource = null;
+        //    _bindeddata.Clear();
+        //    _data.Skip(_pageSize * _currentPageNumber).Take(_pageSize).ToList().ForEach(x => _bindeddata.Add(x));
+        //    label_PageNumbers.Text = _pageSize.ToString() + " rows, page: " + _currentPageNumber.ToString() + " of " + _lastPageNumber.ToString();
+        //    dataGridView_data.DataSource = _bindeddata;
+        //}
 
         private void button_First_Click(object sender, EventArgs e)
         {

@@ -34,7 +34,7 @@
             this.progressBar_Search = new System.Windows.Forms.ProgressBar();
             this.button_Next = new System.Windows.Forms.Button();
             this.button_First = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_search = new System.Windows.Forms.Label();
             this.textBox_Title = new System.Windows.Forms.TextBox();
             this.button_Last = new System.Windows.Forms.Button();
             this.textBox_Tag = new System.Windows.Forms.TextBox();
@@ -66,7 +66,7 @@
             this.tableLayoutPanel1.Controls.Add(this.progressBar_Search, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.button_Next, 9, 1);
             this.tableLayoutPanel1.Controls.Add(this.button_First, 6, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label_search, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.textBox_Title, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.button_Last, 10, 1);
             this.tableLayoutPanel1.Controls.Add(this.textBox_Tag, 5, 1);
@@ -108,6 +108,7 @@
             this.dataGridView_data.RowTemplate.Height = 33;
             this.dataGridView_data.Size = new System.Drawing.Size(1398, 901);
             this.dataGridView_data.TabIndex = 2;
+            this.dataGridView_data.AutoGenerateColumns = true;
             this.dataGridView_data.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_data_CellContentClick);
             this.dataGridView_data.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_data_CellFormatting);
             this.dataGridView_data.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_data_CellValidated);
@@ -150,14 +151,14 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(367, 929);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 32);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Search :";
+            this.label_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_search.AutoSize = true;
+            this.label_search.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_search.Location = new System.Drawing.Point(367, 929);
+            this.label_search.Name = "label1";
+            this.label_search.Size = new System.Drawing.Size(97, 32);
+            this.label_search.TabIndex = 6;
+            this.label_search.Text = "Search :";
             // 
             // textBox_Title
             // 
@@ -274,7 +275,7 @@
         private System.Windows.Forms.ProgressBar progressBar_Search;
         private System.Windows.Forms.Button button_Last;
         private System.Windows.Forms.Button button_First;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_search;
         private System.Windows.Forms.TextBox textBox_Title;
         private System.Windows.Forms.TextBox textBox_Tag;
         private System.Windows.Forms.Label label_PageNumbers;

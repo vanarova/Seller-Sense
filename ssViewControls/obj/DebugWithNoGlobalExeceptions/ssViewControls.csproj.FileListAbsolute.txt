@@ -17,3 +17,6 @@ C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\DebugWithNoGlobal
 C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.csproj.CopyComplete
 C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.dll
 C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\bin\DebugWithNoGlobalExeceptions\PrimitiveExt.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\bin\DebugWithNoGlobalExeceptions\PrimitiveExt.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\DebugWithNoGlobalExeceptions\ssViewControls.csproj.CopyComplete

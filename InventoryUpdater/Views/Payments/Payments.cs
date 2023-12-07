@@ -36,7 +36,7 @@ namespace SellerSense.Views.Payments
                 {
                     tabControl1.TabPages.Add(company._name);
                     var icntrl = new PaymentsView(company);
-                    company._paymentsViewManager.AssignViewManager(icntrl);
+                    company._paymentsViewManager.AssignView(icntrl);
                     _paymentCntrlList.Add(icntrl);
                     _paymentCntrlList[i].Dock = DockStyle.Fill;
                     tabControl1.TabPages[i].Controls.Add(_paymentCntrlList[i]);

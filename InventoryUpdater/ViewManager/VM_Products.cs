@@ -80,13 +80,26 @@ namespace SellerSense.ViewManager
                 WriteBackProductViewToProductsModelAndSave();
                 _v_ssGridViewCntrl._isBindingListDirty = false;
             };
-            _v_productCntrl.amazonToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Amazon); };
-            _v_productCntrl.flipkartToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Flipkart); };
-            _v_productCntrl.snapdealToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
+            //_v_productCntrl.amazonToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Amazon); };
+            _v_productCntrl.mapAsinToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Amazon); };
+
+            //_v_productCntrl.flipkartToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Flipkart); };
+            _v_productCntrl.mapFSNToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Flipkart); };
+            //_v_productCntrl.snapdealToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
+            _v_productCntrl.mapSPDCodeToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
             _v_productCntrl.meeshoToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Meesho); };
             _v_productCntrl.button_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
+            _v_productCntrl.mapAmzSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Amazon); };
+            _v_productCntrl.mapFkSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Flipkart); };
+            _v_productCntrl.mapSpdSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Snapdeal); };
         }
 
+        private void OpenProductMapSKUForm(Constants.Company comp)
+        {
+            ProductMapSKUs pMap = new ProductMapSKUs(_m_product, comp);
+            pMap.ShowDialog();   
+
+        }
 
         private void OpenAddEditProductForm()
         {

@@ -102,3 +102,12 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdate
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\TelegramBot.dll.config
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.SetUp.TelegramSetup.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Inventories.CustomSnapshotDate.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\PrimitiveExt.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\PrimitiveExt.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.AddEditProduct.AddLinkedProduct.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.AddEditProduct.LinkedProducts.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.AddEditProduct.PasteImage.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Products.ExportProducts.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Payments.Payments.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Payments.PaymentsView.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Products.ProductMapSKUs.resources

@@ -14,6 +14,7 @@ using SellerSense.ViewManager;
 using SellerSense;
 using System.CodeDom;
 using System.Linq;
+using SellerSense.Model.Payments;
 
 namespace SellerSense.ViewManager
 {
@@ -30,6 +31,7 @@ namespace SellerSense.ViewManager
         internal VM_Payments _paymentsViewManager { get; set; }
         internal VM_Products _productsViewManager { get; set; }
         internal M_Product _product_Model;
+        internal M_Payments _paymentsModel;
         internal Dictionary<string, Image> _images;
         //internal VM_Companies.CrossCompanyLinkedInventoryCount _crossCompanyLinkedInventoryCount;
         //internal VM_Companies.CrossCompanyEvents _crossCompanyEvents;
@@ -44,7 +46,8 @@ namespace SellerSense.ViewManager
             //_crossCompanyLinkedInventoryCount = crossCompanyLinkedInventoryCount;
             _inventoriesModel = new M_External_Inventories();
             _product_Model = new M_Product(_code);
-            _paymentsViewManager = new VM_Payments();
+            _paymentsModel = new M_Payments(_code);
+            _paymentsViewManager = new VM_Payments(_paymentsModel, _product_Model);
             _inventoriesViewManager = new VM_Inventories(_inventoriesModel, _product_Model,
                 crossCompanySharedWrapper, _code, _crossCompanyEvents);
             _productsViewManager = new VM_Products(_product_Model, _inventoriesModel, _code);

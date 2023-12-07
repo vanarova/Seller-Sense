@@ -290,6 +290,21 @@ namespace SellerSense
 
         private async void btn_Reports_Click(object sender, EventArgs e)
         {
+            //re-init company
+            AdjustUI("DisableAllButtons");
+            _companiesMgr = new SellerSense.ViewManager.VM_Companies();
+
+            pbarLoadForms.Visible = true;
+
+            //load images for all companies async
+            var imgs = await _companiesMgr._companies[0].LoadImages();
+            _companiesMgr._companies[0]._images = imgs;
+            _companiesMgr._companies[0]._paymentsViewManager.AssignPreSavedImages(imgs);
+
+            var imgs1 = await _companiesMgr._companies[1].LoadImages();
+            _companiesMgr._companies[1]._images = imgs1;
+            _companiesMgr._companies[1]._paymentsViewManager.AssignPreSavedImages(imgs1);
+
             DisplayPaymentsForm();
             AdjustUI("EnableAllButtons");
             //await TelegramBot.Messenger.SendTelegramMessage("");

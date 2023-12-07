@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Helper\QuickLog.cs" />
     <Compile Include="Model\InvUpdate\M_Snapshot.cs" />
+    <Compile Include="Model\Payments\M_Payments.cs" />
     <Compile Include="Model\Reports\Reports.cs" />
     <Compile Include="ViewManager\Interfaces\IManageForm.cs" />
     <Compile Include="ViewManager\Interfaces\IManageTwoUserControls.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="ViewManager\VM_CustomSnapshotDate.cs" />
     <Compile Include="ViewManager\VM_Inventories.CmpSnapShot.cs" />
     <Compile Include="ViewManager\VM_LinkedProducts.cs" />
+    <Compile Include="ViewManager\VM_Payments.cs" />
     <Compile Include="ViewManager\VM_Products.cs" />
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
@@ -186,6 +188,18 @@
     <Compile Include="Views\Inventories\InvFiller.Designer.cs">
       <DependentUpon>InvFiller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Payments\Payments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Payments\Payments.Designer.cs">
+      <DependentUpon>Payments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payments\PaymentsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Payments\PaymentsView.Designer.cs">
+      <DependentUpon>PaymentsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Products\ExportProducts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +217,12 @@
     </Compile>
     <Compile Include="Views\Products\ProductListing.Designer.cs">
       <DependentUpon>ProductListing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Products\ProductMapSKUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Products\ProductMapSKUs.Designer.cs">
+      <DependentUpon>ProductMapSKUs.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SetUp\EmailSetup.cs">
       <SubType>Form</SubType>
@@ -296,6 +316,12 @@
       <DependentUpon>InvCntrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Inventories\InvFiller.resx" />
+    <EmbeddedResource Include="Views\Payments\Payments.resx">
+      <DependentUpon>Payments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Payments\PaymentsView.resx">
+      <DependentUpon>PaymentsView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Products\ExportProducts.resx">
       <DependentUpon>ExportProducts.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Products\ProductListing.resx">
       <DependentUpon>ProductListing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Products\ProductMapSKUs.resx">
+      <DependentUpon>ProductMapSKUs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SetUp\EmailSetup.resx">
       <DependentUpon>EmailSetup.cs</DependentUpon>
