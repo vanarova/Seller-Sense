@@ -23,21 +23,25 @@ namespace SellerSense.Model.Payments
             _amzPayments = new List<IAmzPayments>();
         }
 
-        internal void GetAmzPayments(string fileName)
+        internal Task GetAmzPayments(string fileName)
         {
-            IList<IAmzPayments> amzPaymentsIList = AmazonPaymentsDecoder.ImportAmazonPayments(fileName);
+            return Task.Run(() =>
+            {
+                IList<IAmzPayments> amzPaymentsIList = AmazonPaymentsDecoder.ImportAmazonPayments(fileName);
             //List<IAmzPayments> _amzPayments = new List<IAmzPayments>();
             _amzPayments = amzPaymentsIList.ToList<IAmzPayments>();
-
+            });
         }
 
-        internal void GetFkPayments(string fileName)
+        internal Task GetFkPayments(string fileName)
         {
-            IList<IFkPayments> fkPaymentsIList = FlipkartPaymentsDecoder.GetPayments(fileName, out string error);
+            return Task.Run(() =>
+            {
+                IList<IFkPayments> fkPaymentsIList = FlipkartPaymentsDecoder.GetPayments(fileName, out string error);
             if(!string.IsNullOrEmpty(error))
                 Logger.Log(error, Logger.LogLevel.error, false);
             _fkPayments = fkPaymentsIList.ToList<IFkPayments>();
-
+            });
         }
 
         internal Task GetSpdPayments(string fileName)

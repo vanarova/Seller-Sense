@@ -64,7 +64,7 @@ namespace SellerSense.ViewManager
             HandleExternalInventoryImportEvents();
             //InvokeUpdateInventoryInAllCompanies = UpdateInventoryInAllCompaniesAction;
             //UpdateInventoryInAllCompaniesAction+=       
-            _crossCompanyEvents.CrossCompanySharedInventoryUpdated += (s, e) => { UpdateInvForThisCompany(); };
+            _crossCompanyEvents.CrossCompanySharedInventoryUpdated += (s, e) => { UpdateCrossCompanySharedInvForThisCompany(); };
             //crossCompanyEvents.CrossCompanySharedInventoryUpdated += _crossCompanyEvents_CrossCompanySharedInventoryUpdated;
         }
 
@@ -315,120 +315,120 @@ namespace SellerSense.ViewManager
         }
 
 
-        private void UpdateInhouseInventory(BindingList<InventoryView> list,int index, string inHouseCode, bool updateLinkedProds = true)
-        {
-            bool thisIsACompositionProduct = false;
-            //update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
-            if (string.IsNullOrWhiteSpace(list[index].InHouseCount)) list[index].InHouseCount = "0";
-            int.TryParse(list[index].AmazonCount, out int acount);
-            int.TryParse(list[index].FlipkartCount, out int fcount);
-            int.TryParse(list[index].SnapdealCount, out int scount);
-            int.TryParse(list[index].MeeshoCount, out int mcount);
-            int.TryParse(list[index].InHouseCount, out int hcount);
+        //private void UpdateInhouseInventory(BindingList<InventoryView> list,int index, string inHouseCode, bool updateLinkedProds = true)
+        //{
+        //    bool thisIsACompositionProduct = false;
+        //    //update inhouse inv, changing property will trigger inhouse setter, and will update inhouse count in other companies
+        //    if (string.IsNullOrWhiteSpace(list[index].InHouseCount)) list[index].InHouseCount = "0";
+        //    int.TryParse(list[index].AmazonCount, out int acount);
+        //    int.TryParse(list[index].FlipkartCount, out int fcount);
+        //    int.TryParse(list[index].SnapdealCount, out int scount);
+        //    int.TryParse(list[index].MeeshoCount, out int mcount);
+        //    int.TryParse(list[index].InHouseCount, out int hcount);
 
             
-            _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.AddToSharedInventory(inHouseCode, acount, fcount, scount, mcount);
+        //    _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.AddToSharedInventory(inHouseCode, acount, fcount, scount, mcount);
            
-            //Update and sum counts for this product in all companies
-            list[index].InHouseCount = _crossCompanySharedWrapper.
-                _crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(inHouseCode).ToString();
+        //    //Update and sum counts for this product in all companies
+        //    list[index].InHouseCount = _crossCompanySharedWrapper.
+        //        _crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(inHouseCode).ToString();
 
 
-            ////Here calculate inventory for Composition products,,
-            ///Add inventory for all parent products for composed-in products. Thats it.
+        //    ////Here calculate inventory for Composition products,,
+        //    ///Add inventory for all parent products for composed-in products. Thats it.
 
-            //Determine, if this inhousecode is a composition product or not.
-            var thisProduct = _m_productModel._productEntries.Find(x => x.InHouseCode == inHouseCode);
-            if (thisProduct == null)
-            { Logger.Log("Cant find product in products list, func: UpdateInhouseInventory", Logger.LogLevel.error, false); return;  }
-            if (thisProduct != null && thisProduct.LinkedProduct != null && thisProduct.LinkedProduct.Count > 0)
-                thisIsACompositionProduct = true;
+        //    //Determine, if this inhousecode is a composition product or not.
+        //    var thisProduct = _m_productModel._productEntries.Find(x => x.InHouseCode == inHouseCode);
+        //    if (thisProduct == null)
+        //    { Logger.Log("Cant find product in products list, func: UpdateInhouseInventory", Logger.LogLevel.error, false); return;  }
+        //    if (thisProduct != null && thisProduct.LinkedProduct != null && thisProduct.LinkedProduct.Count > 0)
+        //        thisIsACompositionProduct = true;
 
-            if (updateLinkedProds)
-            {
-                if (!thisIsACompositionProduct)
-                {
-                    //First update inventory for parent product, who is having, this function's input product as linked product
-                    foreach (var parentProduct in _m_productModel._productEntries)
-                    {
-                        if (parentProduct.LinkedProduct != null && parentProduct.LinkedProduct.Count > 0)
-                        {
-                            var thisLinkProductFoundInAnotherProduct = parentProduct.LinkedProduct.Find(x => x.InHouseCode == inHouseCode);
-                            if (thisLinkProductFoundInAnotherProduct != null)
-                            {
-                                int.TryParse(thisLinkProductFoundInAnotherProduct.LinkQty, out int linkQuantity);
-                                //find parent product in bindingList and call func recursively
-                                int indexOfParentProductInBindingList = -1;
-                                for (int i = 0; i < list.Count; i++)
-                                {
-                                    if (list[i].InHouseCode == parentProduct.InHouseCode)
-                                    { indexOfParentProductInBindingList = i; break; }
-                                }
-                                if (indexOfParentProductInBindingList > -1)
-                                {
-                                    //update and sum parents count
-                                    UpdateInhouseInventory(list, indexOfParentProductInBindingList, parentProduct.InHouseCode, false);
-                                    //update and sum child component, is already done in begining of this function.
-                                    int.TryParse(list[index].InHouseCount, out int c);
-                                    int.TryParse(list[indexOfParentProductInBindingList].InHouseCount, out int p);
-                                    //sum child + parents inv counts 
-                                    list[index].InHouseCount = (c + (p * linkQuantity)).ToString();
-                                }
-                            }
-                            ////list[index].InHouseCount= list[index].InHouseCount + item.inhou
-                        }
-                    }
-                }
+        //    if (updateLinkedProds)
+        //    {
+        //        if (!thisIsACompositionProduct)
+        //        {
+        //            //First update inventory for parent product, who is having, this function's input product as linked product
+        //            foreach (var parentProduct in _m_productModel._productEntries)
+        //            {
+        //                if (parentProduct.LinkedProduct != null && parentProduct.LinkedProduct.Count > 0)
+        //                {
+        //                    var thisLinkProductFoundInAnotherProduct = parentProduct.LinkedProduct.Find(x => x.InHouseCode == inHouseCode);
+        //                    if (thisLinkProductFoundInAnotherProduct != null)
+        //                    {
+        //                        int.TryParse(thisLinkProductFoundInAnotherProduct.LinkQty, out int linkQuantity);
+        //                        //find parent product in bindingList and call func recursively
+        //                        int indexOfParentProductInBindingList = -1;
+        //                        for (int i = 0; i < list.Count; i++)
+        //                        {
+        //                            if (list[i].InHouseCode == parentProduct.InHouseCode)
+        //                            { indexOfParentProductInBindingList = i; break; }
+        //                        }
+        //                        if (indexOfParentProductInBindingList > -1)
+        //                        {
+        //                            //update and sum parents count
+        //                            UpdateInhouseInventory(list, indexOfParentProductInBindingList, parentProduct.InHouseCode, false);
+        //                            //update and sum child component, is already done in begining of this function.
+        //                            int.TryParse(list[index].InHouseCount, out int c);
+        //                            int.TryParse(list[indexOfParentProductInBindingList].InHouseCount, out int p);
+        //                            //sum child + parents inv counts 
+        //                            list[index].InHouseCount = (c + (p * linkQuantity)).ToString();
+        //                        }
+        //                    }
+        //                    ////list[index].InHouseCount= list[index].InHouseCount + item.inhou
+        //                }
+        //            }
+        //        }
 
-                if (thisIsACompositionProduct)
-                {
-                    //If child product of this product is having linked products:
-                    var thisItemHasLinkedProducts = _m_productModel._productEntries.Find(x => x.InHouseCode == inHouseCode);
-                    if (thisItemHasLinkedProducts != null && thisItemHasLinkedProducts.LinkedProduct != null
-                        && thisItemHasLinkedProducts.LinkedProduct.Count > 0)
-                    {
+        //        if (thisIsACompositionProduct)
+        //        {
+        //            //If child product of this product is having linked products:
+        //            var thisItemHasLinkedProducts = _m_productModel._productEntries.Find(x => x.InHouseCode == inHouseCode);
+        //            if (thisItemHasLinkedProducts != null && thisItemHasLinkedProducts.LinkedProduct != null
+        //                && thisItemHasLinkedProducts.LinkedProduct.Count > 0)
+        //            {
 
-                        //find child products in bindingList and call func recursively
-                        //List<int> childLinkedProducts = new List<int>();
-                        List<ChildLinkedProducts> childLinkedProducts = new List<ChildLinkedProducts>();
-                        foreach (var linkedItem in thisItemHasLinkedProducts.LinkedProduct)
-                        {
-                            for (int i = 0; i < list.Count; i++)
-                            {
-                                if (list[i].InHouseCode == linkedItem.InHouseCode)
-                                {
-                                    int.TryParse(linkedItem.LinkQty, out int linkQty);
-                                    childLinkedProducts.Add(new ChildLinkedProducts(i, linkQty));
-                                    //update and cum counts for each child product in all companies.
-                                    UpdateInhouseInventory(list, i, linkedItem.InHouseCode, false);
-                                    break; 
-                                }
-                            }
-                        }
-                        int.TryParse(list[index].InHouseCount, out int p);
-                        //int.TryParse(list[index]., out int linkQuantity);
-                        foreach (var childProdIndex in childLinkedProducts)
-                        {
-                            //int.TryParse(childProdIndex.LinkQty, out int linkQuantity);
-                            int.TryParse(list[childProdIndex.IndexInBindingList].InHouseCount, out int c);
-                            list[childProdIndex.IndexInBindingList].InHouseCount = (c  + (p*childProdIndex.LinkQty)).ToString();
-                        }
+        //                //find child products in bindingList and call func recursively
+        //                //List<int> childLinkedProducts = new List<int>();
+        //                List<ChildLinkedProducts> childLinkedProducts = new List<ChildLinkedProducts>();
+        //                foreach (var linkedItem in thisItemHasLinkedProducts.LinkedProduct)
+        //                {
+        //                    for (int i = 0; i < list.Count; i++)
+        //                    {
+        //                        if (list[i].InHouseCode == linkedItem.InHouseCode)
+        //                        {
+        //                            int.TryParse(linkedItem.LinkQty, out int linkQty);
+        //                            childLinkedProducts.Add(new ChildLinkedProducts(i, linkQty));
+        //                            //update and cum counts for each child product in all companies.
+        //                            UpdateInhouseInventory(list, i, linkedItem.InHouseCode, false);
+        //                            break; 
+        //                        }
+        //                    }
+        //                }
+        //                int.TryParse(list[index].InHouseCount, out int p);
+        //                //int.TryParse(list[index]., out int linkQuantity);
+        //                foreach (var childProdIndex in childLinkedProducts)
+        //                {
+        //                    //int.TryParse(childProdIndex.LinkQty, out int linkQuantity);
+        //                    int.TryParse(list[childProdIndex.IndexInBindingList].InHouseCount, out int c);
+        //                    list[childProdIndex.IndexInBindingList].InHouseCount = (c  + (p*childProdIndex.LinkQty)).ToString();
+        //                }
 
-                        //if (indexOfProductInBindingList > -1)
-                        //{ 
+        //                //if (indexOfProductInBindingList > -1)
+        //                //{ 
 
-                        //}
+        //                //}
 
-                    }
-                }
-            }
+        //            }
+        //        }
+        //    }
 
            
 
-        }
+        //}
 
 
-        private void UpdateInvForThisCompany()
+        private void UpdateCrossCompanySharedInvForThisCompany()
         {
             //First add all counts to chared inv
             foreach (var item in _inventoryViewList)
@@ -654,7 +654,7 @@ namespace SellerSense.ViewManager
                        _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
                             //This is important to update inventory for this company first,
                             //then update other companies. Else other company wont reflect changes made in currnt company
-                            UpdateInvForThisCompany();
+                            UpdateCrossCompanySharedInvForThisCompany();
                             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
                             foreach (var item in _inventoryViewList)
                                 UpdateComposedChildProducts(item.InHouseCode);
@@ -679,7 +679,7 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].FlipkartSystemCount.ToString(),
                            list[e.NewIndex].FlipkartCount.ToString());
                        _m_externalInventoriesModel._fkImportedInventoryList._fkUIModifiedInvList.Add(iamz);
-                            UpdateInvForThisCompany();
+                            UpdateCrossCompanySharedInvForThisCompany();
                             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
                             _ssGridView.UpdateBindings();
                             //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
@@ -700,7 +700,7 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].SnapdealSystemCount.ToString(),
                            list[e.NewIndex].SnapdealCount.ToString());
                        _m_externalInventoriesModel._spdImportedInventoryList._spdUIModifiedInvList.Add(iamz);
-                            UpdateInvForThisCompany();
+                            UpdateCrossCompanySharedInvForThisCompany();
                             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
                             _ssGridView.UpdateBindings();
                             //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
@@ -721,7 +721,7 @@ namespace SellerSense.ViewManager
                            list[e.NewIndex].MeeshoSystemCount.ToString(),
                            list[e.NewIndex].MeeshoCount.ToString());
                        _m_externalInventoriesModel._msoImportedInventoryList._msoUIModifiedInvList.Add(iamz);
-                            UpdateInvForThisCompany();
+                            UpdateCrossCompanySharedInvForThisCompany();
                             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate(); 
                             _ssGridView.UpdateBindings();
                         }
@@ -763,6 +763,7 @@ namespace SellerSense.ViewManager
             _ssGridView.IsLoading = true;
             await AssignAmazonInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            UpdateCrossCompanySharedInvForThisCompany();
             //below event will call all inv update functions in all companies
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
@@ -788,6 +789,7 @@ namespace SellerSense.ViewManager
             _ssGridView.IsLoading = true;
             await AssignFlipkartInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            UpdateCrossCompanySharedInvForThisCompany();
             //below event will call all inv update functions in all companies
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
@@ -808,6 +810,7 @@ namespace SellerSense.ViewManager
             _ssGridView.IsLoading = true;
             await AssignSnapdealInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            UpdateCrossCompanySharedInvForThisCompany();
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList);
@@ -827,6 +830,7 @@ namespace SellerSense.ViewManager
             _ssGridView.IsLoading = true;
             await AssignMeeshoInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
+            UpdateCrossCompanySharedInvForThisCompany();
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Mso.SaveInvSnapshot(_m_externalInventoriesModel._msoImportedInventoryList._msoInventoryList);

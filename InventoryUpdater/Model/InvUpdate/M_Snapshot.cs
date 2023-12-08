@@ -179,33 +179,40 @@ namespace SellerSense.Model.InvUpdate
 
         private string GetLastDayInvSnapshotFileName()
         {
-            GetSortedSnapshotsList();
-            if (_sortedSnapShorts!=null && _sortedSnapShorts.Count > 0)
+            try
             {
-                DateTime lastImportSnps = default(DateTime);
-                int prevDay = 1;
-                bool found = false;
-                while (!found) {
-                    var lastImportDay = DateTime.Today.AddDays(-prevDay);
-                    var lastImportSnpsList = _sortedSnapShorts.Select(x => x.Key).
-                        Where(d => d > lastImportDay && d < DateTime.Today);
-                    if (lastImportSnpsList.Any())
-                        lastImportSnps = lastImportSnpsList.Min();
-                    if (lastImportSnps != default(DateTime) &&
-                        lastImportSnps < DateTime.Today.AddDays(-Constants.MaxHistoryDaysToKeepSnapshots))
-                        return String.Empty;
-                    if (lastImportSnps == default(DateTime))
-                        prevDay++;
+                GetSortedSnapshotsList();
+                if (_sortedSnapShorts != null && _sortedSnapShorts.Count > 0)
+                {
+                    DateTime lastImportSnps = default(DateTime);
+                    int prevDay = 1;
+                    bool found = false;
+                    while (!found)
+                    {
+                        if (prevDay > Constants.MaxHistoryDaysToKeepSnapshots)
+                            break;
+                        var lastImportDay = DateTime.Today.AddDays(-prevDay);
+                        var lastImportSnpsList = _sortedSnapShorts.Select(x => x.Key).
+                            Where(d => d > lastImportDay && d < DateTime.Today);
+                        if (lastImportSnpsList.Any())
+                            lastImportSnps = lastImportSnpsList.Min();
+                        if (lastImportSnps != default(DateTime) &&
+                            lastImportSnps < DateTime.Today.AddDays(-Constants.MaxHistoryDaysToKeepSnapshots))
+                            return String.Empty;
+                        if (lastImportSnps == default(DateTime))
+                            prevDay++;
+                        else
+                            found = true;
+                    }
+                    if (lastImportSnps != default(DateTime))
+                        return _sortedSnapShorts[lastImportSnps];
                     else
-                        found = true;
+                        return String.Empty;
+
                 }
-                if (lastImportSnps != default(DateTime))
-                    return _sortedSnapShorts[lastImportSnps];
-                else
-                    return String.Empty; 
-            
+                else return String.Empty;
             }
-            else return String.Empty;
+            catch (Exception e)  { throw e; }
         }
 
 

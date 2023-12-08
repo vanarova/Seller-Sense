@@ -50,6 +50,8 @@
 //that is is looking into wrong data, and he should download all snapshots every day.
 
 
-// Inv updation is having issues, same product - cactus , when updated on HE, is not updated at CC. check.
+// Inv updation is having issues, same product - cactus , when updated on HE, is not updated at CC. check. ---- DONE
 
 //in search ssgrd, remove TAG and change it to search by inhousecode,
+
+//export maps to telegram (setup screen) not working

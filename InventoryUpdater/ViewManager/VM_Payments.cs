@@ -81,13 +81,15 @@ namespace SellerSense.ViewManager
                 }
             };
 
-            _v_PaymentsCntrl.button_Load_Fkp_Payments.Click += (s, e) => { 
+            _v_PaymentsCntrl.button_Load_Fkp_Payments.Click += async (s, e) => { 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {   
-                _m_Payments.GetFkPayments(openFileDialog.FileName);
+            {
+                _v_PaymentsCntrl.progressBar_Fk.Visible = true;
+                await _m_Payments.GetFkPayments(openFileDialog.FileName);
                 AssignFkPaymentsToView();
                 AssignFkInhouseCodes();
+                _v_PaymentsCntrl.progressBar_Fk.Visible = false;
                 AssignImagesToProducts(Constants.Company.Flipkart);
                 _ssGridViewFk = new ssGridView<PaymentsViewDataFk>(_paymentsViewFk, true, false, "Order Id", "SKU");
                 //_ssGridViewFk = new ssGridView<PaymentsViewDataFk>(_paymentsViewFk, true, false, "Order Id", "SKU");
@@ -100,9 +102,11 @@ namespace SellerSense.ViewManager
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                _v_PaymentsCntrl.progressBar_Fk.Visible = true;
                 _m_Payments.GetAmzPayments(openFileDialog.FileName);
                 AssignAmzAmzPaymentsToView();
                 AssignAmzInhouseCodes();
+                _v_PaymentsCntrl.progressBar_Fk.Visible = false;
                 AssignImagesToProducts(Constants.Company.Amazon);
                 SortAmzPaymentsView();
                 _ssGridViewAmz = new ssGridView<PaymentsViewDataAmz>(_paymentsViewAmz, true, false, "Order Id", "SKU");

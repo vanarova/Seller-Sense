@@ -44,6 +44,9 @@
             this.tabPageMeesho = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_mso = new System.Windows.Forms.TableLayoutPanel();
             this.button_Load_Meesho_Payments = new System.Windows.Forms.Button();
+            this.progressBar_amz = new System.Windows.Forms.ProgressBar();
+            this.progressBar_Fk = new System.Windows.Forms.ProgressBar();
+            this.progressBar_meesho = new System.Windows.Forms.ProgressBar();
             this.tabPageAmz.SuspendLayout();
             this.AmazonPage.SuspendLayout();
             this.tableLayoutPanel_Amz.SuspendLayout();
@@ -89,6 +92,7 @@
             this.tableLayoutPanel_Amz.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.38688F));
             this.tableLayoutPanel_Amz.Controls.Add(this.button_Load_Amz_Payments, 2, 0);
             this.tableLayoutPanel_Amz.Controls.Add(this.checkBox_amz_consolidate, 1, 0);
+            this.tableLayoutPanel_Amz.Controls.Add(this.progressBar_amz, 0, 0);
             this.tableLayoutPanel_Amz.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_Amz.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel_Amz.Margin = new System.Windows.Forms.Padding(2);
@@ -143,6 +147,7 @@
             this.tableLayoutPanel_Fk.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.41365F));
             this.tableLayoutPanel_Fk.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.38688F));
             this.tableLayoutPanel_Fk.Controls.Add(this.button_Load_Fkp_Payments, 2, 0);
+            this.tableLayoutPanel_Fk.Controls.Add(this.progressBar_Fk, 0, 0);
             this.tableLayoutPanel_Fk.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_Fk.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel_Fk.Margin = new System.Windows.Forms.Padding(2);
@@ -253,6 +258,7 @@
             this.tableLayoutPanel_mso.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.41365F));
             this.tableLayoutPanel_mso.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.38688F));
             this.tableLayoutPanel_mso.Controls.Add(this.button_Load_Meesho_Payments, 2, 0);
+            this.tableLayoutPanel_mso.Controls.Add(this.progressBar_meesho, 0, 0);
             this.tableLayoutPanel_mso.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel_mso.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel_mso.Margin = new System.Windows.Forms.Padding(2);
@@ -275,6 +281,42 @@
             this.button_Load_Meesho_Payments.TabIndex = 0;
             this.button_Load_Meesho_Payments.Text = "Load";
             this.button_Load_Meesho_Payments.UseVisualStyleBackColor = true;
+            // 
+            // progressBar_amz
+            // 
+            this.progressBar_amz.Location = new System.Drawing.Point(3, 3);
+            this.progressBar_amz.MarqueeAnimationSpeed = 15;
+            this.progressBar_amz.Maximum = 25;
+            this.progressBar_amz.Name = "progressBar_amz";
+            this.progressBar_amz.Size = new System.Drawing.Size(43, 23);
+            this.progressBar_amz.Step = 1;
+            this.progressBar_amz.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar_amz.TabIndex = 4;
+            this.progressBar_amz.Visible = false;
+            // 
+            // progressBar_Fk
+            // 
+            this.progressBar_Fk.Location = new System.Drawing.Point(3, 3);
+            this.progressBar_Fk.MarqueeAnimationSpeed = 15;
+            this.progressBar_Fk.Maximum = 25;
+            this.progressBar_Fk.Name = "progressBar_Fk";
+            this.progressBar_Fk.Size = new System.Drawing.Size(43, 23);
+            this.progressBar_Fk.Step = 1;
+            this.progressBar_Fk.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar_Fk.TabIndex = 5;
+            this.progressBar_Fk.Visible = false;
+            // 
+            // progressBar_meesho
+            // 
+            this.progressBar_meesho.Location = new System.Drawing.Point(3, 3);
+            this.progressBar_meesho.MarqueeAnimationSpeed = 15;
+            this.progressBar_meesho.Maximum = 25;
+            this.progressBar_meesho.Name = "progressBar_meesho";
+            this.progressBar_meesho.Size = new System.Drawing.Size(43, 23);
+            this.progressBar_meesho.Step = 1;
+            this.progressBar_meesho.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar_meesho.TabIndex = 5;
+            this.progressBar_meesho.Visible = false;
             // 
             // PaymentsView
             // 
@@ -317,5 +359,8 @@
         internal System.Windows.Forms.CheckBox checkBox_amz_consolidate;
         internal System.Windows.Forms.CheckBox checkBox_snapdeal_consolidate;
         internal System.Windows.Forms.ProgressBar progressBar_snapdeal;
+        internal System.Windows.Forms.ProgressBar progressBar_amz;
+        internal System.Windows.Forms.ProgressBar progressBar_Fk;
+        internal System.Windows.Forms.ProgressBar progressBar_meesho;
     }
 }

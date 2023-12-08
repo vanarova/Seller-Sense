@@ -18,7 +18,7 @@ namespace SellerSense
             //_logger = new FileLogger(company._code);
             
             // Add a child control, custom control using datagridview
-            cntrlGridView = new ssGridView<VM_Inventories.InventoryView>(company._inventoriesViewManager._inventoryViewList);
+            cntrlGridView = new ssGridView<VM_Inventories.InventoryView>(company._inventoriesViewManager._inventoryViewList, showSearchCntrls:true, tagLabel:"Tag", titleLabel:"Title");
             cntrlGridView.Dock = DockStyle.Fill;
             company._inventoriesViewManager.AssignView(cntrlGridView);
 
