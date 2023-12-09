@@ -9,3 +9,14 @@ C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewCon
 C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.csproj.CopyComplete
 C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.dll
 C:\Users\varun\source\repos\vanarova\InvUpd\ssViewControls\obj\Release\ssViewControls.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\bin\Release\ssViewControls.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\bin\Release\ssViewControls.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\bin\Release\PrimitiveExt.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\bin\Release\PrimitiveExt.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\Release\ssViewControls.csproj.AssemblyReference.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\Release\ssViewControls.ssGridView.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\Release\ssViewControls.csproj.GenerateResource.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\Release\ssViewControls.csproj.CoreCompileInputs.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\Release\ssViewControls.csproj.CopyComplete
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\Release\ssViewControls.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ssViewControls\obj\Release\ssViewControls.pdb

@@ -70,11 +70,6 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdate
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.AboutBox.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.EmailSetup.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.SetUp.resources
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.InvFiller.resources
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.InvUpdate.resources
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.InvUpdateCntrl.resources
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Mapping.resources
-C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.MappingCntrl.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Admin.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Welcome.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Properties.Resources.resources
@@ -190,3 +185,36 @@ C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\Release\SellerS
 C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\Release\SellerSense.csproj.CopyComplete
 C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\Release\SellerSense.exe
 C:\Users\varun\source\repos\vanarova\InvUpd\InventoryUpdater\obj\Release\SellerSense.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\dll\x86\OpenCvSharpExtern.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\dll\x86\opencv_videoio_ffmpeg455.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\dll\x64\OpenCvSharpExtern.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\dll\x64\opencv_videoio_ffmpeg455_64.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ImageSearch.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\PrimitiveExt.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ssViewControls.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\System.Drawing.Common.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\TelegramBot.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\OpenCvSharp.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ImageSearch.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ImageSearch.dll.config
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\PrimitiveExt.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\ssViewControls.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\TelegramBot.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\TelegramBot.dll.config
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\Release\OpenCvSharp.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.AddEditProduct.AddLinkedProduct.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.AddProduct.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.AddEditProduct.LinkedProducts.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.AddEditProduct.PasteImage.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Inventories.ConfirmInventoryAction.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Inventories.CustomSnapshotDate.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Inventories.Inventories.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.InvCntrl.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Inventories.InvFiller.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Payments.Payments.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Payments.PaymentsView.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Products.ExportProducts.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.ProductCntrl.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.ProductListing.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Products.ProductMapSKUs.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.SetUp.TelegramSetup.resources

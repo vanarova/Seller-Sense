@@ -1,0 +1,917 @@
+[
+  {
+    "Sku": "04-QZNO-H63U",
+    "asin": "B08M5LRXPX",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "09-E2HV-CARL",
+    "asin": "B0B7JHB68M",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "0A-6W57-XQZ7",
+    "asin": "B0BHPJM3RP",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "0H-CTL7-A6WD",
+    "asin": "B08PFZY7ZQ",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "0O-SLS9-WGJR",
+    "asin": "B08P8PNVD7",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "0U-MILL-37IU",
+    "asin": "B084G5GXFG",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "19-LGGX-DIIU",
+    "asin": "B08GY8914F",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "1D-5QJD-AMRX",
+    "asin": "B08ZJQ41F4",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "1HeartCandle",
+    "asin": "B08HL9591L",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "2Facesmolds",
+    "asin": "B084TNQGK2",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "2W-HPUZ-9J6H",
+    "asin": "B08RP64YBP",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "31-OI53-TAWX",
+    "asin": "B0BR84TGS3",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "3L-BM6S-AH1H",
+    "asin": "B09441W4N4",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "3W-XAU1-PZ89",
+    "asin": "B0BRBFSCYW",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "4T-VIM1-WJGT",
+    "asin": "B09SV198MS",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "4U-BSJ2-0TI2",
+    "asin": "B08M62MWKN",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "5B-JFSB-BMN6",
+    "asin": "B07QD9ZVHG",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "5I-3NNG-AFJL",
+    "asin": "B08SBJBY49",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "5S-HC25-U19Y",
+    "asin": "B08GM6RV2P",
+    "InvSysCount": "5"
+  },
+  {
+    "Sku": "66-ZVS0-KZIU",
+    "asin": "B08SC7M44N",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "6A-VT5F-TPDZ",
+    "asin": "B0BR5Q5FXP",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "6I-WGJ2-JHON",
+    "asin": "B07YCM6H33",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "6I-XCCY-2O07",
+    "asin": "B0829TPYR7",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "6L-P5AL-8PRU",
+    "asin": "B08SM6WD38",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "6Z-PCWI-N0K3",
+    "asin": "B08SQSF453",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "70-DNTO-6RUB",
+    "asin": "B0858ZH4W3",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "74-F0FH-3BXG",
+    "asin": "B0B7MNR4WJ",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "76-LVCV-64PY",
+    "asin": "B0BRCSSVPQ",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "7K-J1CR-NU58",
+    "asin": "B09SV39ZLC",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "8Y-2YHO-KVC5",
+    "asin": "B08FG7LT3K",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "9C-8J2J-XLZH",
+    "asin": "B083SNL1FD",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "9Q-3OVM-48CR",
+    "asin": "B09KNCYBTT",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "A2-XVXA-DHJ8",
+    "asin": "B0CKHXPSP4",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "AA-2HJ8-27QN",
+    "asin": "B0BHPHBWCN",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "AB-9UO1-6KSP",
+    "asin": "B0BHPHW7BD",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "Angel_collection_1",
+    "asin": "B07M5PQBQV",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "B3-EB9H-ML89",
+    "asin": "B08MCC5JT6",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "Baby_back_2",
+    "asin": "B07LC1SSWF",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "Baby_cart_1",
+    "asin": "B07LC3HD4H",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "Baby_heart_mold1",
+    "asin": "B07LC2FYX7",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "BicycleFlatMold",
+    "asin": "B08HHT9L3B",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "C6-AHUV-PIC3",
+    "asin": "B08F2NZFCC",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "CA-33AG-EHS8",
+    "asin": "B08P8VXWS2",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "CC_Cactus_mold",
+    "asin": "B08X2WQHSV",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "CC_RealDoggy_mold",
+    "asin": "B08X31JM79",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "CC_pineapple_mold",
+    "asin": "B08X3LD5FF",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "CC_teddyBear_mould",
+    "asin": "B08X3WR7LK",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "CE-H9ZL-P83T",
+    "asin": "B0BRBGHB57",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "CV-X7YO-EUH3",
+    "asin": "B07QN54DRQ",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "CY-7U59-VTNW",
+    "asin": "B08SBW38B5",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "CY-FZ9R-G3MQ",
+    "asin": "B08SM9QS27",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "D0-7H16-622P",
+    "asin": "B08SBJ71S4",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "D5-3MJF-N35Q",
+    "asin": "B08SMBTK6Q",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "DJ-D33X-QL7B",
+    "asin": "B08PFSM7LQ",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "DT-1I1W-G4KJ",
+    "asin": "B084H95XSY",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "DX-M2LT-TICH",
+    "asin": "B07VWRG23L",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "F0-U13Q-0NV8",
+    "asin": "B08252L8HG",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "F5-3PM4-IPGB",
+    "asin": "B08RP35SS4",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "FX-IQAO-GSLH",
+    "asin": "B0824XJ2HM",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "FY-5S4K-XC09",
+    "asin": "B084QHS4FL",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "FoodGrade_HeartSoap01",
+    "asin": "B07M5P438J",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "GC-CJH5-UCST",
+    "asin": "B0B7DW9756",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "GC-N4I8-5688",
+    "asin": "B093SYJQ87",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "GD-7MRK-O3JY",
+    "asin": "B08M627ZNP",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "GM-GYAQ-DGHJ",
+    "asin": "B0825RQBYZ",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "GT-261U-2VVG",
+    "asin": "B0B4WL8ZT4",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "GZ-ZANB-1DRE",
+    "asin": "B08RZ2BQNY",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "H0-5RSQ-589E",
+    "asin": "B08SR5F415",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "HALF_SWAN_MOLD",
+    "asin": "B075V5L7Z4",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "HE_152_Love Heart Shap",
+    "asin": "B07T2W6K5D",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "HE_447_7horse Flower Cake Fondant Mold",
+    "asin": "B0869NQR7Z",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "HE_Huygens10x",
+    "asin": "B081M5R35H",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "HE_StrawberryMould_3piece",
+    "asin": "B0813QSC2P",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "HN-1CYY-QP91",
+    "asin": "B08SQXT87X",
+    "InvSysCount": "5"
+  },
+  {
+    "Sku": "HandMakerMold",
+    "asin": "B08HL8BYJF",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "Heart_love_mold01",
+    "asin": "B07LC2FYVL",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "Huygens15xEyepiece",
+    "asin": "B081M65QY4",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "I4-2PYD-X839",
+    "asin": "B0822V364R",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "I7-QOO2-IQ9X",
+    "asin": "B08M3P5SDF",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "IC-WUZF-0FD9",
+    "asin": "B082629S5Z",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "IE-NNB1-Z1QR",
+    "asin": "B07YCJBS4S",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "IndoSilico_RoseFoodGrade1",
+    "asin": "B07MNWXBD6",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "IndoSilico_heart1",
+    "asin": "B07LBBJ98M",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "J3-GW3S-LX6V",
+    "asin": "B0B4PDKPLS",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "JB-3XYP-33EL",
+    "asin": "B083SN8116",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "JS-9FJY-7448",
+    "asin": "B08SQZYRQ1",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "JT-FYWJ-KJQN",
+    "asin": "B08SCNWVNW",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "K2-LVO5-L6XX",
+    "asin": "B09STTSPVZ",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "K8-NMJS-IB70",
+    "asin": "B0BR5X6JTY",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "KM-9WVI-8JI7",
+    "asin": "B07QCC68T6",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "KY-AD3Y-4TUE",
+    "asin": "B0825PLR84",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "L5-PWBO-5IWE",
+    "asin": "B0BRBDN2MB",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "L7-RZNW-DA4K",
+    "asin": "B08SC6WZHJ",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "LD-J1Y9-7S8H",
+    "asin": "B08SBN6575",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "LH-1ZKG-68WE",
+    "asin": "B08FDPQNZH",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "LI-VB0S-A7A9",
+    "asin": "B0BR86SYLQ",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "LN-CHYO-BKMO",
+    "asin": "B0CKHVY8WD",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "LW-OXLH-SZA4",
+    "asin": "B08598GWDF",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "LZ-I3MG-I2D0",
+    "asin": "B0829QTCM9",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "LipKissMould",
+    "asin": "B08HL6Z93P",
+    "InvSysCount": "4"
+  },
+  {
+    "Sku": "MF-9F12-5RPH",
+    "asin": "B08411BG1S",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "MG-15ZH-83MD",
+    "asin": "B0B4NV7X1T",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "ManwomanbabyMold",
+    "asin": "B08D72JW3S",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "MonsteraLeafMould",
+    "asin": "B08HL8BFGR",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "N2-EWVA-RCF4",
+    "asin": "B0BR5TNC2L",
+    "InvSysCount": "5"
+  },
+  {
+    "Sku": "NZ-E6VK-SWHT",
+    "asin": "B08SC7J6TB",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "O7-DG3Z-AERD",
+    "asin": "B0822MPXGC",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "OA-GH55-4SZ0",
+    "asin": "B08SHV3VTS",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "OP-HJZC-KTXQ",
+    "asin": "B08SVQ7D5H",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "OR-OI4L-TKNF",
+    "asin": "B08M3C571W",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "OY-2FRU-A78C",
+    "asin": "B0B7DX6NY7",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "OY-YLEK-UOCG",
+    "asin": "B0CKHXBK9Z",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "P1-N5IY-HH6K",
+    "asin": "B07YDLMWZ4",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "PC-ZZRO-XDFJ",
+    "asin": "B0BRBL8W1H",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "PG-O9PG-E2V8",
+    "asin": "B08SBVZXJ6",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "PI-F3MM-V7VI",
+    "asin": "B09V14DLYM",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "PM-J4XN-IUWD",
+    "asin": "B08MBFQRQ6",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "Q1-UZVI-NWXH",
+    "asin": "B09SV3183L",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "Q2-DFCJ-BFX0",
+    "asin": "B08SMHWSKZ",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "Q4-DO5H-GWX3",
+    "asin": "B0BR5W4SQJ",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "QB-DHA5-V3NT",
+    "asin": "B093QCGGVG",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "QN-WCS2-BLEQ",
+    "asin": "B0822SJRL8",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "QN-ZPP9-WE5Q",
+    "asin": "B08MB1YJN7",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "QR-8BUG-6M4R",
+    "asin": "B07537G82H",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "RE-NVW8-50CQ",
+    "asin": "B0B4WLMJDR",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "RX-1BN7-YSXP",
+    "asin": "B08RZ3WY4T",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "RY-RO8N-NAAZ",
+    "asin": "B09KPQJD4N",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "S9-IOIA-XPNU",
+    "asin": "B08SBSHS75",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "SA-H9IV-9YGT",
+    "asin": "B0824NTK9V",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "SE-ZY92-UPYM",
+    "asin": "B0BRBFQQ8H",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "SJ-YICR-OH57",
+    "asin": "B08SC19435",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "SL-WLRI-BWR2",
+    "asin": "B08SMLV1VX",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "T4-45Q8-82PY",
+    "asin": "B08MB18L9J",
+    "InvSysCount": "5"
+  },
+  {
+    "Sku": "TP-T0EY-ULO0",
+    "asin": "B0823KF9RG",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "Titled_heart_mold",
+    "asin": "B08KFP28HH",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "U0-524W-XCT8",
+    "asin": "B0B4P9Q6PW",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "U2-YG3D-H5IL",
+    "asin": "B082914QFZ",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "UP-GCTC-F1RZ",
+    "asin": "B0827XCP4D",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "UR-25SF-LPND",
+    "asin": "B09SLKSB5P",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "US-679J-VQ2A",
+    "asin": "B08SM4T3ZG",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "V9-HO24-GMLF",
+    "asin": "B08P7LVVPQ",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "V9-T4RM-YN7E",
+    "asin": "B082B672YY",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "VA-NNAA-1TC4",
+    "asin": "B08ZNCBBSK",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "VS-550H-Z4DV",
+    "asin": "B08SQZD6MQ",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "WK-ZCJI-04RS",
+    "asin": "B08SMK5ZSS",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "WY-AUPW-SIOY",
+    "asin": "B07VJ58RZJ",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "XB-ETK1-WM6P",
+    "asin": "B08SBPT2WT",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "Y6-F4MM-N8K6",
+    "asin": "B0B4PB459J",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "YG-QTYM-PMTB",
+    "asin": "B084G69T2F",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "YN-JG0Q-JZAR",
+    "asin": "B08RP3ZN4F",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "YN-XS8Q-E6DB",
+    "asin": "B08RZ32YNT",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "YO-YBP1-ZEVS",
+    "asin": "B08SWGSY97",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "YP-OMUB-1WLS",
+    "asin": "B09KPQ8W6L",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "YR-YHDY-AZYA",
+    "asin": "B082B9173F",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "Z2-NKSC-6TCV",
+    "asin": "B084QFT7MP",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "Z7-WQQU-BFWL",
+    "asin": "B0CKJ2DBQ2",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "ZN-I205-SDSW",
+    "asin": "B08NXKHQ9S",
+    "InvSysCount": "2"
+  },
+  {
+    "Sku": "ZQ-HSBL-XUHU",
+    "asin": "B07S1WSL1X",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "ZU-INGM-JAT9",
+    "asin": "B08SMKD961",
+    "InvSysCount": "1"
+  },
+  {
+    "Sku": "ZW-V5KL-HKQL",
+    "asin": "B084G69T2F",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "grassMold_Added",
+    "asin": "B07X3XJNZT",
+    "InvSysCount": "3"
+  },
+  {
+    "Sku": "0C-H7DV-7N61",
+    "asin": "B088BYP1FX",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "0O-3U3V-VE4E",
+    "asin": "B084HFS1R5",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "2X-07W2-RAM0",
+    "asin": "B082B4YYCF",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "3D-AE2E-1PUP",
+    "asin": "B08RP5PCVT",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "C6-NL0H-3F4C",
+    "asin": "B0BR5VD9MY",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC-pumpKin_mold",
+    "asin": "B08X2ZMWZY",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC_ChessPieces_mold",
+    "asin": "B08X3WF97Q",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC_DonutMold",
+    "asin": "B08X2RWRR5",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC_Olaf_snowman",
+    "asin": "B08X3NMT8T",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC_chocoBar_mold",
+    "asin": "B08X32FXDN",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC_doremon_mold",
+    "asin": "B08X321C2Y",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC_horse_Mold",
+    "asin": "B08X3N538W",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC_melon_slice",
+    "asin": "B08X3PX3QS",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "CC_muffinMold",
+    "asin": "B08X2WDVKN",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "DH-9I4E-V5EY",
+    "asin": "B084HDRR8Q",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "FW-JUAY-9CR3",
+    "asin": "B075LNFS1M",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "Flower_angel_ceremic",
+    "asin": "B08KFLTC94",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "G4-H5UZ-JYO8",
+    "asin": "B08P8LMB1Y",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "JZ-PUKQ-PFPW",
+    "asin": "B08SCBSH3B",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "K9-CN62-VQU6",
+    "asin": "B07VKJRRNF",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "SnowFlakeMouldXL",
+    "asin": "B08HLBHVYS",
+    "InvSysCount": "0"
+  },
+  {
+    "Sku": "WJ-0ZL4-ROPS",
+    "asin": "B08P5R39Q4",
+    "InvSysCount": "0"
+  }
+]

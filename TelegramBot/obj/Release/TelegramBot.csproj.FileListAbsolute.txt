@@ -13,3 +13,18 @@ C:\Users\varun\source\repos\vanarova\InvUpd\TelegramBot\obj\Release\TelegramBot.
 C:\Users\varun\source\repos\vanarova\InvUpd\TelegramBot\obj\Release\TelegramBot.csproj.CopyComplete
 C:\Users\varun\source\repos\vanarova\InvUpd\TelegramBot\obj\Release\TelegramBot.dll
 C:\Users\varun\source\repos\vanarova\InvUpd\TelegramBot\obj\Release\TelegramBot.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\TelegramBot.dll.config
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\TelegramBot.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\TelegramBot.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\Newtonsoft.Json.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\System.ComponentModel.Annotations.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\System.Threading.Tasks.Extensions.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\Newtonsoft.Json.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\bin\Release\System.Threading.Tasks.Extensions.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\obj\Release\TelegramBot.csproj.AssemblyReference.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\obj\Release\TelegramBot.csproj.CoreCompileInputs.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\obj\Release\TelegramBot.csproj.CopyComplete
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\obj\Release\TelegramBot.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\TelegramBot\obj\Release\TelegramBot.pdb

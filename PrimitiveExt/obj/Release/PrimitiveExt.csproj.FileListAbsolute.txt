@@ -4,3 +4,9 @@ C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\obj\Release\PrimitiveEx
 C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\obj\Release\PrimitiveExt.csproj.CoreCompileInputs.cache
 C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\obj\Release\PrimitiveExt.dll
 C:\Users\varun\source\repos\vanarova\InvUpd\PrimitiveExt\obj\Release\PrimitiveExt.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\PrimitiveExt\bin\Release\PrimitiveExt.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\PrimitiveExt\bin\Release\PrimitiveExt.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\PrimitiveExt\obj\Release\PrimitiveExt.csproj.AssemblyReference.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\PrimitiveExt\obj\Release\PrimitiveExt.csproj.CoreCompileInputs.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\PrimitiveExt\obj\Release\PrimitiveExt.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\PrimitiveExt\obj\Release\PrimitiveExt.pdb
