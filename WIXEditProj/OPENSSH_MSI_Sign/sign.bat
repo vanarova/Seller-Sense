@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool" sign /f myp12keystore.p12 /d "Seller-Sense" /p Select@123 /v /sha1 2E62440DD917581403AE9DC640EC4BD16D0FF076 /t "http://timestamp.comodoca.com/authenticode" SS.msi

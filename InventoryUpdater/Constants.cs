@@ -16,6 +16,8 @@ namespace SellerSense
         public const string MapFileName = "map.json";
         public const string logFileName = "log.txt";
         public const string Snapshots = "Snapshots";
+        public const string LogDepth = "LogDepth";
+        public const string TelegramLogging = "TelegramLogging";
 
 
         public const string WorkspaceDir = "workspace";

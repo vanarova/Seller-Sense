@@ -36,30 +36,13 @@ namespace TelegramBot
             _logLevel = LogDepth.LogAllActions;
         }
         
-        public static void SetLogDepth(LogDepth logDepth)
-        {
-            switch (logDepth)
-            {
-                case LogDepth.LogAllActions:
-                    _logLevel = LogDepth.LogAllActions;
-                    break;
-                case LogDepth.LogDataImportsExports:
-                    _logLevel = LogDepth.LogDataImportsExports;
-                    break;
-                case LogDepth.LogOnlyWhenUserWants:
-                    _logLevel = LogDepth.LogOnlyWhenUserWants;
-                    break;
-                default:
-                    _logLevel=LogDepth.LogAllActions;
-                    break;
-            }
-        }
+       
 
         public static async Task SendTelegramMessage(string botToken, long chatId, 
-            string message, LogDepth logDepth)
+            string message)
         {
-            if (logDepth != _logLevel)
-                return;
+            //if (logDepth != _logLevel)
+            //    return;
             using (HttpClient client = new HttpClient())
             {
                 string apiUrl = $"https://api.telegram.org/bot{botToken}/sendMessage";
@@ -84,10 +67,9 @@ namespace TelegramBot
         }
 
         public static async Task SendTelegramImage(string botToken, long chatId, string message,
-            string imagePath, string fileName, LogDepth logDepth)
+            string imagePath, string fileName)
         {
-            if (logDepth != _logLevel)
-                return;
+           
             using (HttpClient client = new HttpClient())
             {
                 string apiUrl = $"https://api.telegram.org/bot{botToken}/sendPhoto";
@@ -114,10 +96,9 @@ namespace TelegramBot
 
 
         public static async Task SendTelegramFile(string botToken, long chatId, 
-            string filePath, string fileName, LogDepth logDepth)
+            string filePath, string fileName)
         {
-            if (logDepth != _logLevel)
-                return;
+           
             using (HttpClient client = new HttpClient())
             {
                 string apiUrl = $"https://api.telegram.org/bot{botToken}/sendDocument";

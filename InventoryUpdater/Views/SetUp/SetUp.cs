@@ -118,8 +118,24 @@ namespace SellerSense
             txtComp2Name.Text = ProjIO.GetUserSetting(Constants.Company2Name);
             txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
             pbar.Visible = false;
-            //if (string.IsNullOrEmpty(txtWorkSpaceLocation.Text))
-            //    txtWorkSpaceLocation.Text = ProjIO.DefaultWorkspaceLocation();
+
+            
+            comboBox_LoggingLevel.DataSource = Enum.GetValues(typeof(Logger.LogLevel));
+            //Default logger depth is set in program.cs, get tht value and assgin.
+            comboBox_LoggingLevel.SelectedItem = Logger.GetLogLevel();
+
+            comboBox_LoggingLevel.SelectedIndexChanged += (s, ev) => {
+                var val = (Logger.LogLevel)comboBox_LoggingLevel.SelectedItem;
+                Logger.SetLoggerLevel_LogAboveThisLevelOnly(val);
+            };
+
+
+            checkBox_TelegramLogging.CheckedChanged += (s, ev) => {
+                if (checkBox_TelegramLogging.Checked)
+                    Logger.EnableTelegramLogging();
+                else
+                    Logger.DisableTelegramLogging();
+            };
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -144,13 +160,13 @@ namespace SellerSense
 
         private void btn_ImportMap1_Click(object sender, EventArgs e)
         {
-            ImportMap(txtComp1Code.Text);
+            ImportMapAndImages(txtComp1Code.Text);
 
         }
 
         private void btn_ImportMap2_Click(object sender, EventArgs e)
         {
-            ImportMap(txtComp2Code.Text);
+            ImportMapAndImages(txtComp2Code.Text);
         }
 
         private void btn_emailSetup_Click(object sender, EventArgs e)
@@ -205,27 +221,49 @@ namespace SellerSense
 
        
 
-        private void ImportMap(string mapCode)
+        //private void ImportMap(string mapCode)
+        //{
+        //    if (!string.IsNullOrEmpty(mapCode))
+        //    {
+        //        OpenFileDialog openFileDialog = new OpenFileDialog();
+        //        openFileDialog.Filter = "Inventory file|*.json";
+        //        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        //        {
+        //            _map1File = openFileDialog.FileName;
+        //            ProjIO.ImportMap(openFileDialog.FileName, txtComp1Code.Text, () => { },
+        //                (msg) => {
+        //                    if (DialogResult.Yes == MessageBox.Show(msg, "File exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
+        //                        return true;
+        //                    else
+        //                        return false;
+        //                }, // file exists
+        //                (msg) => { MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); });//result
+        //        }
+        //        else return;
+        //    }
+        //}
+
+        private void ImportMapAndImages(string mapCode)
         {
-            if (!string.IsNullOrEmpty(mapCode))
+           
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Project file|*.zip";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Inventory file|*.json";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    _map1File = openFileDialog.FileName;
-                    ProjIO.ImportMap(openFileDialog.FileName, txtComp1Code.Text, () => { },
-                        (msg) => {
-                            if (DialogResult.Yes == MessageBox.Show(msg, "File exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
-                                return true;
-                            else
-                                return false;
-                        }, // file exists
-                        (msg) => { MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); });//result
-                }
-                else return;
+                _map1File = openFileDialog.FileName;
+                ProjIO.ImportMapAndImages(openFileDialog.FileName, mapCode, () => { },
+                    (msg) => {
+                        if (DialogResult.Yes == MessageBox.Show(msg, "File exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
+                            return true;
+                        else
+                            return false;
+                    }, // file exists
+                    (msg) => { MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); });//result
             }
+            else return;
+           
         }
+
 
         private void btn_exportMap1_Click(object sender, EventArgs e)
         {
@@ -278,6 +316,14 @@ namespace SellerSense
         {
             TelegramSetup tSetp = new TelegramSetup(new ViewManager.VM_TelegramSetup());
             tSetp.ShowDialog();
+        }
+
+        private void checkBox_TelegramLogging_CheckedChanged(object sender, EventArgs e)
+        {
+            //if(checkBox_TelegramLogging.Checked)
+            //    Logger.EnableTelegramLogging();
+            //else
+            //    Logger.DisableTelegramLogging();
         }
     }
 }

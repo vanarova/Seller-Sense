@@ -392,32 +392,95 @@ namespace SellerSense.Helper
             //    File.Copy(fileName, mapFileLocation);
             //}
 
-            internal static void ImportMap(string fileName, string companyCode,Action SuggestUserUnSafeOperation, Func<string,bool> MapExists
+            internal static bool ImportMap(string fileName, string companyCode,Action SuggestUserUnSafeOperation, Func<string,bool> MapExists
             ,Action<string> Result)
         {
+            bool returnCode = false;
             SuggestUserUnSafeOperation();//potential unsafe operation, close existing 
-            bool overwrite = false;
+            bool overwrite = true;
             string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
                 companyCode, Constants.MapFileName);
             if (File.Exists(mapFileLocation))
                 overwrite = MapExists("File already exists, Continue?");
+            
             if (overwrite)
             {
-                File.Copy(mapFileLocation, mapFileLocation + "arv");
-                File.Delete(mapFileLocation);
+                if (File.Exists(mapFileLocation))
+                {
+                    File.Copy(mapFileLocation, mapFileLocation + "arv");
+                    File.Delete(mapFileLocation);
+                }
                 try
                 {
                     File.Copy(fileName, mapFileLocation);
                     Result("Map file imported successfully.");
+                    returnCode = true;
                 }
-                catch { File.Copy(mapFileLocation + "arv", mapFileLocation); Result("Import map failed."); } // if copy fails, revert to original map file.
+                catch { File.Copy(mapFileLocation + "arv", mapFileLocation); Result("Import map failed."); returnCode = false; } // if copy fails, revert to original map file.
                 finally { 
                     if(File.Exists(mapFileLocation + "arv"))
                         File.Delete(mapFileLocation + "arv"); 
+                    
                     } //delete backup file
 
             }
+            return returnCode;
         }
+
+
+
+        internal static void ImportMapAndImages(string zipFilePath, string companyCode, Action SuggestUserUnSafeOperation, Func<string, bool> MapExists
+       , Action<string> Result)
+        {
+            // go to temp location
+            // unzip file
+            string tempDir = UnzipInTempDirectory(zipFilePath);
+            string mapfilePath = Path.Combine(tempDir, Constants.MapFileName);
+            string tempImgDirPath = Path.Combine(tempDir, Constants.Imgs);
+            string imgDirLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir), companyCode, Constants.Imgs);
+            bool mapCopied = false;
+
+            string tempSnapshotsDirPath = Path.Combine(tempDir, Constants.Snapshots);
+            string snapshotsDirLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir), companyCode, Constants.Snapshots);
+
+            if (tempDir != default(string) && File.Exists(mapfilePath))
+                mapCopied = ImportMap(mapfilePath, companyCode, SuggestUserUnSafeOperation, MapExists, Result);
+
+            if(mapCopied)
+                CopyDirectory(tempImgDirPath, imgDirLocation, recursive:true, overwrite:true);
+
+            if (mapCopied)
+                CopyDirectory(tempSnapshotsDirPath, snapshotsDirLocation, recursive: true, overwrite: true);
+
+            // copy snapshots
+
+        }
+
+
+        static string UnzipInTempDirectory(string zipFilePath)
+        {
+            try
+            {
+                // Create a temporary directory
+                string tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+                Directory.CreateDirectory(tempDirectory);
+
+                // Extract the contents of the zip file to the temporary directory
+                ZipFile.ExtractToDirectory(zipFilePath, tempDirectory);
+
+                // Copy the contents of the temporary directory to the destination directory
+                //CopyDirectory(tempDirectory, destinationDirectory, true);
+
+                //Console.WriteLine("Unzip and copy completed successfully.");
+                return tempDirectory;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"Error: {ex.Message}",Logger.LogLevel.error,true);
+                return default(string);
+            }
+        }
+
 
         internal static Task<string> ExportAllLogs(string selectedPath)
         {
@@ -594,7 +657,7 @@ namespace SellerSense.Helper
         }
 
         //taken from msdn
-        private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive)
+        private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive, bool overwrite = false)
         {
             // Get information about the source directory
             var dir = new DirectoryInfo(sourceDir);
@@ -613,7 +676,7 @@ namespace SellerSense.Helper
             foreach (FileInfo file in dir.GetFiles())
             {
                 string targetFilePath = Path.Combine(destinationDir, file.Name);
-                file.CopyTo(targetFilePath);
+                file.CopyTo(targetFilePath, overwrite);
             }
 
             // If recursive and copying subdirectories, recursively call this method

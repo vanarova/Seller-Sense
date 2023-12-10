@@ -22,12 +22,13 @@ namespace SellerSense.Helper
         private static string _mapDirPath;
         private static string _globalLogPath;
         private const string logFileName = Constants.logFileName;
-        private static Messenger.LogDepth _TelegramlogDepth;
+        //private static Messenger.LogDepth _TelegramlogDepth;
+        private static bool _isTelegramEnabled;
         private static LogLevel _logLevel;
 
         static Logger()
         {
-            _TelegramlogDepth = Messenger.LogDepth.LogAllActions; /// if no log depth is set, use this value.
+            //_TelegramlogDepth = Messenger.LogDepth.LogAllActions; /// if no log depth is set, use this value.
             _logLevel = LogLevel.info;
             
 
@@ -45,14 +46,48 @@ namespace SellerSense.Helper
 //#endif
         }
 
-        internal static void SetTelegramLogDepth_LogAboveThisLevelOnly(Messenger.LogDepth logdepth)
+        //internal static void SetTelegramLogDepth_LogAboveThisLevelOnly(Messenger.LogDepth logdepth)
+        //{
+        //    _TelegramlogDepth = logdepth;
+        //}
+
+        internal static bool IsTelegramLogEnabled()
         {
-            _TelegramlogDepth = logdepth;
+            string telegram = ProjIO.GetUserSetting(Constants.TelegramLogging);
+            //First time configuration
+            if (string.IsNullOrEmpty(telegram))
+                DisableTelegramLogging();
+            _isTelegramEnabled = bool.Parse(telegram);
+            return _isTelegramEnabled;
+        }
+
+
+        internal static void EnableTelegramLogging()
+        {
+            _isTelegramEnabled = true;
+            ProjIO.SaveUserSetting(Constants.TelegramLogging, _isTelegramEnabled.ToString());
+
+        }
+
+        internal static void DisableTelegramLogging()
+        {
+            _isTelegramEnabled = false;
+            ProjIO.SaveUserSetting(Constants.TelegramLogging, _isTelegramEnabled.ToString());
+        }
+
+
+        internal static LogLevel GetLogLevel()
+        {
+            string logLevelStr = ProjIO.GetUserSetting(Constants.LogDepth);
+            Enum.TryParse<LogLevel>(logLevelStr, out LogLevel val);
+            _logLevel = val;
+            return _logLevel;
         }
 
         internal static void SetLoggerLevel_LogAboveThisLevelOnly(LogLevel logdepth)
         {
             _logLevel = logdepth;
+            ProjIO.SaveUserSetting(Constants.LogDepth,_logLevel.ToString());
         }
 
         internal static void SetTelegramSettings(string botToken,long chatId)
@@ -60,44 +95,48 @@ namespace SellerSense.Helper
  
         internal static async void TelegramLog(string message, LogLevel logLevel, string companyCode = "")
         {
-            if(string.IsNullOrEmpty(_botToken) || _chatId == 0)
+            if (!_isTelegramEnabled) return;
+            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
                 return;
             if ((int)_logLevel < (int)logLevel)
                 return;
             var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
-            await Messenger.SendTelegramMessage(_botToken, _chatId, logMessage, _TelegramlogDepth);
+            await Messenger.SendTelegramMessage(_botToken, _chatId, logMessage);
         }
 
 
         internal static async void Telegram(string message)
         {
+            if (!_isTelegramEnabled) return;
             if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
                 return;
             
-            await Messenger.SendTelegramMessage(_botToken, _chatId, message, _TelegramlogDepth);
+            await Messenger.SendTelegramMessage(_botToken, _chatId, message);
         }
 
         internal static async void TelegramMedia(string filePath,string fileName, string message,
             LogLevel logLevel, string companyCode = "")
         {
+            if (!_isTelegramEnabled) return;
             if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
                 return;
             if ((int)_logLevel < (int)logLevel)
                 return;
             
-            await Messenger.SendTelegramImage(_botToken, _chatId,message, filePath, fileName, _TelegramlogDepth);
+            await Messenger.SendTelegramImage(_botToken, _chatId,message, filePath, fileName);
            
         }
 
         internal static async Task TelegramDocument(string filePath, string fileName,
            LogLevel logLevel, string companyCode = "")
         {
+            if (!_isTelegramEnabled) return;
             if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
                 return;
             if ((int)_logLevel < (int)logLevel)
                 return;
 
-            await Messenger.SendTelegramFile(_botToken, _chatId,  filePath, fileName, _TelegramlogDepth);
+            await Messenger.SendTelegramFile(_botToken, _chatId,  filePath, fileName);
 
         }
 
@@ -107,6 +146,8 @@ namespace SellerSense.Helper
         {
             if ((int)_logLevel < (int)logLevel)
                 return;
+            if (_isTelegramEnabled)
+                
             (_, _mapDirPath) = ProjIO.GetCompanyMapDirIfExist(companyCode);
             var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
             using (var writer = File.AppendText(Path.Combine(_mapDirPath, logFileName)))
@@ -119,6 +160,8 @@ namespace SellerSense.Helper
         {
             if ((int)_logLevel < (int)logLevel)
                 return;
+            if (_isTelegramEnabled)
+                Telegram(" Msg:" + message + "; Log level:" + logLevel.ToString());
             var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
             using (var writer = File.AppendText(Path.Combine(_globalLogPath, logFileName)))
             {

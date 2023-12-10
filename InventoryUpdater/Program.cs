@@ -22,10 +22,16 @@ namespace SellerSense
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Logger.SetTelegramLogDepth_LogAboveThisLevelOnly(TelegramBot.Messenger.LogDepth.LogAllActions);
+
+                //Log level is hard coded here, this value is written in json file, and reset any user setting done in last run
+                //If you dont want to reset logging level, then try to read logging level from config json, if not found, execute below line.
+                //Also change tooltip value
                 Logger.SetLoggerLevel_LogAboveThisLevelOnly(Logger.LogLevel.info);
 
-#if DebugWithNoGlobalExeceptions
+                //Evaluate Telegram setting, this will set telegram  logging bool variable
+                Logger.IsTelegramLogEnabled();
+
+#if  DebugWithNoGlobalExeceptions
                 // Add the event handler for handling UI thread exceptions to the event.
                 if (!System.Diagnostics.Debugger.IsAttached)
                     Application.ThreadException += new ThreadExceptionEventHandler(Form1_UIThreadException);
@@ -46,9 +52,14 @@ namespace SellerSense
             }
             catch (Exception e)
             {
+                string logLocation = "";
+                try
+                { logLocation = ProjIO.GetUserSetting(Constants.WorkspaceDir); }
+                catch (Exception) { }
+                
                  Logger.Log(e.Message, Logger.LogLevel.fatal, true);
                 AlertBox abox = new AlertBox("Error","Unexpected Error occurred, application cant be recovered, " +
-                    "restart required. If problem persists, send logs to customer support, logs location :[]"); //TODO : assign logs location
+                    "restart required. If problem persists, send logs to customer support, logs location : " + logLocation); //TODO : assign logs location
                 abox.ShowDialog();
                 Application.Exit();
             }
