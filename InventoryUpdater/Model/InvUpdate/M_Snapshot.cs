@@ -30,70 +30,139 @@ namespace SellerSense.Model.InvUpdate
             _siteCode = siteCode;
         }
 
-        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IAmzInventory> _amzInventoryList)
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IAmzInventory> _amzInventoryList,
+            IList<Decoders.Interfaces.IAmzInventory> _amzModifiedInventoryList,
+            bool saveOnlySystemInventory = true)
         {
+            bool isModified = false;
             if (_invSnapshotEntries.Count > 0)
                 _invSnapshotEntries.Clear();
             foreach (var item in _amzInventoryList)
             {
-                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                if (saveOnlySystemInventory)
                 {
-                    Sku = item.sku,
-                    InvSysCount = item.systemQuantity,
-                    asin = item.asin
-                });
+                    _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = item.systemQuantity, asin = item.asin });
+                }
+                else
+                {
+                    isModified = false;
+                    foreach (var mitem in _amzModifiedInventoryList)
+                    {
+                        if(string.Equals(mitem.asin.Trim(),item.asin.Trim(),StringComparison.InvariantCultureIgnoreCase)) //TODO override string compare operator for whole seller sense, create own equals()
+                        {
+                            //[BL] if user modifed inventory, then save user inv. Else save system inventory
+                            isModified = true;
+                            _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = mitem.sellerQuantity, asin = item.asin });
+                            break;
+                        }
+                    }
+                    if(!isModified)
+                        _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = item.systemQuantity, asin = item.asin });
+                }
             }
+            //TODO : Dont duplicate snapshots and save more files, if previous snapshot matches with current snapshot, discard saving.
             SerializeInvSnapshot();
         }
 
 
 
-        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IFkInventoryV2> _fkInventoryList)
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IFkInventoryV2> _fkInventoryList,
+            IList<Decoders.Interfaces.IFkInventoryV2> _fkModifiedInventoryList,
+            bool saveOnlySystemInventory = true)
         {
-            if(_invSnapshotEntries.Count > 0)
+            bool isModified = false;
+            if (_invSnapshotEntries.Count > 0)
                 _invSnapshotEntries.Clear();
             foreach (var item in _fkInventoryList)
             {
-                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                if (saveOnlySystemInventory)
                 {
-                    Sku = item.sku,
-                    InvSysCount = item.systemQuantity,
-                    asin = item.fsn
-                });
+                    _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = item.systemQuantity, asin = item.fsn });
+                }
+                else
+                {
+                    isModified = false;
+                    foreach (var mitem in _fkModifiedInventoryList)
+                    {
+                        if (string.Equals(mitem.fsn.Trim(), item.fsn.Trim(), StringComparison.InvariantCultureIgnoreCase)) //TODO override string compare operator for whole seller sense, create own equals()
+                        {
+                            //[BL] if user modifed inventory, then save user inv. Else save system inventory
+                            isModified = true;
+                            _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = mitem.sellerQuantity, asin = item.fsn });
+                            break;
+                        }
+                    }
+                    if (!isModified)
+                        _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = item.systemQuantity, asin = item.fsn });
+                }
             }
             SerializeInvSnapshot();
         }
 
 
-        internal void SaveInvSnapshot(IList<Decoders.Interfaces.ISpdInventory> _spdInventoryList)
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.ISpdInventory> _spdInventoryList,
+            IList<Decoders.Interfaces.ISpdInventory> _spdModifiedInventoryList,
+            bool saveOnlySystemInventory = true)
         {
+            bool isModified = false;
             if (_invSnapshotEntries.Count > 0)
                 _invSnapshotEntries.Clear();
             foreach (var item in _spdInventoryList)
             {
-                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                if (saveOnlySystemInventory)
                 {
-                    Sku = item.sku,
-                    InvSysCount = item.systemQuantity,
-                    asin = item.fsn
-                });
+                    _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = item.systemQuantity, asin = item.fsn });
+                }
+                else
+                {
+                    isModified = false;
+                    foreach (var mitem in _spdModifiedInventoryList)
+                    {
+                        if (string.Equals(mitem.fsn.Trim(), item.fsn.Trim(), StringComparison.InvariantCultureIgnoreCase)) //TODO override string compare operator for whole seller sense, create own equals()
+                        {
+                            //[BL] if user modifed inventory, then save user inv. Else save system inventory
+                            isModified = true;
+                            _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = mitem.sellerQuantity, asin = item.fsn });
+                            break;
+                        }
+                    }
+                    if (!isModified)
+                        _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = item.systemQuantity, asin = item.fsn });
+                }
             }
             SerializeInvSnapshot();
         }
 
 
-        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IMsoInventory> _msoInventoryList)
+        internal void SaveInvSnapshot(IList<Decoders.Interfaces.IMsoInventory> _msoInventoryList,
+            IList<Decoders.Interfaces.IMsoInventory> _msoModifiedInventoryList,
+            bool saveOnlySystemInventory = true)
         {
+            bool isModified = false;
             if (_invSnapshotEntries.Count > 0)
                 _invSnapshotEntries.Clear();
             foreach (var item in _msoInventoryList)
             {
-                _invSnapshotEntries.Add(new InvSnapshotEntry()
+                if (saveOnlySystemInventory)
                 {
-                    Sku = item.sku,
-                    InvSysCount = item.systemQuantity,
-                    asin = item.fsn
-                });
+                    _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = item.systemQuantity, asin = item.fsn });
+                }
+                else
+                {
+                    isModified = false;
+                    foreach (var mitem in _msoModifiedInventoryList)
+                    {
+                        if (string.Equals(mitem.fsn.Trim(), item.fsn.Trim(), StringComparison.InvariantCultureIgnoreCase)) //TODO override string compare operator for whole seller sense, create own equals()
+                        {
+                            //[BL] if user modifed inventory, then save user inv. Else save system inventory
+                            isModified = true;
+                            _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = mitem.sellerQuantity, asin = item.fsn });
+                            break;
+                        }
+                    }
+                    if (!isModified)
+                        _invSnapshotEntries.Add(new InvSnapshotEntry() { Sku = item.sku, InvSysCount = item.systemQuantity, asin = item.fsn });
+                }
             }
             SerializeInvSnapshot();
         }

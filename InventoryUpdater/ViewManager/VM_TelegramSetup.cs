@@ -1,4 +1,5 @@
 ﻿using SellerSense.Helper;
+using SellerSense.Views;
 using SellerSense.Views.SetUp;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TelegramBot;
 
 namespace SellerSense.ViewManager
 {
@@ -36,6 +38,23 @@ namespace SellerSense.ViewManager
                 ChatId = _v_TelegramSetup.textBox_chatId.Text;
                 SaveTelegramSettings();
                 _v_TelegramSetup.Close();
+            };
+
+            _v_TelegramSetup.button_test_connection.Click += async(s, e) => {
+                string msg = string.Empty;
+                try
+                {
+                    long.Parse(ChatId);
+                    msg = await Messenger.SendTelegramMessage(_v_TelegramSetup.textBox_BotToken.Text, long.Parse(_v_TelegramSetup.textBox_chatId.Text), "Test message");
+                }catch (Exception ex)
+                {
+                    AlertBox abox = new AlertBox("Error", "Unexpected Error occurred " + ex.Message);
+                    abox.ShowDialog();
+                }finally
+                {
+                    AlertBox abox = new AlertBox("Info", "Message returned from Telegram: " + msg,false);
+                    abox.ShowDialog();
+                } 
             };
 
         }

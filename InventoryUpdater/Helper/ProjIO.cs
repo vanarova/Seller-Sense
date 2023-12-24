@@ -434,24 +434,36 @@ namespace SellerSense.Helper
         {
             // go to temp location
             // unzip file
-            string tempDir = UnzipInTempDirectory(zipFilePath);
-            string mapfilePath = Path.Combine(tempDir, Constants.MapFileName);
-            string tempImgDirPath = Path.Combine(tempDir, Constants.Imgs);
-            string imgDirLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir), companyCode, Constants.Imgs);
-            bool mapCopied = false;
+            try
+            {
+                string tempDir = UnzipInTempDirectory(zipFilePath);
+                string mapfilePath = Path.Combine(tempDir, Constants.MapFileName);
+                string tempImgDirPath = Path.Combine(tempDir, Constants.Imgs);
+                string imgDirLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir), companyCode, Constants.Imgs);
+                bool mapCopied = false;
 
-            string tempSnapshotsDirPath = Path.Combine(tempDir, Constants.Snapshots);
-            string snapshotsDirLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir), companyCode, Constants.Snapshots);
+                string tempSnapshotsDirPath = Path.Combine(tempDir, Constants.Snapshots);
+                string snapshotsDirLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir), companyCode, Constants.Snapshots);
 
-            if (tempDir != default(string) && File.Exists(mapfilePath))
-                mapCopied = ImportMap(mapfilePath, companyCode, SuggestUserUnSafeOperation, MapExists, Result);
+                if (tempDir != default(string) && File.Exists(mapfilePath))
+                    mapCopied = ImportMap(mapfilePath, companyCode, SuggestUserUnSafeOperation, MapExists, Result);
 
-            if(mapCopied)
-                CopyDirectory(tempImgDirPath, imgDirLocation, recursive:true, overwrite:true);
+                if (mapCopied)
+                {
+                    CopyDirectory(tempImgDirPath, imgDirLocation, recursive: true, overwrite: true);
+                    Result("Images imported successfully.");
+                }
 
-            if (mapCopied)
-                CopyDirectory(tempSnapshotsDirPath, snapshotsDirLocation, recursive: true, overwrite: true);
-
+                if (mapCopied)
+                {
+                    CopyDirectory(tempSnapshotsDirPath, snapshotsDirLocation, recursive: true, overwrite: true);
+                    Result("Snapshots imported successfully.");
+                }
+            }catch (Exception ex)
+            {
+                Result("Error copying all files.. Please copy files manually at.." + GetUserSetting(Constants.WorkspaceDir));
+                throw (ex);
+            }
             // copy snapshots
 
         }
@@ -685,7 +697,7 @@ namespace SellerSense.Helper
                 foreach (DirectoryInfo subDir in dirs)
                 {
                     string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
-                    CopyDirectory(subDir.FullName, newDestinationDir, true);
+                    CopyDirectory(subDir.FullName, newDestinationDir, true, overwrite);
                 }
             }
         }

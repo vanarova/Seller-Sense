@@ -93,16 +93,16 @@ namespace SellerSense.Helper
         internal static void SetTelegramSettings(string botToken,long chatId)
         { _botToken = botToken; _chatId = chatId;  }
  
-        internal static async void TelegramLog(string message, LogLevel logLevel, string companyCode = "")
-        {
-            if (!_isTelegramEnabled) return;
-            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
-                return;
-            if ((int)_logLevel < (int)logLevel)
-                return;
-            var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
-            await Messenger.SendTelegramMessage(_botToken, _chatId, logMessage);
-        }
+        //internal static async void TelegramLog(string message, LogLevel logLevel, string companyCode = "")
+        //{
+        //    if (!_isTelegramEnabled) return;
+        //    if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
+        //        return;
+        //    if ((int)_logLevel < (int)logLevel)
+        //        return;
+        //    var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
+        //    await Messenger.SendTelegramMessage(_botToken, _chatId, logMessage);
+        //}
 
 
         internal static async void Telegram(string message)

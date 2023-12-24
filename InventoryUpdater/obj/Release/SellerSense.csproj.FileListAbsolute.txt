@@ -218,3 +218,4 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdate
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.ProductListing.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.Products.ProductMapSKUs.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.SetUp.TelegramSetup.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\Release\SellerSense.Views.MessagePopBox.resources

@@ -87,7 +87,7 @@ namespace SellerSense.ViewManager
         {
             _v_linkedProds.Load += (s, e) => {
                 CompareProductView comparer = new CompareProductView();
-                ssGridView<LinkedProduct> ssGrid = new ssGridView<LinkedProduct>(_linkedProducts, comparer);
+                ssGridView<LinkedProduct> ssGrid = new ssGridView<LinkedProduct>(_linkedProducts, comparer, showSearchCntrls: true, tagLabel: "Tag", titleLabel: "Title");
                 _v_linkedProds.tableLayoutPanel1.Controls.Add(ssGrid, 0, 1);
                 if (_currentLinkedProductList == null)
                     _currentLinkedProductList = new List<M_Product.LinkedProduct>();

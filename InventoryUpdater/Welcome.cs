@@ -267,7 +267,7 @@ namespace SellerSense
             c.FormClosed += (senderObj, formClosedEventArgs) => {
                 CheckIfSetupNeedsToRun();
             };
-            c.Show();
+            c.ShowDialog();
         }
 
         private async void btn_products_Click(object sender, EventArgs e)

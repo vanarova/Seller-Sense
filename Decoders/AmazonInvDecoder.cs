@@ -31,7 +31,7 @@ namespace Decoders
         public static string GetProductIdFromURL(string url)
         {
             string result = string.Empty;
-            string pattern = @"dp\/([^/]+)\/";
+            string pattern = @"dp\/([A-Z0-9]+)";
             Regex regex = new Regex(pattern);
             Match match = regex.Match(url);
             if (match.Success)

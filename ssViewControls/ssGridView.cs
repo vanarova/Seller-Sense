@@ -91,7 +91,8 @@ namespace ssViewControls
 
         }
 
-        public ssGridView(List<T> data, bool showSearchCntrls = false, bool showSelectButton = false, string tagLabel = default, string titleLabel = default)
+        public ssGridView(List<T> data, bool showSearchCntrls = false, 
+            bool showSelectButton = false, string tagLabel = default, string titleLabel = default)
         {
             if (!string.IsNullOrEmpty(tagLabel))
                 _tag = tagLabel;
@@ -103,8 +104,15 @@ namespace ssViewControls
             InitializeComponent();
         }
 
-        public ssGridView(List<T> data, IComparer<T> bindedDataObjectComparer)
+        public ssGridView(List<T> data, IComparer<T> bindedDataObjectComparer, bool showSearchCntrls = false, 
+            bool showSelectButton = false, string tagLabel = default, string titleLabel = default)
         {
+            if (!string.IsNullOrEmpty(tagLabel))
+                _tag = tagLabel;
+            if (!string.IsNullOrEmpty(titleLabel))
+                _title = titleLabel;
+            _showSearchCntrls = showSearchCntrls;
+            _showSelectButton = showSelectButton;
             Init(data);// AdjustUI();
             _bindedDataObjectComparer = bindedDataObjectComparer;
             InitializeComponent();

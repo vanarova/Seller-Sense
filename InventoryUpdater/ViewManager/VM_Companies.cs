@@ -190,8 +190,9 @@ namespace SellerSense.ViewManager
             internal CrossCompanyLinkedInventoryCount _crossCompanyLinkedInventoryCount;
             private VM_Companies _vm_companies;
             internal OrderStatusReportBuilder _orderReportBuilder;
+            internal InventoryStatusReportBuilder _InvReportBuilder;
 
-            
+
 
             //internal M_OrderStatusReport GetCrossCompanyDailyOrderReport()
             //{
@@ -219,13 +220,134 @@ namespace SellerSense.ViewManager
             //    }
             //}
 
+            internal void SendCrossCompanyInventoryStatus()
+            {
+                string a_outOfStock =""; string f_outOfStock = ""; string s_outOfStock = ""; string m_outOfStock = ""; 
+                _InvReportBuilder = new InventoryStatusReportBuilder(_vm_companies._companies[0]._inventoriesViewManager._inventoryViewList, _vm_companies._companies[0]._code
+                    , _vm_companies._companies[1]._inventoriesViewManager._inventoryViewList, _vm_companies._companies[1]._code);
+                (InvStatusReport az, InvStatusReport fk, InvStatusReport sp, InvStatusReport mso) = _InvReportBuilder.Build();
+
+                var OutOfStockcompanya = az.outOfStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
+                var OutOfStockcompanyb = az.outOfStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
+                a_outOfStock = FormatOutOfStockItems(a_outOfStock, "Amazon", OutOfStockcompanya, OutOfStockcompanyb);
+
+                OutOfStockcompanya = fk.outOfStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
+                OutOfStockcompanyb = fk.outOfStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
+                f_outOfStock = FormatOutOfStockItems(f_outOfStock, "Flipkart", OutOfStockcompanya, OutOfStockcompanyb);
+
+                OutOfStockcompanya = sp.outOfStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
+                OutOfStockcompanyb = sp.outOfStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
+                s_outOfStock = FormatOutOfStockItems(s_outOfStock, "Snapdeal", OutOfStockcompanya, OutOfStockcompanyb);
+
+                OutOfStockcompanya = mso.outOfStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
+                OutOfStockcompanyb = mso.outOfStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
+                m_outOfStock = FormatOutOfStockItems(m_outOfStock, "Meesho", OutOfStockcompanya, OutOfStockcompanyb);
+
+                string sa_outOfStock = ""; string sf_outOfStock = ""; string ss_outOfStock = ""; string sm_outOfStock = "";
+                var SingleStockcompanya = az.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
+                var SingleStockcompanyb = az.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
+                sa_outOfStock = FormatSingleStockItems(sa_outOfStock, "Amazon", SingleStockcompanya, SingleStockcompanyb);
+
+                SingleStockcompanya = fk.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
+                SingleStockcompanyb = fk.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
+                sf_outOfStock = FormatSingleStockItems(sf_outOfStock, "Flipkart", SingleStockcompanya, SingleStockcompanyb);
+
+                SingleStockcompanya = sp.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
+                SingleStockcompanyb = sp.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
+                ss_outOfStock = FormatSingleStockItems(ss_outOfStock, "Snapdeal", SingleStockcompanya, SingleStockcompanyb);
+
+                SingleStockcompanya = mso.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
+                SingleStockcompanyb = mso.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
+                sm_outOfStock = FormatSingleStockItems(sm_outOfStock, "Meesho", SingleStockcompanya, SingleStockcompanyb);
+
+                string msg = a_outOfStock + Environment.NewLine + f_outOfStock + Environment.NewLine + s_outOfStock + Environment.NewLine + m_outOfStock 
+                    +Environment.NewLine + sa_outOfStock + Environment.NewLine + sf_outOfStock + Environment.NewLine + ss_outOfStock + Environment.NewLine + sm_outOfStock;
+                Views.MessagePopBox msgPop = new Views.MessagePopBox(msg, () =>
+                {
+                    //callback when user click on telegram button
+                    Logger.Telegram(f_outOfStock);
+                    Logger.Telegram(a_outOfStock);
+                    Logger.Telegram(s_outOfStock);
+                    Logger.Telegram(m_outOfStock);
+                    Logger.Telegram(sa_outOfStock);
+                    Logger.Telegram(sf_outOfStock);
+                    Logger.Telegram(ss_outOfStock);
+                    Logger.Telegram(sm_outOfStock);
+                }
+                , "Send To Telegram");
+                msgPop.ShowDialog();
+               
 
 
-            internal M_OrderStatusReport GetCrossCompanyTodaysOrderReport()
+
+                //return _orderReportBuilder.WithTodaysOrderCount().Build();
+            }
+
+            private string FormatOutOfStockItems(string outOfStock, string site,
+                List<InvStatusReport.OutOfStockItem> OutOfStockcompanya, List<InvStatusReport.OutOfStockItem> OutOfStockcompanyb)
+            {
+                outOfStock = string.Empty;
+                outOfStock = outOfStock + ("Out of Stock Items "+ site + " " + _vm_companies._companies[0]._code + Environment.NewLine);
+                foreach (var item in OutOfStockcompanya)
+                    outOfStock = outOfStock + (item.InhouseCode + ":" + item.Title + Environment.NewLine);
+                outOfStock = outOfStock + (Environment.NewLine + "Out of Stock Items " + site + " " + _vm_companies._companies[1]._code + Environment.NewLine);
+                //Company B out of stock or single stock items
+                foreach (var item in OutOfStockcompanyb)
+                    outOfStock = outOfStock + (item.InhouseCode + ":" + item.Title + Environment.NewLine);
+                return outOfStock;
+            }
+
+            private string FormatSingleStockItems(string SingleStock, string site,
+                List<InvStatusReport.SingleStockItem> SingleStockcompanya, List<InvStatusReport.SingleStockItem> SingleStockcompanyb)
+            {
+                SingleStock = string.Empty;
+                SingleStock = SingleStock + ("Single Stock Items " + site + " " + _vm_companies._companies[0]._code + Environment.NewLine);
+                foreach (var item in SingleStockcompanya)
+                    SingleStock = SingleStock + (item.InhouseCode + ":" + item.Title + Environment.NewLine);
+                SingleStock = SingleStock + (Environment.NewLine + "Single Stock Items " + site + " " + _vm_companies._companies[1]._code + Environment.NewLine);
+                //Company B out of stock or single stock items
+                foreach (var item in SingleStockcompanyb)
+                    SingleStock = SingleStock + (item.InhouseCode + ":" + item.Title + Environment.NewLine);
+                return SingleStock;
+            }
+
+            internal void SendCrossCompanyTodaysOrderReport()
             {
                 _orderReportBuilder = 
                     new OrderStatusReportBuilder(_vm_companies._companies[0]._product_Model, _vm_companies._companies[1]._product_Model);
-                return _orderReportBuilder.WithTodaysOrderCount().Build();
+                M_OrderStatusReport orders = _orderReportBuilder.WithTodaysOrderCount().Build();
+
+                string msg = Environment.NewLine +
+                "Total orders today: " + orders.TotalOrders_Today.TotalOrder + Environment.NewLine +
+                "Company: " + orders.TotalOrders_Today.CompanyA.Company + Environment.NewLine +
+                "Amazon: " + orders.TotalOrders_Today.CompanyA.AmzOrderCount + Environment.NewLine +
+                "Flipkart: " + orders.TotalOrders_Today.CompanyA.FkOrderCount + Environment.NewLine +
+                "Snapdeal: " + orders.TotalOrders_Today.CompanyA.SpdOrderCount + Environment.NewLine +
+                "Meesho: " + orders.TotalOrders_Today.CompanyA.MsoOrderCount + Environment.NewLine +
+                "Company: " + orders.TotalOrders_Today.CompanyB.Company + Environment.NewLine +
+                "Amazon: " + orders.TotalOrders_Today.CompanyB.AmzOrderCount + Environment.NewLine +
+                "Flipkart: " + orders.TotalOrders_Today.CompanyB.FkOrderCount + Environment.NewLine +
+                "Snapdeal: " + orders.TotalOrders_Today.CompanyB.SpdOrderCount + Environment.NewLine +
+                "Meesho: " + orders.TotalOrders_Today.CompanyB.MsoOrderCount + Environment.NewLine;
+
+                Views.MessagePopBox msgPop = new Views.MessagePopBox(msg, () => {
+                    //callback when user click on telegram button
+                    Logger.Telegram(msg);
+                }
+            , "Send To Telegram");
+                msgPop.ShowDialog();
+                //Logger.Telegram(Environment.NewLine +
+                //"Total orders today: " + orders.TotalOrders_Today.TotalOrder + Environment.NewLine +
+                //"Company: " + orders.TotalOrders_Today.CompanyA.Company + Environment.NewLine +
+                //"Amazon: " + orders.TotalOrders_Today.CompanyA.AmzOrderCount + Environment.NewLine +
+                //"Flipkart: " + orders.TotalOrders_Today.CompanyA.FkOrderCount + Environment.NewLine +
+                //"Snapdeal: " + orders.TotalOrders_Today.CompanyA.SpdOrderCount + Environment.NewLine +
+                //"Meesho: " + orders.TotalOrders_Today.CompanyA.MsoOrderCount + Environment.NewLine +
+                //"Company: " + orders.TotalOrders_Today.CompanyB.Company + Environment.NewLine +
+                //"Amazon: " + orders.TotalOrders_Today.CompanyB.AmzOrderCount + Environment.NewLine +
+                //"Flipkart: " + orders.TotalOrders_Today.CompanyB.FkOrderCount + Environment.NewLine +
+                //"Snapdeal: " + orders.TotalOrders_Today.CompanyB.SpdOrderCount + Environment.NewLine +
+                //"Meesho: " + orders.TotalOrders_Today.CompanyB.MsoOrderCount + Environment.NewLine);
             }
 
             public CrossCompanySharedWrapper(VM_Companies vm_companies)

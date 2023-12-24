@@ -57,7 +57,7 @@ namespace SellerSense
                 { logLocation = ProjIO.GetUserSetting(Constants.WorkspaceDir); }
                 catch (Exception) { }
                 
-                 Logger.Log(e.Message, Logger.LogLevel.fatal, true);
+                 Logger.Log(e.Message + "; Inner Ex: " + e.InnerException + "; Stack :" + e.StackTrace, Logger.LogLevel.fatal, true);
                 AlertBox abox = new AlertBox("Error","Unexpected Error occurred, application cant be recovered, " +
                     "restart required. If problem persists, send logs to customer support, logs location : " + logLocation); //TODO : assign logs location
                 abox.ShowDialog();

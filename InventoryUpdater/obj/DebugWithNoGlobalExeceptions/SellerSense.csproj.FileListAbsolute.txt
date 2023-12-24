@@ -111,3 +111,4 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdate
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Payments.Payments.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Payments.PaymentsView.resources
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Products.ProductMapSKUs.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.MessagePopBox.resources

@@ -112,6 +112,7 @@ namespace SellerSense.ViewManager
 
         private void HandleExternalInventoryImportEvents()
         {
+            if (_v_invCntrl == null) return; //Fixed a bug, this was getting called from product screen.
             _m_externalInventoriesModel._amzImportedInvList.AmzInventorySet += (list) =>
             {   
                 if (list.Count > 0) _v_invCntrl.label_amazon.BackColor = Color.LimeGreen;
@@ -204,6 +205,7 @@ namespace SellerSense.ViewManager
             _v_invCntrl.importSnapdealToolStripMenuItem.Click += async (s, e) => { await ImportSnapdealInv();  };
             _v_invCntrl.importMeeshoToolStripMenuItem.Click += async (s, e) => { await ImportMeeshoInv(); };
             _v_invCntrl.exportAllToolStripMenuItem.Click += (s, e) => { ExportAllInventoryUpdateFiles(); };
+            _v_invCntrl.sendInvStatusToolStripMenuItem.Click += (s, e) => { SendStockStatusForThisCompany(); };
             _v_invCntrl.sendTotalOrderCountToolStripMenuItem.Click += (s, e) => { SendTotalOrderReport(); };
             _v_invCntrl.allToolStripMenuItem_lastDay.Click += (s, e) => { 
                 CompareAmz_InvWithCurrentSnapshot();
@@ -253,25 +255,118 @@ namespace SellerSense.ViewManager
 
         }
 
+        //This method send out of stock items, low inv items etc..
+        private void SendStockStatusForThisCompany()
+        {
+
+            _crossCompanySharedWrapper.SendCrossCompanyInventoryStatus();
+            return;
+
+            //List<string> os_amz = new List<string>();
+            //List<string> os_fk = new List<string>();
+            //List<string> os_snp = new List<string>();
+            //List<string> ss_amz = new List<string>();
+            //List<string> ss_fk = new List<string>();
+            //List<string> ss_snp = new List<string>();
+            ////ss_amz.Add("Company:" + _companyCode + ", Single stock Amazon:" + Environment.NewLine);
+            ////ss_fk.Add("Company:" + _companyCode + ", Single stock Flipkart:" + Environment.NewLine);
+            ////ss_snp.Add("Company:" + _companyCode + ", Single stock Snapdeal:" + Environment.NewLine);
+            //foreach (var item in _inventoryViewList)
+            //{
+            //    if (int.TryParse(item.AmazonSystemCount, out int amzCount))
+            //    {
+            //        if (amzCount == 1)
+            //            ss_amz.Add(FormatListItem(item.InHouseCode, ","));
+            //    }
+            //    else if (!string.IsNullOrEmpty(item.AmazonCode) && string.IsNullOrEmpty(item.AmazonSystemCount))
+            //        os_amz.Add(FormatListItem(item.InHouseCode, ",")); //stock out
+
+            //    if (int.TryParse(item.FlipkartSystemCount, out int fkCount))
+            //    {
+            //        if (fkCount == 1)
+            //            ss_fk.Add(FormatListItem(item.InHouseCode, ","));
+            //    }
+            //    else if (!string.IsNullOrEmpty(item.FlipkartCode) && string.IsNullOrEmpty(item.FlipkartSystemCount))
+            //        os_fk.Add(FormatListItem(item.InHouseCode, ",")); //stock out
+            //    if (int.TryParse(item.SnapdealSystemCount, out int snpCount))
+            //    {
+            //        if (snpCount == 1)
+            //            ss_snp.Add(FormatListItem(item.InHouseCode, ","));
+            //    }
+            //    else if (!string.IsNullOrEmpty(item.SnapdealCode) && string.IsNullOrEmpty(item.SnapdealSystemCount))
+            //        os_snp.Add(FormatListItem(item.InHouseCode, ",")); //stock out
+            //}
+
+            //string amz_msg = string.Empty;
+            //foreach (var item in ss_amz)
+            //    amz_msg = amz_msg + item;
+            //string fk_msg = string.Empty;
+            //foreach (var item in ss_fk)
+            //    fk_msg = fk_msg + item;
+            //string snp_msg = string.Empty;
+            //foreach (var item in ss_snp)
+            //    snp_msg = snp_msg + item;
+
+
+            //string oamz_msg = string.Empty;
+            //foreach (var item in os_amz)
+            //    oamz_msg = oamz_msg + item;
+            //string ofk_msg = string.Empty;
+            //foreach (var item in os_fk)
+            //    ofk_msg = ofk_msg + item;
+            //string osnp_msg = string.Empty;
+            //foreach (var item in os_snp)
+            //    osnp_msg = osnp_msg + item;
+
+            //amz_msg=amz_msg.Insert(0, "Amz Single Stock:");
+            
+            //fk_msg=fk_msg.Insert(0, "Fk Single Stock:");
+           
+            //snp_msg= snp_msg.Insert(0, "Snp Single Stock:");
+
+            ////Logger.Telegram("Amz Out of Stock:");
+            //oamz_msg=oamz_msg.Insert(0, "Amz Out of Stock:");
+            //ofk_msg=ofk_msg.Insert(0, "Fk Out of Stock:");
+            //osnp_msg=osnp_msg.Insert(0, "Snp Out of Stock:");
+
+            //string msg = amz_msg + Environment.NewLine + fk_msg + Environment.NewLine + snp_msg + Environment.NewLine + oamz_msg + Environment.NewLine + ofk_msg + Environment.NewLine + osnp_msg;
+
+            //MessagePopBox msgPop = new MessagePopBox(msg, () => {
+            //    //callback when user click on telegram button
+            //    Logger.Telegram(amz_msg);
+            //    Logger.Telegram(fk_msg);
+            //    Logger.Telegram(snp_msg);
+            //    Logger.Telegram(oamz_msg);
+            //    Logger.Telegram(ofk_msg);
+            //    Logger.Telegram(osnp_msg);
+            //}
+            //, "Send To Telegram");
+            //msgPop.ShowDialog();
+
+        }
+
+        private string FormatListItem(string key, string value)
+        {
+            return (string.Format("{0} {1}", key, value));
+        }
 
         private void SendTotalOrderReport()
         {
             //Send order to telegram
             //int orders = _crossCompanySharedWrapper.GetCrossCompanyTodaysOrderReport().TotalOrders_Today.TotalOrder;
-            var orders = _crossCompanySharedWrapper.GetCrossCompanyTodaysOrderReport().TotalOrders_Today;
-            Logger.TelegramLog(Environment.NewLine +
-                "Total orders today: " + orders.TotalOrder + Environment.NewLine +
-                "Company: " + orders.CompanyA.Company + Environment.NewLine +
-                "Amazon: " + orders.CompanyA.AmzOrderCount + Environment.NewLine +
-                "Flipkart: " + orders.CompanyA.FkOrderCount + Environment.NewLine +
-                "Snapdeal: " + orders.CompanyA.SpdOrderCount + Environment.NewLine +
-                "Meesho: " + orders.CompanyA.MsoOrderCount + Environment.NewLine +
-                "Company: " + orders.CompanyB.Company + Environment.NewLine +
-                "Amazon: " + orders.CompanyB.AmzOrderCount + Environment.NewLine +
-                "Flipkart: " + orders.CompanyB.FkOrderCount + Environment.NewLine +
-                "Snapdeal: " + orders.CompanyB.SpdOrderCount + Environment.NewLine +
-                "Meesho: " + orders.CompanyB.MsoOrderCount + Environment.NewLine 
-                , Logger.LogLevel.info);
+            _crossCompanySharedWrapper.SendCrossCompanyTodaysOrderReport();
+            //Logger.Telegram(Environment.NewLine +
+            //    "Total orders today: " + orders.TotalOrder + Environment.NewLine +
+            //    "Company: " + orders.CompanyA.Company + Environment.NewLine +
+            //    "Amazon: " + orders.CompanyA.AmzOrderCount + Environment.NewLine +
+            //    "Flipkart: " + orders.CompanyA.FkOrderCount + Environment.NewLine +
+            //    "Snapdeal: " + orders.CompanyA.SpdOrderCount + Environment.NewLine +
+            //    "Meesho: " + orders.CompanyA.MsoOrderCount + Environment.NewLine +
+            //    "Company: " + orders.CompanyB.Company + Environment.NewLine +
+            //    "Amazon: " + orders.CompanyB.AmzOrderCount + Environment.NewLine +
+            //    "Flipkart: " + orders.CompanyB.FkOrderCount + Environment.NewLine +
+            //    "Snapdeal: " + orders.CompanyB.SpdOrderCount + Environment.NewLine +
+            //    "Meesho: " + orders.CompanyB.MsoOrderCount + Environment.NewLine);
         }
 
         //private void _crossCompanyLinkedInventoryCount_SharedInventoryUpdated(object sender, EventArgs e)
@@ -282,10 +377,20 @@ namespace SellerSense.ViewManager
 
         private void ExportAllInventoryUpdateFiles()
         {
-            //_m_invSnapShotModel_Amz.SerializeInvSnapshot();
+            
+            _m_invSnapShotModel_Amz.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList, 
+                _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList,
+                saveOnlySystemInventory:false);
+            _m_invSnapShotModel_Fk.SaveInvSnapshot(_m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList, 
+                _m_externalInventoriesModel._fkImportedInventoryList._fkUIModifiedInvList,
+                saveOnlySystemInventory: false);
+            _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList,
+                _m_externalInventoriesModel._spdImportedInventoryList._spdUIModifiedInvList,
+                saveOnlySystemInventory: false);
+            _m_invSnapShotModel_Mso.SaveInvSnapshot(_m_externalInventoriesModel._msoImportedInventoryList._msoInventoryList, 
+                _m_externalInventoriesModel._msoImportedInventoryList._msoUIModifiedInvList,
+                saveOnlySystemInventory: false);
 
-           
-                
             OpenFileDialog folderBrowser = new OpenFileDialog();
             // Set validate names and check file exists to false otherwise windows will
             // not let you select "Folder Selection."
@@ -767,7 +872,7 @@ namespace SellerSense.ViewManager
             //below event will call all inv update functions in all companies
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
-            _m_invSnapShotModel_Amz.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList);
+            _m_invSnapShotModel_Amz.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList,null, saveOnlySystemInventory:true);
             
             EngageCellEvents();
             //foreach (var item in list)
@@ -793,7 +898,7 @@ namespace SellerSense.ViewManager
             //below event will call all inv update functions in all companies
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
-            _m_invSnapShotModel_Fk.SaveInvSnapshot(_m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList);
+            _m_invSnapShotModel_Fk.SaveInvSnapshot(_m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList,null, saveOnlySystemInventory:true);
             
             EngageCellEvents() ;    
         }
@@ -813,7 +918,7 @@ namespace SellerSense.ViewManager
             UpdateCrossCompanySharedInvForThisCompany();
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
-            _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList);
+            _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList,null, saveOnlySystemInventory: true);
             
             EngageCellEvents();
         }
@@ -833,8 +938,8 @@ namespace SellerSense.ViewManager
             UpdateCrossCompanySharedInvForThisCompany();
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
-            _m_invSnapShotModel_Mso.SaveInvSnapshot(_m_externalInventoriesModel._msoImportedInventoryList._msoInventoryList);
-            
+            _m_invSnapShotModel_Mso.SaveInvSnapshot(_m_externalInventoriesModel._msoImportedInventoryList._msoInventoryList,null, saveOnlySystemInventory: true);
+
             EngageCellEvents();
         }
 

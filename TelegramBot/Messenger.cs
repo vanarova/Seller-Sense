@@ -38,7 +38,7 @@ namespace TelegramBot
         
        
 
-        public static async Task SendTelegramMessage(string botToken, long chatId, 
+        public static async Task<string> SendTelegramMessage(string botToken, long chatId, 
             string message)
         {
             //if (logDepth != _logLevel)
@@ -50,19 +50,21 @@ namespace TelegramBot
                 {
                 new KeyValuePair<string, string>("chat_id", chatId.ToString()),
                 new KeyValuePair<string, string>("text", message)
+                //new KeyValuePair<string, string>("parse_mode", "markdown")
             });
 
                 HttpResponseMessage response = await client.PostAsync(apiUrl, content);
                 string responseContent = await response.Content.ReadAsStringAsync();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("Message sent successfully!");
-                }
-                else
-                {
-                    Console.WriteLine($"Message sending failed. Response: {responseContent}");
-                }
+                //if (response.IsSuccessStatusCode)
+                //{
+                //    Console.WriteLine("Message sent successfully!");
+                //}
+                //else
+                //{
+                //    Console.WriteLine($"Message sending failed. Response: {responseContent}");
+                //}
+                return responseContent;
             }
         }
 
