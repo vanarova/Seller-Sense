@@ -40,7 +40,9 @@
             this.snapdealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapSPDCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapSpdSKUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+#if IncludeMeesho
             this.meeshoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+#endif
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label_help = new System.Windows.Forms.Label();
             this.button_AddProduct = new System.Windows.Forms.Button();
@@ -76,8 +78,11 @@
             this.toolStripMenuItem_Save,
             this.amazonToolStripMenuItem,
             this.flipkartToolStripMenuItem,
-            this.snapdealToolStripMenuItem,
-            this.meeshoToolStripMenuItem});
+            this.snapdealToolStripMenuItem
+#if IncludeMeesho
+            ,this.meeshoToolStripMenuItem
+#endif
+            });
             this.fileStrip.Location = new System.Drawing.Point(0, 0);
             this.fileStrip.MinimumSize = new System.Drawing.Size(0, 12);
             this.fileStrip.Name = "fileStrip";
@@ -157,9 +162,11 @@
             // 
             // meeshoToolStripMenuItem
             // 
+#if IncludeMeesho
             this.meeshoToolStripMenuItem.Name = "meeshoToolStripMenuItem";
             this.meeshoToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.meeshoToolStripMenuItem.Text = "Meesho🍱";
+#endif
             // 
             // flowLayoutPanel1
             // 
@@ -218,14 +225,16 @@
 
         }
 
-        #endregion
+#endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.MenuStrip fileStrip;
         internal System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Save;
         internal System.Windows.Forms.ToolStripMenuItem amazonToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem flipkartToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem snapdealToolStripMenuItem;
+#if IncludeMeesho
         internal System.Windows.Forms.ToolStripMenuItem meeshoToolStripMenuItem;
+#endif
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label_help;
         internal System.Windows.Forms.Button button_AddProduct;

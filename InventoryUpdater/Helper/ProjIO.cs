@@ -182,6 +182,8 @@ namespace SellerSense.Helper
             if (!exist)
                 return (null,null);
             string imgPath = Path.Combine(dir,Constants.Imgs,fileName);
+            if (!File.Exists(imgPath))
+                return (null, null);
             using (var bmpTemp = new Bitmap(imgPath))
             {
                 return (imgPath, new Bitmap(bmpTemp, new Size(75, 75)));

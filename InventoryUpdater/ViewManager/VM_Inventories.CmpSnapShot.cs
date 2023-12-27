@@ -53,8 +53,10 @@ namespace SellerSense.ViewManager
                             _inventoryViewList.Find(x => x.FlipkartCode == invItem.asin).FlipkartOrders = (sorders - aorders).ToString();
                         if (company == Constants.Company.Snapdeal && _inventoryViewList.Exists(x => x.SnapdealCode == invItem.asin))
                             _inventoryViewList.Find(x => x.SnapdealCode == invItem.asin).SnapdealOrders = (sorders - aorders).ToString();
+#if IncludeMeesho
                         if (company == Constants.Company.Meesho && _inventoryViewList.Exists(x => x.MeeshoCode == invItem.asin))
                             _inventoryViewList.Find(x => x.MeeshoCode == invItem.asin).MeeshoOrders = (sorders - aorders).ToString();
+#endif
                     }
                 }
 
@@ -134,6 +136,7 @@ namespace SellerSense.ViewManager
             }
         }
 
+#if IncludeMeesho
         internal void CompareMso_InvWithCurrentSnapshot(DateTime date = default(DateTime))
         {
             IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList;
@@ -158,6 +161,7 @@ namespace SellerSense.ViewManager
 
             }
         }
+#endif
 
     }
 

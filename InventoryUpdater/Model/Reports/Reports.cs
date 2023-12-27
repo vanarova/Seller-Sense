@@ -51,9 +51,10 @@ namespace SellerSense.Model.Reports
 
             GetOutOfStockItemsSnapdeal(_invViewCompany1, code1);
             GetOutOfStockItemsSnapdeal(_invViewCompany2, code2);
-
+#if IncludeMeesho
             GetOutOfStockItemsMeesho(_invViewCompany1, code1);
             GetOutOfStockItemsMeesho(_invViewCompany2, code2);
+#endif
         }
 
 
@@ -117,6 +118,8 @@ namespace SellerSense.Model.Reports
             }
         }
 
+
+#if IncludeMeesho
         private void GetOutOfStockItemsMeesho(List<ViewManager.VM_Inventories.InventoryView> company, string code)
         {
             //chk if any inv is assigned, if any value is > 0
@@ -136,10 +139,11 @@ namespace SellerSense.Model.Reports
                 }
             }
         }
-
+#endif
     }
 
-   
+
+
     internal class InvStatusReport
     {
         //internal string companyCode;

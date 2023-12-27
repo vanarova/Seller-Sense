@@ -17,6 +17,7 @@ namespace SellerSense
     {
         //Company _company;
         SellerSense.ViewManager.VM_Companies _companiesMgr;
+        AboutBox _aboutBox;
         public Welcome()
         {
             _companiesMgr = new SellerSense.ViewManager.VM_Companies();
@@ -212,6 +213,8 @@ namespace SellerSense
         private void Welcome_Load(object sender, EventArgs e)
         {
             CheckIfSetupNeedsToRun();
+           _aboutBox = new AboutBox();
+            label_version.Text = _aboutBox.AssemblyVersion;
             AdjustUI("AdjustWelcomeButtons");
         }
 
@@ -308,6 +311,11 @@ namespace SellerSense
             DisplayPaymentsForm();
             AdjustUI("EnableAllButtons");
             //await TelegramBot.Messenger.SendTelegramMessage("");
+        }
+
+        private void label_version_Click(object sender, EventArgs e)
+        {
+            _aboutBox.ShowDialog();
         }
     }
 }

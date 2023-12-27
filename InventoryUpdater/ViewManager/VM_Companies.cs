@@ -21,20 +21,6 @@ namespace SellerSense.ViewManager
         private CrossCompanySharedWrapper _companiesSharedWrapper5;
 
 
-        //public event EventHandler UpdateInventoryInAllCompanies;
-        //private Action InvokeInventoryUpdate;
-
-        //public void InvokeInvUpdateEvent()
-        //{
-        //    UpdateInventoryInAllCompanies?.Invoke(this,EventArgs.Empty);
-        //}
-
-
-        //private CrossCompanyLinkedInventoryCount _crossCompany1LinkedInventoryCount;
-        //private CrossCompanyLinkedInventoryCount _crossCompany2LinkedInventoryCount;
-        //private CrossCompanyLinkedInventoryCount _crossCompany3LinkedInventoryCount;
-        //private CrossCompanyLinkedInventoryCount _crossCompany4LinkedInventoryCount;
-        //private CrossCompanyLinkedInventoryCount _crossCompany5LinkedInventoryCount;
         private CrossCompanyEvents _crossCompanyEvents;
        
         public static string GetRandomCode(string name, int length)
@@ -91,11 +77,7 @@ namespace SellerSense.ViewManager
             _companiesSharedWrapper3 = new CrossCompanySharedWrapper(this);
             _companiesSharedWrapper4 = new CrossCompanySharedWrapper(this);
             _companiesSharedWrapper5 = new CrossCompanySharedWrapper(this);
-            //_crossCompany1LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company1Code, this);
-            //_crossCompany2LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company2Code, this);
-            //_crossCompany3LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company3Code, this);
-            //_crossCompany4LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company4Code, this);
-            //_crossCompany5LinkedInventoryCount = new CrossCompanyLinkedInventoryCount(Constants.Company5Code, this);
+
            
             if (DoesCompanyExist(Constants.Company1Name, Constants.Company1Code))
                 _companies.Add(new VM_Company(ProjIO.GetUserSetting(Constants.Company1Name),
@@ -168,19 +150,12 @@ namespace SellerSense.ViewManager
 
         public class CrossCompanyEvents
         {
-            //public CrossCompanyEvents()
-            //{
-            //    CrossCompanySharedInventoryUpdated?.Invoke(this, EventArgs.Empty);
-            //}
             public event EventHandler CrossCompanySharedInventoryUpdated;
             public void InvokeCrossCompanySharedInventoryUpdate()
             {
                 CrossCompanySharedInventoryUpdated?.Invoke(this, EventArgs.Empty);
             }
         }
-
-
-
 
 
         //IMP - this class is different for each company
@@ -193,32 +168,6 @@ namespace SellerSense.ViewManager
             internal InventoryStatusReportBuilder _InvReportBuilder;
 
 
-
-            //internal M_OrderStatusReport GetCrossCompanyDailyOrderReport()
-            //{
-            //    return _orderReportBuilder.WithTodaysOrderCount().Build();
-            //}
-
-            //internal void UpdateCrossCompanyInv()
-            //{
-            //    var cmp0_invList = _vm_companies._companies[0]._inventoriesViewManager._inventoryViewList;
-            //    //First add all counts to shared inv
-            //    foreach (var item in cmp0_invList)
-            //    {
-            //        int.TryParse(item.AmazonCount, out int acount);
-            //        int.TryParse(item.FlipkartCount, out int fcount);
-            //        int.TryParse(item.SnapdealCount, out int scount);
-            //        int.TryParse(item.MeeshoCount, out int mcount);
-            //        int.TryParse(item.InHouseCount, out int hcount);
-            //        _crossCompanyLinkedInventoryCount.AddToSharedInventory(item.InHouseCode, acount, fcount, scount, mcount);
-            //    }
-
-            //    foreach (var item in cmp0_invList)
-            //    {
-            //        //Update and sum counts for this product in all companies
-            //        item.InHouseCount = _crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(item.InHouseCode).ToString();
-            //    }
-            //}
 
             internal void SendCrossCompanyInventoryStatus()
             {
@@ -256,9 +205,11 @@ namespace SellerSense.ViewManager
                 SingleStockcompanyb = sp.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
                 ss_outOfStock = FormatSingleStockItems(ss_outOfStock, "Snapdeal", SingleStockcompanya, SingleStockcompanyb);
 
+#if IncludeMeesho
                 SingleStockcompanya = mso.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[0]._code)).ToList();
                 SingleStockcompanyb = mso.singleStockItems.Where(x => x.companyCode.Equals(_vm_companies._companies[1]._code)).ToList();
                 sm_outOfStock = FormatSingleStockItems(sm_outOfStock, "Meesho", SingleStockcompanya, SingleStockcompanyb);
+#endif
 
                 string msg = a_outOfStock + Environment.NewLine + f_outOfStock + Environment.NewLine + s_outOfStock + Environment.NewLine + m_outOfStock 
                     +Environment.NewLine + sa_outOfStock + Environment.NewLine + sf_outOfStock + Environment.NewLine + ss_outOfStock + Environment.NewLine + sm_outOfStock;
@@ -327,8 +278,11 @@ namespace SellerSense.ViewManager
                 "Company: " + orders.TotalOrders_Today.CompanyB.Company + Environment.NewLine +
                 "Amazon: " + orders.TotalOrders_Today.CompanyB.AmzOrderCount + Environment.NewLine +
                 "Flipkart: " + orders.TotalOrders_Today.CompanyB.FkOrderCount + Environment.NewLine +
-                "Snapdeal: " + orders.TotalOrders_Today.CompanyB.SpdOrderCount + Environment.NewLine +
-                "Meesho: " + orders.TotalOrders_Today.CompanyB.MsoOrderCount + Environment.NewLine;
+                "Snapdeal: " + orders.TotalOrders_Today.CompanyB.SpdOrderCount + Environment.NewLine
+#if IncludeMeesho
+                + "Meesho: " + orders.TotalOrders_Today.CompanyB.MsoOrderCount + Environment.NewLine
+#endif                
+                ;
 
                 Views.MessagePopBox msgPop = new Views.MessagePopBox(msg, () => {
                     //callback when user click on telegram button
@@ -336,18 +290,7 @@ namespace SellerSense.ViewManager
                 }
             , "Send To Telegram");
                 msgPop.ShowDialog();
-                //Logger.Telegram(Environment.NewLine +
-                //"Total orders today: " + orders.TotalOrders_Today.TotalOrder + Environment.NewLine +
-                //"Company: " + orders.TotalOrders_Today.CompanyA.Company + Environment.NewLine +
-                //"Amazon: " + orders.TotalOrders_Today.CompanyA.AmzOrderCount + Environment.NewLine +
-                //"Flipkart: " + orders.TotalOrders_Today.CompanyA.FkOrderCount + Environment.NewLine +
-                //"Snapdeal: " + orders.TotalOrders_Today.CompanyA.SpdOrderCount + Environment.NewLine +
-                //"Meesho: " + orders.TotalOrders_Today.CompanyA.MsoOrderCount + Environment.NewLine +
-                //"Company: " + orders.TotalOrders_Today.CompanyB.Company + Environment.NewLine +
-                //"Amazon: " + orders.TotalOrders_Today.CompanyB.AmzOrderCount + Environment.NewLine +
-                //"Flipkart: " + orders.TotalOrders_Today.CompanyB.FkOrderCount + Environment.NewLine +
-                //"Snapdeal: " + orders.TotalOrders_Today.CompanyB.SpdOrderCount + Environment.NewLine +
-                //"Meesho: " + orders.TotalOrders_Today.CompanyB.MsoOrderCount + Environment.NewLine);
+               
             }
 
             public CrossCompanySharedWrapper(VM_Companies vm_companies)
@@ -366,23 +309,14 @@ namespace SellerSense.ViewManager
         // all vendors.
         public class CrossCompanyLinkedInventoryCount
         {
-            //private Func<string, int> _getAllInventoriesForAllCompanies; //points to a function in VM_Companies class, to get total inv
-            //private string _companyCode { get; set; }
             private IList<LinkedProductInventory> linkedInv { get; set; }
             private VM_Companies _vm_companies;
-            //public event EventHandler SharedInventoryUpdated;
-            
 
             public CrossCompanyLinkedInventoryCount(VM_Companies _companies)
             {
                 _vm_companies = _companies;
-                //_companyCode = companyCode;
                 linkedInv = new List<LinkedProductInventory>();
-                //_getAllInventoriesForAllCompanies =  _vm_companies.getAllInventoriesForAllCompanies;
-                //linkedInv = new Dictionary<string, LinkedInventoryList> { { companyCode, new LinkedInventoryList() } };
             }
-            //<company code, linkedCompany>
-            //internal Dictionary<string, LinkedInventoryList> linkedInv { get; set; }
 
             public int GetAllInventoriesFromAllCompanies(string inHouseCode)
             {
@@ -396,10 +330,16 @@ namespace SellerSense.ViewManager
                 int total = 0;
                 var prod = linkedInv.FirstOrDefault( x=>x.LinkedInhouseCode == inhouseCode);
                 if (prod != null)
-                    total = total + prod.AmzCount + prod.SnpCount + prod.FkCount + prod.MesshoCount;
+                    total = total + prod.AmzCount + prod.SnpCount + prod.FkCount
+#if IncludeMeesho
+                        + prod.MesshoCount
+#endif
+                        ;
                 return total;
             }
 
+
+#if IncludeMeesho
             public void AddToSharedInventory(string inhouseCode, int amzCount, int fkCount, int spdCount, int msoCount)
             {
                 var item = linkedInv.FirstOrDefault(x => x.LinkedInhouseCode == inhouseCode);
@@ -411,10 +351,22 @@ namespace SellerSense.ViewManager
                     { AmzCount = amzCount, FkCount = fkCount, SnpCount = spdCount, MesshoCount = msoCount, LinkedInhouseCode = inhouseCode };
                     linkedInv.Add(inventory);
                 }
-                //SharedInventoryUpdated?.Invoke(this,null);
-                //_vm_companies._crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdated();
             }
 
+#else
+            public void AddToSharedInventory(string inhouseCode, int amzCount, int fkCount, int spdCount)
+            {
+                var item = linkedInv.FirstOrDefault(x => x.LinkedInhouseCode == inhouseCode);
+                if (item != null)
+                { item.SnpCount = spdCount; item.AmzCount = amzCount;  item.FkCount = fkCount; }
+                else
+                {
+                    LinkedProductInventory inventory = new LinkedProductInventory()
+                    { AmzCount = amzCount, FkCount = fkCount, SnpCount = spdCount, LinkedInhouseCode = inhouseCode };
+                    linkedInv.Add(inventory);
+                }
+            }
+#endif
 
             public class LinkedProductInventory
             {
@@ -422,7 +374,9 @@ namespace SellerSense.ViewManager
                 internal int AmzCount { get; set; }
                 internal int FkCount { get; set; }
                 internal int SnpCount { get; set; }
+#if IncludeMeesho
                 internal int MesshoCount { get; set; }
+#endif
             }
 
         }

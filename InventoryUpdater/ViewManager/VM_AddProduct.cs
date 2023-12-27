@@ -300,7 +300,7 @@ namespace SellerSense.ViewManager
 
             [CategoryAttribute("1. Product Details"), DescriptionAttribute("Cost price. \n Valid values : Positive Numbers"), PropertyOrder(7)]
             [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b"), ReadOnlyAttribute(false)]
-            public string CostPrice { get { return _m_CostPrice; } set { _m_SellingPrice = value; } }
+            public string CostPrice { get { return _m_CostPrice; } set { _m_CostPrice = value; } }
 
             [CategoryAttribute("1. Product Details"), DescriptionAttribute("Selling price. \n Valid values : Positive Numbers"), PropertyOrder(7)]
             [PatternRule(@"\b(?:\d+\.\d+|\d+(?!\.))\b"), ReadOnlyAttribute(false)]

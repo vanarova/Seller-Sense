@@ -87,7 +87,9 @@ namespace SellerSense.ViewManager
             _v_productCntrl.mapFSNToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Flipkart); };
             //_v_productCntrl.snapdealToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
             _v_productCntrl.mapSPDCodeToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
+#if IncludeMeesho
             _v_productCntrl.meeshoToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Meesho); };
+#endif
             _v_productCntrl.button_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
             _v_productCntrl.mapAmzSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Amazon); };
             _v_productCntrl.mapFkSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Flipkart); };
@@ -243,10 +245,10 @@ namespace SellerSense.ViewManager
         }
 
 
-        #endregion ProductUserControl
+#endregion ProductUserControl
 
 
-        #region ssGridViewUserControl
+#region ssGridViewUserControl
 
         public void AssignViewB(UserControl ssGrid)
         {
@@ -301,7 +303,7 @@ namespace SellerSense.ViewManager
             //here dialog shud be able to handle all selected rows in all pages
             //open dialog and select export options and send msg to telegram.
         }
-
+        //Edit button clicked on product grid.
         private void _v_ssGridViewCntrl_OnGridButtonClicked(DataGridView grid, int rowIndex, int colIndex)
         {
             string inhouseCode = grid.Rows[rowIndex].Cells[Constants.PCols.InHouseCode].Value.ToString();
@@ -309,7 +311,10 @@ namespace SellerSense.ViewManager
             {
                 var prod = _m_product._productEntries.Find(x => x.InHouseCode == inhouseCode);
                 if (prod == null)
+                {
+                    new AlertBox("Info", "Product doesn't exist, Please press refresh button to refresh data grid..", isError: false).ShowDialog();
                     return;
+                }
                 AddProduct _v_addproduct = new AddProduct(true);
                 VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct,_m_product, prod, _images, _code);
                 if (_v_addproduct.ShowDialog() == DialogResult.OK)
@@ -354,7 +359,9 @@ namespace SellerSense.ViewManager
                         m.Description = p.Description;
                         m.Tag = p.Tag;
                         m.AmazonCode = p.AmazonCode;
+#if IncludeMeesho
                         m.MeeshoCode = p.MeeshoCode;
+#endif
                         
                     }
                 }
@@ -389,40 +396,101 @@ namespace SellerSense.ViewManager
         }
 
 
-        #region Event handlers for data grid view
+#region Event handlers for data grid view
 
 
         internal void OnControlLoadHandler(DataGridView datagrid)
         {
             this._datagrid = datagrid;
-            datagrid.CellEnter += (s, e) =>
+           
+            //datagrid.KeyDown += (s, e) => { grdmapGrid_KeyDown(datagrid, e); };
+
+            _v_ssGridViewCntrl.KeyDown += (s, e) =>
+            {
+                grdmapGrid_KeyDown(s, e);
+            };
+
+                _v_ssGridViewCntrl.OnCellEnter += (s, e) =>
             {
                 if (datagrid.SelectedCells.Count <= 0)
                     return;
                 _v_productCntrl.amazonToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.AmazonCode;
                 _v_productCntrl.flipkartToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.FlipkartCode;
                 _v_productCntrl.snapdealToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.SnapDealCode;
+#if IncludeMeesho
                 _v_productCntrl.meeshoToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.MeeshoCode;
+#endif
             };
 
-            datagrid.DataBindingComplete += (s, e) =>
+
+            _v_ssGridViewCntrl.CellMouseDoubleClick += (s, e) =>
             {
-                SetHyperlinks(datagrid);
-                AddEditButton(datagrid);
-            };
-
-            datagrid.CellMouseDoubleClick += (s, e) => {
                 OpenLink(datagrid);
             };
 
-            datagrid.KeyDown += (s, e) => { grdmapGrid_KeyDown(datagrid, e); };
+            _v_ssGridViewCntrl.CellClick += (s, e) =>
+            {
+                int count = 0;
+                for (int i = 0; i < _vm_productsView.Count; i++)
+                {
+                    if (!string.IsNullOrWhiteSpace(_vm_productsView[i][e.ColumnIndex]))
+                        count++;
+                }
+                _v_ssGridViewCntrl.SetInfoLabel("Count: " + count.ToString());
+            };
+
+             _v_ssGridViewCntrl.DataBindingComplete += (s, e) => {
+                SetHyperlinks(datagrid);
+                AddEditButton(datagrid);
+            };
         }
+
+
+
+        
+
+
+        //internal void OnControlLoadHandler(DataGridView datagrid)
+        //{
+        //    this._datagrid = datagrid;
+        //    datagrid.CellEnter += (s, e) =>
+        //    {
+        //        if (datagrid.SelectedCells.Count <= 0)
+        //            return;
+        //        _v_productCntrl.amazonToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.AmazonCode;
+        //        _v_productCntrl.flipkartToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.FlipkartCode;
+        //        _v_productCntrl.snapdealToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.SnapDealCode;
+        //        _v_productCntrl.meeshoToolStripMenuItem.Enabled = datagrid.SelectedCells?[0].OwningColumn.Name == Constants.PCols.MeeshoCode;
+        //    };
+
+        //    datagrid.DataBindingComplete += (s, e) =>
+        //    {
+        //        SetHyperlinks(datagrid);
+        //        AddEditButton(datagrid);
+        //    };
+
+        //    datagrid.CellMouseDoubleClick += (s, e) => {
+        //        OpenLink(datagrid);
+        //    };
+
+        //    datagrid.CellClick += (s, e) => {
+        //        int count = 0;
+        //        for (int i = 0; i < _vm_productsView.Count; i++)
+        //        {
+        //            if (!string.IsNullOrWhiteSpace(_vm_productsView[i][e.ColumnIndex] ))
+        //                count++;
+        //        }
+        //        _v_ssGridViewCntrl.SetInfoLabel("Count: " + count.ToString());
+        //    };
+
+        //    datagrid.KeyDown += (s, e) => { grdmapGrid_KeyDown(datagrid, e); };
+        //}
 
        
         private void grdmapGrid_KeyDown(DataGridView datagrid, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
-            {//Delet only if, selected cell's column name is a code/////
+            {//Delete only if, selected cell's column name is a code/////
                 bool amzCol = datagrid.SelectedCells[0].OwningColumn.Name == Constants.PCols.AmazonCode;
                 bool spdCol = datagrid.SelectedCells[0].OwningColumn.Name == Constants.PCols.SnapDealCode;
                 bool fkCol = datagrid.SelectedCells[0].OwningColumn.Name == Constants.PCols.FlipkartCode;
@@ -448,6 +516,7 @@ namespace SellerSense.ViewManager
                 SnapdealInvDecoder.OpenProductSearchURL(datagrid.CurrentCell.EditedFormattedValue.ToString());
             if (datagrid.CurrentCell.OwningColumn.Name == Constants.MCols.mso_Code)
                 MeeshoInvDecoder.OpenProductSearchURL(datagrid.CurrentCell.EditedFormattedValue.ToString());
+
         }
 
         private void AddEditButton(DataGridView gridView)
@@ -478,7 +547,9 @@ namespace SellerSense.ViewManager
             gridView.Columns[Constants.PCols.AmazonCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             gridView.Columns[Constants.PCols.FlipkartCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
             gridView.Columns[Constants.PCols.SnapDealCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+#if IncludeMeesho
             gridView.Columns[Constants.PCols.MeeshoCode].DefaultCellStyle = GetHyperLinkStyleForGridCell();
+#endif
             //gridView.RowHeadersVisible = false;
         }
 
@@ -514,7 +585,8 @@ namespace SellerSense.ViewManager
 
         internal void ResetBindings(bool IsEnable)
         {
-
+            _v_ssGridViewCntrl.ClearBindingListRows();
+            _v_ssGridViewCntrl.UpdateBindings();
         }
 
 #endregion Event handlers for data grid view
@@ -546,7 +618,49 @@ namespace SellerSense.ViewManager
         //It is filled by iterating on Product model, any changes will be saved back into product model.
         internal class ProductView :INotifyPropertyChanged
         {
-            
+            //indexer to return sequence of properties in this class
+            public string this[int index]
+            {
+                get
+                {
+                    string val="";
+                    switch (index)
+                    {
+                        case Constants.FixedColumnsProductGrid + 0:
+                            val = _inHouseCode; break;
+                        case Constants.FixedColumnsProductGrid + 1:
+                            val = string.Empty; break;
+                        case Constants.FixedColumnsProductGrid + 2:
+                            val = _title; break;
+                        case Constants.FixedColumnsProductGrid + 3:
+                            val = _tag; break;
+                        case Constants.FixedColumnsProductGrid + 4:
+                            val = _desc; break;
+                        case Constants.FixedColumnsProductGrid + 5:
+                            val = _amzCode; break;
+                        case Constants.FixedColumnsProductGrid + 6:
+                            val = _fkCode; break;
+                        case Constants.FixedColumnsProductGrid + 7:
+                            val = _spdCode; break;
+#if IncludeMeesho
+                        case Constants.FixedColumnsProductGrid + 8:
+                            val = _msoCode; break;
+                        case Constants.FixedColumnsProductGrid + 9:
+                            val = _notes; break;
+                        case Constants.FixedColumnsProductGrid + 10:
+                            val = _costPrice; break;
+#else
+                        case Constants.FixedColumnsProductGrid + 8:
+                            val = _notes; break;
+                        case Constants.FixedColumnsProductGrid + 9:
+                            val = _costPrice; break;
+#endif
+                        default:
+                            break;
+                    }
+                    return val;
+                }
+            }
 
             //bacling fields
             private string _inHouseCode;
@@ -566,7 +680,9 @@ namespace SellerSense.ViewManager
             private string _spdCode;
             public string SnapdealCode { get { return _spdCode; } set{ _spdCode = value; } }
             private string _msoCode;
+#if IncludeMeesho
             public string MeeshoCode { get { return _msoCode; } set { _msoCode = value; } }
+#endif
             private string _notes;
             public string Notes { get { return _notes; } set { _notes = value; } }
 
@@ -597,13 +713,15 @@ namespace SellerSense.ViewManager
                 this.Description = desc;
                 this.FlipkartCode = fkCodeValue;
                 this.SnapdealCode = spdCodeValue;
-                this.MeeshoCode = msoCodeValue;
+#if IncludeMeesho
+                this.MeeshoCode = msoCodeValue; 
+#endif
                 this.AmazonCode = amzInventory;
                 this.Notes = notes;
             }
         }
 
-        #endregion ssGridViewUserControl
+#endregion ssGridViewUserControl
 
     }
 

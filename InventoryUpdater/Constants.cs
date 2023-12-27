@@ -9,6 +9,8 @@ namespace SellerSense
 {
     public static class Constants
     {
+        //public const string Version = "1.0.3.0";
+
         public const string JPG = ".jpg";
         public const string PNG = ".png";
         public const int MaxHistoryDaysToKeepSnapshots = 30;
@@ -34,6 +36,7 @@ namespace SellerSense
         public const string Company5Code = "Company5Code";
         public const string Company5Name = "Company5Name";
 
+        public const int FixedColumnsProductGrid = 2;
 
        public enum TelegramSettings
         {

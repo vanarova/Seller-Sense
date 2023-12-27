@@ -34,7 +34,14 @@
             this.importAmazonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importFlipkartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSnapdealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
+#if IncludeMeesho
             this.importMeeshoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.meeshoInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lastDayToolStripMenuItemMso = new System.Windows.Forms.ToolStripMenuItem();
+            this.customDateToolStripMenuItemMso = new System.Windows.Forms.ToolStripMenuItem();
+            
+#endif        
             this.exportAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_compare = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -48,9 +55,7 @@
             this.snapdealInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lastDayToolStripMenuItemSpd = new System.Windows.Forms.ToolStripMenuItem();
             this.customDateToolStripMenuItemSpd = new System.Windows.Forms.ToolStripMenuItem();
-            this.meeshoInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lastDayToolStripMenuItemMso = new System.Windows.Forms.ToolStripMenuItem();
-            this.customDateToolStripMenuItemMso = new System.Windows.Forms.ToolStripMenuItem();
+
             this.linkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTotalOrderCountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,6 +108,14 @@
             this.fileStrip.Size = new System.Drawing.Size(566, 25);
             this.fileStrip.TabIndex = 9;
             this.fileStrip.Text = "menuStrip1";
+
+            // 
+            // exportAllToolStripMenuItem
+            // 
+            this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
+            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.exportAllToolStripMenuItem.Text = "Export All 🡽";
+
             // 
             // toolStripMenuItem_Save
             // 
@@ -110,8 +123,10 @@
             this.importAmazonToolStripMenuItem,
             this.importFlipkartToolStripMenuItem,
             this.importSnapdealToolStripMenuItem,
-            this.importMeeshoToolStripMenuItem,
-            this.exportAllToolStripMenuItem});
+#if IncludeMeesho
+                this.importMeeshoToolStripMenuItem,
+#endif            
+                this.exportAllToolStripMenuItem});
             this.toolStripMenuItem_Save.Name = "toolStripMenuItem_Save";
             this.toolStripMenuItem_Save.Size = new System.Drawing.Size(90, 21);
             this.toolStripMenuItem_Save.Text = "Inventory File";
@@ -133,18 +148,16 @@
             this.importSnapdealToolStripMenuItem.Name = "importSnapdealToolStripMenuItem";
             this.importSnapdealToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.importSnapdealToolStripMenuItem.Text = "Import Snapdeal 👜";
+#if IncludeMeesho
             // 
             // importMeeshoToolStripMenuItem
             // 
             this.importMeeshoToolStripMenuItem.Name = "importMeeshoToolStripMenuItem";
             this.importMeeshoToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.importMeeshoToolStripMenuItem.Text = "Import Meesho 🍱";
-            // 
-            // exportAllToolStripMenuItem
-            // 
-            this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
-            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.exportAllToolStripMenuItem.Text = "Export All 🡽";
+#endif            
+            
+           
             // 
             // toolStripMenuItem_compare
             // 
@@ -156,8 +169,11 @@
             this.allToolStripMenuItem_lastDay,
             this.flipkartToolStripMenuItem,
             this.amazonInventoryToolStripMenuItem,
-            this.snapdealInventoryToolStripMenuItem,
-            this.meeshoInventoryToolStripMenuItem});
+            this.snapdealInventoryToolStripMenuItem
+#if IncludeMeesho
+            ,this.meeshoInventoryToolStripMenuItem
+#endif            
+            });
             this.toolStripMenuItem_compare.Name = "toolStripMenuItem_compare";
             this.toolStripMenuItem_compare.Size = new System.Drawing.Size(68, 21);
             this.toolStripMenuItem_compare.Text = "Compare";
@@ -235,6 +251,9 @@
             this.customDateToolStripMenuItemSpd.Name = "customDateToolStripMenuItemSpd";
             this.customDateToolStripMenuItemSpd.Size = new System.Drawing.Size(143, 22);
             this.customDateToolStripMenuItemSpd.Text = "Custom Date";
+
+
+#if IncludeMeesho
             // 
             // meeshoInventoryToolStripMenuItem
             // 
@@ -256,6 +275,9 @@
             this.customDateToolStripMenuItemMso.Name = "customDateToolStripMenuItemMso";
             this.customDateToolStripMenuItemMso.Size = new System.Drawing.Size(143, 22);
             this.customDateToolStripMenuItemMso.Text = "Custom Date";
+#endif
+
+
             // 
             // linkToolStripMenuItem
             // 
@@ -401,14 +423,16 @@
 
         }
 
-        #endregion
+#endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.MenuStrip fileStrip;
         internal System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Save;
         internal System.Windows.Forms.ToolStripMenuItem importAmazonToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem importFlipkartToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem importSnapdealToolStripMenuItem;
+#if IncludeMeesho
         internal System.Windows.Forms.ToolStripMenuItem importMeeshoToolStripMenuItem;
+#endif
         internal System.Windows.Forms.ToolStripMenuItem exportAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_compare;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -432,9 +456,12 @@
         internal System.Windows.Forms.ToolStripMenuItem snapdealInventoryToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem lastDayToolStripMenuItemSpd;
         internal System.Windows.Forms.ToolStripMenuItem customDateToolStripMenuItemSpd;
+#if IncludeMeesho
         internal System.Windows.Forms.ToolStripMenuItem meeshoInventoryToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem lastDayToolStripMenuItemMso;
         internal System.Windows.Forms.ToolStripMenuItem customDateToolStripMenuItemMso;
+#endif
         internal System.Windows.Forms.ToolStripMenuItem sendInvStatusToolStripMenuItem;
+
     }
 }

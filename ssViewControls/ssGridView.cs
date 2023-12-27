@@ -55,8 +55,16 @@ namespace ssViewControls
         public event Action<bool, string, SortableBindingList<T>> SearchTitleTriggered;
         public event Action<bool,string, SortableBindingList<T>> SearchTagTriggered;
         public event Action<bool> ResetBindings;
+        //public event Action<List<T>> ResetDataBindings;
         public event Action<EventList<T>> OnRowSelectionChanged;
         public event Action<DataGridView> OnControlLoad;
+
+        public event Action<DataGridView, DataGridViewCellEventArgs> OnCellEnter;
+        public event Action<DataGridView, DataGridViewBindingCompleteEventArgs> DataBindingComplete; 
+        public event Action<DataGridView, DataGridViewCellMouseEventArgs> CellMouseDoubleClick;
+        public event Action<DataGridView, DataGridViewCellEventArgs> CellClick;
+        public event Action<DataGridView, KeyEventArgs> KeyDown;
+
         public event Action<DataGridView,int,int> OnGridButtonClicked;
         //public event Action<DataGridView> OnGridButtonActionSelectedClicked;
         public event Action<DataGridView, DataGridViewCellFormattingEventArgs> OnCellFormatting;
@@ -102,6 +110,7 @@ namespace ssViewControls
             _showSelectButton = showSelectButton;
             Init(data); //AdjustUI();
             InitializeComponent();
+            //ObservableCollection<T> ol = new ObservableCollection<T>();
         }
 
         public ssGridView(List<T> data, IComparer<T> bindedDataObjectComparer, bool showSearchCntrls = false, 
@@ -177,6 +186,11 @@ namespace ssViewControls
             _data.Skip(_pageSize * _currentPageNumber).Take(_pageSize).ToList().ForEach(x=>_bindeddata.Add(x));
             label_PageNumbers.Text =_pageSize.ToString() + " rows, page: " + _currentPageNumber.ToString() + " of " + _lastPageNumber.ToString();
 
+        }
+
+        public void SetInfoLabel(string text)
+        {
+            label_info.Text = text;
         }
 
         //public void ReBind_Bindings()
@@ -279,6 +293,8 @@ namespace ssViewControls
                     _selectedRows.RemoveAt(FindElementInBindedDataList(_bindeddata[e.RowIndex]));
                 }
             }
+
+           
             
         }
 
@@ -317,6 +333,30 @@ namespace ssViewControls
             
         }
 
+        private void dataGridView_data_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            CellClick?.Invoke(sender as DataGridView, e);
+        }
+
+        private void dataGridView_data_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            CellMouseDoubleClick?.Invoke(sender as DataGridView, e);
+        }
+
+        private void dataGridView_data_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            OnCellEnter?.Invoke(sender as DataGridView, e);
+        }
+
+        private void dataGridView_data_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DataBindingComplete?.Invoke(sender as DataGridView, e);
+        }
+
+        private void dataGridView_data_KeyDown(object sender, KeyEventArgs e)
+        {
+            KeyDown?.Invoke(sender as DataGridView, e);
+        }
 
         private void button_Refresh_Click(object sender, EventArgs e)
         {
@@ -325,6 +365,7 @@ namespace ssViewControls
             textBox_Tag.Text = _tag;
             ResetBindings?.Invoke(_EN);
             UpdateBindings();
+            //ResetBindings?.Invoke(_data); 
             _selectedRows.Clear();
             _EN = true; //enable back events
         }
