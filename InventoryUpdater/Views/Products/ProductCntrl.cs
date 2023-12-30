@@ -40,8 +40,8 @@ namespace SellerSense
 
         private void ProductCntrl_Load(object sender, EventArgs e)
         {
-            
            
+
         }
 
         
