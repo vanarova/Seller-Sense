@@ -9,19 +9,18 @@ namespace SellerSense
     {
         //Logger _logger;
         public VM_Company _company { get; set; }
-        private ssGridView<VM_Products.ProductView> cntrlGridView;
+        private ssGrid.ssGridView<VM_Products.ProductView> cntrlGridView;
 
         public ProductCntrl(VM_Company company)
         {
             InitializeComponent();
             _company = company;
             //_logger = new FileLogger(company._code);
-            
+
             // Add a child control, custom control using datagridview
-            cntrlGridView = new ssGridView<VM_Products.ProductView>(company._productsViewManager._vm_productsView, 
-                company._productsViewManager._compareProductViews, showSearchCntrls:true, showSelectButton:false, tagLabel:"Tag", titleLabel:"Title");
-            cntrlGridView.Dock = DockStyle.Fill;
-            company._productsViewManager.AssignViewB(cntrlGridView);
+            //cntrlGridView = new ssGrid.ssGridView<VM_Products.ProductView>();
+            //cntrlGridView.Dock = DockStyle.Fill;
+            ssGrid.ssGridView<VM_Products.ProductView> cntrlGridView = company._productsViewManager.CreateAndManageView_ProductGridUserControl();
 
             // Events of child control
             //cntrlGridView.SearchTitleTriggered += _company._products.SearchTitle;

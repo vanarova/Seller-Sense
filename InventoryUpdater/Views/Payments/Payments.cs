@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.WinForms.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SellerSense.Views.Payments
 {
-    public partial class Payments : Form
+    public partial class Payments : SfForm
     {
         private ViewManager.VM_Companies _companiesMgr;
         private List<PaymentsView> _paymentCntrlList;
@@ -19,6 +20,10 @@ namespace SellerSense.Views.Payments
         public Payments(ViewManager.VM_Companies companies)
         {
             InitializeComponent();
+            this.Style.Border.Color = Color.DeepSkyBlue;
+            this.Style.InactiveBorder.Color = Color.DeepSkyBlue;
+            this.Style.Border.Width = 2;
+            this.Style.InactiveBorder.Width = 2;
             _companiesMgr = companies;
             CreateTabControls();
         }

@@ -7,7 +7,9 @@ using SellerSense.Views.Payments;
 using ssViewControls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,9 +42,9 @@ namespace SellerSense.ViewManager
         {
             _m_Payments = payments;
             _m_product_Model = product_Model;
-            _paymentsViewAmz = new List<PaymentsViewDataAmz>();
-            _paymentsViewFk = new List<PaymentsViewDataFk>();
-            _paymentsViewSpd = new List<PaymentsViewDataSpd>();
+            _paymentsViewAmz = new ObservableCollection<PaymentsViewDataAmz>();
+            _paymentsViewFk = new ObservableCollection<PaymentsViewDataFk>();
+            _paymentsViewSpd = new ObservableCollection<PaymentsViewDataSpd>();
         }
 
         private void HandleProductControlEvents()
@@ -58,7 +60,7 @@ namespace SellerSense.ViewManager
                     AssignImagesToProducts(Constants.Company.Snapdeal);
                     SortSpdPaymentsView();
                     _v_PaymentsCntrl.progressBar_snapdeal.Visible = false;
-                    _ssGridViewSpd = new ssGridView<PaymentsViewDataSpd>(_paymentsViewSpd, true, false, "Order Id", "SKU");
+                    _ssGridViewSpd = new ssGrid.ssGridView<PaymentsViewDataSpd>(_paymentsViewSpd);
                     //_ssGridViewFk = new ssGridView<PaymentsViewDataFk>(_paymentsViewFk, true, false, "Order Id", "SKU");
                     AddSpdGridControls();
                 }
@@ -73,7 +75,7 @@ namespace SellerSense.ViewManager
                     if (consolidatedPaymentViewSpd != null && consolidatedPaymentViewSpd.Count > 0)
                         consolidatedPaymentViewSpd.Clear();
                     _ssGridViewSpd.Dispose();
-                    _ssGridViewSpd = new ssGridView<PaymentsViewDataSpd>(_paymentsViewSpd, true, false, "Transaction Id", "SKU");
+                    _ssGridViewSpd = new ssGrid.ssGridView<PaymentsViewDataSpd>(_paymentsViewSpd);
                     HandleSpdGridEvents();
                     AddSpdGridControls();
                     _ssGridViewSpd.UpdateBindings();
@@ -91,32 +93,35 @@ namespace SellerSense.ViewManager
                 AssignFkInhouseCodes();
                 _v_PaymentsCntrl.progressBar_Fk.Visible = false;
                 AssignImagesToProducts(Constants.Company.Flipkart);
-                _ssGridViewFk = new ssGridView<PaymentsViewDataFk>(_paymentsViewFk, true, false, "Order Id", "SKU");
+                _ssGridViewFk = new ssGrid.ssGridView<PaymentsViewDataFk>(_paymentsViewFk);
                 //_ssGridViewFk = new ssGridView<PaymentsViewDataFk>(_paymentsViewFk, true, false, "Order Id", "SKU");
                 AddFkGridControls();
             }
             };
             
 
-            _v_PaymentsCntrl.button_Load_Amz_Payments.Click += (s, e) => {
+            _v_PaymentsCntrl.button_Load_Amz_Payments.Click += async (s, e) => {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 _v_PaymentsCntrl.progressBar_Fk.Visible = true;
-                _m_Payments.GetAmzPayments(openFileDialog.FileName);
+                await _m_Payments.GetAmzPayments(openFileDialog.FileName);
                 AssignAmzAmzPaymentsToView();
                 AssignAmzInhouseCodes();
                 _v_PaymentsCntrl.progressBar_Fk.Visible = false;
                 AssignImagesToProducts(Constants.Company.Amazon);
                 SortAmzPaymentsView();
-                _ssGridViewAmz = new ssGridView<PaymentsViewDataAmz>(_paymentsViewAmz, true, false, "Order Id", "SKU");
+                _ssGridViewAmz = new ssGrid.ssGridView<PaymentsViewDataAmz>(_paymentsViewAmz);
                 HandleAmzGridEvents();
                 AddAmzGridControls();
             }
 
-            };  
+            };
+
+
+#if IncludeMeesho
             _v_PaymentsCntrl.button_Load_Meesho_Payments.Click += (s, e) => { };
-            
+#endif
             _v_PaymentsCntrl.checkBox_amz_consolidate.Click += (s, e) => {
                 if (_v_PaymentsCntrl.checkBox_amz_consolidate.Checked)
                     ConsolidateAmzOrderCalculations();
@@ -124,7 +129,7 @@ namespace SellerSense.ViewManager
                 { if (consolidatedPaymentViewAmz != null && consolidatedPaymentViewAmz.Count > 0)
                         consolidatedPaymentViewAmz.Clear();
                     _ssGridViewAmz.Dispose();  
-                    _ssGridViewAmz = new ssGridView<PaymentsViewDataAmz>(_paymentsViewAmz, true, false, "Order Id", "SKU");
+                    _ssGridViewAmz = new ssGrid.ssGridView<PaymentsViewDataAmz>(_paymentsViewAmz);
                     HandleAmzGridEvents();
                     AddAmzGridControls(); 
                     _ssGridViewAmz.UpdateBindings(); }
@@ -188,12 +193,12 @@ namespace SellerSense.ViewManager
 
 
 
-        #region Amazon_payments
+#region Amazon_payments
 
-        List<PaymentsViewDataAmz> consolidatedPaymentViewAmz;
-        private ssGridView<PaymentsViewDataAmz> _ssGridViewAmz;
+        ObservableCollection<PaymentsViewDataAmz> consolidatedPaymentViewAmz;
+        private ssGrid.ssGridView<PaymentsViewDataAmz> _ssGridViewAmz;
         
-        private List<PaymentsViewDataAmz> _paymentsViewAmz;
+        private ObservableCollection<PaymentsViewDataAmz> _paymentsViewAmz;
 
 
         private void AddAmzGridControls()
@@ -209,28 +214,28 @@ namespace SellerSense.ViewManager
 
         private void HandleAmzGridEvents()
         {
-            _ssGridViewAmz.SearchTagTriggered += (b, textBoxValue, _bindedData) => {
-                _bindedData.Clear();
-                _paymentsViewAmz.Where(y => !string.IsNullOrEmpty(y.OrderId)).ToList().Where((x) =>
-                x.OrderId.ToLower().Contains(textBoxValue.ToLower())).ToList().
-                    ForEach(p => _bindedData.Add(p)
-                    );
-            };
+            //_ssGridViewAmz.SearchTagTriggered += (b, textBoxValue, _bindedData) => {
+            //    _bindedData.Clear();
+            //    _paymentsViewAmz.Where(y => !string.IsNullOrEmpty(y.OrderId)).ToList().Where((x) =>
+            //    x.OrderId.ToLower().Contains(textBoxValue.ToLower())).ToList().
+            //        ForEach(p => _bindedData.Add(p)
+            //        );
+            //};
 
-            _ssGridViewAmz.SearchTitleTriggered += (b, textBoxValue, _bindedData) => {
-                _bindedData.Clear();
-                _paymentsViewAmz.Where(y => !string.IsNullOrEmpty(y.Sku)).ToList().Where((x) =>
-                x.Sku.ToLower().Contains(textBoxValue.ToLower())).ToList().
-                    ForEach(p => _bindedData.Add(p)
-                    );
-            };
+            //_ssGridViewAmz.SearchTitleTriggered += (b, textBoxValue, _bindedData) => {
+            //    _bindedData.Clear();
+            //    _paymentsViewAmz.Where(y => !string.IsNullOrEmpty(y.Sku)).ToList().Where((x) =>
+            //    x.Sku.ToLower().Contains(textBoxValue.ToLower())).ToList().
+            //        ForEach(p => _bindedData.Add(p)
+            //        );
+            //};
 
 
         }
 
         private void SortAmzPaymentsView()
         {
-            var groupedOrdersPaymentView = new List<PaymentsViewDataAmz>();
+            var groupedOrdersPaymentView = new ObservableCollection<PaymentsViewDataAmz>();
             // Group the orders by OrderId
             var groupedOrders = _paymentsViewAmz.GroupBy(order => order.OrderId);
 
@@ -247,7 +252,7 @@ namespace SellerSense.ViewManager
 
         private void ConsolidateAmzOrderCalculations()
         {
-            consolidatedPaymentViewAmz = new List<PaymentsViewDataAmz>();
+            consolidatedPaymentViewAmz = new ObservableCollection<PaymentsViewDataAmz>();
             decimal costValue = 0;
             foreach (var item in _paymentsViewAmz)
             {
@@ -267,7 +272,7 @@ namespace SellerSense.ViewManager
             }
             if(_ssGridViewAmz!=null ) 
                 _ssGridViewAmz.Dispose();
-            _ssGridViewAmz = new ssGridView<PaymentsViewDataAmz>(consolidatedPaymentViewAmz, true, false, "Order Id", "SKU");
+            _ssGridViewAmz = new ssGrid.ssGridView<PaymentsViewDataAmz>(consolidatedPaymentViewAmz);
             HandleAmzGridEvents();
             AddAmzGridControls();
             _ssGridViewAmz.UpdateBindings();
@@ -356,7 +361,9 @@ namespace SellerSense.ViewManager
         class PaymentsViewDataAmz
         {
             public string InHouseCode { get; set; }
-            public Image Image { get; set; }
+            private Image _image;
+            public Image Image { get { return _image; } set { _image = value; } }
+            public byte[] DisplayImage { get { return ImageToByteArray(_image); } }
             public string CostPrice { get; set; }
             public string Profit { get; set; }
             public string OrderId { get; set; }
@@ -368,22 +375,32 @@ namespace SellerSense.ViewManager
             public string OrderItemCode { get; set; }
             public string Sku { get; set; }
             public string QuantityPurchased { get; set; }
+
+            private byte[] ImageToByteArray(System.Drawing.Image imageIn)
+            {
+                if (imageIn == null) { return default(byte[]); }
+                MemoryStream ms = new MemoryStream();
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                return ms.ToArray();
+            }
         }
 
-        #endregion
+#endregion
 
 
-        #region Flipkart_payments
+#region Flipkart_payments
 
-        private List<PaymentsViewDataFk> consolidatedPaymentViewFk;
-        private ssGridView<PaymentsViewDataFk> _ssGridViewFk;
+        private ObservableCollection<PaymentsViewDataFk> consolidatedPaymentViewFk;
+        private ssGrid.ssGridView<PaymentsViewDataFk> _ssGridViewFk;
         //private Dictionary<string, Image> _imagesFk;
-        private List<PaymentsViewDataFk> _paymentsViewFk;
+        private ObservableCollection<PaymentsViewDataFk> _paymentsViewFk;
 
         class PaymentsViewDataFk
         {
             public string InHouseCode { get; set; }
-            public Image Image { get; set; }
+            private Image _image;
+            public Image Image { get { return _image; } set { _image = value; } }
+            public byte[] DisplayImage { get { return ImageToByteArray(_image); } }
             public string CostPrice { get; set; }
             public string OrderId { get; set; }
            public  string OrderItemId { get; set; }
@@ -397,6 +414,14 @@ namespace SellerSense.ViewManager
            public  string CustomerAddonAmt { get; set; }
            public  string MarketplaceFee { get; set; }
            public  string Taxes { get; set; }
+
+            private byte[] ImageToByteArray(System.Drawing.Image imageIn)
+            {
+                if (imageIn == null) { return default(byte[]); }
+                MemoryStream ms = new MemoryStream();
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                return ms.ToArray();
+            }
         }
 
         private void AddFkGridControls()
@@ -449,15 +474,15 @@ namespace SellerSense.ViewManager
             }
         }
 
-        #endregion
+#endregion
 
 
-        #region Snapdeal_payments
+#region Snapdeal_payments
 
-        private List<PaymentsViewDataSpd> consolidatedPaymentViewSpd;
-        private ssGridView<PaymentsViewDataSpd> _ssGridViewSpd;
+        private ObservableCollection<PaymentsViewDataSpd> consolidatedPaymentViewSpd;
+        private ssGrid.ssGridView<PaymentsViewDataSpd> _ssGridViewSpd;
         //private Dictionary<string, Image> _imagesSpd;
-        private List<PaymentsViewDataSpd> _paymentsViewSpd;
+        private ObservableCollection<PaymentsViewDataSpd> _paymentsViewSpd;
 
 
         private void AddSpdGridControls()
@@ -490,7 +515,7 @@ namespace SellerSense.ViewManager
 
         private void ConsolidateSpdOrderCalculations()
         {
-            consolidatedPaymentViewSpd = new List<PaymentsViewDataSpd>();
+            consolidatedPaymentViewSpd = new ObservableCollection<PaymentsViewDataSpd>();
             decimal costValue = 0;
             foreach (var item in _paymentsViewSpd)
             {
@@ -511,7 +536,7 @@ namespace SellerSense.ViewManager
             }
             if (_ssGridViewSpd != null)
                 _ssGridViewSpd.Dispose();
-            _ssGridViewSpd = new ssGridView<PaymentsViewDataSpd>(consolidatedPaymentViewSpd, true, false, "transaction Id", "SKU");
+            _ssGridViewSpd = new ssGrid.ssGridView<PaymentsViewDataSpd>(consolidatedPaymentViewSpd);
             HandleSpdGridEvents();
             AddSpdGridControls();
             _ssGridViewSpd.UpdateBindings();
@@ -568,21 +593,21 @@ namespace SellerSense.ViewManager
 
         private void HandleSpdGridEvents()
         {
-            _ssGridViewSpd.SearchTagTriggered += (b, textBoxValue, _bindedData) => {
-                _bindedData.Clear();
-                _paymentsViewSpd.Where(y => !string.IsNullOrEmpty(y.TransactionId)).ToList().Where((x) =>
-                x.TransactionId.ToLower().Contains(textBoxValue.ToLower())).ToList().
-                    ForEach(p => _bindedData.Add(p)
-                    );
-            };
+            //_ssGridViewSpd.SearchTagTriggered += (b, textBoxValue, _bindedData) => {
+            //    _bindedData.Clear();
+            //    _paymentsViewSpd.Where(y => !string.IsNullOrEmpty(y.TransactionId)).ToList().Where((x) =>
+            //    x.TransactionId.ToLower().Contains(textBoxValue.ToLower())).ToList().
+            //        ForEach(p => _bindedData.Add(p)
+            //        );
+            //};
 
-            _ssGridViewSpd.SearchTitleTriggered += (b, textBoxValue, _bindedData) => {
-                _bindedData.Clear();
-                _paymentsViewSpd.Where(y => !string.IsNullOrEmpty(y.Sku)).ToList().Where((x) =>
-                x.Sku.ToLower().Contains(textBoxValue.ToLower())).ToList().
-                    ForEach(p => _bindedData.Add(p)
-                    );
-            };
+            //_ssGridViewSpd.SearchTitleTriggered += (b, textBoxValue, _bindedData) => {
+            //    _bindedData.Clear();
+            //    _paymentsViewSpd.Where(y => !string.IsNullOrEmpty(y.Sku)).ToList().Where((x) =>
+            //    x.Sku.ToLower().Contains(textBoxValue.ToLower())).ToList().
+            //        ForEach(p => _bindedData.Add(p)
+            //        );
+            //};
 
 
         }
@@ -590,7 +615,7 @@ namespace SellerSense.ViewManager
         //Groups by transaction ids, same transactions will be next to each other.
         private void SortSpdPaymentsView()
         {
-            var groupedOrdersPaymentView = new List<PaymentsViewDataSpd>();
+            var groupedOrdersPaymentView = new ObservableCollection<PaymentsViewDataSpd>();
             // Group the orders by OrderId
             var groupedOrders = _paymentsViewSpd.GroupBy(order => order.TransactionId);
 
@@ -641,8 +666,11 @@ namespace SellerSense.ViewManager
 
         class PaymentsViewDataSpd
         {
+            private Image _image;
+            public Image Image { get { return _image; } set { _image = value; } }
+            public byte[] DisplayImage { get { return ImageToByteArray(_image); } }
             public string InHouseCode { get; set; }
-            public Image Image { get; set; }
+            //public Image Image { get; set; }
             public string CostPrice { get; set; }
             public string Profit  { get; set; }
             public string TransactionDate { get; set; }
@@ -654,9 +682,18 @@ namespace SellerSense.ViewManager
             public string PaymentReceicedBySpd { get; set; }
             public string Commission { get; set; }
             public string NetPayable { get; set; }
+
+
+            private byte[] ImageToByteArray(System.Drawing.Image imageIn)
+            {
+                if (imageIn == null) { return default(byte[]); }
+                MemoryStream ms = new MemoryStream();
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                return ms.ToArray();
+            }
         }
 
-        #endregion
+#endregion
 
     }
 }

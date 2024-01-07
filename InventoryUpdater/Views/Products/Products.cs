@@ -17,53 +17,53 @@ namespace SellerSense.Views.Products
         public Products()
         {
             InitializeComponent();
-            Data = new List<string>();
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
-            Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data = new List<string>();
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
+            //Data.Add("asd"); Data.Add("asda"); Data.Add("as2d"); Data.Add("aqwsd"); Data.Add("assd"); Data.Add("awsda"); Data.Add("a3s2d"); Data.Add("aq4wsd");
         }
 
         private void TestSyncF_Load(object sender, EventArgs e)
         {
-            ssGrid.ssGridView<string>  sf = new ssGrid.ssGridView<string>(Data);
+            //ssGrid.ssGridView<string>  sf = new ssGrid.ssGridView<string>(Data);
             
             //tableLayoutPanel1.Controls.Add(sf,0,1);
             

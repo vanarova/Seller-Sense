@@ -36,7 +36,7 @@ namespace SellerSense
         public const string Company5Code = "Company5Code";
         public const string Company5Name = "Company5Name";
 
-        public const int FixedColumnsProductGrid = 2;
+        public const int FixedColumnsProductGrid = 1;
 
        public enum TelegramSettings
         {
@@ -98,6 +98,10 @@ namespace SellerSense
             public const string Image = "Image";
             public const string InHouseCode = "InHouseCode";
             public const string Title = "Title";
+            public const string Description = "Description";
+            public const string Tag = "Tag";
+            public const string Notes = "Notes";
+            public const string CostPrice = "CostPrice";
 
         }
 
@@ -119,7 +123,9 @@ namespace SellerSense
             public const string InHouseCode = "InHouseCode";
             public const string Title = "Title";
             public const string Tag = "Tag";
-
+            public const string AmazonOrders = "AmazonOrders";
+            public const string FlipkartOrders = "FlipkartOrders";
+            public const string SnapdealOrders = "SnapdealOrders";
 
         }
 

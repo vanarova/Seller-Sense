@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Syncfusion.Core.WinForms, Version=23.1460.36.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Data.WinForms, Version=23.1460.36.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.SfDataGrid.WinForms, Version=23.1460.36.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -61,11 +62,18 @@
     <Compile Include="ssGridView.Designer.cs">
       <DependentUpon>ssGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="SyncFusionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ssGridView.resx">
       <DependentUpon>ssGridView.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrimitiveExt\PrimitiveExt.csproj">
+      <Project>{342C5454-252A-4F7A-81A2-6E4330C7B676}</Project>
+      <Name>PrimitiveExt</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

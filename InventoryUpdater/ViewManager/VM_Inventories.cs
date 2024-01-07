@@ -5,6 +5,7 @@ using SellerSense.Model.InvUpdate;
 using SellerSense.Views;
 using SellerSense.Views.Inventories;
 using ssViewControls;
+using Syncfusion.WinForms.DataGrid;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,7 +30,7 @@ namespace SellerSense.ViewManager
     /// <summary>
     /// view manager for inventory form hierarchy, handles events and binding for all usercontrols in Inventories form
     /// </summary>
-    internal partial class VM_Inventories :IManageUserControl
+    internal partial class VM_Inventories
     {
         internal M_External_Inventories _m_externalInventoriesModel { get; set; }
         internal M_Snapshot _m_invSnapShotModel_Amz { get; set; }
@@ -41,9 +42,9 @@ namespace SellerSense.ViewManager
         //internal DataSet _invUpdateGridData { get; set; }
         private InvCntrl _v_invCntrl;
         //private Action InvokeUpdateInventoryInAllCompanies;
-        private ssGridView<InventoryView> _ssGridView;
+        private ssGrid.ssGridView<InventoryView> _ssGridView;
         private Action<Object, ListChangedEventArgs> _bindingListChanged;
-        internal List<InventoryView> _inventoryViewList { get; set; }
+        internal ObservableCollection<InventoryView> _inventoryViewList { get; set; }
         private VM_Companies.CrossCompanySharedWrapper _crossCompanySharedWrapper;
         private VM_Companies.CrossCompanyEvents _crossCompanyEvents;
 
@@ -72,11 +73,11 @@ namespace SellerSense.ViewManager
 
         private void TranslateInvModelToInvView()
         {
-            _inventoryViewList = new List<InventoryView>();
+            _inventoryViewList = new ObservableCollection<InventoryView>();
             foreach (var item in _m_productModel._productEntries)
             {
-                //binding list source for grid
-                _inventoryViewList.Add(new InventoryView()
+
+                var inv = new InventoryView()
                 {
                     InHouseCode = item.InHouseCode,
                     Title = item.Title,
@@ -88,24 +89,116 @@ namespace SellerSense.ViewManager
                     MeeshoCode = item.MeeshoCode,
 #endif                    
                     SnapdealCode = item.SnapdealCode
-                });
+                };
+
+
+                inv.PropertyChanged += (s,e) => {
+
+                    ViewPropertyChnageHandler(s as InventoryView,e);
+                };
+
+                //binding list source for grid
+                _inventoryViewList.Add(inv);
 
             }
         }
+
+
+
+        private void ViewPropertyChnageHandler(InventoryView invViewObj, PropertyChangedEventArgs e)
+        {
+            //var list = s as BindingList<InventoryView>;
+
+            if (e != null && e.PropertyName == Constants.InventoryViewCols.AmazonCount)
+            {
+                //if non-numeric value is entered by user.
+                //TODO : Enter validation in grid column for numeric input.
+                //if (!int.TryParse(list[e.NewIndex].AmazonCount, out int i)) {
+                //    (new AlertBox("Wrong Input", "Only numeric values are allowed")).ShowDialog(); return; }
+
+                string asin = invViewObj.AmazonCode;
+                var invobj = _m_externalInventoriesModel._amzImportedInvList._amzInventoryList.FirstOrDefault(x => x.asin == asin);
+                if (invobj != null)
+                {
+                    AmzInventoryV1 iamz = new AmzInventoryV1(
+                        invobj.sku,
+                        invViewObj.AmazonCode,
+                        invobj.price,
+                        invViewObj.AmazonSystemCount.ToString(),
+                        invViewObj.AmazonCount.ToString());
+                    _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
+                    //This is important to update inventory for this company first,
+                    //then update other companies. Else other company wont reflect changes made in currnt company
+                    UpdateCrossCompanySharedInvForThisCompany();
+                    _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
+                    foreach (var item in _inventoryViewList)
+                        UpdateComposedChildProducts(item.InHouseCode);
+                    //UpdateComposedChildProducts(list[e.NewIndex].InHouseCode);
+                    //_ssGridView.UpdateBindings();
+                    //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
+
+                }
+            }
+            if (e != null && e.PropertyName == Constants.InventoryViewCols.FlipkartCount)
+            {
+                ////if non-numeric value is entered by user.
+                //if (!int.TryParse(list[e.NewIndex].FlipkartCount, out int i)) { (new AlertBox("Wrong Input", "Only numeric values are allowed")).ShowDialog(); return; }
+                string asin = invViewObj.FlipkartCode;
+                var invobj = _m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList.FirstOrDefault(x => x.fsn == asin);
+                if (invobj != null)
+                {
+                    FkInventoryV2 iamz = new FkInventoryV2(
+                        invobj.sku,
+                        invViewObj.FlipkartCode,
+                        invobj.price,
+                        invViewObj.FlipkartSystemCount.ToString(),
+                        invViewObj.FlipkartCount.ToString());
+                    _m_externalInventoriesModel._fkImportedInventoryList._fkUIModifiedInvList.Add(iamz);
+                    UpdateCrossCompanySharedInvForThisCompany();
+                    _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
+                    //_ssGridView.UpdateBindings();
+                    //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
+                }
+            }
+            if (e != null && e.PropertyName == Constants.InventoryViewCols.SnapdealCount)
+            {
+                //if non-numeric value is entered by user.
+                //if (!int.TryParse(list[e.NewIndex].AmazonCount, out int i)) { (new AlertBox("Wrong Input", "Only numeric values are allowed")).ShowDialog(); return; }
+                string asin = invViewObj.SnapdealCode;
+                var invobj = _m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList.FirstOrDefault(x => x.fsn == asin);
+                if (invobj != null)
+                {
+                    SpdInventoryV2 iamz = new SpdInventoryV2(
+                        invobj.sku,
+                        invViewObj.SnapdealCode,
+                        invobj.price,
+                        invViewObj.SnapdealSystemCount.ToString(),
+                        invViewObj.SnapdealCount.ToString());
+                    _m_externalInventoriesModel._spdImportedInventoryList._spdUIModifiedInvList.Add(iamz);
+                    UpdateCrossCompanySharedInvForThisCompany();
+                    _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
+                    //_ssGridView.UpdateBindings();
+                    //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
+                }
+            }
+        }
+
+
 
         //private void _crossCompanyEvents_CrossCompanySharedInventoryUpdated(object sender, EventArgs e)
         //{
         //    _inventoryViewList.ForEach(x => x.InHouseCount =
         //    _crossCompanySharedWrapper._crossCompanyLinkedInventoryCount.GetAllInventoriesFromAllCompanies(x.InHouseCode).ToString());
         //}
-    
 
-        public void AssignView(UserControl ssGrid)
+
+        public UserControl AssignView(VM_Company company)
         {
-            _ssGridView = ssGrid as ssGridView<InventoryView>;
+            _ssGridView = new ssGrid.ssGridView<VM_Inventories.InventoryView>(company._inventoriesViewManager._inventoryViewList, HandlessGridViewControlEvents);
+            _ssGridView.Dock = DockStyle.Fill;
             
-            HandlessGridViewControlEvents();
-            
+            //HandlessGridViewControlEvents();
+            return _ssGridView;
         }
 
         private void HandleExternalInventoryImportEvents()
@@ -133,23 +226,15 @@ namespace SellerSense.ViewManager
             };
         }
 
-        //Custom event, fires when grid control is loaded
-        private void HandlessGridViewControlEvents()
-        {//attach binding List changed events here
-            _ssGridView.OnControlLoad += (gridview) => { 
-                DisengageCellEvents();  EngageCellEvents(); DisableColumnEditingForSomeColumns(gridview);
-                gridview.Columns["AmazonOrders"].DefaultCellStyle.BackColor = Color.Silver;
-                gridview.Columns["FlipkartOrders"].DefaultCellStyle.BackColor = Color.Silver;
-                gridview.Columns["SnapdealOrders"].DefaultCellStyle.BackColor = Color.Silver;
-#if IncludeMeesho
-                gridview.Columns["MeeshoOrders"].DefaultCellStyle.BackColor = Color.Silver;
-#endif
-            };
-            //_ssGridView.OnCellFormatting += (gridview,e) => { HighlightCell(gridview,e); };
-            _ssGridView.ResetBindings += async (e) => {await ResetAllBindings(); };
-            _ssGridView.SearchTitleTriggered += SearchTitle;
-            _ssGridView.SearchTagTriggered += SearchTags;
-            //_ssGridView.OnCellFormatting
+        //Custom init/event, fires when grid control is loaded
+        private void HandlessGridViewControlEvents(SfDataGrid grid)
+        {
+            //attach binding List changed events here
+            DisableColumnEditingForSomeColumns(grid);
+            grid.Columns[Constants.InventoryViewCols.AmazonOrders].CellStyle.BackColor = Color.Silver;
+            grid.Columns[Constants.InventoryViewCols.FlipkartOrders].CellStyle.BackColor = Color.Silver;
+            grid.Columns[Constants.InventoryViewCols.SnapdealOrders].CellStyle.BackColor = Color.Silver;
+
         }
 
 
@@ -180,12 +265,12 @@ namespace SellerSense.ViewManager
         //        e.CellStyle.BackColor = Color.Yellow;
         //}
 
-        private void DisableColumnEditingForSomeColumns(DataGridView gridview)
+        private void DisableColumnEditingForSomeColumns(SfDataGrid gridview)
         {
-            foreach (DataGridViewColumn column in gridview.Columns) { column.ReadOnly = true; }
-            gridview.Columns[Constants.InventoryViewCols.AmazonCount].ReadOnly = false;
-            gridview.Columns[Constants.InventoryViewCols.FlipkartCount].ReadOnly = false;
-            gridview.Columns[Constants.InventoryViewCols.SnapdealCount].ReadOnly = false;
+            foreach (var column in gridview.Columns) { column.AllowEditing = false; }
+            gridview.Columns[Constants.InventoryViewCols.AmazonCount].AllowEditing = true;
+            gridview.Columns[Constants.InventoryViewCols.FlipkartCount].AllowEditing = true;
+            gridview.Columns[Constants.InventoryViewCols.SnapdealCount].AllowEditing = true;
 #if IncludeMeesho
             gridview.Columns[Constants.InventoryViewCols.MeeshoCount].ReadOnly = false;
 #endif
@@ -315,10 +400,10 @@ namespace SellerSense.ViewManager
 
         
 
-        private void DisengageCellEvents()
-        {
-            _ssGridView.BindingListChanged -= _bindingListChanged;
-        }
+        //private void DisengageCellEvents()
+        //{
+        //    _ssGridView.BindingListChanged -= _bindingListChanged;
+        //}
 
 
 
@@ -424,6 +509,12 @@ namespace SellerSense.ViewManager
                 this.LinkQty = LinkQty;
             }
         }
+
+
+
+       
+
+
 
         //Events generated by bindinglist changed event, these events are coming from setter of class: InventoryView properties
         //update underlying collection, when grid changes
@@ -533,13 +624,13 @@ namespace SellerSense.ViewManager
            };
             }
 
-            _ssGridView.BindingListChanged += _bindingListChanged;
+            //_ssGridView.BindingListChanged += _bindingListChanged;
         }
 
 
         private async Task ResetAllBindings()
         {
-            DisengageCellEvents();
+            //DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
             
             _ssGridView.IsLoading = true;
@@ -551,12 +642,12 @@ namespace SellerSense.ViewManager
 #endif
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
-            EngageCellEvents();
+            //EngageCellEvents();
         }
 
         private async Task ImportAmazonInv()
         {
-            DisengageCellEvents();
+            //DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Amazon inv text file|*.txt";
@@ -572,7 +663,7 @@ namespace SellerSense.ViewManager
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Amz.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList,null, saveOnlySystemInventory:true);
             
-            EngageCellEvents();
+            //EngageCellEvents();
             //foreach (var item in list)
             //{
             //    _ssGridView.li
@@ -582,7 +673,7 @@ namespace SellerSense.ViewManager
 
         private async Task ImportFlipkartInv()
         {
-            DisengageCellEvents();
+            //DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Flipkart inv file|*.xls";
@@ -603,7 +694,7 @@ namespace SellerSense.ViewManager
 
         private async Task ImportSnapdealInv()
         {
-            DisengageCellEvents();
+            //DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Snapdeal inv file|*.xlsx";
@@ -778,7 +869,9 @@ namespace SellerSense.ViewManager
 
             //below values from Product 
             public string InHouseCode { get; set; }
-            public Image Image { get; set; }
+            private Image _image;
+            public Image Image { get { return _image; } set { _image = value; } }
+            public byte[] DisplayImage { get { return ImageToByteArray(_image); } }
             public string Title { get; set; }
             public string Tag { get; set; }
 
@@ -879,6 +972,14 @@ namespace SellerSense.ViewManager
             private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+            private byte[] ImageToByteArray(System.Drawing.Image imageIn)
+            {
+                if (imageIn == null) { return default(byte[]); }
+                MemoryStream ms = new MemoryStream();
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                return ms.ToArray();
             }
         }
 

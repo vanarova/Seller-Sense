@@ -47,12 +47,12 @@ namespace SellerSense.ViewManager
                     {
                         int.TryParse(invItem.InvSysCount, out int aorders);
                         int.TryParse(snapshotEntry.InvSysCount, out int sorders);
-                        if(company == Constants.Company.Amazon && _inventoryViewList.Exists(x=>x.AmazonCode == invItem.asin))
-                            _inventoryViewList.Find(x=>x.AmazonCode == invItem.asin).AmazonOrders = (sorders - aorders).ToString();
-                        if (company == Constants.Company.Flipkart && _inventoryViewList.Exists(x => x.FlipkartCode == invItem.asin))
-                            _inventoryViewList.Find(x => x.FlipkartCode == invItem.asin).FlipkartOrders = (sorders - aorders).ToString();
-                        if (company == Constants.Company.Snapdeal && _inventoryViewList.Exists(x => x.SnapdealCode == invItem.asin))
-                            _inventoryViewList.Find(x => x.SnapdealCode == invItem.asin).SnapdealOrders = (sorders - aorders).ToString();
+                        if(company == Constants.Company.Amazon && _inventoryViewList.Where(x=>x.AmazonCode == invItem.asin).Count()>0)
+                            _inventoryViewList.Where(x=>x.AmazonCode == invItem.asin).FirstOrDefault().AmazonOrders = (sorders - aorders).ToString();
+                        if (company == Constants.Company.Flipkart && _inventoryViewList.Where(x => x.FlipkartCode == invItem.asin).Count()>0)
+                            _inventoryViewList.Where(x => x.FlipkartCode == invItem.asin).FirstOrDefault().FlipkartOrders = (sorders - aorders).ToString();
+                        if (company == Constants.Company.Snapdeal && _inventoryViewList.Where(x => x.SnapdealCode == invItem.asin).Count()>0)
+                            _inventoryViewList.Where(x => x.SnapdealCode == invItem.asin).FirstOrDefault().SnapdealOrders = (sorders - aorders).ToString();
 #if IncludeMeesho
                         if (company == Constants.Company.Meesho && _inventoryViewList.Exists(x => x.MeeshoCode == invItem.asin))
                             _inventoryViewList.Find(x => x.MeeshoCode == invItem.asin).MeeshoOrders = (sorders - aorders).ToString();

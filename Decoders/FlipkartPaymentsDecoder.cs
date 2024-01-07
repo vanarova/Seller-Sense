@@ -28,9 +28,10 @@ namespace Decoders
             try
             {
                 _exm = new ExcelMapper(excelFile) { HeaderRowNumber=1, MinRowNumber =3};
+                _paymentFlipkart = _exm.Fetch<FkPayments>("Orders");
             }
             catch (Exception e) { error = e.Message; return new List<IFkPayments>(); }
-            _paymentFlipkart = _exm.Fetch<FkPayments>("Orders");
+           
             _pmtFlipkart = _paymentFlipkart.ToList<IFkPayments>();
             //_pmtFlipkart.RemoveAt(0); //remove first 2 rows, headers
             return _pmtFlipkart;

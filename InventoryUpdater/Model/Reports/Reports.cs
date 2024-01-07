@@ -3,6 +3,7 @@ using SellerSense.Helper;
 using SellerSense.Model.InvUpdate;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,10 @@ namespace SellerSense.Model.Reports
         private InvStatusReport _invStatusReportSnp;
         private InvStatusReport _invStatusReportMso;
         private string code1; string code2;
-        private List<ViewManager.VM_Inventories.InventoryView> _invViewCompany1;
-        private List<ViewManager.VM_Inventories.InventoryView> _invViewCompany2;
-        public InventoryStatusReportBuilder(List<ViewManager.VM_Inventories.InventoryView> invViewCompany1,  string code1,
-            List<ViewManager.VM_Inventories.InventoryView> invViewCompany2, string code2)
+        private ObservableCollection<ViewManager.VM_Inventories.InventoryView> _invViewCompany1;
+        private ObservableCollection<ViewManager.VM_Inventories.InventoryView> _invViewCompany2;
+        public InventoryStatusReportBuilder(ObservableCollection<ViewManager.VM_Inventories.InventoryView> invViewCompany1,  string code1,
+            ObservableCollection<ViewManager.VM_Inventories.InventoryView> invViewCompany2, string code2)
         {
             // _vm_companies = vm_companies;
             //_unformattedInvInputs = unformattedInvInputs;
@@ -58,7 +59,7 @@ namespace SellerSense.Model.Reports
         }
 
 
-        private void GetOutOfStockItemsAmazon(List<ViewManager.VM_Inventories.InventoryView> company,  string code)
+        private void GetOutOfStockItemsAmazon(ObservableCollection<ViewManager.VM_Inventories.InventoryView> company,  string code)
         {
             //chk if any inv is assigned, if any value is > 0
             int IsInventoryAssigned = company.Where(x => !string.IsNullOrEmpty(x.AmazonSystemCount) && int.Parse(x.AmazonSystemCount) > 0).Count();
@@ -78,7 +79,7 @@ namespace SellerSense.Model.Reports
             }
         }
 
-        private void GetOutOfStockItemsFlipkart(List<ViewManager.VM_Inventories.InventoryView> company, string code)
+        private void GetOutOfStockItemsFlipkart(ObservableCollection<ViewManager.VM_Inventories.InventoryView> company, string code)
         {
             //chk if any inv is assigned, if any value is > 0
             int IsInventoryAssigned = company.Where(x => !string.IsNullOrEmpty(x.FlipkartSystemCount) && int.Parse(x.FlipkartSystemCount) > 0).Count();
@@ -98,7 +99,7 @@ namespace SellerSense.Model.Reports
             }
         }
 
-        private void GetOutOfStockItemsSnapdeal(List<ViewManager.VM_Inventories.InventoryView> company, string code)
+        private void GetOutOfStockItemsSnapdeal(ObservableCollection<ViewManager.VM_Inventories.InventoryView> company, string code)
         {
             //chk if any inv is assigned, if any value is > 0
             int IsInventoryAssigned = company.Where(x => !string.IsNullOrEmpty(x.SnapdealSystemCount) && int.Parse(x.SnapdealSystemCount) > 0).Count();

@@ -1,6 +1,7 @@
 ﻿using SellerSense.Helper;
 using SellerSense.Views.Inventories;
 using SellerSense.Views.Payments;
+using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace SellerSense
 {
-    internal partial class Welcome : Form
+    internal partial class Welcome : SfForm
     {
         //Company _company;
         SellerSense.ViewManager.VM_Companies _companiesMgr;

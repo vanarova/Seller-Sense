@@ -9,18 +9,18 @@ namespace SellerSense
     {
         //Logger _logger;
         private VM_Company _company { get; set; }
-        private ssGridView<VM_Inventories.InventoryView> cntrlGridView;
+        private ssGrid.ssGridView<VM_Inventories.InventoryView> cntrlGridView;
 
         public InvCntrl(VM_Company company)
         {
             InitializeComponent();
             _company = company;
             //_logger = new FileLogger(company._code);
-            
+
             // Add a child control, custom control using datagridview
-            cntrlGridView = new ssGridView<VM_Inventories.InventoryView>(company._inventoriesViewManager._inventoryViewList, showSearchCntrls:true, tagLabel:"Tag", titleLabel:"Title");
-            cntrlGridView.Dock = DockStyle.Fill;
-            company._inventoriesViewManager.AssignView(cntrlGridView);
+            //cntrlGridView = new ssGrid.ssGridView<VM_Inventories.InventoryView>(company._inventoriesViewManager._inventoryViewList);
+            //cntrlGridView.Dock = DockStyle.Fill;
+            cntrlGridView = company._inventoriesViewManager.AssignView(company) as ssGrid.ssGridView<VM_Inventories.InventoryView>;
 
             tableLayoutPanel1.Controls.Add(
                 //sending list of M_Product
@@ -37,24 +37,7 @@ namespace SellerSense
 
         private void exportAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog folderBrowser = new OpenFileDialog();
-            //// Set validate names and check file exists to false otherwise windows will
-            //// not let you select "Folder Selection."
-            //folderBrowser.ValidateNames = false;
-            //folderBrowser.CheckFileExists = false;
-            //folderBrowser.CheckPathExists = true;
-            //// Always default to Folder Selection.
-            //folderBrowser.FileName = "Folder Selection";
-            //if (folderBrowser.ShowDialog() == DialogResult.OK)
-            //{
-            //    string folderPath = Path.GetDirectoryName(folderBrowser.FileName);
-            //    _company._inventoriesModel.ExportAmazonInventoryFile(folderPath);
-            //    _company._inventoriesModel.ExportFlipkartInventoryFile(folderPath);
-            //    _company._inventoriesModel.ExportSnapdealInventoryFile(folderPath);
-            //    _company._inventoriesModel.ExportMeeshoInventoryFile(folderPath);
-
-            //    // ...
-            //}
+            
         }
 
         
