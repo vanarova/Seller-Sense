@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -51,7 +52,7 @@ namespace SellerSense
 
        public enum SearchType
         {
-            ByUserId,ByCompanyId
+            ByUserId, ByCompanyId
         }
 
         //public struct ICols
@@ -74,6 +75,19 @@ namespace SellerSense
         //     public const string msyscount = "Meesho System Count";
         //     public const string notes = "Notes";
         //}
+
+        //public static readonly Color BorderColor = Color.DeepSkyBlue;
+
+        public struct Theme 
+        {
+            //public static readonly Color MainFormBorderColor = Color.SteelBlue;
+            public static readonly int MainFormBorderWidth = 3;
+            public static readonly Color BorderColor = Color.SteelBlue;
+            
+            public static readonly int BorderWidth = 2;
+
+
+        }
 
 
         public struct MCols

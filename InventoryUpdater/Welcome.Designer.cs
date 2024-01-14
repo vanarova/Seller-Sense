@@ -1,4 +1,6 @@
-﻿namespace SellerSense
+﻿using Syncfusion.WinForms.Controls;
+
+namespace SellerSense
 {
     partial class Welcome
     {
@@ -29,7 +31,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Welcome));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tblWelcomeButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btn_Open = new System.Windows.Forms.Button();
             this.btn_Reports = new System.Windows.Forms.Button();
@@ -41,16 +42,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tblWelcomeButtons.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(962, 24);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // tblWelcomeButtons
             // 
@@ -140,6 +131,7 @@
             // 
             // btn_Product
             // 
+            this.btn_Product.AccessibleName = "Button";
             this.btn_Product.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_Product.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_Product.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -195,16 +187,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(962, 548);
             this.Controls.Add(this.tblWelcomeButtons);
-            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IconSize = new System.Drawing.Size(32, 32);
             this.IsMdiContainer = true;
             this.KeyPreview = true;
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Welcome";
+            this.Style.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Style.MdiChild.IconHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;
             this.Text = "Seller-Sense";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Welcome_Load);
@@ -214,7 +208,6 @@
             this.tblWelcomeButtons.ResumeLayout(false);
             this.tblWelcomeButtons.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -223,7 +216,6 @@
         private System.Windows.Forms.TableLayoutPanel tblWelcomeButtons;
         private System.Windows.Forms.Button btn_Inv;
         private System.Windows.Forms.Button btn_Product;
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ProgressBar pbarLoadForms;
         private System.Windows.Forms.Button btn_Reports;
         private System.Windows.Forms.Button btn_Setup;

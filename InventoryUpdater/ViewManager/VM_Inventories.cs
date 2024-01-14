@@ -129,14 +129,13 @@ namespace SellerSense.ViewManager
                     _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
                     //This is important to update inventory for this company first,
                     //then update other companies. Else other company wont reflect changes made in currnt company
-                    UpdateCrossCompanySharedInvForThisCompany();
+                    //UpdateCrossCompanySharedInvForThisCompany();
                     _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
+
+
+                    //TODO : composition products functionality is not yet ready.
                     foreach (var item in _inventoryViewList)
                         UpdateComposedChildProducts(item.InHouseCode);
-                    //UpdateComposedChildProducts(list[e.NewIndex].InHouseCode);
-                    //_ssGridView.UpdateBindings();
-                    //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
-
                 }
             }
             if (e != null && e.PropertyName == Constants.InventoryViewCols.FlipkartCount)
@@ -154,7 +153,7 @@ namespace SellerSense.ViewManager
                         invViewObj.FlipkartSystemCount.ToString(),
                         invViewObj.FlipkartCount.ToString());
                     _m_externalInventoriesModel._fkImportedInventoryList._fkUIModifiedInvList.Add(iamz);
-                    UpdateCrossCompanySharedInvForThisCompany();
+                    //UpdateCrossCompanySharedInvForThisCompany();
                     _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
                     //_ssGridView.UpdateBindings();
                     //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
@@ -175,7 +174,7 @@ namespace SellerSense.ViewManager
                         invViewObj.SnapdealSystemCount.ToString(),
                         invViewObj.SnapdealCount.ToString());
                     _m_externalInventoriesModel._spdImportedInventoryList._spdUIModifiedInvList.Add(iamz);
-                    UpdateCrossCompanySharedInvForThisCompany();
+                    //UpdateCrossCompanySharedInvForThisCompany();
                     _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
                     //_ssGridView.UpdateBindings();
                     //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
@@ -662,7 +661,9 @@ namespace SellerSense.ViewManager
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Amz.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList,null, saveOnlySystemInventory:true);
-            
+
+            foreach (var item in _inventoryViewList)
+                UpdateComposedChildProducts(item.InHouseCode);
             //EngageCellEvents();
             //foreach (var item in list)
             //{
@@ -688,8 +689,10 @@ namespace SellerSense.ViewManager
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Fk.SaveInvSnapshot(_m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList,null, saveOnlySystemInventory:true);
-            
-            EngageCellEvents() ;    
+
+            foreach (var item in _inventoryViewList)
+                UpdateComposedChildProducts(item.InHouseCode);
+            // EngageCellEvents() ;    
         }
 
         private async Task ImportSnapdealInv()
@@ -708,8 +711,11 @@ namespace SellerSense.ViewManager
             _crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
             _ssGridView.UpdateBindings();
             _m_invSnapShotModel_Spd.SaveInvSnapshot(_m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList,null, saveOnlySystemInventory: true);
-            
-            EngageCellEvents();
+
+
+            foreach (var item in _inventoryViewList)
+                UpdateComposedChildProducts(item.InHouseCode);
+            //EngageCellEvents();
         }
 
 #if IncludeMeesho

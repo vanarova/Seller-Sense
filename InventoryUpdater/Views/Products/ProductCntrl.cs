@@ -9,7 +9,7 @@ namespace SellerSense
     {
         //Logger _logger;
         public VM_Company _company { get; set; }
-        private ssGrid.ssGridView<VM_Products.ProductView> cntrlGridView;
+        //private ssGrid.ssGridView<VM_Products.ProductView> cntrlGridView;
 
         public ProductCntrl(VM_Company company)
         {

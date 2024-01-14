@@ -95,10 +95,16 @@ namespace SellerSense.ViewManager
 #if IncludeMeesho
             _v_productCntrl.meeshoToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Meesho); };
 #endif
-            _v_productCntrl.button_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
+            _v_productCntrl.sfButton_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
             _v_productCntrl.mapAmzSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Amazon); };
             _v_productCntrl.mapFkSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Flipkart); };
             _v_productCntrl.mapSpdSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Snapdeal); };
+            //_v_productCntrl.sfButton_Columns.Click += (s, e) => { };
+            //_v_productCntrl.splitButton_Export.DropDownItems[0].Click += (s, e) => { ssGrid.HelperExcel.ExportAllRecordsToExcel(_datagrid,e); };
+            //_v_productCntrl.splitButton_Export.DropDownItems[1].Click += (s, e) => { ssGrid.HelperPDF.ExportToPDF(_datagrid, e); };
+            //_v_productCntrl.sfComboBox_pageSize.SelectedValueChanged += (s, e) => { 
+            ////    _datagrid.Invalidate(); 
+            //};
         }
 
         private void OpenProductMapSKUForm(Constants.Company comp)

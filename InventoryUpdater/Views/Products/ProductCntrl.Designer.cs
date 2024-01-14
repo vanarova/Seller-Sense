@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductCntrl));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.fileStrip = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem_Save = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,12 +41,11 @@
             this.snapdealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapSPDCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapSpdSKUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-#if IncludeMeesho
-            this.meeshoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-#endif
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label_help = new System.Windows.Forms.Label();
-            this.button_AddProduct = new System.Windows.Forms.Button();
+            this.toolstripitem_csv = new Syncfusion.Windows.Forms.Tools.toolstripitem();
+            this.toolstripitem_pdf = new Syncfusion.Windows.Forms.Tools.toolstripitem();
+            this.sfButton_AddProduct = new Syncfusion.WinForms.Controls.SfButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -64,7 +64,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(749, 554);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -78,16 +78,12 @@
             this.toolStripMenuItem_Save,
             this.amazonToolStripMenuItem,
             this.flipkartToolStripMenuItem,
-            this.snapdealToolStripMenuItem
-#if IncludeMeesho
-            ,this.meeshoToolStripMenuItem
-#endif
-            });
+            this.snapdealToolStripMenuItem});
             this.fileStrip.Location = new System.Drawing.Point(0, 0);
             this.fileStrip.MinimumSize = new System.Drawing.Size(0, 12);
             this.fileStrip.Name = "fileStrip";
             this.fileStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.fileStrip.Size = new System.Drawing.Size(346, 24);
+            this.fileStrip.Size = new System.Drawing.Size(273, 24);
             this.fileStrip.TabIndex = 9;
             this.fileStrip.Text = "menuStrip1";
             // 
@@ -160,24 +156,16 @@
             this.mapSpdSKUToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.mapSpdSKUToolStripMenuItem.Text = "Map SKU";
             // 
-            // meeshoToolStripMenuItem
-            // 
-#if IncludeMeesho
-            this.meeshoToolStripMenuItem.Name = "meeshoToolStripMenuItem";
-            this.meeshoToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.meeshoToolStripMenuItem.Text = "Meesho🍱";
-#endif
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label_help);
-            this.flowLayoutPanel1.Controls.Add(this.button_AddProduct);
+            this.flowLayoutPanel1.Controls.Add(this.sfButton_AddProduct);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(346, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(273, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(403, 24);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(476, 24);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // label_help
@@ -185,26 +173,39 @@
             this.label_help.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label_help.AutoSize = true;
             this.label_help.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label_help.Location = new System.Drawing.Point(386, 2);
+            this.label_help.Location = new System.Drawing.Point(459, 1);
             this.label_help.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_help.Name = "label_help";
             this.label_help.Size = new System.Drawing.Size(15, 19);
             this.label_help.TabIndex = 1;
             this.label_help.Text = "?";
             // 
-            // button_AddProduct
+            // toolstripitem_csv
             // 
-            this.button_AddProduct.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_AddProduct.AutoSize = true;
-            this.button_AddProduct.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_AddProduct.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.button_AddProduct.Location = new System.Drawing.Point(303, 0);
-            this.button_AddProduct.Margin = new System.Windows.Forms.Padding(0);
-            this.button_AddProduct.Name = "button_AddProduct";
-            this.button_AddProduct.Size = new System.Drawing.Size(81, 24);
-            this.button_AddProduct.TabIndex = 2;
-            this.button_AddProduct.Text = "Add Product";
-            this.button_AddProduct.UseVisualStyleBackColor = true;
+            this.toolstripitem_csv.Image = ((System.Drawing.Image)(resources.GetObject("toolstripitem_csv.Image")));
+            this.toolstripitem_csv.Name = "toolstripitem_csv";
+            this.toolstripitem_csv.Size = new System.Drawing.Size(32, 19);
+            this.toolstripitem_csv.Text = "CSV";
+            // 
+            // toolstripitem_pdf
+            // 
+            this.toolstripitem_pdf.Image = ((System.Drawing.Image)(resources.GetObject("toolstripitem_pdf.Image")));
+            this.toolstripitem_pdf.Name = "toolstripitem_pdf";
+            this.toolstripitem_pdf.Size = new System.Drawing.Size(32, 19);
+            this.toolstripitem_pdf.Text = "PDF";
+            // 
+            // sfButton_AddProduct
+            // 
+            this.sfButton_AddProduct.AccessibleName = "Button";
+            this.sfButton_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton_AddProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton_AddProduct.Location = new System.Drawing.Point(383, 1);
+            this.sfButton_AddProduct.Margin = new System.Windows.Forms.Padding(1);
+            this.sfButton_AddProduct.Name = "sfButton_AddProduct";
+            this.sfButton_AddProduct.Size = new System.Drawing.Size(73, 20);
+            this.sfButton_AddProduct.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.sfButton_AddProduct.TabIndex = 3;
+            this.sfButton_AddProduct.Text = "Product";
             // 
             // ProductCntrl
             // 
@@ -237,12 +238,14 @@
 #endif
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label_help;
-        internal System.Windows.Forms.Button button_AddProduct;
         internal System.Windows.Forms.ToolStripMenuItem mapAsinToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem mapAmzSKUToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem mapFSNToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem mapFkSKUToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem mapSPDCodeToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem mapSpdSKUToolStripMenuItem;
+        internal Syncfusion.WinForms.Controls.SfButton sfButton_AddProduct;
+        private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem_csv;
+        private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem_pdf;
     }
 }

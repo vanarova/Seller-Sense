@@ -144,3 +144,11 @@ C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdate
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.Tools.Windows.xml
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.Grid.Windows.XmlSerializers.dll
 C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\obj\DebugWithNoGlobalExeceptions\SellerSense.Views.Products.Products.resources
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.SfDataGridConverter.WinForms.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.XlsIO.Base.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.Pdf.Base.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.Compression.Base.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.SfDataGridConverter.WinForms.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.XlsIO.Base.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.Pdf.Base.xml
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\InventoryUpdater\bin\DebugWithNoGlobalExeceptions\Syncfusion.Compression.Base.xml

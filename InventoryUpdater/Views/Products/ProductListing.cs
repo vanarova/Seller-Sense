@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace SellerSense
 {
-    internal partial class ProductListing : Form
+    internal partial class ProductListing : SfForm
     {
         private ViewManager.VM_Companies _companiesMgr;
 
@@ -22,6 +23,12 @@ namespace SellerSense
         public ProductListing(ViewManager.VM_Companies companies)
         {
             InitializeComponent();
+            this.Style.TitleBar.ForeColor = Color.White;
+            this.Style.TitleBar.BackColor = Constants.Theme.BorderColor;
+            this.Style.Border.Color = Constants.Theme.BorderColor;
+            this.Style.InactiveBorder.Color = Constants.Theme.BorderColor;
+            this.Style.Border.Width = Constants.Theme.BorderWidth;
+            this.Style.InactiveBorder.Width = Constants.Theme.BorderWidth;
             _companiesMgr = companies;
             CreateTabControls();
         }

@@ -24,8 +24,23 @@ namespace SellerSense
             _companiesMgr = new SellerSense.ViewManager.VM_Companies();
             
             InitializeComponent();
-            //ProjIO.LoadUserSettings();
+            this.Style.TitleBar.Height = 45;
+            FontFamily fontFamily = new FontFamily("Calibri");
+            Font font = new Font(
+               fontFamily,
+               24,
+               FontStyle.Regular,
+               GraphicsUnit.Pixel);
+            this.Style.TitleBar.ForeColor = Color.White;
+            this.Style.TitleBar.Font = font;
             
+            this.Style.TitleBar.BackColor = Constants.Theme.BorderColor;
+            this.Style.Border.Color = Constants.Theme.BorderColor;
+            this.Style.InactiveBorder.Color = Constants.Theme.BorderColor;
+            this.Style.Border.Width = Constants.Theme.MainFormBorderWidth;
+            this.Style.InactiveBorder.Width = Constants.Theme.MainFormBorderWidth;
+            //ProjIO.LoadUserSettings();
+
         }
 
 

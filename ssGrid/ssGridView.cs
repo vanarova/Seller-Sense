@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PrimitiveExt;
+using Syncfusion.Windows.Forms;
 using Syncfusion.WinForms.DataGrid;
 using Syncfusion.WinForms.DataPager;
 
@@ -22,15 +23,7 @@ namespace ssGrid
         //private SortableBindingList<T> _bindeddata = new SortableBindingList<T>();
         ObservableCollection<T> _data;
 
-        //public event Action<SfDataGrid> OnControlLoad;
-        //public event Action<SfDataGrid, Syncfusion.WinForms.DataGrid.Events.DataSourceChangedEventArgs> DataBindingComplete;
         public bool IsLoading { set { progressBar_Search.Visible = value; } }
-        private int _currentPageNumber_backingField;
-        //private int _currentPageNumber
-        //{
-        //    get { return _currentPageNumber_backingField; }
-        //    set { _currentPageNumber_backingField = value; UpdateBindings(); }
-        //}
         private bool _isBindingListDirtyValue = false;
         public bool _isBindingListDirty
         {
@@ -45,6 +38,19 @@ namespace ssGrid
             }
         }
 
+        /// <summary>
+        /// Specifies the ColumnChooser control.
+        /// </summary>
+        private Syncfusion.WinForms.DataGrid.Interactivity.ColumnChooser columnChooser;
+
+        /// <summary>
+        /// Specifies the column chooser pop up.
+        /// </summary>
+        private Syncfusion.WinForms.DataGrid.Interactivity.ColumnChooserPopup columnChooserPopup;
+
+
+        public int PageSize { set { sfDataPager1.PageSize = value; } }
+
         public ssGridView(ObservableCollection<T> data)
         {
             _data = data;
@@ -58,27 +64,46 @@ namespace ssGrid
             _data = data;
             InitializeComponent();
             InitGridUI();
-            BindEvents(sfDataGrid2);
+            BindEvents(sfDataGrid);
         }
 
         private void InitGridUI()
         {
-            sfDataGrid2.RowHeight = 70;
-            sfDataGrid2.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.Fill;
-            sfDataGrid2.AllowResizingColumns = true;
-            sfDataGrid2.AutoGenerateColumns = true;
-            sfDataGrid2.AllowFiltering = true;
+            sfDataGrid.RowHeight = 70;
+            sfDataGrid.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.Fill;
+            sfDataGrid.AllowResizingColumns = true;
+            sfDataGrid.AutoGenerateColumns = true;
+            sfDataGrid.AllowFiltering = true;
+            comboBox_PageSize.Items.Add(10);
+            comboBox_PageSize.Items.Add(20);
+            comboBox_PageSize.Items.Add(50);
+            comboBox_PageSize.Items.Add(100);
+            comboBox_PageSize.Items.Add(200);
+            
+            columnChooser = new Syncfusion.WinForms.DataGrid.Interactivity.ColumnChooser(sfDataGrid);
+            columnChooser.Location = new Point((int)DpiAware.LogicalToDeviceUnits(40), (int)DpiAware.LogicalToDeviceUnits(140));
+            columnChooserPopup = new Syncfusion.WinForms.DataGrid.Interactivity.ColumnChooserPopup(sfDataGrid);
+
+            comboBox_PageSize.SelectedIndexChanged += (s, e) => { 
+                sfDataPager1.PageSize = Convert.ToInt32(comboBox_PageSize.SelectedItem.ToString());
+                sfDataGrid.Invalidate();
+            };
+
+            splitButton_Export.DropDownItems[0].Click += (s, e) => { ssGrid.HelperExcel.ExportAllRecordsToExcel(sfDataGrid, e); };
+            splitButton_Export.DropDownItems[1].Click += (s, e) => { ssGrid.HelperPDF.ExportToPDF(sfDataGrid, e); };
+
+            sfButton_ColumnChooser.Click += (s, e) => { columnChooserPopup.Show(); };
         }
 
         private void ssGridView_Load(object sender, EventArgs e)
         {
             
-            sfDataGrid2.DataSource = _data;
+            sfDataGrid.DataSource = _data;
             // Set the data source for the SfDataPager.
             //SfDataPager sfDataPager1 = new SfDataPager();
             sfDataPager1.DataSource = _data;
             sfDataPager1.PageSize = 10;
-            sfDataGrid2.DataSource = sfDataPager1.PagedSource;
+            sfDataGrid.DataSource = sfDataPager1.PagedSource;
             Application.DoEvents();
         }
 

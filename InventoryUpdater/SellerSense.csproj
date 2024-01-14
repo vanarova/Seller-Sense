@@ -444,6 +444,8 @@
     <Content Include="Docs\Diagram.bmp" />
     <Content Include="Images\1138px-OOjs_UI_icon_alert-warning-black.svg.png" />
     <Content Include="Images\android-chrome-192x192.png" />
+    <None Include="Images\pdf.ico" />
+    <None Include="Images\exc.ico" />
     <Content Include="Images\favicon-32x32.png" />
     <Content Include="Images\Information.png" />
     <None Include="Images\link.png" />

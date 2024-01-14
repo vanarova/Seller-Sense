@@ -20,10 +20,12 @@ namespace SellerSense.Views.Payments
         public Payments(ViewManager.VM_Companies companies)
         {
             InitializeComponent();
-            this.Style.Border.Color = Color.DeepSkyBlue;
-            this.Style.InactiveBorder.Color = Color.DeepSkyBlue;
-            this.Style.Border.Width = 2;
-            this.Style.InactiveBorder.Width = 2;
+            this.Style.TitleBar.ForeColor = Color.White;
+            this.Style.TitleBar.BackColor = Constants.Theme.BorderColor;
+            this.Style.Border.Color = Constants.Theme.BorderColor;
+            this.Style.InactiveBorder.Color = Constants.Theme.BorderColor;
+            this.Style.Border.Width = Constants.Theme.BorderWidth;
+            this.Style.InactiveBorder.Width = Constants.Theme.BorderWidth;
             _companiesMgr = companies;
             CreateTabControls();
         }
