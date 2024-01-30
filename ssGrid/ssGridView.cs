@@ -51,18 +51,22 @@ namespace ssGrid
 
         public int PageSize { set { sfDataPager1.PageSize = value; } }
 
-        public ssGridView(ObservableCollection<T> data)
+        public ssGridView(ObservableCollection<T> data, bool allowGrouping = false)
         {
             _data = data;
             InitializeComponent();
             InitGridUI();
+            sfDataGrid.AllowGrouping = allowGrouping;
+            sfDataGrid.ShowGroupDropArea = allowGrouping;
             //sfDataGrid2.DetailsViewLoading += (s, ev) => { DataBindingComplete?.Invoke(sfDataGrid2, ev); };
         }
 
-        public ssGridView(ObservableCollection<T> data,Action<SfDataGrid> BindEvents)
+        public ssGridView(ObservableCollection<T> data,Action<SfDataGrid> BindEvents, bool allowGrouping = false)
         {
             _data = data;
             InitializeComponent();
+            sfDataGrid.AllowGrouping = allowGrouping;
+            sfDataGrid.ShowGroupDropArea = allowGrouping;
             InitGridUI();
             BindEvents(sfDataGrid);
         }

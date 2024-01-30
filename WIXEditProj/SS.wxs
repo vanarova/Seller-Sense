@@ -31,6 +31,7 @@
                         <File Id="SIXLABORS.IMAGESHARP.DLL" Name="SixLabors.ImageSharp.dll" Source="..\InventoryUpdater\bin\Release\SixLabors.ImageSharp.dll" />
                         <File Id="SSGRID.DLL" Name="ssGrid.dll" Source="..\InventoryUpdater\bin\Release\ssGrid.dll" />
                         <File Id="SSVIEWCONTROLS.DLL" Name="ssViewControls.dll" Source="..\InventoryUpdater\bin\Release\ssViewControls.dll" />
+                        <File Id="SYNCFUSION.COMPRESSION.BASE.DLL" Name="Syncfusion.Compression.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Compression.Base.dll" />
                         <File Id="SYNCFUSION.CORE.WINFORMS.DLL" Name="Syncfusion.Core.WinForms.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Core.WinForms.dll" />
                         <File Id="SYNCFUSION.DATA.WINFORMS.DLL" Name="Syncfusion.Data.WinForms.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Data.WinForms.dll" />
                         <File Id="SYNCFUSION.DATASOURCE.WINFORMS.DLL" Name="Syncfusion.DataSource.WinForms.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.DataSource.WinForms.dll" />
@@ -38,7 +39,9 @@
                         <File Id="SYNCFUSION.GRID.WINDOWS.DLL" Name="Syncfusion.Grid.Windows.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Grid.Windows.dll" />
                         <File Id="SYNCFUSION.GRID.WINDOWS.XMLSERIALIZERS.DLL" Name="Syncfusion.Grid.Windows.XmlSerializers.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Grid.Windows.XmlSerializers.dll" />
                         <File Id="SYNCFUSION.GRIDCOMMON.WINFORMS.DLL" Name="Syncfusion.GridCommon.WinForms.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.GridCommon.WinForms.dll" />
+                        <File Id="SYNCFUSION.PDF.BASE.DLL" Name="Syncfusion.Pdf.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Pdf.Base.dll" />
                         <File Id="SYNCFUSION.SFDATAGRID.WINFORMS.DLL" Name="Syncfusion.SfDataGrid.WinForms.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.SfDataGrid.WinForms.dll" />
+                        <File Id="SYNCFUSION.SFDATAGRIDCONVERTER.WINFORMS.DLL" Name="Syncfusion.SfDataGridConverter.WinForms.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.SfDataGridConverter.WinForms.dll" />
                         <File Id="SYNCFUSION.SFINPUT.WINFORMS.DLL" Name="Syncfusion.SfInput.WinForms.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.SfInput.WinForms.dll" />
                         <File Id="SYNCFUSION.SFLISTVIEW.WINFORMS.DLL" Name="Syncfusion.SfListView.WinForms.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.SfListView.WinForms.dll" />
                         <File Id="SYNCFUSION.SHARED.BASE.DLL" Name="Syncfusion.Shared.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Shared.Base.dll" />
@@ -46,6 +49,7 @@
                         <File Id="SYNCFUSION.SPELLCHECKER.BASE.DLL" Name="Syncfusion.SpellChecker.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.SpellChecker.Base.dll" />
                         <File Id="SYNCFUSION.TOOLS.BASE.DLL" Name="Syncfusion.Tools.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Base.dll" />
                         <File Id="SYNCFUSION.TOOLS.WINDOWS.DLL" Name="Syncfusion.Tools.Windows.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Windows.dll" />
+                        <File Id="SYNCFUSION.XLSIO.BASE.DLL" Name="Syncfusion.XlsIO.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.XlsIO.Base.dll" />
                         <File Id="SYSTEM.BUFFERS.DLL" Name="System.Buffers.dll" Source="..\InventoryUpdater\bin\Release\System.Buffers.dll" />
                         <File Id="SYSTEM.DRAWING.COMMON.DLL" Name="System.Drawing.Common.dll" Source="..\InventoryUpdater\bin\Release\System.Drawing.Common.dll" />
                         <File Id="SYSTEM.MEMORY.DLL" Name="System.Memory.dll" Source="..\InventoryUpdater\bin\Release\System.Memory.dll" />
@@ -74,13 +78,16 @@
                         <File Id="OPENCVSHARP.XML" Name="OpenCvSharp.xml" Source="..\InventoryUpdater\bin\Release\OpenCvSharp.xml" />
                         <File Id="SIXLABORS.FONTS.XML" Name="SixLabors.Fonts.xml" Source="..\InventoryUpdater\bin\Release\SixLabors.Fonts.xml" />
                         <File Id="SIXLABORS.IMAGESHARP.XML" Name="SixLabors.ImageSharp.xml" Source="..\InventoryUpdater\bin\Release\SixLabors.ImageSharp.xml" />
+                        <File Id="SYNCFUSION.COMPRESSION.BASE.XML" Name="Syncfusion.Compression.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Compression.Base.xml" />
                         <File Id="SYNCFUSION.CORE.WINFORMS.XML" Name="Syncfusion.Core.WinForms.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Core.WinForms.xml" />
                         <File Id="SYNCFUSION.DATA.WINFORMS.XML" Name="Syncfusion.Data.WinForms.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Data.WinForms.xml" />
                         <File Id="SYNCFUSION.DATASOURCE.WINFORMS.XML" Name="Syncfusion.DataSource.WinForms.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.DataSource.WinForms.xml" />
                         <File Id="SYNCFUSION.GRID.BASE.XML" Name="Syncfusion.Grid.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Grid.Base.xml" />
                         <File Id="SYNCFUSION.GRID.WINDOWS.XML" Name="Syncfusion.Grid.Windows.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Grid.Windows.xml" />
                         <File Id="SYNCFUSION.GRIDCOMMON.WINFORMS.XML" Name="Syncfusion.GridCommon.WinForms.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.GridCommon.WinForms.xml" />
+                        <File Id="SYNCFUSION.PDF.BASE.XML" Name="Syncfusion.Pdf.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Pdf.Base.xml" />
                         <File Id="SYNCFUSION.SFDATAGRID.WINFORMS.XML" Name="Syncfusion.SfDataGrid.WinForms.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.SfDataGrid.WinForms.xml" />
+                        <File Id="SYNCFUSION.SFDATAGRIDCONVERTER.WINFORMS.XML" Name="Syncfusion.SfDataGridConverter.WinForms.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.SfDataGridConverter.WinForms.xml" />
                         <File Id="SYNCFUSION.SFINPUT.WINFORMS.XML" Name="Syncfusion.SfInput.WinForms.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.SfInput.WinForms.xml" />
                         <File Id="SYNCFUSION.SFLISTVIEW.WINFORMS.XML" Name="Syncfusion.SfListView.WinForms.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.SfListView.WinForms.xml" />
                         <File Id="SYNCFUSION.SHARED.BASE.XML" Name="Syncfusion.Shared.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Shared.Base.xml" />
@@ -88,6 +95,7 @@
                         <File Id="SYNCFUSION.SPELLCHECKER.BASE.XML" Name="Syncfusion.SpellChecker.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.SpellChecker.Base.xml" />
                         <File Id="SYNCFUSION.TOOLS.BASE.XML" Name="Syncfusion.Tools.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Base.xml" />
                         <File Id="SYNCFUSION.TOOLS.WINDOWS.XML" Name="Syncfusion.Tools.Windows.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Windows.xml" />
+                        <File Id="SYNCFUSION.XLSIO.BASE.XML" Name="Syncfusion.XlsIO.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.XlsIO.Base.xml" />
                         <File Id="SYSTEM.BUFFERS.XML" Name="System.Buffers.xml" Source="..\InventoryUpdater\bin\Release\System.Buffers.xml" />
                         <File Id="SYSTEM.MEMORY.XML" Name="System.Memory.xml" Source="..\InventoryUpdater\bin\Release\System.Memory.xml" />
                         <File Id="SYSTEM.NUMERICS.VECTORS.XML" Name="System.Numerics.Vectors.xml" Source="..\InventoryUpdater\bin\Release\System.Numerics.Vectors.xml" />

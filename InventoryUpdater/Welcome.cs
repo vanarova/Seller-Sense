@@ -333,5 +333,11 @@ namespace SellerSense
         {
             _aboutBox.ShowDialog();
         }
+
+        private void label_Registration_Click(object sender, EventArgs e)
+        {
+            Registration registration = new Registration();
+            registration.ShowDialog();
+        }
     }
 }
