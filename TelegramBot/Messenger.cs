@@ -43,35 +43,43 @@ namespace TelegramBot
         {
             //if (logDepth != _logLevel)
             //    return;
-            using (HttpClient client = new HttpClient())
+            try
             {
-                string apiUrl = $"https://api.telegram.org/bot{botToken}/sendMessage";
-                var content = new FormUrlEncodedContent(new[]
+                using (HttpClient client = new HttpClient())
                 {
+                    string apiUrl = $"https://api.telegram.org/bot{botToken}/sendMessage";
+                    var content = new FormUrlEncodedContent(new[]
+                    {
                 new KeyValuePair<string, string>("chat_id", chatId.ToString()),
                 new KeyValuePair<string, string>("text", message)
                 //new KeyValuePair<string, string>("parse_mode", "markdown")
             });
 
-                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
-                string responseContent = await response.Content.ReadAsStringAsync();
+                    HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                    string responseContent = await response.Content.ReadAsStringAsync();
 
-                //if (response.IsSuccessStatusCode)
-                //{
-                //    Console.WriteLine("Message sent successfully!");
-                //}
-                //else
-                //{
-                //    Console.WriteLine($"Message sending failed. Response: {responseContent}");
-                //}
-                return responseContent;
+                    //if (response.IsSuccessStatusCode)
+                    //{
+                    //    Console.WriteLine("Message sent successfully!");
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine($"Message sending failed. Response: {responseContent}");
+                    //}
+                    return responseContent;
+                }
+            }
+            catch (Exception ex) {
+                //ignore exceptions, incase of network issues.
+                //Todo : Can show a status message
+                return String.Empty;
             }
         }
 
         public static async Task SendTelegramImage(string botToken, long chatId, string message,
             string imagePath, string fileName)
         {
-           
+            try { 
             using (HttpClient client = new HttpClient())
             {
                 string apiUrl = $"https://api.telegram.org/bot{botToken}/sendPhoto";
@@ -93,6 +101,12 @@ namespace TelegramBot
                     Console.WriteLine($"Image sending failed. Response: {responseContent}");
                 }
             }
+            }
+            catch (Exception ex)
+            {
+                //ignore exceptions, incase of network issues.
+                //Todo : Can show a status message
+            }
         }
 
 
@@ -100,7 +114,7 @@ namespace TelegramBot
         public static async Task SendTelegramFile(string botToken, long chatId, 
             string filePath, string fileName)
         {
-           
+            try { 
             using (HttpClient client = new HttpClient())
             {
                 string apiUrl = $"https://api.telegram.org/bot{botToken}/sendDocument";
@@ -119,6 +133,12 @@ namespace TelegramBot
                 {
                     Console.WriteLine($"File sending failed. Response: {responseContent}");
                 }
+            }
+            }
+            catch (Exception ex)
+            {
+                //ignore exceptions, incase of network issues.
+                //Todo : Can show a status message
             }
         }
 

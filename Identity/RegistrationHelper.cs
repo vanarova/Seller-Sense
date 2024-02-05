@@ -23,6 +23,11 @@ namespace Identity
             return JsonConvert.SerializeObject(registrationObj);
         }
 
+        private static RegistrationHelper JSONAsRegistrationDetails(string JSON)
+        {
+            return JsonConvert.DeserializeObject<RegistrationHelper>(JSON);
+        }
+
         public static void Register(RegistrationHelper registrationObj)
         {
             string registrationDetails = GetRegistrationDetailsAsJSON(registrationObj);
@@ -33,15 +38,26 @@ namespace Identity
 
         }
         
-
-        public static bool VerifyLic(RegistrationHelper registrationObj)
+        public static async Task<RegistrationHelper> Verify()
         {
+            string uid = GetIds();
             FirebaseHelper fbHelper = new FirebaseHelper();
-            fbHelper.GetFirebaseDatabaseRef();
-            string UID = GetIds();
-            //this returns all database, query here ---
-            //fbHelper.ReadData();
+            var v = await fbHelper.ReadData(uid); 
+            if (v == default(Dictionary<string, object>))
+                return null;
+            string customerObj = v[uid] as string;
+            RegistrationHelper registrationObj =JSONAsRegistrationDetails(customerObj);
+            return registrationObj;
         }
+
+        //public static bool VerifyLic(RegistrationHelper registrationObj)
+        //{
+        //    FirebaseHelper fbHelper = new FirebaseHelper();
+        //    fbHelper.GetFirebaseDatabaseRef();
+        //    string UID = GetIds();
+        //    //this returns all database, query here ---
+        //    //fbHelper.ReadData();
+        //}
 
         private static string GetIds()
         {
@@ -58,7 +74,11 @@ namespace Identity
 
         private class FirebaseHelper
         {
-
+            private FirestoreDb firestoreDb;
+            public FirebaseHelper()
+            {
+                firestoreDb = GetFirebaseDatabaseRef();
+            }
             internal FirestoreDb GetFirebaseDatabaseRef()
             {
                 //string jsonKey = @"{ ""type"": ""service_account"",  ""project_id"": ""seller - sense - license"",  ""private_key_id"": ""6c9c50e996205ae44546b9c6e6642547e212f47e"",  ""private_key"": ""-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDKSs17zg+Cz2cA\nBYLmlMACHgQzx9ypVp42xWVIn+zwtlAHy9xGg6U/theM0oXavUGFhbbdc7hkJOuH\nP5pZ6uqAVYV5jNkE2Vym2erUDKmRdFfPI1Bioe3DPDrOJmKfL8LZAjy+69Ywml32\nWpn3x5An1+TGwlb+yrew+IJ0byWoKk40g5kZkJUAYnQ08kQZjIUaqiYcZb6JtG5H\nINgf0OOvSVXTEVk3OutGV8admhHximL2jyIp2XoOnAZhaPzfRs3h2e701SztHNZQ\n55Bd3tDBzywORx1FrDFKZEclFOiv7gPcdp5yEt5qJMJObF6KGX4r4QAGNgcAx9Oe\nXb1khvaRAgMBAAECggEAB//uKTcmdYElkOp24S7Y2sCUgJZ21UbC0BZNbYI/Cswf\n5TYIcIyuU1Mccm4FG3fMZHcLqq1jyWiNHKKtFEEaK8/t/Mb/Uk30+DdyDheP2Vvj\nKNKsADGIgzXxmqNJl0Nako3ASJnPlSmWnYpa0EHW4196GWrYKUBrpBrIwGlgkSpE\nmXCpX+9feahNdjb624NI4nhCtmdklNTe+Nkw7DGy2q2QleydDxp1rAPg2qKvyW+e\n3G+uXsJnSZb4eXwA7eWGnIUTWSnMX9SfNeQo3ka2NlRqDxO404JZTwKgh4ptHxu4\n4eHXsDEO3Ob3PR6Coz6TR2CB5Gwno5tKm1mLA/lZ4QKBgQDwqu+UqVoSd08/9ESv\nd0ZdkfkqgbEkRBtXkjZ0ogboStN0w9arsneYAj2gGburqQ9uInYL65WGsQCw1NTM\nDL6X7x4f69FhN64rtjzgQ5W59GCG/7XRl8QXt9m8c140xCju8IA3k1PjQaxW0A+s\njDCTQqya/QEPFYQfgasefwHnsQKBgQDXLf+HspwsSZhxZnjprPvHb30gD8VaXyL7\nlT9cGb8WRzllK0l4q3nG4ALTxOpwhOd1aANNCJJJ7qw/5x9wMRW+2vDQ2F1mzqoC\nT5vaEiQMeE+I40Aqb7o/h3jc5byWt21X+zH55AAG2T5ByfBvRGwHp1jz5k2QZ8e5\nHHExqmiU4QKBgGfsqIA9kROgSayIQpCypMQLINlmH6RVdKkgDjvXK7xrc1xcpPqH\nmnUdopbcBdpeqrcYUnlbRbpf/Lhfb3SdnD/nlc6a+lNMw/1EOI1vIdym1nf1PAJB\n0v+a+H8UIn4Ops5nNDbLe9IKreze86XC88bjZ72VuztUQzWHvOjyV1RBAoGAat9X\nuOgHFSAAbOI+T6Ew9B71gIUUugvibh30eCP5enEpmovjU+Gm/BWqkc+NuRDpfLCK\nYypMrheyyZJbVPesGzzWuoOb8EHYwokTmT3FVcQzjIOCDRGs6Xy5lM0t25WC413J\ntpl9QemIOFi56CmNlkeRsKHECGLjGZd8yPQgOUECgYEA3InhfCNaHb8kkQV90l/2\nWSTXMiaOEehTm8tFebNV9TUqheWPWQpQy614b2oW24oVe6HbVZfrVoLmuYGDNBMZ\n2NMsnomw9vw/gpZV2YE1f4JtUyePoPi88tultyMwJZ/H7G9Q59/jUttxPN7oug6E\n6yMWIDqMiCkT7X3FTC9V8tw=\n-----END PRIVATE KEY-----\n"",  ""client_email"": ""firebase-adminsdk-xlhm3@seller-sense-license.iam.gserviceaccount.com"",  ""client_id"": ""112689015291110913883"",  ""auth_uri"": ""https://accounts.google.com/o/oauth2/auth"",  ""token_uri"": ""https://oauth2.googleapis.com/token"",  ""auth_provider_x509_cert_url"": ""https://www.googleapis.com/oauth2/v1/certs"",  ""client_x509_cert_url"": ""https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-xlhm3%40seller-sense-license.iam.gserviceaccount.com"",  ""universe_domain"": ""googleapis.com""}";
@@ -75,26 +95,53 @@ namespace Identity
                 return firestoreDb;
             }
 
-            public async Task<Dictionary<string, object>> ReadData()
+            public async Task<Dictionary<string, object>> ReadData(string docId)
             {
-                var firestoreDb = GetFirebaseDatabaseRef();
-                DocumentReference dbref = firestoreDb.Collection("lics").Document("tV7bQx9hMB3lJOzA2ops");
-                DocumentSnapshot dbSnap = await dbref.GetSnapshotAsync();
-                if (dbSnap.Exists)
-                    return dbSnap.ToDictionary();
-                else
+                //var firestoreDb = GetFirebaseDatabaseRef();
+                //var docSnap = await dbref.getDoc(docRef);
+                //var q = firestoreDb.Collection("lics").WhereEqualTo("", "");
+                try
+                {
+                    DocumentReference dbref = firestoreDb.Collection("lics").Document(docId);
+
+                    DocumentSnapshot dbSnap = await dbref.GetSnapshotAsync();
+                    if (dbSnap.Exists)
+                        return dbSnap.ToDictionary();
+                    else
+                        return default(Dictionary<string, object>);
+                }catch (Exception ex)
+                {
+                    //throw new InvalidOperationException("Error occurred, " +
+                    //    "while connecting to license server. Please check your internet connection & try again.");
                     return default(Dictionary<string, object>);
+                }
             }
+
+
+            //db.collection('books').where(firebase.firestore.FieldPath.documentId(), '==', 'fK3ddutEpD2qQqRMXNW5').get()
+
 
             public async void WriteData(string uniqueId, string registrationDetails)
             {
-                var firestoreDb = GetFirebaseDatabaseRef();
-                DocumentReference dbref = firestoreDb.Collection("lics").Document("tV7bQx9hMB3lJOzA2ops");
-                Dictionary<string, object> updates = new Dictionary<string, object>
+                try
+                {
+                    //var v = ReadData(uniqueId);
+                    //var firestoreDb = GetFirebaseDatabaseRef();
+                    DocumentReference dbref = firestoreDb.Collection("lics").Document(uniqueId);
+                    
+                    Dictionary<string, object> updates = new Dictionary<string, object>
                 {
                     { uniqueId, registrationDetails }
                 };
-                await dbref.UpdateAsync(updates);
+                    WriteResult writeResult = await dbref.SetAsync(updates);
+                    //await dbref.UpdateAsync(updates);
+                }
+                catch (Exception ex) 
+                {
+                    //throw new InvalidOperationException("Error occurred, " +
+                    //    "while connecting to license server. Please check your internet connection & try again.");
+                }
+               
             }
 
 

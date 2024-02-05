@@ -1,4 +1,6 @@
 ﻿using Google.Cloud.Firestore;
+using Newtonsoft.Json;
+using SellerSense.Helper;
 using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,13 @@ namespace SellerSense
 {
     public partial class Registration :  SfForm
     {
+
+        private string k = "s23df5898d4e4455beer8eg7831t3178";
+        private string LicDetails;
         public Registration()
         {
             InitializeComponent();
+            LicDetails = LoadUserLicDetails();
             this.Style.TitleBar.Height = 45;
             FontFamily fontFamily = new FontFamily("Calibri");
             Font font = new Font(
@@ -58,17 +64,28 @@ namespace SellerSense
                 progressBar_Register.Visible = true;
                 label_connecting.Visible = true;
                 Register();
-                await Delay();
+                await Delay(3000);
                 progressBar_Register.Visible = false;
                 label_connecting.Visible = false;
-                this.Close();
+                //this.Close();
 
             }
-
-
         }
 
-        private void Register()
+        private async Task<bool> Verify()
+        {
+            Identity.RegistrationHelper registerationVerifyObj = await Identity.RegistrationHelper.Verify();
+            if (registerationVerifyObj == null)
+                return false;
+            if (string.Equals(registerationVerifyObj.ContactFirstName, textBox_firstName.Text) &&
+                string.Equals(registerationVerifyObj.Email, textBox_Email.Text) &&
+                string.Equals(registerationVerifyObj.BusinessName, textBox_companyName.Text)
+                )
+            { return true; }
+            else return false;
+        }
+        
+        private async void Register()
         {
             Identity.RegistrationHelper registerationHelper = new Identity.RegistrationHelper();
             registerationHelper.ContactFirstName = textBox_firstName.Text;
@@ -77,7 +94,33 @@ namespace SellerSense
             registerationHelper.BusinessName = textBox_companyName.Text;
             registerationHelper.Address = textBox_Address.Text;
             registerationHelper.Email = textBox_Email.Text;
-            Identity.RegistrationHelper.Register(registerationHelper);
+            try
+            {
+                Identity.RegistrationHelper.Register(registerationHelper);
+                await Delay(3000);
+                var result = await Verify();
+                //Here call verify
+                if (result)
+                {
+                    label_status.Visible = true;
+                    label_status.Text = "License request received successfully. Please wait for verification.";
+                    string sjson= JsonConvert.SerializeObject(registerationHelper);
+                    string ejson= En.EncryptString(k,sjson);
+                    SetUserLicDetails(ejson);
+                }
+                else
+                {
+                    label_status.Visible = true;
+                    label_status.ForeColor = Color.Blue;
+                    label_status.Text = "Error receiving license request.";
+                }
+                //label_status.Visible = 
+            }catch (Exception ex)
+            {
+                label_status.Visible = true;
+                label_status.ForeColor = Color.Blue;
+                label_status.Text = "Error receiving license request.";
+            }
         }
 
         //private static string Base64Decode(string base64EncodedData)
@@ -116,12 +159,12 @@ namespace SellerSense
         //    await dbref.UpdateAsync(updates);
         //}
 
-        public async Task Delay()
+        public async Task Delay(int secs)
         {
             await Task.Run(async () => //Task.Run automatically unwraps nested Task types!
             {
                 Console.WriteLine("Start");
-                await Task.Delay(5000);
+                await Task.Delay(secs);
                 Console.WriteLine("Done");
             });
             Console.WriteLine("All done");
@@ -130,7 +173,7 @@ namespace SellerSense
 
         private void EnableLicInfoButton()
         {
-            button_licInfo.Enabled = true;
+            //button_licInfo.Enabled = true;
         }
 
 
@@ -248,7 +291,48 @@ namespace SellerSense
 
         private void Registration_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(LicDetails))
+            {
+                AllSubControls(this).OfType<TextBox>().ToList()
+                    .ForEach(o => o.Enabled = false);
+                AllSubControls(this).OfType<Button>().ToList()
+                    .ForEach(o => o.Enabled = false);
+                FillFormData(LicDetails);
+            }
             //DisableAllControls();
+        }
+
+        private void FillFormData(string LicDetails)
+        {
+            Identity.RegistrationHelper reg = JsonConvert.DeserializeObject<Identity.RegistrationHelper>(LicDetails);
+            textBox_firstName.Text = reg.ContactFirstName;
+            textBox_lastName.Text = reg.ContactLastName;
+            textBox_contactNo.Text = reg.ContactNumber;
+            textBox_companyName.Text = reg.BusinessName;
+            textBox_Address.Text = reg.Address;
+                textBox_Email.Text=reg.Email;
+
+            //registerationHelper.ContactFirstName = textBox_firstName.Text;
+            //registerationHelper.ContactLastName = textBox_lastName.Text;
+            //registerationHelper.ContactNumber = textBox_contactNo.Text;
+            //registerationHelper.BusinessName = textBox_companyName.Text;
+            //registerationHelper.Address = textBox_Address.Text;
+            //registerationHelper.Email = textBox_Email.Text;
+        }
+
+        private string LoadUserLicDetails()
+        {
+           string ejson = ProjIO.GetUserSetting("lic");
+            if (string.IsNullOrEmpty(ejson))
+                return string.Empty;
+           string json = En.DecryptString(k, ejson);
+           return json;
+        }
+
+        private void SetUserLicDetails(string licValue)
+        {
+            licValue = En.EncryptString(k, licValue);
+            ProjIO.SaveUserSetting("lic",licValue);
         }
 
         private void progressBar_Register_Click(object sender, EventArgs e)

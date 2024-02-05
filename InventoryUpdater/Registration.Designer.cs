@@ -54,9 +54,10 @@
             this.errorProvider_EMail = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider_BillingAddress = new System.Windows.Forms.ErrorProvider(this.components);
             this.progressBar_Register = new System.Windows.Forms.ProgressBar();
-            this.button_licInfo = new System.Windows.Forms.Button();
             this.label_connecting = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label_status = new System.Windows.Forms.Label();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_firstName)).BeginInit();
@@ -66,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_EMail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_BillingAddress)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -91,26 +93,27 @@
             this.tableLayoutPanel1.Controls.Add(this.label_msg, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 3, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.26457F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.84387F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.69737F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.06579F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.03947F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.38576F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.80415F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.62908F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1062, 398);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1062, 412);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(162, 72);
+            this.label1.Location = new System.Drawing.Point(162, 47);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 16);
@@ -121,7 +124,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(162, 133);
+            this.label2.Location = new System.Drawing.Point(162, 108);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 16);
@@ -132,7 +135,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 198);
+            this.label3.Location = new System.Drawing.Point(64, 177);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(179, 16);
@@ -143,7 +146,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(158, 262);
+            this.label4.Location = new System.Drawing.Point(158, 245);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 16);
@@ -154,7 +157,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(594, 72);
+            this.label5.Location = new System.Drawing.Point(594, 47);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(50, 16);
@@ -165,7 +168,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(534, 117);
+            this.label6.Location = new System.Drawing.Point(534, 92);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(110, 48);
@@ -176,7 +179,7 @@
             // textBox_lastName
             // 
             this.textBox_lastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_lastName.Location = new System.Drawing.Point(251, 130);
+            this.textBox_lastName.Location = new System.Drawing.Point(251, 105);
             this.textBox_lastName.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_lastName.Name = "textBox_lastName";
             this.textBox_lastName.Size = new System.Drawing.Size(264, 22);
@@ -186,7 +189,7 @@
             // textBox_firstName
             // 
             this.textBox_firstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_firstName.Location = new System.Drawing.Point(251, 69);
+            this.textBox_firstName.Location = new System.Drawing.Point(251, 44);
             this.textBox_firstName.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_firstName.Name = "textBox_firstName";
             this.textBox_firstName.Size = new System.Drawing.Size(264, 22);
@@ -196,7 +199,7 @@
             // textBox_companyName
             // 
             this.textBox_companyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_companyName.Location = new System.Drawing.Point(251, 195);
+            this.textBox_companyName.Location = new System.Drawing.Point(251, 174);
             this.textBox_companyName.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_companyName.Name = "textBox_companyName";
             this.textBox_companyName.Size = new System.Drawing.Size(264, 22);
@@ -206,7 +209,7 @@
             // textBox_contactNo
             // 
             this.textBox_contactNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_contactNo.Location = new System.Drawing.Point(251, 259);
+            this.textBox_contactNo.Location = new System.Drawing.Point(251, 242);
             this.textBox_contactNo.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_contactNo.Name = "textBox_contactNo";
             this.textBox_contactNo.Size = new System.Drawing.Size(264, 22);
@@ -216,7 +219,7 @@
             // textBox_Email
             // 
             this.textBox_Email.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Email.Location = new System.Drawing.Point(652, 69);
+            this.textBox_Email.Location = new System.Drawing.Point(652, 44);
             this.textBox_Email.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Email.Name = "textBox_Email";
             this.textBox_Email.Size = new System.Drawing.Size(367, 22);
@@ -228,12 +231,12 @@
             this.textBox_Address.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Address.Location = new System.Drawing.Point(652, 111);
+            this.textBox_Address.Location = new System.Drawing.Point(652, 85);
             this.textBox_Address.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Address.Multiline = true;
             this.textBox_Address.Name = "textBox_Address";
             this.tableLayoutPanel1.SetRowSpan(this.textBox_Address, 2);
-            this.textBox_Address.Size = new System.Drawing.Size(367, 122);
+            this.textBox_Address.Size = new System.Drawing.Size(367, 129);
             this.textBox_Address.TabIndex = 6;
             this.textBox_Address.Validated += new System.EventHandler(this.textBox_Address_Validated);
             // 
@@ -243,7 +246,7 @@
             this.label_msg.AutoSize = true;
             this.label_msg.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_msg.ForeColor = System.Drawing.Color.Red;
-            this.label_msg.Location = new System.Drawing.Point(501, 323);
+            this.label_msg.Location = new System.Drawing.Point(501, 310);
             this.label_msg.Name = "label_msg";
             this.label_msg.Size = new System.Drawing.Size(15, 20);
             this.label_msg.TabIndex = 13;
@@ -253,35 +256,34 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.button_ok);
             this.flowLayoutPanel1.Controls.Add(this.button_cancel);
-            this.flowLayoutPanel1.Controls.Add(this.button_licInfo);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(651, 307);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(651, 292);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(369, 52);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(369, 56);
             this.flowLayoutPanel1.TabIndex = 14;
             // 
             // button_ok
             // 
             this.button_ok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_ok.Location = new System.Drawing.Point(254, 4);
+            this.button_ok.Location = new System.Drawing.Point(213, 4);
             this.button_ok.Margin = new System.Windows.Forms.Padding(4);
             this.button_ok.Name = "button_ok";
-            this.button_ok.Size = new System.Drawing.Size(111, 46);
+            this.button_ok.Size = new System.Drawing.Size(152, 46);
             this.button_ok.TabIndex = 7;
-            this.button_ok.Text = "Ok";
+            this.button_ok.Text = "Request License";
             this.button_ok.UseVisualStyleBackColor = true;
             this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
             // 
             // button_cancel
             // 
             this.button_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_cancel.Location = new System.Drawing.Point(135, 4);
+            this.button_cancel.Location = new System.Drawing.Point(112, 4);
             this.button_cancel.Margin = new System.Windows.Forms.Padding(4);
             this.button_cancel.Name = "button_cancel";
-            this.button_cancel.Size = new System.Drawing.Size(111, 46);
+            this.button_cancel.Size = new System.Drawing.Size(93, 46);
             this.button_cancel.TabIndex = 8;
-            this.button_cancel.Text = "Cancel";
+            this.button_cancel.Text = "Close";
             this.button_cancel.UseVisualStyleBackColor = true;
             this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
             // 
@@ -323,18 +325,6 @@
             this.progressBar_Register.Visible = false;
             this.progressBar_Register.Click += new System.EventHandler(this.progressBar_Register_Click);
             // 
-            // button_licInfo
-            // 
-            this.button_licInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_licInfo.Location = new System.Drawing.Point(16, 4);
-            this.button_licInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.button_licInfo.Name = "button_licInfo";
-            this.button_licInfo.Size = new System.Drawing.Size(111, 46);
-            this.button_licInfo.TabIndex = 9;
-            this.button_licInfo.Text = "License\r\nInformation";
-            this.button_licInfo.UseVisualStyleBackColor = true;
-            this.button_licInfo.Click += new System.EventHandler(this.button_licInfo_Click);
-            // 
             // label_connecting
             // 
             this.label_connecting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -355,16 +345,39 @@
             this.flowLayoutPanel2.Controls.Add(this.progressBar_Register);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(651, 240);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(651, 221);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(369, 61);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(369, 65);
             this.flowLayoutPanel2.TabIndex = 16;
+            // 
+            // label_status
+            // 
+            this.label_status.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_status.AutoSize = true;
+            this.label_status.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_status.ForeColor = System.Drawing.Color.Green;
+            this.label_status.Location = new System.Drawing.Point(191, 0);
+            this.label_status.Name = "label_status";
+            this.label_status.Size = new System.Drawing.Size(175, 20);
+            this.label_status.TabIndex = 17;
+            this.label_status.Text = "Your product is licensed";
+            this.label_status.Visible = false;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.label_status);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(651, 354);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(369, 55);
+            this.flowLayoutPanel3.TabIndex = 19;
             // 
             // Registration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1066, 402);
+            this.ClientSize = new System.Drawing.Size(1066, 416);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IconSize = new System.Drawing.Size(32, 32);
@@ -385,6 +398,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_BillingAddress)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -415,8 +430,9 @@
         private System.Windows.Forms.ErrorProvider errorProvider_EMail;
         private System.Windows.Forms.ErrorProvider errorProvider_BillingAddress;
         private System.Windows.Forms.ProgressBar progressBar_Register;
-        private System.Windows.Forms.Button button_licInfo;
         private System.Windows.Forms.Label label_connecting;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label label_status;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
     }
 }

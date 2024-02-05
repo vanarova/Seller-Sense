@@ -61,7 +61,7 @@ namespace SellerSense
                 AlertBox abox = new AlertBox("Error","Unexpected Error occurred, application cant be recovered, " +
                     "restart required. If problem persists, send logs to customer support, logs location : " + logLocation); //TODO : assign logs location
                 abox.ShowDialog();
-                Application.Exit();
+                //Application.Exit();
             }
            
         }

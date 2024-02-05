@@ -204,6 +204,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\En.cs" />
     <Compile Include="Helper\QuickLog.cs" />
     <Compile Include="Model\InvUpdate\M_Snapshot.cs" />
     <Compile Include="Model\Payments\M_Payments.cs" />
