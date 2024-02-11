@@ -590,6 +590,10 @@
       <Project>{041ab2d6-a445-4074-aad9-0242b831005d}</Project>
       <Name>TelegramBot</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Updates\Updates.csproj">
+      <Project>{2982D396-D569-4FC4-85E9-9AECA0334AB4}</Project>
+      <Name>Updates</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Docs\Diagram.bmp" />

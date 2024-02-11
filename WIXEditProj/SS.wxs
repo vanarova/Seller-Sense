@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="2C67A738-BC8E-4E8C-8A18-292085B4C9D5" Name="Seller-Sense" Language="1033" Version="1.0.3.1" Manufacturer="CC-INDIA" UpgradeCode="ADCBBA79-4A98-4324-B85D-D8D76093B42E">
+    <Product Id="d45de201-6cf7-4b79-b4a4-854a5938f8a7" Name="Seller-Sense" Language="1033" Version="1.0.6.0" Manufacturer="CC-INDIA" UpgradeCode="4860C2CD-6375-4974-B3AB-BB26AAB92DAB">
         <Package Description="Seller-Sense" Comments="Seller-Sense" InstallerVersion="200" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
         <Directory Id="TARGETDIR" Name="SourceDir">
@@ -129,13 +129,21 @@
             </Directory>
             <Directory Id="DesktopFolder" />
         </Directory>
-        <UI />
-        <UIRef Id="WixUI_Minimal" />
+        <UI>
+        </UI>
         <Icon Id="favicon.ico" SourceFile="..\InventoryUpdater\Images\favicon.ico" />
         <Property Id="ARPPRODUCTICON" Value="favicon.ico" />
         <Feature Id="SellerSense" Level="1">
             <ComponentRef Id="SS" />
         </Feature>
         <Icon Id="DesktopIcon.exe" SourceFile="..\InventoryUpdater\bin\Release\SellerSense.exe" />
+        <UIRef Id="WixUI_Minimal" />
+        <Upgrade Id="4860C2CD-6375-4974-B3AB-BB26AAB92DAB">
+            <UpgradeVersion Property="OLDERVERSIONBEINGUPGRADED" Maximum="99.0.0" Minimum="1.0.0" IncludeMinimum="yes">
+            </UpgradeVersion>
+        </Upgrade>
+        <InstallExecuteSequence>
+            <RemoveExistingProducts After="InstallInitialize" />
+        </InstallExecuteSequence>
     </Product>
 </Wix>

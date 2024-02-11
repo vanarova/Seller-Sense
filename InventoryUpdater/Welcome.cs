@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Updates;
 
 namespace SellerSense
 {
@@ -232,6 +233,7 @@ namespace SellerSense
            _aboutBox = new AboutBox();
             label_version.Text = _aboutBox.AssemblyVersion;
             AdjustUI("AdjustWelcomeButtons");
+            CheckUpdates updates = new CheckUpdates(_aboutBox.AssemblyVersion);
         }
 
         internal void AdjustUI(string trigger, object sender = null, object args = null)
