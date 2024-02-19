@@ -9,6 +9,7 @@ using System.IO.Compression;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+using Common;
 
 namespace SellerSense.Helper
 {

@@ -562,9 +562,17 @@
     <Folder Include="Model\Map\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Constants\Common.csproj">
+      <Project>{b5a41395-71cf-429f-98b3-b65279d19de1}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Decoders\Decoders.csproj">
       <Project>{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}</Project>
       <Name>Decoders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FrBase\FrBase.csproj">
+      <Project>{0384ab73-8283-479c-8627-d3cc0ed5833a}</Project>
+      <Name>FrBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\Identity\Identity.csproj">
       <Project>{452f1c2e-eb0f-437d-9a82-5b065da32bb6}</Project>

@@ -1,4 +1,5 @@
-﻿using Decoders;
+﻿using Common;
+using Decoders;
 using SellerSense.Model;
 using System;
 using System.Collections.Generic;

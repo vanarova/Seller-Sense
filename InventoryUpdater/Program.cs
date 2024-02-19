@@ -1,4 +1,5 @@
-﻿using SellerSense.Helper;
+﻿using Common;
+using SellerSense.Helper;
 using SellerSense.Views;
 using System;
 using System.Collections.Generic;
@@ -56,11 +57,11 @@ namespace SellerSense
                 try
                 { logLocation = ProjIO.GetUserSetting(Constants.WorkspaceDir); }
                 catch (Exception) { }
-                
+                 //FrBase.Messenger.WriteErrData(e.Message + "; Inner Ex: " + e.InnerException + "; Stack :" + e.StackTrace);
                  Logger.Log(e.Message + "; Inner Ex: " + e.InnerException + "; Stack :" + e.StackTrace, Logger.LogLevel.fatal, true);
                 AlertBox abox = new AlertBox("Error","Unexpected Error occurred, application cant be recovered, " +
-                    "restart required. If problem persists, send logs to customer support, logs location : " + logLocation); //TODO : assign logs location
-                abox.ShowDialog();
+                    "restart required. If problem persists, send logs to customer support, logs location : " + logLocation,e); //TODO : assign logs location
+                abox.ShowDialog();Application.Restart();
                 //Application.Exit();
             }
            

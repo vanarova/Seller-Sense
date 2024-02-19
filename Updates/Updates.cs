@@ -1,4 +1,5 @@
-﻿using Syncfusion.WinForms.Controls;
+﻿using Common;
+using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,13 @@ namespace Updates
         {
             this.donloadVersion = donloadVersion;
             InitializeComponent();
+
+            this.Style.TitleBar.ForeColor = Color.White;
+            this.Style.TitleBar.BackColor = Constants.Theme.BorderColor;
+            this.Style.Border.Color = Constants.Theme.BorderColor;
+            this.Style.InactiveBorder.Color = Constants.Theme.BorderColor;
+            this.Style.Border.Width = Constants.Theme.BorderWidth;
+            this.Style.InactiveBorder.Width = Constants.Theme.BorderWidth;
         }
 
         private void Updates_Load(object sender, EventArgs e)
@@ -29,6 +37,8 @@ namespace Updates
         private async void button_install_Click(object sender, EventArgs e)
         {
             progressBar_update.Visible = true;
+            
+            button_install.Enabled = false;
             label_status.Visible = true;
             label_status.Text = "Downloading installer..";
             //Environment.GetFolderPath(Environment.SpecialFolder.)
@@ -37,7 +47,15 @@ namespace Updates
                 Directory.CreateDirectory(tempPath);
             string tempFileDownloadPath = Path.Combine(tempPath, "SS.msi");
             await CheckUpdates.DownloadSetup(donloadVersion, tempFileDownloadPath);
+            label_status.Text = "Application will now close..";
+
+            await Task.Delay(4000);
             CheckUpdates.RunSetUp(tempFileDownloadPath);
+        }
+
+        private void button_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

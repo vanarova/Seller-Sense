@@ -168,5 +168,11 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Constants\Common.csproj">
+      <Project>{b5a41395-71cf-429f-98b3-b65279d19de1}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

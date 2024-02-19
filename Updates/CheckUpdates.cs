@@ -14,6 +14,7 @@ namespace Updates
     {
 
         private string url = "https://raw.githubusercontent.com/vanarova/Seller-Sense/main/latest_release.txt";
+       
         private static string downloadURL = $"https://github.com/vanarova/Seller-Sense/releases/download/[version]/SS.msi";
         string currentVersion;
         bool IsUpdateNeeded = false;
@@ -22,6 +23,7 @@ namespace Updates
             this.currentVersion = currentVersion;
             CheckForUpdates();
         }
+
 
         private async void CheckForUpdates()
         {

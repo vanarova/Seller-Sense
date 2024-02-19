@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SellerSense.Model.Reports;
 using static SellerSense.ViewManager.VM_Companies;
+using Common;
 
 namespace SellerSense.ViewManager
 {

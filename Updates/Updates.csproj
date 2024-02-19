@@ -55,7 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckNews.cs" />
     <Compile Include="CheckUpdates.cs" />
+    <Compile Include="News.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="News.Designer.cs">
+      <DependentUpon>News.cs</DependentUpon>
+    </Compile>
     <Compile Include="Updates.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +71,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="News.resx">
+      <DependentUpon>News.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Updates.resx">
       <DependentUpon>Updates.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,6 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Constants\Common.csproj">
+      <Project>{b5a41395-71cf-429f-98b3-b65279d19de1}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

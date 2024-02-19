@@ -1,4 +1,5 @@
-﻿using Decoders.Interfaces;
+﻿using Common;
+using Decoders.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -1,4 +1,5 @@
-﻿using Decoders;
+﻿using Common;
+using Decoders;
 using Decoders.Interfaces;
 using SellerSense.Model;
 using SellerSense.Views;
@@ -81,7 +82,7 @@ namespace SellerSense.Model
             //List<IFkInventoryV2> _fkInventoryListV2  = FlipkartInvDecoder.GetDataV2(fileName, out string errorV2);
             _fkImportedInventoryList._fkInventoryList = FlipkartInvDecoder.GetDataV2(fileName, out string error);
             if (!string.IsNullOrEmpty(error)) { AlertBox ab = new AlertBox("Error accessing inventory file", 
-                "Error accessing inventory file, Please check file might be open in another software or it is locked/ in-accesible",true);
+                "Error accessing inventory file, Please check file might be open in another software or it is locked/ in-accesible",isError: true);
                 ab.ShowDialog();
             }
         }

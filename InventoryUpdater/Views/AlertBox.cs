@@ -17,13 +17,15 @@ namespace SellerSense.Views
         private bool _isError { get; set; }
         private string _msg { get; set; }
         private string _link { get; set; }
+        private Exception ex;
 
-        public AlertBox(string title, string msg, bool isError = true, string link= "")
+        public AlertBox(string title, string msg, Exception ex = null, bool isError = true, string link= "")
         {
             _title = title;
             _msg = msg;
             _link = link;
             _isError = isError;
+            this.ex = ex;
             InitializeComponent();
         }
 
@@ -74,6 +76,14 @@ namespace SellerSense.Views
 
             }
             //ProjIO.ExportAllLogs()
+        }
+
+
+
+        private void button_SendError_Click_1(object sender, EventArgs e)
+        {
+            if(ex != null)
+             FrBase.Messenger.WriteErrData(ex.Message + "; Inner Ex: " + ex.InnerException + "; Stack :" + ex.StackTrace);
         }
     }
 }

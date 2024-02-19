@@ -1,4 +1,5 @@
-﻿using SellerSense.Helper;
+﻿using Common;
+using SellerSense.Helper;
 using SellerSense.Views.Inventories;
 using SellerSense.Views.Payments;
 using Syncfusion.WinForms.Controls;
@@ -70,7 +71,7 @@ namespace SellerSense
             var imgs1 = await _companiesMgr._companies[1].LoadImages();
             _companiesMgr._companies[1]._images = imgs1;
             _companiesMgr._companies[1]._inventoriesViewManager.AssignImagesToProducts(imgs1);
-
+            //throw new InvalidOperationException("insert bug");
             DisplayInvForm();
             AdjustUI("EnableAllButtons");
 
@@ -340,6 +341,11 @@ namespace SellerSense
         {
             Registration registration = new Registration();
             registration.ShowDialog();
+        }
+
+        private void label_news_Click(object sender, EventArgs e)
+        {
+            CheckNews checknews = new Updates.CheckNews();
         }
     }
 }

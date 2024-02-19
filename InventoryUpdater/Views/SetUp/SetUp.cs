@@ -1,4 +1,5 @@
 ﻿using AngleSharp.Dom.Events;
+using Common;
 using SellerSense.Helper;
 using SellerSense.Views;
 using SellerSense.Views.SetUp;
@@ -109,8 +110,8 @@ namespace SellerSense
 
         private void SetUp_Load(object sender, EventArgs e)
         {
-            Views.Products.Products tf = new Views.Products.Products();
-            tf.ShowDialog();
+            //Views.Products.Products tf = new Views.Products.Products();
+            //tf.ShowDialog();
 
             if (!string.IsNullOrEmpty(ProjIO.GetUserSetting(Constants.WorkspaceDir)))
                 txtWorkSpaceLocation.Text = ProjIO.GetUserSetting(Constants.WorkspaceDir);

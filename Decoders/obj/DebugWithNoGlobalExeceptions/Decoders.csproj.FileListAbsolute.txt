@@ -132,3 +132,5 @@ C:\Users\varun\source\repos\vanarova\InvUpd\Decoders\obj\DebugWithNoGlobalExecep
 C:\Users\varun\source\repos\vanarova\InvUpd\Decoders\obj\DebugWithNoGlobalExeceptions\Decoders.csproj.CopyComplete
 C:\Users\varun\source\repos\vanarova\InvUpd\Decoders\obj\DebugWithNoGlobalExeceptions\Decoders.dll
 C:\Users\varun\source\repos\vanarova\InvUpd\Decoders\obj\DebugWithNoGlobalExeceptions\Decoders.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\DebugWithNoGlobalExeceptions\Constants.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\DebugWithNoGlobalExeceptions\Constants.pdb

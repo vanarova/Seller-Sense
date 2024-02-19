@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using SellerSense.Views;
 using System.Drawing.Imaging;
+using Common;
 
 namespace SellerSense.Model
 {
@@ -117,7 +118,7 @@ namespace SellerSense.Model
             string destinationImagePath = Path.Combine(destinationDirPath, imageName);
             if (File.Exists(destinationImagePath))
             {
-                (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", true, "")).ShowDialog();
+                (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", isError:true)).ShowDialog();
                 return true;
             }
             return false;
@@ -140,7 +141,7 @@ namespace SellerSense.Model
                 string destinationImagePath = Path.Combine(destinationDirPath, imageName);
                 if (File.Exists(destinationImagePath) && overwrite == false)
                 {
-                    (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", true, "")).ShowDialog();
+                    (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", isError:true)).ShowDialog();
                     result = null; goto ret;
                 }
                 else if (File.Exists(destinationImagePath) && overwrite == true)
@@ -157,13 +158,13 @@ namespace SellerSense.Model
             }
             catch (Exception e)
             {
-                (new AlertBox("Error", e.Message, true, "")).ShowDialog();
+                (new AlertBox("Error", e.Message, isError: true)).ShowDialog();
                 result = null;
             }
 
             ret:
             if (result == null)
-                (new AlertBox("Image not saved", "Image not saved, please try again, if error persists, contact support", true, "")).ShowDialog();
+                (new AlertBox("Image not saved", "Image not saved, please try again, if error persists, contact support", isError: true)).ShowDialog();
             return result;
 
         }
@@ -209,7 +210,7 @@ namespace SellerSense.Model
                 string lastSavedFilePath = Path.Combine(_workspace, _companyCode);
                 if (!Directory.Exists(lastSavedFilePath))
                 {
-                    (new AlertBox("Error", "Seller-Sense or company directory not found.", true, "")).ShowDialog();
+                    (new AlertBox("Error", "Seller-Sense or company directory not found.",isError: true)).ShowDialog();
                     return;
                 }
                 string destinationDirPath = Path.Combine(lastSavedFilePath, Constants.Imgs);
@@ -217,7 +218,7 @@ namespace SellerSense.Model
             }
             catch (Exception)
             {
-                (new AlertBox("Error", "Error removing image, it might be open in another program or locked.", true, "")).ShowDialog();
+                (new AlertBox("Error", "Error removing image, it might be open in another program or locked.", isError: true)).ShowDialog();
             }
            
         }

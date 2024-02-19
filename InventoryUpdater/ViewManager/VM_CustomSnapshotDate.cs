@@ -1,4 +1,5 @@
-﻿using SellerSense.Model.InvUpdate;
+﻿using Common;
+using SellerSense.Model.InvUpdate;
 using SellerSense.Views.Inventories;
 using System;
 using System.Collections.Generic;

@@ -81,8 +81,10 @@
             this.progressBar_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.progressBar_update, 2);
             this.progressBar_update.Location = new System.Drawing.Point(48, 137);
+            this.progressBar_update.MarqueeAnimationSpeed = 70;
             this.progressBar_update.Name = "progressBar_update";
             this.progressBar_update.Size = new System.Drawing.Size(515, 14);
+            this.progressBar_update.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar_update.TabIndex = 3;
             this.progressBar_update.Visible = false;
             // 
@@ -96,6 +98,7 @@
             this.button_cancel.TabIndex = 2;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
+            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
             // 
             // button_install
             // 

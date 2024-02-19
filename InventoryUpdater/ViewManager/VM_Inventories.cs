@@ -1,4 +1,5 @@
-﻿using Decoders.Interfaces;
+﻿using Common;
+using Decoders.Interfaces;
 using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Model.InvUpdate;
@@ -19,7 +20,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SellerSense.Constants;
+using static Common.Constants;
+//using static SellerSense.Constants;
 using static SellerSense.ViewManager.VM_Companies;
 using static SellerSense.ViewManager.VM_Company;
 using static SellerSense.ViewManager.VM_Products;
