@@ -1,0 +1,8 @@
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ProjEditor\TestNETFramework\bin\Release\TestNETFramework.exe.config
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ProjEditor\TestNETFramework\bin\Release\TestNETFramework.exe
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ProjEditor\TestNETFramework\bin\Release\TestNETFramework.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ProjEditor\TestNETFramework\obj\Release\TestNETFramework.csproj.AssemblyReference.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ProjEditor\TestNETFramework\obj\Release\TestNETFramework.csproj.SuggestedBindingRedirects.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ProjEditor\TestNETFramework\obj\Release\TestNETFramework.csproj.CoreCompileInputs.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ProjEditor\TestNETFramework\obj\Release\TestNETFramework.exe
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\ProjEditor\TestNETFramework\obj\Release\TestNETFramework.pdb

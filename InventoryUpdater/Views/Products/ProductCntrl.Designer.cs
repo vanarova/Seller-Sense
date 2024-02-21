@@ -43,9 +43,9 @@
             this.mapSpdSKUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label_help = new System.Windows.Forms.Label();
+            this.sfButton_AddProduct = new Syncfusion.WinForms.Controls.SfButton();
             this.toolstripitem_csv = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.toolstripitem_pdf = new Syncfusion.Windows.Forms.Tools.toolstripitem();
-            this.sfButton_AddProduct = new Syncfusion.WinForms.Controls.SfButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -60,12 +60,12 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(749, 554);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(999, 682);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // fileStrip
@@ -80,17 +80,17 @@
             this.flipkartToolStripMenuItem,
             this.snapdealToolStripMenuItem});
             this.fileStrip.Location = new System.Drawing.Point(0, 0);
-            this.fileStrip.MinimumSize = new System.Drawing.Size(0, 12);
+            this.fileStrip.MinimumSize = new System.Drawing.Size(0, 15);
             this.fileStrip.Name = "fileStrip";
-            this.fileStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.fileStrip.Size = new System.Drawing.Size(273, 24);
+            this.fileStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.fileStrip.Size = new System.Drawing.Size(509, 34);
             this.fileStrip.TabIndex = 9;
             this.fileStrip.Text = "menuStrip1";
             // 
             // toolStripMenuItem_Save
             // 
             this.toolStripMenuItem_Save.Name = "toolStripMenuItem_Save";
-            this.toolStripMenuItem_Save.Size = new System.Drawing.Size(43, 20);
+            this.toolStripMenuItem_Save.Size = new System.Drawing.Size(54, 30);
             this.toolStripMenuItem_Save.Text = "Save";
             // 
             // amazonToolStripMenuItem
@@ -99,19 +99,19 @@
             this.mapAsinToolStripMenuItem,
             this.mapAmzSKUToolStripMenuItem});
             this.amazonToolStripMenuItem.Name = "amazonToolStripMenuItem";
-            this.amazonToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.amazonToolStripMenuItem.Size = new System.Drawing.Size(99, 30);
             this.amazonToolStripMenuItem.Text = "Amazon🪄";
             // 
             // mapAsinToolStripMenuItem
             // 
             this.mapAsinToolStripMenuItem.Name = "mapAsinToolStripMenuItem";
-            this.mapAsinToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.mapAsinToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.mapAsinToolStripMenuItem.Text = "Map Asin";
             // 
             // mapAmzSKUToolStripMenuItem
             // 
             this.mapAmzSKUToolStripMenuItem.Name = "mapAmzSKUToolStripMenuItem";
-            this.mapAmzSKUToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.mapAmzSKUToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.mapAmzSKUToolStripMenuItem.Text = "Map SKU";
             // 
             // flipkartToolStripMenuItem
@@ -120,19 +120,19 @@
             this.mapFSNToolStripMenuItem,
             this.mapFkSKUToolStripMenuItem});
             this.flipkartToolStripMenuItem.Name = "flipkartToolStripMenuItem";
-            this.flipkartToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.flipkartToolStripMenuItem.Size = new System.Drawing.Size(93, 30);
             this.flipkartToolStripMenuItem.Text = "Flipkart🚀";
             // 
             // mapFSNToolStripMenuItem
             // 
             this.mapFSNToolStripMenuItem.Name = "mapFSNToolStripMenuItem";
-            this.mapFSNToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.mapFSNToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.mapFSNToolStripMenuItem.Text = "Map FSN";
             // 
             // mapFkSKUToolStripMenuItem
             // 
             this.mapFkSKUToolStripMenuItem.Name = "mapFkSKUToolStripMenuItem";
-            this.mapFkSKUToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.mapFkSKUToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.mapFkSKUToolStripMenuItem.Text = "Map SKU";
             // 
             // snapdealToolStripMenuItem
@@ -141,19 +141,19 @@
             this.mapSPDCodeToolStripMenuItem,
             this.mapSpdSKUToolStripMenuItem});
             this.snapdealToolStripMenuItem.Name = "snapdealToolStripMenuItem";
-            this.snapdealToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.snapdealToolStripMenuItem.Size = new System.Drawing.Size(106, 30);
             this.snapdealToolStripMenuItem.Text = "Snapdeal👜";
             // 
             // mapSPDCodeToolStripMenuItem
             // 
             this.mapSPDCodeToolStripMenuItem.Name = "mapSPDCodeToolStripMenuItem";
-            this.mapSPDCodeToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.mapSPDCodeToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.mapSPDCodeToolStripMenuItem.Text = "Map SPD Code";
             // 
             // mapSpdSKUToolStripMenuItem
             // 
             this.mapSpdSKUToolStripMenuItem.Name = "mapSpdSKUToolStripMenuItem";
-            this.mapSpdSKUToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.mapSpdSKUToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.mapSpdSKUToolStripMenuItem.Text = "Map SKU";
             // 
             // flowLayoutPanel1
@@ -162,10 +162,10 @@
             this.flowLayoutPanel1.Controls.Add(this.sfButton_AddProduct);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(273, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(509, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(476, 24);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(490, 34);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // label_help
@@ -173,12 +173,24 @@
             this.label_help.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label_help.AutoSize = true;
             this.label_help.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label_help.Location = new System.Drawing.Point(459, 1);
-            this.label_help.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_help.Location = new System.Drawing.Point(469, 2);
             this.label_help.Name = "label_help";
-            this.label_help.Size = new System.Drawing.Size(15, 19);
+            this.label_help.Size = new System.Drawing.Size(18, 23);
             this.label_help.TabIndex = 1;
             this.label_help.Text = "?";
+            // 
+            // sfButton_AddProduct
+            // 
+            this.sfButton_AddProduct.AccessibleName = "Button";
+            this.sfButton_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton_AddProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton_AddProduct.Location = new System.Drawing.Point(368, 1);
+            this.sfButton_AddProduct.Margin = new System.Windows.Forms.Padding(1);
+            this.sfButton_AddProduct.Name = "sfButton_AddProduct";
+            this.sfButton_AddProduct.Size = new System.Drawing.Size(97, 25);
+            this.sfButton_AddProduct.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.sfButton_AddProduct.TabIndex = 3;
+            this.sfButton_AddProduct.Text = "Product";
             // 
             // toolstripitem_csv
             // 
@@ -194,27 +206,14 @@
             this.toolstripitem_pdf.Size = new System.Drawing.Size(32, 19);
             this.toolstripitem_pdf.Text = "PDF";
             // 
-            // sfButton_AddProduct
-            // 
-            this.sfButton_AddProduct.AccessibleName = "Button";
-            this.sfButton_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfButton_AddProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.sfButton_AddProduct.Location = new System.Drawing.Point(383, 1);
-            this.sfButton_AddProduct.Margin = new System.Windows.Forms.Padding(1);
-            this.sfButton_AddProduct.Name = "sfButton_AddProduct";
-            this.sfButton_AddProduct.Size = new System.Drawing.Size(73, 20);
-            this.sfButton_AddProduct.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.sfButton_AddProduct.TabIndex = 3;
-            this.sfButton_AddProduct.Text = "Product";
-            // 
             // ProductCntrl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ProductCntrl";
-            this.Size = new System.Drawing.Size(749, 554);
+            this.Size = new System.Drawing.Size(999, 682);
             this.Load += new System.EventHandler(this.ProductCntrl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

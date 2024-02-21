@@ -1,0 +1,6 @@
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Constants\bin\Release\Constants.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Constants\bin\Release\Constants.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Constants\obj\Release\Common.csproj.AssemblyReference.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Constants\obj\Release\Common.csproj.CoreCompileInputs.cache
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Constants\obj\Release\Constants.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Constants\obj\Release\Constants.pdb

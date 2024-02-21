@@ -98,7 +98,7 @@ namespace Common
             public const string notes = "Notes";
             public const string amz_Code = "AmazonCode";
             public const string fK_Code = "FlipkartCode";
-            public const string spd_Code = "SnapDealCode";
+            public const string spd_Code = "SnapdealCode";
             public const string mso_Code = "MeeshoCode";
 
         }

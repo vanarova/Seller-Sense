@@ -1,5 +1,5 @@
 # To run, open powershell ISE > go to path of this script and run > .\version.ps1 '1.0.3.0' '1.0.4.0' 'GUID' 
-# .\version.ps1 '1.0.3.0' '1.0.4.0' 'GUID'  --> current version , new version, current guid
+# .\version.ps1 '1.0.3.0' '1.0.4.0' 'GUID'  --> current version , new version, current guid for product ID
 # For example::
 #  .\version.ps1 '1.0.5.0' '1.0.6.0' 'F5F14482-948B-4D5D-8945-13A57AD487FF'
 # A new guid will be auto generated and subsituted.

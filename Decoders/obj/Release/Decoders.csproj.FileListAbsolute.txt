@@ -132,3 +132,5 @@ C:\Users\varun\source\repos\vanarova\InvUpd\Decoders\obj\Release\Decoders.csproj
 C:\Users\varun\source\repos\vanarova\InvUpd\Decoders\obj\Release\Decoders.csproj.CopyComplete
 C:\Users\varun\source\repos\vanarova\InvUpd\Decoders\obj\Release\Decoders.dll
 C:\Users\varun\source\repos\vanarova\InvUpd\Decoders\obj\Release\Decoders.pdb
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\Constants.dll
+C:\Users\Arunav\Documents\_Project packs\DotNet\InventoryUpdater\Decoders\bin\Release\Constants.pdb

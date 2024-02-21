@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="d45de201-6cf7-4b79-b4a4-854a5938f8a7" Name="Seller-Sense" Language="1033" Version="1.0.6.0" Manufacturer="CC-INDIA" UpgradeCode="4860C2CD-6375-4974-B3AB-BB26AAB92DAB">
+    <Product Id="e97d4740-ce5e-41c1-b578-26c089c2b0be" Name="Seller-Sense" Language="1033" Version="1.0.4.0" Manufacturer="CC-INDIA" UpgradeCode="4860C2CD-6375-4974-B3AB-BB26AAB92DAB">
         <Package Description="Seller-Sense" Comments="Seller-Sense" InstallerVersion="200" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
         <Directory Id="TARGETDIR" Name="SourceDir">
@@ -8,16 +8,43 @@
                 <Directory Name="Seller-Sense" Id="SELLER_SENSE">
                     <Component Id="SS" Guid="">
                         <File Id="SELLERSENSE.EXE" Name="SellerSense.exe" Source="..\InventoryUpdater\bin\Release\SellerSense.exe" />
+                        <File Id="UPDATES.EXE" Name="Updates.exe" Source="..\InventoryUpdater\bin\Release\Updates.exe" />
                         <File Id="ANGLESHARP.DLL" Name="AngleSharp.dll" Source="..\InventoryUpdater\bin\Release\AngleSharp.dll" />
                         <File Id="BOUNCYCASTLE.CRYPTO.DLL" Name="BouncyCastle.Crypto.dll" Source="..\InventoryUpdater\bin\Release\BouncyCastle.Crypto.dll" />
+                        <File Id="CONSTANTS.DLL" Name="Constants.dll" Source="..\InventoryUpdater\bin\Release\Constants.dll" />
                         <File Id="DECODERS.DLL" Name="Decoders.dll" Source="..\InventoryUpdater\bin\Release\Decoders.dll" />
+                        <File Id="DEVICEID.DLL" Name="DeviceId.dll" Source="..\InventoryUpdater\bin\Release\DeviceId.dll" />
+                        <File Id="DEVICEID.WINDOWS.DLL" Name="DeviceId.Windows.dll" Source="..\InventoryUpdater\bin\Release\DeviceId.Windows.dll" />
+                        <File Id="DEVICEID.WINDOWS.WMI.DLL" Name="DeviceId.Windows.Wmi.dll" Source="..\InventoryUpdater\bin\Release\DeviceId.Windows.Wmi.dll" />
                         <File Id="ENUMS.NET.DLL" Name="Enums.NET.dll" Source="..\InventoryUpdater\bin\Release\Enums.NET.dll" />
                         <File Id="EXCELMAPPER.DLL" Name="ExcelMapper.dll" Source="..\InventoryUpdater\bin\Release\ExcelMapper.dll" />
+                        <File Id="FRBASE.DLL" Name="FrBase.dll" Source="..\InventoryUpdater\bin\Release\FrBase.dll" />
+                        <File Id="GOOGLE.API.COMMONPROTOS.DLL" Name="Google.Api.CommonProtos.dll" Source="..\InventoryUpdater\bin\Release\Google.Api.CommonProtos.dll" />
+                        <File Id="GOOGLE.API.GAX.DLL" Name="Google.Api.Gax.dll" Source="..\InventoryUpdater\bin\Release\Google.Api.Gax.dll" />
+                        <File Id="GOOGLE.API.GAX.GRPC.DLL" Name="Google.Api.Gax.Grpc.dll" Source="..\InventoryUpdater\bin\Release\Google.Api.Gax.Grpc.dll" />
+                        <File Id="GOOGLE.APIS.AUTH.DLL" Name="Google.Apis.Auth.dll" Source="..\InventoryUpdater\bin\Release\Google.Apis.Auth.dll" />
+                        <File Id="GOOGLE.APIS.CORE.DLL" Name="Google.Apis.Core.dll" Source="..\InventoryUpdater\bin\Release\Google.Apis.Core.dll" />
+                        <File Id="GOOGLE.APIS.DLL" Name="Google.Apis.dll" Source="..\InventoryUpdater\bin\Release\Google.Apis.dll" />
+                        <File Id="GOOGLE.CLOUD.FIRESTORE.DLL" Name="Google.Cloud.Firestore.dll" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Firestore.dll" />
+                        <File Id="GOOGLE.CLOUD.FIRESTORE.V1.DLL" Name="Google.Cloud.Firestore.V1.dll" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Firestore.V1.dll" />
+                        <File Id="GOOGLE.CLOUD.LOCATION.DLL" Name="Google.Cloud.Location.dll" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Location.dll" />
+                        <File Id="GOOGLE.LONGRUNNING.DLL" Name="Google.LongRunning.dll" Source="..\InventoryUpdater\bin\Release\Google.LongRunning.dll" />
+                        <File Id="GOOGLE.PROTOBUF.DLL" Name="Google.Protobuf.dll" Source="..\InventoryUpdater\bin\Release\Google.Protobuf.dll" />
+                        <File Id="GRPC.AUTH.DLL" Name="Grpc.Auth.dll" Source="..\InventoryUpdater\bin\Release\Grpc.Auth.dll" />
+                        <File Id="GRPC.CORE.API.DLL" Name="Grpc.Core.Api.dll" Source="..\InventoryUpdater\bin\Release\Grpc.Core.Api.dll" />
+                        <File Id="GRPC.CORE.DLL" Name="Grpc.Core.dll" Source="..\InventoryUpdater\bin\Release\Grpc.Core.dll" />
+                        <File Id="GRPC.NET.CLIENT.DLL" Name="Grpc.Net.Client.dll" Source="..\InventoryUpdater\bin\Release\Grpc.Net.Client.dll" />
+                        <File Id="GRPC.NET.COMMON.DLL" Name="Grpc.Net.Common.dll" Source="..\InventoryUpdater\bin\Release\Grpc.Net.Common.dll" />
+                        <File Id="GRPC_CSHARP_EXT.X64.DLL" Name="grpc_csharp_ext.x64.dll" Source="..\InventoryUpdater\bin\Release\grpc_csharp_ext.x64.dll" />
+                        <File Id="GRPC_CSHARP_EXT.X86.DLL" Name="grpc_csharp_ext.x86.dll" Source="..\InventoryUpdater\bin\Release\grpc_csharp_ext.x86.dll" />
                         <File Id="HTMLAGILITYPACK.DLL" Name="HtmlAgilityPack.dll" Source="..\InventoryUpdater\bin\Release\HtmlAgilityPack.dll" />
                         <File Id="ICSHARPCODE.SHARPZIPLIB.DLL" Name="ICSharpCode.SharpZipLib.dll" Source="..\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.dll" />
+                        <File Id="IDENTITY.DLL" Name="Identity.dll" Source="..\InventoryUpdater\bin\Release\Identity.dll" />
                         <File Id="IMAGESEARCH.DLL" Name="ImageSearch.dll" Source="..\InventoryUpdater\bin\Release\ImageSearch.dll" />
                         <File Id="MATHNET.NUMERICS.DLL" Name="MathNet.Numerics.dll" Source="..\InventoryUpdater\bin\Release\MathNet.Numerics.dll" />
                         <File Id="MICROSOFT.BCL.ASYNCINTERFACES.DLL" Name="Microsoft.Bcl.AsyncInterfaces.dll" Source="..\InventoryUpdater\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll" />
+                        <File Id="MICROSOFT.EXTENSIONS.DEPENDENCYINJECTION.ABSTRACTIONS.DLL" Name="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Source="..\InventoryUpdater\bin\Release\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+                        <File Id="MICROSOFT.EXTENSIONS.LOGGING.ABSTRACTIONS.DLL" Name="Microsoft.Extensions.Logging.Abstractions.dll" Source="..\InventoryUpdater\bin\Release\Microsoft.Extensions.Logging.Abstractions.dll" />
                         <File Id="MICROSOFT.IO.RECYCLABLEMEMORYSTREAM.DLL" Name="Microsoft.IO.RecyclableMemoryStream.dll" Source="..\InventoryUpdater\bin\Release\Microsoft.IO.RecyclableMemoryStream.dll" />
                         <File Id="MICROSOFT.WINDOWSAPICODEPACK.DLL" Name="Microsoft.WindowsAPICodePack.dll" Source="..\InventoryUpdater\bin\Release\Microsoft.WindowsAPICodePack.dll" />
                         <File Id="NEWTONSOFT.JSON.DLL" Name="Newtonsoft.Json.dll" Source="..\InventoryUpdater\bin\Release\Newtonsoft.Json.dll" />
@@ -51,8 +78,13 @@
                         <File Id="SYNCFUSION.TOOLS.WINDOWS.DLL" Name="Syncfusion.Tools.Windows.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Windows.dll" />
                         <File Id="SYNCFUSION.XLSIO.BASE.DLL" Name="Syncfusion.XlsIO.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.XlsIO.Base.dll" />
                         <File Id="SYSTEM.BUFFERS.DLL" Name="System.Buffers.dll" Source="..\InventoryUpdater\bin\Release\System.Buffers.dll" />
+                        <File Id="SYSTEM.CODEDOM.DLL" Name="System.CodeDom.dll" Source="..\InventoryUpdater\bin\Release\System.CodeDom.dll" />
+                        <File Id="SYSTEM.COLLECTIONS.IMMUTABLE.DLL" Name="System.Collections.Immutable.dll" Source="..\InventoryUpdater\bin\Release\System.Collections.Immutable.dll" />
+                        <File Id="SYSTEM.DIAGNOSTICS.DIAGNOSTICSOURCE.DLL" Name="System.Diagnostics.DiagnosticSource.dll" Source="..\InventoryUpdater\bin\Release\System.Diagnostics.DiagnosticSource.dll" />
                         <File Id="SYSTEM.DRAWING.COMMON.DLL" Name="System.Drawing.Common.dll" Source="..\InventoryUpdater\bin\Release\System.Drawing.Common.dll" />
+                        <File Id="SYSTEM.LINQ.ASYNC.DLL" Name="System.Linq.Async.dll" Source="..\InventoryUpdater\bin\Release\System.Linq.Async.dll" />
                         <File Id="SYSTEM.MEMORY.DLL" Name="System.Memory.dll" Source="..\InventoryUpdater\bin\Release\System.Memory.dll" />
+                        <File Id="SYSTEM.NET.HTTP.WINHTTPHANDLER.DLL" Name="System.Net.Http.WinHttpHandler.dll" Source="..\InventoryUpdater\bin\Release\System.Net.Http.WinHttpHandler.dll" />
                         <File Id="SYSTEM.NUMERICS.VECTORS.DLL" Name="System.Numerics.Vectors.dll" Source="..\InventoryUpdater\bin\Release\System.Numerics.Vectors.dll" />
                         <File Id="SYSTEM.RUNTIME.COMPILERSERVICES.UNSAFE.DLL" Name="System.Runtime.CompilerServices.Unsafe.dll" Source="..\InventoryUpdater\bin\Release\System.Runtime.CompilerServices.Unsafe.dll" />
                         <File Id="SYSTEM.TEXT.ENCODING.CODEPAGES.DLL" Name="System.Text.Encoding.CodePages.dll" Source="..\InventoryUpdater\bin\Release\System.Text.Encoding.CodePages.dll" />
@@ -61,14 +93,36 @@
                         <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.DLL" Name="System.Threading.Tasks.Extensions.dll" Source="..\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.dll" />
                         <File Id="SYSTEM.VALUETUPLE.DLL" Name="System.ValueTuple.dll" Source="..\InventoryUpdater\bin\Release\System.ValueTuple.dll" />
                         <File Id="TELEGRAMBOT.DLL" Name="TelegramBot.dll" Source="..\InventoryUpdater\bin\Release\TelegramBot.dll" />
+                        <File Id="LIBGRPC_CSHARP_EXT.X64.DYLIB" Name="libgrpc_csharp_ext.x64.dylib" Source="..\InventoryUpdater\bin\Release\libgrpc_csharp_ext.x64.dylib" />
                         <File Id="ANGLESHARP.XML" Name="AngleSharp.xml" Source="..\InventoryUpdater\bin\Release\AngleSharp.xml" />
                         <File Id="BOUNCYCASTLE.CRYPTO.XML" Name="BouncyCastle.Crypto.xml" Source="..\InventoryUpdater\bin\Release\BouncyCastle.Crypto.xml" />
+                        <File Id="DEVICEID.WINDOWS.WMI.XML" Name="DeviceId.Windows.Wmi.xml" Source="..\InventoryUpdater\bin\Release\DeviceId.Windows.Wmi.xml" />
+                        <File Id="DEVICEID.WINDOWS.XML" Name="DeviceId.Windows.xml" Source="..\InventoryUpdater\bin\Release\DeviceId.Windows.xml" />
+                        <File Id="DEVICEID.XML" Name="DeviceId.xml" Source="..\InventoryUpdater\bin\Release\DeviceId.xml" />
                         <File Id="ENUMS.NET.XML" Name="Enums.NET.xml" Source="..\InventoryUpdater\bin\Release\Enums.NET.xml" />
                         <File Id="EXCELMAPPER.XML" Name="ExcelMapper.xml" Source="..\InventoryUpdater\bin\Release\ExcelMapper.xml" />
+                        <File Id="GOOGLE.API.COMMONPROTOS.XML" Name="Google.Api.CommonProtos.xml" Source="..\InventoryUpdater\bin\Release\Google.Api.CommonProtos.xml" />
+                        <File Id="GOOGLE.API.GAX.GRPC.XML" Name="Google.Api.Gax.Grpc.xml" Source="..\InventoryUpdater\bin\Release\Google.Api.Gax.Grpc.xml" />
+                        <File Id="GOOGLE.API.GAX.XML" Name="Google.Api.Gax.xml" Source="..\InventoryUpdater\bin\Release\Google.Api.Gax.xml" />
+                        <File Id="GOOGLE.APIS.AUTH.XML" Name="Google.Apis.Auth.xml" Source="..\InventoryUpdater\bin\Release\Google.Apis.Auth.xml" />
+                        <File Id="GOOGLE.APIS.CORE.XML" Name="Google.Apis.Core.xml" Source="..\InventoryUpdater\bin\Release\Google.Apis.Core.xml" />
+                        <File Id="GOOGLE.APIS.XML" Name="Google.Apis.xml" Source="..\InventoryUpdater\bin\Release\Google.Apis.xml" />
+                        <File Id="GOOGLE.CLOUD.FIRESTORE.V1.XML" Name="Google.Cloud.Firestore.V1.xml" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Firestore.V1.xml" />
+                        <File Id="GOOGLE.CLOUD.FIRESTORE.XML" Name="Google.Cloud.Firestore.xml" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Firestore.xml" />
+                        <File Id="GOOGLE.CLOUD.LOCATION.XML" Name="Google.Cloud.Location.xml" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Location.xml" />
+                        <File Id="GOOGLE.LONGRUNNING.XML" Name="Google.LongRunning.xml" Source="..\InventoryUpdater\bin\Release\Google.LongRunning.xml" />
+                        <File Id="GOOGLE.PROTOBUF.XML" Name="Google.Protobuf.xml" Source="..\InventoryUpdater\bin\Release\Google.Protobuf.xml" />
+                        <File Id="GRPC.AUTH.XML" Name="Grpc.Auth.xml" Source="..\InventoryUpdater\bin\Release\Grpc.Auth.xml" />
+                        <File Id="GRPC.CORE.API.XML" Name="Grpc.Core.Api.xml" Source="..\InventoryUpdater\bin\Release\Grpc.Core.Api.xml" />
+                        <File Id="GRPC.CORE.XML" Name="Grpc.Core.xml" Source="..\InventoryUpdater\bin\Release\Grpc.Core.xml" />
+                        <File Id="GRPC.NET.CLIENT.XML" Name="Grpc.Net.Client.xml" Source="..\InventoryUpdater\bin\Release\Grpc.Net.Client.xml" />
+                        <File Id="GRPC.NET.COMMON.XML" Name="Grpc.Net.Common.xml" Source="..\InventoryUpdater\bin\Release\Grpc.Net.Common.xml" />
                         <File Id="HTMLAGILITYPACK.XML" Name="HtmlAgilityPack.xml" Source="..\InventoryUpdater\bin\Release\HtmlAgilityPack.xml" />
                         <File Id="ICSHARPCODE.SHARPZIPLIB.XML" Name="ICSharpCode.SharpZipLib.xml" Source="..\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.xml" />
                         <File Id="MATHNET.NUMERICS.XML" Name="MathNet.Numerics.xml" Source="..\InventoryUpdater\bin\Release\MathNet.Numerics.xml" />
                         <File Id="MICROSOFT.BCL.ASYNCINTERFACES.XML" Name="Microsoft.Bcl.AsyncInterfaces.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml" />
+                        <File Id="MICROSOFT.EXTENSIONS.DEPENDENCYINJECTION.ABSTRACTIONS.XML" Name="Microsoft.Extensions.DependencyInjection.Abstractions.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+                        <File Id="MICROSOFT.EXTENSIONS.LOGGING.ABSTRACTIONS.XML" Name="Microsoft.Extensions.Logging.Abstractions.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.Extensions.Logging.Abstractions.xml" />
                         <File Id="MICROSOFT.IO.RECYCLABLEMEMORYSTREAM.XML" Name="Microsoft.IO.RecyclableMemoryStream.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.IO.RecyclableMemoryStream.xml" />
                         <File Id="MICROSOFT.WINDOWSAPICODEPACK.XML" Name="Microsoft.WindowsAPICodePack.xml" Source="..\InventoryUpdater\bin\Release\Microsoft.WindowsAPICodePack.xml" />
                         <File Id="NEWTONSOFT.JSON.XML" Name="Newtonsoft.Json.xml" Source="..\InventoryUpdater\bin\Release\Newtonsoft.Json.xml" />
@@ -97,7 +151,12 @@
                         <File Id="SYNCFUSION.TOOLS.WINDOWS.XML" Name="Syncfusion.Tools.Windows.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Windows.xml" />
                         <File Id="SYNCFUSION.XLSIO.BASE.XML" Name="Syncfusion.XlsIO.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.XlsIO.Base.xml" />
                         <File Id="SYSTEM.BUFFERS.XML" Name="System.Buffers.xml" Source="..\InventoryUpdater\bin\Release\System.Buffers.xml" />
+                        <File Id="SYSTEM.CODEDOM.XML" Name="System.CodeDom.xml" Source="..\InventoryUpdater\bin\Release\System.CodeDom.xml" />
+                        <File Id="SYSTEM.COLLECTIONS.IMMUTABLE.XML" Name="System.Collections.Immutable.xml" Source="..\InventoryUpdater\bin\Release\System.Collections.Immutable.xml" />
+                        <File Id="SYSTEM.DIAGNOSTICS.DIAGNOSTICSOURCE.XML" Name="System.Diagnostics.DiagnosticSource.xml" Source="..\InventoryUpdater\bin\Release\System.Diagnostics.DiagnosticSource.xml" />
+                        <File Id="SYSTEM.LINQ.ASYNC.XML" Name="System.Linq.Async.xml" Source="..\InventoryUpdater\bin\Release\System.Linq.Async.xml" />
                         <File Id="SYSTEM.MEMORY.XML" Name="System.Memory.xml" Source="..\InventoryUpdater\bin\Release\System.Memory.xml" />
+                        <File Id="SYSTEM.NET.HTTP.WINHTTPHANDLER.XML" Name="System.Net.Http.WinHttpHandler.xml" Source="..\InventoryUpdater\bin\Release\System.Net.Http.WinHttpHandler.xml" />
                         <File Id="SYSTEM.NUMERICS.VECTORS.XML" Name="System.Numerics.Vectors.xml" Source="..\InventoryUpdater\bin\Release\System.Numerics.Vectors.xml" />
                         <File Id="SYSTEM.RUNTIME.COMPILERSERVICES.UNSAFE.XML" Name="System.Runtime.CompilerServices.Unsafe.xml" Source="..\InventoryUpdater\bin\Release\System.Runtime.CompilerServices.Unsafe.xml" />
                         <File Id="SYSTEM.TEXT.ENCODING.CODEPAGES.XML" Name="System.Text.Encoding.CodePages.xml" Source="..\InventoryUpdater\bin\Release\System.Text.Encoding.CodePages.xml" />
@@ -105,10 +164,29 @@
                         <File Id="SYSTEM.TEXT.JSON.XML" Name="System.Text.Json.xml" Source="..\InventoryUpdater\bin\Release\System.Text.Json.xml" />
                         <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.XML" Name="System.Threading.Tasks.Extensions.xml" Source="..\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.xml" />
                         <File Id="SYSTEM.VALUETUPLE.XML" Name="System.ValueTuple.xml" Source="..\InventoryUpdater\bin\Release\System.ValueTuple.xml" />
+                        <File Id="CONSTANTS.PDB" Name="Constants.pdb" Source="..\InventoryUpdater\bin\Release\Constants.pdb" />
                         <File Id="DECODERS.PDB" Name="Decoders.pdb" Source="..\InventoryUpdater\bin\Release\Decoders.pdb" />
                         <File Id="ENUMS.NET.PDB" Name="Enums.NET.pdb" Source="..\InventoryUpdater\bin\Release\Enums.NET.pdb" />
+                        <File Id="FRBASE.PDB" Name="FrBase.pdb" Source="..\InventoryUpdater\bin\Release\FrBase.pdb" />
+                        <File Id="GOOGLE.API.COMMONPROTOS.PDB" Name="Google.Api.CommonProtos.pdb" Source="..\InventoryUpdater\bin\Release\Google.Api.CommonProtos.pdb" />
+                        <File Id="GOOGLE.API.GAX.GRPC.PDB" Name="Google.Api.Gax.Grpc.pdb" Source="..\InventoryUpdater\bin\Release\Google.Api.Gax.Grpc.pdb" />
+                        <File Id="GOOGLE.API.GAX.PDB" Name="Google.Api.Gax.pdb" Source="..\InventoryUpdater\bin\Release\Google.Api.Gax.pdb" />
+                        <File Id="GOOGLE.APIS.AUTH.PDB" Name="Google.Apis.Auth.pdb" Source="..\InventoryUpdater\bin\Release\Google.Apis.Auth.pdb" />
+                        <File Id="GOOGLE.APIS.CORE.PDB" Name="Google.Apis.Core.pdb" Source="..\InventoryUpdater\bin\Release\Google.Apis.Core.pdb" />
+                        <File Id="GOOGLE.APIS.PDB" Name="Google.Apis.pdb" Source="..\InventoryUpdater\bin\Release\Google.Apis.pdb" />
+                        <File Id="GOOGLE.CLOUD.FIRESTORE.PDB" Name="Google.Cloud.Firestore.pdb" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Firestore.pdb" />
+                        <File Id="GOOGLE.CLOUD.FIRESTORE.V1.PDB" Name="Google.Cloud.Firestore.V1.pdb" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Firestore.V1.pdb" />
+                        <File Id="GOOGLE.CLOUD.LOCATION.PDB" Name="Google.Cloud.Location.pdb" Source="..\InventoryUpdater\bin\Release\Google.Cloud.Location.pdb" />
+                        <File Id="GOOGLE.LONGRUNNING.PDB" Name="Google.LongRunning.pdb" Source="..\InventoryUpdater\bin\Release\Google.LongRunning.pdb" />
+                        <File Id="GOOGLE.PROTOBUF.PDB" Name="Google.Protobuf.pdb" Source="..\InventoryUpdater\bin\Release\Google.Protobuf.pdb" />
+                        <File Id="GRPC.AUTH.PDB" Name="Grpc.Auth.pdb" Source="..\InventoryUpdater\bin\Release\Grpc.Auth.pdb" />
+                        <File Id="GRPC.CORE.API.PDB" Name="Grpc.Core.Api.pdb" Source="..\InventoryUpdater\bin\Release\Grpc.Core.Api.pdb" />
+                        <File Id="GRPC.CORE.PDB" Name="Grpc.Core.pdb" Source="..\InventoryUpdater\bin\Release\Grpc.Core.pdb" />
+                        <File Id="GRPC.NET.CLIENT.PDB" Name="Grpc.Net.Client.pdb" Source="..\InventoryUpdater\bin\Release\Grpc.Net.Client.pdb" />
+                        <File Id="GRPC.NET.COMMON.PDB" Name="Grpc.Net.Common.pdb" Source="..\InventoryUpdater\bin\Release\Grpc.Net.Common.pdb" />
                         <File Id="HTMLAGILITYPACK.PDB" Name="HtmlAgilityPack.pdb" Source="..\InventoryUpdater\bin\Release\HtmlAgilityPack.pdb" />
                         <File Id="ICSHARPCODE.SHARPZIPLIB.PDB" Name="ICSharpCode.SharpZipLib.pdb" Source="..\InventoryUpdater\bin\Release\ICSharpCode.SharpZipLib.pdb" />
+                        <File Id="IDENTITY.PDB" Name="Identity.pdb" Source="..\InventoryUpdater\bin\Release\Identity.pdb" />
                         <File Id="IMAGESEARCH.PDB" Name="ImageSearch.pdb" Source="..\InventoryUpdater\bin\Release\ImageSearch.pdb" />
                         <File Id="NPOI.OOXML.PDB" Name="NPOI.OOXML.pdb" Source="..\InventoryUpdater\bin\Release\NPOI.OOXML.pdb" />
                         <File Id="NPOI.OPENXML4NET.PDB" Name="NPOI.OpenXml4Net.pdb" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXml4Net.pdb" />
@@ -119,11 +197,16 @@
                         <File Id="SSGRID.PDB" Name="ssGrid.pdb" Source="..\InventoryUpdater\bin\Release\ssGrid.pdb" />
                         <File Id="SSVIEWCONTROLS.PDB" Name="ssViewControls.pdb" Source="..\InventoryUpdater\bin\Release\ssViewControls.pdb" />
                         <File Id="TELEGRAMBOT.PDB" Name="TelegramBot.pdb" Source="..\InventoryUpdater\bin\Release\TelegramBot.pdb" />
+                        <File Id="UPDATES.PDB" Name="Updates.pdb" Source="..\InventoryUpdater\bin\Release\Updates.pdb" />
+                        <File Id="LIBGRPC_CSHARP_EXT.X64.SO" Name="libgrpc_csharp_ext.x64.so" Source="..\InventoryUpdater\bin\Release\libgrpc_csharp_ext.x64.so" />
                         <File Id="DECODERS.DLL.CONFIG" Name="Decoders.dll.config" Source="..\InventoryUpdater\bin\Release\Decoders.dll.config" />
+                        <File Id="FRBASE.DLL.CONFIG" Name="FrBase.dll.config" Source="..\InventoryUpdater\bin\Release\FrBase.dll.config" />
+                        <File Id="IDENTITY.DLL.CONFIG" Name="Identity.dll.config" Source="..\InventoryUpdater\bin\Release\Identity.dll.config" />
                         <File Id="IMAGESEARCH.DLL.CONFIG" Name="ImageSearch.dll.config" Source="..\InventoryUpdater\bin\Release\ImageSearch.dll.config" />
                         <File Id="NPOI.OPENXMLFORMATS.DLL.CONFIG" Name="NPOI.OpenXmlFormats.dll.config" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXmlFormats.dll.config" />
                         <File Id="SELLERSENSE.EXE.CONFIG" Name="SellerSense.exe.config" Source="..\InventoryUpdater\bin\Release\SellerSense.exe.config" />
                         <File Id="TELEGRAMBOT.DLL.CONFIG" Name="TelegramBot.dll.config" Source="..\InventoryUpdater\bin\Release\TelegramBot.dll.config" />
+                        <File Id="UPDATES.EXE.CONFIG" Name="Updates.exe.config" Source="..\InventoryUpdater\bin\Release\Updates.exe.config" />
                     </Component>
                 </Directory>
             </Directory>
