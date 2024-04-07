@@ -3,6 +3,7 @@ using Decoders.Interfaces;
 using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Model.InvUpdate;
+using SellerSense.Model.Orders;
 using SellerSense.Views;
 using SellerSense.Views.Inventories;
 using ssViewControls;
@@ -35,6 +36,7 @@ namespace SellerSense.ViewManager
     internal partial class VM_Inventories
     {
         internal M_External_Inventories _m_externalInventoriesModel { get; set; }
+        internal M_Orders _m_OrdersModel { get; set; }
         internal M_Snapshot _m_invSnapShotModel_Amz { get; set; }
         internal M_Snapshot _m_invSnapShotModel_Fk { get; set; }
         internal M_Snapshot _m_invSnapShotModel_Spd { get; set; }
@@ -46,7 +48,9 @@ namespace SellerSense.ViewManager
         //private Action InvokeUpdateInventoryInAllCompanies;
         private ssGrid.ssGridView<InventoryView> _ssGridView;
         private Action<Object, ListChangedEventArgs> _bindingListChanged;
+        internal ObservableCollection<InventoryView> _inventoryViewListBackUp { get; set; }
         internal ObservableCollection<InventoryView> _inventoryViewList { get; set; }
+        internal bool _is_filtered = false;
         private VM_Companies.CrossCompanySharedWrapper _crossCompanySharedWrapper;
         private VM_Companies.CrossCompanyEvents _crossCompanyEvents;
 
@@ -58,6 +62,7 @@ namespace SellerSense.ViewManager
             _companyCode = companyCode;
             _crossCompanySharedWrapper = crossCompanySharedWrapper;
             _m_externalInventoriesModel = inventories;
+            _m_OrdersModel = new M_Orders(companyCode);
             _m_productModel = m_product;
             _m_invSnapShotModel_Amz = new M_Snapshot(_companyCode, M_Snapshot.Site.amz);
             _m_invSnapShotModel_Spd = new M_Snapshot(_companyCode, M_Snapshot.Site.spd);
@@ -90,7 +95,8 @@ namespace SellerSense.ViewManager
 #if IncludeMeesho
                     MeeshoCode = item.MeeshoCode,
 #endif                    
-                    SnapdealCode = item.SnapdealCode
+                    SnapdealCode = item.SnapdealCode,
+                    //CostPrice = item.CostPrice
                 };
 
 
@@ -239,23 +245,23 @@ namespace SellerSense.ViewManager
         }
 
 
-        internal void SearchTags(bool IsEnable, string textToSearch, BindingList<InventoryView> bindedProducts)
-        {
-            bindedProducts.Clear();
+        //internal void SearchTags(bool IsEnable, string textToSearch, BindingList<InventoryView> bindedProducts)
+        //{
+        //    bindedProducts.Clear();
 
-            _inventoryViewList.Where(y => !string.IsNullOrEmpty(y.Tag)).ToList().Where((x) =>
-            //if(!string.IsNullOrEmpty(x.Tag))
-            x.Tag.ToLower().Contains(textToSearch.ToLower())).ToList().
-                ForEach(p => bindedProducts.Add(p)
-                );
-        }
+        //    _inventoryViewList.Where(y => !string.IsNullOrEmpty(y.Tag)).ToList().Where((x) =>
+        //    //if(!string.IsNullOrEmpty(x.Tag))
+        //    x.Tag.ToLower().Contains(textToSearch.ToLower())).ToList().
+        //        ForEach(p => bindedProducts.Add(p)
+        //        );
+        //}
 
-        internal void SearchTitle(bool IsEnable, string textToSearch, BindingList<InventoryView> bindedProducts)
-        {
-            bindedProducts.Clear();
-            _inventoryViewList.Where(x => x.Title.ToLower().Contains(textToSearch.ToLower())).ToList().
-                ForEach(p => bindedProducts.Add(p));
-        }
+        //internal void SearchTitle(bool IsEnable, string textToSearch, BindingList<InventoryView> bindedProducts)
+        //{
+        //    bindedProducts.Clear();
+        //    _inventoryViewList.Where(x => x.Title.ToLower().Contains(textToSearch.ToLower())).ToList().
+        //        ForEach(p => bindedProducts.Add(p));
+        //}
 
         //private void HighlightCell(DataGridView grid, DataGridViewCellFormattingEventArgs e)
         //{
@@ -296,6 +302,10 @@ namespace SellerSense.ViewManager
 #endif
             _v_invCntrl.exportAllToolStripMenuItem.Click += (s, e) => { ExportAllInventoryUpdateFiles(); };
             _v_invCntrl.sendInvStatusToolStripMenuItem.Click += (s, e) => { SendStockStatusForThisCompany(); };
+            _v_invCntrl.importAmazonOrdersToolStripMenuItem.Click += async (s, e) => { await ImportAmazonOrders(); };
+            _v_invCntrl.importFlipkartOrdersToolStripMenuItem.Click += async (s, e) => { await ImportFlipkartOrders(); };
+            _v_invCntrl.importSnapdealOrdersToolStripMenuItem.Click += async (s, e) => { await ImportSnapdealOrders(); };
+           // _v_invCntrl.ordersToolStripMenuItem.Click += (s, e) => { };
             _v_invCntrl.sendTotalOrderCountToolStripMenuItem.Click += (s, e) => { SendTotalOrderReport(); };
             _v_invCntrl.allToolStripMenuItem_lastDay.Click += (s, e) => { 
                 CompareAmz_InvWithCurrentSnapshot();
@@ -331,6 +341,69 @@ namespace SellerSense.ViewManager
                 Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Snapdeal);
             };
 
+            _v_invCntrl.splitButton_adv_filter.DropDownItems[0].Click += (s, e) => {
+                if (_is_filtered == false) // not filtered, copy original in backup
+                    CopyInvListToBackUp();
+                else
+                { CopyBackUpToInvList(); _is_filtered = false; }
+                ObservableCollection<InventoryView> filteredValues = new ObservableCollection<InventoryView>();
+                _inventoryViewList.Where(x => x.AmazonOrders!=null && 
+                !string.IsNullOrEmpty(x.AmazonOrders.ToLower()) && 
+                x.AmazonOrders.ToLower().Length > 0).ToList().ForEach(p => 
+                { if (!filteredValues.Contains(p,InventoryView.Comparer)) filteredValues.Add(p); }) ;
+
+                _inventoryViewList.Where(x => x.FlipkartOrders != null &&
+                !string.IsNullOrEmpty(x.FlipkartOrders.ToLower()) &&
+                x.FlipkartOrders.ToLower().Length > 0).ToList().ForEach(p =>
+                { if (!filteredValues.Contains(p, InventoryView.Comparer)) filteredValues.Add(p); });
+
+                _inventoryViewList.Where(x => x.SnapdealOrders != null &&
+                !string.IsNullOrEmpty(x.SnapdealOrders.ToLower()) &&
+                x.SnapdealOrders.ToLower().Length > 0).ToList().ForEach(p =>
+                { if (!filteredValues.Contains(p, InventoryView.Comparer)) filteredValues.Add(p); });
+                _inventoryViewList.Clear();
+
+                foreach (var item in filteredValues)
+                    _inventoryViewList.Add(item);
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[0].Checked = true;
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[1].Checked = false;
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[2].Checked = false;
+                _is_filtered = true;
+            };
+            _v_invCntrl.splitButton_adv_filter.DropDownItems[1].Click += (s, e) => {
+                if (_is_filtered == false) // not filtered, copy original in backup
+                    CopyInvListToBackUp();
+                else
+                { CopyBackUpToInvList(); _is_filtered = false; }
+
+                ObservableCollection<InventoryView> filteredValues = new ObservableCollection<InventoryView>();
+                _inventoryViewList.Where(x => string.IsNullOrEmpty(x.AmazonOrders) && string.IsNullOrEmpty(x.FlipkartOrders) 
+                && string.IsNullOrEmpty(x.SnapdealOrders)).ToList().ForEach(p =>
+                { if (!filteredValues.Contains(p)) filteredValues.Add(p); });
+                
+                _inventoryViewList.Clear();
+
+                foreach (var item in filteredValues)
+                    _inventoryViewList.Add(item);
+
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[0].Checked = false;
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[1].Checked = true;
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[2].Checked = false;
+                _is_filtered = true;
+            };
+
+            _v_invCntrl.splitButton_adv_filter.DropDownItems[2].Click += (s, e) =>
+            {
+                if (_is_filtered == false) // not filtered, copy original in backup
+                    CopyInvListToBackUp();
+                else
+                { CopyBackUpToInvList(); _is_filtered = false; }
+
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[0].Checked = false;
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[1].Checked = false;
+                _v_invCntrl.splitButton_adv_filter.DropDownItems[2].Checked = true;
+            };
+
 #if IncludeMeesho
             _v_invCntrl.customDateToolStripMenuItemMso.Click += (s, e) => {
                 VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Meesho, _m_invSnapShotModel_Mso);
@@ -340,6 +413,24 @@ namespace SellerSense.ViewManager
             };
 #endif
 
+            }
+
+        private void CopyInvListToBackUp()
+        {
+            if (_inventoryViewList == null || _inventoryViewList.Count == 0)
+                return;
+            _inventoryViewListBackUp = new ObservableCollection<InventoryView>();
+            foreach (var item in _inventoryViewList)
+                _inventoryViewListBackUp.Add(item);
+        }
+
+        private void CopyBackUpToInvList()
+        {
+            if (_inventoryViewListBackUp == null || _inventoryViewListBackUp.Count == 0)
+                return;
+            _inventoryViewList.Clear();
+            foreach (var item in _inventoryViewListBackUp)
+                _inventoryViewList.Add(item);
         }
 
         //This method send out of stock items, low inv items etc..
@@ -645,6 +736,135 @@ namespace SellerSense.ViewManager
             _ssGridView.UpdateBindings();
             //EngageCellEvents();
         }
+
+
+        private async Task ImportAmazonOrders()
+        {
+            //DisengageCellEvents();
+            //_ssGridView.ClearBindingListRows();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Amazon order text file|*.txt";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+              await _m_OrdersModel.GetAmzOrders(openFileDialog.FileName);
+            else return;
+            _ssGridView.IsLoading = true;
+            await AssignAmazonOrdersToInvView();
+            _ssGridView.IsLoading = false;
+            _ssGridView.UpdateBindings();
+        }
+
+        private async Task ImportFlipkartOrders()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Flipkart order file|*.xlsx";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                await _m_OrdersModel.GetFkOrders(openFileDialog.FileName);
+            else return;
+            _ssGridView.IsLoading = true;
+            await AssignFkOrdersToInvView();
+            _ssGridView.IsLoading = false;
+            _ssGridView.UpdateBindings();
+        }
+
+        private async Task ImportSnapdealOrders()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Snapdeal order file|*.xlsx";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                await _m_OrdersModel.GetSpdOrders(openFileDialog.FileName);
+            else return;
+            _ssGridView.IsLoading = true;
+            await AssignSnapdealOrdersToInvView();
+            _ssGridView.IsLoading = false;
+            _ssGridView.UpdateBindings();
+        }
+
+
+        private Task AssignFkOrdersToInvView()
+        {
+            return Task.Run(() =>
+            {
+                foreach (var fkItem in _m_OrdersModel._fkOrders)
+                {
+                    foreach (var viewItem in _inventoryViewList)
+                    {
+                        if (!string.IsNullOrWhiteSpace(viewItem.FlipkartCode) && !string.IsNullOrWhiteSpace(fkItem.fsn) &&
+                        fkItem.fsn.Trim().ToLower() == viewItem.FlipkartCode.Trim().ToLower()
+                        && int.TryParse(fkItem.qty, out int val))
+                        {
+                            string sval = string.Empty;
+                            if (val != 0) sval = Convert.ToString(val);
+                            if (string.IsNullOrEmpty(viewItem.FlipkartOrders))
+                                viewItem.FlipkartOrders = sval;
+                            else
+                            {
+                                int.TryParse(sval, out int ival);
+                                int.TryParse(viewItem.FlipkartOrders, out int vorder);
+                                viewItem.FlipkartOrders = (ival + vorder).ToString();
+                            }
+
+                        }
+                    }
+                }
+            });
+        }
+
+
+        private Task AssignSnapdealOrdersToInvView()
+        {
+            return Task.Run(() =>
+            {
+                foreach (var spdItem in _m_OrdersModel._spdOrders)
+                {
+                    foreach (var viewItem in _inventoryViewList)
+                    {
+                        if (!string.IsNullOrWhiteSpace(viewItem.SnapdealCode) && !string.IsNullOrWhiteSpace(spdItem.SUPC) &&
+                        spdItem.SUPC.Trim().ToLower() == viewItem.SnapdealCode.Trim().ToLower())
+                        {
+                            if (string.IsNullOrEmpty(viewItem.SnapdealOrders))
+                                viewItem.SnapdealOrders = 1.ToString();
+                            else
+                            {
+                                int.TryParse(viewItem.AmazonOrders, out int vorder);
+                                viewItem.SnapdealOrders = (1 + vorder).ToString();
+                            }
+
+                        }
+                    }
+                }
+            });
+        }
+
+        private Task AssignAmazonOrdersToInvView()
+        {
+            return Task.Run(() =>
+            {
+                foreach (var amzItem in _m_OrdersModel._amzOrders)
+                {
+                    foreach (var viewItem in _inventoryViewList)
+                    {
+                        if (!string.IsNullOrWhiteSpace(viewItem.AmazonCode) && !string.IsNullOrWhiteSpace(amzItem.asin) &&
+                        amzItem.asin.Trim().ToLower() == viewItem.AmazonCode.Trim().ToLower()
+                        && int.TryParse(amzItem.qty, out int val))
+                        {
+                            string sval = string.Empty;
+                            if (val != 0) sval = Convert.ToString(val);
+                            if(string.IsNullOrEmpty(viewItem.AmazonOrders))
+                                viewItem.AmazonOrders = sval;
+                            else
+                            {
+                                int.TryParse(sval, out int ival);
+                                int.TryParse(viewItem.AmazonOrders, out int vorder);
+                                viewItem.AmazonOrders = (ival + vorder).ToString();
+                            }
+                            
+                        }
+                    }
+                }
+            });
+        }
+
+
 
         private async Task ImportAmazonInv()
         {
@@ -969,6 +1189,16 @@ namespace SellerSense.ViewManager
             public string AmazonCode { get; set; }
             public string FlipkartCode { get; set; }
             public string SnapdealCode { get; set; }
+            //public string CostPrice { get; set; }
+            //public string Profit { get {
+            //        int.TryParse(AmazonOrders, out int aorder);
+            //        int.TryParse(FlipkartOrders, out int forder);
+            //        int.TryParse(SnapdealOrders, out int sorder);
+            //        int.TryParse(CostPrice, out int cost);
+            //        float totalCost = cost * (aorder + forder + sorder);
+            //        float totalsale = 
+            //        return "";
+            //    } }
 #if IncludeMeesho
             public string MeeshoCode { get; set; }
 #endif
@@ -989,6 +1219,23 @@ namespace SellerSense.ViewManager
                 imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
                 return ms.ToArray();
             }
+
+
+            private sealed class InvEqualityComparer : IEqualityComparer<InventoryView>
+            {
+                public bool Equals(InventoryView x, InventoryView y)
+                {
+                    return (String.Equals(x.InHouseCode, y.InHouseCode));
+                }
+
+                public int GetHashCode(InventoryView obj)
+                {
+                    return (obj.InHouseCode != null ? obj.InHouseCode.GetHashCode() : 0);
+                }
+            }
+            public static IEqualityComparer<InventoryView> Comparer { get; } = new InvEqualityComparer();
+
+
         }
 
     } 

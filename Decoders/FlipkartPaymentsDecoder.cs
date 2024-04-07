@@ -52,8 +52,8 @@ namespace Decoders
         public string sku { get; set; }
         [Column(4)]         //[Column("Bank Settlement Value (Rs.) = SUM(I:Q)")] //Header is having complex values, not reading..due to \n in header
         public string bankSettlementValue { get; set; }
-        [Column(5)]         //[Column("Input GST + TCS Credits (Rs.)\n[GST + TCS]")]
-        public string gst_tcs_Credits { get; set; }
+        [Column(63)]         //[Column("Input GST + TCS Credits (Rs.)\n[GST + TCS]")]
+        public string return_type { get; set; }
         [Column(6)]
         public string tds { get; set; }
         [Column(10)]

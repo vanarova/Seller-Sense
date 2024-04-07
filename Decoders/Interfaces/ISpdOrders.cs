@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ssGrid
+namespace Decoders.Interfaces
 {
-    public class Class1
+    public interface ISpdOrders
     {
+        string SUPC { get; set; }
+        string SKU { get; set; }
+
     }
 }

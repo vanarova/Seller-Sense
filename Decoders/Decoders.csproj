@@ -57,7 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmazonInvDecoder.cs" />
+    <Compile Include="ProductDecoder.cs" />
+    <Compile Include="Interfaces\IProduct.cs" />
+    <Compile Include="SnapdealOrdersDecoder.cs" />
+    <Compile Include="FlipkartOrdersDecoder.cs" />
+    <Compile Include="AmazonOrdersDecoder.cs" />
     <Compile Include="AmazonPaymentsDecoder.cs" />
+    <Compile Include="Interfaces\ISpdOrders.cs" />
+    <Compile Include="Interfaces\IFkOrders.cs" />
+    <Compile Include="Interfaces\IAmzOrders.cs" />
     <Compile Include="SnapdealPaymentsDecoder.cs" />
     <Compile Include="FlipkartPaymentsDecoder.cs" />
     <Compile Include="Interfaces\ISpdPayments.cs" />

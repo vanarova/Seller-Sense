@@ -30,9 +30,9 @@ namespace SellerSense
                 Logger.SetLoggerLevel_LogAboveThisLevelOnly(Logger.LogLevel.info);
 
                 //Evaluate Telegram setting, this will set telegram  logging bool variable
-                Logger.IsTelegramLogEnabled();
+                //Logger.IsTelegramLogEnabled();
 
-#if  DebugWithNoGlobalExeceptions
+//#if  DebugWithNoGlobalExeceptions
                 // Add the event handler for handling UI thread exceptions to the event.
                 if (!System.Diagnostics.Debugger.IsAttached)
                     Application.ThreadException += new ThreadExceptionEventHandler(Form1_UIThreadException);
@@ -47,7 +47,7 @@ namespace SellerSense
                 if (!System.Diagnostics.Debugger.IsAttached)
                     AppDomain.CurrentDomain.UnhandledException += new
                 UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-#endif
+//#endif
                 //throw new InvalidOperationException("Testing");
                 Application.Run(new Welcome());
             }
@@ -61,8 +61,8 @@ namespace SellerSense
                  Logger.Log(e.Message + "; Inner Ex: " + e.InnerException + "; Stack :" + e.StackTrace, Logger.LogLevel.fatal, true);
                 AlertBox abox = new AlertBox("Error","Unexpected Error occurred, application cant be recovered, " +
                     "restart required. If problem persists, send logs to customer support, logs location : " + logLocation,e); //TODO : assign logs location
-                abox.ShowDialog();Application.Restart();
-                //Application.Exit();
+                abox.ShowDialog();
+                Application.Exit();
             }
            
         }

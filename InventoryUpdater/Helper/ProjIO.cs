@@ -89,7 +89,15 @@ namespace SellerSense.Helper
         {
             if (Directory.Exists(localappdata_sellersense))
                 Directory.Delete(localappdata_sellersense, true);
-            Directory.CreateDirectory(localappdata_sellersense);
+            try
+            {
+                Directory.CreateDirectory(localappdata_sellersense);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"Enable to create directory, {dx.Message}");
+            }
+
             return localappdata_sellersense;
         }
 
@@ -143,8 +151,16 @@ namespace SellerSense.Helper
         {
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create);
             string inSettingPath = Path.Combine(appdata, "Seller-Sense");
-            if (!Directory.Exists(inSettingPath))
-                Directory.CreateDirectory(inSettingPath);
+            try
+            {
+                if (!Directory.Exists(inSettingPath))
+                    Directory.CreateDirectory(inSettingPath);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
+
             if (UserSettings == null)
                 UserSettings = new Dictionary<string, string>();
             UserSettings[key] = value;
@@ -157,8 +173,15 @@ namespace SellerSense.Helper
             string json = string.Empty;
             string appdata = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData, Environment.SpecialFolderOption.Create);
             string inSettingPath = Path.Combine(appdata, "Seller-Sense");
-            if (!Directory.Exists(inSettingPath))
-                Directory.CreateDirectory(inSettingPath);
+            try
+            {
+                if (!Directory.Exists(inSettingPath))
+                    Directory.CreateDirectory(inSettingPath);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
             if (File.Exists(inSettingPath + @"\inv.json"))
                 json = File.ReadAllText(inSettingPath + @"\inv.json");
             UserSettings = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
@@ -181,8 +204,8 @@ namespace SellerSense.Helper
                 return (null, null);
             (bool exist, string dir) = GetCompanyMapDirIfExist(companyCode);
             if (!exist)
-                return (null,null);
-            string imgPath = Path.Combine(dir,Constants.Imgs,fileName);
+                return (null, null);
+            string imgPath = Path.Combine(dir, Constants.Imgs, fileName);
             if (!File.Exists(imgPath))
                 return (null, null);
             using (var bmpTemp = new Bitmap(imgPath))
@@ -193,7 +216,7 @@ namespace SellerSense.Helper
 
         internal static (string, Image) LoadImageWithoutLocking(string filePath)
         {
-            if(string.IsNullOrEmpty(filePath))
+            if (string.IsNullOrEmpty(filePath))
                 return (null, null);
             using (var bmpTemp = new Bitmap(filePath))
             {
@@ -201,33 +224,43 @@ namespace SellerSense.Helper
             }
         }
 
-        internal static Dictionary<string,Image> LoadAllImagesAndDownSize75x75(string dirPath)
+        internal static Dictionary<string, Image> LoadAllImagesAndDownSize75x75(string dirPath)
         {
             Dictionary<string, Image> imgs = new Dictionary<string, Image>();
             foreach (var item in Directory.GetFiles(dirPath))
             {
                 using (var bmpTemp = new Bitmap(item))
                 {
-                    imgs.Add(item, new Bitmap(bmpTemp, new Size(75,75)));
+                    if(!imgs.ContainsKey(item))
+                       imgs.Add(item, new Bitmap(bmpTemp, new Size(75, 75)));
                 }
             }
             return imgs;
         }
 
-        internal static Task<Dictionary<string,Image>> LoadAllImagesAndDownSize75x75Async(string dirPath)
+        internal static Task<Dictionary<string, Image>> LoadAllImagesAndDownSize75x75Async(string dirPath)
         {
-           return Task<Dictionary<string, Image>>.Run(() =>
-            {
-                Dictionary<string, Image> imgs = new Dictionary<string, Image>();
-                foreach (var item in Directory.GetFiles(dirPath))
-                {
-                    using (var bmpTemp = new Bitmap(item))
-                    {
-                        imgs.Add(Path.GetFileNameWithoutExtension(item), new Bitmap(bmpTemp, new Size(75, 75)));
-                    }
-                }
-                return imgs;
-            });
+            return Task<Dictionary<string, Image>>.Run(() =>
+             {
+                 Dictionary<string, Image> imgs = new Dictionary<string, Image>();
+                 foreach (var item in Directory.GetFiles(dirPath))
+                 {
+                     using (var bmpTemp = new Bitmap(item))
+                     {
+                         try
+                         {
+                             if (!imgs.ContainsKey(Path.GetFileNameWithoutExtension(item)))
+                                 imgs.Add(Path.GetFileNameWithoutExtension(item), new Bitmap(bmpTemp, new Size(75, 75)));
+
+                         }
+                         catch (Exception e) {
+                             throw new ApplicationException($"Issue adding images to dictionary, {e.Message}");
+                         }
+
+                     }
+                 }
+                 return imgs;
+             });
         }
 
 
@@ -248,15 +281,31 @@ namespace SellerSense.Helper
 
         internal static string DefaultWorkspaceLocation()
         {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments, Environment.SpecialFolderOption.Create),
-                 Constants.WorkspaceDefaultDirName);
+            try
+            {
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments, Environment.SpecialFolderOption.Create),
+                     Constants.WorkspaceDefaultDirName);
+            }
+            catch (Exception dx)
+            {
+                return String.Empty;
+                //throw new IOException($"IO Exception. {dx.Message}");
+                
+            }
         }
 
         internal static void CreateCompanyDir(string code)
         {
             string wdir = GetUserSetting(Constants.WorkspaceDir);
-            if (!Directory.Exists(Path.Combine(wdir, code)))
-                Directory.CreateDirectory(Path.Combine(wdir, code));
+            try
+            {
+                if (!Directory.Exists(Path.Combine(wdir, code)))
+                    Directory.CreateDirectory(Path.Combine(wdir, code));
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
         }
 
         internal static bool DoesWorkspaceAndProjectsExists()
@@ -273,8 +322,15 @@ namespace SellerSense.Helper
                 toSavePath = DefaultWorkspaceLocation();
             else
                 toSavePath = Path.Combine(customeWorkspaceDir, Constants.WorkspaceDefaultDirName);
-            if (!Directory.Exists(toSavePath))
-                Directory.CreateDirectory(toSavePath);
+            try
+            {
+                if (!Directory.Exists(toSavePath))
+                    Directory.CreateDirectory(toSavePath);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
             if (UserSettings == null)
                 UserSettings = new Dictionary<string, string>();
             if (string.Equals(GetUserSetting(Constants.WorkspaceDir), toSavePath))
@@ -286,53 +342,67 @@ namespace SellerSense.Helper
             return toSavePath;
         }
 
-       
 
-        internal static (bool,string) GetCompany1DirIfExist()
+
+        internal static (bool, string) GetCompany1DirIfExist()
         {
-           return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code))),
-                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code))
-                );
+            string wk = GetUserSetting(Constants.WorkspaceDir);
+            string cmp1 = GetUserSetting(Constants.Company1Code);
+            if (string.IsNullOrEmpty(wk) || string.IsNullOrEmpty(cmp1))
+                return (false, string.Empty);
+            else
+            return (Directory.Exists(
+                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code))),
+                 Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company1Code))
+                 );
         }
         internal static (bool, string) GetCompany2DirIfExist()
         {
-            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code))),
-                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code))
-                );
+
+            string wk = GetUserSetting(Constants.WorkspaceDir);
+            string cmp2 = GetUserSetting(Constants.Company2Code);
+            if (string.IsNullOrEmpty(wk) || string.IsNullOrEmpty(cmp2))
+                return (false, string.Empty);
+            else
+                return (Directory.Exists(
+                    Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code))),
+                     Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company2Code))
+                     );
         }
-        internal static (bool, string) GetCompany3DirIfExist()
-        {
-            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company3Code))), 
-                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company3Code)));
-        }
-        internal static (bool, string) GetCompany4DirIfExist()
-        {
-            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company4Code))), 
-                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company4Code)));
-        }
-        internal static (bool, string) GetCompany5DirIfExist()
-        {
-            return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company5Code))), 
-                Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company5Code)));
-        }
+
+        //internal static (bool, string) GetCompany3DirIfExist()
+        //{
+        //    return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company3Code))),
+        //        Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company3Code)));
+        //}
+        //internal static (bool, string) GetCompany4DirIfExist()
+        //{
+        //    return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company4Code))),
+        //        Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company4Code)));
+        //}
+        //internal static (bool, string) GetCompany5DirIfExist()
+        //{
+        //    return (Directory.Exists(Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company5Code))),
+        //        Path.Combine(GetUserSetting(Constants.WorkspaceDir), GetUserSetting(Constants.Company5Code)));
+        //}
 
         internal static bool DoesCompanyCodeExist(string code)
         {
             (bool c1Dir, _) = ProjIO.GetCompany1DirIfExist();
             (bool c2Dir, _) = ProjIO.GetCompany2DirIfExist();
-            (bool c3Dir, _) = ProjIO.GetCompany3DirIfExist();
-            (bool c4Dir, _) = ProjIO.GetCompany4DirIfExist();
-            (bool c5Dir, _) = ProjIO.GetCompany5DirIfExist();
+            //(bool c3Dir, _) = ProjIO.GetCompany3DirIfExist();
+            //(bool c4Dir, _) = ProjIO.GetCompany4DirIfExist();
+            //(bool c5Dir, _) = ProjIO.GetCompany5DirIfExist();
             if (string.Equals(ProjIO.GetUserSetting(Constants.Company1Code), code) && c1Dir)
                 return true;
             if (string.Equals(ProjIO.GetUserSetting(Constants.Company2Code), code) && c2Dir)
                 return true;
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company3Code), code) && c3Dir)
-                return true;
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company4Code), code) && c4Dir)
-                return true;
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company5Code), code) && c5Dir)
-                return true;
+            //if (string.Equals(ProjIO.GetUserSetting(Constants.Company3Code), code) && c3Dir)
+            //    return true;
+            //if (string.Equals(ProjIO.GetUserSetting(Constants.Company4Code), code) && c4Dir)
+            //    return true;
+            //if (string.Equals(ProjIO.GetUserSetting(Constants.Company5Code), code) && c5Dir)
+            //    return true;
 
             return false;
         }
@@ -347,17 +417,17 @@ namespace SellerSense.Helper
             if (string.Equals(ProjIO.GetUserSetting(Constants.Company2Code), code) && c2Exist)
                 return (c2Exist, c2DirPath);
 
-            (bool c3Exist, string c3DirPath) = ProjIO.GetCompany3DirIfExist();
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company3Code), code) && c3Exist)
-                return (c3Exist, c3DirPath);
+            //(bool c3Exist, string c3DirPath) = ProjIO.GetCompany3DirIfExist();
+            //if (string.Equals(ProjIO.GetUserSetting(Constants.Company3Code), code) && c3Exist)
+            //    return (c3Exist, c3DirPath);
 
-            (bool c4Exist, string c4DirPath) = ProjIO.GetCompany4DirIfExist();
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company4Code), code) && c4Exist)
-                return (c4Exist, c4DirPath);
+            //(bool c4Exist, string c4DirPath) = ProjIO.GetCompany4DirIfExist();
+            //if (string.Equals(ProjIO.GetUserSetting(Constants.Company4Code), code) && c4Exist)
+            //    return (c4Exist, c4DirPath);
 
-            (bool c5Exist, string c5DirPath) = ProjIO.GetCompany5DirIfExist();
-            if (string.Equals(ProjIO.GetUserSetting(Constants.Company5Code), code) && c5Exist)
-                return (c5Exist, c5DirPath);
+            //(bool c5Exist, string c5DirPath) = ProjIO.GetCompany5DirIfExist();
+            //if (string.Equals(ProjIO.GetUserSetting(Constants.Company5Code), code) && c5Exist)
+            //    return (c5Exist, c5DirPath);
 
             return (false, string.Empty);
         }
@@ -378,25 +448,25 @@ namespace SellerSense.Helper
             string filePath = string.Empty;
             if (Directory.Exists(imgsLocation))
             {
-                filePath =Path.Combine(imgsLocation, productCode);
-                if (File.Exists(filePath + Constants.JPG) )
-                    return (filePath + Constants.JPG, productCode+ Constants.JPG); 
-                if( File.Exists(filePath + Constants.PNG))
+                filePath = Path.Combine(imgsLocation, productCode);
+                if (File.Exists(filePath + Constants.JPG))
+                    return (filePath + Constants.JPG, productCode + Constants.JPG);
+                if (File.Exists(filePath + Constants.PNG))
                     return (filePath + Constants.PNG, productCode + Constants.PNG);
 
             }
             return ("", "");
         }
 
-            //internal static void ImportMap1FileToLastSavedLocation(string fileName, string companyCode)
-            //{
-            //    string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
-            //        companyCode,Constants.MapFileName);
-            //    File.Copy(fileName, mapFileLocation);
-            //}
+        //internal static void ImportMap1FileToLastSavedLocation(string fileName, string companyCode)
+        //{
+        //    string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+        //        companyCode,Constants.MapFileName);
+        //    File.Copy(fileName, mapFileLocation);
+        //}
 
-            internal static bool ImportMap(string fileName, string companyCode,Action SuggestUserUnSafeOperation, Func<string,bool> MapExists
-            ,Action<string> Result)
+        internal static bool ImportMap(string fileName, string companyCode, Action SuggestUserUnSafeOperation, Func<string, bool> MapExists
+        , Action<string> Result)
         {
             bool returnCode = false;
             SuggestUserUnSafeOperation();//potential unsafe operation, close existing 
@@ -405,7 +475,7 @@ namespace SellerSense.Helper
                 companyCode, Constants.MapFileName);
             if (File.Exists(mapFileLocation))
                 overwrite = MapExists("File already exists, Continue?");
-            
+
             if (overwrite)
             {
                 if (File.Exists(mapFileLocation))
@@ -420,11 +490,12 @@ namespace SellerSense.Helper
                     returnCode = true;
                 }
                 catch { File.Copy(mapFileLocation + "arv", mapFileLocation); Result("Import map failed."); returnCode = false; } // if copy fails, revert to original map file.
-                finally { 
-                    if(File.Exists(mapFileLocation + "arv"))
-                        File.Delete(mapFileLocation + "arv"); 
-                    
-                    } //delete backup file
+                finally
+                {
+                    if (File.Exists(mapFileLocation + "arv"))
+                        File.Delete(mapFileLocation + "arv");
+
+                } //delete backup file
 
             }
             return returnCode;
@@ -462,7 +533,8 @@ namespace SellerSense.Helper
                     CopyDirectory(tempSnapshotsDirPath, snapshotsDirLocation, recursive: true, overwrite: true);
                     Result("Snapshots imported successfully.");
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Result("Error copying all files.. Please copy files manually at.." + GetUserSetting(Constants.WorkspaceDir));
                 throw (ex);
@@ -478,8 +550,14 @@ namespace SellerSense.Helper
             {
                 // Create a temporary directory
                 string tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-                Directory.CreateDirectory(tempDirectory);
-
+                try
+                {
+                    Directory.CreateDirectory(tempDirectory);
+                }
+                catch (Exception dx)
+                {
+                    throw new IOException($"IO exception, {dx.Message}");
+                }
                 // Extract the contents of the zip file to the temporary directory
                 ZipFile.ExtractToDirectory(zipFilePath, tempDirectory);
 
@@ -491,7 +569,7 @@ namespace SellerSense.Helper
             }
             catch (Exception ex)
             {
-                Logger.Log($"Error: {ex.Message}",Logger.LogLevel.error,true);
+                Logger.Log($"Error: {ex.Message}", Logger.LogLevel.error, true);
                 return default(string);
             }
         }
@@ -506,28 +584,52 @@ namespace SellerSense.Helper
             string workSpace = GetUserSetting(Constants.WorkspaceDir);
             Guid uniqId = Guid.NewGuid();
             string exportAllPath = Path.Combine(selectedPath, uniqId.ToString());
-            Directory.CreateDirectory(exportAllPath);
-
+            try
+            {
+                Directory.CreateDirectory(exportAllPath);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
             string tempDirPath = ProjIO.CleanAndPrepareLocalAppData();
 
-            return Task<string>.Run(() => {
+            return Task<string>.Run(() =>
+            {
 
 
                 //copy log files
                 if (!string.IsNullOrWhiteSpace(companyCode1))
                 {
                     string localLogFileLocation = Path.Combine(workSpace, companyCode1, Constants.logFileName);
-                    string zipSrcDir = Path.Combine(tempDirPath, companyCode1); Directory.CreateDirectory(zipSrcDir);
-                    if (File.Exists(localLogFileLocation))
-                        File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                    string zipSrcDir = Path.Combine(tempDirPath, companyCode1);
+                    try
+                    {
+                        Directory.CreateDirectory(zipSrcDir);
+                        if (File.Exists(localLogFileLocation))
+                            File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                    }
+                    catch (Exception dx)
+                    {
+                        throw new IOException($"IO exception, {dx.Message}");
+                    }
+
                 }
 
                 if (!string.IsNullOrWhiteSpace(companyCode2))
                 {
                     string localLogFileLocation = Path.Combine(workSpace, companyCode2, Constants.logFileName);
-                    string zipSrcDir = Path.Combine(tempDirPath, companyCode2); Directory.CreateDirectory(zipSrcDir);
-                    if (File.Exists(localLogFileLocation))
-                        File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                    string zipSrcDir = Path.Combine(tempDirPath, companyCode2); try
+                    {
+                        Directory.CreateDirectory(zipSrcDir);
+                        if (File.Exists(localLogFileLocation))
+                            File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                    }
+                    catch (Exception dx)
+                    {
+                        throw new IOException($"IO exception, {dx.Message}");
+                    }
+
                 }
 
                 if (!string.IsNullOrWhiteSpace(companyCode3))
@@ -546,78 +648,90 @@ namespace SellerSense.Helper
                         File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
                 }
 
-                
-                string globalLogFileLocation = Path.Combine(workSpace, Constants.logFileName);
-                if (File.Exists(globalLogFileLocation))
-                    File.Copy(globalLogFileLocation, Path.Combine(tempDirPath, "global" + Constants.logFileName));
-               
+                try
+                {
+                    string globalLogFileLocation = Path.Combine(workSpace, Constants.logFileName);
+                    if (File.Exists(globalLogFileLocation))
+                        File.Copy(globalLogFileLocation, Path.Combine(tempDirPath, "global" + Constants.logFileName));
+                }
+                catch (Exception dx)
+                {
+                    throw new IOException($"IO exception, {dx.Message}");
+                }
 
                 ZipFile.CreateFromDirectory(tempDirPath, Path.Combine(exportAllPath, "logs.zip"));
                 //File.Copy(Path.Combine(tempDirPath, "logs.zip"), Path.Combine(exportAllPath, "logs.zip"));
                 //FileExported();
-                
+
                 return Path.Combine(exportAllPath, "logs.zip");
             });
 
         }
 
 
-        internal static Task ExportMap(string companyCode,string zipFileDir, 
+        internal static Task ExportMap(string companyCode, string zipFileDir,
             bool exportLog, bool exportImgs, bool exportSnapshots, Action sameNameFileExistsinTargetDir, Action FileExported)
         {
             if (string.IsNullOrEmpty(companyCode))
                 return Task.FromResult(false);
-            string tempDirPath =  ProjIO.CleanAndPrepareLocalAppData();
+            string tempDirPath = ProjIO.CleanAndPrepareLocalAppData();
             if (File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
             {
 
                 sameNameFileExistsinTargetDir();
                 return Task.FromResult(false);
             }
-           return Task.Run(() => { 
-            string zipSrcDir = Path.Combine(tempDirPath, companyCode);
-            Directory.CreateDirectory(zipSrcDir);
-            //copy map file
-            string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
-               companyCode, Constants.MapFileName);
-            File.Copy(mapFileLocation, Path.Combine(zipSrcDir,Constants.MapFileName)); // [temp]/company_code
-
-            //copy log files
-            if (exportLog)
+            return Task.Run(() =>
             {
-                string localLogFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
-                   companyCode, Constants.logFileName);
-                if (File.Exists(localLogFileLocation))
-                    File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
-                string globalLogFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
-                    Constants.logFileName);
-                if (File.Exists(globalLogFileLocation))
-                    File.Copy(globalLogFileLocation, Path.Combine(zipSrcDir, "global"+Constants.logFileName));
-            }
+                string zipSrcDir = Path.Combine(tempDirPath, companyCode);
+                try { 
+                Directory.CreateDirectory(zipSrcDir);
+                }
+                catch (Exception dx)
+                {
+                    throw new IOException($"IO exception, {dx.Message}");
+                }
+                //copy map file
+                string mapFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                   companyCode, Constants.MapFileName);
+                File.Copy(mapFileLocation, Path.Combine(zipSrcDir, Constants.MapFileName)); // [temp]/company_code
 
-            //copy images
-            if (exportImgs)
-            {
-                string imgsLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
-                   companyCode, Constants.Imgs);
-                if (Directory.Exists(imgsLocation))
-                    CopyDirectory(imgsLocation, Path.Combine(zipSrcDir, Constants.Imgs), true);
-            }
+                //copy log files
+                if (exportLog)
+                {
+                    string localLogFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                       companyCode, Constants.logFileName);
+                    if (File.Exists(localLogFileLocation))
+                        File.Copy(localLogFileLocation, Path.Combine(zipSrcDir, Constants.logFileName));
+                    string globalLogFileLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                        Constants.logFileName);
+                    if (File.Exists(globalLogFileLocation))
+                        File.Copy(globalLogFileLocation, Path.Combine(zipSrcDir, "global" + Constants.logFileName));
+                }
 
-            //copy snapshots
-            if (exportSnapshots)
-            {
-                string snapShotsLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
-                   companyCode, Constants.Snapshots);
-                if (Directory.Exists(snapShotsLocation))
-                    CopyDirectory(snapShotsLocation, Path.Combine(zipSrcDir, Constants.Snapshots), true);
-            }
+                //copy images
+                if (exportImgs)
+                {
+                    string imgsLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                       companyCode, Constants.Imgs);
+                    if (Directory.Exists(imgsLocation))
+                        CopyDirectory(imgsLocation, Path.Combine(zipSrcDir, Constants.Imgs), true);
+                }
 
-            ZipFile.CreateFromDirectory(zipSrcDir,Path.Combine(tempDirPath, companyCode+".zip") );
-            if (!File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
-                File.Copy(Path.Combine(tempDirPath, companyCode + ".zip"), Path.Combine(zipFileDir, companyCode + ".zip"));
-            FileExported();
-            
+                //copy snapshots
+                if (exportSnapshots)
+                {
+                    string snapShotsLocation = Path.Combine(GetUserSetting(Constants.WorkspaceDir),
+                       companyCode, Constants.Snapshots);
+                    if (Directory.Exists(snapShotsLocation))
+                        CopyDirectory(snapShotsLocation, Path.Combine(zipSrcDir, Constants.Snapshots), true);
+                }
+
+                ZipFile.CreateFromDirectory(zipSrcDir, Path.Combine(tempDirPath, companyCode + ".zip"));
+                if (!File.Exists(Path.Combine(zipFileDir, companyCode + ".zip")))
+                    File.Copy(Path.Combine(tempDirPath, companyCode + ".zip"), Path.Combine(zipFileDir, companyCode + ".zip"));
+                FileExported();
+
             });
 
         }
@@ -647,29 +761,35 @@ namespace SellerSense.Helper
         {
             Guid uniqId = Guid.NewGuid();
             string exportAllPath = Path.Combine(selectedPath, uniqId.ToString());
+            try { 
             Directory.CreateDirectory(exportAllPath);
-           await ExportMap(mapCode1, exportAllPath,
-             exportLog, exportImgs, exportSnapshots, () => { }, () => { });
-           await ExportMap(mapCode2, exportAllPath,
-             exportLog, exportImgs, exportSnapshots, () => { }, () => { });
-           await ExportMap(mapCode3, exportAllPath,
-             exportLog, exportImgs, exportSnapshots, () => { }, () => { });
-           await ExportMap(mapCode4, exportAllPath,
-             exportLog, exportImgs, exportSnapshots, () => { }, () => {  });
-           await ExportMap(mapCode5, exportAllPath,
-             exportLog, exportImgs, exportSnapshots, () => { }, () => { });
-           await ExportToTelegram(exportAllPath);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
+            await ExportMap(mapCode1, exportAllPath,
+              exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+            await ExportMap(mapCode2, exportAllPath,
+              exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+            await ExportMap(mapCode3, exportAllPath,
+              exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+            await ExportMap(mapCode4, exportAllPath,
+              exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+            await ExportMap(mapCode5, exportAllPath,
+              exportLog, exportImgs, exportSnapshots, () => { }, () => { });
+            //await ExportToTelegram(exportAllPath);
             FileExported(exportAllPath);
         }
 
-        private async static Task ExportToTelegram(string zipFile)
-        {
-            foreach (var item in Directory.GetFiles(zipFile))
-            {
-                var fileName = Path.GetFileName(item);
-               await Logger.TelegramDocument(zipFile, fileName, Logger.LogLevel.info);
-            }
-        }
+        //private async static Task ExportToTelegram(string zipFile)
+        //{
+        //    foreach (var item in Directory.GetFiles(zipFile))
+        //    {
+        //        var fileName = Path.GetFileName(item);
+        //        await Logger.TelegramDocument(zipFile, fileName, Logger.LogLevel.info);
+        //    }
+        //}
 
         //taken from msdn
         private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive, bool overwrite = false)
@@ -683,9 +803,14 @@ namespace SellerSense.Helper
 
             // Cache directories before we start copying
             DirectoryInfo[] dirs = dir.GetDirectories();
-
+            try { 
             // Create the destination directory
             Directory.CreateDirectory(destinationDir);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
 
             // Get the files in the source directory and copy to the destination directory
             foreach (FileInfo file in dir.GetFiles())

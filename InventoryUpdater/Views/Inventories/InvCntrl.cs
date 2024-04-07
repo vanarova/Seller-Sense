@@ -40,6 +40,9 @@ namespace SellerSense
             
         }
 
-        
+        private void label_Help_Click(object sender, EventArgs e)
+        {
+            (new Docs.Help(Docs.Constants.HelpTopic.Orders)).ShowDialog();
+        }
     }
 }

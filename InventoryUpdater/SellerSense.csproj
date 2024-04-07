@@ -52,7 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithNoGlobalExeceptions|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\DebugWithNoGlobalExeceptions\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;DebugWithNoGlobalExeceptions;</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;DebugWithNoGlobalExeceptions;Release;</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
@@ -213,6 +213,7 @@
     <Compile Include="Helper\En.cs" />
     <Compile Include="Helper\QuickLog.cs" />
     <Compile Include="Model\InvUpdate\M_Snapshot.cs" />
+    <Compile Include="Model\Orders\M_Orders.cs" />
     <Compile Include="Model\Payments\M_Payments.cs" />
     <Compile Include="Model\Reports\Reports.cs" />
     <Compile Include="Registration.cs">
@@ -232,7 +233,6 @@
     <Compile Include="Docs\Notes.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="ViewManager\VM_Reports.cs" />
-    <Compile Include="ViewManager\VM_TelegramSetup.cs" />
     <Compile Include="Views\AddEditProduct\AddLinkedProduct.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -314,11 +314,11 @@
     <Compile Include="Views\Payments\PaymentsView.Designer.cs">
       <DependentUpon>PaymentsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Products\ExportProducts.cs">
+    <Compile Include="Views\Products\ImportProductCSV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Products\ExportProducts.Designer.cs">
-      <DependentUpon>ExportProducts.cs</DependentUpon>
+    <Compile Include="Views\Products\ImportProductCSV.Designer.cs">
+      <DependentUpon>ImportProductCSV.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Products\ProductCntrl.cs">
       <SubType>UserControl</SubType>
@@ -391,12 +391,6 @@
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Inventories\M_External_Inventories.cs" />
-    <Compile Include="Views\SetUp\TelegramSetup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\SetUp\TelegramSetup.Designer.cs">
-      <DependentUpon>TelegramSetup.cs</DependentUpon>
-    </Compile>
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -449,8 +443,8 @@
     <EmbeddedResource Include="Views\Payments\PaymentsView.resx">
       <DependentUpon>PaymentsView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Products\ExportProducts.resx">
-      <DependentUpon>ExportProducts.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Products\ImportProductCSV.resx">
+      <DependentUpon>ImportProductCSV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Products\ProductCntrl.resx">
       <DependentUpon>ProductCntrl.cs</DependentUpon>
@@ -475,9 +469,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\SetUp\TelegramSetup.resx">
-      <DependentUpon>TelegramSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>
@@ -577,6 +568,10 @@
       <Project>{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}</Project>
       <Name>Decoders</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Docs\Docs.csproj">
+      <Project>{55978adf-2f05-45ca-a317-21206c7d636c}</Project>
+      <Name>Docs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FrBase\FrBase.csproj">
       <Project>{0384ab73-8283-479c-8627-d3cc0ed5833a}</Project>
       <Name>FrBase</Name>
@@ -601,10 +596,6 @@
       <Project>{bf6792b9-aa6f-45e2-b88f-70cb77472b6b}</Project>
       <Name>ssViewControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TelegramBot\TelegramBot.csproj">
-      <Project>{041ab2d6-a445-4074-aad9-0242b831005d}</Project>
-      <Name>TelegramBot</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Updates\Updates.csproj">
       <Project>{2982D396-D569-4FC4-85E9-9AECA0334AB4}</Project>
       <Name>Updates</Name>
@@ -617,6 +608,27 @@
     <None Include="Images\pdf.ico" />
     <None Include="Images\exc.ico" />
     <Content Include="Images\favicon-32x32.png" />
+    <None Include="Images\help\AmzOrders.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\help\AmzPay1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\help\fk1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\help\fk2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\help\FkOrders1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\help\SpdOrders.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Images\help\SpdPayment1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Images\Information.png" />
     <None Include="Images\link.png" />
   </ItemGroup>

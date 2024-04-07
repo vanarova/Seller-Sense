@@ -6,8 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TelegramBot;
-using static TelegramBot.Messenger;
+//using TelegramBot;
+//using static TelegramBot.Messenger;
 
 namespace SellerSense.Helper
 {
@@ -24,7 +24,7 @@ namespace SellerSense.Helper
         private static string _globalLogPath;
         private const string logFileName = Constants.logFileName;
         //private static Messenger.LogDepth _TelegramlogDepth;
-        private static bool _isTelegramEnabled;
+        //private static bool _isTelegramEnabled;
         private static LogLevel _logLevel;
 
         static Logger()
@@ -34,7 +34,8 @@ namespace SellerSense.Helper
             
 
             _globalLogPath = ProjIO.DefaultWorkspaceLocation();
-
+            if (_globalLogPath == null)
+            { new Views.AlertBox("Error", "Error writing logs, No workspace found", null, true, ""); }
             _botToken = ProjIO.GetUserSetting(Constants.TelegramSettings.BotID.ToString());
             bool success = long.TryParse(ProjIO.GetUserSetting(Constants.TelegramSettings.ChatID.ToString()), out long chatid);
             _chatId = chatid;
@@ -52,29 +53,29 @@ namespace SellerSense.Helper
         //    _TelegramlogDepth = logdepth;
         //}
 
-        internal static bool IsTelegramLogEnabled()
-        {
-            string telegram = ProjIO.GetUserSetting(Constants.TelegramLogging);
-            //First time configuration
-            if (string.IsNullOrEmpty(telegram))
-                DisableTelegramLogging();
-            _isTelegramEnabled = bool.Parse(telegram);
-            return _isTelegramEnabled;
-        }
+        //internal static bool IsTelegramLogEnabled()
+        //{
+        //    string telegram = ProjIO.GetUserSetting(Constants.TelegramLogging);
+        //    //First time configuration
+        //    if (string.IsNullOrEmpty(telegram))
+        //        DisableTelegramLogging();
+        //    _isTelegramEnabled = bool.Parse(telegram);
+        //    return _isTelegramEnabled;
+        //}
 
 
-        internal static void EnableTelegramLogging()
-        {
-            _isTelegramEnabled = true;
-            ProjIO.SaveUserSetting(Constants.TelegramLogging, _isTelegramEnabled.ToString());
+        //internal static void EnableTelegramLogging()
+        //{
+        //    _isTelegramEnabled = true;
+        //    ProjIO.SaveUserSetting(Constants.TelegramLogging, _isTelegramEnabled.ToString());
 
-        }
+        //}
 
-        internal static void DisableTelegramLogging()
-        {
-            _isTelegramEnabled = false;
-            ProjIO.SaveUserSetting(Constants.TelegramLogging, _isTelegramEnabled.ToString());
-        }
+        //internal static void DisableTelegramLogging()
+        //{
+        //    _isTelegramEnabled = false;
+        //    ProjIO.SaveUserSetting(Constants.TelegramLogging, _isTelegramEnabled.ToString());
+        //}
 
 
         internal static LogLevel GetLogLevel()
@@ -94,79 +95,76 @@ namespace SellerSense.Helper
         internal static void SetTelegramSettings(string botToken,long chatId)
         { _botToken = botToken; _chatId = chatId;  }
  
-        //internal static async void TelegramLog(string message, LogLevel logLevel, string companyCode = "")
+        
+
+
+        //internal static async void Telegram(string message)
+        //{
+        //    if (!_isTelegramEnabled) return;
+        //    if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
+        //        return;
+            
+        //    await Messenger.SendTelegramMessage(_botToken, _chatId, message);
+        //}
+
+        //internal static async void TelegramMedia(string filePath,string fileName, string message,
+        //    LogLevel logLevel, string companyCode = "")
         //{
         //    if (!_isTelegramEnabled) return;
         //    if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
         //        return;
         //    if ((int)_logLevel < (int)logLevel)
         //        return;
-        //    var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
-        //    await Messenger.SendTelegramMessage(_botToken, _chatId, logMessage);
+            
+        //    await Messenger.SendTelegramImage(_botToken, _chatId,message, filePath, fileName);
+           
+        //}
+
+        //internal static async Task TelegramDocument(string filePath, string fileName,
+        //   LogLevel logLevel, string companyCode = "")
+        //{
+        //    if (!_isTelegramEnabled) return;
+        //    if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
+        //        return;
+        //    if ((int)_logLevel < (int)logLevel)
+        //        return;
+
+        //    await Messenger.SendTelegramFile(_botToken, _chatId,  filePath, fileName);
+
         //}
 
 
-        internal static async void Telegram(string message)
-        {
-            if (!_isTelegramEnabled) return;
-            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
-                return;
-            
-            await Messenger.SendTelegramMessage(_botToken, _chatId, message);
-        }
 
-        internal static async void TelegramMedia(string filePath,string fileName, string message,
-            LogLevel logLevel, string companyCode = "")
-        {
-            if (!_isTelegramEnabled) return;
-            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
-                return;
-            if ((int)_logLevel < (int)logLevel)
-                return;
-            
-            await Messenger.SendTelegramImage(_botToken, _chatId,message, filePath, fileName);
-           
-        }
-
-        internal static async Task TelegramDocument(string filePath, string fileName,
-           LogLevel logLevel, string companyCode = "")
-        {
-            if (!_isTelegramEnabled) return;
-            if (string.IsNullOrEmpty(_botToken) || _chatId == 0)
-                return;
-            if ((int)_logLevel < (int)logLevel)
-                return;
-
-            await Messenger.SendTelegramFile(_botToken, _chatId,  filePath, fileName);
-
-        }
-
-
-
-        internal static void Log(string companyCode, string message, LogLevel logLevel)
-        {
-            if ((int)_logLevel < (int)logLevel)
-                return;
-            if (_isTelegramEnabled)
+        //internal static void Log(string companyCode, string message, LogLevel logLevel)
+        //{
+        //    if ((int)_logLevel < (int)logLevel)
+        //        return;
+        //    if (_isTelegramEnabled)
                 
-            (_, _mapDirPath) = ProjIO.GetCompanyMapDirIfExist(companyCode);
-            var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
-            using (var writer = File.AppendText(Path.Combine(_mapDirPath, logFileName)))
-            {
-                writer.WriteLine(logMessage);
-            }
-        }
+        //    (_, _mapDirPath) = ProjIO.GetCompanyMapDirIfExist(companyCode);
+        //    var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
+        //    using (var writer = File.AppendText(Path.Combine(_mapDirPath, logFileName)))
+        //    {
+        //        writer.WriteLine(logMessage);
+        //    }
+        //}
 
         internal static void Log(string message, LogLevel logLevel, bool IsApplicationLevelError)
         {
             if ((int)_logLevel < (int)logLevel)
                 return;
-            if (_isTelegramEnabled)
-                Telegram(" Msg:" + message + "; Log level:" + logLevel.ToString());
+            //if (_isTelegramEnabled)
+            //    Telegram(" Msg:" + message + "; Log level:" + logLevel.ToString());
             var logMessage = $"[{DateTime.Now}] [{logLevel.ToString()}] {message}";
-            using (var writer = File.AppendText(Path.Combine(_globalLogPath, logFileName)))
+            if (!string.IsNullOrEmpty(_globalLogPath) && Directory.Exists(_globalLogPath))
             {
-                writer.WriteLine(logMessage);
+                string logFilePath = Path.Combine(_globalLogPath, logFileName);
+                if (!File.Exists(logFilePath))
+                    File.Create(logFilePath);
+                using (var writer = File.AppendText(Path.Combine(_globalLogPath, logFileName)))
+                {
+                    writer.WriteLine(logMessage);
+                }
             }
         }
 

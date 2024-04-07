@@ -36,7 +36,7 @@ namespace ssGrid
             {
                 FilterIndex = 2,
                 Filter = "Excel 97 to 2003 Files(*.xls)|*.xls|Excel 2007 to 2010 Files(*.xlsx)|*.xlsx",
-                FileName = "Book1"
+                FileName = DateTime.Now.ToFileTimeUtc() + "_SellerSense"
             };
             if (sfd.ShowDialog() == DialogResult.OK)
             {

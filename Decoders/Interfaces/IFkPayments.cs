@@ -12,7 +12,7 @@ namespace Decoders.Interfaces
         string orderItemId { get; set; }
         string sku { get; set; }
         string bankSettlementValue { get; set; }
-        string gst_tcs_Credits { get; set; }
+        string return_type { get; set; }
         string tds { get; set; }
         string saleAmount { get; set; }
         string totalOfferAmt { get; set; }

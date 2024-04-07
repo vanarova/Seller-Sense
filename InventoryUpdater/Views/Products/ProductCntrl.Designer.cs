@@ -44,6 +44,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label_help = new System.Windows.Forms.Label();
             this.sfButton_AddProduct = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton_ImportCSV = new Syncfusion.WinForms.Controls.SfButton();
             this.toolstripitem_csv = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.toolstripitem_pdf = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.tableLayoutPanel1.SuspendLayout();
@@ -83,7 +84,7 @@
             this.fileStrip.MinimumSize = new System.Drawing.Size(0, 15);
             this.fileStrip.Name = "fileStrip";
             this.fileStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.fileStrip.Size = new System.Drawing.Size(509, 34);
+            this.fileStrip.Size = new System.Drawing.Size(359, 34);
             this.fileStrip.TabIndex = 9;
             this.fileStrip.Text = "menuStrip1";
             // 
@@ -160,12 +161,13 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.label_help);
             this.flowLayoutPanel1.Controls.Add(this.sfButton_AddProduct);
+            this.flowLayoutPanel1.Controls.Add(this.sfButton_ImportCSV);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(509, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(359, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(490, 34);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(640, 34);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // label_help
@@ -173,24 +175,40 @@
             this.label_help.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label_help.AutoSize = true;
             this.label_help.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label_help.Location = new System.Drawing.Point(469, 2);
+            this.label_help.Location = new System.Drawing.Point(619, 2);
             this.label_help.Name = "label_help";
             this.label_help.Size = new System.Drawing.Size(18, 23);
             this.label_help.TabIndex = 1;
             this.label_help.Text = "?";
+            this.label_help.Click += new System.EventHandler(this.label_help_Click);
             // 
             // sfButton_AddProduct
             // 
             this.sfButton_AddProduct.AccessibleName = "Button";
             this.sfButton_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.sfButton_AddProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.sfButton_AddProduct.Location = new System.Drawing.Point(368, 1);
+            this.sfButton_AddProduct.Location = new System.Drawing.Point(518, 1);
             this.sfButton_AddProduct.Margin = new System.Windows.Forms.Padding(1);
             this.sfButton_AddProduct.Name = "sfButton_AddProduct";
             this.sfButton_AddProduct.Size = new System.Drawing.Size(97, 25);
             this.sfButton_AddProduct.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
             this.sfButton_AddProduct.TabIndex = 3;
             this.sfButton_AddProduct.Text = "Product";
+            // 
+            // sfButton_ImportCSV
+            // 
+            this.sfButton_ImportCSV.AccessibleName = "Button";
+            this.sfButton_ImportCSV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton_ImportCSV.BackColor = System.Drawing.Color.SkyBlue;
+            this.sfButton_ImportCSV.Font = new System.Drawing.Font("Impact", 9F);
+            this.sfButton_ImportCSV.Location = new System.Drawing.Point(417, 1);
+            this.sfButton_ImportCSV.Margin = new System.Windows.Forms.Padding(1);
+            this.sfButton_ImportCSV.Name = "sfButton_ImportCSV";
+            this.sfButton_ImportCSV.Size = new System.Drawing.Size(99, 25);
+            this.sfButton_ImportCSV.Style.BackColor = System.Drawing.Color.SkyBlue;
+            this.sfButton_ImportCSV.TabIndex = 4;
+            this.sfButton_ImportCSV.Text = "Bulk Import";
+            this.sfButton_ImportCSV.UseVisualStyleBackColor = false;
             // 
             // toolstripitem_csv
             // 
@@ -246,5 +264,6 @@
         internal Syncfusion.WinForms.Controls.SfButton sfButton_AddProduct;
         private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem_csv;
         private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem_pdf;
+        internal Syncfusion.WinForms.Controls.SfButton sfButton_ImportCSV;
     }
 }

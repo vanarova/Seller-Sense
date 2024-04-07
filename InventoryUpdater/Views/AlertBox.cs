@@ -17,15 +17,22 @@ namespace SellerSense.Views
         private bool _isError { get; set; }
         private string _msg { get; set; }
         private string _link { get; set; }
+        private string _button_ok_text;
+        private string _button_cancel_text;
         private Exception ex;
+        public DialogResult dialogResult;
 
-        public AlertBox(string title, string msg, Exception ex = null, bool isError = true, string link= "")
+        public AlertBox(string title, string msg, Exception ex = null, 
+            bool isError = true, string link= "", string button_ok_text = ""
+            ,string button_cancel_text = "")
         {
             _title = title;
             _msg = msg;
             _link = link;
             _isError = isError;
             this.ex = ex;
+            _button_ok_text = button_ok_text;
+            _button_cancel_text = button_cancel_text;
             InitializeComponent();
         }
 
@@ -37,7 +44,15 @@ namespace SellerSense.Views
             else
                 pictureBox2.Image = SellerSense.Properties.Resources.Information;
             lnkLabelClick.Visible = !string.IsNullOrEmpty(_link);
-            button2.Visible = _isError;
+            button_SendError.Visible = _isError;
+            button_ExportLog.Visible = _isError;
+            if (!string.IsNullOrEmpty(_button_ok_text))
+                button_OK.Text = _button_ok_text;
+            if (!string.IsNullOrEmpty(_button_cancel_text))
+            {
+                button_Cancel.Text = _button_cancel_text;
+                button_Cancel.Visible = true;
+            }
             txt_msg.Text = _msg;
             if (!string.IsNullOrEmpty(_link))
             {
@@ -53,6 +68,7 @@ namespace SellerSense.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
+            dialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -84,6 +100,12 @@ namespace SellerSense.Views
         {
             if(ex != null)
              FrBase.Messenger.WriteErrData(ex.Message + "; Inner Ex: " + ex.InnerException + "; Stack :" + ex.StackTrace);
+        }
+
+        private void button_Cancel_Click(object sender, EventArgs e)
+        {
+            dialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

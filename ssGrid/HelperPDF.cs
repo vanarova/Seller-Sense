@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Syncfusion.Pdf;
 
 namespace ssGrid
 {
@@ -23,18 +24,29 @@ namespace ssGrid
         public static void ExportToPDF(object sender, EventArgs e)
         {
             PdfExportingOptions exportingOptions = new PdfExportingOptions();
+            List<string> headers = new List<string>();
+            for (int i = 0; i < (sender as SfDataGrid).Columns.Count; i++)
+            {
+                if (!(sender as SfDataGrid).Columns[i].Visible)
+                    headers.Add((sender as SfDataGrid).Columns[i].HeaderText);
+            }
+            if(headers.Count>0)
+                exportingOptions.ExcludeColumns = headers;
+            //GridBoundColumnsCollection gc = (sender as SfDataGrid).group
             exportingOptions.ExportAllDetails = true;
+            exportingOptions.AutoRowHeight = true;
             exportingOptions.ExportDetailsView = true;
             exportingOptions.Exporting += OnExporting;
             //if (shouldCustomizeStyle.Checked)
             //    exportingOptions.CellExporting += OnCustomizedCellExporting;
             //else
             exportingOptions.CellExporting += OnCellExporting;
+            exportingOptions.HeaderFooterExporting += ExportingOptions_HeaderFooterExporting;
             var document = (sender as SfDataGrid).ExportToPdf(exportingOptions);
             SaveFileDialog sfd = new SaveFileDialog
             {
                 Filter = "PDF Files(*.pdf)|*.pdf",
-                FileName = "Sample"
+                FileName = DateTime.Now.ToFileTimeUtc() + "_SellerSense"
             };
 
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -51,6 +63,18 @@ namespace ssGrid
                     Open(sfd.FileName);
                 }
             }
+        }
+
+        private static void ExportingOptions_HeaderFooterExporting(object sender, PdfHeaderFooterEventArgs e)
+        {
+            var width = e.PdfPage.GetClientSize().Width;
+            PdfPageTemplateElement footer = new PdfPageTemplateElement(width, 30);
+            PdfFont font = new PdfStandardFont(PdfFontFamily.Courier, 12f);
+            //Create a page template
+            footer.Graphics.DrawImage(PdfImage.FromFile(@"..\..\Images\favicon-32x32.png"), 0, 0);
+            footer.Graphics.DrawString("Seller Sense", font, PdfPens.Black, 30, 5);
+            //Add the footer template at the bottom
+            e.PdfDocumentTemplate.Bottom = footer;
         }
 
 
@@ -81,8 +105,23 @@ namespace ssGrid
         private static void OnCellExporting(object sender, DataGridCellPdfExportingEventArgs e)
         {
             PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12);
+            Syncfusion.Pdf.PdfPaddings p = new Syncfusion.Pdf.PdfPaddings(5,5,30,30);
             e.PdfGridCell.Style.Font = font;
+            PdfGridCellStyle st = new PdfGridCellStyle();
+            st.CellPadding = p;
+            st.Font = font;
+            e.PdfGridCell.Style = st;
         }
+
+        //void PdfHeaderFooterEventHandler(object sender, PdfHeaderFooterEventArgs e)
+        //{
+        //    var width = e.PdfPage.GetClientSize().Width;
+        //    PdfPageTemplateElement footer = new PdfPageTemplateElement(width, 30);
+        //    //Create a page template
+        //    footer.Graphics.DrawImage(PdfImage.FromFile(@"..\..\Resources\Footer.jpg"), 0, 0);
+        //    //Add the footer template at the bottom
+        //    e.PdfDocumentTemplate.Bottom = footer;
+        //}
 
 
         private static void Open(string fileName)

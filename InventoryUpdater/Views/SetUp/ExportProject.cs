@@ -21,7 +21,7 @@ namespace SellerSense.Views
             IsLog = chk_error.Checked;
             IsImgs = chk_img.Checked;
             IsSnapshot = chk_snapshot.Checked;
-            IsTelegranExport = checkBox_Telegram.Checked;
+            //IsTelegranExport = checkBox_Telegram.Checked;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

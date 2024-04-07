@@ -97,6 +97,7 @@ namespace SellerSense.ViewManager
             _v_productCntrl.meeshoToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Meesho); };
 #endif
             _v_productCntrl.sfButton_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
+            _v_productCntrl.sfButton_ImportCSV.Click += (s, e) => { ImportProducts(); };
             _v_productCntrl.mapAmzSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Amazon); };
             _v_productCntrl.mapFkSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Flipkart); };
             _v_productCntrl.mapSpdSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Snapdeal); };
@@ -113,6 +114,74 @@ namespace SellerSense.ViewManager
             ProductMapSKUs pMap = new ProductMapSKUs(_m_product, comp);
             pMap.ShowDialog();   
 
+        }
+
+        private void ImportProducts()
+        {
+            ImportProductCSV csvDialog = new ImportProductCSV();
+            csvDialog.ShowDialog();
+            int importedCount = 0;
+
+            if(csvDialog !=null && csvDialog.Products.Count>0)
+            {
+                foreach (var iprod in csvDialog.Products)
+                {
+                    var isThisCodeAvailable = _m_product._productEntries.FirstOrDefault(x => x.InHouseCode == iprod.InHouseCode);
+                    if (isThisCodeAvailable != null)
+                    { 
+                        new AlertBox("Error",$"{iprod.InHouseCode} code is already available, " +
+                            $"{importedCount} products imported, Please correct input file, aborting now..").ShowDialog();
+                        return;
+                    }
+                    importedCount++;
+                    //string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty, primaryImagePath = String.Empty;
+                    Image img = Image.FromFile(iprod.Image);
+                    Image img1=null; Image img2=null; Image img3 =null;
+                    if (!string.IsNullOrEmpty(iprod.ImageAlt1))
+                        img1 = Image.FromFile(iprod.ImageAlt1);
+                    if (!string.IsNullOrEmpty(iprod.ImageAlt2))
+                        img2 = Image.FromFile(iprod.ImageAlt2);
+                    if (!string.IsNullOrEmpty(iprod.ImageAlt3))
+                        img3 = Image.FromFile(iprod.ImageAlt3);
+                    _m_product.SaveImage(img, iprod.InHouseCode, overwrite: true);
+                    _m_product.SaveImage(img1, iprod.InHouseCode, overwrite: true);
+                    _m_product.SaveImage(img2, iprod.InHouseCode, overwrite: true);
+                    _m_product.SaveImage(img3, iprod.InHouseCode, overwrite: true);
+                    //SaveImages(addProductView, ref primaryImagePath, ref Image2Path, ref Image3Path, ref Image4Path);
+                   
+                    (_, var imgc) = ProjIO.LoadImageAndDownSize75x75(iprod.Image);
+
+                    var prod = new M_Product.ProductEntry(iprod.InHouseCode, String.Empty, iprod.Title,
+                        String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, iprod.Tag, iprod.Description)
+                    {
+                        Image = Path.GetFileName(iprod.Image),
+                        ImageAlt1 = Path.GetFileName(iprod.ImageAlt1),
+                        ImageAlt2 = Path.GetFileName(iprod.ImageAlt2),
+                        ImageAlt3 = Path.GetFileName(iprod.ImageAlt3),
+                        MRP = iprod.MRP,
+                        Tag = iprod.Tag,
+                        SellingPrice = iprod.SellingPrice,
+                        CostPrice = iprod.CostPrice,
+                        Weight = iprod.Weight,
+                        WeightAfterPackaging = iprod.WeightAfterPackaging,
+                        DimensionsBeforePackaging = iprod.DimensionsBeforePackaging,
+                        DimensionsAfterPackaging = iprod.DimensionsAfterPackaging
+                    };
+                    _m_product._productEntries.Add(prod);
+                }
+                //UpdateProductModelToProductsViewWithoutImages();
+                AddNewProductFromProductModelToProductView();
+                _m_product.SaveMapFile();
+            }
+
+            //AddProduct _v_addproduct = new AddProduct(false);
+            //VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct, _m_product);
+            //if (_v_addproduct.ShowDialog() == DialogResult.OK)
+            //{
+            //    Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(vm_addProduct.AddProductViewBindingObj, IsAddNewProduct: true);
+            //    AddNewProductFromProductModelToProductView();
+            //    _m_product.SaveMapFile();
+            //}
         }
 
         private void OpenAddEditProductForm()
@@ -218,13 +287,13 @@ namespace SellerSense.ViewManager
             (bool img1, bool img2, bool img3, bool img4) = addProductView.GetDirtyImages();
             //SAVE IMAGE ONLY, IF NEW PRODUCT ENTRY OR IN EDIT MODE, IF IMAGE IS DIRTY
             if (img1 || !addProductView.EditMode)
-                primaryImagePath = _m_product.SaveImage(addProductView.PrimaryImage, addProductView.InHouseCode, overwrite: addProductView.EditMode);
+                primaryImagePath = _m_product.SaveImage(addProductView.PrimaryImage, addProductView.InHouseCode, overwrite: true);
             if (addProductView.Image2 != null && (img2 || !addProductView.EditMode))
-                Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode + "_2", overwrite: addProductView.EditMode); //overwrite image, in case of edit mode
+                Image2Path = _m_product.SaveImage(addProductView.Image2, addProductView.InHouseCode + "_2", overwrite: true); //overwrite image, in case of edit mode
             if (addProductView.Image3 != null && (img3 || !addProductView.EditMode))
-                Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode + "_3", overwrite: addProductView.EditMode);
+                Image3Path = _m_product.SaveImage(addProductView.Image3, addProductView.InHouseCode + "_3", overwrite: true);
             if (addProductView.Image4 != null && (img4 || !addProductView.EditMode))
-                Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode + "_4", overwrite: addProductView.EditMode);
+                Image4Path = _m_product.SaveImage(addProductView.Image4, addProductView.InHouseCode + "_4", overwrite: true);
         }
 
       
@@ -300,40 +369,40 @@ namespace SellerSense.ViewManager
             
         }
 
-        private void _v_ssGridViewCntrl_OnGridButtonActionSelectedClicked(EventList<ProductView> toExportList)
-        {
-            ExportProducts exportProducts = new ExportProducts();
-            string message = string.Empty;
-            exportProducts.FormClosed += (s, e) => {
-                if (!exportProducts.ExportTelegram)
-                    return;
-                foreach (var item in toExportList)
-                {
-                    message = item.InHouseCode + " " + item.Title;
-                    if (exportProducts.IncludePrices)
-                    {
-                        var prod = _m_product._productEntries.Find(x => x.InHouseCode == item.InHouseCode);
-                        if (prod != null) { message = message + " Rs: " + prod.SellingPrice; }
-                    }
-                    if (exportProducts.IncludePrimaryImages)
-                    {
-                       (string filePath, string fileName)= ProjIO.GetImageFilePath(_code, item.InHouseCode);
-                        Logger.TelegramMedia(filePath, fileName, message,Logger.LogLevel.info, _code);
-                    }
-                    else
-                    {
-                        Logger.Telegram(message);
-                    }
+        //private void _v_ssGridViewCntrl_OnGridButtonActionSelectedClicked(EventList<ProductView> toExportList)
+        //{
+        //    ExportProducts exportProducts = new ExportProducts();
+        //    string message = string.Empty;
+        //    exportProducts.FormClosed += (s, e) => {
+        //        if (!exportProducts.ExportTelegram)
+        //            return;
+        //        foreach (var item in toExportList)
+        //        {
+        //            message = item.InHouseCode + " " + item.Title;
+        //            if (exportProducts.IncludePrices)
+        //            {
+        //                var prod = _m_product._productEntries.Find(x => x.InHouseCode == item.InHouseCode);
+        //                if (prod != null) { message = message + " Rs: " + prod.SellingPrice; }
+        //            }
+        //            if (exportProducts.IncludePrimaryImages)
+        //            {
+        //               //(string filePath, string fileName)= ProjIO.GetImageFilePath(_code, item.InHouseCode);
+        //                //Logger.TelegramMedia(filePath, fileName, message,Logger.LogLevel.info, _code);
+        //            }
+        //            else
+        //            {
+        //                //Logger.Telegram(message);
+        //            }
                        
-                }
-            };
-            exportProducts.ShowDialog();
-            //below code may not be needed..
-            //DataGridViewRow[] rowsSelected = new DataGridViewRow[grid.SelectedRows.Count];
-            //grid.SelectedRows.CopyTo(rowsSelected, 0);
-            //here dialog shud be able to handle all selected rows in all pages
-            //open dialog and select export options and send msg to telegram.
-        }
+        //        }
+        //    };
+        //    exportProducts.ShowDialog();
+        //    //below code may not be needed..
+        //    //DataGridViewRow[] rowsSelected = new DataGridViewRow[grid.SelectedRows.Count];
+        //    //grid.SelectedRows.CopyTo(rowsSelected, 0);
+        //    //here dialog shud be able to handle all selected rows in all pages
+        //    //open dialog and select export options and send msg to telegram.
+        //}
         //Edit button clicked on product grid.
         private void _v_ssGridViewCntrl_OnGridButtonClicked(object sender, Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventArgs e)//
         {

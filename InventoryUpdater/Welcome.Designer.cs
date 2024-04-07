@@ -40,9 +40,10 @@ namespace SellerSense
             this.pbarLoadForms = new System.Windows.Forms.ProgressBar();
             this.label_version = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label_Registration = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label_Registration = new System.Windows.Forms.Label();
             this.label_news = new System.Windows.Forms.Label();
+            this.label_help = new System.Windows.Forms.Label();
             this.tblWelcomeButtons.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +67,7 @@ namespace SellerSense
             this.tblWelcomeButtons.Controls.Add(this.label_version, 0, 4);
             this.tblWelcomeButtons.Controls.Add(this.comboBox1, 1, 3);
             this.tblWelcomeButtons.Controls.Add(this.flowLayoutPanel1, 3, 4);
+            this.tblWelcomeButtons.Controls.Add(this.label_help, 4, 0);
             this.tblWelcomeButtons.Location = new System.Drawing.Point(269, 186);
             this.tblWelcomeButtons.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tblWelcomeButtons.Name = "tblWelcomeButtons";
@@ -188,19 +190,6 @@ namespace SellerSense
             this.comboBox1.Size = new System.Drawing.Size(210, 45);
             this.comboBox1.TabIndex = 7;
             // 
-            // label_Registration
-            // 
-            this.label_Registration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Registration.AutoSize = true;
-            this.label_Registration.BackColor = System.Drawing.Color.GreenYellow;
-            this.label_Registration.Location = new System.Drawing.Point(3, 27);
-            this.label_Registration.Name = "label_Registration";
-            this.label_Registration.Size = new System.Drawing.Size(74, 16);
-            this.label_Registration.TabIndex = 8;
-            this.label_Registration.Text = "Registered";
-            this.label_Registration.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label_Registration.Click += new System.EventHandler(this.label_Registration_Click);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -214,6 +203,19 @@ namespace SellerSense
             this.flowLayoutPanel1.Size = new System.Drawing.Size(85, 43);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
+            // label_Registration
+            // 
+            this.label_Registration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Registration.AutoSize = true;
+            this.label_Registration.BackColor = System.Drawing.Color.GreenYellow;
+            this.label_Registration.Location = new System.Drawing.Point(3, 27);
+            this.label_Registration.Name = "label_Registration";
+            this.label_Registration.Size = new System.Drawing.Size(74, 16);
+            this.label_Registration.TabIndex = 8;
+            this.label_Registration.Text = "Registered";
+            this.label_Registration.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label_Registration.Click += new System.EventHandler(this.label_Registration_Click);
+            // 
             // label_news
             // 
             this.label_news.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -226,6 +228,17 @@ namespace SellerSense
             this.label_news.Text = "News";
             this.label_news.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label_news.Click += new System.EventHandler(this.label_news_Click);
+            // 
+            // label_help
+            // 
+            this.label_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_help.AutoSize = true;
+            this.label_help.Location = new System.Drawing.Point(691, 0);
+            this.label_help.Name = "label_help";
+            this.label_help.Size = new System.Drawing.Size(46, 16);
+            this.label_help.TabIndex = 10;
+            this.label_help.Text = "Help ?";
+            this.label_help.Click += new System.EventHandler(this.label_help_Click);
             // 
             // Welcome
             // 
@@ -271,6 +284,7 @@ namespace SellerSense
         private System.Windows.Forms.Label label_Registration;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label_news;
+        private System.Windows.Forms.Label label_help;
     }
 }
 

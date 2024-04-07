@@ -20,5 +20,20 @@ namespace SellerSense.Views.Payments
             InitializeComponent();
             _company = company;
         }
+
+        private void button_FkHelp_Click(object sender, EventArgs e)
+        {
+            (new Docs.Help(Docs.Constants.HelpTopic.FkPayment)).ShowDialog();
+        }
+
+        private void button_AmzHelp_Click(object sender, EventArgs e)
+        {
+            (new Docs.Help(Docs.Constants.HelpTopic.AnzPayment)).ShowDialog();
+        }
+
+        private void button_SpdHelp_Click(object sender, EventArgs e)
+        {
+            (new Docs.Help(Docs.Constants.HelpTopic.SpdPayment)).ShowDialog();
+        }
     }
 }

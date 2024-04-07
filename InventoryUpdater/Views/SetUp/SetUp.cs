@@ -2,7 +2,7 @@
 using Common;
 using SellerSense.Helper;
 using SellerSense.Views;
-using SellerSense.Views.SetUp;
+//using SellerSense.Views.SetUp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,7 +62,7 @@ namespace SellerSense
             {
                 case "CompaniesCreated":
                     txtComp1Name.Enabled = false; txtComp2Name.Enabled = false;
-                    txtComp3Name.Enabled = false; txtComp4Name.Enabled = false; txtComp5Name.Enabled = false;
+                    //txtComp3Name.Enabled = false; txtComp4Name.Enabled = false; txtComp5Name.Enabled = false;
                     btn_changeLoc.Enabled = false;
                     break;
 
@@ -71,10 +71,10 @@ namespace SellerSense
                     //disable for now
                     //txtComp3Name.Enabled = true; txtComp4Name.Enabled = true;
                     //txtComp5Name.Enabled = true;
-                    txtComp1Name.Text = ""; txtComp3Name.Text = ""; txtComp5Name.Text = "";
-                    txtComp2Name.Text = ""; txtComp4Name.Text = "";
-                    txtComp1Code.Text = ""; txtComp3Code.Text = ""; txtComp5Code.Text = "";
-                    txtComp2Code.Text = ""; txtComp4Code.Text = "";
+                    txtComp1Name.Text = ""; //txtComp3Name.Text = ""; txtComp5Name.Text = "";
+                    txtComp2Name.Text = ""; //txtComp4Name.Text = "";
+                    txtComp1Code.Text = ""; //txtComp3Code.Text = ""; txtComp5Code.Text = "";
+                    txtComp2Code.Text = "";// txtComp4Code.Text = "";
                     
                     btn_changeLoc.Enabled = true;
                     break;
@@ -134,12 +134,12 @@ namespace SellerSense
             };
 
 
-            checkBox_TelegramLogging.CheckedChanged += (s, ev) => {
-                if (checkBox_TelegramLogging.Checked)
-                    Logger.EnableTelegramLogging();
-                else
-                    Logger.DisableTelegramLogging();
-            };
+            //checkBox_TelegramLogging.CheckedChanged += (s, ev) => {
+            //    if (checkBox_TelegramLogging.Checked)
+            //        Logger.EnableTelegramLogging();
+            //    else
+            //        Logger.DisableTelegramLogging();
+            //};
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -279,20 +279,20 @@ namespace SellerSense
             ExportProject(txtComp2Code.Text);
         }
 
-        private void btn_exportMap3_Click(object sender, EventArgs e)
-        {
-            ExportProject(txtComp3Code.Text);
-        }
+        //private void btn_exportMap3_Click(object sender, EventArgs e)
+        //{
+        //    ExportProject(txtComp3Code.Text);
+        //}
 
-        private void btn_exportMap4_Click(object sender, EventArgs e)
-        {
-            ExportProject(txtComp4Code.Text);
-        }
+        //private void btn_exportMap4_Click(object sender, EventArgs e)
+        //{
+        //    ExportProject(txtComp4Code.Text);
+        //}
 
-        private void btn_exportMap5_Click(object sender, EventArgs e)
-        {
-            ExportProject(txtComp5Code.Text);
-        }
+        //private void btn_exportMap5_Click(object sender, EventArgs e)
+        //{
+        //    ExportProject(txtComp5Code.Text);
+        //}
 
         private void ExportProject(string companyCode)
         {
@@ -310,7 +310,7 @@ namespace SellerSense
             ExportProject ep = new ExportProject("");
             if (ep.ShowDialog() == DialogResult.OK)
             {
-                ExportAllMaps(txtComp1Code.Text, txtComp2Code.Text, txtComp3Code.Text, txtComp4Code.Text, txtComp5Code.Text,
+                ExportAllMaps(txtComp1Code.Text, txtComp2Code.Text, String.Empty, String.Empty, String.Empty,
                 ep.IsLog, ep.IsImgs, ep.IsSnapshot, ep.IsTelegranExport
                 );
             }
@@ -318,8 +318,8 @@ namespace SellerSense
 
         private void button_telegramSetup_Click(object sender, EventArgs e)
         {
-            TelegramSetup tSetp = new TelegramSetup(new ViewManager.VM_TelegramSetup());
-            tSetp.ShowDialog();
+            //TelegramSetup tSetp = new TelegramSetup(new ViewManager.VM_TelegramSetup());
+            //tSetp.ShowDialog();
         }
 
         private void checkBox_TelegramLogging_CheckedChanged(object sender, EventArgs e)

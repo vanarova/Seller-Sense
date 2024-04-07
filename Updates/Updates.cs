@@ -43,8 +43,14 @@ namespace Updates
             label_status.Text = "Downloading installer..";
             //Environment.GetFolderPath(Environment.SpecialFolder.)
             string tempPath = Path.Combine(System.IO.Path.GetTempPath(), "SellerSense");
+            try { 
             if(!Directory.Exists(tempPath))
                 Directory.CreateDirectory(tempPath);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
             string tempFileDownloadPath = Path.Combine(tempPath, "SS.msi");
             await CheckUpdates.DownloadSetup(donloadVersion, tempFileDownloadPath);
             label_status.Text = "Application will now close..";

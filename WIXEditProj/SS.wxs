@@ -6,7 +6,7 @@
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="ProgramFilesFolder" Name="PFiles">
                 <Directory Name="Seller-Sense" Id="SELLER_SENSE">
-                    <Component Id="SS" Guid="">
+                    <Component Id="SS" Guid="E89212FC-D08A-47B4-875D-CBB415BECA86">
                         <File Id="SELLERSENSE.EXE" Name="SellerSense.exe" Source="..\InventoryUpdater\bin\Release\SellerSense.exe" />
                         <File Id="UPDATES.EXE" Name="Updates.exe" Source="..\InventoryUpdater\bin\Release\Updates.exe" />
                         <File Id="ANGLESHARP.DLL" Name="AngleSharp.dll" Source="..\InventoryUpdater\bin\Release\AngleSharp.dll" />
@@ -16,6 +16,7 @@
                         <File Id="DEVICEID.DLL" Name="DeviceId.dll" Source="..\InventoryUpdater\bin\Release\DeviceId.dll" />
                         <File Id="DEVICEID.WINDOWS.DLL" Name="DeviceId.Windows.dll" Source="..\InventoryUpdater\bin\Release\DeviceId.Windows.dll" />
                         <File Id="DEVICEID.WINDOWS.WMI.DLL" Name="DeviceId.Windows.Wmi.dll" Source="..\InventoryUpdater\bin\Release\DeviceId.Windows.Wmi.dll" />
+                        <File Id="DOCS.DLL" Name="Docs.dll" Source="..\InventoryUpdater\bin\Release\Docs.dll" />
                         <File Id="ENUMS.NET.DLL" Name="Enums.NET.dll" Source="..\InventoryUpdater\bin\Release\Enums.NET.dll" />
                         <File Id="EXCELMAPPER.DLL" Name="ExcelMapper.dll" Source="..\InventoryUpdater\bin\Release\ExcelMapper.dll" />
                         <File Id="FRBASE.DLL" Name="FrBase.dll" Source="..\InventoryUpdater\bin\Release\FrBase.dll" />
@@ -92,7 +93,6 @@
                         <File Id="SYSTEM.TEXT.JSON.DLL" Name="System.Text.Json.dll" Source="..\InventoryUpdater\bin\Release\System.Text.Json.dll" />
                         <File Id="SYSTEM.THREADING.TASKS.EXTENSIONS.DLL" Name="System.Threading.Tasks.Extensions.dll" Source="..\InventoryUpdater\bin\Release\System.Threading.Tasks.Extensions.dll" />
                         <File Id="SYSTEM.VALUETUPLE.DLL" Name="System.ValueTuple.dll" Source="..\InventoryUpdater\bin\Release\System.ValueTuple.dll" />
-                        <File Id="TELEGRAMBOT.DLL" Name="TelegramBot.dll" Source="..\InventoryUpdater\bin\Release\TelegramBot.dll" />
                         <File Id="LIBGRPC_CSHARP_EXT.X64.DYLIB" Name="libgrpc_csharp_ext.x64.dylib" Source="..\InventoryUpdater\bin\Release\libgrpc_csharp_ext.x64.dylib" />
                         <File Id="ANGLESHARP.XML" Name="AngleSharp.xml" Source="..\InventoryUpdater\bin\Release\AngleSharp.xml" />
                         <File Id="BOUNCYCASTLE.CRYPTO.XML" Name="BouncyCastle.Crypto.xml" Source="..\InventoryUpdater\bin\Release\BouncyCastle.Crypto.xml" />
@@ -166,6 +166,7 @@
                         <File Id="SYSTEM.VALUETUPLE.XML" Name="System.ValueTuple.xml" Source="..\InventoryUpdater\bin\Release\System.ValueTuple.xml" />
                         <File Id="CONSTANTS.PDB" Name="Constants.pdb" Source="..\InventoryUpdater\bin\Release\Constants.pdb" />
                         <File Id="DECODERS.PDB" Name="Decoders.pdb" Source="..\InventoryUpdater\bin\Release\Decoders.pdb" />
+                        <File Id="DOCS.PDB" Name="Docs.pdb" Source="..\InventoryUpdater\bin\Release\Docs.pdb" />
                         <File Id="ENUMS.NET.PDB" Name="Enums.NET.pdb" Source="..\InventoryUpdater\bin\Release\Enums.NET.pdb" />
                         <File Id="FRBASE.PDB" Name="FrBase.pdb" Source="..\InventoryUpdater\bin\Release\FrBase.pdb" />
                         <File Id="GOOGLE.API.COMMONPROTOS.PDB" Name="Google.Api.CommonProtos.pdb" Source="..\InventoryUpdater\bin\Release\Google.Api.CommonProtos.pdb" />
@@ -196,21 +197,36 @@
                         <File Id="SELLERSENSE.PDB" Name="SellerSense.pdb" Source="..\InventoryUpdater\bin\Release\SellerSense.pdb" />
                         <File Id="SSGRID.PDB" Name="ssGrid.pdb" Source="..\InventoryUpdater\bin\Release\ssGrid.pdb" />
                         <File Id="SSVIEWCONTROLS.PDB" Name="ssViewControls.pdb" Source="..\InventoryUpdater\bin\Release\ssViewControls.pdb" />
-                        <File Id="TELEGRAMBOT.PDB" Name="TelegramBot.pdb" Source="..\InventoryUpdater\bin\Release\TelegramBot.pdb" />
                         <File Id="UPDATES.PDB" Name="Updates.pdb" Source="..\InventoryUpdater\bin\Release\Updates.pdb" />
                         <File Id="LIBGRPC_CSHARP_EXT.X64.SO" Name="libgrpc_csharp_ext.x64.so" Source="..\InventoryUpdater\bin\Release\libgrpc_csharp_ext.x64.so" />
                         <File Id="DECODERS.DLL.CONFIG" Name="Decoders.dll.config" Source="..\InventoryUpdater\bin\Release\Decoders.dll.config" />
+                        <File Id="DOCS.DLL.CONFIG" Name="Docs.dll.config" Source="..\InventoryUpdater\bin\Release\Docs.dll.config" />
                         <File Id="FRBASE.DLL.CONFIG" Name="FrBase.dll.config" Source="..\InventoryUpdater\bin\Release\FrBase.dll.config" />
                         <File Id="IDENTITY.DLL.CONFIG" Name="Identity.dll.config" Source="..\InventoryUpdater\bin\Release\Identity.dll.config" />
                         <File Id="IMAGESEARCH.DLL.CONFIG" Name="ImageSearch.dll.config" Source="..\InventoryUpdater\bin\Release\ImageSearch.dll.config" />
                         <File Id="NPOI.OPENXMLFORMATS.DLL.CONFIG" Name="NPOI.OpenXmlFormats.dll.config" Source="..\InventoryUpdater\bin\Release\NPOI.OpenXmlFormats.dll.config" />
                         <File Id="SELLERSENSE.EXE.CONFIG" Name="SellerSense.exe.config" Source="..\InventoryUpdater\bin\Release\SellerSense.exe.config" />
-                        <File Id="TELEGRAMBOT.DLL.CONFIG" Name="TelegramBot.dll.config" Source="..\InventoryUpdater\bin\Release\TelegramBot.dll.config" />
                         <File Id="UPDATES.EXE.CONFIG" Name="Updates.exe.config" Source="..\InventoryUpdater\bin\Release\Updates.exe.config" />
                     </Component>
+                    <Directory Id="Images" Name="Images">
+                        <Directory Id="help" Name="help">
+                            <Component Id="IMG" Guid="AFB371C8-118F-4E8E-A52E-D33AEB07C171">
+                                <File Id="AMZORDERS.PNG" Name="AmzOrders.png" Source="..\InventoryUpdater\bin\Release\Images\help\AmzOrders.png" />
+                                <File Id="AMZPAY1.PNG" Name="AmzPay1.png" Source="..\InventoryUpdater\bin\Release\Images\help\AmzPay1.png" />
+                                <File Id="FK1.PNG" Name="fk1.png" Source="..\InventoryUpdater\bin\Release\Images\help\fk1.png" />
+                                <File Id="FK2.PNG" Name="fk2.png" Source="..\InventoryUpdater\bin\Release\Images\help\fk2.png" />
+                                <File Id="FKORDERS1.PNG" Name="FkOrders1.png" Source="..\InventoryUpdater\bin\Release\Images\help\FkOrders1.png" />
+                                <File Id="SPDORDERS.PNG" Name="SpdOrders.png" Source="..\InventoryUpdater\bin\Release\Images\help\SpdOrders.png" />
+                                <File Id="SPDPAYMENT1.PNG" Name="SpdPayment1.png" Source="..\InventoryUpdater\bin\Release\Images\help\SpdPayment1.png" />
+                            </Component>
+                        </Directory>
+                    </Directory>
                 </Directory>
             </Directory>
             <Directory Id="DesktopFolder" />
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="Seller-Sense" />
+            </Directory>
         </Directory>
         <UI>
         </UI>
@@ -218,8 +234,11 @@
         <Property Id="ARPPRODUCTICON" Value="favicon.ico" />
         <Feature Id="SellerSense" Level="1">
             <ComponentRef Id="SS" />
+            <ComponentRef Id="ApplicationShortcut" />
+            <ComponentRef Id="IMG" />
         </Feature>
         <Icon Id="DesktopIcon.exe" SourceFile="..\InventoryUpdater\bin\Release\SellerSense.exe" />
+        <Icon Id="SellerSense.exe" SourceFile="..\InventoryUpdater\Images\favicon.ico" />
         <UIRef Id="WixUI_Minimal" />
         <Upgrade Id="4860C2CD-6375-4974-B3AB-BB26AAB92DAB">
             <UpgradeVersion Property="OLDERVERSIONBEINGUPGRADED" Maximum="99.0.0" Minimum="1.0.0" IncludeMinimum="yes">
@@ -228,5 +247,12 @@
         <InstallExecuteSequence>
             <RemoveExistingProducts After="InstallInitialize" />
         </InstallExecuteSequence>
+        <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="ApplicationShortcut" Guid="9F14AC86-062B-492D-87F2-D00CB6876DA6">
+                <Shortcut Id="ApplicationStartMenuShortcut" Name="Seller-Sense" Description="Seller Sense - Small business inventory, payment management and reports analysis software" Target="[SELLER_SENSE]SellerSense.exe" Icon="SellerSense.exe" />
+                <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+                <RegistryValue Root="HKCU" Key="Software\Microsoft\Seller-Sense" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+            </Component>
+        </DirectoryRef>
     </Product>
 </Wix>

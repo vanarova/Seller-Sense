@@ -35,7 +35,6 @@
             this.chk_img = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_ok = new System.Windows.Forms.Button();
-            this.checkBox_Telegram = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,16 +43,14 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.360134F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.63987F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
             this.tableLayoutPanel1.Controls.Add(this.chk_error, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.chk_snapshot, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.chk_img, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btn_ok, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox_Telegram, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.28409F));
@@ -61,17 +58,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.90909F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.19318F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.98864F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(834, 352);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(556, 225);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // chk_error
             // 
             this.chk_error.AutoSize = true;
             this.chk_error.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_error.Location = new System.Drawing.Point(40, 94);
-            this.chk_error.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chk_error.Location = new System.Drawing.Point(27, 60);
             this.chk_error.Name = "chk_error";
-            this.chk_error.Size = new System.Drawing.Size(240, 36);
+            this.chk_error.Size = new System.Drawing.Size(153, 24);
             this.chk_error.TabIndex = 0;
             this.chk_error.Text = "Error/ Debug Logs";
             this.chk_error.UseVisualStyleBackColor = true;
@@ -80,10 +76,9 @@
             // 
             this.chk_snapshot.AutoSize = true;
             this.chk_snapshot.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_snapshot.Location = new System.Drawing.Point(40, 204);
-            this.chk_snapshot.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chk_snapshot.Location = new System.Drawing.Point(27, 129);
             this.chk_snapshot.Name = "chk_snapshot";
-            this.chk_snapshot.Size = new System.Drawing.Size(565, 36);
+            this.chk_snapshot.Size = new System.Drawing.Size(350, 24);
             this.chk_snapshot.TabIndex = 2;
             this.chk_snapshot.Text = "Snapshots (This includes past inventory updates)";
             this.chk_snapshot.UseVisualStyleBackColor = true;
@@ -92,10 +87,9 @@
             // 
             this.chk_img.AutoSize = true;
             this.chk_img.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_img.Location = new System.Drawing.Point(40, 148);
-            this.chk_img.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.chk_img.Location = new System.Drawing.Point(27, 94);
             this.chk_img.Name = "chk_img";
-            this.chk_img.Size = new System.Drawing.Size(625, 36);
+            this.chk_img.Size = new System.Drawing.Size(393, 24);
             this.chk_img.TabIndex = 1;
             this.chk_img.Text = "Images (This will considerably increase export file size)";
             this.chk_img.UseVisualStyleBackColor = true;
@@ -105,45 +99,29 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(27, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(589, 64);
+            this.label1.Size = new System.Drawing.Size(411, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Exporting Map file, Do you also want to export below files(s)";
             // 
             // btn_ok
             // 
-            this.btn_ok.Location = new System.Drawing.Point(687, 261);
-            this.btn_ok.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ok.Location = new System.Drawing.Point(457, 165);
             this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(126, 64);
+            this.btn_ok.Size = new System.Drawing.Size(84, 41);
             this.btn_ok.TabIndex = 4;
             this.btn_ok.Text = "Ok";
             this.btn_ok.UseVisualStyleBackColor = true;
             this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
-            // checkBox_Telegram
-            // 
-            this.checkBox_Telegram.AutoSize = true;
-            this.checkBox_Telegram.Checked = true;
-            this.checkBox_Telegram.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_Telegram.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox_Telegram.Location = new System.Drawing.Point(39, 259);
-            this.checkBox_Telegram.Name = "checkBox_Telegram";
-            this.checkBox_Telegram.Size = new System.Drawing.Size(318, 36);
-            this.checkBox_Telegram.TabIndex = 5;
-            this.checkBox_Telegram.Text = "Export to Telegram also";
-            this.checkBox_Telegram.UseVisualStyleBackColor = true;
-            // 
             // ExportProject
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 352);
+            this.ClientSize = new System.Drawing.Size(556, 225);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ExportProject";
             this.Text = "Export Company";
             this.Load += new System.EventHandler(this.ExportProject_Load);
@@ -161,6 +139,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_ok;
         private System.Windows.Forms.CheckBox chk_snapshot;
-        private System.Windows.Forms.CheckBox checkBox_Telegram;
     }
 }

@@ -96,6 +96,7 @@ namespace ssGrid
             splitButton_Export.DropDownItems[0].Click += (s, e) => { ssGrid.HelperExcel.ExportAllRecordsToExcel(sfDataGrid, e); };
             splitButton_Export.DropDownItems[1].Click += (s, e) => { ssGrid.HelperPDF.ExportToPDF(sfDataGrid, e); };
 
+
             sfButton_ColumnChooser.Click += (s, e) => { columnChooserPopup.Show(); };
         }
 

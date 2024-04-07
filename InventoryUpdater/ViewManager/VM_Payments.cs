@@ -407,7 +407,7 @@ namespace SellerSense.ViewManager
            public  string OrderItemId { get; set; }
            public  string Sku { get; set; }
            public  string BankSettlementValue { get; set; }
-           public  string Gst_tcs_Credits { get; set; }
+           public  string Return { get; set; }
            public  string Tds { get; set; }
            public  string SaleAmount { get; set; }
            public  string TotalOfferAmt { get; set; }
@@ -463,7 +463,7 @@ namespace SellerSense.ViewManager
                     OrderItemId = item.orderItemId ?? String.Empty,
                     Sku = item.sku ?? String.Empty,
                     BankSettlementValue = item.bankSettlementValue ?? String.Empty,
-                    Gst_tcs_Credits = item.gst_tcs_Credits ?? String.Empty,
+                    Return = item.return_type ?? String.Empty,
                     Tds = item.tds ?? String.Empty,
                     SaleAmount = item.saleAmount ?? String.Empty,
                     TotalOfferAmt = item.totalOfferAmt ?? String.Empty,

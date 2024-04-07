@@ -139,18 +139,23 @@ namespace SellerSense.ViewManager
         
         private bool ValidateForm()
         {
-            if (!AddProductViewBindingObj.EditMode)
+            //if (!AddProductViewBindingObj.EditMode)
+            //{
+            //    if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.PrimaryImage, AddProductViewBindingObj.InHouseCode))
+            //        return false;
+            //    if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image2, AddProductViewBindingObj.InHouseCode + "_2"))
+            //        return false;
+            //    if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image3, AddProductViewBindingObj.InHouseCode + "_3"))
+            //        return false;
+            //    if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image4, AddProductViewBindingObj.InHouseCode + "_4"))
+            //        return false;
+            //}
+            var prod = _m_Product._productEntries.FirstOrDefault(p => p.InHouseCode == AddProductViewBindingObj.InHouseCode);
+            if (prod != null)
             {
-                if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.PrimaryImage, AddProductViewBindingObj.InHouseCode))
-                    return false;
-                if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image2, AddProductViewBindingObj.InHouseCode + "_2"))
-                    return false;
-                if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image3, AddProductViewBindingObj.InHouseCode + "_3"))
-                    return false;
-                if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image4, AddProductViewBindingObj.InHouseCode + "_4"))
-                    return false;
+                (new AlertBox("Warning", "This in-house code already exists")).ShowDialog();
+                return false;
             }
-
             string empties = string.Empty;
             //check empties ---
             if (string.IsNullOrEmpty(AddProductViewBindingObj.Name))

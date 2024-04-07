@@ -12,6 +12,7 @@ using System.Drawing;
 using SellerSense.Views;
 using System.Drawing.Imaging;
 using Common;
+using System.Windows.Forms;
 
 namespace SellerSense.Model
 {
@@ -110,23 +111,26 @@ namespace SellerSense.Model
         }
 
 
-        internal bool ChecKProductImageExists(Image img, string imageNameWithoutExtension)
-        {
-            string imageName = imageNameWithoutExtension + ".jpg";
-            string lastSavedFilePath = Path.Combine(_workspace, _companyCode);
-            string destinationDirPath = Path.Combine(lastSavedFilePath, Constants.Imgs);
-            string destinationImagePath = Path.Combine(destinationDirPath, imageName);
-            if (File.Exists(destinationImagePath))
-            {
-                (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", isError:true)).ShowDialog();
-                return true;
-            }
-            return false;
-        }
+        //internal bool ChecKProductImageExists(Image img, string imageNameWithoutExtension)
+        //{
+        //    string imageName = imageNameWithoutExtension + ".jpg";
+        //    string lastSavedFilePath = Path.Combine(_workspace, _companyCode);
+        //    string destinationDirPath = Path.Combine(lastSavedFilePath, Constants.Imgs);
+        //    string destinationImagePath = Path.Combine(destinationDirPath, imageName);
+        //    if (File.Exists(destinationImagePath))
+        //    {
+        //        (new AlertBox("Error", 
+        //            "Image with this in-house code already exists, please change inhouse code and try again",
+        //            null, isError:false,"", "Replace","Cancel")).ShowDialog();
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
             internal string SaveImage(Image img, string imageNameWithoutExtension, bool overwrite = false)
         {
             string result = null;
+            if (img == null) return String.Empty;
             if (String.IsNullOrEmpty(imageNameWithoutExtension))
                 goto ret;
             try
@@ -136,13 +140,21 @@ namespace SellerSense.Model
                 if (!Directory.Exists(lastSavedFilePath))
                 { result = null; goto ret; }
                 string destinationDirPath = Path.Combine(lastSavedFilePath, Constants.Imgs);
-                if (!Directory.Exists(destinationDirPath))
-                    Directory.CreateDirectory(destinationDirPath);
-                string destinationImagePath = Path.Combine(destinationDirPath, imageName);
+                try
+                {
+                    if (!Directory.Exists(destinationDirPath))
+                        Directory.CreateDirectory(destinationDirPath);
+                }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
+            string destinationImagePath = Path.Combine(destinationDirPath, imageName);
                 if (File.Exists(destinationImagePath) && overwrite == false)
                 {
-                    (new AlertBox("Error", "Image with this in-house code already exists, please change inhouse code and try again", isError:true)).ShowDialog();
-                    result = null; goto ret;
+                   DialogResult dr =  (new AlertBox("Error", "Image with this in-house code already exists, Do you want to replace image?", isError:true)).ShowDialog();
+                   if(dr!= DialogResult.OK)
+                     result = null; goto ret;
                 }
                 else if (File.Exists(destinationImagePath) && overwrite == true)
                 {
@@ -190,9 +202,14 @@ namespace SellerSense.Model
             lastSavedFilePath = Path.GetDirectoryName(lastSavedFilePath);
             string ext = u.LocalPath.Substring(u.LocalPath.LastIndexOf('/')).Replace("/", "").Trim();
             ext = ext.Substring(ext.LastIndexOf('.'));
+            try { 
             if (!Directory.Exists(Path.Combine(lastSavedFilePath, Constants.Imgs)))
                 Directory.CreateDirectory(Path.Combine(lastSavedFilePath, Constants.Imgs));
-
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
             using (WebClient client = new WebClient())
             {
                 imageFilePath = Path.Combine(lastSavedFilePath, Constants.Imgs, title + ext);

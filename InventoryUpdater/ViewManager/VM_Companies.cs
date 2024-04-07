@@ -217,14 +217,14 @@ namespace SellerSense.ViewManager
                 Views.MessagePopBox msgPop = new Views.MessagePopBox(msg, () =>
                 {
                     //callback when user click on telegram button
-                    Logger.Telegram(f_outOfStock);
-                    Logger.Telegram(a_outOfStock);
-                    Logger.Telegram(s_outOfStock);
-                    Logger.Telegram(m_outOfStock);
-                    Logger.Telegram(sa_outOfStock);
-                    Logger.Telegram(sf_outOfStock);
-                    Logger.Telegram(ss_outOfStock);
-                    Logger.Telegram(sm_outOfStock);
+                    //Logger.Telegram(f_outOfStock);
+                    //Logger.Telegram(a_outOfStock);
+                    //Logger.Telegram(s_outOfStock);
+                    //Logger.Telegram(m_outOfStock);
+                    //Logger.Telegram(sa_outOfStock);
+                    //Logger.Telegram(sf_outOfStock);
+                    //Logger.Telegram(ss_outOfStock);
+                    //Logger.Telegram(sm_outOfStock);
                 }
                 , "Send To Telegram");
                 msgPop.ShowDialog();
@@ -287,7 +287,7 @@ namespace SellerSense.ViewManager
 
                 Views.MessagePopBox msgPop = new Views.MessagePopBox(msg, () => {
                     //callback when user click on telegram button
-                    Logger.Telegram(msg);
+                    //Logger.Telegram(msg);
                 }
             , "Send To Telegram");
                 msgPop.ShowDialog();

@@ -347,5 +347,11 @@ namespace SellerSense
         {
             CheckNews checknews = new Updates.CheckNews();
         }
+
+        private void label_help_Click(object sender, EventArgs e)
+        {
+            Docs.Help help = new Docs.Help(Docs.Constants.HelpTopic.Welcome);
+            help.ShowDialog();
+        }
     }
 }

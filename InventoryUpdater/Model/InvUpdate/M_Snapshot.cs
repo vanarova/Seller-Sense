@@ -177,8 +177,14 @@ namespace SellerSense.Model.InvUpdate
                 return;
             }
             string snapShotDir = Path.Combine(companyDir, Constants.Snapshots, _siteCode.ToString());
+            try { 
             if (!Directory.Exists(snapShotDir))
                 Directory.CreateDirectory(snapShotDir);
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
 
             string fileName = Path.Combine(snapShotDir, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".json");
             string json = JsonConvert.SerializeObject(_invSnapshotEntries, Formatting.Indented);

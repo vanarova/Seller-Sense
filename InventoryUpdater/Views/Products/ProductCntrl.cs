@@ -58,6 +58,10 @@ namespace SellerSense
             //}
         }
 
-       
+        private void label_help_Click(object sender, EventArgs e)
+        {
+            //Help help = new Help();
+            //help.ShowDialog();
+        }
     }
 }

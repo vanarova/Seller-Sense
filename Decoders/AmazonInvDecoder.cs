@@ -25,7 +25,8 @@ namespace Decoders
 
         public static void OpenProductSearchURL(string productId)
         {
-            System.Diagnostics.Process.Start("https://www.amazon.in/s?k=" + productId);
+            //System.Diagnostics.Process.Start("https://www.amazon.in/s?k=" + productId);
+            System.Diagnostics.Process.Start("https://www.amazon.in/dp/" + productId);
         }
 
         public static string GetProductIdFromURL(string url)
