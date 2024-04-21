@@ -306,40 +306,40 @@ namespace SellerSense.ViewManager
             _v_invCntrl.importFlipkartOrdersToolStripMenuItem.Click += async (s, e) => { await ImportFlipkartOrders(); };
             _v_invCntrl.importSnapdealOrdersToolStripMenuItem.Click += async (s, e) => { await ImportSnapdealOrders(); };
            // _v_invCntrl.ordersToolStripMenuItem.Click += (s, e) => { };
-            _v_invCntrl.sendTotalOrderCountToolStripMenuItem.Click += (s, e) => { SendTotalOrderReport(); };
-            _v_invCntrl.allToolStripMenuItem_lastDay.Click += (s, e) => { 
-                CompareAmz_InvWithCurrentSnapshot();
-                CompareFk_InvWithCurrentSnapshot();
-                CompareSpd_InvWithCurrentSnapshot();
-#if IncludeMeesho
-                CompareMso_InvWithCurrentSnapshot();
-#endif
-            };
-            _v_invCntrl.lastDayToolStripMenuItemAmz.Click += (s, e) => { CompareAmz_InvWithCurrentSnapshot(); };
-            _v_invCntrl.lastDayToolStripMenuItemFk.Click += (s, e) => { CompareFk_InvWithCurrentSnapshot(); };
-            _v_invCntrl.lastDayToolStripMenuItemSpd.Click += (s, e) => { CompareSpd_InvWithCurrentSnapshot(); };
-#if IncludeMeesho
-            _v_invCntrl.lastDayToolStripMenuItemMso.Click += (s, e) => { CompareMso_InvWithCurrentSnapshot(); };
-#endif
-            _v_invCntrl.customDateToolStripMenuItemAmz.Click += (s, e) => {
-                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Amazon, _m_invSnapShotModel_Amz);
-                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
-                cd.ShowDialog();
-                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Amazon); };
+//            _v_invCntrl.sendTotalOrderCountToolStripMenuItem.Click += (s, e) => { SendTotalOrderReport(); };
+//            _v_invCntrl.allToolStripMenuItem_lastDay.Click += (s, e) => { 
+//                CompareAmz_InvWithCurrentSnapshot();
+//                CompareFk_InvWithCurrentSnapshot();
+//                CompareSpd_InvWithCurrentSnapshot();
+//#if IncludeMeesho
+//                CompareMso_InvWithCurrentSnapshot();
+//#endif
+//            };
+//            _v_invCntrl.lastDayToolStripMenuItemAmz.Click += (s, e) => { CompareAmz_InvWithCurrentSnapshot(); };
+//            _v_invCntrl.lastDayToolStripMenuItemFk.Click += (s, e) => { CompareFk_InvWithCurrentSnapshot(); };
+//            _v_invCntrl.lastDayToolStripMenuItemSpd.Click += (s, e) => { CompareSpd_InvWithCurrentSnapshot(); };
+//#if IncludeMeesho
+//            _v_invCntrl.lastDayToolStripMenuItemMso.Click += (s, e) => { CompareMso_InvWithCurrentSnapshot(); };
+//#endif
+//            _v_invCntrl.customDateToolStripMenuItemAmz.Click += (s, e) => {
+//                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Amazon, _m_invSnapShotModel_Amz);
+//                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
+//                cd.ShowDialog();
+//                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Amazon); };
 
-            _v_invCntrl.customDateToolStripMenuItemFk.Click += (s, e) => {
-                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Flipkart, _m_invSnapShotModel_Fk);
-                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
-                cd.ShowDialog();
-                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Flipkart);
-            };
+//            _v_invCntrl.customDateToolStripMenuItemFk.Click += (s, e) => {
+//                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Flipkart, _m_invSnapShotModel_Fk);
+//                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
+//                cd.ShowDialog();
+//                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Flipkart);
+//            };
 
-            _v_invCntrl.customDateToolStripMenuItemSpd.Click += (s, e) => {
-                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Snapdeal, _m_invSnapShotModel_Spd);
-                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
-                cd.ShowDialog();
-                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Snapdeal);
-            };
+//            _v_invCntrl.customDateToolStripMenuItemSpd.Click += (s, e) => {
+//                VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Snapdeal, _m_invSnapShotModel_Spd);
+//                CustomSnapshotDate cd = new CustomSnapshotDate(vm_snap);
+//                cd.ShowDialog();
+//                Compare_CustomDateSnapshots(vm_snap.SelectedDate1, vm_snap.SelectedDate2, Constants.Company.Snapdeal);
+//            };
 
             _v_invCntrl.splitButton_adv_filter.DropDownItems[0].Click += (s, e) => {
                 if (_is_filtered == false) // not filtered, copy original in backup
@@ -404,6 +404,12 @@ namespace SellerSense.ViewManager
                 _v_invCntrl.splitButton_adv_filter.DropDownItems[2].Checked = true;
             };
 
+            //unmapped products
+            //_v_invCntrl.splitButton_adv_filter.DropDownItems[3].Click += (s, e) =>
+            //{
+            //    CheckForUnmappedAmazonProducts();
+            //};
+
 #if IncludeMeesho
             _v_invCntrl.customDateToolStripMenuItemMso.Click += (s, e) => {
                 VM_CustomSnapshotDate vm_snap = new VM_CustomSnapshotDate(Company.Meesho, _m_invSnapShotModel_Mso);
@@ -413,7 +419,7 @@ namespace SellerSense.ViewManager
             };
 #endif
 
-            }
+        }
 
         private void CopyInvListToBackUp()
         {
@@ -886,12 +892,36 @@ namespace SellerSense.ViewManager
 
             foreach (var item in _inventoryViewList)
                 UpdateComposedChildProducts(item.InHouseCode);
+
+            CheckForUnmappedAmazonProducts();
             //EngageCellEvents();
             //foreach (var item in list)
             //{
             //    _ssGridView.li
             //}
             //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
+        }
+
+        private void CheckForUnmappedAmazonProducts()
+        {
+            List<string> unmappedInv = new List<string>();
+            List<string> unmappedInhouseCodes = new List<string>();
+
+            foreach (var amzItem in _m_externalInventoriesModel._amzImportedInvList._amzInventoryList)
+            {
+                var item=_inventoryViewList.FirstOrDefault(x => x.AmazonCode == amzItem.asin);
+                if(item==null)
+                    unmappedInv.Add(amzItem.asin);
+            }
+            foreach (var viewItem in _inventoryViewList)
+            {
+                var item = _m_externalInventoriesModel._amzImportedInvList._amzInventoryList.FirstOrDefault(
+                    x => x.asin == viewItem.AmazonCode);
+                if (item == null)
+                    unmappedInhouseCodes.Add(viewItem.InHouseCode);
+            }
+            UnMappedInventories uinv = new UnMappedInventories(Constants.Company.Amazon.ToString(),unmappedInhouseCodes,unmappedInv);
+            uinv.ShowDialog();
         }
 
         private async Task ImportFlipkartInv()

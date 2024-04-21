@@ -668,6 +668,15 @@ namespace SellerSense.Helper
 
         }
 
+        internal static void SaveListToFile(List<string> lines, string filePath)
+        {
+            // Write each string in the list to the file
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                foreach (string line in lines)
+                    writer.WriteLine(line);
+            }
+        }
 
         internal static Task ExportMap(string companyCode, string zipFileDir,
             bool exportLog, bool exportImgs, bool exportSnapshots, Action sameNameFileExistsinTargetDir, Action FileExported)

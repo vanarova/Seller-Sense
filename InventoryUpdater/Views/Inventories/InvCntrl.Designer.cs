@@ -40,18 +40,6 @@
             this.importFlipkartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSnapdealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem_compare = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.allToolStripMenuItem_lastDay = new System.Windows.Forms.ToolStripMenuItem();
-            this.flipkartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lastDayToolStripMenuItemFk = new System.Windows.Forms.ToolStripMenuItem();
-            this.customDateToolStripMenuItemFk = new System.Windows.Forms.ToolStripMenuItem();
-            this.amazonInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lastDayToolStripMenuItemAmz = new System.Windows.Forms.ToolStripMenuItem();
-            this.customDateToolStripMenuItemAmz = new System.Windows.Forms.ToolStripMenuItem();
-            this.snapdealInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lastDayToolStripMenuItemSpd = new System.Windows.Forms.ToolStripMenuItem();
-            this.customDateToolStripMenuItemSpd = new System.Windows.Forms.ToolStripMenuItem();
             this.linkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTotalOrderCountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +68,7 @@
             this.splitButton_adv_filter.DropDownPosition = Syncfusion.Windows.Forms.Tools.Position.Top;
             this.splitButton_adv_filter.ForeColor = System.Drawing.Color.Black;
             this.splitButton_adv_filter.IsButtonChecked = true;
-            this.splitButton_adv_filter.Location = new System.Drawing.Point(94, 6);
+            this.splitButton_adv_filter.Location = new System.Drawing.Point(178, 6);
             this.splitButton_adv_filter.Margin = new System.Windows.Forms.Padding(4);
             this.splitButton_adv_filter.MinimumSize = new System.Drawing.Size(75, 28);
             this.splitButton_adv_filter.Name = "splitButton_adv_filter";
@@ -134,7 +122,6 @@
             this.fileStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.fileStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_Save,
-            this.toolStripMenuItem_compare,
             this.linkToolStripMenuItem,
             this.sendTotalOrderCountToolStripMenuItem,
             this.sendInvStatusToolStripMenuItem,
@@ -143,7 +130,7 @@
             this.fileStrip.MinimumSize = new System.Drawing.Size(0, 15);
             this.fileStrip.Name = "fileStrip";
             this.fileStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.fileStrip.Size = new System.Drawing.Size(508, 31);
+            this.fileStrip.Size = new System.Drawing.Size(424, 31);
             this.fileStrip.TabIndex = 9;
             this.fileStrip.Text = "menuStrip1";
             // 
@@ -181,95 +168,6 @@
             this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
             this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
             this.exportAllToolStripMenuItem.Text = "Export All 🡽";
-            // 
-            // toolStripMenuItem_compare
-            // 
-            this.toolStripMenuItem_compare.Checked = true;
-            this.toolStripMenuItem_compare.CheckOnClick = true;
-            this.toolStripMenuItem_compare.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripMenuItem_compare.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator1,
-            this.allToolStripMenuItem_lastDay,
-            this.flipkartToolStripMenuItem,
-            this.amazonInventoryToolStripMenuItem,
-            this.snapdealInventoryToolStripMenuItem});
-            this.toolStripMenuItem_compare.Name = "toolStripMenuItem_compare";
-            this.toolStripMenuItem_compare.Size = new System.Drawing.Size(84, 27);
-            this.toolStripMenuItem_compare.Text = "Compare";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(259, 6);
-            // 
-            // allToolStripMenuItem_lastDay
-            // 
-            this.allToolStripMenuItem_lastDay.Name = "allToolStripMenuItem_lastDay";
-            this.allToolStripMenuItem_lastDay.Size = new System.Drawing.Size(262, 26);
-            this.allToolStripMenuItem_lastDay.Text = "All Inventory with last day";
-            // 
-            // flipkartToolStripMenuItem
-            // 
-            this.flipkartToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lastDayToolStripMenuItemFk,
-            this.customDateToolStripMenuItemFk});
-            this.flipkartToolStripMenuItem.Name = "flipkartToolStripMenuItem";
-            this.flipkartToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
-            this.flipkartToolStripMenuItem.Text = "Flipkart Inventory";
-            // 
-            // lastDayToolStripMenuItemFk
-            // 
-            this.lastDayToolStripMenuItemFk.Name = "lastDayToolStripMenuItemFk";
-            this.lastDayToolStripMenuItemFk.Size = new System.Drawing.Size(176, 26);
-            this.lastDayToolStripMenuItemFk.Text = "Last day";
-            // 
-            // customDateToolStripMenuItemFk
-            // 
-            this.customDateToolStripMenuItemFk.Name = "customDateToolStripMenuItemFk";
-            this.customDateToolStripMenuItemFk.Size = new System.Drawing.Size(176, 26);
-            this.customDateToolStripMenuItemFk.Text = "Custom date";
-            // 
-            // amazonInventoryToolStripMenuItem
-            // 
-            this.amazonInventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lastDayToolStripMenuItemAmz,
-            this.customDateToolStripMenuItemAmz});
-            this.amazonInventoryToolStripMenuItem.Name = "amazonInventoryToolStripMenuItem";
-            this.amazonInventoryToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
-            this.amazonInventoryToolStripMenuItem.Text = "Amazon Inventory";
-            // 
-            // lastDayToolStripMenuItemAmz
-            // 
-            this.lastDayToolStripMenuItemAmz.Name = "lastDayToolStripMenuItemAmz";
-            this.lastDayToolStripMenuItemAmz.Size = new System.Drawing.Size(178, 26);
-            this.lastDayToolStripMenuItemAmz.Text = "Last Day";
-            // 
-            // customDateToolStripMenuItemAmz
-            // 
-            this.customDateToolStripMenuItemAmz.Name = "customDateToolStripMenuItemAmz";
-            this.customDateToolStripMenuItemAmz.Size = new System.Drawing.Size(178, 26);
-            this.customDateToolStripMenuItemAmz.Text = "Custom Date";
-            // 
-            // snapdealInventoryToolStripMenuItem
-            // 
-            this.snapdealInventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lastDayToolStripMenuItemSpd,
-            this.customDateToolStripMenuItemSpd});
-            this.snapdealInventoryToolStripMenuItem.Name = "snapdealInventoryToolStripMenuItem";
-            this.snapdealInventoryToolStripMenuItem.Size = new System.Drawing.Size(262, 26);
-            this.snapdealInventoryToolStripMenuItem.Text = "Snapdeal Inventory";
-            // 
-            // lastDayToolStripMenuItemSpd
-            // 
-            this.lastDayToolStripMenuItemSpd.Name = "lastDayToolStripMenuItemSpd";
-            this.lastDayToolStripMenuItemSpd.Size = new System.Drawing.Size(178, 26);
-            this.lastDayToolStripMenuItemSpd.Text = "Last Day";
-            // 
-            // customDateToolStripMenuItemSpd
-            // 
-            this.customDateToolStripMenuItemSpd.Name = "customDateToolStripMenuItemSpd";
-            this.customDateToolStripMenuItemSpd.Size = new System.Drawing.Size(178, 26);
-            this.customDateToolStripMenuItemSpd.Text = "Custom Date";
             // 
             // linkToolStripMenuItem
             // 
@@ -337,11 +235,11 @@
             this.flowLayoutPanel1.Controls.Add(this.splitButton_adv_filter);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(509, 1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(425, 1);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(1);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(489, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(573, 29);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // label_Help
@@ -350,7 +248,7 @@
             this.label_Help.AutoSize = true;
             this.label_Help.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_Help.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Help.Location = new System.Drawing.Point(462, 9);
+            this.label_Help.Location = new System.Drawing.Point(546, 9);
             this.label_Help.Name = "label_Help";
             this.label_Help.Size = new System.Drawing.Size(18, 22);
             this.label_Help.TabIndex = 5;
@@ -364,7 +262,7 @@
             this.label_meesho.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_meesho.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_meesho.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_meesho.Location = new System.Drawing.Point(393, 9);
+            this.label_meesho.Location = new System.Drawing.Point(477, 9);
             this.label_meesho.Name = "label_meesho";
             this.label_meesho.Size = new System.Drawing.Size(63, 22);
             this.label_meesho.TabIndex = 0;
@@ -377,7 +275,7 @@
             this.label_snapdeal.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_snapdeal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_snapdeal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_snapdeal.Location = new System.Drawing.Point(314, 9);
+            this.label_snapdeal.Location = new System.Drawing.Point(398, 9);
             this.label_snapdeal.Name = "label_snapdeal";
             this.label_snapdeal.Size = new System.Drawing.Size(73, 22);
             this.label_snapdeal.TabIndex = 1;
@@ -390,7 +288,7 @@
             this.label_flipkart.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_flipkart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_flipkart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_flipkart.Location = new System.Drawing.Point(248, 9);
+            this.label_flipkart.Location = new System.Drawing.Point(332, 9);
             this.label_flipkart.Name = "label_flipkart";
             this.label_flipkart.Size = new System.Drawing.Size(60, 22);
             this.label_flipkart.TabIndex = 2;
@@ -403,7 +301,7 @@
             this.label_amazon.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_amazon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_amazon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_amazon.Location = new System.Drawing.Point(176, 9);
+            this.label_amazon.Location = new System.Drawing.Point(260, 9);
             this.label_amazon.Name = "label_amazon";
             this.label_amazon.Size = new System.Drawing.Size(66, 22);
             this.label_amazon.TabIndex = 3;
@@ -438,8 +336,6 @@
         internal System.Windows.Forms.ToolStripMenuItem importMeeshoToolStripMenuItem;
 #endif
         internal System.Windows.Forms.ToolStripMenuItem exportAllToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_compare;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem linkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem linkProductsWhichAreSoldAsAPackageWhoseInventoriesReducesincreasesTogetherToolStripMenuItem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -449,16 +345,6 @@
         internal System.Windows.Forms.Label label_flipkart;
         internal System.Windows.Forms.Label label_amazon;
         internal System.Windows.Forms.ToolStripMenuItem sendTotalOrderCountToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem_lastDay;
-        internal System.Windows.Forms.ToolStripMenuItem flipkartToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem lastDayToolStripMenuItemFk;
-        internal System.Windows.Forms.ToolStripMenuItem customDateToolStripMenuItemFk;
-        internal System.Windows.Forms.ToolStripMenuItem amazonInventoryToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem lastDayToolStripMenuItemAmz;
-        internal System.Windows.Forms.ToolStripMenuItem customDateToolStripMenuItemAmz;
-        internal System.Windows.Forms.ToolStripMenuItem snapdealInventoryToolStripMenuItem;
-        internal System.Windows.Forms.ToolStripMenuItem lastDayToolStripMenuItemSpd;
-        internal System.Windows.Forms.ToolStripMenuItem customDateToolStripMenuItemSpd;
 #if IncludeMeesho
         internal System.Windows.Forms.ToolStripMenuItem meeshoInventoryToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem lastDayToolStripMenuItemMso;

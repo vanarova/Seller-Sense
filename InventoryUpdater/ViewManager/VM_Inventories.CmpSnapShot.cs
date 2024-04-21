@@ -12,130 +12,130 @@ namespace SellerSense.ViewManager
 {
     internal partial class VM_Inventories   //IMP ::: THIS IS PARTIAL CLASS, EXTENDING VM_INVENTORIES
     {
-        internal void Compare_CustomDateSnapshots(DateTime date1, DateTime date2, Constants.Company company)
-        {
-            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList1 = default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>);
-            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList2 = default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>);
-            if (company == Constants.Company.Amazon)
-            {
-                invSnapshotEntriesList1 = _m_invSnapShotModel_Amz.GetCustomDayInvSnapshot(date1);
-                invSnapshotEntriesList2 = _m_invSnapShotModel_Amz.GetCustomDayInvSnapshot(date2);
-            }
-            if (company == Constants.Company.Flipkart)
-            {
-                invSnapshotEntriesList1 = _m_invSnapShotModel_Fk.GetCustomDayInvSnapshot(date1);
-                invSnapshotEntriesList2 = _m_invSnapShotModel_Fk.GetCustomDayInvSnapshot(date2);
-            }
-            if (company == Constants.Company.Snapdeal)
-            {
-                invSnapshotEntriesList1 = _m_invSnapShotModel_Spd.GetCustomDayInvSnapshot(date1);
-                invSnapshotEntriesList2 = _m_invSnapShotModel_Spd.GetCustomDayInvSnapshot(date2);
-            }
-            if (company == Constants.Company.Meesho)
-            {
-                invSnapshotEntriesList1 = _m_invSnapShotModel_Mso.GetCustomDayInvSnapshot(date1);
-                invSnapshotEntriesList2 = _m_invSnapShotModel_Mso.GetCustomDayInvSnapshot(date2);
-            }
+//        internal void Compare_CustomDateSnapshots(DateTime date1, DateTime date2, Constants.Company company)
+//        {
+//            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList1 = default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>);
+//            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList2 = default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>);
+//            if (company == Constants.Company.Amazon)
+//            {
+//                invSnapshotEntriesList1 = _m_invSnapShotModel_Amz.GetCustomDayInvSnapshot(date1);
+//                invSnapshotEntriesList2 = _m_invSnapShotModel_Amz.GetCustomDayInvSnapshot(date2);
+//            }
+//            if (company == Constants.Company.Flipkart)
+//            {
+//                invSnapshotEntriesList1 = _m_invSnapShotModel_Fk.GetCustomDayInvSnapshot(date1);
+//                invSnapshotEntriesList2 = _m_invSnapShotModel_Fk.GetCustomDayInvSnapshot(date2);
+//            }
+//            if (company == Constants.Company.Snapdeal)
+//            {
+//                invSnapshotEntriesList1 = _m_invSnapShotModel_Spd.GetCustomDayInvSnapshot(date1);
+//                invSnapshotEntriesList2 = _m_invSnapShotModel_Spd.GetCustomDayInvSnapshot(date2);
+//            }
+//            if (company == Constants.Company.Meesho)
+//            {
+//                invSnapshotEntriesList1 = _m_invSnapShotModel_Mso.GetCustomDayInvSnapshot(date1);
+//                invSnapshotEntriesList2 = _m_invSnapShotModel_Mso.GetCustomDayInvSnapshot(date2);
+//            }
 
 
-            if (invSnapshotEntriesList1 == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
-                return;
-            foreach (var invItem in invSnapshotEntriesList1)
-            {
-                foreach (var snapshotEntry in invSnapshotEntriesList2)
-                {
-                    if (invItem.asin == snapshotEntry.asin)
-                    {
-                        int.TryParse(invItem.InvSysCount, out int aorders);
-                        int.TryParse(snapshotEntry.InvSysCount, out int sorders);
-                        if(company == Constants.Company.Amazon && _inventoryViewList.Where(x=>x.AmazonCode == invItem.asin).Count()>0)
-                            _inventoryViewList.Where(x=>x.AmazonCode == invItem.asin).FirstOrDefault().AmazonOrders = (sorders - aorders).ToString();
-                        if (company == Constants.Company.Flipkart && _inventoryViewList.Where(x => x.FlipkartCode == invItem.asin).Count()>0)
-                            _inventoryViewList.Where(x => x.FlipkartCode == invItem.asin).FirstOrDefault().FlipkartOrders = (sorders - aorders).ToString();
-                        if (company == Constants.Company.Snapdeal && _inventoryViewList.Where(x => x.SnapdealCode == invItem.asin).Count()>0)
-                            _inventoryViewList.Where(x => x.SnapdealCode == invItem.asin).FirstOrDefault().SnapdealOrders = (sorders - aorders).ToString();
-#if IncludeMeesho
-                        if (company == Constants.Company.Meesho && _inventoryViewList.Exists(x => x.MeeshoCode == invItem.asin))
-                            _inventoryViewList.Find(x => x.MeeshoCode == invItem.asin).MeeshoOrders = (sorders - aorders).ToString();
-#endif
-                    }
-                }
+//            if (invSnapshotEntriesList1 == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
+//                return;
+//            foreach (var invItem in invSnapshotEntriesList1)
+//            {
+//                foreach (var snapshotEntry in invSnapshotEntriesList2)
+//                {
+//                    if (invItem.asin == snapshotEntry.asin)
+//                    {
+//                        int.TryParse(invItem.InvSysCount, out int aorders);
+//                        int.TryParse(snapshotEntry.InvSysCount, out int sorders);
+//                        if(company == Constants.Company.Amazon && _inventoryViewList.Where(x=>x.AmazonCode == invItem.asin).Count()>0)
+//                            _inventoryViewList.Where(x=>x.AmazonCode == invItem.asin).FirstOrDefault().AmazonOrders = (sorders - aorders).ToString();
+//                        if (company == Constants.Company.Flipkart && _inventoryViewList.Where(x => x.FlipkartCode == invItem.asin).Count()>0)
+//                            _inventoryViewList.Where(x => x.FlipkartCode == invItem.asin).FirstOrDefault().FlipkartOrders = (sorders - aorders).ToString();
+//                        if (company == Constants.Company.Snapdeal && _inventoryViewList.Where(x => x.SnapdealCode == invItem.asin).Count()>0)
+//                            _inventoryViewList.Where(x => x.SnapdealCode == invItem.asin).FirstOrDefault().SnapdealOrders = (sorders - aorders).ToString();
+//#if IncludeMeesho
+//                        if (company == Constants.Company.Meesho && _inventoryViewList.Exists(x => x.MeeshoCode == invItem.asin))
+//                            _inventoryViewList.Find(x => x.MeeshoCode == invItem.asin).MeeshoOrders = (sorders - aorders).ToString();
+//#endif
+//                    }
+//                }
 
-            }
-        }
+//            }
+//        }
 
-        internal void CompareAmz_InvWithCurrentSnapshot(DateTime date = default(DateTime))
-        {
-            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList;
-            if (date == default(DateTime))
-                invSnapshotEntriesList = _m_invSnapShotModel_Amz.GetLastDayInvSnapshot();
-            else
-                invSnapshotEntriesList =  _m_invSnapShotModel_Amz.GetCustomDayInvSnapshot(date);
-            if (invSnapshotEntriesList == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
-                return;
-            foreach (var invItem in _inventoryViewList)
-            {
-                foreach (var snapshotEntry in invSnapshotEntriesList)
-                {
-                    if (invItem.AmazonCode == snapshotEntry.asin) {
-                        int.TryParse(invItem.AmazonSystemCount, out int aorders);
-                        int.TryParse(snapshotEntry.InvSysCount, out int sorders);
-                        invItem.AmazonOrders = (sorders - aorders).ToString();
-                        }
-                }
+//        internal void CompareAmz_InvWithCurrentSnapshot(DateTime date = default(DateTime))
+//        {
+//            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList;
+//            if (date == default(DateTime))
+//                invSnapshotEntriesList = _m_invSnapShotModel_Amz.GetLastDayInvSnapshot();
+//            else
+//                invSnapshotEntriesList =  _m_invSnapShotModel_Amz.GetCustomDayInvSnapshot(date);
+//            if (invSnapshotEntriesList == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
+//                return;
+//            foreach (var invItem in _inventoryViewList)
+//            {
+//                foreach (var snapshotEntry in invSnapshotEntriesList)
+//                {
+//                    if (invItem.AmazonCode == snapshotEntry.asin) {
+//                        int.TryParse(invItem.AmazonSystemCount, out int aorders);
+//                        int.TryParse(snapshotEntry.InvSysCount, out int sorders);
+//                        invItem.AmazonOrders = (sorders - aorders).ToString();
+//                        }
+//                }
 
-            }
-        }
+//            }
+//        }
 
 
-        internal void CompareFk_InvWithCurrentSnapshot(DateTime date = default(DateTime))
-        {
-            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList;
-            if (date == default(DateTime))
-                invSnapshotEntriesList = _m_invSnapShotModel_Fk.GetLastDayInvSnapshot();
-            else
-                invSnapshotEntriesList = _m_invSnapShotModel_Fk.GetCustomDayInvSnapshot(date);
-            if (invSnapshotEntriesList == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
-                return;
-            foreach (var invItem in _inventoryViewList)
-            {
-                foreach (var snapshotEntry in invSnapshotEntriesList)
-                {
-                    if (invItem.FlipkartCode == snapshotEntry.asin)
-                    {
-                        int.TryParse(invItem.FlipkartSystemCount, out int aorders);
-                        int.TryParse(snapshotEntry.InvSysCount, out int sorders);
-                        invItem.FlipkartOrders = (sorders - aorders).ToString();
-                    }
-                }
+//        internal void CompareFk_InvWithCurrentSnapshot(DateTime date = default(DateTime))
+//        {
+//            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList;
+//            if (date == default(DateTime))
+//                invSnapshotEntriesList = _m_invSnapShotModel_Fk.GetLastDayInvSnapshot();
+//            else
+//                invSnapshotEntriesList = _m_invSnapShotModel_Fk.GetCustomDayInvSnapshot(date);
+//            if (invSnapshotEntriesList == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
+//                return;
+//            foreach (var invItem in _inventoryViewList)
+//            {
+//                foreach (var snapshotEntry in invSnapshotEntriesList)
+//                {
+//                    if (invItem.FlipkartCode == snapshotEntry.asin)
+//                    {
+//                        int.TryParse(invItem.FlipkartSystemCount, out int aorders);
+//                        int.TryParse(snapshotEntry.InvSysCount, out int sorders);
+//                        invItem.FlipkartOrders = (sorders - aorders).ToString();
+//                    }
+//                }
 
-            }
-        }
+//            }
+//        }
 
-        internal void CompareSpd_InvWithCurrentSnapshot(DateTime date = default(DateTime))
-        {
-            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList;
-            if (date == default(DateTime))
-                invSnapshotEntriesList = _m_invSnapShotModel_Spd.GetLastDayInvSnapshot();
-            else
-                invSnapshotEntriesList = _m_invSnapShotModel_Spd.GetCustomDayInvSnapshot(date);
+//        internal void CompareSpd_InvWithCurrentSnapshot(DateTime date = default(DateTime))
+//        {
+//            IList<SellerSense.Model.InvUpdate.InvSnapshotEntry> invSnapshotEntriesList;
+//            if (date == default(DateTime))
+//                invSnapshotEntriesList = _m_invSnapShotModel_Spd.GetLastDayInvSnapshot();
+//            else
+//                invSnapshotEntriesList = _m_invSnapShotModel_Spd.GetCustomDayInvSnapshot(date);
 
-            if (invSnapshotEntriesList == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
-                return;
-            foreach (var invItem in _inventoryViewList)
-            {
-                foreach (var snapshotEntry in invSnapshotEntriesList)
-                {
-                    if (invItem.SnapdealCode == snapshotEntry.asin)
-                    {
-                        int.TryParse(invItem.SnapdealSystemCount, out int aorders);
-                        int.TryParse(snapshotEntry.InvSysCount, out int sorders);
-                        invItem.SnapdealOrders = (sorders - aorders).ToString();
-                    }
-                }
+//            if (invSnapshotEntriesList == default(IList<SellerSense.Model.InvUpdate.InvSnapshotEntry>))
+//                return;
+//            foreach (var invItem in _inventoryViewList)
+//            {
+//                foreach (var snapshotEntry in invSnapshotEntriesList)
+//                {
+//                    if (invItem.SnapdealCode == snapshotEntry.asin)
+//                    {
+//                        int.TryParse(invItem.SnapdealSystemCount, out int aorders);
+//                        int.TryParse(snapshotEntry.InvSysCount, out int sorders);
+//                        invItem.SnapdealOrders = (sorders - aorders).ToString();
+//                    }
+//                }
 
-            }
-        }
+//            }
+//        }
 
 #if IncludeMeesho
         internal void CompareMso_InvWithCurrentSnapshot(DateTime date = default(DateTime))

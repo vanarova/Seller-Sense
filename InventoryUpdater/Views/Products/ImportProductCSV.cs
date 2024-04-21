@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace SellerSense.Views.Products
 {
-    public partial class ImportProductCSV : Form
+    public partial class ImportProductExcel : Form
     {
         public string CSVFileName { get; set; }
         public IList<IProduct> Products;
-        public ImportProductCSV()
+        public ImportProductExcel()
         {
             InitializeComponent();
         }
@@ -24,12 +24,13 @@ namespace SellerSense.Views.Products
         private void button_Cancel_Click(object sender, EventArgs e)
         {
             CSVFileName = string.Empty;
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         private void button_upload_Click(object sender, EventArgs e)
         {
-            
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -56,7 +57,8 @@ namespace SellerSense.Views.Products
 
         private void button_Cancel_Click_1(object sender, EventArgs e)
         {
-            if(Products!=null && Products.Count>0)
+            this.DialogResult = DialogResult.Cancel;
+            if (Products!=null && Products.Count>0)
                 Products.Clear();
             this.Close();
         }

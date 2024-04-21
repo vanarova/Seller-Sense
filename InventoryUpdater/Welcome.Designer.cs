@@ -198,9 +198,10 @@ namespace SellerSense
             this.flowLayoutPanel1.Controls.Add(this.label_Registration);
             this.flowLayoutPanel1.Controls.Add(this.label_news);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(652, 284);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(658, 284);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(85, 43);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(82, 43);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // label_Registration
@@ -214,6 +215,7 @@ namespace SellerSense
             this.label_Registration.TabIndex = 8;
             this.label_Registration.Text = "Registered";
             this.label_Registration.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label_Registration.Visible = false;
             this.label_Registration.Click += new System.EventHandler(this.label_Registration_Click);
             // 
             // label_news
@@ -253,6 +255,7 @@ namespace SellerSense
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Welcome";
+            this.Padding = new System.Windows.Forms.Padding(0);
             this.Style.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Style.MdiChild.IconHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;

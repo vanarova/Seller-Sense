@@ -98,8 +98,9 @@ namespace SellerSense.Views
 
         private void button_SendError_Click_1(object sender, EventArgs e)
         {
-            if(ex != null)
-             FrBase.Messenger.WriteErrData(ex.Message + "; Inner Ex: " + ex.InnerException + "; Stack :" + ex.StackTrace);
+            System.Diagnostics.Process.Start("https://github.com/vanarova/Seller-Sense/issues");
+            //if (ex != null)
+            // FrBase.Messenger.WriteErrData(ex.Message + "; Inner Ex: " + ex.InnerException + "; Stack :" + ex.StackTrace);
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)

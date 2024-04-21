@@ -118,8 +118,10 @@ namespace SellerSense.ViewManager
 
         private void ImportProducts()
         {
-            ImportProductCSV csvDialog = new ImportProductCSV();
+            ImportProductExcel csvDialog = new ImportProductExcel();
             csvDialog.ShowDialog();
+            if (csvDialog.DialogResult != DialogResult.OK)
+                return;
             int importedCount = 0;
 
             if(csvDialog !=null && csvDialog.Products.Count>0)
