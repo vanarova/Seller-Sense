@@ -800,6 +800,22 @@ namespace SellerSense.Helper
         //    }
         //}
 
+        public static string OpenFolderSelectionDialog()
+        {
+            OpenFileDialog folderBrowser = new OpenFileDialog();
+            // Set validate names and check file exists to false otherwise windows will
+            // not let you select "Folder Selection."
+            folderBrowser.ValidateNames = false;
+            folderBrowser.CheckFileExists = false;
+            folderBrowser.CheckPathExists = true;
+            // Always default to Folder Selection.
+            folderBrowser.FileName = "Folder Selection";
+            if (folderBrowser.ShowDialog() == DialogResult.OK)
+                return Path.GetDirectoryName(folderBrowser.FileName);
+            else
+                return string.Empty;
+        }
+
         //taken from msdn
         private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive, bool overwrite = false)
         {

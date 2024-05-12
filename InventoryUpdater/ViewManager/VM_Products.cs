@@ -1,5 +1,6 @@
 ﻿using Common;
 using Decoders;
+using Decoders.Interfaces;
 using Newtonsoft.Json.Linq;
 using PrimitiveExt;
 using SellerSense.Helper;
@@ -97,7 +98,7 @@ namespace SellerSense.ViewManager
             _v_productCntrl.meeshoToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Meesho); };
 #endif
             _v_productCntrl.sfButton_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
-            _v_productCntrl.sfButton_ImportCSV.Click += (s, e) => { ImportProducts(); };
+            _v_productCntrl.sfButton_ImportCSV.Click += (s, e) => { BulkImportProducts(); };
             _v_productCntrl.mapAmzSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Amazon); };
             _v_productCntrl.mapFkSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Flipkart); };
             _v_productCntrl.mapSpdSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Snapdeal); };
@@ -116,50 +117,71 @@ namespace SellerSense.ViewManager
 
         }
 
-        private void ImportProducts()
+        private void BulkImportProducts()
         {
-            ImportProductExcel csvDialog = new ImportProductExcel();
+            Action ExportProductForEditing= () => { _v_ssGridViewCntrl.ExportGridAsExcel(); };
+            ImportProductExcel csvDialog = new ImportProductExcel(_m_product, ExportProductForEditing);
             csvDialog.ShowDialog();
             if (csvDialog.DialogResult != DialogResult.OK)
                 return;
             int importedCount = 0;
 
-            if(csvDialog !=null && csvDialog.Products.Count>0)
+            // Edit existing product
+            if (csvDialog != null && csvDialog.EditProducts != null && csvDialog.Mode == ImportProductExcel.ImportMode.Edit)
             {
-                foreach (var iprod in csvDialog.Products)
+                foreach (var iprod in csvDialog.EditProducts)
                 {
                     var isThisCodeAvailable = _m_product._productEntries.FirstOrDefault(x => x.InHouseCode == iprod.InHouseCode);
                     if (isThisCodeAvailable != null)
-                    { 
-                        new AlertBox("Error",$"{iprod.InHouseCode} code is already available, " +
+                    {
+                        EditProductFromImportedProductList(iprod);
+                        _m_product.SaveMapFile();
+                    }
+                }
+            }
+
+            
+            // Insert new product
+            if (csvDialog !=null && csvDialog.NewProducts != null && csvDialog.Mode == ImportProductExcel.ImportMode.Add)
+            {
+                foreach (var iprod in csvDialog.NewProducts)
+                {
+                    if (_m_product._productEntries.Count(x => x.InHouseCode == iprod.InHouseCode) > 1)
+                    {
+                        new AlertBox("Error", $" Multiple codes found for code : {iprod.InHouseCode}, " +
                             $"{importedCount} products imported, Please correct input file, aborting now..").ShowDialog();
                         return;
                     }
+                   
                     importedCount++;
                     //string Image2Path = string.Empty, Image3Path = string.Empty, Image4Path = string.Empty, primaryImagePath = String.Empty;
                     Image img = Image.FromFile(iprod.Image);
-                    Image img1=null; Image img2=null; Image img3 =null;
+                    Image img2=null; Image img3=null; Image img4 =null;
                     if (!string.IsNullOrEmpty(iprod.ImageAlt1))
-                        img1 = Image.FromFile(iprod.ImageAlt1);
+                        img2 = Image.FromFile(iprod.ImageAlt1);
                     if (!string.IsNullOrEmpty(iprod.ImageAlt2))
-                        img2 = Image.FromFile(iprod.ImageAlt2);
+                        img3 = Image.FromFile(iprod.ImageAlt2);
                     if (!string.IsNullOrEmpty(iprod.ImageAlt3))
-                        img3 = Image.FromFile(iprod.ImageAlt3);
-                    _m_product.SaveImage(img, iprod.InHouseCode, overwrite: true);
-                    _m_product.SaveImage(img1, iprod.InHouseCode, overwrite: true);
-                    _m_product.SaveImage(img2, iprod.InHouseCode, overwrite: true);
-                    _m_product.SaveImage(img3, iprod.InHouseCode, overwrite: true);
-                    //SaveImages(addProductView, ref primaryImagePath, ref Image2Path, ref Image3Path, ref Image4Path);
-                   
-                    (_, var imgc) = ProjIO.LoadImageAndDownSize75x75(iprod.Image);
+                        img4 = Image.FromFile(iprod.ImageAlt3);
+                   string i1= _m_product.SaveImage(img, iprod.InHouseCode, overwrite: true);
 
+                    //TODO : remove image numbers and add as another parameter to function, pass numbers, this func is used multiple times.
+                    string img2_name = iprod.InHouseCode + "_2";
+                    string img3_name = iprod.InHouseCode + "_3";
+                    string img4_name = iprod.InHouseCode + "_4";
+
+                   string i2 = _m_product.SaveImage(img2, img2_name, overwrite: true);
+                   string i3 = _m_product.SaveImage(img3, img3_name, overwrite: true);
+                   string i4 = _m_product.SaveImage(img4, img4_name, overwrite: true);
+                    //SaveImages(addProductView, ref primaryImagePath, ref Image2Path, ref Image3Path, ref Image4Path);
+                    (_, var imgc) = ProjIO.LoadImageAndDownSize75x75(iprod.Image);
                     var prod = new M_Product.ProductEntry(iprod.InHouseCode, String.Empty, iprod.Title,
                         String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, iprod.Tag, iprod.Description)
                     {
-                        Image = Path.GetFileName(iprod.Image),
-                        ImageAlt1 = Path.GetFileName(iprod.ImageAlt1),
-                        ImageAlt2 = Path.GetFileName(iprod.ImageAlt2),
-                        ImageAlt3 = Path.GetFileName(iprod.ImageAlt3),
+                        Image = Path.GetFileName(i1),
+                        ImageAlt1 = Path.GetFileName(i2),
+                        ImageAlt2 = Path.GetFileName(i3),
+                        ImageAlt3 = Path.GetFileName(i4),
                         MRP = iprod.MRP,
                         Tag = iprod.Tag,
                         SellingPrice = iprod.SellingPrice,
@@ -184,6 +206,41 @@ namespace SellerSense.ViewManager
             //    AddNewProductFromProductModelToProductView();
             //    _m_product.SaveMapFile();
             //}
+        }
+
+        private void EditProductFromImportedProductList(IEditProduct iprod)
+        {
+            //Update view
+            var p = _vm_productsView.FirstOrDefault(x => x.InHouseCode == iprod.InHouseCode);
+            p.Title = iprod.Title;
+            p.Tag = iprod.Tag;
+            p.CostPrice = iprod.CostPrice;
+            p.Description = iprod.Description;
+            p.AmazonCode = iprod.AmazonCode;
+            p.FlipkartCode = iprod.FlipkartCode;
+            p.SnapdealCode = iprod.SnapdealCode;
+            p.Notes = iprod.Notes;
+
+            //Update product collection as well.
+            var prod = _m_product._productEntries.FirstOrDefault(x => x.InHouseCode == iprod.InHouseCode);
+            prod.Title =  iprod.Title;
+            prod.Tag = iprod.Tag;
+            prod.MRP = iprod.MRP;
+            prod.SellingPrice = iprod.SellingPrice;
+            prod.CostPrice = iprod.CostPrice;
+            prod.Weight = iprod.Weight;
+            prod.WeightAfterPackaging = iprod.WeightAfterPackaging;
+            prod.DimensionsBeforePackaging = iprod.DimensionsBeforePackaging;
+            prod.DimensionsAfterPackaging = iprod.DimensionsAfterPackaging;
+            prod.Description = iprod.Description;
+            prod.AmazonCode = iprod.AmazonCode;
+            prod.AmazonSKU = iprod.AmazonSKU;
+            prod.FlipkartCode = iprod.FlipkartCode;
+            prod.FlipkartSKU = iprod.FlipkartSKU;
+            prod.SnapdealCode = iprod.SnapdealCode;
+            prod.SnapdealSKU = iprod.SnapdealSKU;
+            //prod.MeeshoCode = iprod.MeeshoCode;
+            prod.Notes = iprod.Notes;
         }
 
         private void OpenAddEditProductForm()

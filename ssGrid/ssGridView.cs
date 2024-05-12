@@ -100,6 +100,12 @@ namespace ssGrid
             sfButton_ColumnChooser.Click += (s, e) => { columnChooserPopup.Show(); };
         }
 
+        public void ExportGridAsExcel()
+        {
+            PageSize = 2000; //Max products to download.
+            ssGrid.HelperExcel.ExportAllRecordsToExcel(sfDataGrid, null);
+        }
+
         private void ssGridView_Load(object sender, EventArgs e)
         {
             

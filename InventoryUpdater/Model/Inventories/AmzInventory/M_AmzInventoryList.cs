@@ -13,9 +13,9 @@ namespace SellerSense.Model
     internal class M_AmzInventoryList
     {
         private IList<IAmzInventory> _m_amzInvList;
-        internal IList<IAmzInventory> _amzInventoryList { get { return _m_amzInvList; } set { _m_amzInvList = value; AmzInventorySet?.Invoke(_m_amzInvList); } }
+        internal IList<IAmzInventory> _amzInventoryList { get { return _m_amzInvList; } set { _m_amzInvList = value; /*AmzInventorySet?.Invoke(_m_amzInvList);*/ } }
         internal IList<IAmzInventory> _amzModifiedInventoryList { get; set; }
-        internal event Action<IList<IAmzInventory>> AmzInventorySet;
+        //internal event Action<IList<IAmzInventory>> AmzInventorySet;
 
         //internal event Action AmzIncChanged;
 

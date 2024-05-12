@@ -11,6 +11,7 @@ using Syncfusion.WinForms.DataGrid;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -69,14 +70,23 @@ namespace SellerSense.ViewManager
             _m_invSnapShotModel_Fk = new M_Snapshot(_companyCode, M_Snapshot.Site.fk);
             _m_invSnapShotModel_Mso = new M_Snapshot(_companyCode, M_Snapshot.Site.mso);
             TranslateInvModelToInvView();
-            HandleExternalInventoryImportEvents();
+            //HandleExternalInventoryImportEvents();
             //InvokeUpdateInventoryInAllCompanies = UpdateInventoryInAllCompaniesAction;
             //UpdateInventoryInAllCompaniesAction+=       
             _crossCompanyEvents.CrossCompanySharedInventoryUpdated += (s, e) => { UpdateCrossCompanySharedInvForThisCompany(); };
             //crossCompanyEvents.CrossCompanySharedInventoryUpdated += _crossCompanyEvents_CrossCompanySharedInventoryUpdated;
+            //_inventoryViewList.CollectionChanged += (s, e) => { InventoryViewListChanged(e); };
         }
 
-        
+        //private void InventoryViewListChanged(NotifyCollectionChangedEventArgs e)
+        //{
+        //   if( e.Action == NotifyCollectionChangedAction.Replace)
+        //    {
+        //        if(_inventoryViewList.Any(x=>!string.IsNullOrEmpty(x.AmazonSystemCount)))
+        //            _v_invCntrl.label_amazon.BackColor = Color.LimeGreen;
+        //        else _v_invCntrl.label_amazon.BackColor = Color.LightGreen;
+        //    }
+        //}
 
         private void TranslateInvModelToInvView()
         {
@@ -208,30 +218,30 @@ namespace SellerSense.ViewManager
             return _ssGridView;
         }
 
-        private void HandleExternalInventoryImportEvents()
-        {
-            if (_v_invCntrl == null) return; //Fixed a bug, this was getting called from product screen.
-            _m_externalInventoriesModel._amzImportedInvList.AmzInventorySet += (list) =>
-            {   
-                if (list.Count > 0) _v_invCntrl.label_amazon.BackColor = Color.LimeGreen;
-                else _v_invCntrl.label_amazon.BackColor = Color.LightGreen;
-            };
-            _m_externalInventoriesModel._fkImportedInventoryList.FkInventorySet += (l) =>
-            {
-                if (l.Count > 0) _v_invCntrl.label_flipkart.BackColor = Color.LimeGreen;
-                else _v_invCntrl.label_flipkart.BackColor = Color.LightGreen;
-            };
-            _m_externalInventoriesModel._spdImportedInventoryList.SpdInventorySet += (l) =>
-            {
-                if (l.Count > 0) _v_invCntrl.label_snapdeal.BackColor = Color.LimeGreen;
-                else _v_invCntrl.label_snapdeal.BackColor = Color.LightGreen;
-            };
-            _m_externalInventoriesModel._msoImportedInventoryList.MsoInventorySet += (l) =>
-            {
-                if (l.Count > 0) _v_invCntrl.label_meesho.BackColor = Color.LimeGreen;
-                else _v_invCntrl.label_meesho.BackColor = Color.LightGreen;
-            };
-        }
+        //private void HandleExternalInventoryImportEvents()
+        //{
+        //    if (_v_invCntrl == null) return; //Fixed a bug, this was getting called from product screen.
+        //    _m_externalInventoriesModel._amzImportedInvList.AmzInventorySet += (list) =>
+        //    {   
+        //        if (list.Count > 0) _v_invCntrl.label_amazon.BackColor = Color.LimeGreen;
+        //        else _v_invCntrl.label_amazon.BackColor = Color.LightGreen;
+        //    };
+        //    _m_externalInventoriesModel._fkImportedInventoryList.FkInventorySet += (l) =>
+        //    {
+        //        if (l.Count > 0) _v_invCntrl.label_flipkart.BackColor = Color.LimeGreen;
+        //        else _v_invCntrl.label_flipkart.BackColor = Color.LightGreen;
+        //    };
+        //    _m_externalInventoriesModel._spdImportedInventoryList.SpdInventorySet += (l) =>
+        //    {
+        //        if (l.Count > 0) _v_invCntrl.label_snapdeal.BackColor = Color.LimeGreen;
+        //        else _v_invCntrl.label_snapdeal.BackColor = Color.LightGreen;
+        //    };
+        //    _m_externalInventoriesModel._msoImportedInventoryList.MsoInventorySet += (l) =>
+        //    {
+        //        if (l.Count > 0) _v_invCntrl.label_meesho.BackColor = Color.LimeGreen;
+        //        else _v_invCntrl.label_meesho.BackColor = Color.LightGreen;
+        //    };
+        //}
 
         //Custom init/event, fires when grid control is loaded
         private void HandlessGridViewControlEvents(SfDataGrid grid)
@@ -476,17 +486,19 @@ namespace SellerSense.ViewManager
                 _m_externalInventoriesModel._msoImportedInventoryList._msoUIModifiedInvList,
                 saveOnlySystemInventory: false);
 #endif
-            OpenFileDialog folderBrowser = new OpenFileDialog();
-            // Set validate names and check file exists to false otherwise windows will
-            // not let you select "Folder Selection."
-            folderBrowser.ValidateNames = false;
-            folderBrowser.CheckFileExists = false;
-            folderBrowser.CheckPathExists = true;
-            // Always default to Folder Selection.
-            folderBrowser.FileName = "Folder Selection";
-            if (folderBrowser.ShowDialog() == DialogResult.OK)
+            //OpenFileDialog folderBrowser = new OpenFileDialog();
+            //// Set validate names and check file exists to false otherwise windows will
+            //// not let you select "Folder Selection."
+            //folderBrowser.ValidateNames = false;
+            //folderBrowser.CheckFileExists = false;
+            //folderBrowser.CheckPathExists = true;
+            //// Always default to Folder Selection.
+            //folderBrowser.FileName = "Folder Selection";
+
+            string folderPath = ProjIO.OpenFolderSelectionDialog();
+            if (!string.IsNullOrEmpty(folderPath))
             {
-                string folderPath = Path.GetDirectoryName(folderBrowser.FileName);
+                //string folderPath = Path.GetDirectoryName(folder);
                 _m_externalInventoriesModel.ExportAmazonInventoryFile(folderPath);
                 _m_externalInventoriesModel.ExportFlipkartInventoryFile(folderPath);
                 _m_externalInventoriesModel.ExportSnapdealInventoryFile(folderPath);
@@ -894,6 +906,12 @@ namespace SellerSense.ViewManager
                 UpdateComposedChildProducts(item.InHouseCode);
 
             CheckForUnmappedAmazonProducts();
+
+            //Update indicator labels
+            if (_inventoryViewList.Any(x => !string.IsNullOrEmpty(x.AmazonSystemCount)))
+                _v_invCntrl.label_amazon.BackColor = Color.LimeGreen;
+            else _v_invCntrl.label_amazon.BackColor = Color.LightGreen;
+
             //EngageCellEvents();
             //foreach (var item in list)
             //{
@@ -924,6 +942,54 @@ namespace SellerSense.ViewManager
             uinv.ShowDialog();
         }
 
+
+
+        private void CheckForUnmappedFlipkartProducts()
+        {
+            List<string> unmappedInv = new List<string>();
+            List<string> unmappedInhouseCodes = new List<string>();
+
+            foreach (var fItem in _m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList)
+            {
+                var item = _inventoryViewList.FirstOrDefault(x => x.FlipkartCode == fItem.fsn);
+                if (item == null)
+                    unmappedInv.Add(fItem.fsn);
+            }
+            foreach (var viewItem in _inventoryViewList)
+            {
+                var item = _m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList.FirstOrDefault(
+                    x => x.fsn == viewItem.FlipkartCode);
+                if (item == null)
+                    unmappedInhouseCodes.Add(viewItem.InHouseCode);
+            }
+            UnMappedInventories uinv = new UnMappedInventories(Constants.Company.Flipkart.ToString(), unmappedInhouseCodes, unmappedInv);
+            uinv.ShowDialog();
+        }
+
+
+
+        private void CheckForUnmappedSnapdealProducts()
+        {
+            List<string> unmappedInv = new List<string>();
+            List<string> unmappedInhouseCodes = new List<string>();
+
+            foreach (var fItem in _m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList)
+            {
+                var item = _inventoryViewList.FirstOrDefault(x => x.SnapdealCode == fItem.fsn);
+                if (item == null)
+                    unmappedInv.Add(fItem.fsn);
+            }
+            foreach (var viewItem in _inventoryViewList)
+            {
+                var item = _m_externalInventoriesModel._spdImportedInventoryList._spdInventoryList.FirstOrDefault(
+                    x => x.fsn == viewItem.SnapdealCode);
+                if (item == null)
+                    unmappedInhouseCodes.Add(viewItem.InHouseCode);
+            }
+            UnMappedInventories uinv = new UnMappedInventories(Constants.Company.Snapdeal.ToString(), unmappedInhouseCodes, unmappedInv);
+            uinv.ShowDialog();
+        }
+
         private async Task ImportFlipkartInv()
         {
             //DisengageCellEvents();
@@ -944,7 +1010,15 @@ namespace SellerSense.ViewManager
 
             foreach (var item in _inventoryViewList)
                 UpdateComposedChildProducts(item.InHouseCode);
-            // EngageCellEvents() ;    
+            // EngageCellEvents() ;
+            CheckForUnmappedFlipkartProducts();
+
+
+            //Update indicator labels
+            if (_inventoryViewList.Any(x => !string.IsNullOrEmpty(x.FlipkartSystemCount)))
+                _v_invCntrl.label_flipkart.BackColor = Color.LimeGreen;
+            else _v_invCntrl.label_flipkart.BackColor = Color.LightGreen;
+
         }
 
         private async Task ImportSnapdealInv()
@@ -967,6 +1041,14 @@ namespace SellerSense.ViewManager
 
             foreach (var item in _inventoryViewList)
                 UpdateComposedChildProducts(item.InHouseCode);
+
+            CheckForUnmappedSnapdealProducts();
+
+
+            //Update indicator labels
+            if (_inventoryViewList.Any(x => !string.IsNullOrEmpty(x.SnapdealSystemCount)))
+                _v_invCntrl.label_snapdeal.BackColor = Color.LimeGreen;
+            else _v_invCntrl.label_snapdeal.BackColor = Color.LightGreen;
             //EngageCellEvents();
         }
 

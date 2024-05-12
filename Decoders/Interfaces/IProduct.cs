@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Decoders.Interfaces
 {
-    public interface IProduct
+    public interface INewProduct
     {
 
         string InHouseCode { get; set; }
@@ -30,10 +30,30 @@ namespace Decoders.Interfaces
         string FlipkartSKU { get; set; }
         string SnapdealCode { get; set; }
         string SnapdealSKU { get; set; }
-        string MeeshoCode { get; set; }
+        //string MeeshoCode { get; set; }
         string Notes { get; set; }
+    }
 
-        string LinkedInHouseCode { get; set; }
-        string LinkItemQty { get; set; }
+    public interface IEditProduct
+    {
+
+        string InHouseCode { get; set; }
+        string Title { get; set; }
+        string Tag { get; set; }
+        string MRP { get; set; }
+        string SellingPrice { get; set; }
+        string CostPrice { get; set; }
+        string Weight { get; set; }
+        string WeightAfterPackaging { get; set; }
+        string DimensionsBeforePackaging { get; set; }
+        string DimensionsAfterPackaging { get; set; }
+        string Description { get; set; }
+        string AmazonCode { get; set; }
+        string AmazonSKU { get; set; }
+        string FlipkartCode { get; set; }
+        string FlipkartSKU { get; set; }
+        string SnapdealCode { get; set; }
+        string SnapdealSKU { get; set; }
+        string Notes { get; set; }
     }
 }

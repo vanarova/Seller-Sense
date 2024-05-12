@@ -77,6 +77,7 @@
                         <File Id="SYNCFUSION.SPELLCHECKER.BASE.DLL" Name="Syncfusion.SpellChecker.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.SpellChecker.Base.dll" />
                         <File Id="SYNCFUSION.TOOLS.BASE.DLL" Name="Syncfusion.Tools.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Base.dll" />
                         <File Id="SYNCFUSION.TOOLS.WINDOWS.DLL" Name="Syncfusion.Tools.Windows.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Windows.dll" />
+                        <File Id="SYNCFUSION.TREEMAP.WINDOWS.DLL" Name="Syncfusion.TreeMap.Windows.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.TreeMap.Windows.dll" />
                         <File Id="SYNCFUSION.XLSIO.BASE.DLL" Name="Syncfusion.XlsIO.Base.dll" Source="..\InventoryUpdater\bin\Release\Syncfusion.XlsIO.Base.dll" />
                         <File Id="SYSTEM.BUFFERS.DLL" Name="System.Buffers.dll" Source="..\InventoryUpdater\bin\Release\System.Buffers.dll" />
                         <File Id="SYSTEM.CODEDOM.DLL" Name="System.CodeDom.dll" Source="..\InventoryUpdater\bin\Release\System.CodeDom.dll" />
@@ -149,6 +150,7 @@
                         <File Id="SYNCFUSION.SPELLCHECKER.BASE.XML" Name="Syncfusion.SpellChecker.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.SpellChecker.Base.xml" />
                         <File Id="SYNCFUSION.TOOLS.BASE.XML" Name="Syncfusion.Tools.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Base.xml" />
                         <File Id="SYNCFUSION.TOOLS.WINDOWS.XML" Name="Syncfusion.Tools.Windows.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.Tools.Windows.xml" />
+                        <File Id="SYNCFUSION.TREEMAP.WINDOWS.XML" Name="Syncfusion.TreeMap.Windows.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.TreeMap.Windows.xml" />
                         <File Id="SYNCFUSION.XLSIO.BASE.XML" Name="Syncfusion.XlsIO.Base.xml" Source="..\InventoryUpdater\bin\Release\Syncfusion.XlsIO.Base.xml" />
                         <File Id="SYSTEM.BUFFERS.XML" Name="System.Buffers.xml" Source="..\InventoryUpdater\bin\Release\System.Buffers.xml" />
                         <File Id="SYSTEM.CODEDOM.XML" Name="System.CodeDom.xml" Source="..\InventoryUpdater\bin\Release\System.CodeDom.xml" />
