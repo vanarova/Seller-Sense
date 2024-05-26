@@ -2,6 +2,7 @@
 using Decoders.Interfaces;
 using SellerSense.Helper;
 using SellerSense.Model;
+using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ using System.Windows.Forms;
 
 namespace SellerSense.Views.Products
 {
-    internal partial class ImportProductExcel : Form
+    internal partial class ImportProductExcel : SfForm
     {
         public string CSVFileName { get; set; }
         public IList<INewProduct> NewProducts;

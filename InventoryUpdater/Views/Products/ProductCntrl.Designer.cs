@@ -47,6 +47,7 @@
             this.sfButton_ImportCSV = new Syncfusion.WinForms.Controls.SfButton();
             this.toolstripitem_csv = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.toolstripitem_pdf = new Syncfusion.Windows.Forms.Tools.toolstripitem();
+            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -162,6 +163,7 @@
             this.flowLayoutPanel1.Controls.Add(this.label_help);
             this.flowLayoutPanel1.Controls.Add(this.sfButton_AddProduct);
             this.flowLayoutPanel1.Controls.Add(this.sfButton_ImportCSV);
+            this.flowLayoutPanel1.Controls.Add(this.sfButton1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(359, 0);
@@ -224,6 +226,21 @@
             this.toolstripitem_pdf.Size = new System.Drawing.Size(32, 19);
             this.toolstripitem_pdf.Text = "PDF";
             // 
+            // sfButton1
+            // 
+            this.sfButton1.AccessibleName = "Button";
+            this.sfButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton1.BackColor = System.Drawing.Color.Pink;
+            this.sfButton1.Font = new System.Drawing.Font("Impact", 9F);
+            this.sfButton1.Location = new System.Drawing.Point(316, 1);
+            this.sfButton1.Margin = new System.Windows.Forms.Padding(1);
+            this.sfButton1.Name = "sfButton1";
+            this.sfButton1.Size = new System.Drawing.Size(99, 25);
+            this.sfButton1.Style.BackColor = System.Drawing.Color.Pink;
+            this.sfButton1.TabIndex = 5;
+            this.sfButton1.Text = "+ Prestashop";
+            this.sfButton1.UseVisualStyleBackColor = false;
+            // 
             // ProductCntrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -265,5 +282,6 @@
         private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem_csv;
         private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem_pdf;
         internal Syncfusion.WinForms.Controls.SfButton sfButton_ImportCSV;
+        internal Syncfusion.WinForms.Controls.SfButton sfButton1;
     }
 }

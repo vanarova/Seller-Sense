@@ -148,25 +148,25 @@
             // importAmazonToolStripMenuItem
             // 
             this.importAmazonToolStripMenuItem.Name = "importAmazonToolStripMenuItem";
-            this.importAmazonToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
-            this.importAmazonToolStripMenuItem.Text = "Import Amazon🪄";
+            this.importAmazonToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
+            this.importAmazonToolStripMenuItem.Text = "Import Amazon File🪄";
             // 
             // importFlipkartToolStripMenuItem
             // 
             this.importFlipkartToolStripMenuItem.Name = "importFlipkartToolStripMenuItem";
-            this.importFlipkartToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
-            this.importFlipkartToolStripMenuItem.Text = "Import Flipkart 🚀";
+            this.importFlipkartToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
+            this.importFlipkartToolStripMenuItem.Text = "Import Flipkart File 🚀";
             // 
             // importSnapdealToolStripMenuItem
             // 
             this.importSnapdealToolStripMenuItem.Name = "importSnapdealToolStripMenuItem";
-            this.importSnapdealToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
-            this.importSnapdealToolStripMenuItem.Text = "Import Snapdeal 👜";
+            this.importSnapdealToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
+            this.importSnapdealToolStripMenuItem.Text = "Import Snapdeal File 👜";
             // 
             // exportAllToolStripMenuItem
             // 
             this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
-            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(228, 26);
+            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.exportAllToolStripMenuItem.Text = "Export All 🡽";
             // 
             // linkToolStripMenuItem
@@ -210,20 +210,20 @@
             // importAmazonOrdersToolStripMenuItem
             // 
             this.importAmazonOrdersToolStripMenuItem.Name = "importAmazonOrdersToolStripMenuItem";
-            this.importAmazonOrdersToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
-            this.importAmazonOrdersToolStripMenuItem.Text = "Import Amazon Orders";
+            this.importAmazonOrdersToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.importAmazonOrdersToolStripMenuItem.Text = "Append Amazon Orders";
             // 
             // importFlipkartOrdersToolStripMenuItem
             // 
             this.importFlipkartOrdersToolStripMenuItem.Name = "importFlipkartOrdersToolStripMenuItem";
-            this.importFlipkartOrdersToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
-            this.importFlipkartOrdersToolStripMenuItem.Text = "Import Flipkart Orders";
+            this.importFlipkartOrdersToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.importFlipkartOrdersToolStripMenuItem.Text = "Append Flipkart Orders";
             // 
             // importSnapdealOrdersToolStripMenuItem
             // 
             this.importSnapdealOrdersToolStripMenuItem.Name = "importSnapdealOrdersToolStripMenuItem";
-            this.importSnapdealOrdersToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
-            this.importSnapdealOrdersToolStripMenuItem.Text = "Import Snapdeal Orders";
+            this.importSnapdealOrdersToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
+            this.importSnapdealOrdersToolStripMenuItem.Text = "Append Snapdeal Orders";
             // 
             // flowLayoutPanel1
             // 

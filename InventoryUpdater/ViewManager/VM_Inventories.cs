@@ -1,4 +1,5 @@
 ﻿using Common;
+using Decoders;
 using Decoders.Interfaces;
 using SellerSense.Helper;
 using SellerSense.Model;
@@ -77,6 +78,27 @@ namespace SellerSense.ViewManager
             //crossCompanyEvents.CrossCompanySharedInventoryUpdated += _crossCompanyEvents_CrossCompanySharedInventoryUpdated;
             //_inventoryViewList.CollectionChanged += (s, e) => { InventoryViewListChanged(e); };
         }
+
+
+
+
+        internal void BindDatagridEvents(SfDataGrid datagrid)
+        {
+            datagrid.CellDoubleClick += (s, e) =>
+            {
+                if (datagrid.CurrentCell.Column.MappingName == Constants.MCols.amz_Code)
+                    AmazonInvDecoder.OpenProductSearchURL(ssGrid.SyncFusionHelper.GetCellValue(datagrid, datagrid.CurrentCell.RowIndex, datagrid.CurrentCell.ColumnIndex).ToString());
+                if (datagrid.CurrentCell.Column.MappingName == Constants.MCols.fK_Code)
+                    FlipkartInvDecoder.OpenProductSearchURL(ssGrid.SyncFusionHelper.GetCellValue(datagrid, datagrid.CurrentCell.RowIndex, datagrid.CurrentCell.ColumnIndex).ToString());
+                if (datagrid.CurrentCell.Column.MappingName == Constants.MCols.spd_Code)
+                    SnapdealInvDecoder.OpenProductSearchURL(ssGrid.SyncFusionHelper.GetCellValue(datagrid, datagrid.CurrentCell.RowIndex, datagrid.CurrentCell.ColumnIndex).ToString());
+                if (datagrid.CurrentCell.Column.MappingName == Constants.MCols.mso_Code)
+                    MeeshoInvDecoder.OpenProductSearchURL(ssGrid.SyncFusionHelper.GetCellValue(datagrid, datagrid.CurrentCell.RowIndex, datagrid.CurrentCell.ColumnIndex).ToString());
+            };
+
+        }
+
+
 
         //private void InventoryViewListChanged(NotifyCollectionChangedEventArgs e)
         //{
@@ -252,6 +274,7 @@ namespace SellerSense.ViewManager
             grid.Columns[Constants.InventoryViewCols.FlipkartOrders].CellStyle.BackColor = Color.Silver;
             grid.Columns[Constants.InventoryViewCols.SnapdealOrders].CellStyle.BackColor = Color.Silver;
 
+            BindDatagridEvents(grid);
         }
 
 
@@ -313,6 +336,7 @@ namespace SellerSense.ViewManager
             _v_invCntrl.exportAllToolStripMenuItem.Click += (s, e) => { ExportAllInventoryUpdateFiles(); };
             _v_invCntrl.sendInvStatusToolStripMenuItem.Click += (s, e) => { SendStockStatusForThisCompany(); };
             _v_invCntrl.importAmazonOrdersToolStripMenuItem.Click += async (s, e) => { await ImportAmazonOrders(); };
+            //_v_invCntrl.appendAmazonOrdersToolStripMenuItem.Click += async (s, e) => { await ImportAmazonOrders(true); };
             _v_invCntrl.importFlipkartOrdersToolStripMenuItem.Click += async (s, e) => { await ImportFlipkartOrders(); };
             _v_invCntrl.importSnapdealOrdersToolStripMenuItem.Click += async (s, e) => { await ImportSnapdealOrders(); };
            // _v_invCntrl.ordersToolStripMenuItem.Click += (s, e) => { };
@@ -1222,6 +1246,18 @@ namespace SellerSense.ViewManager
                 get { return _inhouseCount; }
                 set { if (value != this._inhouseCount) { _inhouseCount = value; NotifyPropertyChanged(); } }
             }
+            public int OrdersCount
+            {
+                get {
+                    int.TryParse(AmazonOrders, out int aOrders);
+                    int.TryParse(FlipkartOrders, out int fOrders);
+                    int.TryParse(SnapdealOrders, out int sOrders);
+                    int tOrders = aOrders + fOrders + sOrders;
+                    return tOrders; 
+                }
+                //set { if (value != this._ordersCount) { _ordersCount = value; NotifyPropertyChanged(); } }
+            }
+
             public string AmazonCount { 
                 get { return _amazonCount; } 
                 set { if (value != this._amazonCount) { _amazonCount = value; NotifyPropertyChanged(); } } 

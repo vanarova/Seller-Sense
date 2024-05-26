@@ -238,6 +238,7 @@
             <ComponentRef Id="SS" />
             <ComponentRef Id="ApplicationShortcut" />
             <ComponentRef Id="IMG" />
+            <ComponentRef Id="ApplicationShortcutDesktop" />
         </Feature>
         <Icon Id="DesktopIcon.exe" SourceFile="..\InventoryUpdater\bin\Release\SellerSense.exe" />
         <Icon Id="SellerSense.exe" SourceFile="..\InventoryUpdater\Images\favicon.ico" />
@@ -254,6 +255,13 @@
                 <Shortcut Id="ApplicationStartMenuShortcut" Name="Seller-Sense" Description="Seller Sense - Small business inventory, payment management and reports analysis software" Target="[SELLER_SENSE]SellerSense.exe" Icon="SellerSense.exe" />
                 <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
                 <RegistryValue Root="HKCU" Key="Software\Microsoft\Seller-Sense" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+            </Component>
+        </DirectoryRef>
+        <DirectoryRef Id="DesktopFolder">
+            <Component Id="ApplicationShortcutDesktop" Guid="2D87BAD7-C1DA-47AA-A9F3-81D281FC195C">
+                <Shortcut Id="ApplicationDesktopShortcut" Name="Seller-Sense" Description="Seller Sense - Small business inventory, payment management and reports analysis software" Target="[SELLER_SENSE]SellerSense.exe" Icon="SellerSense.exe" WorkingDirectory="SELLER_SENSE" />
+                <RemoveFolder Id="DesktopFolder" On="uninstall" />
+                <RegistryValue Name="installed" Root="HKCU" Type="integer" Value="1" KeyPath="yes" Key="Software\SellerSense\SellerSense" />
             </Component>
         </DirectoryRef>
     </Product>
