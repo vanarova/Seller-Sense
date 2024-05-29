@@ -462,6 +462,9 @@
     <EmbeddedResource Include="Views\Products\ImportProductCSV.resx">
       <DependentUpon>ImportProductCSV.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Products\PrestaShopSync.resx">
+      <DependentUpon>PrestaShopSync.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Products\ProductCntrl.resx">
       <DependentUpon>ProductCntrl.cs</DependentUpon>
     </EmbeddedResource>

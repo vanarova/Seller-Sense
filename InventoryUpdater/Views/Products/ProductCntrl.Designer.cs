@@ -43,11 +43,11 @@
             this.mapSpdSKUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label_help = new System.Windows.Forms.Label();
-            this.sfButton_AddProduct = new Syncfusion.WinForms.Controls.SfButton();
             this.sfButton_ImportCSV = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton_ImportPrestaShop = new Syncfusion.WinForms.Controls.SfButton();
+            this.sfButton_AddProduct = new Syncfusion.WinForms.Controls.SfButton();
             this.toolstripitem_csv = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.toolstripitem_pdf = new Syncfusion.Windows.Forms.Tools.toolstripitem();
-            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -163,7 +163,7 @@
             this.flowLayoutPanel1.Controls.Add(this.label_help);
             this.flowLayoutPanel1.Controls.Add(this.sfButton_AddProduct);
             this.flowLayoutPanel1.Controls.Add(this.sfButton_ImportCSV);
-            this.flowLayoutPanel1.Controls.Add(this.sfButton1);
+            this.flowLayoutPanel1.Controls.Add(this.sfButton_ImportPrestaShop);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(359, 0);
@@ -184,19 +184,6 @@
             this.label_help.Text = "?";
             this.label_help.Click += new System.EventHandler(this.label_help_Click);
             // 
-            // sfButton_AddProduct
-            // 
-            this.sfButton_AddProduct.AccessibleName = "Button";
-            this.sfButton_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfButton_AddProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
-            this.sfButton_AddProduct.Location = new System.Drawing.Point(518, 1);
-            this.sfButton_AddProduct.Margin = new System.Windows.Forms.Padding(1);
-            this.sfButton_AddProduct.Name = "sfButton_AddProduct";
-            this.sfButton_AddProduct.Size = new System.Drawing.Size(97, 25);
-            this.sfButton_AddProduct.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            this.sfButton_AddProduct.TabIndex = 3;
-            this.sfButton_AddProduct.Text = "Product";
-            // 
             // sfButton_ImportCSV
             // 
             this.sfButton_ImportCSV.AccessibleName = "Button";
@@ -212,6 +199,34 @@
             this.sfButton_ImportCSV.Text = "Bulk Import";
             this.sfButton_ImportCSV.UseVisualStyleBackColor = false;
             // 
+            // sfButton_ImportPrestaShop
+            // 
+            this.sfButton_ImportPrestaShop.AccessibleName = "Button";
+            this.sfButton_ImportPrestaShop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton_ImportPrestaShop.BackColor = System.Drawing.Color.Pink;
+            this.sfButton_ImportPrestaShop.Font = new System.Drawing.Font("Impact", 9F);
+            this.sfButton_ImportPrestaShop.Location = new System.Drawing.Point(316, 1);
+            this.sfButton_ImportPrestaShop.Margin = new System.Windows.Forms.Padding(1);
+            this.sfButton_ImportPrestaShop.Name = "sfButton_ImportPrestaShop";
+            this.sfButton_ImportPrestaShop.Size = new System.Drawing.Size(99, 25);
+            this.sfButton_ImportPrestaShop.Style.BackColor = System.Drawing.Color.Pink;
+            this.sfButton_ImportPrestaShop.TabIndex = 5;
+            this.sfButton_ImportPrestaShop.Text = "+ Prestashop";
+            this.sfButton_ImportPrestaShop.UseVisualStyleBackColor = false;
+            // 
+            // sfButton_AddProduct
+            // 
+            this.sfButton_AddProduct.AccessibleName = "Button";
+            this.sfButton_AddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton_AddProduct.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton_AddProduct.Location = new System.Drawing.Point(518, 1);
+            this.sfButton_AddProduct.Margin = new System.Windows.Forms.Padding(1);
+            this.sfButton_AddProduct.Name = "sfButton_AddProduct";
+            this.sfButton_AddProduct.Size = new System.Drawing.Size(97, 25);
+            this.sfButton_AddProduct.Style.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            this.sfButton_AddProduct.TabIndex = 3;
+            this.sfButton_AddProduct.Text = "Product";
+            // 
             // toolstripitem_csv
             // 
             this.toolstripitem_csv.Image = ((System.Drawing.Image)(resources.GetObject("toolstripitem_csv.Image")));
@@ -225,21 +240,6 @@
             this.toolstripitem_pdf.Name = "toolstripitem_pdf";
             this.toolstripitem_pdf.Size = new System.Drawing.Size(32, 19);
             this.toolstripitem_pdf.Text = "PDF";
-            // 
-            // sfButton1
-            // 
-            this.sfButton1.AccessibleName = "Button";
-            this.sfButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfButton1.BackColor = System.Drawing.Color.Pink;
-            this.sfButton1.Font = new System.Drawing.Font("Impact", 9F);
-            this.sfButton1.Location = new System.Drawing.Point(316, 1);
-            this.sfButton1.Margin = new System.Windows.Forms.Padding(1);
-            this.sfButton1.Name = "sfButton1";
-            this.sfButton1.Size = new System.Drawing.Size(99, 25);
-            this.sfButton1.Style.BackColor = System.Drawing.Color.Pink;
-            this.sfButton1.TabIndex = 5;
-            this.sfButton1.Text = "+ Prestashop";
-            this.sfButton1.UseVisualStyleBackColor = false;
             // 
             // ProductCntrl
             // 
@@ -282,6 +282,6 @@
         private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem_csv;
         private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem_pdf;
         internal Syncfusion.WinForms.Controls.SfButton sfButton_ImportCSV;
-        internal Syncfusion.WinForms.Controls.SfButton sfButton1;
+        internal Syncfusion.WinForms.Controls.SfButton sfButton_ImportPrestaShop;
     }
 }

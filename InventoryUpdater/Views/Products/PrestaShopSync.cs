@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common;
+using Syncfusion.WinForms.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +12,17 @@ using System.Windows.Forms;
 
 namespace SellerSense.Views.Products
 {
-    public partial class PrestaShopSync : Form
+    public partial class PrestaShopSync :  SfForm
     {
         public PrestaShopSync()
         {
             InitializeComponent();
+            this.Style.TitleBar.ForeColor = Color.White;
+            this.Style.TitleBar.BackColor = Constants.Theme.BorderColor;
+            this.Style.Border.Color = Constants.Theme.BorderColor;
+            this.Style.InactiveBorder.Color = Constants.Theme.BorderColor;
+            this.Style.Border.Width = Constants.Theme.BorderWidth;
+            this.Style.InactiveBorder.Width = Constants.Theme.BorderWidth;
         }
     }
 }

@@ -99,6 +99,7 @@ namespace SellerSense.ViewManager
 #endif
             _v_productCntrl.sfButton_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
             _v_productCntrl.sfButton_ImportCSV.Click += (s, e) => { BulkImportProducts(); };
+            _v_productCntrl.sfButton_ImportPrestaShop.Click += (s, e) => { ImportPrestaShopProducts(); };
             _v_productCntrl.mapAmzSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Amazon); };
             _v_productCntrl.mapFkSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Flipkart); };
             _v_productCntrl.mapSpdSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Snapdeal); };
@@ -116,6 +117,14 @@ namespace SellerSense.ViewManager
             pMap.ShowDialog();   
 
         }
+
+
+        private void ImportPrestaShopProducts()
+        {
+            PrestaShopSync presta = new PrestaShopSync();
+            presta.ShowDialog();
+        }
+
 
         private void BulkImportProducts()
         {
