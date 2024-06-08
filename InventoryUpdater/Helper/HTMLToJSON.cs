@@ -29,6 +29,15 @@ namespace SellerSense.Helper
         //}
 
 
+        public static string EscJSONChar(string html)
+        {
+            string text= HtmlUtilities.ConvertToPlainText(html);
+            if (text.Length > 100) 
+            { return text.Substring(0, 100); } 
+            else 
+                return text;
+        }
+
         //HtmlDocument
         public static M_BaseCodeList AngleSharpParse(string html)
         {

@@ -1,8 +1,6 @@
 ﻿using Common;
 using Decoders;
 using Decoders.Interfaces;
-using Newtonsoft.Json.Linq;
-using PrimitiveExt;
 using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Views;
@@ -14,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,6 +20,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
+using static SellerSense.ViewManager.VM_AddProduct;
 
 namespace SellerSense.ViewManager
 {
@@ -44,6 +46,13 @@ namespace SellerSense.ViewManager
         private M_External_Inventories _InventoriesModel;
         private Dictionary<string, Image> _images;
         internal CompareProductView _compareProductViews;
+        private bool PrestaShopCancelOperation=false;
+        public enum PrestaShopImportType
+        {
+            UpdateOnly,
+            ImportNewOnly,
+            FullSync
+        }
 
         public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories, string companycode)
         {
@@ -119,11 +128,7 @@ namespace SellerSense.ViewManager
         }
 
 
-        private void ImportPrestaShopProducts()
-        {
-            PrestaShopSync presta = new PrestaShopSync();
-            presta.ShowDialog();
-        }
+       
 
 
         private void BulkImportProducts()
@@ -182,8 +187,8 @@ namespace SellerSense.ViewManager
                    string i2 = _m_product.SaveImage(img2, img2_name, overwrite: true);
                    string i3 = _m_product.SaveImage(img3, img3_name, overwrite: true);
                    string i4 = _m_product.SaveImage(img4, img4_name, overwrite: true);
-                    //SaveImages(addProductView, ref primaryImagePath, ref Image2Path, ref Image3Path, ref Image4Path);
-                    (_, var imgc) = ProjIO.LoadImageAndDownSize75x75(iprod.Image);
+                    
+                    //(_, var imgc) = ProjIO.LoadImageAndDownSize75x75(iprod.Image);
                     var prod = new M_Product.ProductEntry(iprod.InHouseCode, String.Empty, iprod.Title,
                         String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, iprod.Tag, iprod.Description)
                     {
@@ -294,7 +299,8 @@ namespace SellerSense.ViewManager
                 SaveImages(addProductView,ref primaryImagePath,  ref Image2Path, ref Image3Path, ref Image4Path);
                 if (string.IsNullOrEmpty(primaryImagePath))
                     return;
-                (_, var img) = ProjIO.LoadImageAndDownSize75x75(primaryImagePath);
+                
+                //(_, var img) = ProjIO.LoadImageAndDownSize75x75(primaryImagePath);
 
                 var prod = new M_Product.ProductEntry(addProductView.InHouseCode, String.Empty, addProductView.Name,
                     String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, addProductView.Tag, addProductView.Description)
@@ -927,9 +933,12 @@ namespace SellerSense.ViewManager
             private byte[] ImageToByteArray(System.Drawing.Image imageIn)
             {
                 if (imageIn == null) { return default(byte[]); }
-                MemoryStream ms = new MemoryStream();
-                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                return ms.ToArray();
+                try
+                {
+                    MemoryStream ms = new MemoryStream();
+                    imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                    return ms.ToArray();
+                }catch { return default(byte[]); }
             }
 
 
@@ -961,7 +970,134 @@ namespace SellerSense.ViewManager
             }
         }
 
-#endregion ssGridViewUserControl
+        #endregion ssGridViewUserControl
+
+
+        #region Prestashop
+
+        private void ImportPrestaShopProducts()
+        {
+            PrestaShopSync presta = new PrestaShopSync();
+            presta.button_FullSync.Click += (s, e) => { UpdateProductsFromPresta(presta, PrestaShopImportType.FullSync); };
+            presta.button_UpdateOnly.Click += async (s, e) => {
+                StartUIPrestaProcess(presta);
+                await UpdateProductsFromPresta(presta, PrestaShopImportType.UpdateOnly); ResetUIPrestaProcess(presta);
+            };
+            presta.button_ImportOnly.Click += (s, e) => { UpdateProductsFromPresta(presta, PrestaShopImportType.ImportNewOnly); };
+            presta.button_HelpAccessKey.Click += (s, e) => { };
+            presta.button_Stop.Click += (s, e) => {
+                StoppingUIPrestaProcess(presta);
+                  };
+            presta.button_HelpPrestaURL.Click += (s, e) => { };
+            presta.textBox_msg.TextChanged += (s, e) => {
+                presta.textBox_msg.Focus();
+                presta.textBox_msg.SelectionStart = presta.textBox_msg.Text.Length;
+                presta.textBox_msg.ScrollToCaret();
+            };
+            presta.ShowDialog();
+        }
+
+        private void StartUIPrestaProcess(PrestaShopSync presta) {
+            presta.progressBar_PrestaImport.Visible = true;
+            presta.button_Stop.Visible = true; presta.CloseButtonVisible = false;
+        }
+        private void StoppingUIPrestaProcess(PrestaShopSync presta) 
+        { presta.button_Stop.Text = "Please wait.."; presta.button_Stop.Enabled = false; PrestaShopCancelOperation = true; }
+
+        private void ResetUIPrestaProcess(PrestaShopSync presta) { presta.button_Stop.Enabled = true; 
+            presta.button_Stop.Text = "Stop"; presta.progressBar_PrestaImport.Visible = false;
+            presta.button_Stop.Visible = false; PrestaShopCancelOperation = false; presta.CloseButtonVisible = true;
+        }
+
+        private async Task UpdateProductsFromPresta(PrestaShopSync presta, PrestaShopImportType importType)
+        {
+            
+            string url = "https://craftialcurve.com";
+            string key = "LJRHJRHZX64C458CB3FFAXYNA32DNRZP";
+            XmlDocument reponse = await PrestashopRestAPI.Prestashop_Get_xml(url, "/api/products", key);
+            if (reponse == null) return;
+            XmlNode products = reponse.SelectSingleNode("prestashop/products");
+            if (products == null) return;
+            foreach (XmlNode item in products.ChildNodes)
+            {
+                if (PrestaShopCancelOperation)
+                    break;
+                if (item.Name == "product")
+                {
+                    Debugger.Log(0, "", item.Attributes["id"].Value);
+                    presta.textBox_msg.Text = presta.textBox_msg.Text + "Prestashop product Id:" 
+                        + item.Attributes["id"].Value + ", Searching reference.." + Environment.NewLine;
+                    string method = "/api/products/" + item.Attributes["id"].Value;
+                    XmlDocument prod = await PrestashopRestAPI.Prestashop_Get_xml(url, method, key);
+                    if (prod != null)
+                    {
+                        XmlNode product = prod.SelectSingleNode("prestashop/product");
+                        string reference = prod.SelectSingleNode("prestashop/product/reference").InnerText;
+                        string name = prod.SelectSingleNode("prestashop/product/name").InnerText;
+                        string description = prod.SelectSingleNode("prestashop/product/description").InnerText.Substring(0,50);
+                        string shortDescription = prod.SelectSingleNode("prestashop/product/description_short").InnerText;
+                        string price = prod.SelectSingleNode("prestashop/product/price").InnerText;
+                        XmlNode imgLink = prod.SelectSingleNode("prestashop/product/id_default_image");
+
+                        Debugger.Log(0, "info", reference);
+                        Image img = await PrestashopRestAPI.Prestashop_Get_image(imgLink.Attributes["xlink:href"].Value, "", key);
+                        
+                        
+                        switch (importType)
+                        {
+                            case PrestaShopImportType.UpdateOnly:
+                                UpdateInHouseListingFromPresta(presta, name, description, reference, shortDescription, img);
+                                break;
+                            case PrestaShopImportType.ImportNewOnly:
+                                break;
+                            case PrestaShopImportType.FullSync:
+                                break;
+                            default:
+                                return;
+                        }
+                    }
+                }
+                //TODO : When scrapping, disable window close button, coz closing window is not stopping scrapping. send cancelling token with stop button
+            }
+
+            
+        }
+
+
+        private void UpdateInHouseListingFromPresta(PrestaShopSync presta,string name,string description, string reference,
+            string shortDescription, Image img)
+        {
+            foreach (var inHouseItem in _m_product._productEntries)
+            {
+                if (inHouseItem.InHouseCode == reference)
+                {
+                    presta.textBox_msg.Text = presta.textBox_msg.Text + "Updating InHouse product:" + reference;
+                    var viewItem = _vm_productsView.FirstOrDefault(x => x.InHouseCode == reference);
+                    if (viewItem != null)
+                    {
+                        viewItem.Title = HTMLToJSON.EscJSONChar(name);
+                        viewItem.Description = HTMLToJSON.EscJSONChar(description);
+                        viewItem.Tag= HTMLToJSON.EscJSONChar(shortDescription);
+                        viewItem.Image = img;
+                    }
+                    inHouseItem.Title = HTMLToJSON.EscJSONChar(name);
+                    inHouseItem.Description = HTMLToJSON.EscJSONChar(description);
+                    inHouseItem.Tag = HTMLToJSON.EscJSONChar(shortDescription);
+                    
+                    _m_product.RemoveExistingProductImage(inHouseItem.InHouseCode);
+                    var path = _m_product.SaveImage(img, inHouseItem.InHouseCode, overwrite: true); //img.Save("jh33ds.jpeg");
+                    inHouseItem.Image = Path.GetFileName(path);
+                    _m_product.SaveMapFile();
+                    presta.textBox_msg.Text = presta.textBox_msg.Text + "- Done" + Environment.NewLine;
+                    
+                    //presta.textBox_msg.Refresh();
+                }
+            }
+        }
+
+
+        #endregion
+
 
     }
 

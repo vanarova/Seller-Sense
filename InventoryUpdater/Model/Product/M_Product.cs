@@ -13,6 +13,7 @@ using SellerSense.Views;
 using System.Drawing.Imaging;
 using Common;
 using System.Windows.Forms;
+using MS.WindowsAPICodePack.Internal;
 
 namespace SellerSense.Model
 {
@@ -126,6 +127,38 @@ namespace SellerSense.Model
         //    }
         //    return false;
         //}
+
+        internal bool RemoveExistingProductImage(string inHouseCode)
+        {
+            string jpgImageName = inHouseCode + ".jpg";
+            string jpegImageName = inHouseCode + ".jpeg";
+            string pngImageName = inHouseCode + ".png";
+            string lastSavedFilePath = Path.Combine(_workspace, _companyCode);
+            if (!Directory.Exists(lastSavedFilePath)) return false;
+
+            string destinationDirPath = Path.Combine(lastSavedFilePath, Constants.Imgs);
+            try
+            {
+                if (!Directory.Exists(destinationDirPath))
+                    return false;
+                
+                if(File.Exists(Path.Combine(destinationDirPath, jpgImageName)))
+                    File.Delete(Path.Combine(destinationDirPath, jpgImageName));
+
+                if (File.Exists(Path.Combine(destinationDirPath, jpegImageName)))
+                    File.Delete(Path.Combine(destinationDirPath, jpegImageName));
+
+                if (File.Exists(Path.Combine(destinationDirPath, pngImageName)))
+                    File.Delete(Path.Combine(destinationDirPath, pngImageName));
+            }
+            catch (Exception dx)
+            {
+                throw new IOException($"IO exception, {dx.Message}");
+            }
+            
+            return true;
+        }
+
 
             internal string SaveImage(Image img, string imageNameWithoutExtension, bool overwrite = false)
         {

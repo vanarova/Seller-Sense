@@ -29,6 +29,11 @@ namespace SellerSense.Helper
         {
             Image imgPhoto = Image.FromFile(stPhotoPath);
 
+            return ResizeImageFromStream( newWidth,  newHeight, imgPhoto);
+        }
+
+        internal static Image ResizeImageFromStream( int newWidth,  int newHeight, Image imgPhoto)
+        {
             int sourceWidth = imgPhoto.Width;
             int sourceHeight = imgPhoto.Height;
 
@@ -83,7 +88,6 @@ namespace SellerSense.Helper
             imgPhoto.Dispose();
             return bmPhoto;
         }
-
 
         internal static string CleanAndPrepareLocalAppData()
         {
