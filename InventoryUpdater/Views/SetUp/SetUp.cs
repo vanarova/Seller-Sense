@@ -1,7 +1,9 @@
 ﻿using AngleSharp.Dom.Events;
-using Common;
+using CommonUtil;
+
 using SellerSense.Helper;
 using SellerSense.Views;
+using Syncfusion.WinForms.Controls;
 //using SellerSense.Views.SetUp;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ using System.Windows.Forms;
 
 namespace SellerSense
 {
-    internal partial class SetUp : Form
+    internal partial class SetUp : SfForm
     {
         private string _map1File;
         private string _map2File;
@@ -25,6 +27,12 @@ namespace SellerSense
         private SellerSense.ViewManager.VM_Companies _companies;
         public SetUp(SellerSense.ViewManager.VM_Companies companies)
         {
+            this.Style.TitleBar.ForeColor = Color.White;
+            this.Style.TitleBar.BackColor = Constants.Theme.BorderColor;
+            this.Style.Border.Color = Constants.Theme.BorderColor;
+            this.Style.InactiveBorder.Color = Constants.Theme.BorderColor;
+            this.Style.Border.Width = Constants.Theme.BorderWidth;
+            this.Style.InactiveBorder.Width = Constants.Theme.BorderWidth;
             _companies = companies;
             InitializeComponent();
         }
@@ -123,7 +131,13 @@ namespace SellerSense
             txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
             pbar.Visible = false;
 
-            
+            //textBox_amz_asin.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_asin;
+            //textBox_amz_sku.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_sku;
+            //textBox_amz_price.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_price;
+            //textBox_amz_qty.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_sellerQuantity;
+
+            //Properties.Resources.
+                        
             comboBox_LoggingLevel.DataSource = Enum.GetValues(typeof(Logger.LogLevel));
             //Default logger depth is set in program.cs, get tht value and assgin.
             comboBox_LoggingLevel.SelectedItem = Logger.GetLogLevel();
@@ -131,6 +145,17 @@ namespace SellerSense
             comboBox_LoggingLevel.SelectedIndexChanged += (s, ev) => {
                 var val = (Logger.LogLevel)comboBox_LoggingLevel.SelectedItem;
                 Logger.SetLoggerLevel_LogAboveThisLevelOnly(val);
+            };
+
+            textBox_site.Text = ProjIO.GetUserSetting(Constants.PrestasopSiteURL);
+            textBox_key.Text = ProjIO.GetUserSetting(Constants.PrestasopSiteAccessKey);
+            textBox_site.TextChanged += (s, ev) => { 
+                ProjIO.SaveUserSetting(Constants.PrestasopSiteURL, textBox_site.Text);
+                ProjIO.SaveUserSetting(Constants.PrestasopSiteAccessKey, textBox_key.Text); 
+            };
+            textBox_key.TextChanged += (s, ev) => {
+                ProjIO.SaveUserSetting(Constants.PrestasopSiteURL, textBox_site.Text);
+                ProjIO.SaveUserSetting(Constants.PrestasopSiteAccessKey, textBox_key.Text);
             };
 
 
@@ -328,6 +353,15 @@ namespace SellerSense
             //    Logger.EnableTelegramLogging();
             //else
             //    Logger.DisableTelegramLogging();
+        }
+
+        private void button_Amz_save_Click(object sender, EventArgs e)
+        {
+            //Mapping.AmazonInvColumnMapping.amazon_inv_report_asin = textBox_amz_asin.Text;
+            //Mapping.AmazonInvColumnMapping.amazon_inv_report_sku = textBox_amz_sku.Text;
+            //Mapping.AmazonInvColumnMapping.amazon_inv_report_price = textBox_amz_price.Text;
+            //Mapping.AmazonInvColumnMapping.amazon_inv_report_sellerQuantity = textBox_amz_qty.Text;
+            
         }
     }
 }

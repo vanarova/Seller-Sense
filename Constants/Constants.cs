@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace CommonUtil
 {
     public static class Constants
     {
@@ -36,6 +36,10 @@ namespace Common
         public const string Company4Name = "Company4Name";
         public const string Company5Code = "Company5Code";
         public const string Company5Name = "Company5Name";
+
+        public const string PrestasopSiteURL = "PrestashopURL";
+        public const string PrestasopSiteAccessKey = "PrestashopKey";
+
 
         public const int FixedColumnsProductGrid = 1;
 
@@ -142,6 +146,31 @@ namespace Common
             public const string SnapdealOrders = "SnapdealOrders";
 
         }
+
+
+        //public  class AmazonInvColumnMapping
+        //{
+        //    public static string amazon_inv_report_sku
+        //    {   get {return ProjIO.GetUserSetting(nameof(AmazonInvColumnMapping.amazon_inv_report_sku));}
+        //        set { ProjIO.SaveUserSetting(nameof(AmazonInvColumnMapping.amazon_inv_report_sku), value); } 
+        //    }
+        //    public static string amazon_inv_report_asin
+        //    {
+        //        get { return ProjIO.GetUserSetting(nameof(AmazonInvColumnMapping.amazon_inv_report_asin)); }
+        //        set { ProjIO.SaveUserSetting(nameof(AmazonInvColumnMapping.amazon_inv_report_asin), value); }
+        //    }
+        //    public static string amazon_inv_report_price
+        //    {
+        //        get { return ProjIO.GetUserSetting(nameof(AmazonInvColumnMapping.amazon_inv_report_price)); }
+        //        set { ProjIO.SaveUserSetting(nameof(AmazonInvColumnMapping.amazon_inv_report_price), value); }
+        //    }
+        //    public static string amazon_inv_report_sellerQuantity
+        //    {
+        //        get { return ProjIO.GetUserSetting(nameof(AmazonInvColumnMapping.amazon_inv_report_sellerQuantity)); }
+        //        set { ProjIO.SaveUserSetting(nameof(AmazonInvColumnMapping.amazon_inv_report_sellerQuantity), value); }
+        //    }
+
+        //}
 
     }
 }

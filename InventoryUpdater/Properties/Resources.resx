@@ -139,4 +139,68 @@
   <data name="pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\pdf.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="amazon_api_inv_asin" xml:space="preserve">
+    <value>16</value>
+    <comment>Mappings for amazon inventory report downloaded from API</comment>
+  </data>
+  <data name="amazon_api_inv_price" xml:space="preserve">
+    <value>4</value>
+    <comment>Mappings for amazon inventory report downloaded from API</comment>
+  </data>
+  <data name="amazon_api_inv_qty" xml:space="preserve">
+    <value>5</value>
+    <comment>Mappings for amazon inventory report downloaded from API</comment>
+  </data>
+  <data name="amazon_api_inv_sku" xml:space="preserve">
+    <value>3</value>
+    <comment>Mappings for amazon inventory report downloaded from API</comment>
+  </data>
+  <data name="amazon_api_order_asin" xml:space="preserve">
+    <value>11</value>
+    <comment>Mappings for amazon order report downloaded from API</comment>
+  </data>
+  <data name="amazon_api_order_city" xml:space="preserve">
+    <value>23</value>
+    <comment>Mappings for amazon order report downloaded from API</comment>
+  </data>
+  <data name="amazon_api_order_qty" xml:space="preserve">
+    <value>13</value>
+    <comment>Mappings for amazon order report downloaded from API</comment>
+  </data>
+  <data name="amazon_api_order_state" xml:space="preserve">
+    <value>24</value>
+    <comment>Mappings for amazon order report downloaded from API</comment>
+  </data>
+  <data name="amazon_inv_asin" xml:space="preserve">
+    <value>1</value>
+    <comment>Mappings for amazon inventory report</comment>
+  </data>
+  <data name="amazon_inv_price" xml:space="preserve">
+    <value>2</value>
+    <comment>Mappings for amazon inventory report</comment>
+  </data>
+  <data name="amazon_inv_qty" xml:space="preserve">
+    <value>3</value>
+    <comment>Mappings for amazon inventory report</comment>
+  </data>
+  <data name="amazon_inv_sku" xml:space="preserve">
+    <value>0</value>
+    <comment>Mappings for amazon inventory report</comment>
+  </data>
+  <data name="amazon_order_asin" xml:space="preserve">
+    <value>12</value>
+    <comment>Mappings for amazon order report</comment>
+  </data>
+  <data name="amazon_order_city" xml:space="preserve">
+    <value>24</value>
+    <comment>Mappings for amazon order report</comment>
+  </data>
+  <data name="amazon_order_qty" xml:space="preserve">
+    <value>14</value>
+    <comment>Mappings for amazon order report</comment>
+  </data>
+  <data name="amazon_order_state" xml:space="preserve">
+    <value>25</value>
+    <comment>Mappings for amazon order report</comment>
+  </data>
 </root>

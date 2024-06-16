@@ -1,6 +1,8 @@
-﻿using Common;
+﻿using Amazon.Auth.AccessControlPolicy;
+using CommonUtil;
 using Decoders;
 using Decoders.Interfaces;
+using SellerSense.Helper;
 using SellerSense.Model;
 using SellerSense.Views;
 using System;
@@ -72,7 +74,20 @@ namespace SellerSense.Model
         {
             if (_amzImportedInvList._amzInventoryList.Count > 0) 
                 _amzImportedInvList._amzInventoryList.Clear();
-            _amzImportedInvList._amzInventoryList = AmazonInvDecoder.ImportAmazonInventory(fileName);
+            _amzImportedInvList._amzInventoryList = AmazonInvDecoder.ImportAmazonInventory(fileName,
+                Properties.Resources.amazon_inv_sku, Properties.Resources.amazon_inv_asin, Properties.Resources.amazon_inv_price,
+                Properties.Resources.amazon_inv_qty);
+            //_amzImportedInvList._amzInventoryList = AmazonInvDecoder.ImportAmazonInventory(fileName);
+        }
+
+        internal async Task ImportAmazonInventoryFileOnlineAPI()
+        {
+            if (_amzImportedInvList._amzInventoryList.Count > 0)
+                _amzImportedInvList._amzInventoryList.Clear();
+            string fileName = await AmazonSPAPI.CreateReport_GET_MERCHANT_LISTINGS_ALL_DATA();
+            _amzImportedInvList._amzInventoryList = AmazonInvDecoder.ImportAmazonInventory(fileName,
+                Properties.Resources.amazon_api_inv_sku, Properties.Resources.amazon_api_inv_asin, Properties.Resources.amazon_api_inv_price,
+                Properties.Resources.amazon_api_inv_qty);
         }
 
         internal void ImportFlipkartInventoryFile(string fileName)

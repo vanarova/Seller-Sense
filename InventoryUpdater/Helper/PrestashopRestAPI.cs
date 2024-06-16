@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,34 +33,32 @@ namespace SellerSense.Helper
 
         public static async Task<System.Drawing.Image> Prestashop_Get_image(string url, string method, string accessKey)
         {
-            var options = new RestClientOptions()
+            try
             {
-                Authenticator = new HttpBasicAuthenticator(accessKey, string.Empty),
-                Timeout = new TimeSpan(0, 0, 5)// 5 secs
-            };
-            var client = new RestClient(options);
-            //client.auth
-            var request = new RestRequest(url + method);
-            var cancellationTokenSource = new CancellationTokenSource();
-            request.AddParameter("webservice_key", accessKey, ParameterType.HttpHeader);
-            request.AddParameter("webservice_url", url, ParameterType.HttpHeader);
-            var response = await client.DownloadDataAsync(request, cancellationTokenSource.Token);
-            //File.WriteAllBytes("222222.jpg",response);
-            using (MemoryStream ms = new MemoryStream(response))
-            {
-                var img = System.Drawing.Image.FromStream(ms);
-                //converting again to stream, as it was giving error.
-                using (Bitmap bmp = new Bitmap(img))
+                var options = new RestClientOptions()
                 {
-                    MemoryStream mem = new MemoryStream();
-                    bmp.Save(mem, img.RawFormat);
-                    return System.Drawing.Image.FromStream(mem);
+                    Authenticator = new HttpBasicAuthenticator(accessKey, string.Empty),
+                    Timeout = new TimeSpan(0, 0, 5)// 5 secs
+                };
+                var client = new RestClient(options);
+                //client.auth
+                var request = new RestRequest(url + method);
+                var cancellationTokenSource = new CancellationTokenSource();
+                request.AddParameter("webservice_key", accessKey, ParameterType.HttpHeader);
+                request.AddParameter("webservice_url", url, ParameterType.HttpHeader);
+                var response = await client.DownloadDataAsync(request, cancellationTokenSource.Token);
+                using (MemoryStream ms = new MemoryStream(response))
+                {
+                    var img = System.Drawing.Image.FromStream(ms);
+                    //converting again to stream, as it was giving error.
+                    using (Bitmap bmp = new Bitmap(img))
+                    {
+                        MemoryStream mem = new MemoryStream();
+                        bmp.Save(mem, img.RawFormat);
+                        return System.Drawing.Image.FromStream(mem);
+                    }
                 }
-                //return System.Drawing.Image.FromStream(ms);
-                //i.Save("s2312.jpg");
-                //return new Bitmap(ms);
-            }
-            //return default;
+            }catch  (Exception ex) { return default; }
         }
 
 

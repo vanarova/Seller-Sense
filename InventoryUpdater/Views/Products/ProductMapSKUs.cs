@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using CommonUtil;
 using Decoders;
 using SellerSense.Model;
 using System;
@@ -94,7 +94,11 @@ namespace SellerSense.Views.Products
                 openFileDialog.Filter = "Amazon inv text file|*.txt";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    var amz_inv = AmazonInvDecoder.ImportAmazonInventory(openFileDialog.FileName);
+                    var amz_inv = AmazonInvDecoder.ImportAmazonInventory(openFileDialog.FileName,
+                Properties.Resources.amazon_inv_sku, 
+                Properties.Resources.amazon_inv_asin, 
+                Properties.Resources.amazon_inv_price,
+                Properties.Resources.amazon_inv_qty);
                     foreach (var item in amz_inv)
                     {
                         //assign SKU to corresponding asin.

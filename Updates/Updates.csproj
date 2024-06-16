@@ -107,9 +107,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Constants\Common.csproj">
+    <ProjectReference Include="..\Constants\CommonUtil.csproj">
       <Project>{b5a41395-71cf-429f-98b3-b65279d19de1}</Project>
-      <Name>Common</Name>
+      <Name>CommonUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

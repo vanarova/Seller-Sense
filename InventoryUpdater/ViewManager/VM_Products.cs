@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using CommonUtil;
 using Decoders;
 using Decoders.Interfaces;
 using SellerSense.Helper;
@@ -51,7 +51,8 @@ namespace SellerSense.ViewManager
         {
             UpdateOnly,
             ImportNewOnly,
-            FullSync
+            FullSync,
+            DeletedUnlisted
         }
 
         public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories, string companycode)
@@ -978,12 +979,26 @@ namespace SellerSense.ViewManager
         private void ImportPrestaShopProducts()
         {
             PrestaShopSync presta = new PrestaShopSync();
-            presta.button_FullSync.Click += (s, e) => { UpdateProductsFromPresta(presta, PrestaShopImportType.FullSync); };
+
+            presta.button_DeleteUnlisted.Click += async (s, e) =>
+            {
+                StartUIPrestaProcess(presta);
+                await UpdateProductsFromPresta(presta, PrestaShopImportType.DeletedUnlisted);
+                ResetUIPrestaProcess(presta);
+            };
+            presta.button_FullSync.Click +=async (s, e) => {
+                StartUIPrestaProcess(presta);
+                await UpdateProductsFromPresta(presta, PrestaShopImportType.FullSync);
+                ResetUIPrestaProcess(presta);
+            };
             presta.button_UpdateOnly.Click += async (s, e) => {
                 StartUIPrestaProcess(presta);
                 await UpdateProductsFromPresta(presta, PrestaShopImportType.UpdateOnly); ResetUIPrestaProcess(presta);
             };
-            presta.button_ImportOnly.Click += (s, e) => { UpdateProductsFromPresta(presta, PrestaShopImportType.ImportNewOnly); };
+            presta.button_ImportOnly.Click += async (s, e) => { StartUIPrestaProcess(presta);
+               await UpdateProductsFromPresta(presta, PrestaShopImportType.ImportNewOnly);
+                ResetUIPrestaProcess(presta);
+            };
             presta.button_HelpAccessKey.Click += (s, e) => { };
             presta.button_Stop.Click += (s, e) => {
                 StoppingUIPrestaProcess(presta);
@@ -1011,13 +1026,15 @@ namespace SellerSense.ViewManager
 
         private async Task UpdateProductsFromPresta(PrestaShopSync presta, PrestaShopImportType importType)
         {
-            
-            string url = "https://craftialcurve.com";
-            string key = "LJRHJRHZX64C458CB3FFAXYNA32DNRZP";
+            string url = presta.SiteURL;        // "https://craftialcurve.com";
+            string key = presta.SiteAccessKey;  // "LJRHJRHZX64C458CB3FFAXYNA32DNRZP";
             XmlDocument reponse = await PrestashopRestAPI.Prestashop_Get_xml(url, "/api/products", key);
             if (reponse == null) return;
             XmlNode products = reponse.SelectSingleNode("prestashop/products");
             if (products == null) return;
+            if(importType == PrestaShopImportType.DeletedUnlisted)
+                DeleteSellerSenseItemIfNotAvailableInPrestashop(presta, products);
+
             foreach (XmlNode item in products.ChildNodes)
             {
                 if (PrestaShopCancelOperation)
@@ -1034,24 +1051,69 @@ namespace SellerSense.ViewManager
                         XmlNode product = prod.SelectSingleNode("prestashop/product");
                         string reference = prod.SelectSingleNode("prestashop/product/reference").InnerText;
                         string name = prod.SelectSingleNode("prestashop/product/name").InnerText;
-                        string description = prod.SelectSingleNode("prestashop/product/description").InnerText.Substring(0,50);
+                        string description = prod.SelectSingleNode("prestashop/product/description").InnerText;
                         string shortDescription = prod.SelectSingleNode("prestashop/product/description_short").InnerText;
                         string price = prod.SelectSingleNode("prestashop/product/price").InnerText;
                         XmlNode imgLink = prod.SelectSingleNode("prestashop/product/id_default_image");
 
                         Debugger.Log(0, "info", reference);
-                        Image img = await PrestashopRestAPI.Prestashop_Get_image(imgLink.Attributes["xlink:href"].Value, "", key);
-                        
                         
                         switch (importType)
                         {
                             case PrestaShopImportType.UpdateOnly:
-                                UpdateInHouseListingFromPresta(presta, name, description, reference, shortDescription, img);
+                                Image img = await PrestashopRestAPI.Prestashop_Get_image(imgLink.Attributes["xlink:href"].Value, "", key);
+                                if(img!=default(Image))
+                                   UpdateInHouseListingFromPresta(presta, name, description, reference, shortDescription, img);
+                                else
+                                    presta.textBox_msg.Text = presta.textBox_msg.Text + "Image Error, Skipping:"
+                                    + item.Attributes["id"].Value  + Environment.NewLine;
                                 break;
                             case PrestaShopImportType.ImportNewOnly:
+                                var prd =  _m_product._productEntries.FirstOrDefault(x => x.InHouseCode == reference);
+                                if (prd == null) {
+                                    Image imgA = await PrestashopRestAPI.Prestashop_Get_image(imgLink.Attributes["xlink:href"].Value, "", key);
+                                    if (imgA != default(Image))
+                                    {
+                                        prd = new M_Product.ProductEntry(reference, "", "", "", "", "", "", "", "", "");
+                                        CreateProductFromPrestashopAndUpdateView(presta, name, description, reference, shortDescription, imgA, prd);
+                                        _m_product._productEntries.Add(prd);
+                                    }
+                                    else
+                                        presta.textBox_msg.Text = presta.textBox_msg.Text + "Image Error, Skipping:"
+                                        + item.Attributes["id"].Value + Environment.NewLine;
+                                    
+                                }
                                 break;
                             case PrestaShopImportType.FullSync:
+                                var prodi = _m_product._productEntries.FirstOrDefault(x => x.InHouseCode == reference);
+                                if (prodi == null)
+                                {
+                                    Image imgA = await PrestashopRestAPI.Prestashop_Get_image(imgLink.Attributes["xlink:href"].Value, "", key);
+                                    if (imgA != default(Image))
+                                    {
+                                        prodi = new M_Product.ProductEntry(reference, "", "", "", "", "", "", "", "", "");
+                                        CreateProductFromPrestashopAndUpdateView(presta, name, description, reference, shortDescription, imgA, prodi);
+                                        _m_product._productEntries.Add(prodi);
+                                    }
+                                    else
+                                        presta.textBox_msg.Text = presta.textBox_msg.Text + "Image Error, Skipping:"
+                                        + item.Attributes["id"].Value + Environment.NewLine;
+                                }
+                                else
+                                {
+                                    Image imge = await PrestashopRestAPI.Prestashop_Get_image(imgLink.Attributes["xlink:href"].Value, "", key);
+                                    if (imge != default(Image))
+                                    {
+                                        UpdateInHouseListingFromPresta(presta, name, description, reference, shortDescription, imge);
+                                    }
+                                    else
+                                        presta.textBox_msg.Text = presta.textBox_msg.Text + "Error, Skipping:"
+                                        + item.Attributes["id"].Value + Environment.NewLine;
+                                }
                                 break;
+                            //case PrestaShopImportType.DeletedUnlisted:
+                            //    DeleteSellerSenseItemIfNotAvailableInPrestashop(reference);
+                            //    break;
                             default:
                                 return;
                         }
@@ -1063,6 +1125,46 @@ namespace SellerSense.ViewManager
             
         }
 
+        private async void DeleteSellerSenseItemIfNotAvailableInPrestashop(PrestaShopSync presta, XmlNode products)
+        {
+            //go throw all products from prestashop,
+            //create a list, after compare this list with local seller sense list,
+            // delete items which are present in local list, but not present in prestashop list.
+
+            List<string> prestaReferences = new List<string>();
+            List<string> MarkDeleteCodes = new List<string>();
+            foreach (XmlNode item in products.ChildNodes)
+            {
+                if (PrestaShopCancelOperation)
+                    break;
+                if (item.Name == "product")
+                {
+                    string method = "/api/products/" + item.Attributes["id"].Value;
+                    XmlDocument prod = await PrestashopRestAPI.Prestashop_Get_xml(presta.SiteURL, method, presta.SiteAccessKey);
+                    if (prod != null)
+                    {
+                        XmlNode product = prod.SelectSingleNode("prestashop/product");
+                        string reference = prod.SelectSingleNode("prestashop/product/reference").InnerText;
+                        prestaReferences.Add(reference);
+                        //string name = prod.SelectSingleNode("prestashop/product/name").InnerText;
+                    }
+                }
+                foreach (var prod in _m_product._productEntries)
+                {
+                    var foundProdCode = prestaReferences.FirstOrDefault(x => x == prod.InHouseCode);
+                    if (foundProdCode == null)
+                    { MarkDeleteCodes.Add(prod.InHouseCode); }
+                }
+            }
+
+            foreach (var item in MarkDeleteCodes)
+            {
+                var prod = _m_product._productEntries.FirstOrDefault(x => x.InHouseCode==item); 
+                if (prod != null)
+                    _m_product._productEntries.Remove(prod);
+                _m_product.SaveMapFile();
+            }
+        }
 
         private void UpdateInHouseListingFromPresta(PrestaShopSync presta,string name,string description, string reference,
             string shortDescription, Image img)
@@ -1071,28 +1173,34 @@ namespace SellerSense.ViewManager
             {
                 if (inHouseItem.InHouseCode == reference)
                 {
-                    presta.textBox_msg.Text = presta.textBox_msg.Text + "Updating InHouse product:" + reference;
-                    var viewItem = _vm_productsView.FirstOrDefault(x => x.InHouseCode == reference);
-                    if (viewItem != null)
-                    {
-                        viewItem.Title = HTMLToJSON.EscJSONChar(name);
-                        viewItem.Description = HTMLToJSON.EscJSONChar(description);
-                        viewItem.Tag= HTMLToJSON.EscJSONChar(shortDescription);
-                        viewItem.Image = img;
-                    }
-                    inHouseItem.Title = HTMLToJSON.EscJSONChar(name);
-                    inHouseItem.Description = HTMLToJSON.EscJSONChar(description);
-                    inHouseItem.Tag = HTMLToJSON.EscJSONChar(shortDescription);
-                    
-                    _m_product.RemoveExistingProductImage(inHouseItem.InHouseCode);
-                    var path = _m_product.SaveImage(img, inHouseItem.InHouseCode, overwrite: true); //img.Save("jh33ds.jpeg");
-                    inHouseItem.Image = Path.GetFileName(path);
-                    _m_product.SaveMapFile();
-                    presta.textBox_msg.Text = presta.textBox_msg.Text + "- Done" + Environment.NewLine;
-                    
+                    CreateProductFromPrestashopAndUpdateView(presta, name, description, reference, shortDescription, img, inHouseItem);
+
                     //presta.textBox_msg.Refresh();
                 }
             }
+        }
+
+        private void CreateProductFromPrestashopAndUpdateView(PrestaShopSync presta, string name, string description, 
+            string reference, string shortDescription, Image img, M_Product.ProductEntry inHouseItem)
+        {
+            presta.textBox_msg.Text = presta.textBox_msg.Text + "Adding/Updating InHouse product:" + reference;
+            var viewItem = _vm_productsView.FirstOrDefault(x => x.InHouseCode == reference);
+            if (viewItem != null)
+            {
+                viewItem.Title = HTMLToJSON.EscJSONChar(name);
+                viewItem.Description = HTMLToJSON.EscJSONChar(description);
+                viewItem.Tag = HTMLToJSON.EscJSONChar(shortDescription);
+                viewItem.Image = img;
+            }
+            _m_product.RemoveExistingProductImage(inHouseItem.InHouseCode);
+
+            inHouseItem.Title = HTMLToJSON.EscJSONChar(name);
+            inHouseItem.Description = HTMLToJSON.EscJSONChar(description);
+            inHouseItem.Tag = HTMLToJSON.EscJSONChar(shortDescription);
+            var path = _m_product.SaveImage(img, inHouseItem.InHouseCode, overwrite: true);
+            inHouseItem.Image = Path.GetFileName(path);
+            _m_product.SaveMapFile();
+            presta.textBox_msg.Text = presta.textBox_msg.Text + "- Done" + Environment.NewLine;
         }
 
 

@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using CommonUtil;
 using Decoders;
 using Decoders.Interfaces;
 using SellerSense.Helper;
@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,7 +24,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Common.Constants;
+using static CommonUtil.Constants;
 //using static SellerSense.Constants;
 using static SellerSense.ViewManager.VM_Companies;
 using static SellerSense.ViewManager.VM_Company;
@@ -330,6 +331,7 @@ namespace SellerSense.ViewManager
             _v_invCntrl.importAmazonToolStripMenuItem.Click += async (s, e) => {  await ImportAmazonInv();  };
             _v_invCntrl.importFlipkartToolStripMenuItem.Click += async (s, e) => {await ImportFlipkartInv();  };
             _v_invCntrl.importSnapdealToolStripMenuItem.Click += async (s, e) => { await ImportSnapdealInv();  };
+            _v_invCntrl.importAmazonFileOnlineToolStripMenuItem.Click += async (s, e) => { await ImportAmazonInv(isOnline:true);  };
 #if IncludeMeesho
             _v_invCntrl.importMeeshoToolStripMenuItem.Click += async (s, e) => { await ImportMeeshoInv(); };
 #endif
@@ -908,15 +910,19 @@ namespace SellerSense.ViewManager
 
 
 
-        private async Task ImportAmazonInv()
+        private async Task ImportAmazonInv(bool isOnline = false)
         {
             //DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Amazon inv text file|*.txt";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-                _m_externalInventoriesModel.ImportAmazonInventoryFile(openFileDialog.FileName);
-            else return;
+            if (isOnline) {await _m_externalInventoriesModel.ImportAmazonInventoryFileOnlineAPI(); }
+            else
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Amazon inv text file|*.txt";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    _m_externalInventoriesModel.ImportAmazonInventoryFile(openFileDialog.FileName);
+                else return;
+            }
             _ssGridView.IsLoading = true;
             await AssignAmazonInvAndPricesToInvView();
             _ssGridView.IsLoading = false;
@@ -1207,10 +1213,55 @@ namespace SellerSense.ViewManager
         }
 
 #endif
-       
-        
 
-        internal class InventoryView : INotifyPropertyChanged
+
+
+
+        #region Amazon-SPAPI
+
+         async Task GetAmazonInv()
+        {
+          //var result = await AmazonSPAPI.CreateReport_GET_MERCHANT_LISTINGS_ALL_DATA();
+          var result = await AmazonSPAPI.CreateReport_ORDERS();
+            //Debugger.Log(0,"",result);
+           
+        }
+//         try
+//            {
+//                LWAAuthorizationCredentials lwaAuthorizationCredentials = new LWAAuthorizationCredentials
+//                {
+//                    ClientId = "amzn1.application-oa2-client.******************",
+//                    ClientSecret = "***********************************",
+//                    RefreshToken = "Atzr|***********************************",
+//                    Endpoint = new Uri("https://api.amazon.com/auth/o2/token")
+//                };
+//        SellersApi sellersApi = new SellersApi.Builder()
+//            .SetLWAAuthorizationCredentials(lwaAuthorizationCredentials)
+//            .Build();
+
+//        GetMarketplaceParticipationsResponse result = sellersApi.GetMarketplaceParticipations();
+//        Console.WriteLine(result.ToJson());
+//            }
+//            catch (LWAException e)
+//            {
+//                Console.WriteLine("LWA Exception when calling SellersApi#getMarketplaceParticipations");
+//                Console.WriteLine(e.getErrorCode());
+//                Console.WriteLine(e.getErrorMessage());
+//                Console.WriteLine(e.Message);
+//            }
+//            catch (ApiException e)
+//            {
+//    Console.WriteLine("Exception when calling SellersApi#getMarketplaceParticipations");
+//    Console.WriteLine(e.Message);
+//}
+
+
+
+#endregion
+
+
+
+internal class InventoryView : INotifyPropertyChanged
         {
             private string _amazonCount;
             private string _snpSystemCount;

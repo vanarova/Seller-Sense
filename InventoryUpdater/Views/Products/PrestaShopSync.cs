@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using CommonUtil;
+using SellerSense.Helper;
 using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ namespace SellerSense.Views.Products
 {
     public partial class PrestaShopSync :  SfForm
     {
+        public string SiteURL { get; set; }
+        public string SiteAccessKey { get; set; }
+
         public PrestaShopSync()
         {
             InitializeComponent();
@@ -23,6 +27,13 @@ namespace SellerSense.Views.Products
             this.Style.InactiveBorder.Color = Constants.Theme.BorderColor;
             this.Style.Border.Width = Constants.Theme.BorderWidth;
             this.Style.InactiveBorder.Width = Constants.Theme.BorderWidth;
+
+            textBox_URL.Enabled = false;
+            textBox_Key.Enabled = false;
+            textBox_URL.Text = ProjIO.GetUserSetting(Constants.PrestasopSiteURL);
+            SiteURL = textBox_URL.Text;
+            textBox_Key.Text = ProjIO.GetUserSetting(Constants.PrestasopSiteAccessKey);
+            SiteAccessKey = textBox_Key.Text;
         }
     }
 }

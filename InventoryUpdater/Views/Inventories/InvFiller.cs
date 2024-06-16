@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using Decoders.Interfaces;
 using SellerSense.ViewManager;
 using SellerSense.Model;
-using Common;
+using CommonUtil;
 
 namespace SellerSense
 {

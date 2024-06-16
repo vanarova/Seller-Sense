@@ -1,12 +1,14 @@
-﻿using Decoders.Interfaces;
+﻿using CommonUtil;
+using Decoders.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Reflection;
+using System.Resources;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 
 namespace Decoders
 {
@@ -14,6 +16,9 @@ namespace Decoders
     {
         private static ObservableCollection<IAmzInventory> _amvInventoryUnmodified;
         private static string _invAmazonFileName;
+        private static string _invAmazonFileNameFromAPI;
+        //private static ResourceManager resourceManager =
+        //    new ResourceManager("Resources.Mappings", Assembly.Load("CommonUtil"));
         private static readonly string[] _colsToExport = {
             "sku",
             "price",
@@ -22,6 +27,8 @@ namespace Decoders
             "quantity", "leadtime-to-ship",
             "fulfillment-channel",
             "merchant_shipping_group_name"};
+
+      
 
         public static void OpenProductSearchURL(string productId)
         {
@@ -40,22 +47,58 @@ namespace Decoders
             return result;
         }
 
-        public static ObservableCollection<IAmzInventory> ImportAmazonInventory(string fileName)
+        //public static ObservableCollection<IAmzInventory> ImportAmazonInventory(string fileName)
+        //{
+        //    //var s = resourceManager.GetString("amazon_inv_asin");
+        //   // if (_amvInventoryUnmodified == null || _amvInventoryUnmodified.Count==0)
+        //   //  {
+        //        _invAmazonFileName = fileName;
+        //        _amvInventoryUnmodified = new ObservableCollection<IAmzInventory>();
+        //        var lines = File.ReadAllLines(fileName);
+        //        for (var i = 0; i < lines.Length; i += 1)
+        //        {
+        //            var line = lines[i].Split('\t');
+        //            _amvInventoryUnmodified.Add(new AmazonInventory(line[0], line[1], line[2], line[3]));
+        //        }
+        //        _amvInventoryUnmodified.RemoveAt(0); // remove header
+        //        return _amvInventoryUnmodified;
+        //}
+
+
+
+        public static ObservableCollection<IAmzInventory> ImportAmazonInventory(string fileName,
+            string sku, string asin, string price, string sellerQuantity)
         {
-           // if (_amvInventoryUnmodified == null || _amvInventoryUnmodified.Count==0)
-          //  {
-                _invAmazonFileName = fileName;
-                _amvInventoryUnmodified = new ObservableCollection<IAmzInventory>();
-                var lines = File.ReadAllLines(fileName);
-                for (var i = 0; i < lines.Length; i += 1)
-                {
-                    var line = lines[i].Split('\t');
-                    _amvInventoryUnmodified.Add(new AmazonInventory(line[0], line[1], line[2], line[3]));
-                }
-                _amvInventoryUnmodified.RemoveAt(0); // remove header
-                return _amvInventoryUnmodified;
-            //}else return _amvInventoryUnmodified;
+            _invAmazonFileName = fileName;
+            _amvInventoryUnmodified = new ObservableCollection<IAmzInventory>();
+            var lines = File.ReadAllLines(fileName);
+            for (var i = 0; i < lines.Length; i += 1)
+            {
+                var line = lines[i].Split('\t');
+                _amvInventoryUnmodified.Add(new AmazonInventory(line[Convert.ToInt16(sku)], 
+                    line[Convert.ToInt16(asin)], line[Convert.ToInt16(price)], line[Convert.ToInt16(sellerQuantity)]));
+            }
+            _amvInventoryUnmodified.RemoveAt(0); // remove header
+            return _amvInventoryUnmodified;
         }
+
+
+        //public static ObservableCollection<IAmzInventory> TransformAndImportAmazonInvFromAPI(string src_fileName,
+        //    string sku, string asin, string price, string sellerQuantity)
+        //{
+        //    _invAmazonFileNameFromAPI = src_fileName;
+        //    _amvInventoryUnmodified = new ObservableCollection<IAmzInventory>();
+        //    var lines = File.ReadAllLines(src_fileName);
+            
+        //    for (var i = 0; i < lines.Length; i += 1)
+        //    {
+        //        var line = lines[i].Split('\t');
+        //        _amvInventoryUnmodified.Add(new AmazonInventory(line[Convert.ToInt16(sku)],
+        //            line[Convert.ToInt16(asin)], line[Convert.ToInt16(price)], line[Convert.ToInt16(sellerQuantity)]));
+        //    }
+        //    _amvInventoryUnmodified.RemoveAt(0); // remove header
+        //    return _amvInventoryUnmodified;
+        //}
 
         public static void SaveAllData(IList<IAmzInventory> UIModifiedInvList, string dirPath)
         {

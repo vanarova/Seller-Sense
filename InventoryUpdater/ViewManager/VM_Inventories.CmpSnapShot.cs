@@ -1,4 +1,4 @@
-﻿using Common;
+﻿using CommonUtil;
 using SellerSense.Model;
 using SellerSense.Views.Inventories;
 using System;

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Common;
+using CommonUtil;
 using Syncfusion.WinForms.Controls;
 
 namespace Updates
@@ -21,7 +21,7 @@ namespace Updates
             InitializeComponent();
 
             this.Style.TitleBar.ForeColor = Color.White;
-            this.Style.TitleBar.BackColor = Common.Constants.Theme.BorderColor;
+            this.Style.TitleBar.BackColor = Constants.Theme.BorderColor;
             this.Style.Border.Color = Constants.Theme.BorderColor;
             this.Style.InactiveBorder.Color = Constants.Theme.BorderColor;
             this.Style.Border.Width = Constants.Theme.BorderWidth;

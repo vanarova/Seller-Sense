@@ -181,12 +181,13 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Constants\Common.csproj">
+    <ProjectReference Include="..\Constants\CommonUtil.csproj">
       <Project>{b5a41395-71cf-429f-98b3-b65279d19de1}</Project>
-      <Name>Common</Name>
+      <Name>CommonUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

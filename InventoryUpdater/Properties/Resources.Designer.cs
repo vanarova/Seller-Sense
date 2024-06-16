@@ -71,6 +71,150 @@ namespace SellerSense.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        internal static string amazon_api_inv_asin {
+            get {
+                return ResourceManager.GetString("amazon_api_inv_asin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4.
+        /// </summary>
+        internal static string amazon_api_inv_price {
+            get {
+                return ResourceManager.GetString("amazon_api_inv_price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        internal static string amazon_api_inv_qty {
+            get {
+                return ResourceManager.GetString("amazon_api_inv_qty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string amazon_api_inv_sku {
+            get {
+                return ResourceManager.GetString("amazon_api_inv_sku", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 11.
+        /// </summary>
+        internal static string amazon_api_order_asin {
+            get {
+                return ResourceManager.GetString("amazon_api_order_asin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 23.
+        /// </summary>
+        internal static string amazon_api_order_city {
+            get {
+                return ResourceManager.GetString("amazon_api_order_city", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13.
+        /// </summary>
+        internal static string amazon_api_order_qty {
+            get {
+                return ResourceManager.GetString("amazon_api_order_qty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 24.
+        /// </summary>
+        internal static string amazon_api_order_state {
+            get {
+                return ResourceManager.GetString("amazon_api_order_state", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        internal static string amazon_inv_asin {
+            get {
+                return ResourceManager.GetString("amazon_inv_asin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        internal static string amazon_inv_price {
+            get {
+                return ResourceManager.GetString("amazon_inv_price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        internal static string amazon_inv_qty {
+            get {
+                return ResourceManager.GetString("amazon_inv_qty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        internal static string amazon_inv_sku {
+            get {
+                return ResourceManager.GetString("amazon_inv_sku", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        internal static string amazon_order_asin {
+            get {
+                return ResourceManager.GetString("amazon_order_asin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 24.
+        /// </summary>
+        internal static string amazon_order_city {
+            get {
+                return ResourceManager.GetString("amazon_order_city", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.
+        /// </summary>
+        internal static string amazon_order_qty {
+            get {
+                return ResourceManager.GetString("amazon_order_qty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 25.
+        /// </summary>
+        internal static string amazon_order_state {
+            get {
+                return ResourceManager.GetString("amazon_order_state", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap android_chrome_192x192 {

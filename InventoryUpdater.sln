@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updates", "Updates\Updates.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrBase", "FrBase\FrBase.csproj", "{0384AB73-8283-479C-8627-D3CC0ED5833A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Constants\Common.csproj", "{B5A41395-71CF-429F-98B3-B65279D19DE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonUtil", "Constants\CommonUtil.csproj", "{B5A41395-71CF-429F-98B3-B65279D19DE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Docs", "Docs\Docs.csproj", "{55978ADF-2F05-45CA-A317-21206C7D636C}"
 EndProject
