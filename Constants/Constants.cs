@@ -40,6 +40,10 @@ namespace CommonUtil
         public const string PrestasopSiteURL = "PrestashopURL";
         public const string PrestasopSiteAccessKey = "PrestashopKey";
 
+        public const string AmazonCompAKey = "AmzCompanyAKey";
+        public const string AmazonCompASecret = "AmzCompanyASecret";
+        public const string AmazonCompBKey = "AmzCompanyBKey";
+        public const string AmazonCompBSecret = "AmzCompanyBSecret";
 
         public const int FixedColumnsProductGrid = 1;
 

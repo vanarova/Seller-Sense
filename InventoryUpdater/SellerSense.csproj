@@ -209,6 +209,7 @@
     </Compile>
     <Compile Include="Helper\AmazonSPAPI.cs" />
     <Compile Include="Helper\En.cs" />
+    <Compile Include="Helper\FlipkartAPI.cs" />
     <Compile Include="Helper\HtmlUtilities.cs" />
     <Compile Include="Helper\QuickLog.cs" />
     <Compile Include="Helper\PrestashopRestAPI.cs" />

@@ -130,6 +130,8 @@ namespace SellerSense
             txtComp2Name.Text = ProjIO.GetUserSetting(Constants.Company2Name);
             txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
             pbar.Visible = false;
+            label_Amz_CompA.Text = txtComp1Name.Text;
+            label_Amz_CompanyB.Text = txtComp2Name.Text;
 
             //textBox_amz_asin.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_asin;
             //textBox_amz_sku.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_sku;
@@ -137,34 +139,58 @@ namespace SellerSense
             //textBox_amz_qty.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_sellerQuantity;
 
             //Properties.Resources.
-                        
+
             comboBox_LoggingLevel.DataSource = Enum.GetValues(typeof(Logger.LogLevel));
             //Default logger depth is set in program.cs, get tht value and assgin.
             comboBox_LoggingLevel.SelectedItem = Logger.GetLogLevel();
 
-            comboBox_LoggingLevel.SelectedIndexChanged += (s, ev) => {
+            comboBox_LoggingLevel.SelectedIndexChanged += (s, ev) =>
+            {
                 var val = (Logger.LogLevel)comboBox_LoggingLevel.SelectedItem;
                 Logger.SetLoggerLevel_LogAboveThisLevelOnly(val);
             };
 
+            PrestaShopSettings();
+            AmazonSettings();
+
+        }
+
+        private void PrestaShopSettings()
+        {
+            //PrestaShop
             textBox_site.Text = ProjIO.GetUserSetting(Constants.PrestasopSiteURL);
             textBox_key.Text = ProjIO.GetUserSetting(Constants.PrestasopSiteAccessKey);
-            textBox_site.TextChanged += (s, ev) => { 
-                ProjIO.SaveUserSetting(Constants.PrestasopSiteURL, textBox_site.Text);
-                ProjIO.SaveUserSetting(Constants.PrestasopSiteAccessKey, textBox_key.Text); 
-            };
-            textBox_key.TextChanged += (s, ev) => {
+            textBox_site.TextChanged += (s, ev) =>
+            {
                 ProjIO.SaveUserSetting(Constants.PrestasopSiteURL, textBox_site.Text);
                 ProjIO.SaveUserSetting(Constants.PrestasopSiteAccessKey, textBox_key.Text);
             };
+            textBox_key.TextChanged += (s, ev) =>
+            {
+                ProjIO.SaveUserSetting(Constants.PrestasopSiteURL, textBox_site.Text);
+                ProjIO.SaveUserSetting(Constants.PrestasopSiteAccessKey, textBox_key.Text);
+            };
+        }
 
 
-            //checkBox_TelegramLogging.CheckedChanged += (s, ev) => {
-            //    if (checkBox_TelegramLogging.Checked)
-            //        Logger.EnableTelegramLogging();
-            //    else
-            //        Logger.DisableTelegramLogging();
-            //};
+        private void AmazonSettings()
+        {
+            textBox_CompanyA_Key.Text = ProjIO.GetUserSetting(Constants.AmazonCompAKey);
+            textBox_CompanyA_Secret.Text = ProjIO.GetUserSetting(Constants.AmazonCompASecret);
+            textBox_CompanyB_Key.Text = ProjIO.GetUserSetting(Constants.AmazonCompBKey);
+            textBox_CompanyB_Secret.Text = ProjIO.GetUserSetting(Constants.AmazonCompBSecret);
+            textBox_CompanyA_Key.TextChanged += (s, ev) =>  SaveAmzSettings(); 
+            textBox_CompanyA_Secret.TextChanged += (s, ev) =>  SaveAmzSettings();
+            textBox_CompanyB_Key.TextChanged += (s, ev) => SaveAmzSettings();
+            textBox_CompanyB_Secret.TextChanged += (s, ev) => SaveAmzSettings();
+
+            void SaveAmzSettings()
+            {
+                ProjIO.SaveUserSetting(Constants.AmazonCompAKey, textBox_CompanyA_Key.Text);
+                ProjIO.SaveUserSetting(Constants.AmazonCompASecret, textBox_CompanyA_Secret.Text);
+                ProjIO.SaveUserSetting(Constants.AmazonCompBKey, textBox_CompanyB_Key.Text);
+                ProjIO.SaveUserSetting(Constants.AmazonCompBSecret, textBox_CompanyB_Secret.Text);
+            }
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
