@@ -131,7 +131,9 @@ namespace SellerSense
             txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
             pbar.Visible = false;
             label_Amz_CompA.Text = txtComp1Name.Text;
+            ProjIO.SaveUserSetting(Constants.AmazonCompACode, ProjIO.GetUserSetting(Constants.Company1Code));
             label_Amz_CompanyB.Text = txtComp2Name.Text;
+            ProjIO.SaveUserSetting(Constants.AmazonCompBCode, ProjIO.GetUserSetting(Constants.Company2Code));
 
             //textBox_amz_asin.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_asin;
             //textBox_amz_sku.Text = Mapping.AmazonInvColumnMapping.amazon_inv_report_sku;
@@ -175,21 +177,32 @@ namespace SellerSense
 
         private void AmazonSettings()
         {
+            //label_Amz_CompA.Text = ProjIO.GetUserSetting(Constants.AmazonCompACode);
             textBox_CompanyA_Key.Text = ProjIO.GetUserSetting(Constants.AmazonCompAKey);
             textBox_CompanyA_Secret.Text = ProjIO.GetUserSetting(Constants.AmazonCompASecret);
+            textBox_CompanyA_Token.Text = ProjIO.GetUserSetting(Constants.AmazonCompASecret);
+            
+            //label_Amz_CompanyB.Text = ProjIO.GetUserSetting(Constants.AmazonCompBCode);
             textBox_CompanyB_Key.Text = ProjIO.GetUserSetting(Constants.AmazonCompBKey);
             textBox_CompanyB_Secret.Text = ProjIO.GetUserSetting(Constants.AmazonCompBSecret);
+            textBox_CompanyB_Token.Text = ProjIO.GetUserSetting(Constants.AmazonCompBSecret);
+
             textBox_CompanyA_Key.TextChanged += (s, ev) =>  SaveAmzSettings(); 
             textBox_CompanyA_Secret.TextChanged += (s, ev) =>  SaveAmzSettings();
+            textBox_CompanyA_Token.TextChanged += (s, ev) =>  SaveAmzSettings();
+            
             textBox_CompanyB_Key.TextChanged += (s, ev) => SaveAmzSettings();
             textBox_CompanyB_Secret.TextChanged += (s, ev) => SaveAmzSettings();
+            textBox_CompanyB_Token.TextChanged += (s, ev) => SaveAmzSettings();
 
             void SaveAmzSettings()
             {
                 ProjIO.SaveUserSetting(Constants.AmazonCompAKey, textBox_CompanyA_Key.Text);
                 ProjIO.SaveUserSetting(Constants.AmazonCompASecret, textBox_CompanyA_Secret.Text);
+                ProjIO.SaveUserSetting(Constants.AmazonCompAToken, textBox_CompanyA_Token.Text);
                 ProjIO.SaveUserSetting(Constants.AmazonCompBKey, textBox_CompanyB_Key.Text);
                 ProjIO.SaveUserSetting(Constants.AmazonCompBSecret, textBox_CompanyB_Secret.Text);
+                ProjIO.SaveUserSetting(Constants.AmazonCompBToken, textBox_CompanyB_Token.Text);
             }
         }
 

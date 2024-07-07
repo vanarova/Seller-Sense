@@ -76,11 +76,15 @@
             this.textBox_CompanyA_Secret = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label_Amz_CompanyB = new System.Windows.Forms.Label();
-            this.textBox_CompanyB_Key = new System.Windows.Forms.TextBox();
             this.textBox_CompanyB_Secret = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.textBox_CompanyB_Key = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label_Amz_CompanyB = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox_CompanyA_Token = new System.Windows.Forms.TextBox();
+            this.textBox_CompanyB_Token = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.tabPageAdv4 = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.tabPageAdv5 = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.tableLayoutPanel1.SuspendLayout();
@@ -104,7 +108,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.42082F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtComp1Name, 1, 1);
@@ -199,7 +203,7 @@
             // 
             this.txtComp1Code.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp1Code.Enabled = false;
-            this.txtComp1Code.Location = new System.Drawing.Point(461, 65);
+            this.txtComp1Code.Location = new System.Drawing.Point(459, 65);
             this.txtComp1Code.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtComp1Code.Name = "txtComp1Code";
             this.txtComp1Code.Size = new System.Drawing.Size(199, 31);
@@ -209,7 +213,7 @@
             // 
             this.txtComp2Code.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtComp2Code.Enabled = false;
-            this.txtComp2Code.Location = new System.Drawing.Point(461, 123);
+            this.txtComp2Code.Location = new System.Drawing.Point(459, 123);
             this.txtComp2Code.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtComp2Code.Name = "txtComp2Code";
             this.txtComp2Code.Size = new System.Drawing.Size(199, 31);
@@ -219,7 +223,7 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(384, 68);
+            this.label3.Location = new System.Drawing.Point(382, 68);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 25);
@@ -230,7 +234,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(384, 126);
+            this.label4.Location = new System.Drawing.Point(382, 126);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 25);
@@ -256,7 +260,7 @@
             this.chk_linkCompany1.Checked = true;
             this.chk_linkCompany1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_linkCompany1.Enabled = false;
-            this.chk_linkCompany1.Location = new System.Drawing.Point(671, 66);
+            this.chk_linkCompany1.Location = new System.Drawing.Point(668, 66);
             this.chk_linkCompany1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.chk_linkCompany1.Name = "chk_linkCompany1";
             this.chk_linkCompany1.Size = new System.Drawing.Size(178, 29);
@@ -271,7 +275,7 @@
             this.chk_linkCompany2.Checked = true;
             this.chk_linkCompany2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_linkCompany2.Enabled = false;
-            this.chk_linkCompany2.Location = new System.Drawing.Point(671, 124);
+            this.chk_linkCompany2.Location = new System.Drawing.Point(668, 124);
             this.chk_linkCompany2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.chk_linkCompany2.Name = "chk_linkCompany2";
             this.chk_linkCompany2.Size = new System.Drawing.Size(178, 29);
@@ -284,19 +288,19 @@
             this.txtWorkSpaceLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.txtWorkSpaceLocation, 3);
             this.txtWorkSpaceLocation.Enabled = false;
-            this.txtWorkSpaceLocation.Location = new System.Drawing.Point(360, 405);
+            this.txtWorkSpaceLocation.Location = new System.Drawing.Point(359, 405);
             this.txtWorkSpaceLocation.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.txtWorkSpaceLocation.MaxLength = 50;
             this.txtWorkSpaceLocation.Multiline = true;
             this.txtWorkSpaceLocation.Name = "txtWorkSpaceLocation";
-            this.txtWorkSpaceLocation.Size = new System.Drawing.Size(513, 77);
+            this.txtWorkSpaceLocation.Size = new System.Drawing.Size(510, 77);
             this.txtWorkSpaceLocation.TabIndex = 14;
             // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(228, 419);
+            this.label7.Location = new System.Drawing.Point(227, 419);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(124, 50);
@@ -313,7 +317,7 @@
             this.lbl_Error.Location = new System.Drawing.Point(4, 697);
             this.lbl_Error.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Error.Name = "lbl_Error";
-            this.lbl_Error.Size = new System.Drawing.Size(348, 25);
+            this.lbl_Error.Size = new System.Drawing.Size(347, 25);
             this.lbl_Error.TabIndex = 33;
             this.lbl_Error.Text = ".";
             // 
@@ -321,10 +325,10 @@
             // 
             this.btn_ImportMap1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ImportMap1.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_ImportMap1.Location = new System.Drawing.Point(881, 60);
+            this.btn_ImportMap1.Location = new System.Drawing.Point(877, 60);
             this.btn_ImportMap1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_ImportMap1.Name = "btn_ImportMap1";
-            this.btn_ImportMap1.Size = new System.Drawing.Size(190, 42);
+            this.btn_ImportMap1.Size = new System.Drawing.Size(189, 42);
             this.btn_ImportMap1.TabIndex = 34;
             this.btn_ImportMap1.Text = "Import Project";
             this.btn_ImportMap1.UseVisualStyleBackColor = false;
@@ -334,10 +338,10 @@
             // 
             this.btn_ImportMap2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ImportMap2.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_ImportMap2.Location = new System.Drawing.Point(881, 118);
+            this.btn_ImportMap2.Location = new System.Drawing.Point(877, 118);
             this.btn_ImportMap2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_ImportMap2.Name = "btn_ImportMap2";
-            this.btn_ImportMap2.Size = new System.Drawing.Size(190, 42);
+            this.btn_ImportMap2.Size = new System.Drawing.Size(189, 42);
             this.btn_ImportMap2.TabIndex = 35;
             this.btn_ImportMap2.Text = "Import Project";
             this.btn_ImportMap2.UseVisualStyleBackColor = false;
@@ -353,7 +357,7 @@
             this.btn_emailSetup.Location = new System.Drawing.Point(122, 603);
             this.btn_emailSetup.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_emailSetup.Name = "btn_emailSetup";
-            this.btn_emailSetup.Size = new System.Drawing.Size(230, 85);
+            this.btn_emailSetup.Size = new System.Drawing.Size(229, 85);
             this.btn_emailSetup.TabIndex = 39;
             this.btn_emailSetup.Text = "Email Setup";
             this.btn_emailSetup.UseVisualStyleBackColor = false;
@@ -363,7 +367,7 @@
             // 
             this.btn_exportMap1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_exportMap1.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_exportMap1.Location = new System.Drawing.Point(1079, 60);
+            this.btn_exportMap1.Location = new System.Drawing.Point(1074, 60);
             this.btn_exportMap1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_exportMap1.Name = "btn_exportMap1";
             this.btn_exportMap1.Size = new System.Drawing.Size(158, 42);
@@ -376,7 +380,7 @@
             // 
             this.btn_exportMap2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_exportMap2.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_exportMap2.Location = new System.Drawing.Point(1079, 118);
+            this.btn_exportMap2.Location = new System.Drawing.Point(1074, 118);
             this.btn_exportMap2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_exportMap2.Name = "btn_exportMap2";
             this.btn_exportMap2.Size = new System.Drawing.Size(158, 42);
@@ -390,10 +394,10 @@
             this.btn_changeLoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_changeLoc.BackColor = System.Drawing.Color.Cornsilk;
             this.btn_changeLoc.Enabled = false;
-            this.btn_changeLoc.Location = new System.Drawing.Point(881, 420);
+            this.btn_changeLoc.Location = new System.Drawing.Point(877, 420);
             this.btn_changeLoc.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_changeLoc.Name = "btn_changeLoc";
-            this.btn_changeLoc.Size = new System.Drawing.Size(190, 47);
+            this.btn_changeLoc.Size = new System.Drawing.Size(189, 47);
             this.btn_changeLoc.TabIndex = 15;
             this.btn_changeLoc.Text = "Change location";
             this.btn_changeLoc.UseVisualStyleBackColor = false;
@@ -404,7 +408,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ExportAll.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_ExportAll.Location = new System.Drawing.Point(1079, 329);
+            this.btn_ExportAll.Location = new System.Drawing.Point(1074, 329);
             this.btn_ExportAll.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_ExportAll.Name = "btn_ExportAll";
             this.btn_ExportAll.Size = new System.Drawing.Size(158, 60);
@@ -416,7 +420,7 @@
             // pbar
             // 
             this.pbar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbar.Location = new System.Drawing.Point(1079, 426);
+            this.pbar.Location = new System.Drawing.Point(1074, 426);
             this.pbar.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.pbar.MarqueeAnimationSpeed = 25;
             this.pbar.Name = "pbar";
@@ -428,17 +432,17 @@
             // 
             this.comboBox_LoggingLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_LoggingLevel.FormattingEnabled = true;
-            this.comboBox_LoggingLevel.Location = new System.Drawing.Point(883, 629);
+            this.comboBox_LoggingLevel.Location = new System.Drawing.Point(879, 629);
             this.comboBox_LoggingLevel.Margin = new System.Windows.Forms.Padding(6);
             this.comboBox_LoggingLevel.Name = "comboBox_LoggingLevel";
-            this.comboBox_LoggingLevel.Size = new System.Drawing.Size(186, 33);
+            this.comboBox_LoggingLevel.Size = new System.Drawing.Size(185, 33);
             this.comboBox_LoggingLevel.TabIndex = 48;
             // 
             // label_logLevel
             // 
             this.label_logLevel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label_logLevel.AutoSize = true;
-            this.label_logLevel.Location = new System.Drawing.Point(680, 633);
+            this.label_logLevel.Location = new System.Drawing.Point(676, 633);
             this.label_logLevel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label_logLevel.Name = "label_logLevel";
             this.label_logLevel.Size = new System.Drawing.Size(191, 25);
@@ -452,7 +456,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Reset.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_Reset.Location = new System.Drawing.Point(1079, 261);
+            this.btn_Reset.Location = new System.Drawing.Point(1074, 261);
             this.btn_Reset.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_Reset.Name = "btn_Reset";
             this.btn_Reset.Size = new System.Drawing.Size(158, 56);
@@ -467,10 +471,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ok.BackColor = System.Drawing.Color.Cornsilk;
-            this.btn_ok.Location = new System.Drawing.Point(881, 261);
+            this.btn_ok.Location = new System.Drawing.Point(877, 261);
             this.btn_ok.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(190, 56);
+            this.btn_ok.Size = new System.Drawing.Size(189, 56);
             this.btn_ok.TabIndex = 13;
             this.btn_ok.Text = "Ok";
             this.btn_ok.UseVisualStyleBackColor = false;
@@ -484,7 +488,7 @@
             this.label6.Location = new System.Drawing.Point(122, 507);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(1229, 75);
+            this.label6.Size = new System.Drawing.Size(1224, 75);
             this.label6.TabIndex = 12;
             this.label6.Text = resources.GetString("label6.Text");
             // 
@@ -548,7 +552,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.3716F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 430F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 327F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 410F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 412F));
             this.tableLayoutPanel2.Controls.Add(this.label9, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.label11, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.textBox_site, 2, 2);
@@ -571,7 +575,7 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(243, 269);
+            this.label9.Location = new System.Drawing.Point(241, 269);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(58, 32);
@@ -582,7 +586,7 @@
             // 
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(242, 177);
+            this.label11.Location = new System.Drawing.Point(240, 177);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 32);
@@ -593,7 +597,7 @@
             // 
             this.textBox_site.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.SetColumnSpan(this.textBox_site, 2);
-            this.textBox_site.Location = new System.Drawing.Point(309, 173);
+            this.textBox_site.Location = new System.Drawing.Point(307, 173);
             this.textBox_site.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.textBox_site.MaxLength = 50;
             this.textBox_site.Name = "textBox_site";
@@ -604,7 +608,7 @@
             // 
             this.textBox_key.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.SetColumnSpan(this.textBox_key, 2);
-            this.textBox_key.Location = new System.Drawing.Point(309, 266);
+            this.textBox_key.Location = new System.Drawing.Point(307, 266);
             this.textBox_key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.textBox_key.MaxLength = 50;
             this.textBox_key.Name = "textBox_key";
@@ -616,7 +620,7 @@
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(308, 115);
+            this.label8.Location = new System.Drawing.Point(306, 115);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(138, 25);
             this.label8.TabIndex = 51;
@@ -639,32 +643,38 @@
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 5;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.6284F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.3716F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 430F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 327F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 410F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.35526F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.64474F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 390F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 422F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 317F));
             this.tableLayoutPanel3.Controls.Add(this.label_Amz_CompA, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.textBox_CompanyA_Key, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.textBox_CompanyA_Secret, 2, 2);
             this.tableLayoutPanel3.Controls.Add(this.label12, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.label10, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.label_Amz_CompanyB, 2, 3);
-            this.tableLayoutPanel3.Controls.Add(this.textBox_CompanyB_Key, 2, 4);
-            this.tableLayoutPanel3.Controls.Add(this.textBox_CompanyB_Secret, 2, 5);
-            this.tableLayoutPanel3.Controls.Add(this.label14, 1, 4);
-            this.tableLayoutPanel3.Controls.Add(this.label15, 1, 5);
+            this.tableLayoutPanel3.Controls.Add(this.textBox_CompanyB_Secret, 2, 6);
+            this.tableLayoutPanel3.Controls.Add(this.label15, 1, 6);
+            this.tableLayoutPanel3.Controls.Add(this.textBox_CompanyB_Key, 2, 5);
+            this.tableLayoutPanel3.Controls.Add(this.label14, 1, 5);
+            this.tableLayoutPanel3.Controls.Add(this.label_Amz_CompanyB, 2, 4);
+            this.tableLayoutPanel3.Controls.Add(this.label13, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.textBox_CompanyA_Token, 2, 3);
+            this.tableLayoutPanel3.Controls.Add(this.textBox_CompanyB_Token, 2, 7);
+            this.tableLayoutPanel3.Controls.Add(this.label16, 1, 7);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 7;
+            this.tableLayoutPanel3.RowCount = 9;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.13953F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.86047F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 219F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 93F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1473, 725);
             this.tableLayoutPanel3.TabIndex = 53;
@@ -675,7 +685,7 @@
             this.label_Amz_CompA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_Amz_CompA.AutoSize = true;
             this.label_Amz_CompA.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Amz_CompA.Location = new System.Drawing.Point(308, 74);
+            this.label_Amz_CompA.Location = new System.Drawing.Point(346, 51);
             this.label_Amz_CompA.Name = "label_Amz_CompA";
             this.label_Amz_CompA.Size = new System.Drawing.Size(132, 25);
             this.label_Amz_CompA.TabIndex = 51;
@@ -685,29 +695,31 @@
             // 
             this.textBox_CompanyA_Key.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.SetColumnSpan(this.textBox_CompanyA_Key, 2);
-            this.textBox_CompanyA_Key.Location = new System.Drawing.Point(309, 115);
+            this.textBox_CompanyA_Key.Location = new System.Drawing.Point(347, 84);
             this.textBox_CompanyA_Key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.textBox_CompanyA_Key.MaxLength = 50;
+            this.textBox_CompanyA_Key.MaxLength = 150;
             this.textBox_CompanyA_Key.Name = "textBox_CompanyA_Key";
-            this.textBox_CompanyA_Key.Size = new System.Drawing.Size(749, 39);
+            this.textBox_CompanyA_Key.Size = new System.Drawing.Size(804, 39);
             this.textBox_CompanyA_Key.TabIndex = 57;
             // 
             // textBox_CompanyA_Secret
             // 
             this.textBox_CompanyA_Secret.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.SetColumnSpan(this.textBox_CompanyA_Secret, 2);
-            this.textBox_CompanyA_Secret.Location = new System.Drawing.Point(309, 196);
+            this.textBox_CompanyA_Secret.Location = new System.Drawing.Point(347, 156);
             this.textBox_CompanyA_Secret.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.textBox_CompanyA_Secret.MaxLength = 50;
+            this.textBox_CompanyA_Secret.MaxLength = 150;
             this.textBox_CompanyA_Secret.Name = "textBox_CompanyA_Secret";
-            this.textBox_CompanyA_Secret.Size = new System.Drawing.Size(749, 39);
+            this.textBox_CompanyA_Secret.PasswordChar = '*';
+            this.textBox_CompanyA_Secret.Size = new System.Drawing.Size(804, 39);
             this.textBox_CompanyA_Secret.TabIndex = 58;
+            this.textBox_CompanyA_Secret.UseSystemPasswordChar = true;
             // 
             // label12
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(238, 119);
+            this.label12.Location = new System.Drawing.Point(276, 87);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(63, 32);
@@ -718,12 +730,58 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(210, 199);
+            this.label10.Location = new System.Drawing.Point(248, 159);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(91, 32);
             this.label10.TabIndex = 55;
             this.label10.Text = "Secret:";
+            // 
+            // textBox_CompanyB_Secret
+            // 
+            this.textBox_CompanyB_Secret.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.SetColumnSpan(this.textBox_CompanyB_Secret, 2);
+            this.textBox_CompanyB_Secret.Location = new System.Drawing.Point(347, 497);
+            this.textBox_CompanyB_Secret.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.textBox_CompanyB_Secret.MaxLength = 150;
+            this.textBox_CompanyB_Secret.Name = "textBox_CompanyB_Secret";
+            this.textBox_CompanyB_Secret.PasswordChar = '*';
+            this.textBox_CompanyB_Secret.Size = new System.Drawing.Size(804, 39);
+            this.textBox_CompanyB_Secret.TabIndex = 61;
+            this.textBox_CompanyB_Secret.UseSystemPasswordChar = true;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(248, 501);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(91, 32);
+            this.label15.TabIndex = 63;
+            this.label15.Text = "Secret:";
+            // 
+            // textBox_CompanyB_Key
+            // 
+            this.textBox_CompanyB_Key.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.SetColumnSpan(this.textBox_CompanyB_Key, 2);
+            this.textBox_CompanyB_Key.Location = new System.Drawing.Point(347, 405);
+            this.textBox_CompanyB_Key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.textBox_CompanyB_Key.MaxLength = 150;
+            this.textBox_CompanyB_Key.Name = "textBox_CompanyB_Key";
+            this.textBox_CompanyB_Key.Size = new System.Drawing.Size(804, 39);
+            this.textBox_CompanyB_Key.TabIndex = 60;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(276, 408);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 32);
+            this.label14.TabIndex = 62;
+            this.label14.Text = "Key:";
             // 
             // label_Amz_CompanyB
             // 
@@ -731,55 +789,59 @@
             this.label_Amz_CompanyB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_Amz_CompanyB.AutoSize = true;
             this.label_Amz_CompanyB.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Amz_CompanyB.Location = new System.Drawing.Point(308, 307);
+            this.label_Amz_CompanyB.Location = new System.Drawing.Point(346, 359);
             this.label_Amz_CompanyB.Name = "label_Amz_CompanyB";
             this.label_Amz_CompanyB.Size = new System.Drawing.Size(132, 25);
             this.label_Amz_CompanyB.TabIndex = 59;
             this.label_Amz_CompanyB.Text = "Company B";
             // 
-            // textBox_CompanyB_Key
+            // label13
             // 
-            this.textBox_CompanyB_Key.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.SetColumnSpan(this.textBox_CompanyB_Key, 2);
-            this.textBox_CompanyB_Key.Location = new System.Drawing.Point(309, 358);
-            this.textBox_CompanyB_Key.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.textBox_CompanyB_Key.MaxLength = 50;
-            this.textBox_CompanyB_Key.Name = "textBox_CompanyB_Key";
-            this.textBox_CompanyB_Key.Size = new System.Drawing.Size(749, 39);
-            this.textBox_CompanyB_Key.TabIndex = 60;
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(158, 240);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(181, 32);
+            this.label13.TabIndex = 64;
+            this.label13.Text = "Refresh Token:";
             // 
-            // textBox_CompanyB_Secret
+            // textBox_CompanyA_Token
             // 
-            this.textBox_CompanyB_Secret.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.SetColumnSpan(this.textBox_CompanyB_Secret, 2);
-            this.textBox_CompanyB_Secret.Location = new System.Drawing.Point(309, 445);
-            this.textBox_CompanyB_Secret.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.textBox_CompanyB_Secret.MaxLength = 50;
-            this.textBox_CompanyB_Secret.Name = "textBox_CompanyB_Secret";
-            this.textBox_CompanyB_Secret.Size = new System.Drawing.Size(749, 39);
-            this.textBox_CompanyB_Secret.TabIndex = 61;
+            this.textBox_CompanyA_Token.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.SetColumnSpan(this.textBox_CompanyA_Token, 2);
+            this.textBox_CompanyA_Token.Location = new System.Drawing.Point(347, 236);
+            this.textBox_CompanyA_Token.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.textBox_CompanyA_Token.MaxLength = 600;
+            this.textBox_CompanyA_Token.Name = "textBox_CompanyA_Token";
+            this.textBox_CompanyA_Token.PasswordChar = '*';
+            this.textBox_CompanyA_Token.Size = new System.Drawing.Size(804, 39);
+            this.textBox_CompanyA_Token.TabIndex = 66;
+            this.textBox_CompanyA_Token.UseSystemPasswordChar = true;
             // 
-            // label14
+            // textBox_CompanyB_Token
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(238, 362);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(63, 32);
-            this.label14.TabIndex = 62;
-            this.label14.Text = "Key:";
+            this.textBox_CompanyB_Token.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.SetColumnSpan(this.textBox_CompanyB_Token, 2);
+            this.textBox_CompanyB_Token.Location = new System.Drawing.Point(347, 596);
+            this.textBox_CompanyB_Token.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.textBox_CompanyB_Token.MaxLength = 600;
+            this.textBox_CompanyB_Token.Name = "textBox_CompanyB_Token";
+            this.textBox_CompanyB_Token.PasswordChar = '*';
+            this.textBox_CompanyB_Token.Size = new System.Drawing.Size(804, 39);
+            this.textBox_CompanyB_Token.TabIndex = 67;
+            this.textBox_CompanyB_Token.UseSystemPasswordChar = true;
             // 
-            // label15
+            // label16
             // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(210, 448);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(91, 32);
-            this.label15.TabIndex = 63;
-            this.label15.Text = "Secret:";
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(158, 599);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(181, 32);
+            this.label16.TabIndex = 68;
+            this.label16.Text = "Refresh Token:";
             // 
             // tabPageAdv4
             // 
@@ -892,5 +954,9 @@
         private System.Windows.Forms.TextBox textBox_CompanyB_Secret;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox_CompanyA_Token;
+        private System.Windows.Forms.TextBox textBox_CompanyB_Token;
+        private System.Windows.Forms.Label label16;
     }
 }

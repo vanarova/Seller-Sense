@@ -61,11 +61,13 @@ namespace SellerSense.ViewManager
         public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories, string companycode)
         {
             //_images = images;
+            
             _code = companycode;
             _InventoriesModel = vm_Inventories;   
             _m_product = m_Product;
             _compareProductViews = new CompareProductView();
             FillFromProductModelToProductsViewWithoutImagesAndHandleUpdateEvents();
+            AmazonSPAPI.Init(_code);
         }
 
         public void AssignViewA(UserControl pcntrl)
