@@ -56,7 +56,7 @@ namespace SellerSense.Helper
                       filePath = amazonConnection.Reports.GetReportFile(reportData.ReportDocumentId);
                       break;
                   }
-                  else await Task.Delay(20000); //Thread.Sleep(1000 * 60);
+                  else await Task.Delay(10000); //Thread.Sleep(1000 * 60);
               }
 
                 return filePath;
@@ -67,12 +67,13 @@ namespace SellerSense.Helper
 
 
 
-        public async static Task<string> CreateReport_ORDERS()
+        public async static Task<string> CreateReport_ORDERS(string days)
         {
             return await Task<string>.Run(async () => {
+                int ndays = Convert.ToInt32(days);
                 var parameters = new ParameterCreateReportSpecification();
                 parameters.reportType = ReportTypes.GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL;
-                parameters.dataStartTime =DateTime.Now.AddDays(-10);
+                parameters.dataStartTime =DateTime.Now.AddDays(-ndays);
                 parameters.dataEndTime =DateTime.Now;
                 parameters.marketplaceIds = new MarketplaceIds();
                 parameters.marketplaceIds.Add(MarketPlace.India.ID);
@@ -92,7 +93,7 @@ namespace SellerSense.Helper
                         filePath = amazonConnection.Reports.GetReportFile(reportData.ReportDocumentId);
                         break;
                     }
-                    else await Task.Delay(20000);
+                    else await Task.Delay(10000);
                 }
 
                 return filePath;

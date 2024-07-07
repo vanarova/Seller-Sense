@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SellerSense.Helper;
 
 namespace SellerSense.Model.Orders
 {
@@ -30,6 +31,16 @@ namespace SellerSense.Model.Orders
                 //List<IAmzPayments> _amzPayments = new List<IAmzPayments>();
                 _amzOrders = amzOrdersIList.ToList<IAmzOrders>();
             });
+        }
+
+        public async Task GetAmazonOrderOnlineVia_API(string days)
+        {
+            //var result = await AmazonSPAPI.CreateReport_GET_MERCHANT_LISTINGS_ALL_DATA();
+            var result = await AmazonSPAPI.CreateReport_ORDERS(days);
+            IList<IAmzOrders> amzOrdersIList = AmazonOrdersDecoder.ImportAmazonOrdersFromAPI(result);
+            _amzOrders = amzOrdersIList.ToList<IAmzOrders>();
+            //Debugger.Log(0,"",result);
+
         }
 
 

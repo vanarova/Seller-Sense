@@ -213,6 +213,7 @@
     <Compile Include="Helper\HtmlUtilities.cs" />
     <Compile Include="Helper\QuickLog.cs" />
     <Compile Include="Helper\PrestashopRestAPI.cs" />
+    <Compile Include="Model\Invoice\Invoice.cs" />
     <Compile Include="Model\InvUpdate\M_Snapshot.cs" />
     <Compile Include="Model\Orders\M_Orders.cs" />
     <Compile Include="Model\Payments\M_Payments.cs" />
@@ -339,6 +340,12 @@
     <Compile Include="Views\Products\ProductCntrl.Designer.cs">
       <DependentUpon>ProductCntrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Products\ProductInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Products\ProductInvoice.Designer.cs">
+      <DependentUpon>ProductInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Products\ProductListing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -404,6 +411,12 @@
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Inventories\M_External_Inventories.cs" />
+    <Compile Include="Views\SingleNumericInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SingleNumericInputForm.Designer.cs">
+      <DependentUpon>SingleNumericInputForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -468,6 +481,9 @@
     <EmbeddedResource Include="Views\Products\ProductCntrl.resx">
       <DependentUpon>ProductCntrl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Products\ProductInvoice.resx">
+      <DependentUpon>ProductInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Products\ProductListing.resx">
       <DependentUpon>ProductListing.cs</DependentUpon>
     </EmbeddedResource>
@@ -488,6 +504,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SingleNumericInputForm.resx">
+      <DependentUpon>SingleNumericInputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>

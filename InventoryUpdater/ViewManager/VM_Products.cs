@@ -3,10 +3,12 @@ using Decoders;
 using Decoders.Interfaces;
 using SellerSense.Helper;
 using SellerSense.Model;
+using SellerSense.Model.Invoice;
 using SellerSense.Views;
 using SellerSense.Views.Products;
 using ssGrid;
 using Syncfusion.WinForms.DataGrid;
+using Syncfusion.WinForms.DataGrid.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,6 +41,7 @@ namespace SellerSense.ViewManager
         internal M_Product _m_product { get; set; }
         internal ObservableCollection<ProductView> _vm_productsView { get; set; }
         private ProductCntrl _v_productCntrl;
+        private Invoice _invoice;
         private ssGridView<ProductView> _v_ssGridViewCntrl;
         //private ssGridView<ProductView> _v_ssGridViewCntrl;
         private SfDataGrid _datagrid;
@@ -92,33 +95,53 @@ namespace SellerSense.ViewManager
 
         private void HandleProductControlEvents()
         {
+                _v_productCntrl.checkBox_InvoiceMode.CheckedChanged += (s, e) =>
+                {
+                    // col.MappingName = "Quantity"; col.HeaderText = "Qty";
+                    
+                    if (_v_productCntrl.checkBox_InvoiceMode.Checked)
+                    {
+                        var col = new GridUnboundColumn()
+                        {
+                            MappingName = "Quantity",
+                            HeaderText = "Qty",
+                            MaximumWidth = 100,AllowEditing = true,Expression="0"
+                        };
+                        //Add TextBox column for invoice
+                        _datagrid.Columns.Insert(0, col);
+                        
+                    }
+                    else {
+                        var c = _datagrid.Columns.Where(x => x.MappingName == "Quantity").FirstOrDefault();
+                        if(c!=null)
+                        _datagrid.Columns.Remove(c); 
+                    }
+                };
+           
+
             _v_productCntrl.toolStripMenuItem_Save.Click += (s, e) => {
                 //WriteBackProductViewToProductsModel();
                 SaveModel();
                 _v_ssGridViewCntrl._isBindingListDirty = false;
             };
-            //_v_productCntrl.amazonToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Amazon); };
             _v_productCntrl.mapAsinToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Amazon); };
-
-            //_v_productCntrl.flipkartToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Flipkart); };
             _v_productCntrl.mapFSNToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Flipkart); };
-            //_v_productCntrl.snapdealToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
             _v_productCntrl.mapSPDCodeToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Snapdeal); };
+
 #if IncludeMeesho
             _v_productCntrl.meeshoToolStripMenuItem.Click += (s, e) => { OpenInvFiller(Constants.Company.Meesho); };
 #endif
-            _v_productCntrl.sfButton_AddProduct.Click += (s, e) => { OpenAddEditProductForm(); };
-            _v_productCntrl.sfButton_ImportCSV.Click += (s, e) => { BulkImportProducts(); };
-            _v_productCntrl.sfButton_ImportPrestaShop.Click += (s, e) => { ImportPrestaShopProducts(); };
+
+            _v_productCntrl.toolstripitem_Add.Click += (s, e) => { OpenAddEditProductForm(); };
+            _v_productCntrl.toolstripitem_Excel.Click += (s, e) => { BulkImportProducts(); };
+            _v_productCntrl.toolstripitem_Prestashop.Click += (s, e) => { ImportPrestaShopProducts(); };
+
+            //_v_productCntrl.checkBox_InvoiceMode.CheckedChanged += (s,e) => { };
+            _v_productCntrl.sfButton_Invoice.Click += (s,e) => { };
+
             _v_productCntrl.mapAmzSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Amazon); };
             _v_productCntrl.mapFkSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Flipkart); };
             _v_productCntrl.mapSpdSKUToolStripMenuItem.Click += (s, e) => { OpenProductMapSKUForm(Constants.Company.Snapdeal); };
-            //_v_productCntrl.sfButton_Columns.Click += (s, e) => { };
-            //_v_productCntrl.splitButton_Export.DropDownItems[0].Click += (s, e) => { ssGrid.HelperExcel.ExportAllRecordsToExcel(_datagrid,e); };
-            //_v_productCntrl.splitButton_Export.DropDownItems[1].Click += (s, e) => { ssGrid.HelperPDF.ExportToPDF(_datagrid, e); };
-            //_v_productCntrl.sfComboBox_pageSize.SelectedValueChanged += (s, e) => { 
-            ////    _datagrid.Invalidate(); 
-            //};
         }
 
         private void OpenProductMapSKUForm(Constants.Company comp)
@@ -213,14 +236,7 @@ namespace SellerSense.ViewManager
                 _m_product.SaveMapFile();
             }
 
-            //AddProduct _v_addproduct = new AddProduct(false);
-            //VM_AddProduct vm_addProduct = new VM_AddProduct(_v_addproduct, _m_product);
-            //if (_v_addproduct.ShowDialog() == DialogResult.OK)
-            //{
-            //    Translate_AddEditProductObj_ToProduct_AndRefreshProductViewList(vm_addProduct.AddProductViewBindingObj, IsAddNewProduct: true);
-            //    AddNewProductFromProductModelToProductView();
-            //    _m_product.SaveMapFile();
-            //}
+            
         }
 
         private void EditProductFromImportedProductList(IEditProduct iprod)
@@ -411,12 +427,6 @@ namespace SellerSense.ViewManager
                 if (_datagrid.CurrentCell.Column.MappingName == Constants.PCols.SnapDealCode)
                     viewItem.SnapdealCode = inf.SelectedID;  //Update in view also, so that, we dont need to sync between Model and view.
                 
-
-                //_datagrid.View.GetPropertyAccessProvider().SetValue(
-                //    _datagrid.GetRecordEntryAtRowIndex(_datagrid.CurrentCell.RowIndex),
-                //    _datagrid.CurrentCell.Column.MappingName,
-                //    inf.SelectedID);
-                //_datagrid.CurrentCell.tag
                 _v_ssGridViewCntrl._isBindingListDirty = true;
             }
         }
@@ -444,40 +454,7 @@ namespace SellerSense.ViewManager
             
         }
 
-        //private void _v_ssGridViewCntrl_OnGridButtonActionSelectedClicked(EventList<ProductView> toExportList)
-        //{
-        //    ExportProducts exportProducts = new ExportProducts();
-        //    string message = string.Empty;
-        //    exportProducts.FormClosed += (s, e) => {
-        //        if (!exportProducts.ExportTelegram)
-        //            return;
-        //        foreach (var item in toExportList)
-        //        {
-        //            message = item.InHouseCode + " " + item.Title;
-        //            if (exportProducts.IncludePrices)
-        //            {
-        //                var prod = _m_product._productEntries.Find(x => x.InHouseCode == item.InHouseCode);
-        //                if (prod != null) { message = message + " Rs: " + prod.SellingPrice; }
-        //            }
-        //            if (exportProducts.IncludePrimaryImages)
-        //            {
-        //               //(string filePath, string fileName)= ProjIO.GetImageFilePath(_code, item.InHouseCode);
-        //                //Logger.TelegramMedia(filePath, fileName, message,Logger.LogLevel.info, _code);
-        //            }
-        //            else
-        //            {
-        //                //Logger.Telegram(message);
-        //            }
-                       
-        //        }
-        //    };
-        //    exportProducts.ShowDialog();
-        //    //below code may not be needed..
-        //    //DataGridViewRow[] rowsSelected = new DataGridViewRow[grid.SelectedRows.Count];
-        //    //grid.SelectedRows.CopyTo(rowsSelected, 0);
-        //    //here dialog shud be able to handle all selected rows in all pages
-        //    //open dialog and select export options and send msg to telegram.
-        //}
+       
         //Edit button clicked on product grid.
         private void _v_ssGridViewCntrl_OnGridButtonClicked(object sender, Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventArgs e)//
         {
@@ -707,10 +684,24 @@ namespace SellerSense.ViewManager
                 //,Image = SystemIcons.Hand.ToBitmap(),
             });
 
-            datagrid.CellButtonClick += _v_ssGridViewCntrl_OnGridButtonClicked; ;
+            datagrid.CellButtonClick += _v_ssGridViewCntrl_OnGridButtonClicked;
+            
+            datagrid.QueryUnboundColumnInfo += (s, e) => {
+                var r = ((ProductView)e.Record);
+                string val;
+                //e.Column.MappingName
+                if (e.UnboundAction == UnboundActions.QueryData)
+                {
+                    LineQty.TryGetValue(r.InHouseCode, out val);
+                    e.Value = val==null?"0":val;
+                }
+                
+                if (e.UnboundAction == UnboundActions.CommitData)
+                    LineQty.Add(r.InHouseCode, e.Value.ToString());
+            };
         }
 
-
+        private Dictionary<string, string> LineQty =new Dictionary<string, string>(); //move this to a class
 
 
         private void grdmapGrid_KeyDown(Object datagrid, KeyEventArgs e)

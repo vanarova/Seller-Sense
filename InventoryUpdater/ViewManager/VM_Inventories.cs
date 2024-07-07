@@ -338,6 +338,7 @@ namespace SellerSense.ViewManager
             _v_invCntrl.exportAllToolStripMenuItem.Click += (s, e) => { ExportAllInventoryUpdateFiles(); };
             _v_invCntrl.sendInvStatusToolStripMenuItem.Click += (s, e) => { SendStockStatusForThisCompany(); };
             _v_invCntrl.importAmazonOrdersToolStripMenuItem.Click += async (s, e) => { await ImportAmazonOrders(); };
+            _v_invCntrl.appendAmazonOrdersOnlineToolStripMenuItem.Click += async (s, e) => { await ImportAmazonOrders(isOnline:true); };
             //_v_invCntrl.appendAmazonOrdersToolStripMenuItem.Click += async (s, e) => { await ImportAmazonOrders(true); };
             _v_invCntrl.importFlipkartOrdersToolStripMenuItem.Click += async (s, e) => { await ImportFlipkartOrders(); };
             _v_invCntrl.importSnapdealOrdersToolStripMenuItem.Click += async (s, e) => { await ImportSnapdealOrders(); };
@@ -782,19 +783,27 @@ namespace SellerSense.ViewManager
         }
 
 
-        private async Task ImportAmazonOrders()
+        private async Task ImportAmazonOrders(bool isOnline = false)
         {
+            _v_invCntrl.progressBar_Invload.Visible = true;
             //DisengageCellEvents();
             //_ssGridView.ClearBindingListRows();
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Amazon order text file|*.txt";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-              await _m_OrdersModel.GetAmzOrders(openFileDialog.FileName);
-            else return;
+            SingleNumericInputForm invDays = new SingleNumericInputForm("Order Parameters", "Get orders for number of days :", "Ok");
+            invDays.ShowDialog();
+            if (isOnline) { await _m_OrdersModel.GetAmazonOrderOnlineVia_API(invDays.Result); }
+            else
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Amazon order text file|*.txt";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    await _m_OrdersModel.GetAmzOrders(openFileDialog.FileName);
+                else return;
+            }
             _ssGridView.IsLoading = true;
             await AssignAmazonOrdersToInvView();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
+            _v_invCntrl.progressBar_Invload.Visible = false;
         }
 
         private async Task ImportFlipkartOrders()
@@ -912,6 +921,7 @@ namespace SellerSense.ViewManager
 
         private async Task ImportAmazonInv(bool isOnline = false)
         {
+            _v_invCntrl.progressBar_Invload.Visible = true;
             //DisengageCellEvents();
             _ssGridView.ClearBindingListRows();
             if (isOnline) {await _m_externalInventoriesModel.ImportAmazonInventoryFileOnlineAPI(); }
@@ -941,7 +951,7 @@ namespace SellerSense.ViewManager
             if (_inventoryViewList.Any(x => !string.IsNullOrEmpty(x.AmazonSystemCount)))
                 _v_invCntrl.label_amazon.BackColor = Color.LimeGreen;
             else _v_invCntrl.label_amazon.BackColor = Color.LightGreen;
-
+            _v_invCntrl.progressBar_Invload.Visible = false;
             //EngageCellEvents();
             //foreach (var item in list)
             //{
@@ -1219,13 +1229,7 @@ namespace SellerSense.ViewManager
 
         #region Amazon-SPAPI
 
-         async Task GetAmazonInv()
-        {
-          //var result = await AmazonSPAPI.CreateReport_GET_MERCHANT_LISTINGS_ALL_DATA();
-          var result = await AmazonSPAPI.CreateReport_ORDERS();
-            //Debugger.Log(0,"",result);
-           
-        }
+       
 //         try
 //            {
 //                LWAAuthorizationCredentials lwaAuthorizationCredentials = new LWAAuthorizationCredentials

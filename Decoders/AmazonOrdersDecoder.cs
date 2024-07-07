@@ -34,6 +34,22 @@ namespace Decoders
             return _amvOrders;
         }
 
+        public static IList<IAmzOrders> ImportAmazonOrdersFromAPI(string fileName)
+        {
+            _ordersAmazonFileName = fileName;
+            _amvOrders = new List<IAmzOrders>();
+            var lines = File.ReadAllLines(fileName);
+            for (var i = 0; i < lines.Length; i += 1)
+            {
+                var line = lines[i].Split('\t');
+                _amvOrders.Add(new AmazonOrders(line[11], line[13], line[23],
+                    line[24]));
+            }
+            _amvOrders.RemoveAt(0); // remove header
+            _amvOrders.RemoveAt(0); // remove second row, contains total payment received etc
+            return _amvOrders;
+        }
+
 
         class AmazonOrders : IAmzOrders
         {

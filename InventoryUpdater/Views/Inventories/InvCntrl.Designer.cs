@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.Tools.SplitButtonRenderer splitButtonRenderer1 = new Syncfusion.Windows.Forms.Tools.SplitButtonRenderer();
+            Syncfusion.Windows.Forms.Tools.SplitButtonRenderer splitButtonRenderer4 = new Syncfusion.Windows.Forms.Tools.SplitButtonRenderer();
             this.splitButton_adv_filter = new Syncfusion.Windows.Forms.Tools.SplitButton();
             this.toolstripitem1 = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.toolstripitem2 = new Syncfusion.Windows.Forms.Tools.toolstripitem();
@@ -37,6 +37,7 @@
             this.fileStrip = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.importAmazonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importAmazonFileOnlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importFlipkartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSnapdealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +47,7 @@
             this.sendInvStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importAmazonOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.appendAmazonOrdersOnlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importFlipkartOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSnapdealOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -54,7 +56,7 @@
             this.label_snapdeal = new System.Windows.Forms.Label();
             this.label_flipkart = new System.Windows.Forms.Label();
             this.label_amazon = new System.Windows.Forms.Label();
-            this.importAmazonFileOnlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.progressBar_Invload = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.fileStrip.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -69,12 +71,12 @@
             this.splitButton_adv_filter.DropDownPosition = Syncfusion.Windows.Forms.Tools.Position.Top;
             this.splitButton_adv_filter.ForeColor = System.Drawing.Color.Black;
             this.splitButton_adv_filter.IsButtonChecked = true;
-            this.splitButton_adv_filter.Location = new System.Drawing.Point(453, 43);
-            this.splitButton_adv_filter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitButton_adv_filter.Location = new System.Drawing.Point(213, 9);
+            this.splitButton_adv_filter.Margin = new System.Windows.Forms.Padding(6);
             this.splitButton_adv_filter.MinimumSize = new System.Drawing.Size(112, 44);
             this.splitButton_adv_filter.Name = "splitButton_adv_filter";
-            splitButtonRenderer1.SplitButton = this.splitButton_adv_filter;
-            this.splitButton_adv_filter.Renderer = splitButtonRenderer1;
+            splitButtonRenderer4.SplitButton = this.splitButton_adv_filter;
+            this.splitButton_adv_filter.Renderer = splitButtonRenderer4;
             this.splitButton_adv_filter.ShowDropDownOnButtonClick = true;
             this.splitButton_adv_filter.Size = new System.Drawing.Size(112, 44);
             this.splitButton_adv_filter.TabIndex = 18;
@@ -132,7 +134,7 @@
             this.fileStrip.MinimumSize = new System.Drawing.Size(0, 23);
             this.fileStrip.Name = "fileStrip";
             this.fileStrip.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
-            this.fileStrip.Size = new System.Drawing.Size(915, 48);
+            this.fileStrip.Size = new System.Drawing.Size(675, 48);
             this.fileStrip.TabIndex = 9;
             this.fileStrip.Text = "menuStrip1";
             // 
@@ -140,10 +142,10 @@
             // 
             this.toolStripMenuItem_Save.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importAmazonToolStripMenuItem,
+            this.importAmazonFileOnlineToolStripMenuItem,
             this.importFlipkartToolStripMenuItem,
             this.importSnapdealToolStripMenuItem,
-            this.exportAllToolStripMenuItem,
-            this.importAmazonFileOnlineToolStripMenuItem});
+            this.exportAllToolStripMenuItem});
             this.toolStripMenuItem_Save.Name = "toolStripMenuItem_Save";
             this.toolStripMenuItem_Save.Size = new System.Drawing.Size(179, 42);
             this.toolStripMenuItem_Save.Text = "Inventory File";
@@ -153,6 +155,12 @@
             this.importAmazonToolStripMenuItem.Name = "importAmazonToolStripMenuItem";
             this.importAmazonToolStripMenuItem.Size = new System.Drawing.Size(434, 44);
             this.importAmazonToolStripMenuItem.Text = "Import Amazon File🪄";
+            // 
+            // importAmazonFileOnlineToolStripMenuItem
+            // 
+            this.importAmazonFileOnlineToolStripMenuItem.Name = "importAmazonFileOnlineToolStripMenuItem";
+            this.importAmazonFileOnlineToolStripMenuItem.Size = new System.Drawing.Size(434, 44);
+            this.importAmazonFileOnlineToolStripMenuItem.Text = "Import Amazon File Online";
             // 
             // importFlipkartToolStripMenuItem
             // 
@@ -204,6 +212,7 @@
             // 
             this.ordersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importAmazonOrdersToolStripMenuItem,
+            this.appendAmazonOrdersOnlineToolStripMenuItem,
             this.importFlipkartOrdersToolStripMenuItem,
             this.importSnapdealOrdersToolStripMenuItem});
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
@@ -213,19 +222,25 @@
             // importAmazonOrdersToolStripMenuItem
             // 
             this.importAmazonOrdersToolStripMenuItem.Name = "importAmazonOrdersToolStripMenuItem";
-            this.importAmazonOrdersToolStripMenuItem.Size = new System.Drawing.Size(414, 44);
+            this.importAmazonOrdersToolStripMenuItem.Size = new System.Drawing.Size(481, 44);
             this.importAmazonOrdersToolStripMenuItem.Text = "Append Amazon Orders";
+            // 
+            // appendAmazonOrdersOnlineToolStripMenuItem
+            // 
+            this.appendAmazonOrdersOnlineToolStripMenuItem.Name = "appendAmazonOrdersOnlineToolStripMenuItem";
+            this.appendAmazonOrdersOnlineToolStripMenuItem.Size = new System.Drawing.Size(481, 44);
+            this.appendAmazonOrdersOnlineToolStripMenuItem.Text = "Append Amazon Orders Online";
             // 
             // importFlipkartOrdersToolStripMenuItem
             // 
             this.importFlipkartOrdersToolStripMenuItem.Name = "importFlipkartOrdersToolStripMenuItem";
-            this.importFlipkartOrdersToolStripMenuItem.Size = new System.Drawing.Size(414, 44);
+            this.importFlipkartOrdersToolStripMenuItem.Size = new System.Drawing.Size(481, 44);
             this.importFlipkartOrdersToolStripMenuItem.Text = "Append Flipkart Orders";
             // 
             // importSnapdealOrdersToolStripMenuItem
             // 
             this.importSnapdealOrdersToolStripMenuItem.Name = "importSnapdealOrdersToolStripMenuItem";
-            this.importSnapdealOrdersToolStripMenuItem.Size = new System.Drawing.Size(414, 44);
+            this.importSnapdealOrdersToolStripMenuItem.Size = new System.Drawing.Size(481, 44);
             this.importSnapdealOrdersToolStripMenuItem.Text = "Append Snapdeal Orders";
             // 
             // flowLayoutPanel1
@@ -236,13 +251,14 @@
             this.flowLayoutPanel1.Controls.Add(this.label_flipkart);
             this.flowLayoutPanel1.Controls.Add(this.label_amazon);
             this.flowLayoutPanel1.Controls.Add(this.splitButton_adv_filter);
+            this.flowLayoutPanel1.Controls.Add(this.progressBar_Invload);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(917, 2);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(677, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(579, 44);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(819, 44);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // label_Help
@@ -251,7 +267,7 @@
             this.label_Help.AutoSize = true;
             this.label_Help.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_Help.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Help.Location = new System.Drawing.Point(540, 3);
+            this.label_Help.Location = new System.Drawing.Point(780, 14);
             this.label_Help.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Help.Name = "label_Help";
             this.label_Help.Size = new System.Drawing.Size(27, 34);
@@ -266,7 +282,7 @@
             this.label_meesho.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_meesho.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_meesho.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_meesho.Location = new System.Drawing.Point(430, 3);
+            this.label_meesho.Location = new System.Drawing.Point(670, 14);
             this.label_meesho.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_meesho.Name = "label_meesho";
             this.label_meesho.Size = new System.Drawing.Size(102, 34);
@@ -280,7 +296,7 @@
             this.label_snapdeal.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_snapdeal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_snapdeal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_snapdeal.Location = new System.Drawing.Point(308, 3);
+            this.label_snapdeal.Location = new System.Drawing.Point(548, 14);
             this.label_snapdeal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_snapdeal.Name = "label_snapdeal";
             this.label_snapdeal.Size = new System.Drawing.Size(114, 34);
@@ -294,7 +310,7 @@
             this.label_flipkart.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_flipkart.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_flipkart.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_flipkart.Location = new System.Drawing.Point(206, 3);
+            this.label_flipkart.Location = new System.Drawing.Point(446, 14);
             this.label_flipkart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_flipkart.Name = "label_flipkart";
             this.label_flipkart.Size = new System.Drawing.Size(94, 34);
@@ -308,18 +324,23 @@
             this.label_amazon.BackColor = System.Drawing.Color.LightSteelBlue;
             this.label_amazon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_amazon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_amazon.Location = new System.Drawing.Point(95, 3);
+            this.label_amazon.Location = new System.Drawing.Point(335, 14);
             this.label_amazon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_amazon.Name = "label_amazon";
             this.label_amazon.Size = new System.Drawing.Size(103, 34);
             this.label_amazon.TabIndex = 3;
             this.label_amazon.Text = "Amazon";
             // 
-            // importAmazonFileOnlineToolStripMenuItem
+            // progressBar_Invload
             // 
-            this.importAmazonFileOnlineToolStripMenuItem.Name = "importAmazonFileOnlineToolStripMenuItem";
-            this.importAmazonFileOnlineToolStripMenuItem.Size = new System.Drawing.Size(434, 44);
-            this.importAmazonFileOnlineToolStripMenuItem.Text = "Import Amazon File Online";
+            this.progressBar_Invload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar_Invload.Location = new System.Drawing.Point(114, 13);
+            this.progressBar_Invload.MarqueeAnimationSpeed = 200;
+            this.progressBar_Invload.Name = "progressBar_Invload";
+            this.progressBar_Invload.Size = new System.Drawing.Size(90, 36);
+            this.progressBar_Invload.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar_Invload.TabIndex = 19;
+            this.progressBar_Invload.Visible = false;
             // 
             // InvCntrl
             // 
@@ -374,5 +395,7 @@
         internal Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem2;
         private Syncfusion.Windows.Forms.Tools.toolstripitem toolstripitem3;
         internal System.Windows.Forms.ToolStripMenuItem importAmazonFileOnlineToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripMenuItem appendAmazonOrdersOnlineToolStripMenuItem;
+        internal System.Windows.Forms.ProgressBar progressBar_Invload;
     }
 }
