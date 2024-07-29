@@ -2,6 +2,8 @@
 using Ganss.Excel;
 using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
+//using Microsoft.Office.Interop.Excel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -34,6 +36,42 @@ namespace Decoders
 
                 _exm.Save<InvoiceData>(fileName, invoiceSheet, 0, true);
             }
+        }
+
+        public static string UpdateCell(string filePath,string cell, string value)
+        {
+            ///string filePath = @"C:\Users\VarunBansal\Downloads\Test.xls";
+            // Connection string for Excel 97-2003 format (.xls)
+            string connectionString = $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={filePath};Extended Properties=""Excel 8.0;HDR=NO;""";
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+                string updateCommandText = $"UPDATE [Invoice${cell}] SET F1 = '{value}'";
+                //string updateCommandText = $"UPDATE [Invoice$A1:A1] SET F1 = 'New Value'";
+                using (OleDbCommand updateCommand = new OleDbCommand(updateCommandText, connection))
+                    // Execute the update command
+                    updateCommand.ExecuteNonQuery();
+                return default;
+            }
+        }
+
+        public static string UpdateCell(string filePath, string cell, float value)
+        {
+            ///string filePath = @"C:\Users\VarunBansal\Downloads\Test.xls";
+            // Connection string for Excel 97-2003 format (.xls)
+            string connectionString = $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={filePath};Extended Properties=""Excel 8.0;HDR=NO;""";
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+                string updateCommandText = $"UPDATE [Invoice${cell}] SET F1 = {value}";
+                //string updateCommandText = $"UPDATE [Invoice$A1:A1] SET F1 = 'New Value'";
+                using (OleDbCommand updateCommand = new OleDbCommand(updateCommandText, connection))
+                    // Execute the update command
+                    updateCommand.ExecuteNonQuery();
+                return default;
+            }
+          
+           
         }
     }
 

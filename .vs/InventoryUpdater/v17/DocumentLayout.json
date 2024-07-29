@@ -1,0 +1,322 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|c:\\users\\varunbansal\\source\\repos\\invupd\\inventoryupdater\\model\\invoice\\m_invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\model\\invoice\\m_invoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|c:\\users\\varunbansal\\source\\repos\\invupd\\inventoryupdater\\views\\products\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\views\\products\\products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|c:\\users\\varunbansal\\source\\repos\\invupd\\inventoryupdater\\views\\products\\productcntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\views\\products\\productcntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|c:\\users\\varunbansal\\source\\repos\\invupd\\inventoryupdater\\views\\products\\productlisting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\views\\products\\productlisting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B5A41395-71CF-429F-98B3-B65279D19DE1}|Constants\\CommonUtil.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\constants\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5A41395-71CF-429F-98B3-B65279D19DE1}|Constants\\CommonUtil.csproj|solutionrelative:constants\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EDC2DFD-9BE4-4E45-943D-53FE7610CCA8}|ssGrid\\ssGrid.csproj|c:\\users\\varunbansal\\source\\repos\\invupd\\ssgrid\\syncfusionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EDC2DFD-9BE4-4E45-943D-53FE7610CCA8}|ssGrid\\ssGrid.csproj|solutionrelative:ssgrid\\syncfusionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\inventoryupdater\\viewmanager\\vm_products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\viewmanager\\vm_products.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\inventoryupdater\\views\\products\\productinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\views\\products\\productinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}|Decoders\\Decoders.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\decoders\\invoicedecoder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}|Decoders\\Decoders.csproj|solutionrelative:decoders\\invoicedecoder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|c:\\users\\varunbansal\\source\\repos\\invupd\\inventoryupdater\\views\\products\\productinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\views\\products\\productinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\inventoryupdater\\model\\product\\m_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\model\\product\\m_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\inventoryupdater\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\inventoryupdater\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF6792B9-AA6F-45E2-B88F-70CB77472B6B}|ssViewControls\\ssViewControls.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\ssviewcontrols\\ssgridview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF6792B9-AA6F-45E2-B88F-70CB77472B6B}|ssViewControls\\ssViewControls.csproj|solutionrelative:ssviewcontrols\\ssgridview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\inventoryupdater\\views\\setup\\setup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\views\\setup\\setup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\inventoryupdater\\helper\\amazonspapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88E7BD1C-E813-4FA2-AB85-97FD3F51E7AB}|InventoryUpdater\\SellerSense.csproj|solutionrelative:inventoryupdater\\helper\\amazonspapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}|Decoders\\Decoders.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\decoders\\flipkartinvdecoder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}|Decoders\\Decoders.csproj|solutionrelative:decoders\\flipkartinvdecoder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}|Decoders\\Decoders.csproj|C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\decoders\\amazoninvdecoder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}|Decoders\\Decoders.csproj|solutionrelative:decoders\\amazoninvdecoder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Products.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\Products.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Views\\Products\\Products.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\Products.cs [Design]",
+              "RelativeToolTip": "InventoryUpdater\\Views\\Products\\Products.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T23:03:22.406Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductCntrl.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\ProductCntrl.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Views\\Products\\ProductCntrl.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\ProductCntrl.cs [Design]",
+              "RelativeToolTip": "InventoryUpdater\\Views\\Products\\ProductCntrl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T22:56:11.239Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ProductInvoice.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\ProductInvoice.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Views\\Products\\ProductInvoice.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\ProductInvoice.cs [Design]",
+              "RelativeToolTip": "InventoryUpdater\\Views\\Products\\ProductInvoice.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T20:33:38.344Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Constants.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Constants.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Constants.cs",
+              "RelativeToolTip": "InventoryUpdater\\Constants.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T09:38:01.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "M_Invoice.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Model\\Invoice\\M_Invoice.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Model\\Invoice\\M_Invoice.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Model\\Invoice\\M_Invoice.cs",
+              "RelativeToolTip": "InventoryUpdater\\Model\\Invoice\\M_Invoice.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAASwEsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T15:52:59.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductListing.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\ProductListing.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Views\\Products\\ProductListing.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\ProductListing.cs [Design]",
+              "RelativeToolTip": "InventoryUpdater\\Views\\Products\\ProductListing.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T22:57:59.601Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "M_Product.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Model\\Product\\M_Product.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Model\\Product\\M_Product.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Model\\Product\\M_Product.cs",
+              "RelativeToolTip": "InventoryUpdater\\Model\\Product\\M_Product.cs",
+              "ViewState": "AQIAAAMBAAAAAAAAAAAtwBMBAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T17:44:24.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SetUp.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\SetUp\\SetUp.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Views\\SetUp\\SetUp.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\SetUp\\SetUp.cs [Design]",
+              "RelativeToolTip": "InventoryUpdater\\Views\\SetUp\\SetUp.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T16:26:56.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AmazonSPAPI.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Helper\\AmazonSPAPI.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Helper\\AmazonSPAPI.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Helper\\AmazonSPAPI.cs",
+              "RelativeToolTip": "InventoryUpdater\\Helper\\AmazonSPAPI.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAwwCgAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T15:59:07.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VM_Products.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\ViewManager\\VM_Products.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\ViewManager\\VM_Products.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\ViewManager\\VM_Products.cs",
+              "RelativeToolTip": "InventoryUpdater\\ViewManager\\VM_Products.cs",
+              "ViewState": "AQIAAHYAAAAAAAAAAAAtwIoAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T15:57:07.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProductInvoice.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\ProductInvoice.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Views\\Products\\ProductInvoice.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Views\\Products\\ProductInvoice.cs",
+              "RelativeToolTip": "InventoryUpdater\\Views\\Products\\ProductInvoice.cs",
+              "ViewState": "AQIAAEQAAAAAAAAAAAASwFIAAABMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T15:56:34.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\Constants\\Constants.cs",
+              "RelativeDocumentMoniker": "Constants\\Constants.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\Constants\\Constants.cs",
+              "RelativeToolTip": "Constants\\Constants.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAASwBgAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T09:38:10.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SyncFusionHelper.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\ssGrid\\SyncFusionHelper.cs",
+              "RelativeDocumentMoniker": "ssGrid\\SyncFusionHelper.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\ssGrid\\SyncFusionHelper.cs",
+              "RelativeToolTip": "ssGrid\\SyncFusionHelper.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAASwBAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T20:43:34.282Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InvoiceDecoder.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\Decoders\\InvoiceDecoder.cs",
+              "RelativeDocumentMoniker": "Decoders\\InvoiceDecoder.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\Decoders\\InvoiceDecoder.cs",
+              "RelativeToolTip": "Decoders\\InvoiceDecoder.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAtwC0AAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T20:16:28.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Program.cs",
+              "RelativeDocumentMoniker": "InventoryUpdater\\Program.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\InventoryUpdater\\Program.cs",
+              "RelativeToolTip": "InventoryUpdater\\Program.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAAtwDcAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T21:00:57.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ssGridView.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\ssViewControls\\ssGridView.cs",
+              "RelativeDocumentMoniker": "ssViewControls\\ssGridView.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\ssViewControls\\ssGridView.cs",
+              "RelativeToolTip": "ssViewControls\\ssGridView.cs",
+              "ViewState": "AQIAAAwBAAAAAAAAAAAAABUBAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T18:21:54.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "FlipkartInvDecoder.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\Decoders\\FlipkartInvDecoder.cs",
+              "RelativeDocumentMoniker": "Decoders\\FlipkartInvDecoder.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\Decoders\\FlipkartInvDecoder.cs",
+              "RelativeToolTip": "Decoders\\FlipkartInvDecoder.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAAAJQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-13T20:25:30.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AmazonInvDecoder.cs",
+              "DocumentMoniker": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\Decoders\\AmazonInvDecoder.cs",
+              "RelativeDocumentMoniker": "Decoders\\AmazonInvDecoder.cs",
+              "ToolTip": "C:\\Users\\VarunBansal\\source\\repos\\InvUpd\\Decoders\\AmazonInvDecoder.cs",
+              "RelativeToolTip": "Decoders\\AmazonInvDecoder.cs",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-13T20:25:15.725Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

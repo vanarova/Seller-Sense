@@ -18,7 +18,7 @@ using MS.WindowsAPICodePack.Internal;
 namespace SellerSense.Model
 {
 
-    internal class M_Product
+    public class M_Product
     {
         public List<ProductEntry> _productEntries { get; set; }
         internal string _companyCode;
@@ -273,13 +273,13 @@ namespace SellerSense.Model
            
         }
 
-        internal class LinkedProduct
+        public class LinkedProduct
         {
             public string InHouseCode { get; set; }
             public string LinkQty { get; set; }
         }
 
-        internal class ProductEntry
+        public class ProductEntry
         {
             //Mark pubic, required for JSON serialization
             //internal Guid Id { get; set; }

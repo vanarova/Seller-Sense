@@ -22,7 +22,8 @@ namespace CommonUtil
         public const string LogDepth = "LogDepth";
         public const string TelegramLogging = "TelegramLogging";
 
-
+        public const string InvoiceTemplateFile = "InvoiceTemplate.xls";
+        public const string InvoiceTemplateFileXL = "InvoiceTemplateXL.xls";
         public const string WorkspaceDir = "workspace";
         public const string WorkspaceDefaultDirName = "Seller-Sense";
 

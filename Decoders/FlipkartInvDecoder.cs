@@ -148,20 +148,6 @@ namespace Decoders
 
 
 
-    ////This class is mapped to flipkart inventory report.
-    //class FkInv : IFkInventory
-    //{
-    //    [Column(1)]
-    //    public string sku { get; set; }
-    //    [Column(5)]
-    //    public string fsn { get; set; }
-    //    [Column(10)]
-    //    public string price { get; set; }
-    //    [Column(14)]
-    //    public string systemQuantity { get; set; }
-    //    [Column(15)]
-    //    public string sellerQuantity { get; set; }
-    //}
 
 
 }

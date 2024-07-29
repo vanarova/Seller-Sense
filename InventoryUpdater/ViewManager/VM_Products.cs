@@ -41,7 +41,7 @@ namespace SellerSense.ViewManager
         internal M_Product _m_product { get; set; }
         internal ObservableCollection<ProductView> _vm_productsView { get; set; }
         private ProductCntrl _v_productCntrl;
-        private Invoice _invoice;
+        private M_Invoice _m_invoice;
         private ssGridView<ProductView> _v_ssGridViewCntrl;
         //private ssGridView<ProductView> _v_ssGridViewCntrl;
         private SfDataGrid _datagrid;
@@ -50,6 +50,7 @@ namespace SellerSense.ViewManager
         private Dictionary<string, Image> _images;
         internal CompareProductView _compareProductViews;
         private bool PrestaShopCancelOperation=false;
+        
         public enum PrestaShopImportType
         {
             UpdateOnly,
@@ -61,7 +62,7 @@ namespace SellerSense.ViewManager
         public VM_Products(M_Product m_Product,M_External_Inventories vm_Inventories, string companycode)
         {
             //_images = images;
-            
+            _m_invoice = new M_Invoice();
             _code = companycode;
             _InventoriesModel = vm_Inventories;   
             _m_product = m_Product;
@@ -115,11 +116,29 @@ namespace SellerSense.ViewManager
                     }
                     else {
                         var c = _datagrid.Columns.Where(x => x.MappingName == "Quantity").FirstOrDefault();
-                        if(c!=null)
+                        var imgCol = SyncFusionHelper.GetGridColumnIndex(_datagrid, "Quantity");
+                        //Image selectedImg = SyncFusionHelper.GetCellValue(_datagrid, 1, imgCol) as Image;
+                        string selectedCode = SyncFusionHelper.GetCellValue(_datagrid, 1, imgCol).ToString();
+
+                        if (c!=null)
                         _datagrid.Columns.Remove(c); 
                     }
                 };
-           
+            _v_productCntrl.sfButton_Invoice.Click += (s, e) => {
+                //ProductInvoice inv = new ProductInvoice(_m_product,_m_invoice);
+                try
+                {
+                    ProductInvoice pinv = new ProductInvoice(_m_product, _m_invoice);
+                    pinv.ShowDialog();
+                    if (pinv.DialogResult == DialogResult.OK)
+                    {
+                        (string tempDir, string file) = _m_invoice.WriteInvoiceToFile();
+                        AlertBox ab = new AlertBox("Invoice ready", $"Your Invoice/Quote file : {file}", null, false, tempDir); ab.ShowDialog();
+                    }
+                }
+                catch (Exception ex) { AlertBox ab = new AlertBox("Error",$"Error accessing excel file. {ex.Message}"); ab.ShowDialog(); }
+                //inv.ShowDialog();
+            };
 
             _v_productCntrl.toolStripMenuItem_Save.Click += (s, e) => {
                 //WriteBackProductViewToProductsModel();
@@ -152,9 +171,6 @@ namespace SellerSense.ViewManager
             pMap.ShowDialog();   
 
         }
-
-
-       
 
 
         private void BulkImportProducts()
@@ -694,16 +710,16 @@ namespace SellerSense.ViewManager
                 //e.Column.MappingName
                 if (e.UnboundAction == UnboundActions.QueryData)
                 {
-                    LineQty.TryGetValue(r.InHouseCode, out val);
+                    _m_invoice.LineQty.TryGetValue(r.InHouseCode, out val);
                     e.Value = val==null?"0":val;
                 }
                 
                 if (e.UnboundAction == UnboundActions.CommitData)
-                    LineQty.Add(r.InHouseCode, e.Value.ToString());
+                    _m_invoice.LineQty.Add(r.InHouseCode, e.Value.ToString());
             };
         }
 
-        private Dictionary<string, string> LineQty =new Dictionary<string, string>(); //move this to a class
+        //private Dictionary<string, string> LineQty =new Dictionary<string, string>(); //move this to a class
 
 
         private void grdmapGrid_KeyDown(Object datagrid, KeyEventArgs e)

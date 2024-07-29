@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Decoders",
+    "\\InventoryUpdater",
+    "\\InventoryUpdater\\Model",
+    "\\InventoryUpdater\\Model\\Invoice",
+    "\\InventoryUpdater\\ViewManager"
+  ],
+  "SelectedNode": "\\InventoryUpdater\\Model\\Invoice\\M_Invoice.cs",
+  "PreviewInSolutionExplorer": false
+}

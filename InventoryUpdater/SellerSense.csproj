@@ -213,7 +213,7 @@
     <Compile Include="Helper\HtmlUtilities.cs" />
     <Compile Include="Helper\QuickLog.cs" />
     <Compile Include="Helper\PrestashopRestAPI.cs" />
-    <Compile Include="Model\Invoice\Invoice.cs" />
+    <Compile Include="Model\Invoice\M_Invoice.cs" />
     <Compile Include="Model\InvUpdate\M_Snapshot.cs" />
     <Compile Include="Model\Orders\M_Orders.cs" />
     <Compile Include="Model\Payments\M_Payments.cs" />
