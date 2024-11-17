@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seller Sense Documentation</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            padding-top: 60px; /* Added padding to prevent content from being hidden under navbar */
+        }
+
+        /* Container */
+        .container {
+            padding: 10px 100px 20px 100px;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #2671a6;
+            display: inline-block;
+            width: 100%;
+            color: #fff;
+            position: fixed; /* Fixed position */
+            top: 0; /* Aligns the navbar to the top */
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Ensures the navbar is above other elements */
+            padding: 10px 100px 20px 100px;
+        }
+
+        .navbar-item.logo {
+            padding-left: 0;
+            width: 150px;
+        }
+
+        .navbar-item,
+        .navbar-link {
+            color: #fff;
+            padding: 10px 20px;
+        }
+
+            .navbar-item:hover,
+            .navbar-link:hover {
+                background-color: #2671a6;
+            }
+
+            .navbar-item.is-selected {
+                background-color: #1c557d;
+                color: #fff;
+            }
+
+        .navbar-burger span {
+            background-color: #fff;
+        }
+
+        .button.is-primary {
+            background-color: #1c557d;
+            border-color: transparent;
+        }
+
+            .button.is-primary:hover {
+                background-color: #143e5c;
+            }
+
+        /* Section */
+        .section {
+            padding: 50px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+            .section.is-medium {
+                padding: 75px 20px;
+            }
+
+        /* Titles */
+        .title {
+            color: #333;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Header */
+        header {
+            margin-bottom: 20px;
+            background-color: #2671a6;
+            padding: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #143e5c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container.is-widescreen {
+            max-width: 1216px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (max-width: 1215px) {
+            .container.is-widescreen {
+                max-width: 96%;
+            }
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+            }
+
+            .navbar-burger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container is-widescreen is-uppercase">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-item logo">
+                <h1>Seller Sense</h1>
+            </div>
+
+            <a class="navbar-item is-selected">
+                Help docs
+            </a>
+
+            <!-- <a class="navbar-link">
+                Služby
+            </a>
+
+            <a class="navbar-item">
+                Porod
+            </a>
+            <a class="navbar-item ">
+                Poporodní péče
+            </a>
+
+            <a class="navbar-item">
+                Laktační poradenství
+            </a>
+
+            <a class="navbar-item">
+                Ceník
+            </a>
+            <a class="navbar-item">
+                Blog
+            </a>
+            <a class="navbar-item">
+                O mně
+            </a> -->
+        </nav>
+    </header>
+
+    <!-- <section class="section"> -->
+    <!-- <div class="container"> -->
+    <!-- <h2 class="title"> -->
+    <!-- Documentation -->
+    <!-- </h2> -->
+    <!-- <p class="subtitle"> -->
+    <!-- This documentation is linked with Seller-Sense dialogs, You can click on help buttons, this page will open and particular section will be highlighted. -->
+    <!-- </p> -->
+    <!-- <img src="RamLalla.png" width="400" /> -->
+    <!-- </div> -->
+    <!-- </section> -->
+
+    <section class="section">
+        <div class="container">
+            <h2 class="title" id="Unmapped">Unmapped codes :</h2>
+            <h3 class="subtitle">
+                Unmapped codes in inventory page, while importing inventory file:
+            </h3>
+            <p>
+                While, importing inventory file, unmapped Amazon, Flipkart, snapdeal codes are shown, these codes are shown based on rule : If a product is found in incoming inventory file, but it is not found in existing in-house inventory, that product code is flagged and its is assumed that mapping in done for this product.
+            </p>
+
+            <h3 class="subtitle">
+                Unmapped codes in inventory page, while importing orders file:
+            </h3>
+            <p>
+                While, importing orders file, unmapped Amazon, Flipkart, snapdeal codes are shown, these codes are shown based on rule : If a product code is found in incoming order file, but it is not available in existing inventory file, it is flagged as unmapped product. Unmapped products in orders should be addressed on priority, as these products can be mapped to any inhouse products, hence these orders are no loaded on inventory page.
+            </p>
+            
+
+        </div>
+    </section>
+	
+	 <section class="section">
+        <div class="container">
+            <h2 class="title" id="OrdersHelp">Importing Amazon orders :</h2>
+            <h3 class="subtitle">
+                Please refer below image, go to <strong> Amazon reports </strong> section & choose report as shown:
+            </h3>
+            <p>
+                Download report and import to seller sense
+            </p>
+            <img src="./Images/help/AmzOrders.png" width="900" />
+
+        </div>
+    </section>
+	
+	
+    <section class="section">
+        <div class="container">
+            <h2 class="title" id="FkOrders">Importing Flipkart orders :</h2>
+            <h3 class="subtitle">
+                Please refer below image, go to <strong> Flipkart reports </strong> section & choose report as shown:
+            </h3>
+            <p>
+                Download report and import to seller sense
+            </p>
+            <img src="./Images/help/FkOrders1.png" width="900" />
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h2 class="title" id="SpdOrders">Importing Snapdeal orders :</h2>
+            <h3 class="subtitle">
+                Please refer below image, go to <strong> Snapdeal reports </strong> section & choose report as shown:
+            </h3>
+            <p>
+                Download report and import to seller sense
+            </p>
+            <img src="./Images/help/SpdOrders.png" width="900" />
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h2 class="title" id="AmzPayment">Importing Amazon payments :</h2>
+            <h3 class="subtitle">
+                Please refer below image, go to <strong> Amazon payment reports </strong> section & choose report as shown:
+            </h3>
+            <p>
+                Download report and import to seller sense
+            </p>
+            <img src="./Images/help/AmzPay1.png" width="900" />
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h2 class="title" id="FkPayment">Importing Flipkart payments :</h2>
+            <h3 class="subtitle">
+                Please refer below image, go to <strong> Flipkart payment reports </strong> section & choose report as shown:
+            </h3>
+            <p>
+                Download report and import to seller sense
+            </p>
+            <img src="./Images/help/fk1.png" width="900" />
+            <img src="./Images/help/fk2.png" width="900" />
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h2 class="title" id="SpdPayment">Importing Snapdeal payments :</h2>
+            <h3 class="subtitle">
+                Please refer below image, go to <strong> Snapdeal payment reports </strong> section & choose report as shown:
+            </h3>
+            <p>
+                Download report and import to seller sense
+            </p>
+            <img src="./Images/help/SpdPayment1.png" width="900" />
+
+        </div>
+    </section>
+</body>
+
+</html>

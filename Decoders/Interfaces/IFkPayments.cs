@@ -20,6 +20,8 @@ namespace Decoders.Interfaces
         string customerAddonAmt { get; set; }
         string marketplaceFee { get; set; }
         string taxes { get; set; }
+        string quantity { get; set; }
+        string orderDate { get; set; }
 
 
 

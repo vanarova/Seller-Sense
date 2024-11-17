@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using CommonUtil;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace CommonUtil
 {
@@ -87,6 +88,12 @@ namespace CommonUtil
             grPhoto.Dispose();
             imgPhoto.Dispose();
             return bmPhoto;
+        }
+
+        public static bool IsFileLocked(IOException exception)
+        {
+            int errorCode = Marshal.GetHRForException(exception) & ((1 << 16) - 1);
+            return errorCode == 32 || errorCode == 33;
         }
 
         public static string CleanAndPrepareLocalAppData()
@@ -298,17 +305,89 @@ namespace CommonUtil
             }
         }
 
-        public static void CreateCompanyDir(string code)
+        public static void CreateCompanyDirAddSampleImg(string code)
         {
             string wdir = GetUserSetting(Constants.WorkspaceDir);
             try
             {
                 if (!Directory.Exists(Path.Combine(wdir, code)))
                     Directory.CreateDirectory(Path.Combine(wdir, code));
+
+                string imgsPath = Path.Combine(wdir, code, Constants.Imgs);
+                if (!Directory.Exists(imgsPath))
+                    Directory.CreateDirectory(imgsPath);
+
+                //Sample product Image
+                string sampleImgPath = Path.Combine(wdir, code, Constants.Imgs, Constants.SampleImg);
+                if (!File.Exists(sampleImgPath))
+                {
+                    //if (Directory.Exists(Constants.InstallationLocation) &&
+                    //   File.Exists(Path.Combine(Constants.InstallationLocation, Constants.SampleImg)))
+                    //{
+                    //    File.Copy(Path.Combine(Constants.InstallationLocation, Constants.SampleImg),
+                    //       sampleImgPath, true);
+                    //}else
+                    //{
+                    byte[] bytes = CreateGridImage(10, 10, 4, 5, 30);
+                    MemoryStream ms = new MemoryStream(bytes);
+                    Image i = Image.FromStream(ms);
+                    i.Save(sampleImgPath);
+                    //}
+                }
             }
             catch (Exception dx)
             {
                 throw new IOException($"IO exception, {dx.Message}");
+            }
+        }
+
+
+
+        private static byte[] CreateGridImage(
+            int maxXCells,
+            int maxYCells,
+            int cellXPosition,
+            int cellYPosition,
+            int boxSize)
+        {
+            using (var bmp = new System.Drawing.Bitmap(maxXCells * boxSize + 1, maxYCells * boxSize + 1))
+            {
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    g.Clear(Color.Yellow);
+                    Pen pen = new Pen(Color.Black);
+                    pen.Width = 1;
+
+                    //Draw red rectangle to go behind cross
+                    Rectangle rect = new Rectangle(boxSize * (cellXPosition - 1), boxSize * (cellYPosition - 1), boxSize, boxSize);
+                    g.FillRectangle(new SolidBrush(Color.Red), rect);
+                    rect = new Rectangle(boxSize * (cellXPosition ), boxSize * (cellYPosition ), boxSize, boxSize);
+                    g.FillRectangle(new SolidBrush(Color.Red), rect);
+                    rect = new Rectangle(boxSize * (cellXPosition +3), boxSize * (cellYPosition - 1), boxSize, boxSize);
+                    g.FillRectangle(new SolidBrush(Color.Red), rect);
+                    rect = new Rectangle(boxSize * (cellXPosition - 1), boxSize * (cellYPosition + 4), boxSize, boxSize);
+                    g.FillRectangle(new SolidBrush(Color.Red), rect);
+
+                    //Draw cross
+                    g.DrawLine(pen, boxSize * (cellXPosition - 1), boxSize * (cellYPosition - 1), boxSize * cellXPosition, boxSize * cellYPosition);
+                    g.DrawLine(pen, boxSize * (cellXPosition - 1), boxSize * cellYPosition, boxSize * cellXPosition, boxSize * (cellYPosition - 1));
+
+                    //Draw horizontal lines
+                    for (int i = 0; i <= maxXCells; i++)
+                    {
+                        g.DrawLine(pen, (i * boxSize), 0, i * boxSize, boxSize * maxYCells);
+                    }
+
+                    //Draw vertical lines            
+                    for (int i = 0; i <= maxYCells; i++)
+                    {
+                        g.DrawLine(pen, 0, (i * boxSize), boxSize * maxXCells, i * boxSize);
+                    }
+                }
+
+                var memStream = new MemoryStream();
+                bmp.Save(memStream, ImageFormat.Jpeg);
+                return memStream.ToArray();
             }
         }
 
@@ -319,7 +398,7 @@ namespace CommonUtil
             return result;
         }
 
-        public static string CreateWorkspace(string customeWorkspaceDir = "")
+        public static string CreateWorkspaceAndCopyTemplates(string customeWorkspaceDir = "")
         {
             string toSavePath;
             if (string.IsNullOrEmpty(customeWorkspaceDir))
@@ -330,6 +409,22 @@ namespace CommonUtil
             {
                 if (!Directory.Exists(toSavePath))
                     Directory.CreateDirectory(toSavePath);
+               
+
+                //Copy Templates
+                if(Directory.Exists(Constants.InstallationLocation) && 
+                    File.Exists(Path.Combine(Constants.InstallationLocation,Constants.InvoiceTemplateFile)))
+                {
+                    File.Copy(Path.Combine(Constants.InstallationLocation, Constants.InvoiceTemplateFile),
+                        Path.Combine(toSavePath, Constants.InvoiceTemplateFile), true);
+                }
+                if (Directory.Exists(Constants.InstallationLocation) &&
+                    File.Exists(Path.Combine(Constants.InstallationLocation, Constants.InvoiceTemplateFileXL)))
+                {
+                    File.Copy(Path.Combine(Constants.InstallationLocation, Constants.InvoiceTemplateFileXL),
+                        Path.Combine(toSavePath, Constants.InvoiceTemplateFileXL), true);
+                }
+
             }
             catch (Exception dx)
             {
@@ -677,6 +772,8 @@ namespace CommonUtil
             // Write each string in the list to the file
             using (StreamWriter writer = new StreamWriter(filePath))
             {
+                if(!File.Exists(filePath))
+                    File.Create(filePath);
                 foreach (string line in lines)
                     writer.WriteLine(line);
             }

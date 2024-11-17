@@ -36,11 +36,11 @@ namespace SellerSense.Helper
             _globalLogPath = ProjIO.DefaultWorkspaceLocation();
             if (_globalLogPath == null)
             { new Views.AlertBox("Error", "Error writing logs, No workspace found", null, true, ""); }
-            _botToken = ProjIO.GetUserSetting(Constants.TelegramSettings.BotID.ToString());
-            bool success = long.TryParse(ProjIO.GetUserSetting(Constants.TelegramSettings.ChatID.ToString()), out long chatid);
-            _chatId = chatid;
-            if (!success)
-            { Log("Telegram Chat id is empty.", LogLevel.warning, true); }
+            //_botToken = ProjIO.GetUserSetting(Constants.TelegramSettings.BotID.ToString());
+            //bool success = long.TryParse(ProjIO.GetUserSetting(Constants.TelegramSettings.ChatID.ToString()), out long chatid);
+            //_chatId = chatid;
+            //if (!success)
+            //{ Log("Telegram Chat id is empty.", LogLevel.warning, true); }
 
 //#if DEBUG
 //            _botToken = "6690932378:AAEqzJfgbgUNic4S30aSkdXdStoz8eB8574";

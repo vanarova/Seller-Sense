@@ -118,16 +118,16 @@ namespace SellerSense.ViewManager
         {
             ProjIO.SaveUserSetting(Constants.Company1Code, code);
             ProjIO.SaveUserSetting(Constants.Company1Name, name);
-            ProjIO.CreateWorkspace();
-            ProjIO.CreateCompanyDir(code);
+            ProjIO.CreateWorkspaceAndCopyTemplates();
+            ProjIO.CreateCompanyDirAddSampleImg(code);
         }
 
         internal void AddCompany2(string name, string code)
         {
             ProjIO.SaveUserSetting(Constants.Company2Code, code);
             ProjIO.SaveUserSetting(Constants.Company2Name, name);
-            ProjIO.CreateWorkspace();
-            ProjIO.CreateCompanyDir(code);
+            ProjIO.CreateWorkspaceAndCopyTemplates();
+            ProjIO.CreateCompanyDirAddSampleImg(code);
         }
 
         internal void AddCompany3(string name, string code)

@@ -35,83 +35,75 @@ namespace SellerSense
             this.Style.InactiveBorder.Width = Constants.Theme.BorderWidth;
             _companies = companies;
             InitializeComponent();
+            
         }
 
         private void btn_ok_Click(object sender, EventArgs e)
         {
-            string error;
-            bool iscreated = CreateCompanies(out error);
-            if (!string.IsNullOrEmpty(error))
-                MessageBox.Show(error);
+            //string error;
+            //bool iscreated = CreateCompanies(out error);
+            //if (!string.IsNullOrEmpty(error))
+            //    MessageBox.Show(error);
 
-            //if(!string.IsNullOrEmpty(_map1File))
-            //    ProjIO.ImportMap(_map1File, txtComp1Code.Text);
-            //if (!string.IsNullOrEmpty(_map2File))
-            //    ProjIO.ImportMap(_map2File, txtComp2Code.Text);
-            //if (!string.IsNullOrEmpty(_map3File))
-            //    ProjIO.ImportMap(_map3File, txtComp3Code.Text);
-            //if (!string.IsNullOrEmpty(_map4File))
-            //    ProjIO.ImportMap(_map4File, txtComp4Code.Text);
-            //if (!string.IsNullOrEmpty(_map5File))
-            //    ProjIO.ImportMap(_map5File, txtComp5Code.Text);
+       
 
-            lbl_Error.Text = error;
-            if (iscreated)
-            { AdjustUI("CompaniesCreated");
-            this.Close(); }
+            //lbl_Error.Text = error;
+            //if (iscreated)
+            //{ AdjustUI("CompaniesCreated");
+            //this.Close(); }
 
         }
 
        
 
-        private void AdjustUI(string key)
-        {
-            switch (key)
-            {
-                case "CompaniesCreated":
-                    txtComp1Name.Enabled = false; txtComp2Name.Enabled = false;
-                    //txtComp3Name.Enabled = false; txtComp4Name.Enabled = false; txtComp5Name.Enabled = false;
-                    btn_changeLoc.Enabled = false;
-                    break;
+        //private void AdjustUI(string key)
+        //{
+        //    switch (key)
+        //    {
+        //        //case "CompaniesCreated":
+        //        //    txtComp1Name.Enabled = false; txtComp2Name.Enabled = false;
+        //        //    //txtComp3Name.Enabled = false; txtComp4Name.Enabled = false; txtComp5Name.Enabled = false;
+        //        //    btn_changeLoc.Enabled = false;
+        //        //    break;
 
-                case "Reset":
-                    txtComp1Name.Enabled = true; txtComp2Name.Enabled = true;
-                    //disable for now
-                    //txtComp3Name.Enabled = true; txtComp4Name.Enabled = true;
-                    //txtComp5Name.Enabled = true;
-                    txtComp1Name.Text = ""; //txtComp3Name.Text = ""; txtComp5Name.Text = "";
-                    txtComp2Name.Text = ""; //txtComp4Name.Text = "";
-                    txtComp1Code.Text = ""; //txtComp3Code.Text = ""; txtComp5Code.Text = "";
-                    txtComp2Code.Text = "";// txtComp4Code.Text = "";
+        //        case "Reset":
+        //            txtComp1Name.Enabled = true; txtComp2Name.Enabled = true;
+        //            //disable for now
+        //            //txtComp3Name.Enabled = true; txtComp4Name.Enabled = true;
+        //            //txtComp5Name.Enabled = true;
+        //            txtComp1Name.Text = ""; //txtComp3Name.Text = ""; txtComp5Name.Text = "";
+        //            txtComp2Name.Text = ""; //txtComp4Name.Text = "";
+        //            txtComp1Code.Text = ""; //txtComp3Code.Text = ""; txtComp5Code.Text = "";
+        //            txtComp2Code.Text = "";// txtComp4Code.Text = "";
                     
-                    btn_changeLoc.Enabled = true;
-                    break;
-                default:
-                    break;
-            }
-        }
+        //            btn_changeLoc.Enabled = true;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
 
-        private bool CreateCompanies(out string error)
-        {
-            error = "" ;
-            if (ProjIO.DoesCompanyCodeExist(txtComp1Code.Text) && ProjIO.DoesCompanyCodeExist(txtComp2Code.Text))
-            { error = "Company with same code exist."; return false; }
-            if(!ProjIO.DoesCompanyCodeExist(txtComp1Code.Text) && 
-                !string.IsNullOrEmpty(txtComp1Name.Text) && !string.IsNullOrEmpty(txtComp1Code.Text))
-                _companies.AddCompany1(txtComp1Name.Text, txtComp1Code.Text);
-            if (!ProjIO.DoesCompanyCodeExist(txtComp2Code.Text) && !string.IsNullOrEmpty(txtComp2Name.Text) && !string.IsNullOrEmpty(txtComp2Code.Text))
-                _companies.AddCompany2(txtComp2Name.Text, txtComp2Code.Text);
-            return true;
-        }
+        //private bool CreateCompanies(out string error)
+        //{
+        //    error = "" ;
+        //    if (ProjIO.DoesCompanyCodeExist(txtComp1Code.Text) && ProjIO.DoesCompanyCodeExist(txtComp2Code.Text))
+        //    { error = "Company with same code exist."; return false; }
+        //    if(!ProjIO.DoesCompanyCodeExist(txtComp1Code.Text) && 
+        //        !string.IsNullOrEmpty(txtComp1Name.Text) && !string.IsNullOrEmpty(txtComp1Code.Text))
+        //        _companies.AddCompany1(txtComp1Name.Text, txtComp1Code.Text);
+        //    if (!ProjIO.DoesCompanyCodeExist(txtComp2Code.Text) && !string.IsNullOrEmpty(txtComp2Name.Text) && !string.IsNullOrEmpty(txtComp2Code.Text))
+        //        _companies.AddCompany2(txtComp2Name.Text, txtComp2Code.Text);
+        //    return true;
+        //}
 
         private void txtComp1Name_TextChanged(object sender, EventArgs e)
         {
-           txtComp1Code.Text = SellerSense.ViewManager.VM_Companies.GetRandomCode(txtComp1Name.Text, 4);
+           //txtComp1Code.Text = SellerSense.ViewManager.VM_Companies.GetRandomCode(txtComp1Name.Text, 4);
         }
 
         private void txtComp2Name_TextChanged(object sender, EventArgs e)
         {
-            txtComp2Code.Text = SellerSense.ViewManager.VM_Companies.GetRandomCode(txtComp2Name.Text, 4);
+            //txtComp2Code.Text = SellerSense.ViewManager.VM_Companies.GetRandomCode(txtComp2Name.Text, 4);
 
 
         }
@@ -120,15 +112,12 @@ namespace SellerSense
         {
             //Views.Products.Products tf = new Views.Products.Products();
             //tf.ShowDialog();
-
+            txtComp1Name.Enabled = false; txtComp2Name.Enabled = false;
             if (!string.IsNullOrEmpty(ProjIO.GetUserSetting(Constants.WorkspaceDir)))
                 txtWorkSpaceLocation.Text = ProjIO.GetUserSetting(Constants.WorkspaceDir);
             else
                 txtWorkSpaceLocation.Text = ProjIO.DefaultWorkspaceLocation();
-            txtComp1Name.Text = ProjIO.GetUserSetting(Constants.Company1Name);
-            txtComp1Code.Text = ProjIO.GetUserSetting(Constants.Company1Code);
-            txtComp2Name.Text = ProjIO.GetUserSetting(Constants.Company2Name);
-            txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
+            LoadCompanyLabelTexts();
             pbar.Visible = false;
             label_Amz_CompA.Text = txtComp1Name.Text;
             ProjIO.SaveUserSetting(Constants.AmazonCompACode, ProjIO.GetUserSetting(Constants.Company1Code));
@@ -155,6 +144,15 @@ namespace SellerSense
             PrestaShopSettings();
             AmazonSettings();
 
+        }
+
+
+        private void LoadCompanyLabelTexts()
+        {
+            txtComp1Name.Text = ProjIO.GetUserSetting(Constants.Company1Name);
+            txtComp1Code.Text = ProjIO.GetUserSetting(Constants.Company1Code);
+            txtComp2Name.Text = ProjIO.GetUserSetting(Constants.Company2Name);
+            txtComp2Code.Text = ProjIO.GetUserSetting(Constants.Company2Code);
         }
 
         private void PrestaShopSettings()
@@ -213,7 +211,7 @@ namespace SellerSense
 
         private void btn_Reset_Click(object sender, EventArgs e)
         {
-            AdjustUI("Reset");
+            //AdjustUI("Reset");
         }
 
         private void txtComp3Name_TextChanged(object sender, EventArgs e)
@@ -289,27 +287,7 @@ namespace SellerSense
 
        
 
-        //private void ImportMap(string mapCode)
-        //{
-        //    if (!string.IsNullOrEmpty(mapCode))
-        //    {
-        //        OpenFileDialog openFileDialog = new OpenFileDialog();
-        //        openFileDialog.Filter = "Inventory file|*.json";
-        //        if (openFileDialog.ShowDialog() == DialogResult.OK)
-        //        {
-        //            _map1File = openFileDialog.FileName;
-        //            ProjIO.ImportMap(openFileDialog.FileName, txtComp1Code.Text, () => { },
-        //                (msg) => {
-        //                    if (DialogResult.Yes == MessageBox.Show(msg, "File exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1))
-        //                        return true;
-        //                    else
-        //                        return false;
-        //                }, // file exists
-        //                (msg) => { MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information); });//result
-        //        }
-        //        else return;
-        //    }
-        //}
+     
 
         private void ImportMapAndImages(string mapCode)
         {
@@ -402,5 +380,15 @@ namespace SellerSense
             //Mapping.AmazonInvColumnMapping.amazon_inv_report_sellerQuantity = textBox_amz_qty.Text;
             
         }
+
+        private void button_launchStartUp_Click(object sender, EventArgs e)
+        {
+            var start = new Views.SetUp.StartUp(_companies);
+            start.ShowDialog();
+
+            LoadCompanyLabelTexts(); 
+        }
+
+       
     }
 }

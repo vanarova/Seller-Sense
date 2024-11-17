@@ -51,7 +51,7 @@ namespace SellerSense
             if (_companiesMgr._companies == null || _companiesMgr._companies.Count == 0)
                 AdjustUI("EnableOnlySetupButton"); //Force use to run set again.
             else
-                AdjustUI("EnableAllButton");
+                AdjustUI("EnableAllButtons");
         }
 
         private async void btn_Inventories_Click(object sender, EventArgs e)
@@ -287,6 +287,9 @@ namespace SellerSense
         {
             SetUp c = new SetUp(_companiesMgr); //TODO : sometimes user double click these dashboard buttons and 2 windows open, handle this issue.
             c.FormClosed += (senderObj, formClosedEventArgs) => {
+                //MessageBox.Show("Please restart application to apply changes..","Alert", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                //Application.Exit();
+                _companiesMgr = new SellerSense.ViewManager.VM_Companies();
                 CheckIfSetupNeedsToRun();
             };
             c.ShowDialog();
@@ -350,8 +353,9 @@ namespace SellerSense
 
         private void label_help_Click(object sender, EventArgs e)
         {
-            Docs.Help help = new Docs.Help(Docs.Constants.HelpTopic.Welcome);
-            help.ShowDialog();
+            SellerSense.help.HtmlHelp.OpenHelpPage("Welcome");
+            //Docs.Help help = new Docs.Help(Docs.Constants.HelpTopic.Welcome);
+            //help.ShowDialog();
         }
     }
 }

@@ -187,11 +187,14 @@ namespace SellerSense.ViewManager
                 var invobj = _m_externalInventoriesModel._fkImportedInventoryList._fkInventoryList.FirstOrDefault(x => x.fsn == asin);
                 if (invobj != null)
                 {
+                    string syscount = invViewObj.FlipkartSystemCount;
+                    if (syscount == null)
+                        syscount = string.Empty;
                     FkInventoryV2 iamz = new FkInventoryV2(
                         invobj.sku,
                         invViewObj.FlipkartCode,
                         invobj.price,
-                        invViewObj.FlipkartSystemCount.ToString(),
+                        syscount,
                         invViewObj.FlipkartCount.ToString());
                     _m_externalInventoriesModel._fkImportedInventoryList._fkUIModifiedInvList.Add(iamz);
                     //UpdateCrossCompanySharedInvForThisCompany();
@@ -308,13 +311,21 @@ namespace SellerSense.ViewManager
 
         private void DisableColumnEditingForSomeColumns(SfDataGrid gridview)
         {
-            foreach (var column in gridview.Columns) { column.AllowEditing = false; }
-            gridview.Columns[Constants.InventoryViewCols.AmazonCount].AllowEditing = true;
-            gridview.Columns[Constants.InventoryViewCols.FlipkartCount].AllowEditing = true;
-            gridview.Columns[Constants.InventoryViewCols.SnapdealCount].AllowEditing = true;
-#if IncludeMeesho
-            gridview.Columns[Constants.InventoryViewCols.MeeshoCount].ReadOnly = false;
-#endif
+            if (gridview == null)
+                return;
+            try
+            {
+                foreach (var column in gridview.Columns) {if(column!=null) column.AllowEditing = false; }
+                gridview.Columns[Constants.InventoryViewCols.AmazonCount].AllowEditing = true;
+                gridview.Columns[Constants.InventoryViewCols.FlipkartCount].AllowEditing = true;
+                gridview.Columns[Constants.InventoryViewCols.SnapdealCount].AllowEditing = true;
+                
+            }
+            catch (Exception)
+            {
+                Logger.Log("Error while diabaling cols", Logger.LogLevel.warning, true);
+            }
+
         }
 
         internal void AssignViewManager(InvCntrl invUserControl) {
@@ -801,6 +812,7 @@ namespace SellerSense.ViewManager
             }
             _ssGridView.IsLoading = true;
             await AssignAmazonOrdersToInvView();
+            CheckForUnmappedAmazonProductsFromImportedOrders();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
             _v_invCntrl.progressBar_Invload.Visible = false;
@@ -815,6 +827,7 @@ namespace SellerSense.ViewManager
             else return;
             _ssGridView.IsLoading = true;
             await AssignFkOrdersToInvView();
+            CheckForUnmappedFlipkartProductsFromImportedOrders();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
         }
@@ -828,6 +841,7 @@ namespace SellerSense.ViewManager
             else return;
             _ssGridView.IsLoading = true;
             await AssignSnapdealOrdersToInvView();
+            CheckForUnmappedSnapdealProductsFromImportedOrders();
             _ssGridView.IsLoading = false;
             _ssGridView.UpdateBindings();
         }
@@ -859,6 +873,7 @@ namespace SellerSense.ViewManager
                         }
                     }
                 }
+               
             });
         }
 
@@ -885,6 +900,7 @@ namespace SellerSense.ViewManager
                         }
                     }
                 }
+               
             });
         }
 
@@ -914,6 +930,8 @@ namespace SellerSense.ViewManager
                         }
                     }
                 }
+
+                
             });
         }
 
@@ -958,6 +976,52 @@ namespace SellerSense.ViewManager
             //    _ssGridView.li
             //}
             //UpdateInhouseInventory(list, e.NewIndex, list[e.NewIndex].InHouseCode);
+        }
+
+
+        private void CheckForUnmappedAmazonProductsFromImportedOrders()
+        {
+            List<string> unmappedInv = new List<string>();
+            string label = "Codes found in Orders, which are not mapped";
+            foreach (var amzItem in _m_OrdersModel._amzOrders)
+            {
+                var item = _inventoryViewList.FirstOrDefault(x => x.AmazonCode == amzItem.asin);
+                if (item == null)
+                    unmappedInv.Add(amzItem.asin);
+            }
+            
+            UnMappedInventories uinv = new UnMappedInventories(Constants.Company.Amazon.ToString(), new List<string>(), unmappedInv, label);
+            uinv.ShowDialog();
+        }
+
+        private void CheckForUnmappedFlipkartProductsFromImportedOrders()
+        {
+            List<string> unmappedInv = new List<string>();
+            string label = "Codes found in Orders, which are not mapped";
+            foreach (var fkItem in _m_OrdersModel._fkOrders)
+            {
+                var item = _inventoryViewList.FirstOrDefault(x => x.FlipkartCode == fkItem.fsn);
+                if (item == null)
+                    unmappedInv.Add(fkItem.fsn);
+            }
+
+            UnMappedInventories uinv = new UnMappedInventories(Constants.Company.Flipkart.ToString(), new List<string>(), unmappedInv, label);
+            uinv.ShowDialog();
+        }
+
+        private void CheckForUnmappedSnapdealProductsFromImportedOrders()
+        {
+            List<string> unmappedInv = new List<string>();
+            string label = "Codes found in Orders, which are not mapped";
+            foreach (var spdItem in _m_OrdersModel._spdOrders)
+            {
+                var item = _inventoryViewList.FirstOrDefault(x => x.SnapdealCode == spdItem.SUPC);
+                if (item == null)
+                    unmappedInv.Add(spdItem.SUPC);
+            }
+
+            UnMappedInventories uinv = new UnMappedInventories(Constants.Company.Snapdeal.ToString(), new List<string>(), unmappedInv, label);
+            uinv.ShowDialog();
         }
 
         private void CheckForUnmappedAmazonProducts()

@@ -18,7 +18,8 @@ namespace SellerSense.Views.Inventories
         private string title;
         private IList<string> unmappedInhouseCode;
         private IList<string> unmappedInv;
-        public UnMappedInventories(string Title, IList<string> unmappedInhouseCode, IList<string> unmappedInv)
+        private string label;
+        public UnMappedInventories(string Title, IList<string> unmappedInhouseCode, IList<string> unmappedInv, string SiteCodesLabel="")
         {
             InitializeComponent();
             FontFamily fontFamily = new FontFamily("Calibri");
@@ -38,11 +39,16 @@ namespace SellerSense.Views.Inventories
             this.title = Title;
             this.unmappedInv = unmappedInv;
             this.unmappedInhouseCode = unmappedInhouseCode;
+            if (!string.IsNullOrEmpty(SiteCodesLabel))
+                label = SiteCodesLabel;
         }
 
         private void UnMappedInventories_Load(object sender, EventArgs e)
         {
-            label_title.Text = $"Unmapped product codes in imported inventory file for: {title}";
+            if(!string.IsNullOrEmpty(label))
+                label_title_SiteCodes.Text = label;
+            else
+                label_title_SiteCodes.Text = $"Unmapped product codes in imported inventory file for: {title}";
             listBox_Inv.Items.Clear();
             listBox_InHouse.Items.Clear();
 
@@ -63,7 +69,7 @@ namespace SellerSense.Views.Inventories
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text file|*.txt";
             saveFileDialog.DefaultExt = "txt";
-            saveFileDialog.CheckFileExists = true;
+            saveFileDialog.CheckFileExists = false;
             saveFileDialog.CheckPathExists = true;
 
             DialogResult d = saveFileDialog.ShowDialog();
@@ -84,6 +90,14 @@ namespace SellerSense.Views.Inventories
             return formattedList;
         }
 
-        
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SellerSense.help.HtmlHelp.OpenHelpPage("Unmapped");
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SellerSense.help.HtmlHelp.OpenHelpPage("Unmapped");
+        }
     }
 }

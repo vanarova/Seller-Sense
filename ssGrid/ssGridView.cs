@@ -83,6 +83,9 @@ namespace ssGrid
             comboBox_PageSize.Items.Add(50);
             comboBox_PageSize.Items.Add(100);
             comboBox_PageSize.Items.Add(200);
+            comboBox_PageSize.Items.Add(1000);
+            comboBox_PageSize.Items.Add(2000);
+            comboBox_PageSize.Items.Add(5000);
             
             columnChooser = new Syncfusion.WinForms.DataGrid.Interactivity.ColumnChooser(sfDataGrid);
             columnChooser.Location = new Point((int)DpiAware.LogicalToDeviceUnits(40), (int)DpiAware.LogicalToDeviceUnits(140));

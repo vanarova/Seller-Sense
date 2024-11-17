@@ -42,12 +42,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugWithNoGlobalExeceptions|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -64,6 +65,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>SellerSense.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AngleSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
@@ -213,6 +217,7 @@
     <Compile Include="Helper\HtmlUtilities.cs" />
     <Compile Include="Helper\QuickLog.cs" />
     <Compile Include="Helper\PrestashopRestAPI.cs" />
+    <Compile Include="Help\HtmlHelp.cs" />
     <Compile Include="Model\Invoice\M_Invoice.cs" />
     <Compile Include="Model\InvUpdate\M_Snapshot.cs" />
     <Compile Include="Model\Orders\M_Orders.cs" />
@@ -411,6 +416,12 @@
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Inventories\M_External_Inventories.cs" />
+    <Compile Include="Views\SetUp\StartUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SetUp\StartUp.Designer.cs">
+      <DependentUpon>StartUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SingleNumericInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +516,9 @@
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\SetUp\StartUp.resx">
+      <DependentUpon>StartUp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\SingleNumericInputForm.resx">
       <DependentUpon>SingleNumericInputForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -521,6 +535,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.manifest" />
+    <None Include="InvoiceTemplate.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="InvoiceTemplateXL.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\InventoryUpdater.Model.AppVersion+Number.datasource" />
     <None Include="Properties\Settings.settings">
@@ -579,6 +600,12 @@
     <Content Include="Docs\Diagram.bmp" />
     <Content Include="Images\1138px-OOjs_UI_icon_alert-warning-black.svg.png" />
     <Content Include="Images\android-chrome-192x192.png" />
+    <Content Include="RamLalla.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SellerSenseHelp.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Images\pdf.ico" />
     <None Include="Images\exc.ico" />
     <Content Include="Images\favicon-32x32.png" />

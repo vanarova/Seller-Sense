@@ -31,6 +31,7 @@ namespace SellerSense.Views.Products
             this.Style.InactiveBorder.Width = Constants.Theme.BorderWidth;
             m_product = mproduct;
             m_Invoice = invoice;
+            m_Invoice.LineItems.Clear();
         }
 
         private void button_TemplateDir_Click(object sender, EventArgs e)

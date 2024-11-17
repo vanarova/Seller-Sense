@@ -51,12 +51,11 @@ namespace SellerSense.Model
 
       
 
-        public void CreateAnEmptyMap(M_BaseCodeList baseCodeList) {
-            foreach (var item in baseCodeList.codes)
-            {
-                _productEntries.Add(new ProductEntry(item.BaseCodeValue, item.Image, item.Title, String.Empty,
-                    String.Empty,string.Empty, string.Empty, string.Empty, string.Empty, string.Empty));
-            }
+        public void CreateSampleProductMapFile() {
+            
+            _productEntries.Add(new ProductEntry(Constants.SampleProdCode, Constants.SampleImg, 
+                Constants.SampleProdTitle, "","","","","","Search tag",Constants.SampleProdDesc));
+            SaveMapFile();
         }
 
         public void ImportMap(string json) {
@@ -65,9 +64,28 @@ namespace SellerSense.Model
             //MapEntries = JsonConvert.DeserializeObject<List<MapEntry>>(json);
         }
 
-        public void SerializeMap(string fileName) { 
+        public void SerializeMap(string fileName)
+        {
             string json = JsonConvert.SerializeObject(_productEntries, Formatting.Indented);
+            //try
+            //{
+            FileInfo fileInfo = new FileInfo(fileName);
+
+            // Check if the file is read-only
+            if (fileInfo.IsReadOnly)
+                fileInfo.IsReadOnly = false;
+            
             File.WriteAllText(fileName, json);
+            //}
+            //catch (IOException e)
+            //{
+            //    if (ProjIO.IsFileLocked(e))
+            //        throw new Exception("File is loacked");
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
 
         public  void LoadLastSavedMap()

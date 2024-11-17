@@ -32,11 +32,11 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.sfButton_Close = new Syncfusion.WinForms.Controls.SfButton();
-            this.label_title = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.sfButton_Export = new Syncfusion.WinForms.Controls.SfButton();
             this.listBox_Inv = new System.Windows.Forms.ListBox();
             this.listBox_InHouse = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label_title_SiteCodes = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
@@ -49,12 +49,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.210918F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 94.78909F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 290F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.listBox_Inv, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.listBox_InHouse, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label_title, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label_title_SiteCodes, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.linkLabel1, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.linkLabel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -75,7 +75,7 @@
             this.flowLayoutPanel1.Controls.Add(this.sfButton_Close);
             this.flowLayoutPanel1.Controls.Add(this.sfButton_Export);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(247, 466);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(246, 466);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(336, 58);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -90,28 +90,6 @@
             this.sfButton_Close.TabIndex = 0;
             this.sfButton_Close.Text = "Close";
             this.sfButton_Close.Click += new System.EventHandler(this.sfButton_Close_Click);
-            // 
-            // label_title
-            // 
-            this.label_title.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label_title.AutoSize = true;
-            this.label_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_title.Location = new System.Drawing.Point(305, 24);
-            this.label_title.Name = "label_title";
-            this.label_title.Size = new System.Drawing.Size(271, 32);
-            this.label_title.TabIndex = 1;
-            this.label_title.Text = "Unmapped product codes in imported inventory file";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(26, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(259, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Unmapped in-house product code(s)";
             // 
             // sfButton_Export
             // 
@@ -129,7 +107,7 @@
             this.listBox_Inv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox_Inv.FormattingEnabled = true;
             this.listBox_Inv.ItemHeight = 16;
-            this.listBox_Inv.Location = new System.Drawing.Point(299, 98);
+            this.listBox_Inv.Location = new System.Drawing.Point(298, 98);
             this.listBox_Inv.Name = "listBox_Inv";
             this.listBox_Inv.Size = new System.Drawing.Size(284, 362);
             this.listBox_Inv.TabIndex = 3;
@@ -141,30 +119,54 @@
             this.listBox_InHouse.ItemHeight = 16;
             this.listBox_InHouse.Location = new System.Drawing.Point(18, 98);
             this.listBox_InHouse.Name = "listBox_InHouse";
-            this.listBox_InHouse.Size = new System.Drawing.Size(275, 362);
+            this.listBox_InHouse.Size = new System.Drawing.Size(274, 362);
             this.listBox_InHouse.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(25, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(259, 16);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Unmapped in-house product code(s)";
+            // 
+            // label_title_SiteCodes
+            // 
+            this.label_title_SiteCodes.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label_title_SiteCodes.AutoSize = true;
+            this.label_title_SiteCodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_title_SiteCodes.Location = new System.Drawing.Point(304, 24);
+            this.label_title_SiteCodes.Name = "label_title_SiteCodes";
+            this.label_title_SiteCodes.Size = new System.Drawing.Size(271, 32);
+            this.label_title_SiteCodes.TabIndex = 1;
+            this.label_title_SiteCodes.Text = "Unmapped product codes in imported inventory file";
             // 
             // linkLabel1
             // 
             this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(401, 67);
+            this.linkLabel1.Location = new System.Drawing.Point(400, 67);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(182, 16);
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "How to fix unmapped codes ?";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // linkLabel2
             // 
             this.linkLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(57, 67);
+            this.linkLabel2.Location = new System.Drawing.Point(56, 67);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(236, 16);
             this.linkLabel2.TabIndex = 6;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Is unmapped in-house code an issue ?";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // UnMappedInventories
             // 
@@ -190,7 +192,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private Syncfusion.WinForms.Controls.SfButton sfButton_Close;
-        private System.Windows.Forms.Label label_title;
+        private System.Windows.Forms.Label label_title_SiteCodes;
         private System.Windows.Forms.Label label2;
         private Syncfusion.WinForms.Controls.SfButton sfButton_Export;
         private System.Windows.Forms.ListBox listBox_Inv;

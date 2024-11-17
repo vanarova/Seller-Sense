@@ -16,6 +16,13 @@ namespace CommonUtil
         public const string PNG = ".png";
         public const int MaxHistoryDaysToKeepSnapshots = 30;
         public const string Imgs = "imgs";
+
+
+        public const string SampleProdCode = "AAA";
+        public const string SampleImg = "AAA.png";
+        public const string SampleProdTitle = "Sample Product A";
+        public const string SampleProdDesc = "Description of sample product A";
+
         public const string MapFileName = "map.json";
         public const string logFileName = "log.txt";
         public const string Snapshots = "Snapshots";
@@ -26,6 +33,8 @@ namespace CommonUtil
         public const string InvoiceTemplateFileXL = "InvoiceTemplateXL.xls";
         public const string WorkspaceDir = "workspace";
         public const string WorkspaceDefaultDirName = "Seller-Sense";
+
+        public const string InstallationLocation = "C:\\Program Files (x86)\\Seller-Sense";
 
         public const string Company1Code = "Company1Code";
         public const string Company1Name = "Company1Name";

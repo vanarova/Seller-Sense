@@ -27,7 +27,7 @@ namespace SellerSense
                 //Log level is hard coded here, this value is written in json file, and reset any user setting done in last run
                 //If you dont want to reset logging level, then try to read logging level from config json, if not found, execute below line.
                 //Also change tooltip value
-                Logger.SetLoggerLevel_LogAboveThisLevelOnly(Logger.LogLevel.info);
+                //Logger.SetLoggerLevel_LogAboveThisLevelOnly(Logger.LogLevel.info);
 
                 //Evaluate Telegram setting, this will set telegram  logging bool variable
                 //Logger.IsTelegramLogEnabled();

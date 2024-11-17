@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -76,6 +78,8 @@ namespace Docs
 
         private void LoadAmzPaymentHelp()
         {
+            
+
             tabControlAdv1.Font = new Font(new FontFamily("Segoe UI"), 9f);
 
             //step 1
@@ -94,9 +98,21 @@ namespace Docs
             LoadPicInTabPage(tabPageAdv1, @"Images\help\SpdPayment1.png");
         }
 
+        private void OpenHelpPage(string id)
+        {
+            try {
+                var p = System.IO.Path.GetFullPath(Assembly.GetExecutingAssembly().Location);
+                System.IO.DirectoryInfo dinfo = new System.IO.DirectoryInfo(p);
+                string installation_dir = dinfo.FullName;
+                string helpHtml = System.IO.Path.Combine(installation_dir, "SellerSenseHelp.html");
+                Process.Start("explorer.exe", helpHtml + id);
+            }
+            catch { MessageBox.Show("Error opening help page."); }
+        }
 
         private void LoadOrdersHelp()
         {
+            OpenHelpPage("?#AmzOrders");
             label1.Text = "Help topics:";
             tabControlAdv1.Font = new Font(new FontFamily("Segoe UI"), 9f);
 

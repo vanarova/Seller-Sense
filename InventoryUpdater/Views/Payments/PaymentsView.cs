@@ -23,17 +23,20 @@ namespace SellerSense.Views.Payments
 
         private void button_FkHelp_Click(object sender, EventArgs e)
         {
-            (new Docs.Help(Docs.Constants.HelpTopic.FkPayment)).ShowDialog();
+            SellerSense.help.HtmlHelp.OpenHelpPage("FkPayment");
+           // (new Docs.Help(Docs.Constants.HelpTopic.FkPayment)).ShowDialog();
         }
 
         private void button_AmzHelp_Click(object sender, EventArgs e)
         {
-            (new Docs.Help(Docs.Constants.HelpTopic.AnzPayment)).ShowDialog();
+            SellerSense.help.HtmlHelp.OpenHelpPage("AmzPayment");
+            //(new Docs.Help(Docs.Constants.HelpTopic.AnzPayment)).ShowDialog();
         }
 
         private void button_SpdHelp_Click(object sender, EventArgs e)
         {
-            (new Docs.Help(Docs.Constants.HelpTopic.SpdPayment)).ShowDialog();
+            SellerSense.help.HtmlHelp.OpenHelpPage("SpdPayment");
+            //(new Docs.Help(Docs.Constants.HelpTopic.SpdPayment)).ShowDialog();
         }
     }
 }

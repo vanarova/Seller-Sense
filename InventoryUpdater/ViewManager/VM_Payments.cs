@@ -310,6 +310,7 @@ namespace SellerSense.ViewManager
             paymentsViewDataAmz.Sku = item.Sku;
             paymentsViewDataAmz.QuantityPurchased = item.QuantityPurchased;
             paymentsViewDataAmz.CostPrice = item.CostPrice;
+            //paymentsViewDataAmz.TotalCost = item.TotalCost;
             paymentsViewDataAmz.InHouseCode = item.InHouseCode;
             paymentsViewDataAmz.Image = item.Image;
             paymentsViewDataAmz.OrderItemCode = item.OrderItemCode;
@@ -366,6 +367,12 @@ namespace SellerSense.ViewManager
             public Image Image { get { return _image; } set { _image = value; } }
             public byte[] DisplayImage { get { return ImageToByteArray(_image); } }
             public string CostPrice { get; set; }
+            public string TotalCost { get {
+                    int.TryParse(CostPrice, out int cp);
+                    int.TryParse(QuantityPurchased, out int qty);
+                    return ((cp*qty).ToString());
+                } 
+            }
             public string Profit { get; set; }
             public string OrderId { get; set; }
             public string ShipmentId { get; set; }
@@ -403,18 +410,29 @@ namespace SellerSense.ViewManager
             public Image Image { get { return _image; } set { _image = value; } }
             public byte[] DisplayImage { get { return ImageToByteArray(_image); } }
             public string CostPrice { get; set; }
+            public string OrderDate { get; set; }
+            public string TotalCost
+            {
+                get
+                {
+                    int.TryParse(CostPrice, out int cp);
+                    int.TryParse(Quantity, out int qty);
+                    return ((cp * qty).ToString());
+                }
+            }
+            public string Quantity { get; set; }
             public string OrderId { get; set; }
-           public  string OrderItemId { get; set; }
-           public  string Sku { get; set; }
-           public  string BankSettlementValue { get; set; }
-           public  string Return { get; set; }
-           public  string Tds { get; set; }
-           public  string SaleAmount { get; set; }
-           public  string TotalOfferAmt { get; set; }
-           public  string MyShare { get; set; }
-           public  string CustomerAddonAmt { get; set; }
-           public  string MarketplaceFee { get; set; }
-           public  string Taxes { get; set; }
+            public  string OrderItemId { get; set; }
+            public  string Sku { get; set; }
+            public  string BankSettlementValue { get; set; }
+            public  string Return { get; set; }
+            public  string Tds { get; set; }
+            public  string SaleAmount { get; set; }
+            public  string TotalOfferAmt { get; set; }
+            public  string MyShare { get; set; }
+            public  string CustomerAddonAmt { get; set; }
+            public  string MarketplaceFee { get; set; }
+            public  string Taxes { get; set; }
 
             private byte[] ImageToByteArray(System.Drawing.Image imageIn)
             {
@@ -470,7 +488,9 @@ namespace SellerSense.ViewManager
                     MyShare = item.myShare ?? String.Empty,
                     CustomerAddonAmt = item.customerAddonAmt ?? String.Empty,
                     MarketplaceFee = item.marketplaceFee ?? String.Empty,
-                    Taxes = item.taxes ?? String.Empty
+                    Taxes = item.taxes ?? String.Empty,
+                    Quantity = item.quantity ?? String.Empty,
+                    OrderDate = item.orderDate ?? String.Empty
                 });
             }
         }
@@ -673,6 +693,7 @@ namespace SellerSense.ViewManager
             public string InHouseCode { get; set; }
             //public Image Image { get; set; }
             public string CostPrice { get; set; }
+           // public string Quantity { get; set; }
             public string Profit  { get; set; }
             public string TransactionDate { get; set; }
             public string Type { get; set; }

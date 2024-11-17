@@ -66,9 +66,12 @@ namespace Decoders
         public string customerAddonAmt { get; set; }
         [Column(14)] //[Column("Marketplace Fee (Rs.)")]
         public string marketplaceFee { get; set; }
+        [Column(56)]
+        public string orderDate { get; set; }
         [Column(15)]
         public string taxes { get; set; }
-
+        [Column(60)]
+        public string quantity { get; set; }
 
 
         //[Column("")]

@@ -168,8 +168,8 @@ namespace SellerSense.ViewManager
         private void OpenProductMapSKUForm(Constants.Company comp)
         {
             ProductMapSKUs pMap = new ProductMapSKUs(_m_product, comp);
-            pMap.ShowDialog();   
-
+            pMap.ShowDialog();
+            _m_product.SaveMapFile();
         }
 
 

@@ -151,8 +151,9 @@ namespace SellerSense.ViewManager
             //    if (_m_Product.ChecKProductImageExists(AddProductViewBindingObj.Image4, AddProductViewBindingObj.InHouseCode + "_4"))
             //        return false;
             //}
+            
             var prod = _m_Product._productEntries.FirstOrDefault(p => p.InHouseCode == AddProductViewBindingObj.InHouseCode);
-            if (prod != null)
+            if (prod != null && !AddProductViewBindingObj.EditMode)
             {
                 (new AlertBox("Warning", "This in-house code already exists")).ShowDialog();
                 return false;

@@ -58,8 +58,8 @@
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.44681F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.55319F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 855F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 570F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.progressBar_PrestaImport, 2, 6);
@@ -73,18 +73,17 @@
             this.tableLayoutPanel1.Controls.Add(this.button_Stop, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.button_download_log, 3, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(1, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.02564F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 58.97436F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 71F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 276F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 271F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1223, 904);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(817, 582);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel2
@@ -96,20 +95,18 @@
             this.flowLayoutPanel2.Controls.Add(this.label4);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(52, 449);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(35, 291);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1075, 261);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(717, 167);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
             // button_UpdateOnly
             // 
             this.button_UpdateOnly.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button_UpdateOnly.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_UpdateOnly.Location = new System.Drawing.Point(4, 5);
-            this.button_UpdateOnly.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button_UpdateOnly.Location = new System.Drawing.Point(3, 3);
             this.button_UpdateOnly.Name = "button_UpdateOnly";
-            this.button_UpdateOnly.Size = new System.Drawing.Size(205, 73);
+            this.button_UpdateOnly.Size = new System.Drawing.Size(137, 47);
             this.button_UpdateOnly.TabIndex = 0;
             this.button_UpdateOnly.Text = "Update Only";
             this.button_UpdateOnly.UseVisualStyleBackColor = true;
@@ -118,10 +115,9 @@
             // 
             this.button_FullSync.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button_FullSync.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_FullSync.Location = new System.Drawing.Point(4, 88);
-            this.button_FullSync.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button_FullSync.Location = new System.Drawing.Point(3, 56);
             this.button_FullSync.Name = "button_FullSync";
-            this.button_FullSync.Size = new System.Drawing.Size(205, 77);
+            this.button_FullSync.Size = new System.Drawing.Size(137, 49);
             this.button_FullSync.TabIndex = 2;
             this.button_FullSync.Text = "Import && Update";
             this.button_FullSync.UseVisualStyleBackColor = true;
@@ -130,10 +126,9 @@
             // 
             this.button_DeleteUnlisted.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button_DeleteUnlisted.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_DeleteUnlisted.Location = new System.Drawing.Point(4, 175);
-            this.button_DeleteUnlisted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button_DeleteUnlisted.Location = new System.Drawing.Point(3, 111);
             this.button_DeleteUnlisted.Name = "button_DeleteUnlisted";
-            this.button_DeleteUnlisted.Size = new System.Drawing.Size(205, 73);
+            this.button_DeleteUnlisted.Size = new System.Drawing.Size(137, 47);
             this.button_DeleteUnlisted.TabIndex = 3;
             this.button_DeleteUnlisted.Text = "Delete Unlisted";
             this.button_DeleteUnlisted.UseVisualStyleBackColor = true;
@@ -142,10 +137,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(217, 5);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 0);
+            this.label4.Location = new System.Drawing.Point(146, 3);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(837, 234);
+            this.label4.Size = new System.Drawing.Size(565, 153);
             this.label4.TabIndex = 1;
             this.label4.Text = resources.GetString("label4.Text");
             // 
@@ -153,20 +148,18 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(91, 56);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(70, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(181, 25);
+            this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Prestashop URL :";
             // 
             // progressBar_PrestaImport
             // 
             this.progressBar_PrestaImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar_PrestaImport.Location = new System.Drawing.Point(280, 854);
-            this.progressBar_PrestaImport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.progressBar_PrestaImport.Location = new System.Drawing.Point(188, 550);
             this.progressBar_PrestaImport.Name = "progressBar_PrestaImport";
-            this.progressBar_PrestaImport.Size = new System.Drawing.Size(847, 20);
+            this.progressBar_PrestaImport.Size = new System.Drawing.Size(564, 13);
             this.progressBar_PrestaImport.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar_PrestaImport.TabIndex = 1;
             this.progressBar_PrestaImport.Visible = false;
@@ -175,10 +168,9 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(135, 120);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(98, 80);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 25);
+            this.label2.Size = new System.Drawing.Size(84, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Access Key :";
             // 
@@ -186,10 +178,9 @@
             // 
             this.button_HelpPrestaURL.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button_HelpPrestaURL.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_HelpPrestaURL.Location = new System.Drawing.Point(1135, 45);
-            this.button_HelpPrestaURL.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button_HelpPrestaURL.Location = new System.Drawing.Point(758, 31);
             this.button_HelpPrestaURL.Name = "button_HelpPrestaURL";
-            this.button_HelpPrestaURL.Size = new System.Drawing.Size(48, 47);
+            this.button_HelpPrestaURL.Size = new System.Drawing.Size(32, 30);
             this.button_HelpPrestaURL.TabIndex = 2;
             this.button_HelpPrestaURL.Text = "?";
             this.button_HelpPrestaURL.UseVisualStyleBackColor = true;
@@ -198,10 +189,9 @@
             // 
             this.button_HelpAccessKey.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button_HelpAccessKey.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_HelpAccessKey.Location = new System.Drawing.Point(1135, 106);
-            this.button_HelpAccessKey.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button_HelpAccessKey.Location = new System.Drawing.Point(758, 72);
             this.button_HelpAccessKey.Name = "button_HelpAccessKey";
-            this.button_HelpAccessKey.Size = new System.Drawing.Size(48, 52);
+            this.button_HelpAccessKey.Size = new System.Drawing.Size(32, 33);
             this.button_HelpAccessKey.TabIndex = 3;
             this.button_HelpAccessKey.Text = "?";
             this.button_HelpAccessKey.UseVisualStyleBackColor = true;
@@ -209,30 +199,27 @@
             // textBox_URL
             // 
             this.textBox_URL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_URL.Location = new System.Drawing.Point(280, 53);
-            this.textBox_URL.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox_URL.Location = new System.Drawing.Point(188, 35);
             this.textBox_URL.Name = "textBox_URL";
-            this.textBox_URL.Size = new System.Drawing.Size(847, 31);
+            this.textBox_URL.Size = new System.Drawing.Size(564, 22);
             this.textBox_URL.TabIndex = 4;
             // 
             // textBox_Key
             // 
             this.textBox_Key.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Key.Location = new System.Drawing.Point(280, 117);
-            this.textBox_Key.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox_Key.Location = new System.Drawing.Point(188, 77);
             this.textBox_Key.Name = "textBox_Key";
-            this.textBox_Key.Size = new System.Drawing.Size(847, 31);
+            this.textBox_Key.Size = new System.Drawing.Size(564, 22);
             this.textBox_Key.TabIndex = 5;
             // 
             // textBox_msg
             // 
             this.textBox_msg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_msg.Location = new System.Drawing.Point(280, 173);
-            this.textBox_msg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox_msg.Location = new System.Drawing.Point(188, 114);
             this.textBox_msg.Multiline = true;
             this.textBox_msg.Name = "textBox_msg";
             this.textBox_msg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_msg.Size = new System.Drawing.Size(847, 266);
+            this.textBox_msg.Size = new System.Drawing.Size(564, 171);
             this.textBox_msg.TabIndex = 6;
             // 
             // flowLayoutPanel1
@@ -242,20 +229,18 @@
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(52, 720);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(35, 464);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1075, 100);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(717, 64);
             this.flowLayoutPanel1.TabIndex = 7;
             // 
             // button_ImportOnly
             // 
             this.button_ImportOnly.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button_ImportOnly.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_ImportOnly.Location = new System.Drawing.Point(4, 5);
-            this.button_ImportOnly.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button_ImportOnly.Location = new System.Drawing.Point(3, 3);
             this.button_ImportOnly.Name = "button_ImportOnly";
-            this.button_ImportOnly.Size = new System.Drawing.Size(205, 78);
+            this.button_ImportOnly.Size = new System.Drawing.Size(137, 50);
             this.button_ImportOnly.TabIndex = 0;
             this.button_ImportOnly.Text = "Import Only";
             this.button_ImportOnly.UseVisualStyleBackColor = true;
@@ -264,10 +249,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(217, 5);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 0);
+            this.label3.Location = new System.Drawing.Point(146, 3);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(689, 52);
+            this.label3.Size = new System.Drawing.Size(446, 34);
             this.label3.TabIndex = 1;
             this.label3.Text = "Import new added products && images from your PrestaShop website.  \r\nNote: This i" +
     "s a non-reversable operation.";
@@ -275,9 +260,10 @@
             // button_Stop
             // 
             this.button_Stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Stop.Location = new System.Drawing.Point(51, 843);
+            this.button_Stop.Location = new System.Drawing.Point(34, 542);
+            this.button_Stop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_Stop.Name = "button_Stop";
-            this.button_Stop.Size = new System.Drawing.Size(222, 43);
+            this.button_Stop.Size = new System.Drawing.Size(149, 28);
             this.button_Stop.TabIndex = 9;
             this.button_Stop.Text = "Stop";
             this.button_Stop.UseVisualStyleBackColor = true;
@@ -287,23 +273,21 @@
             // 
             this.button_download_log.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.button_download_log.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_download_log.Location = new System.Drawing.Point(1135, 279);
-            this.button_download_log.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button_download_log.Location = new System.Drawing.Point(758, 182);
             this.button_download_log.Name = "button_download_log";
-            this.button_download_log.Size = new System.Drawing.Size(48, 53);
+            this.button_download_log.Size = new System.Drawing.Size(32, 34);
             this.button_download_log.TabIndex = 10;
             this.button_download_log.Text = "⤵";
             this.button_download_log.UseVisualStyleBackColor = true;
             // 
             // PrestaShopSync
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(1227, 908);
+            this.ClientSize = new System.Drawing.Size(819, 584);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PrestaShopSync";
             this.Style.BackColor = System.Drawing.Color.Lavender;
             this.Style.MdiChild.IconHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
