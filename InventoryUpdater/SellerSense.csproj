@@ -218,6 +218,8 @@
     <Compile Include="Helper\QuickLog.cs" />
     <Compile Include="Helper\PrestashopRestAPI.cs" />
     <Compile Include="Help\HtmlHelp.cs" />
+    <Compile Include="Model\Inventories\ShelfInventory\M_Shelf_Inventory.cs" />
+    <Compile Include="Model\Inventories\ShelfInventory\M_Shelf_InventoryList.cs" />
     <Compile Include="Model\Invoice\M_Invoice.cs" />
     <Compile Include="Model\InvUpdate\M_Snapshot.cs" />
     <Compile Include="Model\Orders\M_Orders.cs" />

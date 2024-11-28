@@ -18,6 +18,7 @@ namespace SellerSense.Model
     {
        
         internal M_BaseCodeList _baseCodes { get; set; }
+        internal M_Shelf_InventoryList _shelfInvList { get; set; }
         internal M_AmzInventoryList _amzImportedInvList { get; set; }
         internal M_FkInventoryList _fkImportedInventoryList   {get; set;}
         internal M_SpdInventoryList _spdImportedInventoryList {get; set;}
@@ -28,6 +29,7 @@ namespace SellerSense.Model
         {
             _baseCodes = new M_BaseCodeList();
             _amzImportedInvList = new M_AmzInventoryList();
+            _shelfInvList = new M_Shelf_InventoryList();
             _fkImportedInventoryList = new M_FkInventoryList();
             _spdImportedInventoryList = new M_SpdInventoryList();
             _msoImportedInventoryList = new M_MsoInventoryList();
@@ -68,6 +70,15 @@ namespace SellerSense.Model
         internal void ImportBaseInvCodesFile(string fileName)
         {
             _baseCodes.ImportBaseInvCodesFile(fileName);
+        }
+
+
+        internal void ImportShelfInventoryFile(string fileName)
+        {
+            if (_shelfInvList._shelfInventoryList.Count > 0)
+                _shelfInvList._shelfInventoryList.Clear();
+            _shelfInvList._shelfInventoryList = ShelfInventoryDecorder.ImportShelfInventory(fileName);
+            //_amzImportedInvList._amzInventoryList = AmazonInvDecoder.ImportAmazonInventory(fileName);
         }
 
         internal void ImportAmazonInventoryFile(string fileName)

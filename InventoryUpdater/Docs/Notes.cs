@@ -51,9 +51,10 @@
 
 
 // Inv updation is having issues, same product - cactus , when updated on HE, is not updated at CC. check. ---- DONE
-
+// Remove functionality of cross company inventory update, keep it simple.
 
 
 //Last I was working on & pending :
 //- Implement Amazon keys from setup, to be used in Amz download API, access keys are hardcoded right now.
 //- Invoice form design made, no logic implemented, Invoice model is empty, & Excel template needs to be made.
+

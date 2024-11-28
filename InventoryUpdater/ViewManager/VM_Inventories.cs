@@ -167,6 +167,13 @@ namespace SellerSense.ViewManager
                         invobj.price,
                         invViewObj.AmazonSystemCount.ToString(),
                         invViewObj.AmazonCount.ToString());
+
+                    if (_m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Any(x => x.asin == invViewObj.AmazonCode))
+                    {
+                        var obj = _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.First(x => x.asin == invViewObj.AmazonCode);
+                        if (obj != null)
+                            _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Remove(obj);
+                    }
                     _m_externalInventoriesModel._amzImportedInvList._amzModifiedInventoryList.Add(iamz);
                     //This is important to update inventory for this company first,
                     //then update other companies. Else other company wont reflect changes made in currnt company
@@ -343,6 +350,9 @@ namespace SellerSense.ViewManager
             _v_invCntrl.importFlipkartToolStripMenuItem.Click += async (s, e) => {await ImportFlipkartInv();  };
             _v_invCntrl.importSnapdealToolStripMenuItem.Click += async (s, e) => { await ImportSnapdealInv();  };
             _v_invCntrl.importAmazonFileOnlineToolStripMenuItem.Click += async (s, e) => { await ImportAmazonInv(isOnline:true);  };
+            _v_invCntrl.importShelfStockToolStripMenuItem.Click += async (s, e) => { await ImportShelfInv();  };
+
+            
 #if IncludeMeesho
             _v_invCntrl.importMeeshoToolStripMenuItem.Click += async (s, e) => { await ImportMeeshoInv(); };
 #endif
@@ -937,6 +947,31 @@ namespace SellerSense.ViewManager
 
 
 
+        private async Task ImportShelfInv()
+        {
+            _v_invCntrl.progressBar_Invload.Visible = true;
+            //DisengageCellEvents();
+            _ssGridView.ClearBindingListRows();
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Shelf stock text file|*.txt";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                _m_externalInventoriesModel.ImportShelfInventoryFile(openFileDialog.FileName);
+            else return;
+
+            _ssGridView.IsLoading = true;
+            await AssignShelfInvAndPricesToInvView();
+            _ssGridView.IsLoading = false;
+            //UpdateCrossCompanySharedInvForThisCompany();
+            //below event will call all inv update functions in all companies
+            //_crossCompanyEvents.InvokeCrossCompanySharedInventoryUpdate();
+            _ssGridView.UpdateBindings();
+            //_m_invSnapShotModel_Amz.SaveInvSnapshot(_m_externalInventoriesModel._amzImportedInvList._amzInventoryList, null, saveOnlySystemInventory: true);
+            _v_invCntrl.progressBar_Invload.Visible = false;
+
+        }
+
+
         private async Task ImportAmazonInv(bool isOnline = false)
         {
             _v_invCntrl.progressBar_Invload.Visible = true;
@@ -1188,6 +1223,42 @@ namespace SellerSense.ViewManager
             }
         }
 
+
+
+        private Task AssignShelfInvAndPricesToInvView()
+        {
+            return Task.Run(() =>
+            {
+                foreach (var shelfItem in _m_externalInventoriesModel._shelfInvList._shelfInventoryList)
+                {
+                    foreach (var viewItem in _inventoryViewList)
+                    {
+                        if (!string.IsNullOrWhiteSpace(shelfItem.inHouseCode) && !string.IsNullOrWhiteSpace(viewItem.InHouseCode) &&
+                        shelfItem.inHouseCode.Trim().ToLower() == viewItem.InHouseCode.Trim().ToLower()
+                        && int.TryParse(shelfItem.shelfCount, out int val))
+                        {
+                            string sval = string.Empty;
+                            if (val != 0) sval = Convert.ToString(val);
+                            viewItem.ShelfCount = sval;
+                            //viewItem.AmazonCount = sval;
+
+                            //update snapshot as well
+                            //var snapshotObj = _m_invSnapShotModel._invSnapshotEntries.FirstOrDefault(x => x.ACode == viewItem.AmazonCode);
+                            //if (snapshotObj != null)
+                            //{
+                            //    snapshotObj.AInv = viewItem.AmazonCount;
+                            //    snapshotObj.ASystemInv = viewItem.AmazonSystemCount;
+                            //}
+                        }
+                    }
+                }
+
+
+            });
+
+
+        }
+
         private Task AssignAmazonInvAndPricesToInvView()
         {
            return Task.Run(() =>
@@ -1348,6 +1419,7 @@ internal class InventoryView : INotifyPropertyChanged
             private string _meeshoCount;
 #endif
             private string _inhouseCount;
+            private string _shelfCount;
             private string _notes;
 
             //below values from Product 
@@ -1365,6 +1437,14 @@ internal class InventoryView : INotifyPropertyChanged
                 get { return _inhouseCount; }
                 set { if (value != this._inhouseCount) { _inhouseCount = value; NotifyPropertyChanged(); } }
             }
+
+            public string ShelfCount
+            {
+                get { return _shelfCount; }
+                set { if (value != this._shelfCount) { _shelfCount = value; NotifyPropertyChanged(); } }
+            }
+
+
             public int OrdersCount
             {
                 get {

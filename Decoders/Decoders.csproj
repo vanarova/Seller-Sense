@@ -58,9 +58,11 @@
   <ItemGroup>
     <Compile Include="AmazonInvDecoder.cs" />
     <Compile Include="Interfaces\IInvoiceData.cs" />
+    <Compile Include="Interfaces\IShelfInventory.cs" />
     <Compile Include="InvoiceDecoder.cs" />
     <Compile Include="ProductDecoder.cs" />
     <Compile Include="Interfaces\IProduct.cs" />
+    <Compile Include="ShelfInventoryDecorder.cs" />
     <Compile Include="SnapdealOrdersDecoder.cs" />
     <Compile Include="FlipkartOrdersDecoder.cs" />
     <Compile Include="AmazonOrdersDecoder.cs" />
