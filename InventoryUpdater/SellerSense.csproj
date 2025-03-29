@@ -573,14 +573,6 @@
       <Project>{BC99C7EC-F760-4C39-806E-2F8FD2E17CB9}</Project>
       <Name>Decoders</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Docs\Docs.csproj">
-      <Project>{55978adf-2f05-45ca-a317-21206c7d636c}</Project>
-      <Name>Docs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ImageSearch\ImageSearch.csproj">
-      <Project>{469e5ab8-4f2d-4ba2-9423-70117ba1514a}</Project>
-      <Name>ImageSearch</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PrimitiveExt\PrimitiveExt.csproj">
       <Project>{342c5454-252a-4f7a-81a2-6e4330c7b676}</Project>
       <Name>PrimitiveExt</Name>

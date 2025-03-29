@@ -33,8 +33,6 @@ namespace SellerSense.Helper
                     ClientId = ProjIO.GetUserSetting(CommonUtil.Constants.AmazonCompAKey),
                     ClientSecret = ProjIO.GetUserSetting(CommonUtil.Constants.AmazonCompASecret),
                     RefreshToken = ProjIO.GetUserSetting(CommonUtil.Constants.AmazonCompAToken),
-                    //ClientSecret = "amzn1.oa2-cs.v1.394228fdcf48b8123f3d2f3d15a46c0e31402e25f61584b1bcbb533ae3a62228",
-                    //RefreshToken = "Atzr|IwEBIGDxdjhUpoHZrxgK3eVqPENcX57NnenEBTny8rQa3SH8nSZuDoJMy3Vi_cIXxDbP-BDbqhUhv4VKDajB9qAYnP1dyun7La6vqOZnt7CoaoZZv47WWu_Sv3WFpH7UX-4W9lJEluXolWoAQCzTWKyS5rG0RMPxtpssTWUzCZSuEKso11omlCbY7T6m-Gyz_fvKGNaQN0G_Ff-FbeZKGB4GZG4bQhuncDZSqDQItuGReVid6bA_t5flliGHEuhNQT90JKwtGyWI82uY_Jt3xAbQ195sIRsNIskA36qhCuqSBMX0ZGaANeHuWCzYIF8a54km6FFzJZiv9Xq-NgpgOBUlYBrc",
                     MarketPlace = MarketPlace.India, //MarketPlace.GetMarketPlaceByID("A2VIGQ35RCS4UG") 
                 });
             }
