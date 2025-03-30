@@ -7,4 +7,5 @@ Seller sense provide single window, to manage your inventory, while also keeping
 ![image](https://github.com/user-attachments/assets/4a07ab73-e5ec-4f4c-bdda-b635dd16e110)
 
 Below image shows, Prestashop import form in detail:
-![image](https://github.com/user-attachments/assets/28c96b20-b8c5-46e0-88bc-37a27a1e1320)
+![image](https://github.com/user-attachments/assets/7a4622b8-350b-44d9-b9d1-480aded53a94)
+
